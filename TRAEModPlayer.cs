@@ -172,6 +172,7 @@ namespace TRAEProject
             Player.manaRegenCount = 0;
             Player.manaRegen = 0;
             Player.manaRegenDelay = 999;
+			Player.manaSickTimeMax = 9999;
             int reachThisNumberAndThenIncreaseManaBy1 = 60;
             if (Player.statMana < Player.statManaMax2)
             {

@@ -113,11 +113,6 @@ namespace TRAEProject
                     }
                     return;
                 // Summoner Changes
-				  case ProjectileID.Smolstar:
-                    projectile.usesIDStaticNPCImmunity = false;
-					projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 16;
-                    return;
                 case ProjectileID.Retanimini:
                 case ProjectileID.Spazmamini:
                 case ProjectileID.DeadlySphere:
@@ -702,7 +697,7 @@ namespace TRAEProject
                     {
                         if (projectile.ai[0] == -1f)
                         {
-                            projectile.ai[1] -= 0.3f; // when it reaches 9f, attack.                 
+                            projectile.ai[1] -= 0.2f; // when it reaches 9f, attack.                 
                         }
                         return;
                     } 
