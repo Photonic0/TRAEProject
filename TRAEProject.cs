@@ -466,12 +466,6 @@ namespace TRAEProject
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.BandofStarpower, 1);
                 }
-                if (recipe.HasResult(ItemID.ManaCloak))
-                {
-                    recipe.TryGetIngredient(ItemID.ManaFlower, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.BandofStarpower, 1);
-                }
                 if (recipe.HasResult(ItemID.BundleofBalloons))
                 {
                     recipe.RemoveRecipe();
