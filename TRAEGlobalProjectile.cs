@@ -1219,10 +1219,6 @@ namespace TRAEProject
                     player.GetModPlayer<TRAEPlayer>().MagicDaggerSpawn(player, damage, knockback);
                 }
             }
-            if (player.GetModPlayer<TRAEPlayer>().fireGlove && projectile.DamageType == DamageClass.Melee)
-            {
-                target.AddBuff(BuffType<Heavyburn>(), 60, false);
-            }
             if (player.HasBuff(BuffID.WeaponImbueNanites) && projectile.DamageType == DamageClass.Melee)
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);

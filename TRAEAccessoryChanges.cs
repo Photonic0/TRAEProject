@@ -102,23 +102,10 @@ player.accRunSpeed = 6f;
                 player.magicQuiver = false;
                 player.GetModPlayer<TRAEPlayer>().MagicQuiver = true;
                 return;
-            case ItemID.TitanGlove:
-            case ItemID.PowerGlove:
-                player.kbGlove = false;
-                player.meleeScaleGlove = false;
-                player.GetModPlayer<TRAEPlayer>().TitanGlove = true;
-                player.GetModPlayer<BigSword>().size += 0.25f;
                 return;
             case ItemID.MechanicalGlove:
                 player.kbGlove = false;
                 player.meleeScaleGlove = false;
-                return;
-            case ItemID.FireGauntlet:
-                player.GetDamage<MeleeDamageClass>() -= 0.12f;
-                player.meleeSpeed -= 0.12f;
-                player.GetModPlayer<TRAEPlayer>().TitanGlove = true;
-                player.GetModPlayer<TRAEPlayer>().fireGlove = true;
-                player.GetModPlayer<BigSword>().size += 0.25f;
                 return;
             case ItemID.Shackle:
                 player.GetModPlayer<TRAEPlayer>().shackle = true;
@@ -375,16 +362,6 @@ player.accRunSpeed = 6f;
                     }
                 }
                 return;
-            case ItemID.TitanGlove:
-            case ItemID.PowerGlove:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                    {
-                        line.text = "25% increased melee weapon size and 50% increased melee velocity";
-                    }
-                }
-                return;
             case ItemID.MechanicalGlove:
                 foreach (TooltipLine line in tooltips)
                 {
@@ -395,19 +372,6 @@ player.accRunSpeed = 6f;
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
                         line.text = "";
-                    }
-                }
-                return;
-            case ItemID.FireGauntlet:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                    {
-                        line.text = "25% increased melee weapon size and 50% increased melee velocity";
-                    }
-                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                    {
-                        line.text = "Melee weapons inflict heavy fire damage";
                     }
                 }
                 return;
