@@ -80,5 +80,9 @@ namespace TRAEProject
                 dust.velocity *= 2f;
             }
         }
+        public static Vector2 PolarVector(float radius, float theta)
+        {
+            return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
+        }
     }
 }

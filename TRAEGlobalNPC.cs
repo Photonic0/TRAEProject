@@ -18,7 +18,6 @@ namespace TRAEProject
         public bool Toxins;
         public bool Corrupted;
         public bool Omegaburn;
-        public float frozenResistance = 0f;
         private readonly bool[] PrimeBonus = new bool[] {NPC.downedMechBoss1, NPC.downedMechBoss2};
         private readonly bool[] TwinsBonus = new bool[] {NPC.downedMechBoss1, NPC.downedMechBoss3};
         private readonly bool[] DestroyerBonus = new bool[] {NPC.downedMechBoss2, NPC.downedMechBoss3};
@@ -33,7 +32,6 @@ namespace TRAEProject
         }
         public override void SetDefaults(NPC npc)
         {
-            frozenResistance = npc.lifeMax * 100 / (npc.lifeMax + 2000); 
             npc.buffImmune[BuffType<TitaPenetrate>()] = npc.buffImmune[BuffID.BoneJavelin];
             npc.buffImmune[BuffType<Decay>()] = npc.buffImmune[BuffID.Frostburn];
             npc.buffImmune[BuffID.Daybreak] = false;

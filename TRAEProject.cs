@@ -3,6 +3,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using TRAEProject;
+using TRAEProject.Changes.Weapon;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+
+using static Terraria.ModLoader.ModContent;
+using ReLogic.Content;
+
 namespace TRAEProject
 {
     public class TRAEProj : Mod
@@ -10,7 +17,7 @@ namespace TRAEProject
         public static TRAEProj Instance;
 
         private static readonly int[] Emblems = new int[] { ItemID.WarriorEmblem, ItemID.RangerEmblem, ItemID.SorcererEmblem, ItemID.SummonerEmblem };
-
+        public static Texture2D debugCross;
         public override void AddRecipeGroups()
         {
             RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Emblem", new int[]
@@ -76,7 +83,17 @@ namespace TRAEProject
         public override void Load()
         {
             Instance = this;
-            //QwertyFlexOnBame.CreateDolphin();
+            
+            Main.QueueMainThreadAction(() =>
+            {
+                QwertyFlexOnBame.CreateDolphin();
+                if (!Main.dedServ)
+                {
+                    debugCross = Request<Texture2D>("TRAEProject/DebugCross", AssetRequestMode.ImmediateLoad).Value;
+                }
+
+            });
+            
         }
         public override void PostAddRecipes()
         {

@@ -190,9 +190,6 @@ namespace TRAEProject
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
                     return;
-                case ProjectileID.Flairon:
-                    DirectDamage = 3f;
-                    return;
                 case ProjectileID.Sunfury:
                     AddsBuff = BuffType<Heavyburn>();
                     AddsBuffDuration = 120;
@@ -217,7 +214,7 @@ namespace TRAEProject
                     projectile.scale = 1.25f;
                     return;
                 case ProjectileID.SporeCloud:
-                    projectile.scale = 1.4f;
+                    //projectile.scale = 1.4f;
                     projectile.DamageType = DamageClass.Melee;
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
@@ -397,28 +394,8 @@ namespace TRAEProject
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
-                case ProjectileID.BallofFrost:
-                    AddsBuff = BuffID.Frozen;
-                    AddsBuffDuration = 40;
-                    return;
-                case ProjectileID.FrostArrow:
-                    AddsBuff = BuffID.Frozen;
-                    AddsBuffDuration = 50;
-                    return;
-                case ProjectileID.FrostBoltSword:
-                    AddsBuff = BuffID.Frozen;
-                    AddsBuffDuration = 150;
-                    return;
-				case ProjectileID.IceBoomerang:
-					AddsBuff = BuffID.Frozen;
-                    AddsBuffDuration = 120;
-					AddsBuffChance = 4;
-                    return;
 				case ProjectileID.FrostBoltStaff:
                     projectile.penetrate = 2;
-					AddsBuff = BuffID.Frozen;
-                    AddsBuffDuration = 90;
-					AddsBuffChance = 3;
                     return;
             }
         }
@@ -706,6 +683,8 @@ namespace TRAEProject
                         projectile.ai[1] += 3; // fires faster
                     }
                     return;
+                    //don't use falloff with static immunity please
+                    /*
                 case ProjectileID.SporeCloud:
                     {
                         bool flag4 = false;
@@ -729,6 +708,7 @@ namespace TRAEProject
                         }
                         return;
                     }
+                    */
                 case ProjectileID.NebulaSphere:
                     {
                         if (Main.expertMode)
@@ -1063,11 +1043,13 @@ namespace TRAEProject
                         damage *= (1 + (int)dmg / 115); // should be about double damage at max range
                         return;
                     }
+                    /*
                 case ProjectileID.SporeCloud:
                     {
                         projectile.knockBack *= 0f;
                         return;
                     }
+                    */
                 case ProjectileID.TerraBeam:
                     {
                         damage = (int)(damage / 1.25);
@@ -1200,11 +1182,7 @@ namespace TRAEProject
             //
             if (Main.rand.Next(AddsBuffChance) == 0)
             {
-                int length = BuffDurationScalesWithMeleeSpeed ? (int)(AddsBuffDuration * (1 + player.meleeSpeed)) : AddsBuffDuration; //
-                if (AddsBuff == BuffID.Frozen)
-				{                
-			        length = (int)(length * (1 - target.GetGlobalNPC<ChangesNPCs>().frozenResistance * 0.01f)); 
-				}				
+                int length = BuffDurationScalesWithMeleeSpeed ? (int)(AddsBuffDuration * (1 + player.meleeSpeed)) : AddsBuffDuration; 
                 target.AddBuff(AddsBuff, length, false);          
             }
             if (player.GetModPlayer<TRAEPlayer>().MagicDagger && projectile.type != ProjectileID.MagicDagger && projectile.type != ProjectileType<MagicDaggerNeo>())
