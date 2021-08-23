@@ -3,6 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject;
 using System.Collections.Generic;
+using Terraria.Utilities;
+
 public class ChangesAccessories : GlobalItem
 {
     public override void UpdateAccessory(Item item, Player player, bool hideVisual)
@@ -716,6 +718,16 @@ player.accRunSpeed = 6f;
                 }
                 return;
         }
+
+
+    }
+    public override int ChoosePrefix(Item item, UnifiedRandom rand)
+    {
+        if (item.type == ItemID.MagicDagger)
+        {
+            return rand.Next(62, 81);
+        }
+        return base.ChoosePrefix(item, rand);
     }
 }
 

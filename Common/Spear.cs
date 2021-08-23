@@ -312,7 +312,7 @@ namespace TRAEProject.Common
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
+            
             if (isStickingToTarget)
             {
                 Sticking();
@@ -342,7 +342,7 @@ namespace TRAEProject.Common
                 }
                 else
                 {
-                    
+                    Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
                     if (player.itemTime > player.itemTimeMax - 1)
                     {
                         chargeTime = player.itemTime;
@@ -576,7 +576,7 @@ namespace TRAEProject.Common
     {
         public override bool PreItemCheck()
         {
-            if(!Player.HeldItem.IsAir && Player.HeldItem.GetGlobalItem<SpearItems>().altShoot != -1 && Main.mouseRight && Player.autoReuseGlove && Player.itemAnimation ==0 && Player.itemTime == 0)
+            if(!Player.HeldItem.IsAir && Player.HeldItem.GetGlobalItem<SpearItems>().altShoot != -1 && Main.mouseRight && Player.autoReuseGlove && Player.itemAnimation ==1)
             {
                 Player.altFunctionUse = 2;
                 Player.itemAnimationMax = Player.itemAnimation = Player.HeldItem.useAnimation;
