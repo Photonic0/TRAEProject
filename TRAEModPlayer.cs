@@ -8,6 +8,8 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Changes;
+
 namespace TRAEProject
 {
     public class TRAEPlayer : ModPlayer
@@ -725,8 +727,9 @@ namespace TRAEProject
                     //int time = damage * MagicCuffsDamageBuffDuration * 2;
                     //Player.AddBuff(BuffType<MagicBoost>(), time, false);
                     int manaRestored = damage * MagicCuffsDamageBuffDuration;
-                    Player.statMana += manaRestored;
-                    Player.ManaEffect(manaRestored);
+                    Player.GetModPlayer<Mana>().GiveManaOverloadable(manaRestored);
+                    //Player.GetModPlayer<Mana>().overloadedMana += manaRestored;
+                   // Player.ManaEffect(manaRestored);
                     //if (Player.statMana + manaRestored < Player.statManaMax2)
                     //{
                     //    overchargedMana += Player.statMana + manaRestored - Player.statManaMax2;

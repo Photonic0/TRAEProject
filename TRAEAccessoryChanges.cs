@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using TRAEProject;
 using System.Collections.Generic;
 using Terraria.Utilities;
+using TRAEProject.Changes;
 
 public class ChangesAccessories : GlobalItem
 {
@@ -201,6 +202,7 @@ player.accRunSpeed = 6f;
                 player.statManaMax2 -= 20;
 				player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 3;
 			    player.magicCuffs = false;
+                player.GetModPlayer<Mana>().celestialCuffsOverload = true;
                 return;
             case ItemID.StarCloak:
                 player.starCloakItem = null;
