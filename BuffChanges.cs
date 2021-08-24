@@ -74,6 +74,7 @@ namespace ChangesBuffs
                 case BuffID.Sharpened: // FIX THIS BUG
                     return;
                 case BuffID.ManaRegeneration:
+                    player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.125f;
                     return;
                 case BuffID.ManaSickness:
                     player.manaSickReduction = 0f;
@@ -120,6 +121,9 @@ namespace ChangesBuffs
                     return;
                 case BuffID.ManaRegeneration:
                     tip = "Increases mana regeneration by 20%";
+                    return;
+	            case BuffID.ManaSickness:
+                    tip = "Can't drink another mana potion";
                     return;
             }
         }

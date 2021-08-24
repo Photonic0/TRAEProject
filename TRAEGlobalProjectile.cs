@@ -89,10 +89,9 @@ namespace TRAEProject
             //
             switch (projectile.type)
             {
-                case ProjectileID.ManaCloakStar:
-                    homesIn = true;
-                    dontHitTheSameEnemyMultipleTimes = true;
-                    IgnoresDefense = true;
+                case ProjectileID.BookOfSkullsSkull:
+				case ProjectileID.ManaCloakStar:
+                 projectile.timeLeft = 180;
                     return;
                 case ProjectileID.CrystalLeafShot:
                     homesIn = true;
@@ -284,6 +283,15 @@ namespace TRAEProject
                 case ProjectileID.Blizzard:
                     goThroughWallsUntilReachingThePlayer = true;
                     return;
+			    case 244:
+					projectile.timeLeft = 600;
+					return;
+							case ProjectileID.BloodRain:
+							projectile.penetrate = 1;
+							projectile.aiStyle = 1;
+                    homesIn = true;
+                    homingRange = 100f;
+                    return;
                 case ProjectileID.Meteor1:
                 case ProjectileID.Meteor2:
                 case ProjectileID.Meteor3:
@@ -396,6 +404,13 @@ namespace TRAEProject
                     return;
 				case ProjectileID.FrostBoltStaff:
                     projectile.penetrate = 2;
+                    return;
+								case ProjectileID.EmeraldBolt:
+											case ProjectileID.AmberBolt:
+														case ProjectileID.RubyBolt:
+					case ProjectileID.DiamondBolt:
+						          dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.usesLocalNPCImmunity = true;
                     return;
             }
         }
@@ -556,7 +571,7 @@ namespace TRAEProject
                         }
                     }
                 }
-                if (CloudLimit > 2) // only 2 clouds
+                if (CloudLimit > 2 || projectile.timeLeft < 120) // only 2 clouds
                 {
                     Main.projectile[ExtraCloud].netUpdate = true;
                     Main.projectile[ExtraCloud].ai[1] = 36000f; // the cloud will then disappear
@@ -645,7 +660,10 @@ namespace TRAEProject
             }
             switch (projectile.type)
             {
-                case ProjectileID.BatOfLight:
+                case ProjectileID.BloodRain:
+                    projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+                    return;
+				case ProjectileID.BatOfLight:
                     projectile.localNPCHitCooldown = (int)projectile.ai[0];
                     return;
                 case ProjectileID.SharpTears:

@@ -642,8 +642,7 @@ namespace TRAEProject
         {
             if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && crit)
             {
-                int chance = 100 / Player.HeldItem.useTime;
-                if (Main.rand.Next(chance) == 0)
+                if (Main.rand.Next(3) == 0)
                 {
                     Item.NewItem(target.getRect(), ItemID.Star, 1);
                 } 

@@ -182,12 +182,12 @@ player.accRunSpeed = 6f;
                 player.wolfAcc = false;
                 return;
             case ItemID.BandofStarpower:
-                player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.2f;
+                player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.1f;
                 player.statManaMax2 -= 20;
                 return;
             case ItemID.ManaRegenerationBand:
                    player.statManaMax2 -= 20;
-				player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.2f;
+				player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.1f;
                 player.lifeRegen += 2;
                 return;
             case ItemID.MagicCuffs:
@@ -311,7 +311,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Increases mana regeneration rate by 20%";
+                        line.text = "Increases mana regeneration rate by 10%";
                     }
 							if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
