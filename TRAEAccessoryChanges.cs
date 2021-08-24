@@ -3,6 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject;
 using System.Collections.Generic;
+using Terraria.Utilities;
+using TRAEProject.Changes;
+
 public class ChangesAccessories : GlobalItem
 {
     public override void UpdateAccessory(Item item, Player player, bool hideVisual)
@@ -199,6 +202,7 @@ player.accRunSpeed = 6f;
                 player.statManaMax2 -= 20;
 				player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 3;
 			    player.magicCuffs = false;
+                player.GetModPlayer<Mana>().celestialCuffsOverload = true;
                 return;
             case ItemID.StarCloak:
                 player.starCloakItem = null;
@@ -716,6 +720,16 @@ player.accRunSpeed = 6f;
                 }
                 return;
         }
+
+
+    }
+    public override int ChoosePrefix(Item item, UnifiedRandom rand)
+    {
+        if (item.type == ItemID.MagicDagger)
+        {
+            return rand.Next(62, 81);
+        }
+        return base.ChoosePrefix(item, rand);
     }
 }
 

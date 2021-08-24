@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using TRAEProject.Changes;
 
 namespace TRAEProject
 {
@@ -341,21 +342,21 @@ item.autoReuse = true;
             if (item.type == ItemID.Star || item.type == ItemID.SoulCake || item.type == ItemID.SugarPlum)
             {
                 Terraria.Audio.SoundEngine.PlaySound(SoundID.Grab, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
-                player.statMana += 10;
-                if (Main.myPlayer == player.whoAmI)
+                if(player.GetModPlayer<Mana>().celestialCuffsOverload)
                 {
-                    player.ManaEffect(10);
+                    player.GetModPlayer<Mana>().GiveManaOverloadable(10);
                 }
-                //if (player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration > 0)
-                //{
-                //    if (player.statMana + 10 < player.statManaMax2)
-                //    {
-                //        player.GetModPlayer<TRAEPlayer>().overchargedMana += player.statMana + 10 - player.statManaMax2;
-                //    }
-                //}
-                if (player.statMana > player.statManaMax2)
+                else
                 {
-                    player.statMana = player.statManaMax2;
+                    player.statMana += 10;
+                    if (Main.myPlayer == player.whoAmI)
+                    {
+                        player.ManaEffect(10);
+                    }
+                    if (player.statMana > player.statManaMax2)
+                    {
+                        player.statMana = player.statManaMax2;
+                    }
                 }
                 return false;
             }

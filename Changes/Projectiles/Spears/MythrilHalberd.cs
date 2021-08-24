@@ -71,7 +71,7 @@ namespace TRAEProject.Changes.Projectiles.Spears
             Player player = Main.player[Projectile.owner];
             aimDirection = origonalAim + (float)Math.PI * player.direction * -1f * ((float)interupting / (float)player.itemAnimationMax);
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if(maxInterupting > 0)
             {

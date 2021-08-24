@@ -48,6 +48,11 @@ namespace TRAEProject.Common
         {
 
         }
+        /// <summary> Use this instead of ModifyHitNPC <summary> 
+        public virtual void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+
+        }
         /// <summary> Called the moment the spear reaches its max range </summary>
         public virtual void OnMaxReach(float direction)
         {
@@ -197,6 +202,11 @@ namespace TRAEProject.Common
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + PolarVector((spearLength - stabStart) * Projectile.scale, stabDirection + (float)Math.PI), Projectile.Center, spearLength - stabStart, ref point);
         }
         public int[] hitCount = new int[Main.npc.Length];
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            hitDirection = Math.Sign(target.Center.X - Main.player[Projectile.owner].Center.X);
+            SpearModfiyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
+        }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             hitCount[target.whoAmI]++;
@@ -312,7 +322,7 @@ namespace TRAEProject.Common
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
+            
             if (isStickingToTarget)
             {
                 Sticking();
@@ -342,7 +352,7 @@ namespace TRAEProject.Common
                 }
                 else
                 {
-                    
+                    Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
                     if (player.itemTime > player.itemTimeMax - 1)
                     {
                         chargeTime = player.itemTime;
@@ -576,7 +586,7 @@ namespace TRAEProject.Common
     {
         public override bool PreItemCheck()
         {
-            if(!Player.HeldItem.IsAir && Player.HeldItem.GetGlobalItem<SpearItems>().altShoot != -1 && Main.mouseRight && Player.autoReuseGlove && Player.itemAnimation ==0 && Player.itemTime == 0)
+            if(!Player.HeldItem.IsAir && Player.HeldItem.GetGlobalItem<SpearItems>().altShoot != -1 && Main.mouseRight && Player.autoReuseGlove && Player.itemAnimation ==1)
             {
                 Player.altFunctionUse = 2;
                 Player.itemAnimationMax = Player.itemAnimation = Player.HeldItem.useAnimation;

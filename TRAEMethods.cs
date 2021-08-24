@@ -84,5 +84,36 @@ namespace TRAEProject
         {
             return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
         }
+        /// <summary>
+        /// give an angle to shoot at to attempt to hit a moving target, returns NaN when this is impossible
+        /// </summary>
+        public static float PredictiveAim(Vector2 shootFrom, float shootSpeed, Vector2 targetPos, Vector2 targetVelocity, out float travelTime)
+        {
+            float angleToTarget = (targetPos - shootFrom).ToRotation();
+            float targetTraj = targetVelocity.ToRotation();
+            float targetSpeed = targetVelocity.Length();
+            float dist = (targetPos - shootFrom).Length();
+
+            //imagine a tirangle between the shooter, its target and where it think the target will be in the future
+            // we need to find an angle in the triangle z this is the angle located at the target's corner
+            float z = (float)Math.PI + (targetTraj - angleToTarget);
+
+            //with this angle z we can now use the law of cosines to find time
+            //the side opposite of z is equal to shootSpeed * time
+            //the other sides are dist and targetSpeed * time
+            // putting these values into law of cosines gets (shootSpeed * time)^2 = (targetSpeed * time)^2 + dist^2 -2*targetSpeed*time*cos(z)
+            //we can rearange it to (shootSpeed^2 - targetSpeed^2)time^2 + 2*targetSpeed*dist*cos(z)*time - dist^2 = 0, this is a quadratic!
+
+            //here we use the quadratic formula to find time
+            float a = shootSpeed * shootSpeed - targetSpeed * targetSpeed;
+            float b = 2 * targetSpeed * dist * (float)Math.Cos(z);
+            float c = -(dist * dist);
+            float time = (-b + (float)Math.Sqrt(b * b - 4 * a * c)) / (2 * a);
+
+            //we now know the time allowing use to find all sides of the tirangle, now we use law of Sines to calculate the angle to shoot at.
+            float calculatedShootAngle = angleToTarget - (float)Math.Asin((targetSpeed * time * (float)Math.Sin(z)) / (shootSpeed * time));
+            travelTime = time;
+            return calculatedShootAngle;
+        }
     }
 }
