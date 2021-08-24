@@ -74,7 +74,6 @@ namespace ChangesBuffs
                 case BuffID.Sharpened: // FIX THIS BUG
                     return;
                 case BuffID.ManaRegeneration:
-                    player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.2f;
                     return;
                 case BuffID.ManaSickness:
                     player.manaSickReduction = 0f;
