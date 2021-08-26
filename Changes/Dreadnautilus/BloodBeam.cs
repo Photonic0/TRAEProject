@@ -23,8 +23,8 @@ namespace TRAEProject.Changes.Dreadnautilus
             Projectile.timeLeft = chargeTime + duration;
         }
         public const int beamLength = 4000;
-        public const int chargeTime = 60;
-        public const int duration = 60;
+        public const int chargeTime = 25;
+        public const int duration = 90;
         int timer = 0;
         public override void AI()
         {

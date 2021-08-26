@@ -61,9 +61,7 @@ namespace TRAEProject
                     return;
                 case ItemID.ThunderStaff:
                     item.damage = 24; // up from 12
-                    item.mana = 18; // up from 5
-                    item.useTime = 15; // down from 17
-                    item.useAnimation = 15;
+                    item.mana = 21; // up from 5
                     return;
                 case ItemID.Vilethorn:
                     item.mana = 25; // up from 10
@@ -79,9 +77,9 @@ namespace TRAEProject
                     item.useAnimation = 20;
 					return;
                 case ItemID.AquaScepter:
-                    item.damage = 16; // vanilla value: 16
-                    item.useTime = 14; // down from 16
-                    item.useAnimation = 14;
+                    item.damage = 18; // vanilla value: 16
+                    item.useTime = 16; // down from 16
+                    item.useAnimation = 16;
                     item.mana = 10; // up from 6
                     return;
                 case ItemID.BeeGun:

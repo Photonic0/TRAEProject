@@ -22,7 +22,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 			if (npc.type == NPCID.BloodNautilus)
 			{
 				npc.boss = true;
-				npc.lifeMax = 30000;
+				npc.lifeMax = 28000;
 				npc.defense = 32;
 			}
 		}
@@ -43,7 +43,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 			{
 				if (npc.life > 0)
 				{
-					for (int num65 = 0; (double)num65 < damage / (double)npc.lifeMax * 200.0; num65++)
+					for (int num65 = 0; num65 < damage / npc.lifeMax * 200.0; num65++)
 					{
 						Dust dust10 = Dust.NewDustDirect(npc.position, npc.width, npc.height, 5, hitDirection, -1f);
 						Dust dust = dust10;
@@ -94,6 +94,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 			phase = 2;
 			npc.ai[3] = 0;
 			SoundEngine.PlaySound(npc.DeathSound, npc.Center);
+			SoundEngine.PlaySound(SoundID.ForceRoar, npc.Center, 0);
 		}
 		static float snipeVelocity = 32;
 		static float snipePullbackTime = 10;
@@ -123,7 +124,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 				int bloodMachinegunShots = 30;
 				int bloodBeamChargeTime = BloodBeam.chargeTime;
 				int bloodBeamDuration = BloodBeam.duration;
-				int phase3attackSpeed = 20;
+				int phase3attackSpeed = 25;
 				int phase3spamDuration = 360;
 				int phase3chargeStart = 30;
 				int phase3chargeDuration = 30;
@@ -144,7 +145,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 					bloodShotVolleys += 3;
 					bloodSquidTime = 60;
 					chargeDuration = 60;
-					npc.defense = 12;
+					npc.defense = 15; // clean 15 so that Ichor doesn't lose value
 
 				}
 				bool num9 = false;
@@ -491,7 +492,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 										for (int k = 0; k < projCount; k++)
 										{
 											Vector2 velocity = projVelocity.RotatedBy((float)Math.PI / 2 * ((float)k / (float)(projCount - 1)) - (float)Math.PI / 4f);
-											Projectile.NewProjectile(npc.GetProjectileSpawnSource(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer);
+											Projectile.NewProjectile(npc.GetProjectileSpawnSource(), mouthPosition3 - mouthDirection3 * 5f, velocity, ProjectileID.BloodShot, attackDamage_ForProjectiles, 0f, Main.myPlayer);
 										}
 									}
 								}
@@ -646,6 +647,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 							if (npc.ai[1] >= phaseTransitionTime)
 							{
 								BreakShell(npc);
+
 								nextAttack = 0;
 							}
 
@@ -735,7 +737,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 										int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(30f, 25f);
 
 										Vector2 velocity = projVelocity;
-										Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetProjectileSpawnSource(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer, -180)];
+										Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetProjectileSpawnSource(), mouthPosition3 - mouthDirection3 * 5f, velocity, ProjectileID.BloodShot, attackDamage_ForProjectiles, 0f, Main.myPlayer, -180)];
 										projectile.ai[0] = -180;
 										projectile.netUpdate = true;
 
@@ -756,7 +758,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 							//phase 3
 							int totalTime = phase3chargeDuration + phase3spamDuration + phase3chargeStart;
 							npc.direction = ((!(npc.Center.X < nPCAimedTarget.Center.X)) ? 1 : (-1));
-							float num20 = npc.Center.DirectionFrom(nPCAimedTarget.Center).ToRotation() - 213f / 452f * (float)npc.spriteDirection;
+							float num20 = npc.Center.DirectionFrom(nPCAimedTarget.Center).ToRotation() - 213f / 452f * npc.spriteDirection;
 							if (npc.spriteDirection == -1)
 							{
 								num20 += (float)Math.PI;
@@ -792,7 +794,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 							npc.BloodNautilus_GetMouthPositionAndRotation(out var mouthPosition5, out var mouthDirection5);
 							if (npc.Center.Distance(nPCAimedTarget.Center) > 30f)
 							{
-								npc.velocity = mouthDirection5 * -17f;
+								npc.velocity = mouthDirection5 * -12f;
 							}
 							if (npc.ai[1] % totalTime < phase3spamDuration && npc.ai[1] % phase3attackSpeed == 0)
                             {
@@ -826,10 +828,10 @@ namespace TRAEProject.Changes.Dreadnautilus
 							//Dread rotation
 							npc.position += npc.netOffset;
 							npc.velocity *= 0.8f;
-							float volleyValue = (npc.ai[1] - snipePullbackTime) % (snipeDuration / (float)snipes);
+							float volleyValue = (npc.ai[1] - snipePullbackTime) % (snipeDuration / snipes);
 							npc.BloodNautilus_GetMouthPositionAndRotation(out var mouthPosition3, out var mouthDirection3);
 							npc.direction = ((!(npc.Center.X < nPCAimedTarget.Center.X)) ? 1 : (-1));
-							float num20 = npc.Center.DirectionFrom(nPCAimedTarget.Center).ToRotation() - 213f / 452f * (float)npc.spriteDirection;
+							float num20 = npc.Center.DirectionFrom(nPCAimedTarget.Center).ToRotation() - 213f / 452f * npc.spriteDirection;
 							if (npc.spriteDirection == -1)
 							{
 								num20 += (float)Math.PI;
@@ -885,7 +887,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 							npc.ai[1] += 1f;
 							if (npc.ai[1] >= phaseTransitionTime)
 							{
-								SoundEngine.PlaySound(SoundID.Roar, npc.Center, 0);
+								SoundEngine.PlaySound(SoundID.ForceRoar, (int)npc.position.X, (int)npc.position.Y, -1, 1.5f);
 								nextAttack = 7;
 							}
 							break;
