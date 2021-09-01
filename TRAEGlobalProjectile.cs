@@ -169,11 +169,6 @@ namespace TRAEProject
                     return;
                 ///
                 // MELEE
-                case ProjectileID.NorthPoleSnowflake:
-                    projectile.timeLeft = 30;
-                    homesIn = true;
-                    homingRange = 100f;
-                    return;
                 case ProjectileID.CorruptYoyo:
                     AddsBuff = BuffID.Weak;
                     AddsBuffDuration = 120;
@@ -213,25 +208,12 @@ namespace TRAEProject
                     projectile.scale = 1.25f;
                     return;
                 case ProjectileID.SporeCloud:
-                    //projectile.scale = 1.4f;
                     projectile.DamageType = DamageClass.Melee;
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
                     return;
-                case ProjectileID.MonkStaffT2:
-                    projectile.width = 43;
-                    projectile.height = 43;
-					projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    projectile.usesIDStaticNPCImmunity = false;
-                    //projectile.idStaticNPCHitCooldown = 10;
-                    return;
                 case ProjectileID.ChlorophyteOrb: // Revisit
                     projectile.penetrate = 6;
-                    return;
-                case ProjectileID.ChlorophytePartisan: // Revisit
-                    projectile.width = 60;
-                    projectile.height = 43;
                     return;
                 case ProjectileID.PaladinsHammerFriendly:
                     projectile.tileCollide = false;
@@ -449,7 +431,7 @@ namespace TRAEProject
             }
             return null;
         }
-        public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough)
+        public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             switch (projectile.type)
             {

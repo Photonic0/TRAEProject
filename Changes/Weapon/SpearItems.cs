@@ -27,6 +27,7 @@ namespace TRAEProject.Changes.Weapon
         {
             switch (item.type)
             {
+
                 case ItemID.Spear:
 					item.useStyle = 1;
 					canGetMeleeModifers = true;
@@ -34,7 +35,7 @@ namespace TRAEProject.Changes.Weapon
                     altShoot = ProjectileType<BasicSpearThrow>();
 
                     item.useTime = item.useAnimation = 27;
-                    item.shootSpeed = 5; //only the throw uses this
+                    item.shootSpeed = 6; //only the throw uses this
                     break;
 
 				case ItemID.TheRottedFork:
@@ -44,7 +45,7 @@ namespace TRAEProject.Changes.Weapon
 					altShoot = ProjectileType<RottedForkThrow>();
 
 					item.damage = 21;
-					item.shootSpeed = 5.5f; //only the throw uses this
+					item.shootSpeed = 6.5f; //only the throw uses this
 					break;
 
 				case ItemID.BoneJavelin:
@@ -61,13 +62,68 @@ namespace TRAEProject.Changes.Weapon
 					item.maxStack = 1;
 					item.value = Item.sellPrice(silver: 30);
 					break;
-				case ItemID.ChlorophytePartisan:
+				case ItemID.ThunderSpear:
 					item.useStyle = 1;
 					canGetMeleeModifers = true;
-					item.shoot = ProjectileType<ChloroPartisan>();
-					altShoot = ProjectileType<ChloroPartisanThrow>();
+					item.shoot = ProjectileType<StormSpear>();
+					altShoot = ProjectileType<StormSpearThrow>();
 
-					item.shootSpeed = 12f; //only the throw uses this
+					item.damage = 18;
+					item.shootSpeed = 7; //only the throw uses this
+					break;
+				case ItemID.Trident:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<Trident>();
+					altShoot = ProjectileType<TridentThrow>();
+
+					item.shootSpeed = 9; //only the throw uses this
+					break;
+				case ItemID.DarkLance:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<DarkLance>();
+					altShoot = ProjectileType<DarkLanceThrow>();
+
+					item.shootSpeed = 11.5f; //only the throw uses this
+					item.damage = 21;
+					item.useTime = item.useAnimation = 26;
+					item.value = Item.sellPrice(silver: 50);
+					break;
+				case ItemID.Swordfish:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<Swordfish>();
+					altShoot = ProjectileType<SwordfishThrow>();
+					break;
+				case ItemID.ObsidianSwordfish:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<ObsidianSwordfish>();
+					altShoot = ProjectileType<ObsidianSwordfishThrow>();
+
+					item.damage = 30;
+					item.shootSpeed = 10; //only the throw uses this
+					break;
+				case ItemID.CobaltNaginata:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<CobaltNaginata>();
+					altShoot = ProjectileType<CobaltNaginataThrow>();
+
+					item.damage = 30;
+					item.useTime = item.useAnimation = 24;
+					item.shootSpeed = 13; //only the throw uses this
+					item.crit = 40;
+					break;
+				case ItemID.PalladiumPike:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<PalladiumPike>();
+					altShoot = ProjectileType<PalladiumPikeThrow>();
+
+					item.channel = true;
+					item.damage = 45;
 					break;
 				case ItemID.MythrilHalberd:
 					item.useStyle = 1;
@@ -75,9 +131,110 @@ namespace TRAEProject.Changes.Weapon
 					item.shoot = ProjectileType<MythrilHalberd>();
 					altShoot = ProjectileType<MythrilHalberdThrow>();
 
-                    item.damage = 49;
-					item.channel = true; //Bwa ha ha ha
+					item.damage = 49;
+					item.channel = true;
 					break;
+				case ItemID.OrichalcumHalberd:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<OrichalcumHookbill>();
+					altShoot = ProjectileType<OrichalcumHookbillThrow>();
+
+					item.damage = 40;
+					item.channel = true;
+					item.SetNameOverride("Orichalcum Billhook");
+					break;
+				case ItemID.AdamantiteGlaive:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<AdamantiteGlaive>();
+					altShoot = ProjectileType<AdamantiteGlaiveThrow>();
+
+					item.damage = 50;
+					item.shootSpeed = 10; //only the throw uses this
+					break;
+				case ItemID.TitaniumTrident:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<TitaniumTrident>();
+					altShoot = ProjectileType<TitaniumTridentThrow>();
+
+					item.damage = 52;
+					item.shootSpeed = 14; //only the throw uses this
+					item.useTime = item.useAnimation = 25;
+					break;
+				case ItemID.Gungnir:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<Gungnir>();
+					altShoot = ProjectileType<GungnirThrow>();
+
+					item.damage = 56;
+					item.shootSpeed = 12; //only the throw uses this
+					item.useAnimation = 22;
+					item.useTime = 33;
+					break;
+				case ItemID.ChlorophytePartisan:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<ChloroPartisan>();
+					altShoot = ProjectileType<ChloroPartisanThrow>();
+
+					item.shootSpeed = 12f; //only the throw uses this
+					item.useTime = item.useAnimation = 30;
+					break;
+				case ItemID.MonkStaffT2:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<GhastlyGlaive>();
+					altShoot = ProjectileType<GhastlyGlaiveThrow>();
+
+					item.damage = 80;
+					item.shootSpeed = 12; //only the throw uses this
+					item.channel = false;
+					break;
+				case ItemID.MushroomSpear:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<MushroomSpear>();
+					altShoot = ProjectileType<MushroomSpearThrow>();
+
+					item.shootSpeed = 8; //only the throw uses this
+					item.damage = 120;
+					item.useTime = item.useAnimation = 50;
+					item.value = Item.buyPrice(platinum: 2);
+					break;
+				case ItemID.NorthPole:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<NorthPole>();
+					altShoot = ProjectileType<NorthPoleThrow>();
+
+					item.shootSpeed = 9; //only the throw uses this
+					item.damage = 80;
+					item.useTime = item.useAnimation = 28;
+					break;
+				case ItemID.ScourgeoftheCorruptor:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<SoTC>();
+					altShoot = ProjectileType<SoTCThrow>();
+					 
+					item.damage = 70;
+					item.useTime = item.useAnimation = 24;
+					item.autoReuse = false;
+					item.shootSpeed = 9;
+					break;
+				case ItemID.DayBreak:
+					item.useStyle = 1;
+					canGetMeleeModifers = true;
+					item.shoot = ProjectileType<Daybreak>();
+					altShoot = ProjectileType<DaybreakThrow>();
+
+					item.useTime = item.useAnimation = 20;
+					item.autoReuse = false;
+					break;
+
 			}
         }
         public override bool AltFunctionUse(Item item, Player player)
@@ -97,6 +254,10 @@ namespace TRAEProject.Changes.Weapon
                     type = altShoot;
                     player.itemAnimation = player.itemAnimationMax = item.useTime / 3;
                 }
+				else if(item.type == ItemID.Trident)
+                {
+					type = ProjectileType<Trident>(); 
+				}
             }
         }
         public override int ChoosePrefix(Item item, UnifiedRandom rand)

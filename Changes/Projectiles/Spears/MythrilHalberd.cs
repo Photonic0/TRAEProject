@@ -19,7 +19,7 @@ namespace TRAEProject.Changes.Projectiles.Spears
         {
             spearLength = 141f;
             stabStart = 119f;
-            stabEnd = -10;
+            stabEnd = 40f;
             swingAmount = (float)Math.PI / 24;
         }
         float origonalAim = 0;
@@ -35,7 +35,7 @@ namespace TRAEProject.Changes.Projectiles.Spears
             Projectile.friendly = false;
             if (interupting < player.itemAnimationMax)
             {
-                interupting++;
+                interupting++; 
                 maxInterupting = interupting;
             }
             else
@@ -58,25 +58,42 @@ namespace TRAEProject.Changes.Projectiles.Spears
             {
                 hitCount[i] = 0;
             }
-            SetAimDirecition();
+            
+            SetAimDirecition(out float amt);
+            outAmount = 1f + amt / 2f;
         }
         public override void InteruptedAnimation()
         {
             Projectile.friendly = true;
-            interupting -= 3;
-            SetAimDirecition();
+            interupting -= 1;
+            SetAimDirecition(out _);
+            outAmount = 1.5f;
         }
-        void SetAimDirecition()
+        public override void SpearActive()
         {
             Player player = Main.player[Projectile.owner];
-            aimDirection = origonalAim + (float)Math.PI * player.direction * -1f * ((float)interupting / (float)player.itemAnimationMax);
+            if (!player.channel && interupting > 0)
+            {
+                Projectile.extraUpdates = 2;
+            }
+            else
+            {
+                Projectile.extraUpdates = 0;
+            }
+        }
+        void SetAimDirecition(out float amt)
+        {
+            Player player = Main.player[Projectile.owner];
+            amt = ((float)interupting / (float)player.itemAnimationMax);
+            amt *= amt;
+            aimDirection = origonalAim + 5f * ((float)Math.PI / 6f) * player.direction * -1f * amt;
         }
         public override void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if(maxInterupting > 0)
             {
                 Player player = Main.player[Projectile.owner];
-                damage += (int)(damage * (2 * (float)maxInterupting / (float)player.itemAnimationMax));
+                damage += (int)(damage * (4 * (float)maxInterupting / (float)player.itemAnimationMax));
             }
         }
     }
