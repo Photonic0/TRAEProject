@@ -22,9 +22,12 @@ namespace TRAEProject.Changes.Resprites
             TextureAssets.Projectile[ProjectileID.StardustDragon3] = Request<Texture2D>(path + "LunarDragonBody");
             TextureAssets.Projectile[ProjectileID.StardustDragon4] = Request<Texture2D>(path + "LunarDragonTail");
             TextureAssets.Buff[BuffID.StardustDragonMinion] = Request<Texture2D>(path + "LunarDragonBuff");
+
             TextureAssets.Item[ItemID.MoonlordTurretStaff] = Request<Texture2D>(path + "StardustPortalStaff");
             TextureAssets.Projectile[ProjectileID.MoonlordTurret] = Request<Texture2D>(path + "StardustPortal");
             TextureAssets.Projectile[ProjectileID.MoonlordTurretLaser] = Request<Texture2D>(path + "StardustPortalBeam");
+
+            TextureAssets.Item[ItemID.DarkLance] = Request<Texture2D>(path + "DarkLance");
         }
     }
 }

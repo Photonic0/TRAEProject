@@ -416,23 +416,6 @@ namespace TRAEProject
                     item.damage = 16;
                     item.crit = 4;
                     return;
-                case ItemID.CobaltNaginata: // revisit
-                    item.useTime = 31;
-                    item.useAnimation = 31;
-                    return;
-                case ItemID.MythrilHalberd:
-                    item.useTime = 31;
-                    item.useAnimation = 31;
-                    return;
-                case ItemID.OrichalcumHalberd:
-                    item.damage = 40;
-                    item.useTime = 30;
-                    item.useAnimation = 30;
-                    return;
-                case ItemID.AdamantiteGlaive:
-                    item.useTime = 30;
-                    item.useAnimation = 30;
-                    return;
                 case ItemID.LightDisc: // REVISIT
                     item.maxStack = 1;
                     return;
@@ -840,7 +823,7 @@ namespace TRAEProject
         }
         public override bool AltFunctionUse(Item item, Player player)
         {
-            if (item.type == ItemID.DirtRod || item.type == ItemID.TitaniumTrident || item.type == ItemID.Trident)
+            if (item.type == ItemID.DirtRod)
             {
                 return true; // if you can do something with right click
             }
@@ -875,47 +858,6 @@ namespace TRAEProject
                     item.autoReuse = true;
                     item.noMelee = true;
                 }
-            if (item.type == ItemID.TitaniumTrident)
-
-                if (player.altFunctionUse == 2)
-                {
-                    item.useStyle = ItemUseStyleID.Swing;
-                    item.shootSpeed = 10f;
-                    item.noUseGraphic = true;
-                    item.noMelee = true;
-                    item.shoot = ProjectileType<TitaTridentThrown>();
-                }
-                else
-                {
-                    item.useStyle = ItemUseStyleID.Shoot;
-                    item.shootSpeed = 5f;
-                    item.noUseGraphic = true;
-                    item.scale = 1.1f;
-                    item.noMelee = true;
-                    item.shoot = ProjectileID.TitaniumTrident;
-                }
-            if (item.type == ItemID.Trident)
-                if (player.altFunctionUse == 2)
-                {
-                    item.useStyle = ItemUseStyleID.Swing;
-                    item.useTime = 42;
-                    item.useAnimation = 42;
-                    item.shootSpeed = 10f;
-                    item.noUseGraphic = true;
-                    item.noMelee = true;
-                    item.shoot = ProjectileType<TridentThrown>();
-                }
-                else
-                {
-                    item.useTime = 36;
-                    item.useAnimation = 36;
-                    item.useStyle = ItemUseStyleID.Shoot;
-                    item.shootSpeed = 4f;
-                    item.noUseGraphic = true;
-                    item.scale = 1.1f;
-                    item.noMelee = true;
-                    item.shoot = ProjectileID.Trident;
-                }
             return base.CanUseItem(item, player);
         }
 
@@ -938,19 +880,7 @@ namespace TRAEProject
                 }
             }
         }
-        public override bool PreOpenVanillaBag(string context, Player player, int arg)
-        {
-            if (context == "bossBag" && arg == ItemID.SkeletronBossBag)
-            {
-                player.QuickSpawnItem(ItemID.BoneGlove, 1);
-                if (Main.rand.Next(3) == 0)
-                    player.QuickSpawnItem(ItemID.SkeletronHand, 1);
-                if (Main.rand.Next(3) == 0)
-                    player.QuickSpawnItem(ItemID.SkeletronMask, 1);
-                return false;
-            }
-            return true;
-        }
+        
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
             if (player.GetModPlayer<TRAEPlayer>().MagicDagger)
@@ -1165,16 +1095,6 @@ namespace TRAEProject
                         if (line.mod == "Terraria" && line.Name == "Knockback")
                         {
                             line.text += "\nCreates money on enemy hits";
-                        }
-                    }
-                    return;
-                case ItemID.Trident:
-                case ItemID.TitaniumTrident:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Knockback")
-                        {
-                            line.text += "\nRight-Click to throw the Trident";
                         }
                     }
                     return;

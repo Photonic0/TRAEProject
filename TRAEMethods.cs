@@ -115,5 +115,41 @@ namespace TRAEProject
             travelTime = time;
             return calculatedShootAngle;
         }
+        public delegate bool SpecialCondition(NPC possibleTarget);
+
+        //used for homing projectile
+        public static bool ClosestNPC(ref NPC target, float maxDistance, Vector2 position, bool ignoreTiles = false, int overrideTarget = -1, SpecialCondition specialCondition = null)
+        {
+            //very advance users can use a delegate to insert special condition into the function like only targetting enemies not currently having local iFrames, but if a special condition isn't added then just return it true
+            if (specialCondition == null)
+            {
+                specialCondition = delegate (NPC possibleTarget) { return true; };
+            }
+            bool foundTarget = false;
+            //If you want to prioritse a certain target this is where it's processed, mostly used by minions that haave a target priority
+            if (overrideTarget != -1)
+            {
+                if ((Main.npc[overrideTarget].Center - position).Length() < maxDistance && !Main.npc[overrideTarget].immortal && (Collision.CanHit(position, 0, 0, Main.npc[overrideTarget].Center, 0, 0) || ignoreTiles) && specialCondition(Main.npc[overrideTarget]))
+                {
+                    target = Main.npc[overrideTarget];
+                    return true;
+                }
+            }
+            //this is the meat of the targetting logic, it loops through every NPC to check if it is valid the miniomum distance and target selected are updated so that the closest valid NPC is selected
+            for (int k = 0; k < Main.npc.Length; k++)
+            {
+                NPC possibleTarget = Main.npc[k];
+                float distance = (possibleTarget.Center - position).Length();
+                if (distance < maxDistance && possibleTarget.active && possibleTarget.chaseable && !possibleTarget.dontTakeDamage && !possibleTarget.friendly && possibleTarget.lifeMax > 5 && !possibleTarget.immortal && (Collision.CanHit(position, 0, 0, possibleTarget.Center, 0, 0) || ignoreTiles) && specialCondition(possibleTarget))
+                {
+                    target = Main.npc[k];
+                    foundTarget = true;
+
+                    maxDistance = (target.Center - position).Length();
+                }
+            }
+            return foundTarget;
+        }
+
     }
 }

@@ -487,29 +487,50 @@ namespace TRAEProject
                 {
                     recipe.RemoveRecipe();
                 }
-                Recipe PulseBow = CreateRecipe(ItemID.PulseBow);
-                PulseBow.AddIngredient(ItemID.ShroomiteBar, 20);
-                PulseBow.AddTile(TileID.Autohammer);
-                Recipe BoBrecipe = CreateRecipe(ItemID.BundleofBalloons);
-                BoBrecipe.AddIngredient(ItemID.SoulofFlight, 20);
-                BoBrecipe.AddRecipeGroup("CloudBalloon");
-                BoBrecipe.AddRecipeGroup("BlizzardJump");
-                BoBrecipe.AddRecipeGroup("SandstormJump");
-                BoBrecipe.AddTile(TileID.TinkerersWorkbench);
-                Recipe BoBrecipe1 = CreateRecipe(ItemID.BundleofBalloons);
-                BoBrecipe1.AddIngredient(ItemID.SoulofFlight, 20);
-                BoBrecipe1.AddRecipeGroup("BlizzardBalloon");
-                BoBrecipe1.AddRecipeGroup("CloudJump");
-                BoBrecipe1.AddRecipeGroup("SandstormJump");
-                BoBrecipe1.AddTile(TileID.TinkerersWorkbench);
-                Recipe BoBrecipe2 = CreateRecipe(ItemID.BundleofBalloons);
-                BoBrecipe2.AddIngredient(ItemID.SoulofFlight, 20);
-                BoBrecipe2.AddRecipeGroup("SandstormBalloon");
-                BoBrecipe2.AddRecipeGroup("CloudJump");
-                BoBrecipe2.AddRecipeGroup("BlizzardJump");
-                BoBrecipe2.AddTile(TileID.TinkerersWorkbench);
+                if (recipe.HasResult(ItemID.BoneJavelin))
+                {
+                    recipe.TryGetIngredient(ItemID.FossilOre, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.FossilOre, 10);
+                    recipe.ReplaceResult(ItemID.BoneJavelin, 1);
+                }
+                
+
                 RecipeHelper.RecipeEditing();
             }
+            Recipe PulseBow = CreateRecipe(ItemID.PulseBow);
+            PulseBow.AddIngredient(ItemID.ShroomiteBar, 20);
+            PulseBow.AddTile(TileID.Autohammer);
+            PulseBow.Register();
+
+            Recipe DL = CreateRecipe(ItemID.DarkLance);
+            DL.AddIngredient(ItemID.DemoniteBar, 10);
+            DL.AddIngredient(ItemID.ShadowScale, 5);
+            DL.AddTile(TileID.Anvils);
+            DL.Register();
+
+            Recipe BoBrecipe = CreateRecipe(ItemID.BundleofBalloons);
+            BoBrecipe.AddIngredient(ItemID.SoulofFlight, 20);
+            BoBrecipe.AddRecipeGroup("CloudBalloon");
+            BoBrecipe.AddRecipeGroup("BlizzardJump");
+            BoBrecipe.AddRecipeGroup("SandstormJump");
+            BoBrecipe.AddTile(TileID.TinkerersWorkbench);
+            BoBrecipe.Register();
+            Recipe BoBrecipe1 = CreateRecipe(ItemID.BundleofBalloons);
+            BoBrecipe1.AddIngredient(ItemID.SoulofFlight, 20);
+            BoBrecipe1.AddRecipeGroup("BlizzardBalloon");
+            BoBrecipe1.AddRecipeGroup("CloudJump");
+            BoBrecipe1.AddRecipeGroup("SandstormJump");
+            BoBrecipe1.AddTile(TileID.TinkerersWorkbench);
+            BoBrecipe1.Register();
+            Recipe BoBrecipe2 = CreateRecipe(ItemID.BundleofBalloons);
+            BoBrecipe2.AddIngredient(ItemID.SoulofFlight, 20);
+            BoBrecipe2.AddRecipeGroup("SandstormBalloon");
+            BoBrecipe2.AddRecipeGroup("CloudJump");
+            BoBrecipe2.AddRecipeGroup("BlizzardJump");
+            BoBrecipe2.AddTile(TileID.TinkerersWorkbench);
+            BoBrecipe2.Register();
+
         }
     }
 }
