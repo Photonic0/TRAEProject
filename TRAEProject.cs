@@ -95,6 +95,39 @@ namespace TRAEProject
             });
             
         }
+        public override void AddRecipes()
+        {
+            Recipe WaspGun = CreateRecipe(ItemID.WaspGun);
+            WaspGun.AddIngredient(ItemID.BeeGun, 1);
+            WaspGun.AddIngredient(ItemID.SoulofFright, 20);
+            WaspGun.AddTile(TileID.MythrilAnvil);
+            WaspGun.Register();
+            Recipe PulseBow = CreateRecipe(ItemID.PulseBow);
+            PulseBow.AddIngredient(ItemID.ShroomiteBar, 20);
+            PulseBow.AddTile(TileID.Autohammer);
+            PulseBow.Register();
+            Recipe BoBrecipe = CreateRecipe(ItemID.BundleofBalloons);
+            BoBrecipe.AddIngredient(ItemID.SoulofFlight, 20);
+            BoBrecipe.AddRecipeGroup("CloudBalloon");
+            BoBrecipe.AddRecipeGroup("BlizzardJump");
+            BoBrecipe.AddRecipeGroup("SandstormJump");
+            BoBrecipe.AddTile(TileID.TinkerersWorkbench);
+            BoBrecipe.Register();
+            Recipe BoBrecipe1 = CreateRecipe(ItemID.BundleofBalloons);
+            BoBrecipe1.AddIngredient(ItemID.SoulofFlight, 20);
+            BoBrecipe1.AddRecipeGroup("BlizzardBalloon");
+            BoBrecipe1.AddRecipeGroup("CloudJump");
+            BoBrecipe1.AddRecipeGroup("SandstormJump");
+            BoBrecipe1.AddTile(TileID.TinkerersWorkbench);
+            BoBrecipe1.Register();
+            Recipe BoBrecipe2 = CreateRecipe(ItemID.BundleofBalloons);
+            BoBrecipe2.AddIngredient(ItemID.SoulofFlight, 20);
+            BoBrecipe2.AddRecipeGroup("SandstormBalloon");
+            BoBrecipe2.AddRecipeGroup("CloudJump");
+            BoBrecipe2.AddRecipeGroup("BlizzardJump");
+            BoBrecipe2.AddTile(TileID.TinkerersWorkbench);
+                           BoBrecipe2.Register();
+        }
         public override void PostAddRecipes()
         {
             foreach (Recipe recipe in Main.recipe)
@@ -201,17 +234,46 @@ namespace TRAEProject
                     recipe.AddIngredient(ItemID.TitanGlove, 1);
                     recipe.AddIngredient(ItemID.SoulofFright, 10);
                 }
-                if (recipe.HasResult(ItemID.LightDisc))
+                if (recipe.HasResult(ItemID.TrueExcalibur))
                 {
-                    recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);
+                    recipe.TryGetIngredient(ItemID.ChlorophyteBar, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.SoulofSight, 5);
+					recipe.AddIngredient(ItemID.ChlorophyteSaber, 1);
+					recipe.AddIngredient(ItemID.SoulofMight, 20);
+                    recipe.AddIngredient(ItemID.SoulofLight, 20);
                 }
+				
                 if (recipe.HasResult(ItemID.Megashark))
                 {
                     recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.SoulofFright, 20);
+                }
+				if (recipe.HasResult(ItemID.TrueNightsEdge))
+                {
+                    recipe.TryGetIngredient(ItemID.SoulofFright, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.ChlorophyteClaymore, 1);
+					recipe.AddIngredient(ItemID.SoulofNight, 20);
+                }
+				if (recipe.HasResult(ItemID.SuperManaPotion))
+                {
+                    recipe.TryGetIngredient(ItemID.FallenStar, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+					recipe.AddIngredient(ItemID.SoulofSight, 1);
+                }
+				if (recipe.HasResult(ItemID.PickaxeAxe) || recipe.HasResult(ItemID.Drax))
+                {
+                    recipe.TryGetIngredient(ItemID.SoulofSight, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.TryGetIngredient(ItemID.SoulofFright, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+					recipe.AddIngredient(ItemID.SoulofFright, 20);
+
                 }
                 if (recipe.HasResult(ItemID.CopperShortsword))
                 {
@@ -487,28 +549,6 @@ namespace TRAEProject
                 {
                     recipe.RemoveRecipe();
                 }
-                Recipe PulseBow = CreateRecipe(ItemID.PulseBow);
-                PulseBow.AddIngredient(ItemID.ShroomiteBar, 20);
-                PulseBow.AddTile(TileID.Autohammer);
-                Recipe BoBrecipe = CreateRecipe(ItemID.BundleofBalloons);
-                BoBrecipe.AddIngredient(ItemID.SoulofFlight, 20);
-                BoBrecipe.AddRecipeGroup("CloudBalloon");
-                BoBrecipe.AddRecipeGroup("BlizzardJump");
-                BoBrecipe.AddRecipeGroup("SandstormJump");
-                BoBrecipe.AddTile(TileID.TinkerersWorkbench);
-                Recipe BoBrecipe1 = CreateRecipe(ItemID.BundleofBalloons);
-                BoBrecipe1.AddIngredient(ItemID.SoulofFlight, 20);
-                BoBrecipe1.AddRecipeGroup("BlizzardBalloon");
-                BoBrecipe1.AddRecipeGroup("CloudJump");
-                BoBrecipe1.AddRecipeGroup("SandstormJump");
-                BoBrecipe1.AddTile(TileID.TinkerersWorkbench);
-                Recipe BoBrecipe2 = CreateRecipe(ItemID.BundleofBalloons);
-                BoBrecipe2.AddIngredient(ItemID.SoulofFlight, 20);
-                BoBrecipe2.AddRecipeGroup("SandstormBalloon");
-                BoBrecipe2.AddRecipeGroup("CloudJump");
-                BoBrecipe2.AddRecipeGroup("BlizzardJump");
-                BoBrecipe2.AddTile(TileID.TinkerersWorkbench);
-                RecipeHelper.RecipeEditing();
             }
         }
     }

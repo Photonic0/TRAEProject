@@ -17,13 +17,13 @@ namespace TRAEProject.Changes.Projectiles
             switch(projectile.type)
             {
                 case ProjectileID.FrostBoltSword:
-                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 150);
+                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 180);
                     break;
                 case ProjectileID.BallofFrost:
-                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 40);
+                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 60);
                     break;
                 case ProjectileID.FrostArrow:
-                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 50);
+                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 60);
                     break;
                 case ProjectileID.IceBoomerang:
                     if (Main.rand.Next(4) == 0)

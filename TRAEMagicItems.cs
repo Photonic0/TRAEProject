@@ -26,35 +26,35 @@ namespace TRAEProject
             {
                 // MAGIC 
                 case ItemID.AmethystStaff:
-                    item.damage = 18; // up from 14
+                    item.damage = 21; // up from 14
                     item.mana = 20; // up from 3
                     return;
                 case ItemID.TopazStaff:
-                    item.damage = 19; // up from 15
+                    item.damage = 22; // up from 15
                     item.mana = 19; // up from 4
                     return; 
                 case ItemID.SapphireStaff:
-                    item.damage = 20; // up from 17
+                    item.damage = 23; // up from 17
                     item.mana = 17; // up from 5
                     return;
                 case ItemID.EmeraldStaff:
-                    item.damage = 21; // up from 14
+                    item.damage = 24; // up from 14
                     item.mana = 16; // up from 3
                     return;
 		         case ItemID.RubyStaff:
              case ItemID.AmberStaff:
-			     item.damage = 22; // up from 21
+			     item.damage = 25; // up from 21
                     item.mana = 14; // up from 7
                     return;
                 case ItemID.DiamondStaff:
-                    item.damage = 23; // up from 23
+                    item.damage = 26; // up from 23
                     item.mana = 13; // up from 8
                     return;
                 case ItemID.FrostStaff:
                     item.damage = 27; 
-                    item.mana = 25;
-                    item.useTime = 30;
-                    item.useAnimation = 30;
+                    item.mana = 20;
+                    item.useTime = 32;
+                    item.useAnimation = 32;
                     return;
                 case ItemID.WandofSparking:
                     item.mana = 5; // up from 2
@@ -64,24 +64,22 @@ namespace TRAEProject
                     item.mana = 21; // up from 5
                     return;
                 case ItemID.Vilethorn:
-                    item.mana = 25; // up from 10
+                    item.mana = 30; // up from 10
                     return;
                 case ItemID.CrimsonRod:
                     item.damage = 10; // down from 12
-                    item.mana = 75; // up from 10
+                    item.mana = 100; // up from 10
                     return;
                 case ItemID.SpaceGun:
-                    item.damage = 20; // up from 17
+                    item.damage = 22; // up from 17
 					item.mana = 10; // up from 6
                     item.useTime = 20; // up from 17
                     item.useAnimation = 20;
 					return;
-                case ItemID.AquaScepter:
-                    item.damage = 18; // vanilla value: 16
-                    item.useTime = 16; // down from 16
-                    item.useAnimation = 16;
-                    item.mana = 10; // up from 6
-                    return;
+		        case ItemID.PoisonStaff:
+                    item.damage = 15; // down from 48
+                    item.mana = 45; // up from 22                  
+                    return; 
                 case ItemID.BeeGun:
                     item.damage = 9; 
 				    item.useTime = 18; // down from 16
@@ -89,60 +87,79 @@ namespace TRAEProject
                     item.mana = 22; // up from 6
                     return;
                 case ItemID.BookofSkulls:
-                    item.mana = 38;
+                    item.mana = 50;
                     item.damage = 19;
                     item.value = 100000;
-                    return;
-			    case ItemID.DemonScythe:
-                    item.mana = 15; // up from 14
                     return;
                 case ItemID.ZapinatorGray:
                 case ItemID.ZapinatorOrange:
                     item.damage = 9; // down from 12
                     item.mana = 32; // up from 16
                     return;
+				case ItemID.AquaScepter:
+                    item.damage = 18; // vanilla value: 16
+                    item.useTime = 16; // down from 16
+                    item.useAnimation = 16;
+                    item.mana = 10; // up from 6
+                    return;
+			    case ItemID.MagicMissile:
+                    item.damage = 33; // up from 27
+                    return;
                 case ItemID.WaterBolt:
                     item.damage = 22; // down from 19
                     item.mana = 23; // up from 10
                     return;
+				case ItemID.DemonScythe:
+                    item.mana = 28; // up from 14
+                    return;
                 case ItemID.Flamelash:
-                    item.mana = 40; // up from 20
+                    item.damage = 40; // up from 19
+					item.mana = 35; // up from 20
                     return;
                 case ItemID.FlowerofFire:
-                case ItemID.FlowerofFrost:
-                    item.damage = 40; 
-                    item.useTime = 12; 
-                    item.useAnimation = 12;
+                    item.damage = 48; 
+                    item.useTime = 14; 
+                    item.useAnimation = 14;
                     item.mana = 20;
-item.autoReuse = true;					
+					item.shootSpeed = 9f;
+                    item.autoReuse = true;					
+                    return;
+			    case ItemID.FlowerofFrost:
+                    item.damage = 60; 
+                    item.useTime = 14; 
+                    item.useAnimation = 14;
+                    item.mana = 20;
+					item.shootSpeed = 12f;
+                    item.autoReuse = true;					
                     return;
                 case ItemID.SharpTears:
                     item.mana = 40; // up from 20
                     return;
                 case ItemID.CursedFlames:
-                    item.damage = 40;
-                    item.mana = 15; // up from 20
-                    item.useTime = 11;
-                    item.useAnimation = 11;
-                    item.shoot = ProjectileType<CursedFlamethrower>();
-                    item.knockBack = 1f;
-                    return;
+                    item.useTime = 18; // up from 15
+                    item.useAnimation = 18;
+					return;
                 case ItemID.GoldenShower:
                     item.mana = 14; // up from 7
+                    return;
+				case ItemID.CrystalStorm:
+                    item.mana = 6; // up from 5
+					item.useTime = 7; // up from 7
+                    item.useAnimation = 7;
                     return;
                 case ItemID.LaserRifle:
                     item.damage = 33;
                     return;
                 case ItemID.SkyFracture:
                     item.damage = 48;
-                    item.mana = 40; // up from 7
+                    item.mana = 30; // up from 17
                     return;
                 case ItemID.SpiritFlame:
                     item.useTime = 20; // down from 22
                     item.useAnimation = 20;
                     return;
                 case ItemID.ClingerStaff:
-                    item.mana = 120; // up from 40
+                    item.mana = 150; // up from 40
                     return;
                 case ItemID.CrystalSerpent:
                     item.mana = 19; // up from 9
@@ -164,23 +181,22 @@ item.autoReuse = true;
                     item.mana = 19; // up from 6
                     return;
                 case ItemID.NimbusRod:
-                    item.mana = 60; // up from 22                  
-                    return;
-                case ItemID.PoisonStaff:
-                    item.damage = 19; // down from 48
-                    item.useTime = 40; // up from 36
-                    item.useTime = 40; // up from 36
-                    item.mana = 40; // up from 22                  
-                    return;      
+				item.damage = 36; // base value: 36
+                    item.mana = 100; // up from 22                  
+                    return; 
+                case ItemID.WaspGun:
+                    item.damage = 31; // base value: 31
+                    return;					
                 case ItemID.UnholyTrident:
                     item.damage = 111;
                     item.useTime = 20; // up from 17
                     item.useTime = 20; // up from 17
                     item.mana = 22; // up from 22
-                    item.shootSpeed = 0.33f;
+                    item.shootSpeed = 0.66f;
                     item.knockBack = 6.66f;
                     return;
                 case ItemID.HeatRay:
+				item.damage = 100;
                     item.crit = 20; // up from 4%
                     return;
                 case ItemID.LeafBlower:
@@ -209,7 +225,7 @@ item.autoReuse = true;
                     item.mana = 12;
                     return;
                 case ItemID.MagnetSphere:
-                    item.mana = 80;
+                    item.mana = 150;
                     return;
                 case ItemID.FairyQueenMagicItem:
                     item.mana = 40;
@@ -328,11 +344,11 @@ item.autoReuse = true;
         public override void GrabRange(Item item, Player player, ref int grabRange)
         {
             // based off Qwerty's code for Recovery from his mod.
-            if ((item.type == ItemID.Star || item.type == ItemID.SoulCake || item.type == ItemID.SugarPlum) && !player.manaMagnet)
+            if ((item.type == ItemID.Star || item.type == ItemID.SoulCake || item.type == ItemID.SugarPlum))
             {
                 grabRange += 100; // vanilla's range for these is 250, this makes it 350.
             }
-            return;
+			return;
         }
         public override bool OnPickup(Item item, Player player)
         {

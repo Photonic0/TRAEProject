@@ -22,6 +22,7 @@ namespace TRAEProject.Projectiles
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             Projectile.damage -= (int)(Projectile.damage * 0.1);
+			target.AddBuff(BuffID.CursedInferno, 600);
         }
         public override void AI()
         {

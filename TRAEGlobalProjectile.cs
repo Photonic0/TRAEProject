@@ -21,7 +21,7 @@ namespace TRAEProject
         public float DamageFallon = 1f; // How much damage the projectile gains every time it hits an enemy. 
         public float DirectDamage = 1f; // how much damage the projectile deals when it hits an enemy, independent of the weapon.
         public bool IgnoresDefense = false; // self-explanatory
-
+        public bool cantCrit = false; // self-explanatory
         public bool dontHitTheSameEnemyMultipleTimes = false;// self-explanatory
         // Bouncing
         public bool BouncesOffTiles = false;
@@ -90,8 +90,7 @@ namespace TRAEProject
             switch (projectile.type)
             {
                 case ProjectileID.BookOfSkullsSkull:
-				case ProjectileID.ManaCloakStar:
-                 projectile.timeLeft = 180;
+                    projectile.timeLeft = 180;
                     return;
                 case ProjectileID.CrystalLeafShot:
                     homesIn = true;
@@ -108,7 +107,7 @@ namespace TRAEProject
                 case ProjectileID.EyeFire:
                     if (Main.expertMode && ServerConfig.Instance.MechChanges)
                     {
-                        projectile.extraUpdates = 2; // down from 3(?)
+                        projectile.extraUpdates = 1; // down from 3(?)
                     }
                     return;
                 // Summoner Changes
@@ -154,6 +153,13 @@ namespace TRAEProject
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
+				case ProjectileID.ManaCloakStar:
+                    projectile.penetrate = 2;
+                    homesIn = true;
+					homingRange = 600f;
+                    dontHitTheSameEnemyMultipleTimes = true;
+					cantCrit = true;
+                    return;
                 case ProjectileID.MiniSharkron: 
                     projectile.extraUpdates = 1;
                     projectile.usesLocalNPCImmunity = true;
@@ -164,13 +170,13 @@ namespace TRAEProject
                     dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.Tempest:
-
+cantCrit = true;
                     projectile.minionSlots = 3;
                     return;
                 ///
                 // MELEE
                 case ProjectileID.NorthPoleSnowflake:
-                    projectile.timeLeft = 30;
+                    projectile.timeLeft = 60;
                     homesIn = true;
                     homingRange = 100f;
                     return;
@@ -259,9 +265,10 @@ namespace TRAEProject
                 case ProjectileID.ToxicFlask:
                     projectile.timeLeft = 75;
                     return;
-                case 221: // what the fuck is this projectile, why can't i remember
+                case ProjectileID.FlowerPetal: // what the fuck is this projectile, why can't i remember
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = -1;
+					homesIn = true;
+					dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.SharpTears:
                     projectile.penetrate = 5;
@@ -272,40 +279,57 @@ namespace TRAEProject
                     projectile.penetrate = 1;
                     projectile.penetrate = 1;
                     return;
-                case ProjectileID.RainFriendly:
-                    projectile.penetrate = 2;
-                    return;
+
                 case ProjectileID.RainbowFront:
                 case ProjectileID.RainbowBack:
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
                     return;
                 case ProjectileID.Blizzard:
+				    projectile.tileCollide = false;
                     goThroughWallsUntilReachingThePlayer = true;
                     return;
 			    case 244:
-					projectile.timeLeft = 600;
+				  case 238:
+					projectile.timeLeft = 480;
 					return;
-							case ProjectileID.BloodRain:
-							projectile.penetrate = 1;
+			 case ProjectileID.RainFriendly:
+				    projectile.penetrate = 2;
+					DamageFalloff = 0.25f;
+				    projectile.aiStyle = 1;
+                    homesIn = true;
+                    homingRange = 120f;
+					dontHitTheSameEnemyMultipleTimes = true;
+                    return;
+				case ProjectileID.BloodRain:
+				projectile.penetrate = 1;
 							projectile.aiStyle = 1;
                     homesIn = true;
                     homingRange = 100f;
                     return;
+
                 case ProjectileID.Meteor1:
                 case ProjectileID.Meteor2:
                 case ProjectileID.Meteor3:
-                    goThroughWallsUntilReachingThePlayer = true;
+                    projectile.tileCollide = false;
+					goThroughWallsUntilReachingThePlayer = true;
                     homesIn = true;
                     homingRange = 100f;
                     return;
                 case ProjectileID.ShadowFlame:
-                    projectile.usesIDStaticNPCImmunity = true;
-                    projectile.idStaticNPCHitCooldown = 10;
+		projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
+                    return;
+				 case ProjectileID.Wasp:
+				 	projectile.penetrate = 2;
                     return;
                 ///
                 // Ranged
-                case ProjectileID.CandyCorn:
+                case ProjectileID.Hellwing:
+                    projectile.penetrate = 1;
+					homesIn = true;
+                    return;
+				case ProjectileID.CandyCorn:
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
@@ -449,7 +473,7 @@ namespace TRAEProject
             }
             return null;
         }
-        public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough)
+        public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             switch (projectile.type)
             {
@@ -457,7 +481,8 @@ namespace TRAEProject
                 case ProjectileID.ProximityMineII:
                 case ProjectileID.ProximityMineIII:
                 case ProjectileID.ProximityMineIV:
-                    fallThrough = false; // allows these projectiles to fall though platforms
+				case ProjectileID.BallofFrost:
+                    fallThrough = false; // prevents these projectiles from falling through platforms
                     return true;
             }
             return true;
@@ -539,7 +564,7 @@ namespace TRAEProject
                     }
                 }
                 projectile.ai[0] += 1f;
-                float BloodRainDelay = 12f; // Fire rate. Vanilla value = 10f
+                float BloodRainDelay = 13f; // Fire rate. Vanilla value = 10f
                 if (projectile.ai[0] > BloodRainDelay)
                 {
                     projectile.ai[0] = 0f;
@@ -578,6 +603,14 @@ namespace TRAEProject
                 }
                 return false;
             }
+			if (projectile.type == 238) // nimbus cloud
+			{
+				{
+				if (projectile.timeLeft < 120)
+				projectile.ai[1] = 36000f;
+				}
+				projectile.ai[0] -= 0.5f;
+			}
             if (projectile.type == 615)
             {
                 timer++;
@@ -630,7 +663,7 @@ namespace TRAEProject
                 float distance = homingRange;
                 for (int k = 0; k < 200; k++)
                 {
-                    if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5 && !Main.npc[k].immortal)
+                    if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5 && !Main.npc[k].immortal && projectile.localNPCImmunity[k] != 1)
                     {
                         Vector2 newMove = Main.npc[k].Center - projectile.Center;
                         float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
@@ -692,7 +725,7 @@ namespace TRAEProject
                     {
                         if (projectile.ai[0] == -1f)
                         {
-                            projectile.ai[1] -= 0.2f; // when it reaches 9f, attack.                 
+                            projectile.ai[1] -= 0.1f; // when it reaches 9f, attack.                 
                         }
                         return;
                     } 
@@ -1051,6 +1084,10 @@ namespace TRAEProject
                 }
                 damage += finalDefense / 2;
             }
+			if (cantCrit)
+			{
+				crit = false;
+			}
             switch (projectile.type)
             {
                 case ProjectileID.GolemFist:

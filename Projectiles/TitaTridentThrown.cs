@@ -46,7 +46,7 @@ namespace TRAEProject.Projectiles
             behindProjectiles.Add(index);
         }
 
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             // For going through platforms and such, javelins use a tad smaller size
             width = height = 10; // notice we set the width to the height, the height to 10. so both are 10

@@ -194,13 +194,13 @@ player.accRunSpeed = 6f;
                 player.lifeRegen += 2;
                 return;
             case ItemID.MagicCuffs:
-                player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 3; // the duration of the buff is the Hit's damage multiplied by this number, then multiplied by 3. This also decides how much mana is recovered.
+                player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 1; // the duration of the buff is the Hit's damage multiplied by this number, then multiplied by 3. This also decides how much mana is recovered.
                 player.statManaMax2 -= 20;
 				player.magicCuffs = false;
                 return;
             case ItemID.CelestialCuffs:
                 player.statManaMax2 -= 20;
-				player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 3;
+				player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 1;
 			    player.magicCuffs = false;
                 player.GetModPlayer<Mana>().celestialCuffsOverload = true;
                 return;
@@ -229,8 +229,8 @@ player.accRunSpeed = 6f;
                 return;
             case ItemID.ManaCloak:
                 player.starCloakItem_manaCloakOverrideItem = null;
-                player.GetModPlayer<TRAEPlayer>().manaCloak = true;
-                player.GetModPlayer<TRAEPlayer>().newManaFlower = true;
+				player.starCloakItem = null;
+				player.GetModPlayer<TRAEPlayer>().manaCloak = true;
                 player.manaCost += 0.08f;
                 return;
             case ItemID.ManaFlower:

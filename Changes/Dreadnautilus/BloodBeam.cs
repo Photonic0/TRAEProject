@@ -24,7 +24,7 @@ namespace TRAEProject.Changes.Dreadnautilus
         }
         public const int beamLength = 4000;
         public const int chargeTime = 25;
-        public const int duration = 90;
+        public const int duration = 60;
         int timer = 0;
         public override void AI()
         {

@@ -621,7 +621,7 @@ namespace TRAEProject
                         {
                             if (npc.ai[1] == 0f)
                             {
-                                float speed = 4f;
+                                float speed = 2.7f;
                                 float tenpercent = 0.2f;
                                 int num425 = 1;
                                 if (npc.position.X + (float)(npc.width / 2) < Main.player[npc.target].position.X + (float)Main.player[npc.target].width)
@@ -746,13 +746,11 @@ namespace TRAEProject
                                             ref float y3 = ref npc.localAI[1];
                                             y3 += 2f;
                                         }
-                                        /*                                    npc.soundDelay = 240; *///duration of flamethrower attack, approximately
                                         if (npc.soundDelay <= 0)
                                         {
                                             Terraria.Audio.SoundEngine.PlaySound(SoundID.ForceRoar, (int)npc.position.X, (int)npc.position.Y, -1, 1.5f);
                                             npc.soundDelay = 240;
                                         }
-                                        npc.defense = 0;
                                         if (npc.localAI[1] > 8f)
                                         {
 
@@ -877,6 +875,21 @@ namespace TRAEProject
                 {
                     damage = 2;
                 }
+                npc.netUpdate = true;
+            }
+			if (npc.HasBuff(BuffID.CursedInferno))
+            {
+                npc.lifeRegen -= 48;
+                npc.netUpdate = true;
+            }
+			if (npc.HasBuff(BuffID.ShadowFlame))
+            {
+                npc.lifeRegen -= 90;
+                npc.netUpdate = true;
+            }
+			if (npc.HasBuff(BuffID.Venom))
+            {
+                npc.lifeRegen -= 140;
                 npc.netUpdate = true;
             }
             if (Toxins)
@@ -1014,15 +1027,15 @@ namespace TRAEProject
         {
             for (int i = 0; i < shop.Length; i++)
             {
-                if (shop[i] == ItemID.CelestialMagnet)
-                {
-                    for (int j = i + 1; j < shop.Length; j++)
-                    {
-                        shop[j - 1] = shop[j];
-                    }
-                    shop[shop.Length - 1] = 0;
-                    nextSlot--;
-                }
+                //if (shop[i] == ItemID.CelestialMagnet)
+                //{
+                //    for (int j = i + 1; j < shop.Length; j++)
+                //    {
+                //        shop[j - 1] = shop[j];
+                //    }
+                //    shop[shop.Length - 1] = 0;
+                //    nextSlot--;
+                //}
             }
         }
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
@@ -1087,12 +1100,7 @@ namespace TRAEProject
         }
         public override bool PreKill(NPC npc)
         {
-            if (npc.lifeMax < 15)       
-			{
-				NPCLoader.blockLoot.Add(ItemID.Star);
-				NPCLoader.blockLoot.Add(ItemID.SoulCake);
-				NPCLoader.blockLoot.Add(ItemID.SugarPlum);
-			}
+            NPCLoader.blockLoot.Add(ItemID.FrostStaff);
 			if (npc.aiStyle == 18)
             {
                 if (Main.rand.Next(33) == 0)
@@ -1169,6 +1177,7 @@ namespace TRAEProject
                     }
                     return true;
                 case NPCID.Mimic:
+				case NPCID.IceMimic:
                     {
                         int drop = Main.rand.Next(5);
                         if (drop == 0)

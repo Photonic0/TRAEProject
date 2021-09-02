@@ -15,8 +15,13 @@ namespace TRAEProject.Common.GlobalNPCs
 {
     public class Freeze : GlobalNPC
     {
-        public override bool InstancePerEntity => true;
 
+        public override bool InstancePerEntity => true;
+        public float freezeResist = 0f;
+		public override void SetDefaults(NPC npc)
+        {
+			freezeResist = 1f - (float)npc.lifeMax / ((float)npc.lifeMax + 2000f);
+		}
         private int freezeTime = 0;
         //Use this to freeze NPCs
         public void FreezeMe(NPC npc, int time)
@@ -26,10 +31,6 @@ namespace TRAEProject.Common.GlobalNPCs
             {
                 return;
             }
-            
-            float freezeResist = 1f - (float)npc.lifeMax / ((float)npc.lifeMax + 2000f);
-            if (freezeResist > 0.1f)
-            {
                 time = (int)(time * freezeResist);
                 //this only happens when the npc isn't frozen yet
                 if (freezeTime == 0)
@@ -37,8 +38,6 @@ namespace TRAEProject.Common.GlobalNPCs
                     npc.velocity = Vector2.Zero;
                 }
                 freezeTime = Math.Max(time, freezeTime);
-            }
-
         }
         //Called whenever an NPC breaks out of the ice
         void Defrost(NPC npc)
