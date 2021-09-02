@@ -15,6 +15,7 @@ using Terraria.ID;
 using TRAEProject.Changes.Weapon;
 using TRAEProject.Buffs;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Changes.Projectiles.Spears;
 
 namespace TRAEProject.Common
 {
@@ -80,6 +81,7 @@ namespace TRAEProject.Common
         public float aimDirection = 0;
         SpriteEffects effects = SpriteEffects.None;
         bool calledMaxReach = false;
+        int preInteruptedAnimaion;
         public override void SetDefaults()
         {
             Projectile.penetrate = -1;
@@ -89,10 +91,11 @@ namespace TRAEProject.Common
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.ownerHitCheck = true;
-            Projectile.aiStyle = 19; //vanilla spear AI is turned off by PreAI, this just helps other mods know this is a spear
+            //Projectile.aiStyle = 19; //vanilla spear AI is turned off by PreAI, this just helps other mods know this is a spear
             SpearDefaults();
         }
-        public override bool PreAI()
+        protected float outAmount = 0f;
+        public override void AI()
         {
             Player player = Main.player[Projectile.owner];
             player.heldProj = Projectile.whoAmI;
@@ -108,7 +111,7 @@ namespace TRAEProject.Common
             }
             Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
             player.itemTime = player.itemAnimation;
-            float outAmount = 0f;
+            
             int switchStabTime = (int)(2f * (float)player.itemAnimationMax / 3f);
             int stabTime = player.itemAnimationMax - switchStabTime;
             int swivelDir = 1;
@@ -118,33 +121,32 @@ namespace TRAEProject.Common
             }
             else
             {
-                
+
                 swivelDir = -1;
                 outAmount = 1f - ((float)(switchStabTime - player.itemAnimation) / (float)switchStabTime);
-                if (!calledMaxReach)
-                {
-                    OnMaxReach(aimDirection);
-                    calledMaxReach = true;
-                }
-                if(player.channel)
+
+                if (player.channel)
                 {
                     player.itemAnimation = switchStabTime;
                     Channeling();
                 }
                 else if (interupting > 0)
                 {
-                    player.itemAnimation++;
+                    player.itemAnimation = switchStabTime;
                     InteruptedAnimation();
+                }
+                else
+                {
                 }
 
             }
-            
+
             stabDirection = aimDirection + swingAmount * (Math.Abs((float)Math.Sin((float)Math.PI * outAmount))) * swivelDir;
             Projectile.Center = ownerMountedCenter + PolarVector((outAmount * (stabStart - stabEnd) + (spearLength - stabStart)) * Projectile.scale, stabDirection);
-            
+
 
             AnimatePlayer();
-            if(player.direction == 1)
+            if (player.direction == 1)
             {
                 effects = SpriteEffects.FlipVertically;
                 Projectile.rotation = stabDirection + 5f * (float)Math.PI / 4f;
@@ -158,9 +160,14 @@ namespace TRAEProject.Common
             {
                 Projectile.Kill();
             }
+            if (!calledMaxReach && player.itemAnimation <= switchStabTime)
+            {
+                OnMaxReach(stabDirection);
+                calledMaxReach = true;
+            }
             SpearActive();
-            return false;
         }
+        /*
         void AnimatePlayer()
         {
             Player player = Main.player[Projectile.owner];
@@ -196,17 +203,43 @@ namespace TRAEProject.Common
             }
 
         }
+        */
+        void AnimatePlayer()
+        {
+            Player player = Main.player[Projectile.owner];
+            player.bodyFrame.Y = player.bodyFrame.Height * 1;
+
+            Vector2 pointPoisition = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: true);
+            float num2 = (float)Projectile.Center.X - pointPoisition.X;
+            float num3 = (float)Projectile.Center.Y - pointPoisition.Y;
+            float itemRotation = (float)Math.Atan2(num3 * (float)player.direction, num2 * (float)player.direction) - player.fullRotation;
+
+            Vector2 SpearStabPos = Projectile.Center + PolarVector((spearLength - stabStart) * Projectile.scale, stabDirection + (float)Math.PI);
+            float distance = (SpearStabPos - pointPoisition).Length();
+
+            Player.CompositeArmStretchAmount stretch = Player.CompositeArmStretchAmount.Quarter;
+            if (distance > 24f)
+            {
+                stretch = Player.CompositeArmStretchAmount.ThreeQuarters;
+            }
+            if (distance > 48f)
+            {
+                stretch = Player.CompositeArmStretchAmount.Full;
+            }
+            float rotation = itemRotation - (float)Math.PI / 2f * (float)player.direction;
+            player.SetCompositeArmFront(enabled: true, stretch, rotation);
+        }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             float point = 0;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + PolarVector((spearLength - stabStart) * Projectile.scale, stabDirection + (float)Math.PI), Projectile.Center, spearLength - stabStart, ref point);
         }
-        public int[] hitCount = new int[Main.npc.Length];
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             hitDirection = Math.Sign(target.Center.X - Main.player[Projectile.owner].Center.X);
             SpearModfiyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
         }
+        public int[] hitCount = new int[Main.npc.Length];
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             hitCount[target.whoAmI]++;
@@ -225,6 +258,11 @@ namespace TRAEProject.Common
         {
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
             Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, lightColor, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            if (Projectile.type == ProjectileType<GhastlyGlaiveThrow>())
+            {
+                texture = Request<Texture2D>("TRAEProject/Changes/Projectiles/Spears/GhastlyGlaiveGlow").Value;
+                Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            }
             if (debug)
             {
                 //spearLength
@@ -283,6 +321,11 @@ namespace TRAEProject.Common
         {
 
         }
+        /// <summary> Use this instead of ModifyHitNPC <summary> 
+        public virtual void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+
+        }
         /// <summary> Called every frame the spear is stuck inside an enemy </summary>
         public virtual void StuckEffects(NPC victim)
         {
@@ -297,7 +340,11 @@ namespace TRAEProject.Common
         {
 
         }
-        float chargeAmt = 0;
+        /// <summary> Called right when the spear is thrown.</summary>
+        public virtual void OnThrow(float chargeAmt)
+        {
+        }
+        public float chargeAmt = 0;
         int timer = 0;
         bool thrown = false;
         bool justCharged = false;
@@ -310,7 +357,7 @@ namespace TRAEProject.Common
             Projectile.DamageType = DamageClass.Melee;
             Projectile.width = Projectile.height = 10;
             SpearDefaults();
-            if(Projectile.penetrate > 1)
+            if(Projectile.penetrate != 1)
             {
                 Projectile.usesLocalNPCImmunity = true;
                 Projectile.localNPCHitCooldown = -1;
@@ -374,7 +421,7 @@ namespace TRAEProject.Common
                             vector24.Y = player.bodyFrame.Height - vector24.Y;
                         }
                         vector24 -= new Vector2(player.bodyFrame.Width - player.width, player.bodyFrame.Height - 42) / 2f;
-                        Vector2 holdPos = player.position + vector24;
+                        Vector2 holdPos = player.RotatedRelativePoint(player.MountedCenter - new Vector2(20f, 42f) / 2f + vector24, reverseRotation: false, addGfxOffY: false);
                         aimDirection = holdPos.DirectionTo(Main.MouseWorld).ToRotation();
                         Projectile.Center = holdPos + PolarVector((spearLength - holdAt) * Projectile.scale, aimDirection);
                         Projectile.rotation = aimDirection + 3f * (float)Math.PI / 4f;
@@ -440,6 +487,7 @@ namespace TRAEProject.Common
             player.itemAnimationMax += chargeTime;
             player.itemAnimation = player.itemAnimationMax - 1;
             player.itemTime = player.itemAnimation + 1;
+            OnThrow(chargeAmt);
         }
 
         public bool isStickingToTarget
@@ -458,7 +506,7 @@ namespace TRAEProject.Common
         {
             if (chargeAmt == 1)
             {
-                damage = (int)(damage * 1.5f);
+                damage = (int)(damage * 2f);
             }
             else
             {
@@ -475,7 +523,7 @@ namespace TRAEProject.Common
                 Projectile.netUpdate = true; // netUpdate projectile javelin
                 target.AddBuff(BuffType<Impaled>(), 900); // Adds the Impaled debuff
                 Projectile.penetrate = -1;
-                Projectile.friendly = false; // Makes sure the sticking javelins do not deal damage anymore
+                Projectile.friendly = false; // Makes sure the sticking javelins do not deal damage anymore 
 
                 // The following code handles the javelin sticking to the enemy hit.
                 Player player = Main.player[Projectile.owner];
@@ -520,6 +568,7 @@ namespace TRAEProject.Common
                 Projectile.ignoreWater = true; // Make sure the projectile ignores water
                 Projectile.tileCollide = false; // Make sure the projectile doesn't collide with tiles anymore
             }
+            SpearModfiyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
         }
         void Sticking()
         {
@@ -563,9 +612,14 @@ namespace TRAEProject.Common
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
             bool shake = chargeAmt != 1f && !thrown;
-            Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + (shake ? new Vector2(-2 + Main.rand.Next(5), -2 + Main.rand.Next(5) ) : Vector2.Zero), null, lightColor, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+            Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + (shake ? new Vector2(-2 + Main.rand.Next(5), -2 + Main.rand.Next(5)) : Vector2.Zero), null, lightColor, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            if(Projectile.type == ProjectileType<GhastlyGlaiveThrow>())
+            {
+                texture = Request<Texture2D>("TRAEProject/Changes/Projectiles/Spears/GhastlyGlaiveGlow").Value;
+                Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + (shake ? new Vector2(-2 + Main.rand.Next(5), -2 + Main.rand.Next(5)) : Vector2.Zero), null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            }
             return false;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -574,8 +628,12 @@ namespace TRAEProject.Common
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            float point = 0;
-            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + PolarVector((24) * Projectile.scale, aimDirection + (float)Math.PI), Projectile.Center + PolarVector((6) * Projectile.scale, aimDirection + (float)Math.PI), 18 * Projectile.scale, ref point);
+            if (Projectile.velocity.Length() > 4f)
+            {
+                float point = 0;
+                return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + PolarVector((6) * Projectile.scale + Projectile.velocity.Length() + 2f, aimDirection + (float)Math.PI), Projectile.Center + PolarVector((6) * Projectile.scale, aimDirection + (float)Math.PI), 18 * Projectile.scale, ref point);
+            }
+            return null;
         }
         public static Vector2 PolarVector(float radius, float theta)
         {

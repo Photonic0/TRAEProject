@@ -38,6 +38,10 @@ namespace TRAEProject.Changes.Projectiles.Spears
             stickingDps = 0;
             floatTime = 10;
         }
+        public override void ThrownUpdate()
+        {
+            Projectile.extraUpdates = 1;
+        }
         public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
         {
             if(atMaxCharge)
@@ -49,7 +53,7 @@ namespace TRAEProject.Changes.Projectiles.Spears
         public override void StuckEffects(NPC victim)
         {
             timer++;
-            if(timer % 90 == 0)
+            if(timer % 180 == 0)
             {
                 SporeBurst();
             }

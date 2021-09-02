@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jbouv\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj": {}
+    "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jbouv\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj": {
+    "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jbouv\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
+        "projectUniqueName": "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
         "projectName": "TRAEProject",
-        "projectPath": "C:\\Users\\jbouv\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
-        "packagesPath": "C:\\Users\\jbouv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jbouv\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\obj\\",
+        "projectPath": "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
+        "packagesPath": "C:\\Users\\noahg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jbouv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\noahg\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

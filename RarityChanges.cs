@@ -121,7 +121,7 @@ namespace ChangesWeapons
                 case ItemID.StingerNecklace:
                 case ItemID.LavaFishingHook:
                 case ItemID.SuperheatedBlood:
-
+                case ItemID.ObsidianSwordfish:
                     item.rare = ItemRarityID.Orange;
                     return;
                 case ItemID.MythrilBar:
@@ -173,9 +173,7 @@ namespace ChangesWeapons
                 case ItemID.TendonHook:
                 case ItemID.WormHook:
                 case ItemID.NimbusRod:
-                case ItemID.MushroomSpear:
                 case ItemID.Hammush:
-                case ItemID.ObsidianSwordfish:
                 case ItemID.BundleofBalloons:
                 case ItemID.AncientHorn:
                 case ItemID.BlessedApple:
@@ -325,6 +323,7 @@ namespace ChangesWeapons
                 case ItemID.MiniNukeI:
                 case ItemID.MiniNukeII:
                 case ItemID.ReconScope:
+                case ItemID.MushroomSpear:
                     item.rare = ItemRarityID.Yellow;
                     return;
                 case ItemID.BetsyWings:
