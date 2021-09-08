@@ -25,6 +25,8 @@ namespace TRAEProject
         public bool TitanGlove = false;
         public bool manaCloak = false;
         public bool newManaFlower = false;
+		public int manaFlowerTimer = 0;
+		public int manaFlowerLimit = 0;
         public bool AncientSet = false;
         public bool infernoNew = false;
         public bool wErewolf = false;
@@ -59,6 +61,7 @@ namespace TRAEProject
         int timebeforeReleasingBees = 0;
         int ifHoneyedWithBeepack = 1;
         public int beedamage = 1;
+        public int minionCritChance = 1;
         public int titatimer = 0;
         public bool FastFall = false;
         public bool AquaAffinity = false;
@@ -185,9 +188,16 @@ namespace TRAEProject
                     ++Player.statMana;
                 }
             }
-            if (Player.ghostDmg > 0f)
-                Player.ghostDmg -= 4.16667f;
-            Player.lifeSteal -= 0.41666667f; // this stat increases by 0.5f every frame, or by 30 per second. with this change it goes down to 5 per second.
+			if (newManaFlower)
+			{	
+		       ++manaFlowerTimer;
+			   if (manaFlowerTimer >= 60)
+			   {
+				   manaFlowerTimer = 0;
+				   manaFlowerLimit = 0;
+			   }
+			}
+			Player.lifeSteal -= 0.41666667f; // this stat increases by 0.5f every frame, or by 30 per second. with this change it goes down to 5 per second.
 
             if (Player.wingsLogic > 0 && Player.rocketBoots != 0 && Player.velocity.Y != 0f && Player.rocketTime != 0)
             {
@@ -642,17 +652,18 @@ namespace TRAEProject
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && crit)
+            if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && crit && manaFlowerLimit < 3)
             {
                 if (Main.rand.Next(3) == 0)
                 {
                     Item.NewItem(target.getRect(), ItemID.Star, 1);
+					++manaFlowerLimit;
                 } 
             }
-            if (proj.CountsAsClass(DamageClass.Magic) && manaCloak == true && crit)
+            if (proj.CountsAsClass(DamageClass.Magic) && manaCloak == true && crit && Main.rand.Next(3) == 0)
             {
-                int[] spread = { 1,2 };
-                TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI), target.position, 1, 400, 600, spread, 20, ProjectileID.ManaCloakStar, damage / 10, 2f, Player.whoAmI);
+                int[] spread = {3, 4, 5};
+                TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI), target.position, 1, 400, 600, spread, 20, ProjectileID.ManaCloakStar, damage / 3, 2f, Player.whoAmI);
             }
             if (Player.inferno)
             {
@@ -1029,47 +1040,7 @@ namespace TRAEProject
                 dust.noGravity = true;
             }
         }
-        //public override bool PreItemCheck() COME BACK TO THIS LATER 
-        //{
-        //    Player.HeldItem.shootSpeed = Player.HeldItem.GetGlobalItem<TRAEGlobalItem>().baseVelocity;
-        //    if (!Player.HeldItem.IsAir)
-        //    {
-        //        if (Player.GetModPlayer<TRAEPlayer>().TitanGlove && Player.HeldItem.CountsAsClass(DamageClass.Melee))
-        //        {
-        //            Player.HeldItem.shootSpeed = Player.HeldItem.GetGlobalItem<TRAEGlobalItem>().baseVelocity * 1.5f;
-        //        }
-        //    }
-        //    return base.PreItemCheck();
-        //}
-        public override void PostItemCheck()
-        {
-            Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-            if (!Player.HeldItem.IsAir)
-            {
-                // later
-                if (Player.HeldItem.type == ItemID.BlizzardStaff && Player.itemAnimation == Player.itemAnimationMax - 1)
-                {
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        if (Main.projectile[i].type == ProjectileType<Blizzard>() && Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI)
-                        {
-                            Main.projectile[i].Kill();
-                        }
-                    }
-                    Projectile.NewProjectile(Player.GetProjectileSource_Item(Player.HeldItem), mousePosition, Vector2.Zero, ProjectileType<Blizzard>(), Player.HeldItem.damage, Player.HeldItem.knockBack, Player.whoAmI);
-                }
-                if (Player.HeldItem.type == ItemID.BubbleGun && Player.itemAnimation == Player.itemAnimationMax - 1)
-                {
-                    int numberProjectiles = 1 + Main.rand.Next(2);
-                    for (int i = 0; i < numberProjectiles; i++)
-                    {
-                        Vector2 direction = (Main.MouseWorld - Player.Center).SafeNormalize(-Vector2.UnitY);
-                        Vector2 perturbedSpeed = new Vector2(Player.HeldItem.shootSpeed).RotatedByRandom(MathHelper.ToRadians(30));
-                        Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.Center, direction * perturbedSpeed, ProjectileType<BigBubble>(), Player.HeldItem.damage, Player.HeldItem.knockBack, Player.whoAmI);
-                    }
-                }
-            }
-        }
+
         public void MagicDaggerSpawn(Player Player, int damage, float knockBack)
         {
             if (magicdaggercount < 75)
@@ -1084,50 +1055,6 @@ namespace TRAEProject
                 ++Player.GetModPlayer<TRAEPlayer>().magicdaggercount;
             }
         }
-        // Old Pocket Mirror, Shamelessly Copypasted this from Fargo's Mod Hallowed Enchantment, sorry everyone, i've dissapointed you. ~~ Bame.
-        //void Reflect()
-        //{
-        //    const int focusRadius = 50; // reflecting range
-        //    int chance = Main.rand.Next(6); // 20% chance it happens every frame, i think
-        //    Main.projectile.Where(x => x.active && x.hostile).ToList().ForEach(x =>
-        //    {
-        //        if (x.aiStyle == 1 || x.aiStyle == 10 || x.aiStyle == 124)
-        //        {
-        //            if (chance == 0 && Vector2.Distance(x.Center, Player.Center) <= focusRadius + Math.Min(x.width, x.height) / 2) // checks if it's near that range.
-        //            {
-        //                for (int i = 0; i < 20; i++)
-        //                {
-        //                    int dustId = Dust.NewDust(new Vector2(x.position.X, x.position.Y + 2f), x.width, x.height + 5, 15, x.velocity.X * 0.2f, x.velocity.Y * 0.2f, 100, default(Color), 1.33f);
-        //                    Main.dust[dustId].noGravity = true;
-        //                }
-        //                Terraria.Audio.SoundEngine.PlaySound(SoundID.MaxMana);
-        //                // Set ownership
-        //                x.hostile = false;
-        //                x.friendly = true;
-        //                x.owner = Player.whoAmI;
-        //                // do more damage
-        //                x.damage *= 5;
-        //                // Turn around
-        //                x.velocity *= -1f;
-        //                // Flip sprite
-        //                if (x.Center.X > Player.Center.X)
-        //                {
-        //                    x.direction = 1;
-        //                    x.spriteDirection = 1;
-        //                }
-        //                else
-        //                {
-        //                    x.direction = -1;
-        //                    x.spriteDirection = -1;
-        //                }
-        //                // Don't know if this will help but here it is
-        //                x.netUpdate = true;
-        //                // play full mana sound
-        //                Terraria.Audio.SoundEngine.PlaySound(SoundID.Pixie);
-        //            }
-        //        }
-        //    });
-        //}
     }
  }
     

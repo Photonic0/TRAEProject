@@ -30,7 +30,11 @@ namespace TRAEProject
             }
             switch (item.type)
             {
-                // PHM SWORD LAND
+                case ItemID.AdamantitePickaxe:
+			       item.useTime = 7; // down from 8
+                    item.useAnimation = 7;
+				   return;
+				// PHM SWORD LAND
                 case ItemID.CopperBroadsword:
                     item.damage = 13;
                     item.useTime = 22;
@@ -440,6 +444,7 @@ namespace TRAEProject
                 case ItemID.Kraken:
                     item.damage = 88; // vanilla value = 95
                     return;
+                /// SUMMONER
                 case ItemID.ThornWhip:
                     item.damage = 19; // up from 18
                     return;
@@ -447,14 +452,19 @@ namespace TRAEProject
                     item.damage = 24; // down from 29
                     return;
                 case ItemID.SwordWhip:
-                    item.damage = 59; // down from 29
+                    item.damage = 59;
                     return;
                 case ItemID.ScytheWhip:
-                    item.damage = 111; // down from 29
+                    item.damage = 111; // up from 100
                     return;
-                /// SUMMONER
+                case ItemID.RainbowWhip:
+                    item.damage = 200; // up from 180
+                    return;
                 case ItemID.TempestStaff:
                     item.damage = 68;
+                    return;
+				case ItemID.DeadlySphereStaff:
+                    item.damage = 20; // down from 50
                     return;
                 /// RANGED 
                 case ItemID.Revolver:
@@ -672,6 +682,25 @@ namespace TRAEProject
                     item.defense = 4;
                     item.vanity = false;
                     return;
+                case ItemID.RuneRobe:
+                    item.defense = 8;
+                    item.vanity = false;
+                    return;
+                case ItemID.PirateHat:
+                    item.defense = 7;
+                    item.rare = ItemRarityID.Orange;
+                    item.vanity = false;
+                    return;
+                case ItemID.PirateShirt:
+                    item.defense = 12;
+                    item.rare = ItemRarityID.Orange;
+                    item.vanity = false;
+                    return;
+                case ItemID.PiratePants:
+                    item.defense = 9;
+                    item.rare = ItemRarityID.Orange;
+                    item.vanity = false;
+                    return;
                 case ItemID.MythrilHood:
                 case ItemID.CopperChainmail:
                 case ItemID.TinHelmet:
@@ -717,10 +746,7 @@ namespace TRAEProject
                 case ItemID.AncientShadowGreaves:
                     item.defense = 7;
                     return;
-                case ItemID.RuneRobe:
-                    item.defense = 8;
-                    item.vanity = false;
-                    return;
+       
                 case ItemID.FleshKnuckles:
                 case ItemID.BerserkerGlove:
                     item.defense = 10;
@@ -756,6 +782,12 @@ namespace TRAEProject
                     return;
                 case ItemID.MoonShell:
                     item.SetNameOverride("Monster Shell");
+                    return;
+                case ItemID.StardustDragonStaff:
+                    item.SetNameOverride("Lunar Dragon Staff");
+                    return;
+                case ItemID.MoonlordTurretStaff:
+                    item.SetNameOverride("Stardust Portal Staff");
                     return;
                 case ItemID.ManaRegenerationBand:
                     item.SetNameOverride("Band of Dual Regeneration");
@@ -1303,6 +1335,51 @@ namespace TRAEProject
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
                             line.text = "Summons a powerful sharknado to fight for you\nUses three minion slots";
+                        }
+                    }
+                    return;
+                case ItemID.CoolWhip:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "8 summon tag damage\nStrike enemies to summon a friendly snowflake";
+                        }
+                    }
+                    return;
+                case ItemID.MaceWhip:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.text = "15% summon tag critical strike chance";
+                        }
+                    }
+                    return;
+                case ItemID.RainbowWhip:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.text = "20% summon tag critical strike chance\nMinion critical strikes release colourful destruction";
+                        }
+                    }
+                    return;
+                case ItemID.StardustDragonStaff:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "Summons a lunar dragon to fight for you";
+                        }
+                    }
+                    return;
+                case ItemID.MoonlordTurretStaff:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.text = "Summons a stardust portal to shoot lasers at your enemies";
                         }
                     }
                     return;

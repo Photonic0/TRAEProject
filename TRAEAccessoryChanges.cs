@@ -244,6 +244,9 @@ player.accRunSpeed = 6f;
                 player.GetDamage<MagicDamageClass>() += 0.05f;
                 player.GetCritChance<MagicDamageClass>() += 5;
                 return;
+			case ItemID.CelestialEmblem:
+                player.GetDamage<MagicDamageClass>() -= 0.03f;
+                return;
             case ItemID.HeroShield:
                 player.hasPaladinShield = false;
                 return;
@@ -422,7 +425,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Critical hits have a chance to spawn a mana star";
+                        line.text = "Magic critical hits have a chance to spawn a mana star";
                     }
                 }
                 return;
@@ -431,7 +434,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Critical hits have a chance to spawn a mana star\n5% increased magic damage and critical strike chance";
+                        line.text = "Magic critical hits have a chance to spawn a mana star\n5% increased magic damage and critical strike chance";
                     }
                 }
                 return;
@@ -440,7 +443,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Causes stars to fall on a magic critical hit.";
+                        line.text = "Magic critical hits have a chance to cause a damaging star to fall";
                     }
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
@@ -455,6 +458,15 @@ player.accRunSpeed = 6f;
                         line.text = "";
                     }
                 }       
+                return;
+			case ItemID.CelestialEmblem:
+        foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "12% increased magic damage";
+                    }
+				}
                 return;
             case ItemID.HeroShield:
                 foreach (TooltipLine line in tooltips)

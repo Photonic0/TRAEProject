@@ -1,5 +1,6 @@
 using Terraria;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
 using TRAEProject.Buffs;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ModLoader;
@@ -10,6 +11,7 @@ namespace TRAEProject.Projectiles
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 3;
+			Projectile.frame = Main.rand.Next(3);
             DisplayName.SetDefault("ToxicCloud");     //The English name of the Projectile
         }
         public override void SetDefaults()
@@ -25,14 +27,14 @@ namespace TRAEProject.Projectiles
             //Projectile.aiStyle = 92;
             Projectile.tileCollide = false;
 			Projectile.usesIDStaticNPCImmunity = true;
-			Projectile.idStaticNPCHitCooldown = 10;
+			Projectile.idStaticNPCHitCooldown = 12;
 			Projectile.extraUpdates = 0;
-            Projectile.frame = Main.rand.Next(3);
+            
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            int length = Main.rand.Next(8, 12) * 60;
-            target.AddBuff(BuffType<Toxins>(), length, false);
+            int length = Main.rand.Next(3, 5) * 60;
+            target.AddBuff(BuffID.Venom, length, false);
         }
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
