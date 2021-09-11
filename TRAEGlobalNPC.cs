@@ -927,29 +927,6 @@ namespace TRAEProject
                 }
                 npc.netUpdate = true;
             }
-            if (titaPenetrate)
-            {
-                if (npc.lifeRegen > 0)
-                {
-                    npc.lifeRegen = 0;
-                }
-                int TridentCount = 0;
-                for (int i = 0; i < 1000; i++)
-                {
-                    Projectile p = Main.projectile[i];
-                    if (p.active && p.type == ProjectileType<Projectiles.TitaTridentThrown>() && p.ai[0] == 1f && p.ai[1] == npc.whoAmI)
-                    {
-                        TridentCount++;
-                    }
-                }
-                npc.lifeRegen -= TridentCount * 2 * 10;
-                if (damage < TridentCount * 5)
-                {
-                    damage = TridentCount * 5;
-                }
-                npc.netUpdate = true;
-
-            }
         }
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {

@@ -18,6 +18,10 @@ namespace TRAEProject
 
         private static readonly int[] Emblems = new int[] { ItemID.WarriorEmblem, ItemID.RangerEmblem, ItemID.SorcererEmblem, ItemID.SummonerEmblem };
         public static Texture2D debugCross;
+
+        public const string DreadHead1 = "TRAEProject/Changes/Dreadnautilus/MapIcon";
+        public const string DreadHead2 = "TRAEProject/Changes/Dreadnautilus/MapIcon2";
+
         public override void AddRecipeGroups()
         {
             RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Emblem", new int[]
@@ -83,7 +87,9 @@ namespace TRAEProject
         public override void Load()
         {
             Instance = this;
-            
+            AddBossHeadTexture(DreadHead1);
+            AddBossHeadTexture(DreadHead2);
+
             Main.QueueMainThreadAction(() =>
             {
                 QwertyFlexOnBame.CreateDolphin();
