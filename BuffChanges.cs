@@ -9,7 +9,19 @@ namespace ChangesBuffs
 {
     public class ChangesBuffs : GlobalBuff
     {
-    public override void Update(int type, Player player, ref int buffIndex)
+        public override void Update(int type, NPC npc, ref int buffIndex)
+        {
+            switch (type)
+            {
+                case BuffID.MaceWhipNPCDebuff:
+                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 15;
+                    return;
+                case BuffID.RainbowWhipNPCDebuff:
+                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 10;
+                    return;
+            }
+        }
+        public override void Update(int type, Player player, ref int buffIndex)
         {
             switch (type)
             {
@@ -76,7 +88,7 @@ namespace ChangesBuffs
                 case BuffID.ManaRegeneration:
                     player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.125f;
                     return;
-                case BuffID.ManaSickness:
+                case BuffID.ManaSickness:               
                     player.manaSickReduction = 0f;
                     return;
     }
@@ -86,6 +98,9 @@ namespace ChangesBuffs
         {
             switch (type)
             {
+                case BuffID.StardustDragonMinion:
+                    tip = "The Lunar Dragon will fight for you";
+                    return;
                 case BuffID.BeetleEndurance1:
                     tip = "Damage taken reduced by 10%";
                     return;

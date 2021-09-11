@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Items.Summoner.Whip;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject
@@ -16,6 +17,7 @@ namespace TRAEProject
         public override bool InstancePerEntity => true;
         public int AnchorHit = 0;
         public int HitCount = 0;
+
         // Damage
         public float DamageFalloff = 0f; // How much damage the projectile loses every time it hits an enemy. 
         public float DamageFallon = 1f; // How much damage the projectile gains every time it hits an enemy. 
@@ -88,7 +90,7 @@ namespace TRAEProject
             }
             //
             switch (projectile.type)
-            {
+            {            
                 case ProjectileID.BookOfSkullsSkull:
                     projectile.timeLeft = 180;
                     return;
@@ -110,70 +112,15 @@ namespace TRAEProject
                         projectile.extraUpdates = 1; // down from 3(?)
                     }
                     return;
-                // Summoner Changes
-                case ProjectileID.Retanimini:
-                case ProjectileID.Spazmamini:
-                case ProjectileID.DeadlySphere:
-                    projectile.tileCollide = false;
-					projectile.usesIDStaticNPCImmunity = false;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    return;
-                case ProjectileID.DangerousSpider:
-                case ProjectileID.VenomSpider:
-                case ProjectileID.JumperSpider:
-                    projectile.usesIDStaticNPCImmunity = false;
-					projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 26;
-                    return;
-                case ProjectileID.HornetStinger:
-					projectile.extraUpdates = 2;
-                    homesIn = true;
-                    homingRange = 150f;
-                    return;
-                case ProjectileID.MiniRetinaLaser:
-                    homesIn = true;
-                    dontHitTheSameEnemyMultipleTimes = true;
-                    projectile.usesIDStaticNPCImmunity = false;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    return;
-                case ProjectileID.ImpFireball:
-				projectile.usesIDStaticNPCImmunity = false;
-				    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    return;
-                case ProjectileID.VampireFrog:
-				projectile.usesIDStaticNPCImmunity = false;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 15; // up from 10, static 
-                    return;
-                case ProjectileID.PygmySpear: // revisit
-                    projectile.penetrate = 2;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    return;
-				case ProjectileID.ManaCloakStar:
+                case ProjectileID.ManaCloakStar:
                     projectile.penetrate = 2;
                     homesIn = true;
 					homingRange = 600f;
                     dontHitTheSameEnemyMultipleTimes = true;
 					cantCrit = true;
+					projectile.tileCollide = false;
+					projectile.timeLeft = 120;
                     return;
-                case ProjectileID.MiniSharkron: 
-                    projectile.extraUpdates = 1;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    projectile.penetrate = 4;
-                    homesIn = true;
-                    homingRange = 100f;
-                    dontHitTheSameEnemyMultipleTimes = true;
-                    return;
-                case ProjectileID.Tempest:
-                    cantCrit = true;
-                    projectile.minionSlots = 3;
-                    return;
-                ///
                 // MELEE
                 case ProjectileID.CorruptYoyo:
                     AddsBuff = BuffID.Weak;
@@ -265,20 +212,13 @@ namespace TRAEProject
                     projectile.penetrate = 5;
                     DamageFallon = 1.42f;
                     return;              
-                case ProjectileID.CursedFlameFriendly:
                 case ProjectileID.WaterStream:
                     projectile.penetrate = 1;
-                    projectile.penetrate = 1;
                     return;
-
                 case ProjectileID.RainbowFront:
                 case ProjectileID.RainbowBack:
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
-                    return;
-                case ProjectileID.Blizzard:
-				    projectile.tileCollide = false;
-                    goThroughWallsUntilReachingThePlayer = true;
                     return;
 			    case 244:
 				  case 238:
@@ -292,13 +232,9 @@ namespace TRAEProject
                     homingRange = 120f;
 					dontHitTheSameEnemyMultipleTimes = true;
                     return;
-				case ProjectileID.BloodRain:
-				projectile.penetrate = 1;
-							projectile.aiStyle = 1;
-                    homesIn = true;
-                    homingRange = 100f;
+                case ProjectileID.Blizzard:
+                    projectile.timeLeft = 150;
                     return;
-
                 case ProjectileID.Meteor1:
                 case ProjectileID.Meteor2:
                 case ProjectileID.Meteor3:
@@ -313,6 +249,12 @@ namespace TRAEProject
                     return;
 				 case ProjectileID.Wasp:
 				 	projectile.penetrate = 2;
+					projectile.timeLeft = 120;
+					projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
+                    return;
+				case ProjectileID.NebulaArcanum:
+                    projectile.extraUpdates = 1;
                     return;
                 ///
                 // Ranged
@@ -420,11 +362,13 @@ namespace TRAEProject
 				case ProjectileID.FrostBoltStaff:
                     projectile.penetrate = 2;
                     return;
-								case ProjectileID.EmeraldBolt:
-											case ProjectileID.AmberBolt:
-														case ProjectileID.RubyBolt:
-					case ProjectileID.DiamondBolt:
-						          dontHitTheSameEnemyMultipleTimes = true;
+                case ProjectileID.SapphireBolt:
+                case ProjectileID.EmeraldBolt:
+                case ProjectileID.AmberBolt:
+                case ProjectileID.RubyBolt:
+                case ProjectileID.DiamondBolt:
+                    projectile.penetrate = 2;
+                    dontHitTheSameEnemyMultipleTimes = true;
                     projectile.usesLocalNPCImmunity = true;
                     return;
             }
@@ -432,37 +376,13 @@ namespace TRAEProject
 
         public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)
         {
-            if (Main.player[projectile.owner].GetModPlayer<TRAEPlayer>().TitanGlove && projectile.DamageType == DamageClass.Melee && !DontRunThisAgain)
-            {
-                if (projectile.aiStyle == 19)
-                {
-                    hitbox.Width = (int)(hitbox.Width * 1.5f);
-                    hitbox.Height = (int)(hitbox.Height * 1.5f);
-                    projectile.scale *= 1.5f;
-                    DontRunThisAgain = true;
-                }
-            }
             switch (projectile.type)
             {
-                case ProjectileID.Tempest:
-                        hitbox.Width = 56;
-                        hitbox.Height = 80;
-                        projectile.scale = 2f;
-                    return;
-                case ProjectileID.MiniSharkron:
-                        hitbox.Width = 14;
-                        hitbox.Height = 14;
-                        projectile.scale = 1.4f;
+                case ProjectileID.Blizzard:
+                    hitbox.Width = 50;
+                    hitbox.Height = 50;
                     return;
             }
-        }
-        public override bool? CanHitNPC(Projectile projectile, NPC target)
-        {
-            if (projectile.type == ProjectileID.FrostHydra)
-            {
-                return true;
-            }
-            return null;
         }
         public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
@@ -485,21 +405,6 @@ namespace TRAEProject
         public override bool PreAI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
-            if (projectile.counterweight)
-                projectile.damage = player.HeldItem.damage;
-            
-            if (projectile.type == ProjectileID.UnholyTridentFriendly)
-            {
-                projectile.ai[0] += 1f;
-                if (projectile.ai[0] >= 30.0)
-                {
-                    if (projectile.ai[0] < 100.0)
-                        projectile.velocity = Vector2.Multiply(projectile.velocity, 1.06f);
-                    else
-                        projectile.ai[0] = 200f;
-                }
-            }
-
             if (projectile.type == ProjectileID.ChlorophyteBullet)
             {
                 ++ChloroBulletTime; // once this reaches 24, the bullet loses its homing
@@ -640,6 +545,16 @@ namespace TRAEProject
         public override void AI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
+            if (projectile.aiStyle == 165)
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && Main.projectile[i].type == projectile.type && Main.projectile[i].whoAmI != projectile.whoAmI)
+                    {
+                        Main.projectile[i].Kill();
+                    }
+                }
+            }
             if (goThroughWallsUntilReachingThePlayer)
             {
                 if (projectile.position.Y > player.position.Y)
@@ -677,18 +592,30 @@ namespace TRAEProject
                 }
                 return;
             }
-                if (explodes && projectile.timeLeft == 3)
+            if (explodes && projectile.timeLeft == 3)
             {
                 TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
                 return;
             }
+            if (projectile.counterweight)
+            {
+                projectile.damage = player.HeldItem.damage;
+                return;
+            }
             switch (projectile.type)
             {
+                case ProjectileID.UnholyTridentFriendly:
+                    projectile.ai[0] += 1f;
+                    if (projectile.ai[0] >= 30.0)
+                    {
+                        if (projectile.ai[0] < 100.0)
+                            projectile.velocity = Vector2.Multiply(projectile.velocity, 1.06f);
+                        else
+                            projectile.ai[0] = 200f;
+                    }
+                    return;
                 case ProjectileID.BloodRain:
                     projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
-                    return;
-				case ProjectileID.BatOfLight:
-                    projectile.localNPCHitCooldown = (int)projectile.ai[0];
                     return;
                 case ProjectileID.SharpTears:
                     projectile.ai[0] -= 0.8f;
@@ -704,53 +631,7 @@ namespace TRAEProject
                     else
                         projectile.hostile = true;
                     return;
-                case ProjectileID.FlyingImp:
-                    {
-                        if (projectile.ai[1] < 0f)
-                        {
-                            projectile.ai[1] -= 0.2f; // Needs to reach 90f to shoot
-                        }
-                    }
-                    return;
-                case ProjectileID.Smolstar: // could probably move this to AI
-                    {
-                        if (projectile.ai[0] == -1f)
-                        {
-                            projectile.ai[1] -= 0.1f; // when it reaches 9f, attack.                 
-                        }
-                        return;
-                    } 
-                case ProjectileID.Tempest:
-                    {
-                        projectile.ai[1] += 3; // fires faster
-                    }
-                    return;
-                    //don't use falloff with static immunity please
-                    /*
-                case ProjectileID.SporeCloud:
-                    {
-                        bool flag4 = false;
-                        double fallofflimit = player.HeldItem.damage / 3;
-                        projectile.localAI[1] += 1f;
-                        if (projectile.localAI[1] >= 3f && projectile.damage >= fallofflimit)
-                        {
-                            projectile.localAI[1] = 3f;
-                            flag4 = true;
-                        }
-                        if (flag4)
-                        {
-                            projectile.localAI[1] = 0f;
-                            projectile.damage -= 1;
-                        }
-                        projectile.scale *= 0.997f;
-                        projectile.alpha -= 3;
-                        if (projectile.alpha > 255)
-                        {
-                            projectile.Kill();
-                        }
-                        return;
-                    }
-                    */
+
                 case ProjectileID.NebulaSphere:
                     {
                         if (Main.expertMode)
@@ -770,15 +651,6 @@ namespace TRAEProject
                             }
                             projectile.scale += 0.005f;
                         }
-                        return;
-                    }
-                case ProjectileID.MonkStaffT1: // revisit
-                    {
-                        projectile.width += 4;
-                        projectile.height += 4;
-                        projectile.damage *= 1000 + (int)(16 + (12 / (player.meleeSpeed)));
-                        projectile.damage /= 1000;
-                        projectile.scale *= 1.025f;
                         return;
                     }
                 case ProjectileID.Gradient:
@@ -1063,7 +935,7 @@ namespace TRAEProject
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit,ref int hitDirection)
         {
             Player player = Main.player[projectile.owner];
-            damage = (int)(damage * DirectDamage); 
+            damage = (int)(damage * DirectDamage);
             if (IgnoresDefense)
             {
                 int finalDefense = target.defense - player.armorPenetration;
@@ -1079,52 +951,6 @@ namespace TRAEProject
 			{
 				crit = false;
 			}
-            switch (projectile.type)
-            {
-                case ProjectileID.GolemFist:
-                    {
-                        float dmgX = projectile.position.X - player.position.X;
-                        float dmgY = projectile.position.Y - player.position.Y;
-                        float dmg = (float)Math.Sqrt(dmgX * dmgX + dmgY * dmgY);
-                        damage *= (1 + (int)dmg / 115); // should be about double damage at max range
-                        return;
-                    }
-                    /*
-                case ProjectileID.SporeCloud:
-                    {
-                        projectile.knockBack *= 0f;
-                        return;
-                    }
-                    */
-                case ProjectileID.TerraBeam:
-                    {
-                        damage = (int)(damage / 1.25);
-                    }
-                    return;
-                case ProjectileID.ChainGuillotine:
-                    {
-                        if (++tillinsta % (shootDelay + 20) == 0)
-                        {
-                            crit = false;
-                            damage *= 10;
-                            float heal = damage * 0.0075f;
-                            if ((int)heal != 0 && !(Main.player[Main.myPlayer].lifeSteal <= 0f))
-                            {
-                                Main.player[Main.myPlayer].lifeSteal -= heal;
-                                int num2 = projectile.owner;
-                                Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), target.position.X, target.position.Y, 0f, 0f, ProjectileID.VampireHeal, 0, 0f, projectile.owner, num2, heal);
-                            }
-                            Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath6);
-                            for (int i = 0; i < Main.rand.Next(15, 20); i++)
-                            {
-                                Dust dust = Dust.NewDustDirect(target.position, target.width, target.height, 115, 0f, 0f, 0, default, Main.rand.Next(10, 13) * 0.1f);
-                                dust.noLight = true;
-                                dust.velocity *= 0.5f;
-                            }
-                        }
-                    }
-                    return;
-            }           
         }
         public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
         {
@@ -1171,7 +997,7 @@ namespace TRAEProject
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            if (dontHitTheSameEnemyMultipleTimes) 
+            if (dontHitTheSameEnemyMultipleTimes)
                 projectile.localNPCImmunity[target.whoAmI] = -1; // this makes the enemy invincible to the projectile.
             if (explodes)
             {
@@ -1238,22 +1064,28 @@ namespace TRAEProject
                     player.GetModPlayer<TRAEPlayer>().MagicDaggerSpawn(player, damage, knockback);
                 }
             }
-            if (player.HasBuff(BuffID.WeaponImbueNanites) && projectile.DamageType == DamageClass.Melee)
+            if (player.HasBuff(BuffID.WeaponImbueNanites) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);
             }
             switch (projectile.type)
             {
-                case ProjectileID.JumperSpider:
-                case ProjectileID.VenomSpider:
-                case ProjectileID.DangerousSpider:
-                    {
-                        projectile.localAI[1] = 26f;
-                        return;
-                    }
                 case ProjectileID.NanoBullet:
                     {
                         player.AddBuff(BuffType<NanoHealing>(), 60, false);
+                        return;
+                    }
+                      
+                // melee
+                case ProjectileID.Chik:
+                    {
+                        int shards = damage / 10;
+                        for (int i = 0; i < shards; i++)
+                        {
+                            float velX = (0f - projectile.velocity.X) * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.5f;
+                            float velY = (0f - projectile.velocity.Y) * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.5f;
+                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X + velX, projectile.position.Y + velY, velX, velY, ProjectileID.CrystalShard, 1, 0, projectile.owner, 0f, 0f);
+                        }
                         return;
                     }
                 case ProjectileID.Cascade:
@@ -1267,57 +1099,13 @@ namespace TRAEProject
                     {
                         player.lifeRegenCount += 30;
                         return;
-                    }         
-                // melee
-                case ProjectileID.Chik:
-                    {
-                        int shards = damage / 10;
-                        for (int i = 0; i < shards; i++)
-                        {
-                            float velX = (0f - projectile.velocity.X) * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.5f;
-                            float velY = (0f - projectile.velocity.Y) * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.5f;
-                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X + velX, projectile.position.Y + velY, velX, velY, ProjectileID.CrystalShard, 1, 0, projectile.owner, 0f, 0f);
-                        }
-                        return;
-                    }
-                //case ProjectileID.Anchor: SAVE THIS CODE FOR LATER
-                //    {
-                //        AnchorHit += 1;
-                //        if (AnchorHit == 1)
-                //        {
-                //            int[] spread = { 7, 11 };
-                //            TRAEMethods.SpawnProjectilesFromAbove(projectile.Center, 6, 800, 1000, spread, 20, ProjectileType<LightningBolt>(), projectile.damage * 3, projectile.knockBack, player.whoAmI);
-                //        }
-                //         return;
-                //    }
+                    }   
                 case ProjectileID.PalladiumPike:
                     {
                         float length = 300 / (player.meleeSpeed / player.meleeSpeed * 0.94f); /// Duration increases by about 0.1475 seconds for each melee speed point, i think
                         player.AddBuff(58, (int)length, false);
                         return;
-                    }
-                case ProjectileID.OrichalcumHalberd:
-                    {
-                        float X = Main.screenPosition.X;
-                        float Y = Main.screenPosition.Y;
-                        Y += Main.rand.Next(Main.screenHeight);
-                        Vector2 vector2 = new Vector2(X, Y);
-                        float speed = (target.position.X - vector2.X) * 0.03f;
-                        float speedY = (target.position.Y - vector2.Y) * 0.03f;
-                        if (player.direction == -1)
-                        {
-                            Vector2 vector = new Vector2(X + Main.screenWidth);
-                            float opposite = (vector.X - target.position.X) * -0.03f;
-                            float direction = X + Main.screenWidth;
-                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), direction, Y, opposite, speedY, ProjectileID.FlowerPetal, 36, knockback, Main.myPlayer);
-
-                        }
-                        else
-                        {
-                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), X, Y, speed, speedY, ProjectileID.FlowerPetal, 36, knockback, Main.myPlayer);
-                        }
-                        return;
-                    }                 
+                    }              
             }    
         }
         public override bool PreKill(Projectile projectile, int timeLeft)

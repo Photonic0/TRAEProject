@@ -11,6 +11,7 @@ namespace TRAEProject.Changes.Items
 {
     public class Bags : GlobalItem
     {
+		public static readonly int[] PlanteraLoot = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury };
 
 		public override bool PreOpenVanillaBag(string context, Player player, int arg)
 		{
@@ -21,6 +22,14 @@ namespace TRAEProject.Changes.Items
 					player.QuickSpawnItem(ItemID.SkeletronHand, 1);
 				if (Main.rand.Next(3) == 0)
 					player.QuickSpawnItem(ItemID.SkeletronMask, 1);
+				return false;
+			}
+			if (context == "bossBag" && arg == ItemID.PlanteraBossBag) // TO DO
+			{
+				
+				player.QuickSpawnItem(ItemID.BoneGlove, 1);
+				if (Main.rand.Next(3) == 0)
+					player.QuickSpawnItem(ItemID.SkeletronHand, 1);
 				return false;
 			}
 			if (context == "crate" && (arg == ItemID.OasisCrate || arg == ItemID.OasisCrateHard))

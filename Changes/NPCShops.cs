@@ -70,20 +70,6 @@ namespace TRAEProject.Changes
                         nextSlot++;
                     }
                     break;
-                case NPCID.Wizard:
-                    if (!Main.dayTime)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CelestialMagnet);
-                        nextSlot++;
-                    }
-                    break;
-                case NPCID.WitchDoctor:
-                    if (!Main.dayTime)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PygmyNecklace);
-                        nextSlot++;
-                    }
-                    break;
                 case NPCID.Truffle:
                     if (!NPC.downedPlantBoss)
                     {

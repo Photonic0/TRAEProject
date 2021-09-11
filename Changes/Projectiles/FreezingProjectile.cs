@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Items.Summoner.AbsoluteZero;
 using TRAEProject.Common.GlobalNPCs;
+using TRAEProject.Items.Summoner.Whip;
+using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Projectiles
 {
     public class FreezingProjectile : GlobalProjectile
     {
-        public override void OnHitNPC(Terraria.Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            if (target.HasBuff(BuffType<AbsoluteZeroTag>()) && crit == true && projectile.minion)
+            {
+                target.GetGlobalNPC<Freeze>().FreezeMe(target, damage / 4);
+            }
             switch(projectile.type)
             {
                 case ProjectileID.FrostBoltSword:

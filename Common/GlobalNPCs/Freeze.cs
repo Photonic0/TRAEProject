@@ -32,6 +32,10 @@ namespace TRAEProject.Common.GlobalNPCs
                 return;
             }
                 time = (int)(time * freezeResist);
+				if (time < 5)
+				{
+					return;
+				}
                 //this only happens when the npc isn't frozen yet
                 if (freezeTime == 0)
                 {
