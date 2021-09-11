@@ -3,6 +3,7 @@ using TRAEProject.Items.Summoner.AbsoluteZero;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Items.Materials;
 
 namespace TRAEProject
 {

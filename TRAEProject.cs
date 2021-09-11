@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 
 using static Terraria.ModLoader.ModContent;
 using ReLogic.Content;
+using TRAEProject.Items.Armor.IceArmor;
 
 namespace TRAEProject
 {
@@ -21,7 +22,7 @@ namespace TRAEProject
 
         public const string DreadHead1 = "TRAEProject/Changes/Dreadnautilus/MapIcon";
         public const string DreadHead2 = "TRAEProject/Changes/Dreadnautilus/MapIcon2";
-
+        public static int IceMajestyCape;
         public override void AddRecipeGroups()
         {
             RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Emblem", new int[]
@@ -89,7 +90,10 @@ namespace TRAEProject
             Instance = this;
             AddBossHeadTexture(DreadHead1);
             AddBossHeadTexture(DreadHead2);
-
+            if(!Main.dedServ)
+            {
+                IceMajestyCape = AddEquipTexture(GetModItem(ItemType<IceMajestyBreastplate>()), EquipType.Back, "TRAEProject/Items/Armor/IceArmor/IceMajestyBreastplate_Back");
+            }
             Main.QueueMainThreadAction(() =>
             {
                 QwertyFlexOnBame.CreateDolphin();

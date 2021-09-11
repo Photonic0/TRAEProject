@@ -460,12 +460,6 @@ namespace TRAEProject
                 case ItemID.RainbowWhip:
                     item.damage = 200; // up from 180
                     return;
-                case ItemID.TempestStaff:
-                    item.damage = 68;
-                    return;
-				case ItemID.DeadlySphereStaff:
-                    item.damage = 20; // down from 50
-                    return;
                 /// RANGED 
                 case ItemID.Revolver:
                     item.damage = 30; // up from 20

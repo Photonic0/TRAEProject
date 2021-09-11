@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tp2XPJ1qztD+gSb0qy+isseb4ddQsVqe068FaTpItFTxj9IbpJMxeBtzvAz9o1QDMHeOmMyUucnj1Tr55s8YkA==",
+  "dgSpecHash": "kqrkqFHBZYw5YvkaOgmHqEJrrau9ropFmnMxqmhMf/nSCJlNhaOyVf0cA/hvtTeIfl/LamUuF+YD+dHVDgHDQQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jbouv\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
+  "projectFilePath": "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jbouv\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
+    "C:\\Users\\noahg\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
   ],
   "logs": []
 }

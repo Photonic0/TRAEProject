@@ -13,7 +13,7 @@ using Terraria.Audio;
 
 namespace TRAEProject.Items.Armor.IceArmor
 {
-	[AutoloadEquip(EquipType.Body, EquipType.Back)]
+	[AutoloadEquip(EquipType.Body)]
     public class IceMajestyBreastplate : ModItem
 	{
 		public override void SetStaticDefaults()
@@ -59,7 +59,11 @@ namespace TRAEProject.Items.Armor.IceArmor
 			drawArms = false;
 			drawHands = false;
 		}
-	}
+        public override void EquipFrameEffects(Player player, EquipType type)
+        {
+            player.back = (sbyte)TRAEProj.IceMajestyCape;
+        }
+    }
 
     public class IceMajestySetBonus : ModPlayer
 	{
