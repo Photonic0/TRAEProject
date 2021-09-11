@@ -22,7 +22,7 @@ namespace TRAEProject.Changes.Weapon
             return base.Clone(item, itemClone);
         }
         public int altShoot = -1;
-        public bool canGetMeleeModifers = false;
+        public bool canGetMeleeModifiers = false;
         public override void SetDefaults(Item item)
         {
             switch (item.type)
@@ -30,7 +30,7 @@ namespace TRAEProject.Changes.Weapon
 
                 case ItemID.Spear:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<BasicSpear>();
                     altShoot = ProjectileType<BasicSpearThrow>();
 
@@ -40,7 +40,7 @@ namespace TRAEProject.Changes.Weapon
 
 				case ItemID.TheRottedFork:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<RottedFork>();
 					altShoot = ProjectileType<RottedForkThrow>();
 
@@ -50,7 +50,7 @@ namespace TRAEProject.Changes.Weapon
 
 				case ItemID.BoneJavelin:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<BoneSpear>();
 					altShoot = ProjectileType<BoneSpearThrow>();
 
@@ -64,7 +64,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.ThunderSpear:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<StormSpear>();
 					altShoot = ProjectileType<StormSpearThrow>();
 
@@ -73,7 +73,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.Trident:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<Trident>();
 					altShoot = ProjectileType<TridentThrow>();
 
@@ -81,7 +81,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.DarkLance:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<DarkLance>();
 					altShoot = ProjectileType<DarkLanceThrow>();
 
@@ -92,13 +92,13 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.Swordfish:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<Swordfish>();
 					altShoot = ProjectileType<SwordfishThrow>();
 					break;
 				case ItemID.ObsidianSwordfish:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<ObsidianSwordfish>();
 					altShoot = ProjectileType<ObsidianSwordfishThrow>();
 
@@ -107,7 +107,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.CobaltNaginata:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<CobaltNaginata>();
 					altShoot = ProjectileType<CobaltNaginataThrow>();
 
@@ -118,7 +118,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.PalladiumPike:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<PalladiumPike>();
 					altShoot = ProjectileType<PalladiumPikeThrow>();
 
@@ -127,7 +127,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.MythrilHalberd:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<MythrilHalberd>();
 					altShoot = ProjectileType<MythrilHalberdThrow>();
 
@@ -136,7 +136,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.OrichalcumHalberd:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<OrichalcumHookbill>();
 					altShoot = ProjectileType<OrichalcumHookbillThrow>();
 
@@ -146,7 +146,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.AdamantiteGlaive:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<AdamantiteGlaive>();
 					altShoot = ProjectileType<AdamantiteGlaiveThrow>();
 
@@ -155,7 +155,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.TitaniumTrident:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<TitaniumTrident>();
 					altShoot = ProjectileType<TitaniumTridentThrow>();
 
@@ -165,7 +165,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.Gungnir:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<Gungnir>();
 					altShoot = ProjectileType<GungnirThrow>();
 
@@ -176,7 +176,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.ChlorophytePartisan:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<ChloroPartisan>();
 					altShoot = ProjectileType<ChloroPartisanThrow>();
 
@@ -185,7 +185,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.MonkStaffT2:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<GhastlyGlaive>();
 					altShoot = ProjectileType<GhastlyGlaiveThrow>();
 
@@ -195,7 +195,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.MushroomSpear:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<MushroomSpear>();
 					altShoot = ProjectileType<MushroomSpearThrow>();
 
@@ -206,7 +206,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.NorthPole:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<NorthPole>();
 					altShoot = ProjectileType<NorthPoleThrow>();
 
@@ -216,7 +216,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.ScourgeoftheCorruptor:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<SoTC>();
 					altShoot = ProjectileType<SoTCThrow>();
 					 
@@ -227,7 +227,7 @@ namespace TRAEProject.Changes.Weapon
 					break;
 				case ItemID.DayBreak:
 					item.useStyle = 1;
-					canGetMeleeModifers = true;
+					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<Daybreak>();
 					altShoot = ProjectileType<DaybreakThrow>();
 
@@ -262,7 +262,7 @@ namespace TRAEProject.Changes.Weapon
         }
         public override int ChoosePrefix(Item item, UnifiedRandom rand)
         {
-            if(canGetMeleeModifers)
+            if(canGetMeleeModifiers)
             {
 				int num = 0;
 				#region pick

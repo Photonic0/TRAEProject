@@ -27,6 +27,7 @@ namespace TRAEProject
                     {
                         NPCLoader.blockLoot.Add(IceQueenDrops.Length);
                         Item.NewItem(npc.getRect(), Main.rand.Next(IceQueenDrops.Length), 1);
+						Item.NewItem(npc.getRect(), ItemType<IceQueenJewel>(), 1);
                     }
                     return true;
                 case NPCID.SkeletronHead:

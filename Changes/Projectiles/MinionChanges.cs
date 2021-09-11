@@ -1,13 +1,10 @@
-using TRAEProject.Buffs;
-using TRAEProject.Projectiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Items.Summoner.Whip;
+using TRAEProject.Buffs;
+using TRAEProject.Projectiles;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Projectiles
@@ -49,8 +46,8 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 240;
                     return;
                 case ProjectileID.DeadlySphere:
-                    projectile.extraUpdates = 5;
-                    projectile.usesIDStaticNPCImmunity = false;
+				projectile.extraUpdates = 1;
+       projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
@@ -59,7 +56,7 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.JumperSpider:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 26;
+                    projectile.localNPCHitCooldown = 30;
                     return;
                 case ProjectileID.HornetStinger:
                     projectile.extraUpdates = 2;
@@ -92,7 +89,10 @@ namespace TRAEProject.Changes.Projectiles
         {
             switch (projectile.type)
             {
-                case ProjectileID.BatOfLight:
+                case ProjectileID.DeadlySphere:
+					projectile.ai[1] += 2f;
+					return;
+				case ProjectileID.BatOfLight:
                     projectile.localNPCHitCooldown = (int)projectile.ai[0];
                     return;
                 case ProjectileID.FlyingImp:
@@ -103,17 +103,12 @@ namespace TRAEProject.Changes.Projectiles
                         }
                     }
                     return;
-                case ProjectileID.Smolstar: // could probably move this to AI
+                case ProjectileID.Smolstar:
                     {
                         if (projectile.ai[0] == -1f)
                         {
                             projectile.ai[1] -= 0.2f; // when it reaches 9f, attack.                 
                         }
-                        return;
-                    }
-                case ProjectileID.DeadlySphere: // could probably move this to AI
-                    {
-                            projectile.ai[1] += 1f; // when it reaches 9f, attack.                 
                         return;
                     }
                 case ProjectileID.Tempest:
@@ -125,7 +120,7 @@ namespace TRAEProject.Changes.Projectiles
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            if (projectile.minionSlots > 0 && target.HasBuff(BuffID.RainbowWhipNPCDebuff) && crit == true)
+            if ((projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && target.HasBuff(BuffID.RainbowWhipNPCDebuff) && crit == true)
             {
                 float VelocityX = Main.rand.Next(-35, 36) * 0.02f;
                 float VelocityY = Main.rand.Next(-35, 36) * 0.02f;
@@ -139,14 +134,14 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.VenomSpider:
                 case ProjectileID.DangerousSpider:
                     {
-                        projectile.localAI[1] = 26f;
+                        projectile.localAI[1] = 30f; // up from 20
                         return;
                     }
             }
         }
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (projectile.minion)
+            if (projectile.minion|| ProjectileID.Sets.MinionShot[projectile.type])
             {
                 damage += target.GetGlobalNPC<ChangesNPCs>().TagDamage;
                 if (Main.rand.Next(100) < target.GetGlobalNPC<ChangesNPCs>().TagCritChance)

@@ -111,7 +111,6 @@ namespace ChangesArmor
                     player.GetDamage<MeleeDamageClass>()  -= 0.2f;
                     return;
 				case ItemID.ObsidianShirt:
-      
                     player.GetDamage<SummonDamageClass>() += 0.08f;
                     return;
                 case ItemID.PirateHat:
@@ -119,11 +118,11 @@ namespace ChangesArmor
                     player.GetDamage<SummonDamageClass>() += 0.12f;
                     return;
                 case ItemID.PirateShirt:
-                    player.whipUseTimeMultiplier += 0.15f;
+                    player.whipUseTimeMultiplier *= (1 / 1.15f);
                     player.GetDamage<SummonDamageClass>() += 0.12f;
                     return;
                 case ItemID.PiratePants:
-                    player.whipUseTimeMultiplier += 0.1f;
+                    player.whipUseTimeMultiplier *= (1 / 1.1f);
                     player.GetDamage<SummonDamageClass>() += 0.12f;
                     return;
             }
@@ -177,7 +176,7 @@ namespace ChangesArmor
             if (head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
                 return "ObsidianSet";
             if (head.type == ItemID.PirateHat && body.type == ItemID.PirateShirt && legs.type == ItemID.PiratePants)
-                return "ObsidianSet";
+                return "PirateSet";
             return base.IsArmorSet(head, body, legs);
         }
         public override void UpdateArmorSet(Player player, string armorSet)
@@ -286,8 +285,8 @@ namespace ChangesArmor
             }
 			if (armorSet == "ObsidianSet")
             {
-                player.setBonus = "40% increased whip range and 15% increased whip speed";
-				player.whipRangeMultiplier -= 0.1f;
+                player.setBonus = "30% increased whip range and 15% increased whip speed";
+				player.whipRangeMultiplier -= 0.2f;
 				player.whipUseTimeMultiplier /= 0.869f;
 				player.GetDamage<SummonDamageClass>() -= 0.15f;
             }

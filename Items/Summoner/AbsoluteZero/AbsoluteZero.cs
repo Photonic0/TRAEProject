@@ -4,6 +4,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Items.Summoner.Whip;
+using TRAEProject.Changes.Weapon;
+using Terraria.GameContent.Creative;
 namespace TRAEProject.Items.Summoner.AbsoluteZero
 {
     public class AbsoluteZero : ModItem
@@ -11,24 +13,26 @@ namespace TRAEProject.Items.Summoner.AbsoluteZero
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Absolute Zero");
-            Tooltip.SetDefault("Your summons will focus struck enemies\n12 summon tag damage\n25% summon tag critical strike chance\nMinion critical hits will freeze enemies");
+            Tooltip.SetDefault("Your summons will focus struck enemies\n10 summon tag damage\n20% summon tag critical strike chance\nMinion critical hits will freeze enemies");
             ItemID.Sets.SummonerWeaponThatScalesWithAttackSpeed[Item.type] = true;
-        }
+             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+		}
         public override void SetDefaults()
         {
             Item.autoReuse = false;
-            Item.useStyle = 1;     
-            Item.width = 18;
-            Item.height = 18;
+            Item.useStyle = 1;
+            Item.GetGlobalItem<SpearItems>().canGetMeleeModifiers = true;
+            Item.width = 54;
+            Item.height = 52;
             Item.shoot = ProjectileType<AbsoluteZeroP>();
             Item.UseSound = SoundID.Item152;
             Item.noMelee = true;
             Item.DamageType = DamageClass.Summon;
             Item.noUseGraphic = true;
-            Item.damage = 180;
+            Item.damage = 165;
             Item.useTime = Item.useAnimation = 30;
             Item.knockBack = 3f;
-            Item.shootSpeed = 4.75f;
+            Item.shootSpeed = 5.35f;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(0, 10, 0, 0);
         }
@@ -44,7 +48,7 @@ namespace TRAEProject.Items.Summoner.AbsoluteZero
         {
             originalColor = new Color(29, 41, 81);
             whipRangeMultiplier = 1.4f;
-            fallOff = 0.33f;
+            fallOff = 0.4f;
             tag = BuffType<AbsoluteZeroTag>();
             whipSegments = 40;
             tipScale = 1.25f;
@@ -61,8 +65,8 @@ namespace TRAEProject.Items.Summoner.AbsoluteZero
         }
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 12;
-            npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 25;
+            npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 10;
+            npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 20;
         }
     }
 }

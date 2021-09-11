@@ -44,25 +44,25 @@ namespace TRAEProject.Items.Summoner.Whip
 		protected int tag = -1;
 		protected float tipScale = 1f;
 		protected float fallOff = 0.3f;
-		protected int anotherDebuffThisInflict = 0;
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-			//Projectile.damage *= (int)(Projectile.damage * (1f - fallOff));
+			ProjectileID.Sets.IsAWhip[Type] = true;
+		}
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+			Projectile.damage = (int)(Projectile.damage * (1f - fallOff));
 			if (tag != -1)
 			{
 				target.AddBuff(tag, 240);
 			}
+			Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
+			ProjectileID.Sets.IsAWhip[Type] = false;
+
 		}
 		
         public override void AI()
         {
-            for (int i = 0; i < 1000; i++)
-                {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == Projectile.owner && Main.projectile[i].type == Projectile.type && Main.projectile[i].whoAmI != Projectile.whoAmI)
-                    {
-                        Main.projectile[i].Kill();
-                    }
-                }
+
 			Player player = Main.player[Projectile.owner];
 			Projectile.rotation = Projectile.velocity.ToRotation() + (float)Math.PI / 2f;
 			Projectile.ai[0] += 1f;

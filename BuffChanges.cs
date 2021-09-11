@@ -19,6 +19,9 @@ namespace ChangesBuffs
                 case BuffID.RainbowWhipNPCDebuff:
                     npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 10;
                     return;
+                case BuffID.ScytheWhipEnemyDebuff:
+                    npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 10;
+                    return;
             }
         }
         public override void Update(int type, Player player, ref int buffIndex)

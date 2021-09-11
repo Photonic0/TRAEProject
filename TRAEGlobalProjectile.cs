@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Items.Summoner.Whip;
+
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject
@@ -549,7 +550,7 @@ namespace TRAEProject
         public override void AI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
-            if (projectile.aiStyle == 165)
+            if (ProjectileID.Sets.IsAWhip[projectile.type] || projectile.type == ProjectileType<WhipProjectile>())
             {
                 for (int i = 0; i < 1000; i++)
                 {

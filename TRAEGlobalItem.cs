@@ -1343,7 +1343,7 @@ namespace TRAEProject
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "8 summon tag damage\nStrike enemies to summon a friendly snowflake";
+                            line.text += "\n8 summon tag damage";
                         }
                     }
                     return;
@@ -1353,6 +1353,15 @@ namespace TRAEProject
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
                             line.text = "15% summon tag critical strike chance";
+                        }
+                    }
+                    return;
+                case ItemID.ScytheWhip:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text += "\n10 summon tag damage";
                         }
                     }
                     return;
