@@ -9,8 +9,16 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Items.DreadItems.BloodWings;
+using TRAEProject.Items.DreadItems.BossBag;
+using TRAEProject.Items.DreadItems.BottomlessChumBucket;
+using TRAEProject.Items.DreadItems.Brimstone;
+using TRAEProject.Items.DreadItems.DreadSummon;
+using TRAEProject.Items.DreadItems.DreadTrophy;
+using TRAEProject.Items.DreadItems.ShellSpinner;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Dreadnautilus
@@ -24,6 +32,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 				npc.boss = true;
 				npc.lifeMax = 30000;
 				npc.defense = 32;
+				npc.catchItem = (short)ItemType<DreadSummon>();
 			}
 		}
 		public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
@@ -37,7 +46,68 @@ namespace TRAEProject.Changes.Dreadnautilus
 				}
 			}
 		}
-		public override void HitEffect(NPC npc, int hitDirection, double damage)
+        public override bool PreKill(NPC npc)
+        {
+			if (npc.type == NPCID.BloodNautilus)
+			{
+				NPCLoader.blockLoot.Add(ItemID.SanguineStaff);
+				NPCLoader.blockLoot.Add(ItemID.BloodMoonMonolith);
+				NPCLoader.blockLoot.Add(ItemID.ChumBucket);
+				NPCLoader.blockLoot.Add(ItemID.BloodMoonStarter);
+			}
+			return base.PreKill(npc);
+        }
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+			if (npc.type == NPCID.BloodNautilus)
+            {
+				//Add the treasure bag (automatically checks for expert mode)
+				npcLoot.Add(ItemDropRule.BossBag(ItemType<DreadBag>())); //this requires you to set BossBag in SetDefaults accordingly
+
+				//All our drops here are based on "not expert", meaning we use .OnSuccess() to add them into the rule, which then gets added
+				LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+
+				//Notice we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal mode
+				notExpertRule.OnSuccess(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, ItemType<ShellSpinner>(), ItemType<ShellSpinner>(), ItemType<Brimstone>(), ItemID.SanguineStaff));
+				//Finally add the leading rule
+				npcLoot.Add(notExpertRule);
+
+				//Boss masks are spawned with 1/7 chance
+				//notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+				//notExpertRule.OnSuccess(ItemDropRule.Common(ItemType<PolarMask>(), 7));
+				//npcLoot.Add(notExpertRule);
+
+				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+				notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BloodHamaxe, 8));
+				npcLoot.Add(notExpertRule);
+
+				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+				notExpertRule.OnSuccess(ItemDropRule.Common(ItemType<BloodWings>(), 13));
+				npcLoot.Add(notExpertRule);
+
+				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+				notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BloodMoonMonolith, 12));
+				npcLoot.Add(notExpertRule);
+
+				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+				notExpertRule.OnSuccess(ItemDropRule.Common(ItemType<BottomlessChumBucket>(), 12));
+				npcLoot.Add(notExpertRule);
+
+				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+				notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.ChumBucket, 1, 5, 9));
+				npcLoot.Add(notExpertRule);
+
+				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+				notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BloodMoonStarter, 2));
+				npcLoot.Add(notExpertRule);
+
+				//Trophies are spawned with 1/10 chance
+				npcLoot.Add(ItemDropRule.Common(ItemType<DreadTrophy>(), 10));
+
+			}
+
+		}
+        public override void HitEffect(NPC npc, int hitDirection, double damage)
 		{
 			if (npc.type == NPCID.BloodNautilus)
 			{
@@ -781,7 +851,10 @@ namespace TRAEProject.Changes.Dreadnautilus
 							}
 							else if ((npc.ai[1] % totalTime < phase3spamDuration + phase3chargeStart))
 							{
-
+								if((npc.ai[1] % totalTime == phase3spamDuration))
+                                {
+									SoundEngine.PlaySound(SoundID.Item172, npc.Center);
+								}
 							}
 							else
 							{
@@ -792,14 +865,14 @@ namespace TRAEProject.Changes.Dreadnautilus
 							npc.BloodNautilus_GetMouthPositionAndRotation(out var mouthPosition5, out var mouthDirection5);
 							if (npc.Center.Distance(nPCAimedTarget.Center) > 30f)
 							{
-								npc.velocity = mouthDirection5 * -17f;
+								npc.velocity = mouthDirection5 * -12f;
 							}
 							if (npc.ai[1] % totalTime < phase3spamDuration && npc.ai[1] % phase3attackSpeed == 0)
                             {
 								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(30f, 25f);
 								for (int i = 0; i < 8; i++)
 								{
-                                    Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetProjectileSpawnSource(), mouthPosition5, TRAEMethods.PolarVector(10, mouthDirection5.ToRotation() + ((float)i / 8f) * (float)Math.PI * 2f), ProjectileID.BloodShot, attackDamage_ForProjectiles, 0)];
+                                    Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetProjectileSpawnSource(), npc.Center, TRAEMethods.PolarVector(10, mouthDirection5.ToRotation() + ((float)i / 8f) * (float)Math.PI * 2f), ProjectileID.BloodShot, attackDamage_ForProjectiles, 0)];
 									projectile.ai[0] = -180;
 									projectile.netUpdate = true;
 								}
@@ -836,6 +909,10 @@ namespace TRAEProject.Changes.Dreadnautilus
 							}
 							num20 += (float)Math.PI;
 							npc.rotation = npc.rotation.AngleLerp(num20, 0.01f);
+							if (npc.ai[1] < bloodBeamChargeTime - bloodBeamChargeTime/4)
+                            {
+								npc.rotation = npc.rotation.AngleLerp(num20, 0.15f);
+							}
 							if(npc.ai[1] == 0)
                             {
 								beam = Main.projectile[Projectile.NewProjectile(npc.GetProjectileSpawnSource(), npc.Center, Vector2.Zero, ProjectileType<BloodBeam>(), 50, 0, 255, npc.whoAmI)];
@@ -1033,6 +1110,20 @@ namespace TRAEProject.Changes.Dreadnautilus
 		public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 		{
 			base.PostDraw(npc, spriteBatch, screenPos, drawColor);
+		}
+		public override void BossHeadSlot(NPC npc, ref int index)
+		{
+			if(npc.type == NPCID.BloodNautilus)
+            {
+				if(phase >1)
+                {
+					index = NPCHeadLoader.GetBossHeadSlot(TRAEProj.DreadHead2);
+				}
+				else
+                {
+					index = NPCHeadLoader.GetBossHeadSlot(TRAEProj.DreadHead1);
+				}
+            }
 		}
 	}
 }

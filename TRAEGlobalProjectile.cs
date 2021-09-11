@@ -178,10 +178,6 @@ namespace TRAEProject
                 case ProjectileID.ChlorophyteOrb: // Revisit
                     projectile.penetrate = 6;
                     return;
-                case ProjectileID.ChlorophytePartisan: // Revisit
-                    projectile.width = 60;
-                    projectile.height = 43;
-                    return;
                 case ProjectileID.PaladinsHammerFriendly:
                     projectile.tileCollide = false;
                     return;

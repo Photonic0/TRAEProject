@@ -45,7 +45,7 @@ namespace TRAEProject.Changes.Dreadnautilus
             {
                 Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
                 int frame = (Projectile.timeLeft / 6) % 4;
-                float scaleY = (Projectile.timeLeft - 40);
+                float scaleY = (Projectile.timeLeft - (duration-20));
                 if(scaleY < 0)
                 {
                     scaleY = 0;
@@ -63,7 +63,7 @@ namespace TRAEProject.Changes.Dreadnautilus
             float point = 0;
             if (Projectile.timeLeft < chargeTime)
             {
-                return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + TRAEMethods.PolarVector(2000, Projectile.rotation), 26, ref point);
+                return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + TRAEMethods.PolarVector(beamLength, Projectile.rotation), 26, ref point);
             }
             return false;
         }
