@@ -544,8 +544,8 @@ namespace TRAEProject
             }
             return true;
         }
-        public override bool ConsumeAmmo(Item weapon, Item ammo)
-        {
+        public override bool CanConsumeAmmo(Item weapon, Item ammo)
+        { 
             Player Player = Main.player[weapon.playerIndexTheItemIsReservedFor];
             if (Main.rand.Next(100) < chanceNotToConsumeAmmo)
                 return false;

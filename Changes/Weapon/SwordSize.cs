@@ -25,22 +25,7 @@ namespace TRAEProject.Changes.Weapon
                 case ItemID.PlatinumBroadsword:
                     item.scale *= 1.25f;
                     return;
-                case ItemID.CobaltSword:
-                    item.scale = 1.59f;
-                    return;
-                case ItemID.PalladiumSword:
-                case ItemID.MythrilSword:
-                case ItemID.OrichalcumSword:
-                    item.scale = 1.66f;
-                    return;
-                case ItemID.AdamantiteSword:
-                case ItemID.TitaniumSword:
-                case ItemID.Excalibur:
-                case ItemID.TrueExcalibur: // REVISIT
-                    item.scale = 1.75f;
-                    return;
                 // REVISIT
-                case ItemID.ChlorophyteSaber:
                 case ItemID.TrueNightsEdge: // REVISIT
                     item.scale = 1.35f;
                     return;

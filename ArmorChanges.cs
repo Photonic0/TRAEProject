@@ -55,13 +55,6 @@ namespace ChangesArmor
                     player.GetDamage<MagicDamageClass>() += 0.15f;
                     player.GetCritChance<MagicDamageClass>()  += 15;
                     return;
-                case ItemID.CobaltLeggings:
-                    player.GetCritChance<GenericDamageClass>()  += 3;
-                    return;
-                case ItemID.CobaltBreastplate:
-                    player.GetDamage<GenericDamageClass>() += 0.05f;
-                    player.GetCritChance<GenericDamageClass>() -= 3;    
-                    return;
                 case ItemID.OrichalcumMask:
                     player.GetDamage<MeleeDamageClass>()  -= 0.07f;
                     player.GetCritChance<MeleeDamageClass>()  += 13;
@@ -165,8 +158,6 @@ namespace ChangesArmor
                 return "AdamantiteSet";
             if ((head.type == ItemID.TitaniumHeadgear || head.type == ItemID.TitaniumHelmet || head.type == ItemID.TitaniumMask) && body.type == ItemID.TitaniumBreastplate && legs.type == ItemID.TitaniumLeggings)
                 return "TitaniumSet";
-            if (head.type == ItemID.CobaltMask && body.type == ItemID.CobaltBreastplate && legs.type == ItemID.CobaltLeggings)
-                return "CobaltSet";
             if ((head.type == ItemID.HallowedHeadgear || head.type == ItemID.HallowedHelmet || head.type == ItemID.HallowedMask || head.type == ItemID.HallowedHood) && body.type == ItemID.HallowedPlateMail && legs.type == ItemID.HallowedGreaves)
                 return "HallowedSet";
             if (head.type == ItemID.TikiMask && body.type == ItemID.TikiShirt && legs.type == ItemID.TikiPants)
