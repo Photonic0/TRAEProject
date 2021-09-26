@@ -54,11 +54,6 @@ namespace TRAEProject.Items.Armor.IceArmor
 			player.setBonus = "Summons three Mad Flockos to fight for you";
 			player.GetModPlayer<IceMajestySetBonus>().MadFlockoSetBonus = true;
 		}
-        public override void DrawHands(ref bool drawHands, ref bool drawArms)
-		{
-			drawArms = false;
-			drawHands = false;
-		}
         public override void EquipFrameEffects(Player player, EquipType type)
         {
             player.back = (sbyte)TRAEProj.IceMajestyCape;

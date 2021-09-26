@@ -38,9 +38,5 @@ namespace TRAEProject.Items.Armor.IceArmor
             player.GetDamage<SummonDamageClass>() += 0.1f;
             player.moveSpeed += 0.2f;
         }
-        public override bool DrawLegs()
-        {
-            return false;
-        }
     }
 }

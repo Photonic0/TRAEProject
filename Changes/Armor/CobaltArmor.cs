@@ -20,14 +20,14 @@ namespace TRAEProject.Changes.Armor
         {
             if(crit && CobaltCritical)
             {
-                damage = (int)(damage * 1.35f);
+                damage = (int)(damage * 1.25f);
             }
         }
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if (crit && CobaltCritical)
             {
-                damage = (int)(damage * 1.35f);
+                damage = (int)(damage * 1.25f);
             }
         }
     }
@@ -86,7 +86,7 @@ namespace TRAEProject.Changes.Armor
                         player.manaCost += 0.14f;
                         break;
                 }
-                player.setBonus = "Critical Strikes deal 35% more damage";
+                player.setBonus = "Critical Strikes deal 25% more damage";
                 player.GetModPlayer<CobaltArmorEffect>().CobaltCritical = true;
             }
         }

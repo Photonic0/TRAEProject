@@ -129,7 +129,7 @@ namespace TRAEProject.Changes.Weapon
                     item.damage = 100;
                     item.scale = 1.6f;
                     item.useTime = 16;
-                    item.useAnimation = 16;
+                    item.useAnimation = 15;
                     break;
                 case ItemID.TheHorsemansBlade:
                     item.useTime = 16;

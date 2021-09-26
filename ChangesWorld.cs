@@ -1,10 +1,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Items.Accesories.PalladiumShield;
+using static Terraria.ModLoader.ModContent;
 public class ChangesWorld : ModSystem
 {
     public static readonly int[] PyramidItems = new int[] { ItemID.SandstorminaBottle, ItemID.FlyingCarpet, ItemID.AnkhCharm, ItemID.AncientChisel, ItemID.SandBoots, ItemID.ThunderSpear, ItemID.ThunderStaff, ItemID.CatBast, ItemID.MagicConch};
-    public static readonly int[] ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury};
+    public static readonly int[] ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury, ItemType<PalladiumShield>()};
 
     public override void PostWorldGen()
     {
