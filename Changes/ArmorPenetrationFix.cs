@@ -1,11 +1,8 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace TRAEProject.Changes
@@ -35,6 +32,10 @@ namespace TRAEProject.Changes
                 if(npc.ichor)
                 {
                     AP += 15;
+                }
+                if (npc.HasBuff(BuffID.WitheredArmor))
+                {
+                    AP += 16;
                 }
                 return AP;
             });

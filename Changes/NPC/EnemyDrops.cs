@@ -3,13 +3,35 @@ using TRAEProject.Items.Summoner.AbsoluteZero;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Terraria.GameContent.ItemDropRules;
 using TRAEProject.Items.Materials;
 
 namespace TRAEProject
 {
     public class EnemyDrops: GlobalNPC
     {
-        public static readonly int[] IceQueenDrops = new int[] { ItemID.SnowmanCannon, ItemID.BlizzardStaff, ItemID.NorthPole, ItemType<AbsoluteZero>()};
+        public static readonly int[] IceQueenDrops = new int[] { ItemID.SnowmanCannon, ItemID.BlizzardStaff, ItemID.NorthPole, ItemType<AbsoluteZero>() };
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            switch (npc.type)
+            {
+                case NPCID.IceQueen:
+                    {
+                        npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, IceQueenDrops));
+                        npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, ItemType<IceQueenJewel>()));
+                        return;
+                    }
+                case NPCID.Clown:
+                    {
+                        npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(4, ItemID.WhoopieCushion));
+                        npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(4, 3, ItemID.Bananarang));
+                        return;
+                    }
+            }
+        }
+
+        // UPDATE THIS TO ModifyNPCLoot
         public override bool PreKill(NPC npc)
         {
             NPCLoader.blockLoot.Add(ItemID.FrostStaff);
@@ -24,13 +46,6 @@ namespace TRAEProject
             }
             switch (npc.type)
             {
-                case NPCID.IceQueen:
-                    {
-                        NPCLoader.blockLoot.Add(IceQueenDrops.Length);
-                        Item.NewItem(npc.getRect(), Main.rand.Next(IceQueenDrops.Length), 1);
-						Item.NewItem(npc.getRect(), ItemType<IceQueenJewel>(), 1);
-                    }
-                    return true;
                 case NPCID.SkeletronHead:
                     {
                         NPCLoader.blockLoot.Add(ItemID.BookofSkulls);

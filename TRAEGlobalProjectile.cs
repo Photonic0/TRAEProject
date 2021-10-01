@@ -937,7 +937,7 @@ namespace TRAEProject
         {
             Player player = Main.player[projectile.owner];
             damage = (int)(damage * DirectDamage);
-            if (IgnoresDefense)
+            if (IgnoresDefense && target.type != NPCID.DungeonGuardian)
             {
                 int finalDefense = target.defense - player.armorPenetration;
                 target.ichor = false;

@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
+using TRAEProject.Items.FlamethrowerAmmo;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.DreadItems.BossBag
@@ -16,6 +18,7 @@ namespace TRAEProject.Items.DreadItems.BossBag
         {
             DisplayName.SetDefault("Treasure Bag");
             Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -45,7 +48,7 @@ namespace TRAEProject.Items.DreadItems.BossBag
                     mainLoot = ItemType<ShellSpinner.ShellSpinner>();
                     break;
                 case 1:
-                    mainLoot = ItemType<ShellSpinner.ShellSpinner>(); //replace this with Blood Boiler when you finish it
+                    mainLoot = ItemType<BloodBoiler.BloodBoiler>(); 
                     break;
                 case 2:
                     mainLoot = ItemType<Brimstone.Brimstone>();
@@ -55,11 +58,13 @@ namespace TRAEProject.Items.DreadItems.BossBag
                     break;
             }
             player.QuickSpawnItem(mainLoot);
+            if (mainLoot == ItemType<BloodBoiler.BloodBoiler>())
+                player.QuickSpawnItem(ItemType<BloodyGel>(), 100);
             if (Main.rand.Next(8) == 0)
             {
                 player.QuickSpawnItem(ItemID.BloodHamaxe);
             }
-            if (Main.rand.Next(10) == 0)
+            if (Main.rand.Next(6) == 0)
             {
                 player.QuickSpawnItem(ItemType<BloodWings.BloodWings>());
             }
@@ -73,7 +78,7 @@ namespace TRAEProject.Items.DreadItems.BossBag
             }
             else
             {
-                player.QuickSpawnItem(ItemID.ChumBucket, Main.rand.Next(7, 11));
+                player.QuickSpawnItem(ItemID.ChumBucket, Main.rand.Next(20, 30));
             }
             player.QuickSpawnItem(ItemID.BloodMoonStarter);
             player.QuickSpawnItem(ItemType<RedPearl.RedPearl>());

@@ -26,8 +26,7 @@ namespace TRAEProject.Items.Accesories.MasochistChains
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<LifeCuffsEffect>().cuffs += 1;
-            player.panic = true;
+            player.GetModPlayer<MasoCuffsEffect>().cuffs += 1;
         }
 
         public override void AddRecipes()
@@ -36,6 +35,21 @@ namespace TRAEProject.Items.Accesories.MasochistChains
                 .AddIngredient(ItemID.PanicNecklace, 1)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
+        }
+    }
+    class MasoCuffsEffect : ModPlayer
+    {
+        public int cuffs = 0;
+        public override void ResetEffects()
+        {
+            cuffs = 0;
+        }
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        {
+            if (cuffs > 0)
+            {
+                Player.AddBuff(BuffType<HeartAttack>(), cuffs * ((int)damage * 6 + 300));
+            }
         }
     }
 }

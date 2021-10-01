@@ -13,6 +13,8 @@ namespace TRAEProject
     {
         public override bool InstancePerEntity => true;
         public bool titaPenetrate;
+        public bool BoilingBlood = false;
+        public int BoilingBloodDMG = 0;
         public bool Heavyburn;
         public bool Decay;
         public bool Toxins;
@@ -24,7 +26,8 @@ namespace TRAEProject
         {
             Decay = false;
             Toxins = false;
-            titaPenetrate = false;
+        BoilingBlood = false;
+        titaPenetrate = false;
             Heavyburn = false;
             Omegaburn = false;
             Corrupted = false;
@@ -35,11 +38,9 @@ namespace TRAEProject
         {
             npc.buffImmune[BuffType<TitaPenetrate>()] = npc.buffImmune[BuffID.BoneJavelin];
             npc.buffImmune[BuffType<Decay>()] = npc.buffImmune[BuffID.Frostburn];
-            npc.buffImmune[BuffID.Daybreak] = false;
-            npc.buffImmune[BuffType<Omegaburn>()] = false;
             switch (npc.type)
             {
-                case NPCID.PirateCaptain:
+				case NPCID.PirateCaptain:
                     npc.lifeMax = 1000;
                     return;
                 case NPCID.SkeletronPrime:
@@ -301,15 +302,6 @@ namespace TRAEProject
         }
         public int moths = 0;
         public float braintimer = 0;
-        public override bool PreAI(NPC npc)
-        {
-            if (npc.HasBuff(BuffID.Frozen))
-            {
-                npc.velocity = Vector2.Zero;
-                return false;
-            }
-            return base.PreAI(npc);
-        }
         public override void AI(NPC npc)
         {
             if (npc.HasBuff(BuffID.Weak))
@@ -865,6 +857,19 @@ namespace TRAEProject
         }
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (BoilingBlood)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= BoilingBloodDMG * 6;
+                if (damage < BoilingBloodDMG)
+                {
+                    damage = BoilingBloodDMG;
+                }
+            }
+            npc.netUpdate = true;
             if (Decay)
             {
                 if (npc.lifeRegen > 0)
@@ -937,11 +942,50 @@ namespace TRAEProject
                 drawColor.G = 57;
                 drawColor.B = 49;
             }
+			if (npc.HasBuff(BuffID.WitheredWeapon))
+			{
+				if (Main.rand.Next(4) < 1)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 179, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 0.8f;
+                    Main.dust[dust].velocity.Y -= 0.3f;
+                    if (Main.rand.NextBool(4))
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+			}
+			if (npc.HasBuff(BuffID.WitheredArmor))
+			{
+				if (Main.rand.Next(5) < 1)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 21, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 0.8f;
+                    Main.dust[dust].velocity.Y -= 0.3f;
+                    if (Main.rand.NextBool(4))
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+			}
             if (Decay)
             {
                 drawColor.R = (byte)(drawColor.R * 0.85);
                 drawColor.G = (byte)(drawColor.G * 0.99);
                 drawColor.B = (byte)(drawColor.G * 0.47);
+            }
+            if (BoilingBlood)
+            {
+                if (Main.rand.Next(3) < 1)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, DustID.Smoke, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    Main.dust[dust].velocity *= 0.8f;
+                    Main.dust[dust].velocity.Y -= 0.3f;
+                }
             }
             if (Corrupted)
             {
@@ -950,7 +994,7 @@ namespace TRAEProject
                 drawColor.B = 153;
                 if (Main.rand.Next(4) < 1)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 184, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2.5f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 184, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 1.5f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0.8f;
                     Main.dust[dust].velocity.Y -= 0.3f;
@@ -967,6 +1011,31 @@ namespace TRAEProject
                 drawColor.G = (byte)(drawColor.G * 0.90);
                 drawColor.B = (byte)(drawColor.G * 0.40);
             }
+            if (Heavyburn)
+            {
+                if (Main.rand.Next(3) < 2)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 127, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.NextBool(4))
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.1f, 0.2f, 0.7f);
+            }
+            if (BoilingBlood)
+            {
+                if (Main.rand.Next(3) < 3)
+                { 
+                Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, 115, 0f, 0f, 0, default, Main.rand.Next(8, 12) * 0.1f);
+                dust.noLight = true;
+                dust.velocity *= 0.5f;
+                }    
+            }    
             if (Heavyburn)
             {
                 if (Main.rand.Next(3) < 2)
@@ -1014,66 +1083,6 @@ namespace TRAEProject
                 //    shop[shop.Length - 1] = 0;
                 //    nextSlot--;
                 //}
-            }
-        }
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
-        {
-            switch (type)
-            {
-                case NPCID.ArmsDealer:
-                    if (!NPC.downedBoss1) // when will this code run?
-                    {
-                        for (int i = 0; i < shop.item.Length; i++) // loop through the
-                        {
-                            if (shop.item[i] != null && shop.item[i].type == ItemID.Minishark) // check if the shop slot it is at has an item, and if that item is Minishark
-                            {
-                                shop.item[i].SetDefaults(ItemID.None); // if so, set that slot to none
-                                for (int j = i + 1; j < shop.item.Length; j++)
-                                {
-                                    shop.item[j - 1] = shop.item[j];
-                                }
-                                --nextSlot;
-                                break;                          
-                            }
-                        }
-                    }
-                    break;
-                case NPCID.SkeletonMerchant:
-                    if (Main.moonPhase == 2 || Main.moonPhase == 8)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.Rally);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 4 || Main.moonPhase == 6)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ChainKnife);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 3 || Main.moonPhase == 7)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BoneSword);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 1 || Main.moonPhase == 5) 
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BookofSkulls);
-                        nextSlot++;
-                    }
-                    break;
-                case NPCID.Wizard:
-                    if (!Main.dayTime)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CelestialMagnet);
-                        nextSlot++;
-                    }
-                    break;
-                case NPCID.WitchDoctor:
-                    if (!Main.dayTime)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PygmyNecklace);
-                        nextSlot++;
-                    }
-                    break;
             }
         }
 

@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
+using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,40 +15,44 @@ namespace TRAEProject.Items.DreadItems.Brimstone
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Brimstone");
-            Tooltip.SetDefault("Fires a blood beam");
+            Tooltip.SetDefault("Blood laser barrage");
         }
         public override void SetDefaults()
         {
             Item.width = 28;
             Item.height = 30;
             Item.useStyle = 5;
-            Item.damage = 90;
+            Item.damage = 60;
             Item.DamageType = DamageClass.Magic;
-            Item.mana = 150;
+            Item.mana = 125;
             Item.useTime = Item.useAnimation = 60;
-            Item.reuseDelay = 30;
+            Item.reuseDelay = 45;
+			Item.noMelee = true;
+			Item.knockBack = 5f;
             Item.autoReuse = true;
             Item.shootSpeed = 4;
             Item.shoot = ProjectileType<BrimstoneBeam>();
-
+            Item.SetShopValues(ItemRarityColor.LightPurple6, Item.sellPrice(0, 5));
             Item.UseSound = SoundID.NPCDeath13;
         }
     }
+    ///  TO DO: MAKE THE BOOK MOVE WITH THE BEAM
     class BrimstoneBeam : ModProjectile
     {
         public override void SetDefaults()
         {
-            Projectile.width = Projectile.height = 26;
+            Projectile.width = 26;
+            Projectile.height = 26;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 2;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 10;
+            Projectile.localNPCHitCooldown = 5;
             Projectile.penetrate = -1;
         }
-        int beamLength = 2200;
+        int beamLength = 1000;
         public const int chargeTime = 30;
         int timer = 0;
         public override void AI()
@@ -63,11 +64,11 @@ namespace TRAEProject.Items.DreadItems.Brimstone
                 timer++;
                 Projectile.velocity = Vector2.Zero;
                 Projectile.Center = player.Center;
-                if(Main.myPlayer == Projectile.owner)
+                if (Main.myPlayer == Projectile.owner)
                 {
                     Projectile.rotation = (Main.MouseWorld - player.Center).ToRotation();
                 }
-                beamLength = 2200;
+                beamLength = 1000;
                 for (int i =0; i < beamLength; i++)
                 {
                     if(!Collision.CanHit(Projectile.Center, 1, 1, Projectile.Center + TRAEMethods.PolarVector(i, Projectile.rotation), 1, 1))

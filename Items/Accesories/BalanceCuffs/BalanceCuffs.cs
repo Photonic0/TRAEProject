@@ -16,26 +16,34 @@ namespace TRAEProject.Items.Accesories.BalanceCuffs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Balance Cuffs");
-            Tooltip.SetDefault("Getting hit will temporarily increase damage by 20% and restore some mana");
+            Tooltip.SetDefault("Temporarily increases damage by 20% and restore mana when damaged");
         }
         public override void SetDefaults()
         {
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
-            Item.value = 75000;
+            Item.value = 50000;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<LifeCuffsEffect>().cuffs += 1;
-            player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 1;
+            player.GetModPlayer<TRAEPlayer>().magicCuffsCount += 1;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe().AddIngredient(ItemType<LifeCuffs.LifeCuffs>(), 1)
                 .AddIngredient(ItemID.MagicCuffs, 1)
+                .AddIngredient(ItemID.DarkShard, 1)
+                .AddIngredient(ItemID.LightShard, 1)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
+            CreateRecipe().AddIngredient(ItemID.ManaRegenerationBand, 1)
+            .AddIngredient(ItemID.Shackle, 1)
+            .AddIngredient(ItemID.DarkShard, 1)
+            .AddIngredient(ItemID.LightShard, 1)
+            .AddTile(TileID.TinkerersWorkbench)
+            .Register();
         }
     }
 }

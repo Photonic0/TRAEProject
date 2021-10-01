@@ -17,11 +17,12 @@ namespace TRAEProject.Items.DreadItems.BloodWings
     {
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Flight is boosted upon taking damage");
+			DisplayName.SetDefault("Bloodfin Wings");
+			Tooltip.SetDefault("Allows flight and slow fall\nFlight is boosted upon taking damage");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(150, 6.25f);
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(130, 6.25f);
 		}
 
 		public override void SetDefaults()
@@ -48,7 +49,7 @@ namespace TRAEProject.Items.DreadItems.BloodWings
         {
 			if (hasWings)
 			{
-				Player.wingTime = Player.wingTimeMax;
+				Player.RefreshMovementAbilities();
 				Player.AddBuff(BuffType<BloodRush>(), 240);
 			}
         }

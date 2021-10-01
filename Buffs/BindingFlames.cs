@@ -13,7 +13,7 @@ namespace TRAEProject.Buffs
 			Main.debuff[Type] = true;
 			Main.buffNoSave[Type] = true;
 			DisplayName.SetDefault("Binding Flames");
-			Description.SetDefault("You deal 10% less contact damage. Except not, because you are a player and therefore you shouldn't even have this.");
+			Description.SetDefault("You deal 15% less contact damage. Except not, because you are a player and therefore you shouldn't even have this.");
 		}
         public override void Update(NPC npc, ref int buffIndex)
         {
@@ -27,7 +27,7 @@ namespace TRAEProject.Buffs
 		{
 			if (npc.HasBuff(BuffType<BindingFlames>()))
 			{
-				damage = (int)(damage * 0.9f);
+				damage = (int)(damage * 0.85f);
 			}
 		}
 	}

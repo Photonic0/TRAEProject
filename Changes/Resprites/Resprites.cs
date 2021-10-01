@@ -16,13 +16,16 @@ namespace TRAEProject.Changes.Resprites
         string path = "TRAEProject/Changes/Resprites/";
         public override void PostSetupContent()
         {
+            TextureAssets.Item[ItemID.BundleofBalloons] = Request<Texture2D>(path + "BundleOfBalloonsFixed");
+            TextureAssets.AccBalloon[3] = Request<Texture2D>(path + "BundleOfBalloonsFixed_Balloon");
+
             TextureAssets.Item[ItemID.StardustDragonStaff] = Request<Texture2D>(path + "LunarDragonStaff");
+
             TextureAssets.Projectile[ProjectileID.StardustDragon1] = Request<Texture2D>(path + "LunarDragonHead");
             TextureAssets.Projectile[ProjectileID.StardustDragon2] = Request<Texture2D>(path + "LunarDragonSpike");
             TextureAssets.Projectile[ProjectileID.StardustDragon3] = Request<Texture2D>(path + "LunarDragonBody");
             TextureAssets.Projectile[ProjectileID.StardustDragon4] = Request<Texture2D>(path + "LunarDragonTail");
             TextureAssets.Buff[BuffID.StardustDragonMinion] = Request<Texture2D>(path + "LunarDragonBuff");
-
             TextureAssets.Item[ItemID.MoonlordTurretStaff] = Request<Texture2D>(path + "StardustPortalStaff");
             TextureAssets.Projectile[ProjectileID.MoonlordTurret] = Request<Texture2D>(path + "StardustPortal");
             TextureAssets.Projectile[ProjectileID.MoonlordTurretLaser] = Request<Texture2D>(path + "StardustPortalBeam");

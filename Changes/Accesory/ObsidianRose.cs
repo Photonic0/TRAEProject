@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using TRAEProject.Buffs;
 using Terraria.ModLoader;
-
+using static Terraria.ModLoader.ModContent;
 namespace TRAEProject.Changes.Accesory
 {
     public class ObsidianRose : ModPlayer
@@ -27,7 +28,7 @@ namespace TRAEProject.Changes.Accesory
         {
             if(proj.CountsAsClass(DamageClass.Magic) && rose)
             {
-
+                target.AddBuff(BuffType<BindingFlames>(), Main.rand.Next(240, 360));
             }
         }
     }

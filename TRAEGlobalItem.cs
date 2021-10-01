@@ -96,10 +96,53 @@ namespace TRAEProject
                     return;
                 //phaseblades
                 case ItemID.PurplePhaseblade:
+                    item.damage = 24;
+                    item.crit = 8;
+                    item.knockBack = 0.1f;
+                    item.useTime = 25;
+                    item.useAnimation = 25;
+                    item.shoot = ProjectileType<Blank>();
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
                 case ItemID.YellowPhaseblade:
+                    item.damage = 24;
+                    item.crit = 10;
+                    item.knockBack = 0.1f;
+                    item.useTime = 25;
+                    item.useAnimation = 25;
+                    item.shoot = ProjectileType<Blank>();
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
                 case ItemID.BluePhaseblade:
+                    item.damage = 24;
+                    item.crit = 12;
+                    item.knockBack = 0.1f;
+                    item.useTime = 25;
+                    item.useAnimation = 25;
+                    item.shoot = ProjectileType<Blank>();
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
                 case ItemID.GreenPhaseblade:
+                    item.damage = 24;
+                    item.crit = 14;
+                    item.knockBack = 0.1f;
+                    item.useTime = 25;
+                    item.useAnimation = 25;
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
                 case ItemID.RedPhaseblade:
+                    item.damage = 24;
+                    item.crit = 16;
+                    item.knockBack = 0.1f;
+                    item.useTime = 25;
+                    item.useAnimation = 25;
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
                 case ItemID.WhitePhaseblade:
                     item.damage = 24;
                     item.crit = 18;
@@ -108,7 +151,61 @@ namespace TRAEProject
                     item.useAnimation = 25;
                     item.autoReuse = true;
                     item.useTurn = false;
-                    break;
+                    return;
+                case ItemID.PurplePhasesaber:
+                    item.damage = 60;
+                    item.crit = 20;
+                    item.knockBack = 1f;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
+                case ItemID.YellowPhasesaber:
+                    item.damage = 60;
+                    item.crit = 22;
+                    item.knockBack = 1f;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
+                case ItemID.BluePhasesaber:
+                    item.damage = 60;
+                    item.crit = 24;
+                    item.knockBack = 1f;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
+                case ItemID.GreenPhasesaber:
+                    item.damage = 60;
+                    item.crit = 26;
+                    item.knockBack = 1f;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
+                case ItemID.RedPhasesaber:
+                    item.damage = 60;
+                    item.crit = 28;
+                    item.knockBack = 1f;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
+                case ItemID.WhitePhasesaber:
+                    item.damage = 60;
+                    item.crit = 30;
+                    item.knockBack = 1f;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.autoReuse = true;
+                    item.useTurn = false;
+                    return;
                 // more swords
                 case ItemID.LightsBane:
                     item.damage = 21;
@@ -144,11 +241,70 @@ namespace TRAEProject
                     item.autoReuse = true;
                     item.shootSpeed = 7f;
                     return;
+                case ItemID.BreakerBlade:
+                    item.scale = 1.5f; // up from 1.05f
+                    item.damage = 80;
+                    item.shoot = ProjectileType<Blank>();
+                    item.useTime = 60;
+                    item.useAnimation = 60;
+                    item.height = 90;
+                    item.width = 80;
+                    return;
                 case ItemID.BeamSword: // REVISIT
                     item.useTime = 40;
                     item.useAnimation = 20;
                     item.autoReuse = true;
                     item.useTurn = false;
+                    return;
+                case ItemID.CobaltSword:
+                    item.damage = 50; // up from 39
+                    item.useTime = 20; // down from 22
+                    item.useAnimation = 20;  // down from 22
+                    //item.shoot = ProjectileType<CobaBeam>();
+                    item.scale = 1.59f;
+                    item.shoot = ProjectileType<Blank>();
+                    return;
+                case ItemID.PalladiumSword:
+                    item.damage = 61; // up from 45
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                    item.scale = 1.67f;
+                    item.shoot = ProjectileType<Blank>();
+                    return;
+                case ItemID.MythrilSword:
+                    item.damage = 69;
+                    item.useTime = 23;
+                    item.useAnimation = 23;
+                    item.scale = 1.66f;
+                    item.shoot = ProjectileType<Blank>();
+                    return;
+                case ItemID.OrichalcumSword:
+                    item.damage = 65;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.scale = 1.66f;
+                    item.shoot = ProjectileType<Blank>();
+                    return;
+                case ItemID.AdamantiteSword:
+                    item.damage = 76;
+                    item.useTime = 22;
+                    item.useAnimation = 22;
+                    item.scale = 1.75f;
+                    item.shoot = ProjectileType<Blank>();
+                    return;
+                case ItemID.TitaniumSword:
+                    item.damage = 70;
+                    item.useTime = 20;
+                    item.useAnimation = 20;
+                    item.scale = 1.75f;
+                    item.shoot = ProjectileType<Blank>();
+                    return;
+                case ItemID.Excalibur:
+                    item.damage = 77;
+                    item.scale = 1.75f;
+                    item.useTime = 18;
+                    item.useAnimation = 18;
+                    item.shoot = ProjectileType<Blank>();
                     return;
                 case ItemID.TrueNightsEdge: // REVISIT
                     item.autoReuse = true;
@@ -156,13 +312,48 @@ namespace TRAEProject
                     item.useTime = 27;
                     item.useAnimation = 27;
                     return;
+                case ItemID.TrueExcalibur: // REVISIT
+                    item.damage = 77;
+                    item.scale = 1.75f;
+                    item.useTime = 18;
+                    item.useAnimation = 18;
+                    item.autoReuse = true;
+                    return;
+                case ItemID.TerraBlade: // REVISIT
+                    item.damage = 100;
+                    item.scale = 1.6f;
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                    return;
                 case ItemID.ChainKnife:
                     item.crit = 12;
                     item.autoReuse = true;
                     item.value = 50000;
                     return;
+                case ItemID.ChlorophytePartisan:
+                    item.knockBack = 4f;
+                    return;
+                case ItemID.ChlorophyteSaber: // REVISIT
+                    item.useTime = 24;
+                    item.useAnimation = 15;
+                    item.scale = 1.4f;
+                    item.shootSpeed = 6f;
+                    item.useTurn = false;
+                    return;
+                case ItemID.ChlorophyteClaymore:
+                    item.damage = 75;
+                    item.scale = 1.6f;
+                    item.shootSpeed = 12f;
+                    item.useTime = 50;
+                    item.useAnimation = 26;
+                    item.autoReuse = true;
+                    return;
                 case ItemID.DD2SquireDemonSword:
                     item.useTurn = false;
+                    item.scale = 1.7f;
+                    item.shoot = ProjectileType<Blank>();
+                    return;
+                case ItemID.Keybrand:
                     item.scale = 1.7f;
                     item.shoot = ProjectileType<Blank>();
                     return;
@@ -179,6 +370,13 @@ namespace TRAEProject
                     item.shoot = ProjectileType<Blank>();
                     item.useTime = 12;
                     item.useAnimation = 12;
+                    return;
+                case ItemID.TheHorsemansBlade:
+                    item.shoot = ProjectileType<Blank>();
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                    item.damage = 90;
+                    item.scale = 1.25f;
                     return;
                 case ItemID.ChristmasTreeSword: // REVISIT
                     item.useTime = 31;
@@ -222,9 +420,6 @@ namespace TRAEProject
                     item.damage = 16;
                     item.crit = 4;
                     return;
-                case ItemID.LightDisc: // REVISIT
-                    item.maxStack = 1;
-                    return;
                 case ItemID.MonkStaffT1: // REVISIT
                     item.knockBack = 3.5f;
                     return;
@@ -248,10 +443,10 @@ namespace TRAEProject
                     return;
                 /// SUMMONER
                 case ItemID.ThornWhip:
-                    item.damage = 19; // up from 18
+                    item.damage = 18; // up from 18
                     return;
                 case ItemID.BoneWhip:
-                    item.damage = 24; // down from 29
+                    item.damage = 29; // down from 29
                     return;
                 case ItemID.SwordWhip:
                     item.damage = 59;
@@ -260,21 +455,36 @@ namespace TRAEProject
                     item.damage = 111; // up from 100
                     return;
                 case ItemID.RainbowWhip:
-                    item.damage = 200; // up from 180
+                    item.damage = 250; // up from 180
                     return;
                 /// RANGED 
-                case ItemID.Revolver:
+                case ItemID.Boomstick:
+                    item.damage = 11; // down from 14
+                    item.value = 250000; // 25 gold
+                    return;
+			    case ItemID.BeesKnees:
+                    item.damage = 18; // down from 23?
+                    return;
+				case ItemID.HellwingBow:
+                    item.useTime = 16; // up from 13
+                    item.useAnimation = 16;
+                    return;
+				case ItemID.Revolver:
                     item.damage = 30; // up from 20
                     item.value = 250000; // 25 gold
                     return;
                 case ItemID.Flamethrower:
-                    item.damage = 15;
-                    item.shootSpeed = 5.33f;
-                    item.useAnimation = 24;
-                    item.useTime = 12;
-                    item.knockBack = 0.25f;
-                    item.reuseDelay = 6;
+                    item.damage = 15; // down from 35
+                    item.shootSpeed = 5.33f; // down from 7
+                    item.useAnimation = 60; // down from 30
+                    item.useTime = 10; // up from 6
+                    item.knockBack = 0.25f; // down from 0.3
+                    item.reuseDelay = 6; // up from 0
                     return;
+                //case ItemID.EldMelter:
+                //    item.useAnimation = 50; // down from 30
+                //    item.useTime = 10; // up from 6
+                //    return;
                 case ItemID.Harpoon:
                     item.shoot = ProjectileType<Harpoon>();
                     item.shootSpeed = 22f;
@@ -290,10 +500,6 @@ namespace TRAEProject
                     return;
                 case ItemID.Handgun:
                     item.damage = 20; // up from 17
-                    return;
-                case ItemID.EldMelter:
-                    item.damage = 80; // up from 60
-                    item.knockBack = 5f; // up from like 0.5
                     return;
                 //case ItemID.Marrow: // REVISIT
                 //case ItemID.IceBow:
@@ -312,6 +518,45 @@ namespace TRAEProject
                     item.useAmmo = AmmoID.Arrow;
                     item.shootSpeed = 18f;
                     item.damage = 34;
+                    return;
+                case ItemID.CobaltRepeater:
+                    item.damage = 35;
+                    item.useTime = 24;
+                    item.useAnimation = 24;
+                    return;
+                case ItemID.PalladiumRepeater:
+                    item.damage = 39;
+                    item.useTime = 27;
+                    item.useAnimation = 27;
+                    return;
+                case ItemID.MythrilRepeater:
+                    item.damage = 39;
+                    item.useTime = 22;
+                    item.useAnimation = 22;
+                    return;
+                case ItemID.OrichalcumRepeater:
+                    item.damage = 44;
+                    item.useTime = 25;
+                    item.useAnimation = 25;
+                    return;
+                case ItemID.AdamantiteRepeater:
+                    item.damage = 44;
+                    item.useTime = 19;
+                    item.useAnimation = 19;
+                    return;
+                case ItemID.TitaniumRepeater:
+                    item.damage = 50;
+                    item.useTime = 21;
+                    item.useAnimation = 21;
+                    return;
+                case ItemID.HallowedRepeater:
+                    item.damage = 53;
+                    item.useTime = 16;
+                    item.useAnimation = 16;
+                    return;
+                case ItemID.ChlorophyteShotbow: // make this shoot 3 arrows
+                    item.useTime = 20;
+                    item.useAnimation = 20;
                     return;
                 case ItemID.TheUndertaker:
                 case ItemID.SniperRifle:
@@ -352,9 +597,6 @@ namespace TRAEProject
                     return;
                 case ItemID.VortexBeater:
                     item.damage = 42;
-                    return;
-                case ItemID.Phantasm: // REVISIT
-                    item.damage = 31;
                     return;
                 case ItemID.MeteorShot:
                     item.damage = 7;
@@ -808,12 +1050,38 @@ namespace TRAEProject
         }
         private static int shootDelay = 1;
         public int useCount = 0;
+        public override Vector2? HoldoutOffset(int type)
+        {
+            if (type == ItemID.Flamethrower || type == ItemID.EldMelter)
+            {
+                return new Vector2(0, -2); // If your own flamethrower is being held wrong, edit these values. You can test out holdout offsets using Modder's Toolkit.
+            }
+            return base.HoldoutOffset(type);
+        }
+        public override bool CanConsumeAmmo(Item weapon, Player player)
+        {
+            if (weapon.type == ItemID.Flamethrower || weapon.type == ItemID.EldMelter)
+            { // To make this item only consume ammo during the first jet, we check to make sure the animation just started. ConsumeAmmo is called 5 times because of item.useTime and item.useAnimation values in SetDefaults above.
+                return player.itemAnimation >= player.itemAnimationMax - 4;
+            }
+            return base.CanConsumeAmmo(weapon, player);
+        }
         public override bool Shoot(Item item, Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
             switch (item.type)
             {
-                
+                case ItemID.Flamethrower:
+                case ItemID.EldMelter:
+                    {
+                        Vector2 muzzleOffset = Vector2.Normalize(new Vector2(velocity.X, velocity.Y)) * 54f; //This gets the direction of the flame projectile, makes its length to 1 by normalizing it. It then multiplies it by 54 (the item width) to get the position of the tip of the flamethrower.
+                        if (Collision.CanHit(position, 6, 6, position + muzzleOffset, 6, 6))
+                        {
+                            position += muzzleOffset;
+                        }
+                        // This is to prevent shooting through blocks and to make the fire shoot from the muzzle.
+                        return true;
+                    }
                 case ItemID.DaedalusStormbow:
                     {
                         type = ProjectileType<Starrow>();

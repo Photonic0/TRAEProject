@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 using Terraria.Audio;
@@ -16,8 +11,8 @@ namespace TRAEProject.Items.DreadItems.DreadSummon
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bloodlaiden Bait");
-            DisplayName.SetDefault("Will lure a powerful blood moon monster");
+            DisplayName.SetDefault("Bloody Sea Wasp");
+            Tooltip.SetDefault("66.6% bait power\nWill lure a powerful Blood Moon monster");
 
         }
         public override void SetDefaults()
@@ -26,11 +21,11 @@ namespace TRAEProject.Items.DreadItems.DreadSummon
 			Item.consumable = true;
 			Item.width = 12;
 			Item.height = 12;
+            Item.rare = ItemRarityID.Red;
 			Item.value = Item.sellPrice(0, 0, 10);
             Item.makeNPC = NPCID.BloodNautilus;
             Item.useStyle = 4;
         }
-
 
         public override bool CanUseItem(Player player)
         {

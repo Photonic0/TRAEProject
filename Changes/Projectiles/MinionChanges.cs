@@ -11,6 +11,68 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Projectiles
 {
+    public class SummonStaffs : GlobalItem
+    {
+        public override bool InstancePerEntity => true;
+        public override void SetDefaults(Item item)
+        {
+            switch (item.type)
+            {
+                case ItemID.FlinxStaff:
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    item.damage = 5; // down from 8
+                    break;
+                case ItemID.HornetStaff:
+                    item.damage = 12;
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    return;
+                case ItemID.OpticStaff:
+                    item.damage = 22; // down from 30
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    break;
+                case ItemID.BabyBirdStaff:
+                case ItemID.ImpStaff:
+                case ItemID.SpiderStaff:
+                case ItemID.SanguineStaff:
+                case ItemID.RavenStaff:
+                case ItemID.Smolstar:
+                case ItemID.PirateStaff:
+                case ItemID.StormTigerStaff:
+                case ItemID.XenoStaff:
+                case ItemID.EmpressBlade:
+                case ItemID.StardustCellStaff:
+                case ItemID.StardustDragonStaff:
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    break;
+                case ItemID.PygmyStaff:
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    item.damage = 45; // up from 34
+                    break;
+                case ItemID.TempestStaff:
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    item.damage = 42;
+                    break;
+                case ItemID.DeadlySphereStaff:
+                    item.damage = 15; // down from 50
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    return;
+            }
+        }
+    }
     public class MinionChanges : GlobalProjectile
     {
         public override bool InstancePerEntity => true;
@@ -19,65 +81,64 @@ namespace TRAEProject.Changes.Projectiles
             switch (projectile.type)
             {
                 case ProjectileID.MiniSharkron:
-                    break;
+                    return;
+                case ProjectileID.FlinxMinion:
+                    projectile.usesIDStaticNPCImmunity = false;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 20;
+                    return;
                 case ProjectileID.Tempest:
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 15;
-                    break;
+                    return;
                 case ProjectileID.Retanimini:
                 case ProjectileID.Spazmamini:
                     projectile.tileCollide = false;
                     projectile.usesIDStaticNPCImmunity = false;
-                    projectile.usesLocalNPCImmunity = true; ;
-                    break;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 30;
+                    return;
                 case ProjectileID.MiniRetinaLaser:
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
-                    projectile.usesIDStaticNPCImmunity = false;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    break;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 150f;
+                    projectile.penetrate = 1;
+                    return;
                 case ProjectileID.CoolWhip:
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<CoolWhipTag>();
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 240;
-                    break;
+                    return;
                 case ProjectileID.DeadlySphere:
                     projectile.extraUpdates = 1;
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    break;
+                    projectile.localNPCHitCooldown = 30;
+                    return;
                 case ProjectileID.DangerousSpider:
                 case ProjectileID.VenomSpider:
                 case ProjectileID.JumperSpider:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 30;
-                    break;
+                    return;
                 case ProjectileID.HornetStinger:
                     projectile.extraUpdates = 2;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 150f;
-                    break;
+                    return;
                 case ProjectileID.Smolstar:
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 48; // up from 40
-                    break;
+                    projectile.localNPCHitCooldown = 53; // up from 40
+                    return;
                 case ProjectileID.ImpFireball:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    break;
+                    projectile.localNPCHitCooldown = 60;
+                    return;
                 case ProjectileID.VampireFrog:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 15; // up from 10, static 
-                    break;
-                case ProjectileID.PygmySpear: // revisit
-                    projectile.penetrate = 2;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    break;
+                    projectile.localNPCHitCooldown = 60; // up from 10, static 
+                    return;
             }
 
         }
@@ -85,41 +146,27 @@ namespace TRAEProject.Changes.Projectiles
         {
             switch (projectile.type)
             {
+                case ProjectileID.FlyingImp:
+                    if (projectile.ai[1] > 0f)
+                    {
+                        projectile.ai[1] -= 0.33f;
+                    }
+                    return;
                 case ProjectileID.DeadlySphere:
                     projectile.ai[1] += 2f;
                     return;
                 case ProjectileID.BatOfLight:
                     projectile.localNPCHitCooldown = (int)projectile.ai[0];
                     return;
-                case ProjectileID.FlyingImp:
-                    {
-                        if (projectile.ai[1] < 0f)
-                        {
-                            projectile.ai[1] -= 0.2f; // Needs to reach 90f to shoot
-                        }
-                    }
-                    return;
-                case ProjectileID.Hornet:
-                    {
-                        if (projectile.ai[1] < 0f)
-                        {
-                            projectile.ai[1] += 0.5f; // Needs to reach 90f to shoot
-                        }
-                    }
-                    return;
                 case ProjectileID.Smolstar:
                     {
                         if (projectile.ai[0] == -1f)
                         {
-                            projectile.ai[1] -= 0.2f; // when it reaches 9f, attack.                 
+                            projectile.ai[1] -= 0.33f; // when it reaches 9f, attack. 						
                         }
                         return;
                     }
-                case ProjectileID.Tempest:
-                    {
-                        projectile.ai[1] += 3; // fires faster
-                    }
-                    return;
+
             }
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
@@ -149,6 +196,10 @@ namespace TRAEProject.Changes.Projectiles
             {
                 damage += target.GetGlobalNPC<ChangesNPCs>().TagDamage;
                 if (Main.rand.Next(100) < target.GetGlobalNPC<ChangesNPCs>().TagCritChance)
+                {
+                    crit = true;
+                }
+                if (Main.rand.Next(100) < Main.player[projectile.owner].GetModPlayer<TRAEPlayer>().minionCritChance)
                 {
                     crit = true;
                 }
@@ -483,8 +534,8 @@ namespace TRAEProject.Changes.Projectiles
 
             Projectile.aiStyle = -1;
             Projectile.extraUpdates = 1;
-            Projectile.width = 14;
-            Projectile.height = 14;
+            Projectile.width = 18;
+            Projectile.height = 18;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = -1;

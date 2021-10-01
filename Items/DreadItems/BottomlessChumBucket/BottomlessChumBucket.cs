@@ -7,12 +7,18 @@ using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using Terraria.GameContent.Creative;
 namespace TRAEProject.Items.DreadItems.BottomlessChumBucket
 {
     public class BottomlessChumBucket : ModItem
     {
-        public override void SetDefaults()
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Bottomless Chum Bucket");
+			Tooltip.SetDefault("Toss in water up to 3 times to increase fishing power\nThis can't possibly fail!");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+		}
+		public override void SetDefaults()
         {
 			Item.useStyle = 1;
 			Item.shootSpeed = 7f;
@@ -24,7 +30,7 @@ namespace TRAEProject.Items.DreadItems.BottomlessChumBucket
 			Item.useAnimation = 19;
 			Item.useTime = 19;
 			Item.noMelee = true;
-			Item.SetShopValues(ItemRarityColor.Blue1, Item.sellPrice(0, 5));
+			Item.SetShopValues(ItemRarityColor.Yellow8, Item.sellPrice(0, 5));
 		}
     }
 }

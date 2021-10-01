@@ -21,7 +21,7 @@ namespace TRAEProject
         public int overchargedMana = 0;
         public float manaRegenBoost = 1;
         public int BaghnakhHeal = 0;
-        public int FlatDamageReduction = 0;
+        public bool PirateSet = false;
         public bool TitanGlove = false;
         public bool manaCloak = false;
         public bool newManaFlower = false;
@@ -32,7 +32,7 @@ namespace TRAEProject
         public bool wErewolf = false;
         public bool Celled = false;
         public bool MagicDagger = false;
-        public int MagicCuffsDamageBuffDuration = 0;
+        public int magicCuffsCount = 0;
         public bool NewbeesOnHit = false;
         public bool NewstarsOnHit = false;
         public float newthorns = 0f;
@@ -70,18 +70,17 @@ namespace TRAEProject
         public int chanceNotToConsumeAmmo = 0;
         public override void ResetEffects()
         {
-            AncientSet = false;
+            PirateSet = false; AncientSet = false;
             infernoNew = false;
             TitanGlove = false;
             manaCloak = false;
             newManaFlower = false;
             manaRegenBoost = 1;
         shadowArmorDodgeChance = 0;
-            FlatDamageReduction = 0;
             wErewolf = false;
             Celled = false;
             MagicDagger = false;
-            MagicCuffsDamageBuffDuration = 0;
+            magicCuffsCount = 0;
             NewbeesOnHit = false;
             NewstarsOnHit = false;
             newthorns = 0f;
@@ -106,9 +105,6 @@ namespace TRAEProject
             ammodam1 = false;
             ammodam2 = false;
             Hivepack = false;
-            //beetimer = 0;
-            //beesStored = 0;
-            //timebeforeReleasingBees = 0;
             ifHoneyedWithBeepack = 1;
             FastFall = false;
             AquaAffinity = false;
@@ -117,17 +113,16 @@ namespace TRAEProject
         }
         public override void UpdateDead()
         {
-            AncientSet = false;
+            PirateSet = false; AncientSet = false;
             infernoNew = false;
             manaCloak = false;
             newManaFlower = false;
             TitanGlove = false;
             manaRegenBoost = 1;
-            FlatDamageReduction = 0;
             shadowArmorDodgeChance = 0;
             wErewolf = false;
             Celled = false;
-            MagicCuffsDamageBuffDuration = 0;
+            magicCuffsCount = 0;
             NewbeesOnHit = false;
             runethorns = 0f;
             newthorns = 0f;
@@ -219,48 +214,7 @@ namespace TRAEProject
             if (LavaShield && waterRunning && Player.wet)
             {
                 Player.AddBuff(BuffType<LavaShield>(), 1800);
-            }
-            if (Hivepack)
-            {
-                if (Player.HasBuff(BuffID.Honey))
-                {
-                    ifHoneyedWithBeepack = 2;
-                }
-                if (Player.velocity.Y > -0.1 && Player.velocity.Y < 0.1)
-                {
-                    timebeforeReleasingBees = 0;
-                    ++beetimer;
-                }
-                if (beetimer == 8 * ifHoneyedWithBeepack && beesStored < 16)
-                {
-                    ++beesStored;
-                    beetimer = 0;
-                    Dust.NewDustDirect(Player.oldPosition, Player.width, Player.height, 153, 1, 1, 0, default, 0.8f);
-                    Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, (int)Player.position.X, (int)Player.position.Y);
-                }
-                if (Player.velocity.Y < -0.1 || Player.velocity.Y > 0.1)
-                {
-                    ++timebeforeReleasingBees;
-                    beetimer = 0;
-                    if (timebeforeReleasingBees > 15 * ifHoneyedWithBeepack && beesStored > 0)
-                    {
-                        timebeforeReleasingBees = 0;
-                        --beesStored;
-                        if (ifHoneyedWithBeepack == 2)
-                        {
-                            int bee = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.X, Player.position.Y, 1 * Player.direction, 0, ProjectileID.GiantBee, 20, 2, Player.whoAmI);
-                            Main.projectile[bee].usesLocalNPCImmunity = true;
-                            Main.projectile[bee].localNPCHitCooldown = 10;
-                        }
-                        else
-                        {
-                            int bee = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.Y, 1 * Player.direction, 0, ProjectileID.Bee, 10, 1, Player.whoAmI);
-                            Main.projectile[bee].usesLocalNPCImmunity = true;
-                            Main.projectile[bee].localNPCHitCooldown = 10;
-                        }
-                    }
-                }
-            }
+            }            
             if (Player.shroomiteStealth && !Player.mount.Active) // Always active while on the ground, Stealth disappears slower, reduced all bonuses by 25%, max damage is reduced by a further 10%.  
             {
                 if (Player.stealth <= 0.25f)
@@ -321,10 +275,6 @@ namespace TRAEProject
                 dust.velocity.Y *= 0.1f + Main.rand.Next(30) * 0.01f;
                 dust.scale *= 1f + Main.rand.Next(6) * 0.1f;
             }
-            if (Player.honeyCombItem != null && !Player.honeyCombItem.IsAir) // gives honey when you enter lava
-            {
-                Player.AddBuff(BuffID.Honey, 1800, false);
-            }
             if (Player.shieldRaised)
             {
                 Player.moveSpeed *= 1.5f;
@@ -338,15 +288,6 @@ namespace TRAEProject
         }
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
-            // New Defense calculation                    
-            customDamage = true; // when set to true, the game will no longer substract defense from the damage.
-            int defense = Player.statDefense;
-            double DefenseDamageReduction = defense * 100 / (defense + 80); // Formula for defense
-            damage -= (int)(damage * DefenseDamageReduction * 0.01f); // calculate the damage taken
-            if (damage < 1)
-            {
-                damage = 1; // if the damage is below 1, it defaults to 1
-            }
             if (Player.hasRaisableShield && Player.HeldItem.type == ItemID.DD2SquireDemonSword && Main.rand.Next(5) == 0)
             {
                 Block();
@@ -420,7 +361,7 @@ namespace TRAEProject
             }
             if (honeyBalloon)
             {
-                Player.lifeRegen += 1;
+                Player.lifeRegen += 2;
             }
             if (icceleration)
             {
@@ -465,7 +406,46 @@ namespace TRAEProject
             }
             if (Hivepack)
             {
-                Player.jumpSpeedBoost += 1.25f + 0.1625f * beesStored;
+                if (Player.HasBuff(BuffID.Honey))
+                {
+                    ifHoneyedWithBeepack = 2;
+                }
+                if (Player.velocity.Y > -0.1 && Player.velocity.Y < 0.1)
+                {
+                    timebeforeReleasingBees = 0;
+                    ++beetimer;
+                }
+                if (beetimer == 8 * ifHoneyedWithBeepack && beesStored < 16)
+                {
+                    ++beesStored;
+                    beetimer = 0;
+                    Dust.NewDustDirect(Player.oldPosition, Player.width, Player.height, 153, 1, 1, 0, default, 0.8f);
+                    Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, (int)Player.position.X, (int)Player.position.Y);
+                }
+                if (Player.velocity.Y < -0.1 || Player.velocity.Y > 0.1)
+                {
+                    ++timebeforeReleasingBees;
+                    beetimer = 0;
+                    if (timebeforeReleasingBees > 15 * ifHoneyedWithBeepack && beesStored > 0)
+                    {
+                        timebeforeReleasingBees = 0;
+                        --beesStored;
+                        if (ifHoneyedWithBeepack == 2)
+                        {
+                            int bee = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.X, Player.position.Y, 1 * Player.direction, 0, ProjectileID.GiantBee, 20, 2, Player.whoAmI);
+                            Main.projectile[bee].usesLocalNPCImmunity = true;
+                            Main.projectile[bee].localNPCHitCooldown = 10;
+                        }
+                        else
+                        {
+                            int bee = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.Y, 1 * Player.direction, 0, ProjectileID.Bee, 10, 1, Player.whoAmI);
+                            Main.projectile[bee].usesLocalNPCImmunity = true;
+                            Main.projectile[bee].localNPCHitCooldown = 10;
+                        }
+                    }
+                }
+
+                Player.jumpSpeedBoost += 1.125f + 0.8f * beesStored;
             }
             if (Player.HeldItem.type == ItemID.BeeGun)
             {
@@ -498,13 +478,6 @@ namespace TRAEProject
                 if (Player.lifeRegen > 0)
                 {
                     Player.lifeRegen -= 1;
-                }
-            }
-            if (Player.lavaRose && Player.HasBuff(BuffID.OnFire))
-            {
-                if (Player.lifeRegen < 0)
-                {
-                    Player.lifeRegen += 8;
                 }
             }
             if (Player.HasBuff(BuffType<NanoHealing>()))
@@ -549,7 +522,7 @@ namespace TRAEProject
             Player Player = Main.player[weapon.playerIndexTheItemIsReservedFor];
             if (Main.rand.Next(100) < chanceNotToConsumeAmmo)
                 return false;
-            if (weapon.type == ItemID.VenusMagnum && Main.rand.Next(3) == 0)
+            if ((weapon.type == ItemID.VenusMagnum) && Main.rand.Next(3) == 0)
                 return false;
             if (weapon.type == ItemID.ChainGun && Main.rand.Next(10) == 0)
                 return false;
@@ -565,31 +538,6 @@ namespace TRAEProject
         private static readonly bool[] MechBonus = new bool[] { NPC.downedMechBoss1, NPC.downedMechBoss2, NPC.downedMechBoss3 };
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            damage -= FlatDamageReduction;
-            if (pocketMirror)
-            {
-                damage = (int)(damage * 0.90);
-            }
-            if (Player.beetleDefense)
-            {
-                float beetleEndurance = (1 - 0.15f * Player.beetleOrbs) / (1 - 0.10f * Player.beetleOrbs);
-                beetleEndurance = damage / beetleEndurance;
-                damage = (int)beetleEndurance;
-            }
-            //if (Player.shieldRaised && Player.HasBuff(BuffID.ParryDamageBuff))
-            //{
-            //    damage *= 5;
-            //    damage /= 10;
-
-            //    Player.AddBuff(BuffID.ParryDamageBuff, 600, false);
-            //    Terraria.Audio.SoundEngine.PlaySound(SoundID.Item37, Player.position);
-            //    for (int i = 0; i < 20; i++)
-            //    {
-            //        Dust dust = Dust.NewDustDirect(Player.position, Player.width, Player.height, 57, 0f, 0f, 255, default, Main.rand.Next(20, 26) * 0.05f);
-            //        dust.noLight = true;
-            //        dust.noGravity = true;
-            //    }
-            //}
             switch (proj.type)
             {
                 case ProjectileID.CursedFlameHostile:
@@ -622,15 +570,7 @@ namespace TRAEProject
             }
         }
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
-        {
-            //
-            damage -= FlatDamageReduction;
-            if (Player.beetleDefense)
-            {
-                float beetleEndurance = (1 - 0.15f * Player.beetleOrbs) / (1 - 0.10f * Player.beetleOrbs);
-                beetleEndurance = damage / beetleEndurance; 
-                damage = (int)beetleEndurance;
-            }
+        {          
             if (!RoyalGelDOT && RoyalGel) // keep this at the bottom
             {
                 damage -= (int)Main.CalculateDamagePlayersTake(damage, Player.statDefense);
@@ -652,6 +592,10 @@ namespace TRAEProject
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
+            if (PirateSet && (ProjectileID.Sets.IsAWhip[proj.type]))
+            {
+                target.AddBuff(BuffType<PirateTag>(), 240);
+            }
             if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && crit && manaFlowerLimit < 3)
             {
                 if (Main.rand.Next(3) == 0)
@@ -725,25 +669,15 @@ namespace TRAEProject
         }
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
-            int defense = Player.statDefense;
-            double DefenseDamageReduction = defense * 100 / (defense + 80); // Formula for defense
-            damage -= (int)(damage * DefenseDamageReduction * 0.01f * Player.endurance); // factor in defense
+            damage = Player.GetModPlayer<Defense>().DamageAfterDefenseAndDR;
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)
             {
-                if (MagicCuffsDamageBuffDuration > 0)
+                if (magicCuffsCount > 0)
                 {
-                    //int time = damage * MagicCuffsDamageBuffDuration * 2;
-                    //Player.AddBuff(BuffType<MagicBoost>(), time, false);
-                    int manaRestored = damage * MagicCuffsDamageBuffDuration;
+                    int manaRestored = damage * magicCuffsCount;
                     Player.GetModPlayer<Mana>().GiveManaOverloadable(manaRestored);
-                    //Player.GetModPlayer<Mana>().overloadedMana += manaRestored;
-                   // Player.ManaEffect(manaRestored);
-                    //if (Player.statMana + manaRestored < Player.statManaMax2)
-                    //{
-                    //    overchargedMana += Player.statMana + manaRestored - Player.statManaMax2;
-                    //}
                 }
                 int[] spread = { 1, 2 };
                 if (NewstarsOnHit)
@@ -831,13 +765,6 @@ namespace TRAEProject
             {
                 Player.AddBuff(BuffID.Panic, 300 + damage * 6);
             }
-            if (Player.lavaRose)
-            {
-                int duration = 180 + damage * 9;
-                if (Main.expertMode)
-                    duration /= 2;
-                Player.AddBuff(BuffID.OnFire, duration, false);
-            }
             if (Player.longInvince && damage > 100)
             {
                 int invintime = (int)((damage - 100) * 0.6); // every point of damage past 100 adds 0.01 seconds of invincibility. 
@@ -850,24 +777,16 @@ namespace TRAEProject
         }
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
-            int defense = Player.statDefense;
-            double DefenseDamageReduction = defense * 100 / (defense + 80); // Formula for defense
-            damage -= (int)(damage * DefenseDamageReduction * 0.01f * Player.endurance); // factor in defense
+            damage = Player.GetModPlayer<Defense>().DamageAfterDefenseAndDR; 
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)
             {
-                if (MagicCuffsDamageBuffDuration > 0)
+                if (magicCuffsCount > 0)
                 {
-                    //int time = damage * MagicCuffsDamageBuffDuration * 2;
-                    //Player.AddBuff(BuffType<MagicBoost>(), time, false);
-					int manaRestored = damage * MagicCuffsDamageBuffDuration;
+					int manaRestored = damage * magicCuffsCount;
 					Player.statMana += manaRestored; 
                     Player.ManaEffect(manaRestored);
-                    //if (Player.statMana + manaRestored < Player.statManaMax2)
-                    //{
-                    //   overchargedMana += Player.statMana + manaRestored - Player.statManaMax2;
-                    //}
                 }
                 int[] spread = { 1, 2 };
                 if (NewstarsOnHit)
@@ -954,13 +873,6 @@ namespace TRAEProject
                 if (Player.panic)
                 {
                     Player.AddBuff(BuffID.Panic, 300 + damage * 6, false);
-                }
-                if (Player.lavaRose)
-                {
-                    int duration = 180 + damage * 9;
-                    if (Main.expertMode)
-                        duration /= 2;
-                    Player.AddBuff(BuffID.OnFire, duration, false);
                 }
                 if (Player.longInvince && damage > 100)
                 {

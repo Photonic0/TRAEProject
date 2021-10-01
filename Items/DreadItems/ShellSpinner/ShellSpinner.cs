@@ -22,7 +22,7 @@ namespace TRAEProject.Items.DreadItems.ShellSpinner
         {
             Item.width = 38;
             Item.height = 32;
-            Item.damage = 100;
+            Item.damage = 53;
             Item.useTime = Item.useAnimation = 30;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.LightPurple;
@@ -43,7 +43,7 @@ namespace TRAEProject.Items.DreadItems.ShellSpinner
         {
             Projectile.width = Projectile.height = 38;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 5;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 15;
             Projectile.friendly = true;

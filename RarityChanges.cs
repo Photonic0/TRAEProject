@@ -16,7 +16,6 @@ namespace ChangesWeapons
                     item.rare = ItemRarityID.Blue;
                     return;
                 case ItemID.FrogWebbing:
-                case ItemID.FrogGear:
                 case ItemID.FrogFlipper:
                 case ItemID.AmphibianBoots:
                 case ItemID.FalconBlade:
@@ -324,6 +323,7 @@ namespace ChangesWeapons
                 case ItemID.MiniNukeII:
                 case ItemID.ReconScope:
                 case ItemID.MushroomSpear:
+                case ItemID.FrogGear:
                     item.rare = ItemRarityID.Yellow;
                     return;
                 case ItemID.BetsyWings:

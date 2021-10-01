@@ -9,8 +9,17 @@ namespace ChangesBuffs
 {
     public class ChangesBuffs : GlobalBuff
     {
+        public override void SetStaticDefaults()
+        {
+            Main.buffString = "Lunar Dragon";
+        }
         public override void Update(int type, NPC npc, ref int buffIndex)
         {
+            if (BuffID.Sets.IsAnNPCWhipDebuff[type] && npc.HasBuff(BuffType<PirateTag>()))
+            {
+                npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 5;
+                npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 5;
+            }
             switch (type)
             {
                 case BuffID.MaceWhipNPCDebuff:
@@ -53,21 +62,14 @@ namespace ChangesBuffs
                     player.thorns -= 0.33f;
                     player.GetModPlayer<TRAEPlayer>().newthorns += 0.33f;
                     return;
-                case BuffID.CatBast:
-                    player.GetModPlayer<TRAEPlayer>().FlatDamageReduction += 5;
-                    player.statDefense -= 5;
-                    return;
                 case BuffID.Inferno:
                     player.GetModPlayer<TRAEPlayer>().infernoNew = true;
                     player.inferno = false;
                     player.infernoCounter = 0;
                     return;
                 case BuffID.Panic:
-                    player.GetDamage<GenericDamageClass>() += 0.2f;
-                    return;
-                case BuffID.Regeneration:
-                    if (player.lifeRegen > 0)
-                        player.lifeRegen -= 1;
+                    player.jumpSpeedBoost += 1f;
+                    player.runAcceleration *= 1.25f;
                     return;
                 case BuffID.Archery:
                     player.arrowDamage -= 0.08f; //  because Archery Potion uses a unique multiplier -8% makes it effectively +10% arrow damage 
@@ -114,7 +116,7 @@ namespace ChangesBuffs
                     tip = "Damage taken reduced by 30%";
                     return;
                 case BuffID.Panic:
-                    tip = "50% increased movement speed and 20% increased damage";
+                    tip = "Greatly increased movement capabilities";
                     return;
                 case BuffID.Archery:
                     tip = "10% increased arrow damage, 20% increased arrow speed";
@@ -130,9 +132,6 @@ namespace ChangesBuffs
                     return;
                 case BuffID.Swiftness:
                     tip = "40% increased movement speed";
-                    return;
-                case BuffID.CatBast:
-                    tip = "Damage Reduced by 5";
                     return;
                 case BuffID.WeaponImbueNanites:
                     tip = "Melee attacks confuse enemies and increase health regeneration";

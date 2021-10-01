@@ -14,13 +14,13 @@ namespace TRAEProject.Items.Accesories.TwoFlowers
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Two Flowers");
-            Tooltip.SetDefault("Critical hits may spawn mana stars\nAutomaticly uses mana potions\nMagic attacks inflict binding flames");
+            Tooltip.SetDefault("Magic critical hits have a chance to spawn a mana star\nAutomatically uses mana potions when needed\nMagic attacks lower enemies' damage by 12%");
         }
         public override void SetDefaults()
         {
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
-            Item.value = 75000;
+            Item.value = 50000;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

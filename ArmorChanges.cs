@@ -55,6 +55,13 @@ namespace ChangesArmor
                     player.GetDamage<MagicDamageClass>() += 0.15f;
                     player.GetCritChance<MagicDamageClass>()  += 15;
                     return;
+                case ItemID.CobaltLeggings:
+                    player.GetCritChance<GenericDamageClass>()  += 3;
+                    return;
+                case ItemID.CobaltBreastplate:
+                    player.GetDamage<GenericDamageClass>() += 0.05f;
+                    player.GetCritChance<GenericDamageClass>() -= 3;    
+                    return;
                 case ItemID.OrichalcumMask:
                     player.GetDamage<MeleeDamageClass>()  -= 0.07f;
                     player.GetCritChance<MeleeDamageClass>()  += 13;
@@ -107,16 +114,17 @@ namespace ChangesArmor
                     player.GetDamage<SummonDamageClass>() += 0.08f;
                     return;
                 case ItemID.PirateHat:
-                    player.whipRangeMultiplier += 0.2f;
-                    player.GetDamage<SummonDamageClass>() += 0.12f;
+                    player.whipRangeMultiplier += 0.3f;
+                    player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
                 case ItemID.PirateShirt:
-                    player.whipUseTimeMultiplier *= (1 / 1.15f);
-                    player.GetDamage<SummonDamageClass>() += 0.12f;
+                    player.whipUseTimeMultiplier *= (1 / 1.12f);
+                    player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
                 case ItemID.PiratePants:
-                    player.whipUseTimeMultiplier *= (1 / 1.1f);
-                    player.GetDamage<SummonDamageClass>() += 0.12f;
+				player.moveSpeed += 0.1f;
+                    player.whipUseTimeMultiplier *= (1 / 1.08f);
+                    player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
             }
         }
@@ -158,6 +166,8 @@ namespace ChangesArmor
                 return "AdamantiteSet";
             if ((head.type == ItemID.TitaniumHeadgear || head.type == ItemID.TitaniumHelmet || head.type == ItemID.TitaniumMask) && body.type == ItemID.TitaniumBreastplate && legs.type == ItemID.TitaniumLeggings)
                 return "TitaniumSet";
+            if (head.type == ItemID.CobaltMask && body.type == ItemID.CobaltBreastplate && legs.type == ItemID.CobaltLeggings)
+                return "CobaltSet";
             if ((head.type == ItemID.HallowedHeadgear || head.type == ItemID.HallowedHelmet || head.type == ItemID.HallowedMask || head.type == ItemID.HallowedHood) && body.type == ItemID.HallowedPlateMail && legs.type == ItemID.HallowedGreaves)
                 return "HallowedSet";
             if (head.type == ItemID.TikiMask && body.type == ItemID.TikiShirt && legs.type == ItemID.TikiPants)
@@ -283,8 +293,8 @@ namespace ChangesArmor
             }
             if (armorSet == "PirateSet")
             {
-                player.setBonus = "Summoner attacks have a 20% chance to critcally strike";
-                player.GetModPlayer<TRAEPlayer>().minionCritChance += 20;
+                player.setBonus = "All whips gain an additional +5 tag damage and +5% summon tag critical strike chance";
+				player.GetModPlayer<TRAEPlayer>().PirateSet = true;
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -336,39 +346,12 @@ namespace ChangesArmor
                         }
                     }
                     return;
-                case ItemID.AncientArmorHat:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Defense")
-                        {
-                            line.text += "\n12% increased summon damage\n25% increased whip range";
-                        }
-                    }
-                    return;
-                case ItemID.AncientArmorShirt:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Defense")
-                        {
-                            line.text += "\n12% increased summon damage\n15% increased whip speed";
-                        }
-                    }
-                    return;
-                case ItemID.AncientArmorPants:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Defense")
-                        {
-                            line.text += "\n12% increased summon damage\n10% increased whip speed";
-                        }
-                    }
-                    return;
                 case ItemID.PirateHat:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.mod == "Terraria" && line.Name == "Defense")
                         {
-                            line.text += "\nIncreases movement speed by 20%\n3% increased magic and melee damage";
+                            line.text += "\n10% increased summon damage\n30% increased whip range";
                         }
                     }
                     return;
@@ -377,11 +360,38 @@ namespace ChangesArmor
                     {
                         if (line.mod == "Terraria" && line.Name == "Defense")
                         {
-                            line.text += "\nIncreases movement speed by 20%\n3% increased magic and melee damage";
+                            line.text += "\n10% increased summon damage\n12% increased whip speed";
                         }
                     }
                     return;
                 case ItemID.PiratePants:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.text += "\n10% increased summon damage and movement speed\n8% increased whip speed";
+                        }
+                    }
+                    return;
+                case ItemID.AncientArmorHat:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.text += "\n17% increased magic and melee damage\n10% increased melee speed and decreased mana costs";
+                        }
+                    }
+                    return;
+                case ItemID.AncientArmorShirt:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.text += "\nAllows the player to perform an improved double jump\n3% increased magic and melee critical strike chance";
+                        }
+                    }
+                    return;
+                case ItemID.AncientArmorPants:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.mod == "Terraria" && line.Name == "Defense")

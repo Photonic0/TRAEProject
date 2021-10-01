@@ -10,6 +10,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.Accesories.LifeCuffs
 {
+    [AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
     class LifeCuffs : ModItem
     {
         public override void SetStaticDefaults()
@@ -20,8 +21,8 @@ namespace TRAEProject.Items.Accesories.LifeCuffs
         public override void SetDefaults()
         {
             Item.accessory = true;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = 75000;
+            Item.rare = ItemRarityID.Green;
+            Item.value = 20000;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

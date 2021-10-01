@@ -39,24 +39,22 @@ namespace TRAEProject.Changes.Armor
             {
                 case ItemID.CobaltHelmet:
                     player.moveSpeed += 0.05f;
-                    player.GetDamage(DamageClass.Melee) -= 0.02f;
+                    player.GetDamage(DamageClass.Melee) -= 0.01f;
                     player.GetCritChance(DamageClass.Melee) += 10;
                     return;
                 case ItemID.CobaltMask:
                     player.moveSpeed += 0.15f;
-                    player.GetDamage(DamageClass.Ranged) += 0.05f;
-                    player.GetCritChance(DamageClass.Ranged) += 5;
+                    player.GetDamage(DamageClass.Ranged) -= 0.04f;
                     return;
                 case ItemID.CobaltHat:
                     player.moveSpeed += 0.15f;
-                    player.GetDamage(DamageClass.Magic) += 0.05f;
-                    player.GetCritChance(DamageClass.Magic) += 6;
+                    player.GetDamage(DamageClass.Magic) -= 0.03f;
+                    player.GetCritChance(DamageClass.Magic) += 1;
                     return;
                 case ItemID.CobaltBreastplate:
                     player.moveSpeed += 0.15f;
                     break;
                 case ItemID.CobaltLeggings:
-                    player.GetDamage(DamageClass.Generic) += 0.01f;
                     player.moveSpeed += 0.1f;
                     break;
             }
@@ -99,7 +97,7 @@ namespace TRAEProject.Changes.Armor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "13% increased melee damage and 10% increased melee critical strike chance";
+                            line.text = "5% increased melee damage and 10% increased melee critical strike chance";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -112,7 +110,7 @@ namespace TRAEProject.Changes.Armor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "13% increased ranged damage and 10% increased ranged critical strike chance";
+                            line.text = "6% increased ranged damage and 10% increased ranged critical strike chance";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -125,7 +123,7 @@ namespace TRAEProject.Changes.Armor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "13% increased magic damage and 10% increased magic critical strike chance";
+                            line.text = "7% increased magic damage and 10% increased magic critical strike chance";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -151,7 +149,7 @@ namespace TRAEProject.Changes.Armor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "20% increased movement speed and 5% increased damage";
+                            line.text = "20% increased movement speed and 3% increased damage";
                         }
                     }
                     break;

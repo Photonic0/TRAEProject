@@ -14,13 +14,13 @@ namespace TRAEProject.Items.Accesories.AngelicStone
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Angelic Stone");
-            Tooltip.SetDefault("10% increased mana regeneration\nCuts the duration of mana sickness in half");
+            Tooltip.SetDefault("10% increased mana regeneration\nReduces the cooldown of mana sickness by 50%");
         }
         public override void SetDefaults()
         {
             Item.accessory = true;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = 75000;
+            Item.rare = ItemRarityID.Pink;
+            Item.value = 37500;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

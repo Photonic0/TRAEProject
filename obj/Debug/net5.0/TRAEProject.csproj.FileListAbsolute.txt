@@ -86,3 +86,11 @@ C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProjec
 C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.dll
 C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\ref\TRAEProject.dll
 C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.pdb
+C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.csproj.AssemblyReference.cache
+C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.AssemblyInfoInputs.cache
+C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.AssemblyInfo.cs
+C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.csproj.CoreCompileInputs.cache
+C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.dll
+C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\ref\TRAEProject.dll
+C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.pdb

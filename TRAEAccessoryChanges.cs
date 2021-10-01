@@ -4,31 +4,60 @@ using Terraria.ModLoader;
 using TRAEProject;
 using System.Collections.Generic;
 using Terraria.Utilities;
+using TRAEProject.Buffs;
 using TRAEProject.Changes;
-
+using TRAEProject.Items.Accesories.EvilEye;
 public class ChangesAccessories : GlobalItem
 {
+    public static readonly int[] AnkhDebuffList = new int[] { BuffID.Bleeding, BuffID.Poisoned, BuffID.OnFire, BuffID.Venom, 
+        BuffID.Darkness, BuffID.Blackout, BuffID.Silenced, BuffID.Cursed, 
+        BuffID.Confused, BuffID.Slow, BuffID.OgreSpit, BuffID.Weak, BuffID.BrokenArmor, 
+        BuffID.CursedInferno,   BuffID.Frostburn,  BuffID.Chilled,  BuffID.Frozen,
+        BuffID.Ichor,   BuffID.Stoned,  BuffID.VortexDebuff,  BuffID.Obstructed,
+        BuffID.Electrified, BuffID.ShadowFlame, BuffID.WitheredWeapon, BuffID.WitheredArmor, BuffID.Dazed }; // 
+
     public override void UpdateAccessory(Item item, Player player, bool hideVisual)
     {
         switch (item.type)
         {
+            case ItemID.Bezoar:
+                player.GetModPlayer<Bezoar>().bezoar = true;
+                player.buffImmune[BuffID.Poisoned] = false;
+                return;
+            case ItemID.AdhesiveBandage:
+                player.GetModPlayer<BandAid>().Bandaid = true; 
+                player.buffImmune[BuffID.Bleeding] = false;
+                return;
+            case ItemID.MedicatedBandage:
+                player.GetModPlayer<Bezoar>().bezoar = true;
+                player.GetModPlayer<BandAid>().Bandaid = true; 
+                player.buffImmune[BuffID.Poisoned] = false; 
+                player.buffImmune[BuffID.Bleeding] = false;
+                return; 
+            case ItemID.Blindfold:
+                player.AddBuff(BuffID.Obstructed, 1);
+                player.buffImmune[BuffID.Darkness] = false;
+                return;
+            case ItemID.Nazar:
+                player.GetModPlayer<NazarDebuffs>().Nazar += 1; 
+                player.buffImmune[BuffID.Cursed] = false;
+                return;
+            case ItemID.CountercurseMantra:
+                player.GetModPlayer<NazarDebuffs>().Nazar += 1;
+				foreach (int i in AnkhDebuffList)
+                {
+                    player.buffImmune[i] = true;
+                }
+                return;
+            case ItemID.AnkhShield:
+            case ItemID.AnkhCharm:
+                foreach (int i in AnkhDebuffList)
+                {
+                    player.buffImmune[i] = true;
+                }
+                return;
             case ItemID.ArcticDivingGear:
-                player.iceSkate = false;        
-                if (player.statLife <= player.statLifeMax2 * 0.5)
-                {
-                    player.AddBuff(62, 5, true);
-                }
-                if (player.wet)
-                {
-                    player.AddBuff(BuffID.Hunter, 60);
-                }
-                return;
             case ItemID.JellyfishDivingGear:
-                if (player.wet)
-                {
-                    player.AddBuff(BuffID.Hunter, 60);
-                }
-                return;
             case ItemID.JellyfishNecklace:
                 if (player.wet)
                 {
@@ -58,6 +87,7 @@ public class ChangesAccessories : GlobalItem
                 player.GetModPlayer<TRAEPlayer>().waterRunning = true;
                 player.GetModPlayer<TRAEPlayer>().LavaShield = true;
                 player.lavaImmune = true;
+				player.lavaRose = false;
                 return;
             case ItemID.HiveBackpack:
                 player.GetModPlayer<TRAEPlayer>().Hivepack = true;
@@ -68,23 +98,44 @@ public class ChangesAccessories : GlobalItem
                 return;
             case ItemID.FrogLeg:
             case ItemID.FrogWebbing:
-            case ItemID.FrogGear:
             case ItemID.FrogFlipper:
             case ItemID.AmphibianBoots:
                 player.frogLegJumpBoost = false;
                 player.extraFall += 15;
                 player.jumpSpeedBoost += 1.4f;
                 return;
-            case ItemID.IceSkates:
-                player.GetModPlayer<TRAEPlayer>().icceleration = true;
+            case ItemID.FrogGear:
+                player.frogLegJumpBoost = false;
+                player.accFlipper = true; 
+                player.dashType = 2;
+                player.spikedBoots = 0; 
+                player.extraFall += 15;
+                player.jumpSpeedBoost += 1.4f;
+                return;
+            case ItemID.AnkletoftheWind:
+                player.jumpSpeedBoost += 0.5f;
+                player.runAcceleration *= 1.1f;
                 return;
             case ItemID.LightningBoots:
-                player.moveSpeed -= 0.07f;
+                player.moveSpeed += 0.02f;
+                player.jumpSpeedBoost += 0.5f;
+                player.runAcceleration *= 1.1f;            
+                return;
+            case ItemID.TerrasparkBoots:
+                player.iceSkate = false;
+                player.lavaMax -= 42;
+                player.waterWalk = false;
+                player.rocketTimeMax -= 7;
+                player.accRunSpeed = 9f;
+                player.moveSpeed -= 0.08f;
+                return;
+            case ItemID.IceSkates:
+                player.GetModPlayer<TRAEPlayer>().icceleration = true;
                 return;
             case ItemID.FrostsparkBoots:
 			    player.rocketTimeMax -= 7;
 player.accRunSpeed = 6f;
-                player.moveSpeed -= 0.07f;
+                player.moveSpeed -= 0.08f;
                 player.GetModPlayer<TRAEPlayer>().icceleration = true;
                 return;
             case ItemID.BalloonHorseshoeHoney:
@@ -104,7 +155,6 @@ player.accRunSpeed = 6f;
             case ItemID.MagicQuiver:
                 player.magicQuiver = false;
                 player.GetModPlayer<TRAEPlayer>().MagicQuiver = true;
-                return;
                 return;
             case ItemID.MechanicalGlove:
                 player.kbGlove = false;
@@ -142,7 +192,7 @@ player.accRunSpeed = 6f;
                 player.meleeSpeed += 0.05f;
                 player.moveSpeed += 0.1f;
                 player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;// new bonus
-                // total stats: +6% damage, +2% crit, +0.5 hp/s, +4 defense. +5% melee speed, -6% mana costs, +10% movement speed
+                // total stats: +8% damage, +2% crit, +0.5 hp/s, +4 defense. +5% melee speed, +20 max mana, +10% movement speed
                 return;
             case ItemID.MoonStone:
                 if (!Main.dayTime)
@@ -194,13 +244,13 @@ player.accRunSpeed = 6f;
                 player.lifeRegen += 2;
                 return;
             case ItemID.MagicCuffs:
-                player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 1; // the duration of the buff is the Hit's damage multiplied by this number, then multiplied by 3. This also decides how much mana is recovered.
+                player.GetModPlayer<TRAEPlayer>().magicCuffsCount += 1; // the duration of the buff is the Hit's damage multiplied by this number, then multiplied by 3. This also decides how much mana is recovered.
                 player.statManaMax2 -= 20;
 				player.magicCuffs = false;
                 return;
             case ItemID.CelestialCuffs:
                 player.statManaMax2 -= 20;
-				player.GetModPlayer<TRAEPlayer>().MagicCuffsDamageBuffDuration += 1;
+				player.GetModPlayer<TRAEPlayer>().magicCuffsCount += 1;
 			    player.magicCuffs = false;
                 player.GetModPlayer<Mana>().celestialCuffsOverload = true;
                 return;
@@ -208,22 +258,11 @@ player.accRunSpeed = 6f;
                 player.starCloakItem = null;
                 player.GetModPlayer<TRAEPlayer>().NewstarsOnHit = true;
                 return;
+
             case ItemID.EmpressFlightBooster:
                 player.jumpSpeedBoost -= 2.4f;
                 return;
-            case ItemID.AnkhShield:
-            case ItemID.AnkhCharm:
-                player.buffImmune[BuffID.CursedInferno] = true;
-                player.buffImmune[BuffID.Ichor] = true;
-                player.buffImmune[BuffID.OnFire] = true;
-                player.buffImmune[BuffID.Electrified] = true;
-                player.buffImmune[BuffID.Frozen] = true;
-                player.buffImmune[BuffID.VortexDebuff] = true;
-                player.buffImmune[BuffID.Blackout] = true;
-                player.buffImmune[BuffID.Obstructed] = true;
-                player.buffImmune[BuffID.Dazed] = true;
-                player.buffImmune[BuffID.MoonLeech] = true;
-                return;
+
             case ItemID.MagicDagger:
                 player.GetModPlayer<TRAEPlayer>().MagicDagger = true;
                 return;
@@ -247,6 +286,23 @@ player.accRunSpeed = 6f;
 			case ItemID.CelestialEmblem:
                 player.GetDamage<MagicDamageClass>() -= 0.03f;
                 return;
+            case ItemID.DestroyerEmblem:
+                player.GetDamage<GenericDamageClass>() -= 0.1f;
+                player.GetCritChance<GenericDamageClass>() += 14;
+                return;
+            case ItemID.HerculesBeetle:
+                ++player.maxTurrets; 
+                player.GetDamage<SummonDamageClass>() -= 0.15f;
+                return;
+            case ItemID.NecromanticScroll:
+                player.GetModPlayer<TRAEPlayer>().minionCritChance += 5;
+                player.GetDamage<SummonDamageClass>() -= 0.1f;
+                return;
+            case ItemID.PapyrusScarab:
+                ++player.maxTurrets; 
+                player.GetModPlayer<TRAEPlayer>().minionCritChance += 5;
+                player.GetDamage<SummonDamageClass>() -= 0.15f;
+                return;
             case ItemID.HeroShield:
                 player.hasPaladinShield = false;
                 return;
@@ -254,17 +310,76 @@ player.accRunSpeed = 6f;
                 player.kbGlove = false;
                 player.meleeScaleGlove = false;
                 return;
+            case ItemID.BundleofBalloons:
+                player.noFallDmg = true;
+                return;
         }
     }
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
         switch (item.type)
         {
+            case ItemID.Bezoar:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Significantly increases the strength of friendly Poison";
+                    }
+                }
+                break;
+            case ItemID.AdhesiveBandage:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Significantly increases potency of friendly Poison\nIncreases potency of friendly debuffs by 33%";
+                    }
+                }
+                break;
+            case ItemID.MedicatedBandage:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Significantly increases potency of friendly Poison\nIncreases potency of friendly debuffs by 33%";
+                    }
+                }
+                break;
+            case ItemID.Blindfold:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "";
+                    }
+                }
+                break;
+            case ItemID.Nazar:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Unleashes curses to the wielder and nearby enemies when damaged" +
+                            "\nCurses either deal damage over time, reduce damage by 15% or defense by 16";
+                    }
+                }
+                break;
+            case ItemID.CountercurseMantra:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Provides immunity to a large number of debuffs\nUnleashes curses to nearby enemies when damaged";
+                    }
+                }
+                break;
             case ItemID.HoneyComb:
                 foreach (TooltipLine line in tooltips)
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
+
                         line.text = "Releases bees and increases life regeneration when damaged";
                     }
                 }
@@ -400,12 +515,12 @@ player.accRunSpeed = 6f;
                     }
                 }
                 return;
-            case ItemID.ObsidianRose: // REVISIT
+            case ItemID.ObsidianRose:
                 foreach (TooltipLine line in tooltips)
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text += " and from being set on fire\nDamage taken sets the player on fire\nIncreases damage by 30% when set on fire";
+                        line.text = "Magic attacks lower enemy contact damage by 15%";
                     }
                 }
                 return;
@@ -459,7 +574,20 @@ player.accRunSpeed = 6f;
                     }
                 }       
                 return;
-			case ItemID.CelestialEmblem:
+            case ItemID.DestroyerEmblem:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "22% increased critical strike chance";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "";
+                    }
+                }
+                return;
+            case ItemID.CelestialEmblem:
         foreach (TooltipLine line in tooltips)
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
@@ -539,9 +667,22 @@ player.accRunSpeed = 6f;
             case ItemID.FrostsparkBoots:
                 foreach (TooltipLine line in tooltips)
                 {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Allows super fast running and increases mobility in ice";
+                    }
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
-                        line.text = "Increases acceleration but decreases deceleration";
+                        line.text = "Increases acceleration";
+                    }
+                }
+                return;
+            case ItemID.AnkletoftheWind:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "10% increased movement, jump and acceleration speed";
                     }
                 }
                 return;
@@ -550,7 +691,32 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
-                        line.text = "Allows super fast running";
+                        line.text = "10% increased movement, jump and acceleration speed";
+                    }
+                }
+                return;
+            case ItemID.TerrasparkBoots:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "The wearer can run extremely fast";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip2")
+                    {
+                        line.text = "";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip3")
+                    {
+                        line.text = "";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip4")
+                    {
+                        line.text = "";
                     }
                 }
                 return;
@@ -616,15 +782,6 @@ player.accRunSpeed = 6f;
                         {
                             line.text = "Allows walking on water and grants immunity to lava";
                         }
-                    }
-                }
-                return;
-            case ItemID.PocketMirror:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                    {
-                        line.text = "10% reduced damage from projectiles\nApplied before defense and damage reduction\nGrants immunity to Petrified";
                     }
                 }
                 return;
@@ -728,6 +885,46 @@ player.accRunSpeed = 6f;
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
                         line.text = "Turns into holder into a merfolk when entering water";
+                    }
+                }
+                return;
+            case ItemID.NecromanticScroll:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "Gives minions a 5% chance to crit";
+                    }
+                }
+                return;
+            case ItemID.HerculesBeetle:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Increases your maximum number of sentries by 1";
+                    }
+                }
+                return;
+            case ItemID.PapyrusScarab:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Increases your max number of minions and sentries by 1";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "Gives minions a 5% chance to crit";
+                    }
+                }
+                return;
+            case ItemID.FrogGear:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "Allows the wearer to perform a short dash";
                     }
                 }
                 return;

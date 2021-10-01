@@ -124,13 +124,14 @@ namespace TRAEProject.NPCs
 					case NPCID.DukeFishron:
 						{
 							bool expertMode = Main.expertMode;
+							bool MasterMode = Main.masterMode;
 							float num = expertMode ? 1.1f : 1f;
 							bool flag = expertMode ? npc.life <= npc.lifeMax * 0.65 : npc.life <= npc.lifeMax * 0.5;
 							bool flag2 = expertMode && npc.life <= npc.lifeMax * 0.25;
 							bool flag3 = npc.ai[0] > 4f;
-							bool flag4 = npc.ai[0] > 9f;
+							bool PhaseThree = npc.ai[0] > 9f;
 							bool flag5 = npc.ai[3] < 10f;
-							if (flag4)
+							if (PhaseThree)
 							{
 								npc.damage = (int)(npc.defDamage * 1.1f * num);
 								npc.defense = 40;
@@ -148,7 +149,7 @@ namespace TRAEProject.NPCs
 							int num2 = expertMode ? 40 : 60;
 							float num3 = expertMode ? 0.55f : 0.45f;
 							float scaleFactor = expertMode ? 8.5f : 7.5f;
-							if (flag4)
+							if (PhaseThree)
 							{
 								num3 = 0.7f;
 								scaleFactor = 12f;
@@ -160,39 +161,39 @@ namespace TRAEProject.NPCs
 								scaleFactor = (expertMode ? 10f : 8f);
 								num2 = (expertMode ? 40 : 20);
 							}
-							else if (flag5 && !flag3 && !flag4)
+							else if (flag5 && !flag3 && !PhaseThree)
 							{
 								num2 = 30;
 							}
-							int lungeLength = expertMode ? 35 : 38; // up from 28/30
-							float lungeVelocity = expertMode ? 18f : 20f; // down from 17/16
-							if (flag4)
+							int lungeLength = MasterMode ? 38 : 30; // up from 28/30
+							float lungeVelocity = MasterMode ? 20f : 17f; // up from 17/16
+							if (PhaseThree && MasterMode)
 							{
 								lungeLength = 38;
 								lungeVelocity = 20f;
 							}
 							else if (flag5 && flag3)
 							{
-								lungeLength = (expertMode ? 27 : 30);
-								if (expertMode)
+								lungeLength = MasterMode ? 38 : 30;
+								if (MasterMode)
 								{
 									lungeVelocity = 21f;
 								}
 							}
-							int BubbleLimit = 160; // up from 80
-							int BubbleDelay = 6; // The higher the value the more delay between the bubbles; up from 4
+							int BubbleLimit = MasterMode ? 160 : 80; // up from 80
+							int BubbleDelay = MasterMode ? 6 : 4; // The higher the value the more delay between the bubbles; up from 4
 							float num8 = 0.3f;
 							float scaleFactor2 = 5f;
 							int num9 = 90;
 							int num10 = 180; // transition to phase 2
 							int num11 = 90; // transition to phase 3
 							int num12 = 30;
-							int bubbleAttackDuratioPhase2 = 240; // up from 120
-							int bubbledelayPhase2 = 8; // vanilla value = 4
+							int bubbleAttackDuratioPhase2 = MasterMode ? 240 : 120; // up from 120
+							int bubbledelayPhase2 = MasterMode ? 8 : 4; // vanilla value = 4
 							int phase3NadoDelay = 360;
 							float scaleFactor3 = 6f;
 							float scaleFactor4 = 20f;
-							float num15 = (float)Math.PI * 2f / (float)(bubbleAttackDuratioPhase2 / 2);
+							float num15 = (float)Math.PI * 2f / (bubbleAttackDuratioPhase2 / 2);
 							int num16 = 75;
 							Vector2 center = npc.Center;
 							Player player = Main.player[npc.target];
@@ -889,8 +890,9 @@ namespace TRAEProject.NPCs
 								}
 							}
 							else if (npc.ai[0] == 10f && !player.dead)
-							{
-								++phase3NadoTimer;
+							{								
+							    if (Main.masterMode)
+									++phase3NadoTimer;
 								if (phase3NadoTimer >= phase3NadoDelay)
 								{
 									Projectile.NewProjectile(npc.GetProjectileSpawnSource(), center.X, center.Y, 0f, 0f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);

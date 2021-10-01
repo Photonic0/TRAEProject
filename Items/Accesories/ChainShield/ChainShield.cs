@@ -16,17 +16,18 @@ namespace TRAEProject.Items.Accesories.ChainShield
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chain Shield");
-            Tooltip.SetDefault("Increases Max Life by 10%\nGetting hit raises defense");
+            Tooltip.SetDefault("Increases max life by 60\nTemporarily increases defense when damaged");
         }
         public override void SetDefaults()
         {
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
-            Item.value = 75000;
+            Item.value = 80000;
+            Item.defense = 1;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 = (int)(player.statLifeMax2 * 1.1f);
+            player.statLifeMax2 += 60;
             player.GetModPlayer<ShackleEffects>().cuffs += 1;
         }
         public override void AddRecipes()

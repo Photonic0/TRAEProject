@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Items.Summoner.AbsoluteZero;
 using TRAEProject.Common.GlobalNPCs;
-using TRAEProject.Items.Summoner.Whip;
+using TRAEProject.Items.FlamethrowerAmmo;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Projectiles
@@ -13,6 +13,10 @@ namespace TRAEProject.Changes.Projectiles
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
             if (target.HasBuff(BuffType<AbsoluteZeroTag>()) && crit == true && projectile.minion)
+            {
+                target.GetGlobalNPC<Freeze>().FreezeMe(target, damage / 4);
+            }
+            if (projectile.type == ProjectileType<FrozenGelP>())
             {
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, damage / 4);
             }
@@ -39,7 +43,6 @@ namespace TRAEProject.Changes.Projectiles
                         target.GetGlobalNPC<Freeze>().FreezeMe(target, 90);
                     }
                     break;
-
             }
         }
     }

@@ -87,6 +87,24 @@ namespace TRAEProject.Changes
                         }
                     }
                     break;
+                case NPCID.WitchDoctor:
+                    if (Main.dayTime)
+                    {
+                        bool foundBeetle = false;
+                        for (int i = 0; i < shop.item.Length; i++)
+                        {
+                            if (shop.item[i].type == ItemID.HerculesBeetle)
+                            {
+                                foundBeetle = true;
+                            }
+                        }
+                        if (!foundBeetle)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.HerculesBeetle);
+                            nextSlot++;
+                        }    
+                    }
+                    break;
             }
         }
     }
