@@ -16,9 +16,9 @@ namespace TRAEProject.Changes.Projectiles
             {
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, damage / 4);
             }
-            if (projectile.type == ProjectileType<FrozenGelP>())
+            if (projectile.type == ProjectileType<FrozenGelP>() && Main.rand.Next(10) == 0)
             {
-                target.GetGlobalNPC<Freeze>().FreezeMe(target, damage / 4);
+                target.GetGlobalNPC<Freeze>().FreezeMe(target, damage / 3);
             }
             switch(projectile.type)
             {

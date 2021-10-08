@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace TRAEProject.Items.Accesories.PutridToothNecklace
-{
+{    [AutoloadEquip(EquipType.Neck)]
     class PutridToothNecklace : ModItem
     {
         public override void SetStaticDefaults()

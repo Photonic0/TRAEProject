@@ -74,7 +74,7 @@ namespace TRAEProject.Items.Armor.IceArmor
 				Player.AddBuff(BuffType<MadFlockos>(), 1);
 				if (Player.ownedProjectileCounts[ProjectileType<MadFlocko>()] < 3)
 				{
-					Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(Player.whoAmI), Player.Center.X, Player.Center.Y, 0, 0, ProjectileType<MadFlocko>(), 20, 1f, Player.whoAmI, 0f, 0f);
+					Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(Player.whoAmI), Player.Center.X, Player.Center.Y, 0, 0, ProjectileType<MadFlocko>(), 15, 1f, Player.whoAmI, 0f, 0f);
 				}
 			}
 
@@ -85,7 +85,7 @@ namespace TRAEProject.Items.Armor.IceArmor
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Mad Flockos");
+			DisplayName.SetDefault("Flocko Flock");
 			Description.SetDefault("The Mad Flockos will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
@@ -129,12 +129,11 @@ namespace TRAEProject.Items.Armor.IceArmor
 			Projectile.timeLeft = 2;
 			Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
 			Projectile.tileCollide = false;
-			Projectile.minion = true;
-			Projectile.minionSlots = 0;
+			Projectile.minionSlots = 0; // is this needed? Wouldn't the default value be 0 already?
 			Projectile.timeLeft = 2;
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 40;
-            Projectile.DamageType = DamageClass.Summon;
+            ProjectileID.Sets.MinionShot[Type] = true;
         }
         public override bool MinionContactDamage()
         {
@@ -248,7 +247,7 @@ namespace TRAEProject.Items.Armor.IceArmor
                     }
                     Projectile.velocity += Main.rand.NextVector2CircularEdge(4f, 4f);
                 }
-                Projectile.ai[1] += 1f;
+                Projectile.ai[1] += 0.625f;
                 Projectile.rotation += Projectile.velocity.X * 0.1f + Projectile.velocity.Y * 0.05f;
                 Projectile.velocity *= 0.92f;
                 if (Projectile.ai[1] >= 9f)

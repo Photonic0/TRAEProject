@@ -62,6 +62,18 @@ namespace TRAEProject.Changes.Weapon
 					item.maxStack = 1;
 					item.value = Item.sellPrice(silver: 30);
 					break;
+				case ItemID.Javelin:
+					item.useStyle = 1;
+					canGetMeleeModifiers = true;
+					item.shoot = ProjectileType<Javelin>();
+					altShoot = ProjectileType<JavelinThrow>();
+					item.useTime = item.useAnimation = 20;
+					item.DamageType = DamageClass.Melee;
+					item.autoReuse = false;
+					item.consumable = false;
+					item.maxStack = 1;
+					item.value = Item.sellPrice(silver: 30);
+					break;
 				case ItemID.ThunderSpear:
 					item.useStyle = 1;
 					canGetMeleeModifiers = true;

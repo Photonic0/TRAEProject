@@ -13,7 +13,7 @@ namespace TRAEProject.Items.Summoner.AbsoluteZero
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Absolute Zero");
-            Tooltip.SetDefault("Your summons will focus struck enemies\n10 summon tag damage\n20% summon tag critical strike chance\nMinion critical hits will freeze enemies");
+            Tooltip.SetDefault("Your summons will focus struck enemies\n12 summon tag damage\n25% summon tag critical strike chance\nMinion critical hits will very briefly freeze enemies");
             ItemID.Sets.SummonerWeaponThatScalesWithAttackSpeed[Item.type] = true;
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
@@ -29,9 +29,9 @@ namespace TRAEProject.Items.Summoner.AbsoluteZero
             Item.noMelee = true;
             Item.DamageType = DamageClass.Summon;
             Item.noUseGraphic = true;
-            Item.damage = 165;
+            Item.damage = 150;
             Item.useTime = Item.useAnimation = 30;
-            Item.knockBack = 3f;
+            Item.knockBack = 2f;
             Item.shootSpeed = 5.35f;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(0, 10, 0, 0);
@@ -65,8 +65,26 @@ namespace TRAEProject.Items.Summoner.AbsoluteZero
         }
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 10;
-            npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 20;
+            npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 12;
+            npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 25;
+        }
+    }
+    public class AbsoluteZeroVisualOnHitEffect : GlobalProjectile
+    {
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            if (target.HasBuff(BuffType<AbsoluteZeroTag>()) && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]))
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    int num = Dust.NewDust(new Vector2(target.position.X, target.position.Y), target.width, target.height, 16, 0f, 0f, 0, default(Color), 1.2f);
+                    int num2 = Dust.NewDust(new Vector2(target.position.X, target.position.Y), target.width, target.height, DustID.Ice, 0f, 0f, 100, default(Color), 1f);
+                    Main.dust[num].noGravity = true;
+                    Main.dust[num].noLight = true;
+                    Main.dust[num2].noGravity = true;
+                    Main.dust[num2].noLight = true;
+                }
+            }
         }
     }
 }

@@ -2,11 +2,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ID.ArmorIDs;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.Items.Materials;
-using static Terraria.ID.ArmorIDs;
-
 namespace TRAEProject.Items.Armor.IceArmor
 {
     [AutoloadEquip(EquipType.Head)]
@@ -15,9 +14,10 @@ namespace TRAEProject.Items.Armor.IceArmor
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Glacial Crown");
+           
+            Head.Sets.DrawHatHair[Item.headSlot] = true;
             Tooltip.SetDefault("Increases your maximum number of minions by 1\n20% increased whip speed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-            Head.Sets.DrawHatHair[Item.headSlot] = true;
         }
         public override void SetDefaults()
         {

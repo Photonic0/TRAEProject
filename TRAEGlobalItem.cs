@@ -481,10 +481,11 @@ namespace TRAEProject
                     item.knockBack = 0.25f; // down from 0.3
                     item.reuseDelay = 6; // up from 0
                     return;
-                //case ItemID.EldMelter:
-                //    item.useAnimation = 50; // down from 30
-                //    item.useTime = 10; // up from 6
-                //    return;
+                case ItemID.EldMelter:
+				    item.damage = 30;
+                    item.useAnimation = 60; // up from 30
+                    item.useTime = 6; // up from 6
+                    return;
                 case ItemID.Harpoon:
                     item.shoot = ProjectileType<Harpoon>();
                     item.shootSpeed = 22f;
@@ -583,15 +584,15 @@ namespace TRAEProject
                 case ItemID.NailGun:
                     item.damage = 125; // up from 85
                     return;
-                case ItemID.PulseBow: // REVISIT
-                    item.useTime = 18;
-                    item.useAnimation = 18;
-                    return;
+    
                 case ItemID.Tsunami:
                     item.damage = 79;
                     item.useTime = 40;
                     item.useAnimation = 40;
-                    return;
+                    return;          
+			    case ItemID.FairyQueenRangedItem:
+					item.damage = 40; // down from 50
+				    return;
                 case ItemID.ChainGun:
                     item.damage = 41; // up from 31
                     return;
@@ -782,12 +783,6 @@ namespace TRAEProject
                 case ItemID.MoonShell:
                     item.SetNameOverride("Monster Shell");
                     return;
-                case ItemID.StardustDragonStaff:
-                    item.SetNameOverride("Lunar Dragon Staff");
-                    return;
-                case ItemID.MoonlordTurretStaff:
-                    item.SetNameOverride("Stardust Portal Staff");
-                    return;
                 case ItemID.ManaRegenerationBand:
                     item.SetNameOverride("Band of Dual Regeneration");
                     return;
@@ -806,6 +801,9 @@ namespace TRAEProject
                     return;
                 case ItemID.BottledHoney:
                     item.healLife = 70;
+                    return;
+                case ItemID.FastClock:
+                    item.value = 100000;
                     return;
             }
             baseVelocity = item.shootSpeed;
@@ -1393,9 +1391,13 @@ namespace TRAEProject
                 case ItemID.RainbowWhip:
                     foreach (TooltipLine line in tooltips)
                     {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "50 summon tag damage";
+                        }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "20% summon tag critical strike chance\nMinion critical strikes release colourful destruction";
+                            line.text = "30% summon tag critical strike chance\nColorful destruction comes out of enemies hit by summons";
                         }
                     }
                     return;

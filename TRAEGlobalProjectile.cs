@@ -290,7 +290,13 @@ namespace TRAEProject
                     DamageLossOffATileBounce = 0.2f;
                     return;
                 case ProjectileID.JestersArrow:
-                    DamageFalloff = 0.15f;
+                    projectile.penetrate = 7;      
+					projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
+                    return;
+				case ProjectileID.UnholyArrow:     
+					projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
                     return;
                 case ProjectileID.VortexBeaterRocket:
                     projectile.penetrate = -1;
@@ -362,6 +368,10 @@ namespace TRAEProject
                     return;
 				case ProjectileID.FrostBoltStaff:
                     projectile.penetrate = 2;
+                    return;
+                case ProjectileID.RainbowWhip:
+                    AddsBuff = BuffType<KaleidoscopeSecondTag>();
+                    AddsBuffDuration = 240;
                     return;
                 case ProjectileID.SapphireBolt:
                 case ProjectileID.EmeraldBolt:

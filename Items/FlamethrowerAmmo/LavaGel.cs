@@ -33,9 +33,9 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         }
         public override void AddRecipes()
         {
-            CreateRecipe(100).AddIngredient(ItemID.Hellstone)
+            CreateRecipe(50).AddIngredient(ItemID.Hellstone)
                 .AddIngredient(ItemID.Gel, 20)
-                .AddTile(TileID.Solidifier)
+                .AddTile(TileID.Hellforge)
                 .Register();
         } 
     }

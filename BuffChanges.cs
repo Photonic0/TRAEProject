@@ -23,10 +23,11 @@ namespace ChangesBuffs
             switch (type)
             {
                 case BuffID.MaceWhipNPCDebuff:
-                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 15;
+                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 10;
                     return;
                 case BuffID.RainbowWhipNPCDebuff:
-                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 10;
+                    npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 30;
+                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 20; // this isn't exactly 30% crit but whatevs
                     return;
                 case BuffID.ScytheWhipEnemyDebuff:
                     npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 10;
@@ -68,8 +69,6 @@ namespace ChangesBuffs
                     player.infernoCounter = 0;
                     return;
                 case BuffID.Panic:
-                    player.jumpSpeedBoost += 1f;
-                    player.runAcceleration *= 1.25f;
                     return;
                 case BuffID.Archery:
                     player.arrowDamage -= 0.08f; //  because Archery Potion uses a unique multiplier -8% makes it effectively +10% arrow damage 

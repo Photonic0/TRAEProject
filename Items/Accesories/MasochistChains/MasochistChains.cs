@@ -10,8 +10,9 @@ using TRAEProject.Items.Accesories.LifeCuffs;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.Accesories.MasochistChains
-{
-    class MasochistChains : ModItem
+{    
+    [AutoloadEquip(EquipType.HandsOn, EquipType.Neck, EquipType.HandsOff)]
+	class MasochistChains : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -26,7 +27,8 @@ namespace TRAEProject.Items.Accesories.MasochistChains
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<MasoCuffsEffect>().cuffs += 1;
+            player.GetModPlayer<MasoCuffsEffect>().cuffs += 1; 
+			player.panic = true;
         }
 
         public override void AddRecipes()

@@ -522,7 +522,7 @@ namespace ChangesArmor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "\n and greatly increased life regeneration";
+                            line.text += "\n and greatly increased life regeneration";
                         }
                     }
                     return;

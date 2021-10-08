@@ -126,9 +126,17 @@ namespace TRAEProject
         public override void AddRecipes()
         {
             Recipe HermesBoots = CreateRecipe(ItemID.HermesBoots).AddIngredient(ItemID.Aglet, 1).AddIngredient(ItemID.Silk, 20).AddTile(TileID.Loom);
-            HermesBoots.Register(); 
+            HermesBoots.Register();
+            Recipe BloodyTear = CreateRecipe(ItemID.BloodMoonStarter).AddIngredient(ItemID.Lens, 5).AddIngredient(ItemID.VilePowder, 50).AddIngredient(ItemID.Deathweed, 10).AddTile(TileID.DemonAltar);
+            BloodyTear.Register();
+            Recipe BloodyTear2 = CreateRecipe(ItemID.BloodMoonStarter).AddIngredient(ItemID.Lens, 5).AddIngredient(ItemID.ViciousPowder, 50).AddIngredient(ItemID.Deathweed, 10).AddTile(TileID.DemonAltar);
+            BloodyTear2.Register();
+            Recipe Mantra = CreateRecipe(ItemID.CountercurseMantra).AddIngredient(ItemID.AnkhCharm, 1).AddIngredient(ItemID.Nazar, 20).AddTile(TileID.TinkerersWorkbench);
+            Mantra.Register();
             Recipe Magnet = CreateRecipe(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
             Magnet.Register();
+            Recipe FrogGear = CreateRecipe(ItemID.FrogGear).AddIngredient(ItemID.FrogLeg, 1).AddIngredient(ItemID.Tabi, 1).AddTile(TileID.TinkerersWorkbench);
+            FrogGear.Register();
             Recipe WaspGun = CreateRecipe(ItemID.WaspGun);
             WaspGun.AddIngredient(ItemID.BeeGun, 1);
             WaspGun.AddIngredient(ItemID.SoulofFright, 20);
@@ -307,60 +315,7 @@ namespace TRAEProject
 					recipe.AddIngredient(ItemID.SoulofFright, 20);
 
                 }
-                if (recipe.HasResult(ItemID.CopperShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.CopperBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.CopperBar, 2);
-                }
-                if (recipe.HasResult(ItemID.TinShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.TinBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.TinBar, 2);
-                }
-                if (recipe.HasResult(ItemID.IronShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.IronBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.IronBar, 2);
-                }
-                if (recipe.HasResult(ItemID.LeadShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.LeadBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.LeadBar, 2);
-                }
-                if (recipe.HasResult(ItemID.SilverShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.SilverBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.SilverBar, 2);
-                }
-                if (recipe.HasResult(ItemID.TungstenShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.TungstenBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.TungstenBar, 2);
-                }
-                if (recipe.HasResult(ItemID.GoldShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.GoldBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.GoldBar, 2);
-                }
-                if (recipe.HasResult(ItemID.PlatinumShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.PlatinumBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.PlatinumBar, 2);
-                }
-                if (recipe.HasResult(ItemID.PlatinumShortsword))
-                {
-                    recipe.TryGetIngredient(ItemID.PlatinumBar, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.PlatinumBar, 2);
-                }
+              
                 if (recipe.HasResult(ItemID.FrostsparkBoots))
                 {
                     recipe.TryGetIngredient(ItemID.LightningBoots, out ingredientToRemove);
@@ -371,7 +326,6 @@ namespace TRAEProject
                 {
                     recipe.TryGetIngredient(ItemID.Aglet, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.FlurryBoots, 1);
                 }
                 if (recipe.HasResult(ItemID.TerrasparkBoots))
                 {
@@ -603,6 +557,10 @@ namespace TRAEProject
                     recipe.AddIngredient(ItemID.BandofStarpower, 1);
                 }
                 if (recipe.HasResult(ItemID.AnkhCharm))
+                {
+                    recipe.RemoveRecipe();
+                }
+                if (recipe.HasResult(ItemID.FrogGear))
                 {
                     recipe.RemoveRecipe();
                 }

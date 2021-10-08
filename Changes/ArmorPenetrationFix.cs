@@ -35,7 +35,7 @@ namespace TRAEProject.Changes
                 }
                 if (npc.HasBuff(BuffID.WitheredArmor))
                 {
-                    AP += 16;
+                    AP += 25;
                 }
                 return AP;
             });

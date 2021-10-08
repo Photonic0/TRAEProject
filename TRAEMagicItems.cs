@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 using TRAEProject.Changes;
-
+using TRAEProject.Items.Accesories.AngelicStone;
 namespace TRAEProject
 {
     public class TRAEMagicItem : GlobalItem
@@ -305,14 +305,19 @@ namespace TRAEProject
         }
         public override void OnConsumeItem(Item item, Player player)
         {
-            switch (item.type)
+			switch (item.type)
             {
                 case ItemID.LesserManaPotion:
                 case ItemID.ManaPotion:
                 case ItemID.GreaterManaPotion:
                 case ItemID.SuperManaPotion:
-                    player.AddBuff(BuffID.ManaSickness, 3000, false);
-                    return;
+		            int maxTime = 3600 / (1 + player.GetModPlayer<AngelicStoneEffects>().stones);
+					player.AddBuff(BuffID.ManaSickness, maxTime, false);
+					if (player.buffTime[player.FindBuffIndex(BuffID.ManaSickness)] > maxTime)
+                    {
+                        player.buffTime[player.FindBuffIndex(BuffID.ManaSickness)] = maxTime;
+                    }
+					return;
             }
             return;
         }

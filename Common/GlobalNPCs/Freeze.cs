@@ -18,6 +18,7 @@ namespace TRAEProject.Common.GlobalNPCs
 
         public override bool InstancePerEntity => true;
         public float freezeResist = 0f;
+		 public bool freezeImmune = false;
 		public override void SetDefaults(NPC npc)
         {
 			freezeResist = 1f - (float)npc.lifeMax / ((float)npc.lifeMax + 2000f);
@@ -27,7 +28,7 @@ namespace TRAEProject.Common.GlobalNPCs
         public void FreezeMe(NPC npc, int time)
         {
             //NPCs immune to frostburn are immune to getting frozen
-            if(npc.buffImmune[BuffID.Frostburn] || npc.buffImmune[BuffID.Frostburn2])
+            if(npc.buffImmune[BuffID.Frostburn] || npc.buffImmune[BuffID.Frostburn2] || npc.aiStyle == 6 || freezeImmune)
             {
                 return;
             }

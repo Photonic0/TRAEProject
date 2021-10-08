@@ -10,7 +10,7 @@ using TRAEProject.Changes.Accesory;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.Accesories.ChainShield
-{
+{    [AutoloadEquip(EquipType.Shield)]
     class ChainShield : ModItem
     {
         public override void SetStaticDefaults()

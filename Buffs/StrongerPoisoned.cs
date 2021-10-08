@@ -20,7 +20,7 @@ namespace TRAEProject.Buffs
         {
             if (npc.HasBuff(BuffID.Poisoned))
 			{
-				npc.RequestBuffRemoval(BuffID.Poisoned);
+				npc.DelBuff(BuffID.Poisoned);
 			}				
         }
     }

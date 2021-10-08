@@ -49,8 +49,6 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.GoldenShowerFriendly);
-            Projectile.height = 10;
-            Projectile.width = 10;
             AIType = ProjectileID.GoldenShowerFriendly;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.timeLeft = 90;            
@@ -64,7 +62,7 @@ namespace TRAEProject.Items.FlamethrowerAmmo
             {
                 Dust.NewDustDirect(Projectile.Center, 1, 1, DustID.Smoke, 0, -1);
             }
-        }
+        }        
         public override void Kill(int timeLeft)
         {
             int spits = Main.rand.Next(1, 2);

@@ -34,7 +34,7 @@ namespace TRAEProject.Items.FlamethrowerAmmo
 
         public override void AddRecipes()
         {
-            CreateRecipe(100).AddIngredient(ItemID.CursedFlames)
+            CreateRecipe(100).AddIngredient(ItemID.CursedFlame)
                 .AddIngredient(ItemID.Gel, 20)
                 .AddTile(TileID.Solidifier)
                 .Register();

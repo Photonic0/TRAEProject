@@ -5,8 +5,9 @@ using TRAEProject.Items.Accesories.PalladiumShield;
 using static Terraria.ModLoader.ModContent;
 public class ChangesWorld : ModSystem
 {
-    public static readonly int[] PyramidItems = new int[] { ItemID.SandstorminaBottle, ItemID.FlyingCarpet, ItemID.AnkhCharm, ItemID.AncientChisel, ItemID.SandBoots, ItemID.ThunderSpear, ItemID.ThunderStaff, ItemID.CatBast, ItemID.MagicConch};
-    public static readonly int[] ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury, ItemType<PalladiumShield>()};
+    public static readonly int[] PyramidItems = new int[] { ItemID.SandstorminaBottle, ItemID.FlyingCarpet, ItemID.AnkhCharm, ItemID.AncientChisel, ItemID.SandBoots, ItemID.ThunderSpear, ItemID.ThunderStaff, ItemID.CatBast, ItemID.MagicConch };
+
+    public static readonly int[] ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury, ItemType<PalladiumShield>() };
 
     public override void PostWorldGen()
     {
@@ -15,7 +16,7 @@ public class ChangesWorld : ModSystem
             Chest chest = Main.chest[chestIndex];
             if (chest != null)
             {
-                if (WorldGen.genRand.NextBool(2)  && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 0 * 36)
+                if (WorldGen.genRand.NextBool(2) && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 0 * 36)
                 {
                     for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
                     {
@@ -104,7 +105,3 @@ public class ChangesWorld : ModSystem
         }
     }
 }
-
-
-
-

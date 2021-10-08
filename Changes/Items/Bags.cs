@@ -26,13 +26,113 @@ namespace TRAEProject.Changes.Items
 			}
 			if (context == "bossBag" && arg == ItemID.PlanteraBossBag) // TO DO
 			{
-				
-				player.QuickSpawnItem(ItemID.BoneGlove, 1);
-				if (Main.rand.Next(3) == 0)
-					player.QuickSpawnItem(ItemID.SkeletronHand, 1);
+				player.TryGettingDevArmor();
+				if (Main.rand.Next(7) == 0)
+				{
+					player.QuickSpawnItem(ItemID.PlanteraMask);
+				}
+				player.QuickSpawnItem(ItemID.TempleKey);
+				player.QuickSpawnItem(ItemID.SporeSac);
+				if (Main.rand.Next(15) == 0)
+				{
+					player.QuickSpawnItem(ItemID.Seedling);
+				}
+				if (Main.rand.Next(20) == 0)
+				{
+					player.QuickSpawnItem(ItemID.TheAxe);
+				}
+				if (Main.rand.Next(2) == 0)
+				{
+					player.QuickSpawnItem(ItemID.PygmyStaff);
+				}
+				if (Main.rand.Next(10) == 0)
+				{
+					player.QuickSpawnItem(ItemID.ThornHook);
+				}
+				switch (Main.rand.Next(3))
+				{
+					case 0:
+						player.QuickSpawnItem(ItemID.GrenadeLauncher);
+						player.QuickSpawnItem(ItemID.RocketI, Main.rand.Next(50, 150));
+						player.QuickSpawnItem(ItemID.VenusMagnum);
+						break;
+					case 1:
+						player.QuickSpawnItem(ItemID.Seedler);
+						player.QuickSpawnItem(ItemID.VenusMagnum);
+						break;
+					case 2:
+						player.QuickSpawnItem(ItemID.LeafBlower);
+						player.QuickSpawnItem(ItemID.NettleBurst);
+						break;
+				}
 				return false;
 			}
-			if (context == "crate" && (arg == ItemID.OasisCrate || arg == ItemID.OasisCrateHard))
+			if (context == "bossBag" && arg == ItemID.FairyQueenBossBag) // TO DO
+			{
+				player.TryGettingDevArmor();
+				player.QuickSpawnItem(ItemID.EmpressFlightBooster);
+				if (Main.rand.Next(7) == 0)
+				{
+					player.QuickSpawnItem(ItemID.FairyQueenMask);
+				}
+				if (Main.rand.Next(10) == 0)
+				{
+					player.QuickSpawnItem(ItemID.RainbowWings);
+				}
+				if (Main.rand.Next(20) == 0)
+				{
+					player.QuickSpawnItem(ItemID.SparkleGuitar);
+				}
+				if (Main.rand.Next(4) == 0)
+				{
+					player.QuickSpawnItem(ItemID.HallowBossDye);
+				}
+				if (Main.rand.Next(20) == 0)
+				{
+					player.QuickSpawnItem(ItemID.RainbowCursor);
+				}
+				switch (Main.rand.Next(4))
+				{
+					case 0:
+						player.QuickSpawnItem(ItemID.PiercingStarlight);
+						break;
+					case 1:
+						player.QuickSpawnItem(ItemID.FairyQueenMagicItem);
+						break;
+					case 2:
+						player.QuickSpawnItem(ItemID.FairyQueenRangedItem);
+						break;
+					case 3:
+						player.QuickSpawnItem(ItemID.RainbowCrystalStaff);
+						break;
+				}
+				return false;
+			}
+			if (context == "bossBag" && arg == ItemID.MoonLordBossBag) // TO DO
+			{
+				player.TryGettingDevArmor();
+				if (Main.rand.Next(7) == 0)
+				{
+					player.QuickSpawnItem(ItemID.BossMaskMoonlord);
+				}
+				if (Main.rand.Next(10) == 0)
+				{
+					player.QuickSpawnItem(ItemID.MeowmereMinecart);
+				}
+				if (!player.HasItem(ItemID.PortalGun))
+				{
+					player.QuickSpawnItem(3384);
+				}
+				player.QuickSpawnItem(ItemID.LunarOre, Main.rand.Next(90, 111));
+				player.QuickSpawnItem(ItemID.GravityGlobe);
+				player.QuickSpawnItem(ItemID.SuspiciousLookingTentacle);
+				player.QuickSpawnItem(4954); // celestial starboard
+				int item = Utils.SelectRandom<int>(Main.rand, 3063, 3389, 3065, 1553, 3930, 3541, 3570, ItemID.RainbowWhip, ItemID.StardustDragonStaff);
+				player.QuickSpawnItem(item); 
+				return false;
+			}
+
+				if (context == "crate" && (arg == ItemID.OasisCrate || arg == ItemID.OasisCrateHard))
 			{
 				int index = Main.rand.Next(ChangesWorld.PyramidItems.Length);
 				int itemWhoAmI = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ChangesWorld.PyramidItems[index], 1, noBroadcast: false, -1);

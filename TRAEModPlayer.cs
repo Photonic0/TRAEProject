@@ -61,7 +61,7 @@ namespace TRAEProject
         int timebeforeReleasingBees = 0;
         int ifHoneyedWithBeepack = 1;
         public int beedamage = 1;
-        public int minionCritChance = 1;
+        public int minionCritChance = 0;
         public int titatimer = 0;
         public bool FastFall = false;
         public bool AquaAffinity = false;
@@ -110,6 +110,7 @@ namespace TRAEProject
             AquaAffinity = false;
             LavaShield = false;
             chanceNotToConsumeAmmo = 0;
+		    minionCritChance = 0;
         }
         public override void UpdateDead()
         {
@@ -156,7 +157,7 @@ namespace TRAEProject
             AquaAffinity = false;
             magicdaggercount = 0;
             chanceNotToConsumeAmmo = 0;
-            overchargedMana = 0;
+			minionCritChance = 0;
         }
         public override void PreUpdate()
         {
@@ -165,9 +166,6 @@ namespace TRAEProject
         }
         public override void PostUpdate()
         {
-            //if (overchargedMana > 1)
-            //    overchargedMana -= overchargedMana / 10 + 1;
-            Player.statMana += overchargedMana;
 			Player.jumpSpeedBoost += 1f;
             Player.manaRegenCount = 0;
             Player.manaRegen = 0;
@@ -302,11 +300,6 @@ namespace TRAEProject
         }
         public override void PostUpdateEquips()
         {
-            if (Player.endurance > 0.25f)
-            {
-                float test = Player.endurance * 100 / (Player.endurance + 0.85f) * 0.01f;
-                Player.endurance = test;
-            }
             // coded by Qwerty
             for (int i = 3; i < 10; i++)
             {
@@ -399,11 +392,6 @@ namespace TRAEProject
                     Player.velocity.Y += 0.7f;
                 Player.velocity.Y += 0.2f;
             }
-            if (fleg)
-            {
-                Player.jumpSpeedBoost += 2.4f;
-                Player.extraFall += 20;
-            }
             if (Hivepack)
             {
                 if (Player.HasBuff(BuffID.Honey))
@@ -426,26 +414,21 @@ namespace TRAEProject
                 {
                     ++timebeforeReleasingBees;
                     beetimer = 0;
-                    if (timebeforeReleasingBees > 15 * ifHoneyedWithBeepack && beesStored > 0)
+                    if (timebeforeReleasingBees > 10 * ifHoneyedWithBeepack && beesStored > 0)
                     {
                         timebeforeReleasingBees = 0;
                         --beesStored;
+						int BeeID = ProjectileID.Bee;
                         if (ifHoneyedWithBeepack == 2)
                         {
-                            int bee = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.X, Player.position.Y, 1 * Player.direction, 0, ProjectileID.GiantBee, 20, 2, Player.whoAmI);
-                            Main.projectile[bee].usesLocalNPCImmunity = true;
-                            Main.projectile[bee].localNPCHitCooldown = 10;
+							BeeID = ProjectileID.GiantBee;
                         }
-                        else
-                        {
-                            int bee = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.Y, 1 * Player.direction, 0, ProjectileID.Bee, 10, 1, Player.whoAmI);
-                            Main.projectile[bee].usesLocalNPCImmunity = true;
-                            Main.projectile[bee].localNPCHitCooldown = 10;
-                        }
+                        int bee = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.X, Player.position.Y, 1 * Player.direction, 0, BeeID, 10 * ifHoneyedWithBeepack, 2, Player.whoAmI);
+
                     }
                 }
 
-                Player.jumpSpeedBoost += 1.125f + 0.8f * beesStored;
+                Player.jumpSpeedBoost += 0.2f * beesStored;
             }
             if (Player.HeldItem.type == ItemID.BeeGun)
             {
@@ -669,7 +652,6 @@ namespace TRAEProject
         }
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
-            damage = Player.GetModPlayer<Defense>().DamageAfterDefenseAndDR;
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)
@@ -719,6 +701,8 @@ namespace TRAEProject
                         {
                             ++enemyLimit;
                             int thorndamage = (int)(damage * runethorns + enemy.defense * 0.5);
+                            if (thorndamage > 1000)
+                                thorndamage = 1000;
                             //if (enemy.type == NPCID.TheDestroyerBody)
                             //    thorndamage /= 10;
                             //if (enemy.type == NPCID.TheDestroyerTail)
@@ -751,7 +735,9 @@ namespace TRAEProject
                     {
                         if (enemy.type == NPCID.TheDestroyerTail)
                             damage /= 4;
-                        int thorndamage = (int)(damage * newthorns + npc.defense * 0.5);
+                        int thorndamage = (int)(damage * newthorns + npc.defense * 0.5); 
+                        if (thorndamage > 1000)
+                            thorndamage = 1000;
                         Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
                     }
                 }
@@ -759,11 +745,11 @@ namespace TRAEProject
             Shadowdodge();
             if (Player.honeyCombItem != null && !Player.honeyCombItem.IsAir)
             {
-                Player.AddBuff(BuffID.Honey, 300 + damage * 6);
+                Player.AddBuff(BuffID.Honey, 300 + damage * 4);
             }
             if (Player.panic)
             {
-                Player.AddBuff(BuffID.Panic, 300 + damage * 6);
+                Player.AddBuff(BuffID.Panic, 300 + damage * 4);
             }
             if (Player.longInvince && damage > 100)
             {
@@ -777,7 +763,6 @@ namespace TRAEProject
         }
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
-            damage = Player.GetModPlayer<Defense>().DamageAfterDefenseAndDR; 
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)
@@ -824,7 +809,9 @@ namespace TRAEProject
                         }
                         if (!enemy.dontTakeDamage && enemy.active && !enemy.friendly && !enemy.immortal && distanceTo < distance)
                         {
-                            int thorndamage = (int)(damage * runethorns + enemy.defense * 0.5);
+                            int thorndamage = (int)(damage * runethorns + enemy.defense * 0.5); 
+                            if (thorndamage > 1000)
+                                thorndamage = 1000;
                             if (enemy.type == NPCID.TheDestroyerBody)
                                 thorndamage /= 10;
                             if (enemy.type == NPCID.TheDestroyerTail)
@@ -856,7 +843,10 @@ namespace TRAEProject
                         {
                             if (enemy.type == NPCID.TheDestroyerTail)
                                 damage /= 4;
+
                             int thorndamage = (int)(damage * newthorns + enemy.defense * 0.5);
+                            if (thorndamage > 1000)
+                                thorndamage = 1000;
                             Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
                         }
                     }
@@ -868,11 +858,11 @@ namespace TRAEProject
                 }
                 if (Player.honeyCombItem != null && !Player.honeyCombItem.IsAir)
                 {
-                    Player.AddBuff(BuffID.Honey, 300 + damage * 6, false);
+                    Player.AddBuff(BuffID.Honey, 300 + damage * 4, false);
                 }
                 if (Player.panic)
                 {
-                    Player.AddBuff(BuffID.Panic, 300 + damage * 6, false);
+                    Player.AddBuff(BuffID.Panic, 300 + damage * 4, false);
                 }
                 if (Player.longInvince && damage > 100)
                 {

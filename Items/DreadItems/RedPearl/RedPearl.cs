@@ -13,8 +13,8 @@ namespace TRAEProject.Items.DreadItems.RedPearl
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Red Rearl");
-            Tooltip.SetDefault("Increases enemy spawn rates and luck.");
+            DisplayName.SetDefault("Red Pearl");
+            Tooltip.SetDefault("Increases enemy spawn rates and luck");
         }
         public override void SetDefaults()
         {

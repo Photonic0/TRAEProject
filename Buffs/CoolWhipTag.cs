@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 namespace TRAEProject.Buffs
 {
@@ -7,6 +8,7 @@ namespace TRAEProject.Buffs
 		public override void SetStaticDefaults() 
 		{
 			Main.debuff[Type] = true;
+			BuffID.Sets.IsAnNPCWhipDebuff[Type] = true;
 			Main.buffNoSave[Type] = true;
 			DisplayName.SetDefault("CoolWhipDebuff");
 			Description.SetDefault("Okay, how in the hell did you get this debuff on you");
