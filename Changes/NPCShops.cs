@@ -48,26 +48,34 @@ namespace TRAEProject.Changes
                         }
                     }
                     break;
+                case NPCID.Wizard:
+                    shop.item[nextSlot].SetDefaults(ItemID.FastClock);
+                    nextSlot++;
+                    break;
                 case NPCID.SkeletonMerchant:
                     if (Main.moonPhase == 2 || Main.moonPhase == 8)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.Rally);
-                        nextSlot++;
+                        nextSlot++; 
+                        break;
                     }
                     if (Main.moonPhase == 4 || Main.moonPhase == 6)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.ChainKnife);
-                        nextSlot++;
+                        nextSlot++; 
+                        break;
                     }
                     if (Main.moonPhase == 3 || Main.moonPhase == 7)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.BoneSword);
-                        nextSlot++;
+                        nextSlot++; 
+                        break;
                     }
                     if (Main.moonPhase == 1 || Main.moonPhase == 5)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.BookofSkulls);
                         nextSlot++;
+                        break;
                     }
                     break;
                 case NPCID.Truffle:

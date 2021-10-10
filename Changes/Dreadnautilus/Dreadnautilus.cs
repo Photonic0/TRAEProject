@@ -19,6 +19,7 @@ using TRAEProject.Items.DreadItems.Brimstone;
 using TRAEProject.Items.DreadItems.DreadSummon;
 using TRAEProject.Items.DreadItems.DreadTrophy;
 using TRAEProject.Items.DreadItems.ShellSpinner;
+using TRAEProject.Items.DreadItems.BloodSquidEgg;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Dreadnautilus
@@ -63,10 +64,11 @@ namespace TRAEProject.Changes.Dreadnautilus
             {
 				//Add the treasure bag (automatically checks for expert mode)
 				npcLoot.Add(ItemDropRule.BossBag(ItemType<DreadBag>())); //this requires you to set BossBag in SetDefaults accordingly
-
+				//
+				LeadingConditionRule MasterRule = new LeadingConditionRule(new Conditions.IsMasterMode());
 				//All our drops here are based on "not expert", meaning we use .OnSuccess() to add them into the rule, which then gets added
 				LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
-
+			
 				//Notice we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal mode
 				notExpertRule.OnSuccess(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, ItemType<ShellSpinner>(), ItemType<ShellSpinner>(), ItemType<Brimstone>(), ItemID.SanguineStaff));
 				//Finally add the leading rule
@@ -100,7 +102,10 @@ namespace TRAEProject.Changes.Dreadnautilus
 				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 				notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BloodMoonStarter, 2));
 				npcLoot.Add(notExpertRule);
-
+				
+				MasterRule = new LeadingConditionRule(new Conditions.IsMasterMode());
+			    MasterRule.OnSuccess(ItemDropRule.Common(ItemType<BloodSquidEgg>(), 4));
+				npcLoot.Add(MasterRule);
 				//Trophies are spawned with 1/10 chance
 				npcLoot.Add(ItemDropRule.Common(ItemType<DreadTrophy>(), 10));
 
@@ -455,7 +460,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 								npc.BloodNautilus_GetMouthPositionAndRotation(out var mouthPosition5, out var mouthDirection5);
 								if (npc.Center.Distance(nPCAimedTarget.Center) > 30f)
 								{
-									npc.velocity = mouthDirection5 * -17f * (phase == 2 ? 2f : 1f);
+									npc.velocity = mouthDirection5 * -17f * (phase == 2 ? 1.5f : 1f);
 								}
 								#region dust
 								for (int m = 0; m < 4; m++)

@@ -30,10 +30,10 @@ namespace TRAEProject.Changes.Accesory
                 damage = (int)(damage * 1.1f);              
 				for (int i = 0; i < 4; i++) 
 				{
-Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
-	Dust d = Dust.NewDustPerfect(target.Center, DustID.Shadowflame, speed * 5, Scale: 2.5f);
-	d.noGravity = true;
-				}
+                    Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                    Dust d = Dust.NewDustPerfect(target.Center, DustID.Shadowflame, speed * 5, Scale: 2.5f);
+                    d.noGravity = true;
+                }
             }
         }
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -43,10 +43,10 @@ Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
                 damage = (int)(damage * 1.1f);			
 				for (int i = 0; i < 4; i++) 
 				{
-Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
-	Dust d = Dust.NewDustPerfect(target.Center, DustID.Shadowflame, speed * 5, Scale: 2.5f);
-	d.noGravity = true;
-				}
+                    Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                    Dust d = Dust.NewDustPerfect(target.Center, DustID.Shadowflame, speed * 5, Scale: 2.5f);
+                    d.noGravity = true;
+                }
             }
         }
     }

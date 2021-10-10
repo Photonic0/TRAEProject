@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace TRAEProject.Items.Accesories.MirrorShield
-{
+{    [AutoloadEquip(EquipType.Shield)]
     class MirrorShield : ModItem
     {
         public override void SetStaticDefaults()

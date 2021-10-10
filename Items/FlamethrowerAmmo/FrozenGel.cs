@@ -21,7 +21,7 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         {
             Item.damage = 20;
             Item.DamageType = DamageClass.Ranged;
-            Item.knockBack = 2;
+            Item.knockBack = 0.5f;
             Item.value = Item.sellPrice(0, 0, 10, 0);
             Item.rare = ItemRarityID.Pink;
             Item.width = 24;
@@ -61,7 +61,8 @@ namespace TRAEProject.Items.FlamethrowerAmmo
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.hostile = false;
             Projectile.friendly = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.15f;
+			Projectile.tileCollide = false;
+            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.2f;
         }
         public override void AI()
         {

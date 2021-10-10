@@ -13,13 +13,13 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Solar Gel");
-            Tooltip.SetDefault("Burns like a solar flare");
+            Tooltip.SetDefault("Shoots a concentrated Solar Flare");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 
         public override void SetDefaults()
         {
-            Item.damage = 50;
+            Item.damage = 40;
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 2;
             Item.value = Item.sellPrice(0, 0, 10, 0);

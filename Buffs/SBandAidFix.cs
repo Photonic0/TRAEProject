@@ -23,7 +23,7 @@ namespace TRAEProject.Buffs
             if (npc.HasBuff(BuffType<BandAidFix>()))
 			{
 			if (npc.lifeRegen < 0)
-            npc.lifeRegen = (int)(npc.lifeRegen * 1.33);
+            npc.lifeRegen = (int)(npc.lifeRegen * 1.5);
 			}
         }
     }

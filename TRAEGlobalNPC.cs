@@ -1069,23 +1069,6 @@ namespace TRAEProject
                 Lighting.AddLight(npc.position, 0.1f, 0.2f, 0.7f);
             }
         }
-
-        public override void SetupTravelShop(int[] shop, ref int nextSlot)
-        {
-            for (int i = 0; i < shop.Length; i++)
-            {
-                //if (shop[i] == ItemID.CelestialMagnet)
-                //{
-                //    for (int j = i + 1; j < shop.Length; j++)
-                //    {
-                //        shop[j - 1] = shop[j];
-                //    }
-                //    shop[shop.Length - 1] = 0;
-                //    nextSlot--;
-                //}
-            }
-        }
-
         public override bool CheckDead(NPC npc) // makes something happen when NPC dies
         {
             if (Corrupted)
@@ -1097,22 +1080,6 @@ namespace TRAEProject
                     Projectile.NewProjectile(npc.GetProjectileSpawnSource(),npc.position.X, npc.position.Y, velX, velY, ProjectileID.TinyEater, 52, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
-            //switch (npc.type)
-            //{
-            //    case NPCID.Plantera:
-            //        if (Main.expertMode && !NPC.downedPlantBoss)
-            //        {
-            //            if (Main.netMode == NetmodeID.SinglePlayer)
-            //            {
-            //                Main.NewText("You feel your armor harden...", 50, 255, 130, false);
-            //            }
-            //            else if (Main.netMode == NetmodeID.Server)
-            //            {
-            //                NetMessage.BroadcastChatMessage(NetworkText.FromKey("You feel your armor harden..."), new Color(50, 255, 130), -1);
-            //            }
-            //        }
-            //        return true;
-            //}
             return true;
         }
     }

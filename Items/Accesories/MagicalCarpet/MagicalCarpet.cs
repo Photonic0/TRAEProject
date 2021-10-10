@@ -29,11 +29,19 @@ namespace TRAEProject.Items.Accesories.MagicalCarpet
 
 		public override void SetDefaults()
 		{
-			Item.width = 22;
-			Item.height = 20;
-			Item.value = 10000;
-			Item.rare = ItemRarityID.LightRed;
+		    Item.width = 66;
+			Item.height = 24;
+			Item.value = Item.sellPrice(gold: 10);
+			Item.rare = ItemRarityID.LightPurple;
 			Item.accessory = true;
+		}
+		public override void AddRecipes()
+		{
+			CreateRecipe().AddIngredient(ItemID.FlyingCarpet)
+				.AddIngredient(ItemID.AncientBattleArmorMaterial, 1)
+				.AddIngredient(ItemID.SoulofFlight, 20)
+				.AddTile(TileID.TinkerersWorkbench)
+				.Register();
 		}
 
 
@@ -69,13 +77,6 @@ namespace TRAEProject.Items.Accesories.MagicalCarpet
                 speed = 6.25f;
             }
         }
-        public override void AddRecipes()
-		{
-			CreateRecipe()
-				.AddIngredient(ItemID.FlyingCarpet)
-				.AddIngredient(ItemID.SoulofFlight, 20)
-				.Register();
-		}
         public override bool WingUpdate(Player player, bool inUse)
         {
             
@@ -120,4 +121,6 @@ namespace TRAEProject.Items.Accesories.MagicalCarpet
         }
     }
 
+		
+	}
 }

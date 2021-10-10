@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace TRAEProject.Items.Accesories.TwoFlowers
-{
+{    [AutoloadEquip(EquipType.Waist)]
     class TwoFlowers : ModItem
     {
         public override void SetStaticDefaults()

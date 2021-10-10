@@ -24,7 +24,7 @@ namespace TRAEProject.Items.DreadItems.BloodBoiler
         {
             Item.width = 38;
             Item.height = 32;
-            Item.damage = 25;
+            Item.damage = 19;
             Item.useAnimation = 60;
             Item.useTime = 10;
             Item.autoReuse = true;
@@ -46,7 +46,7 @@ namespace TRAEProject.Items.DreadItems.BloodBoiler
             {
                 position += muzzleOffset;
             }
-            if (Main.rand.Next(8) == 0)
+            if (Main.rand.Next(12) == 0)
             {
                 Projectile.NewProjectile(source, position, velocity, ProjectileType<BloodyGelP>(), damage, knockback, player.whoAmI);
             }

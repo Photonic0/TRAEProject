@@ -33,7 +33,7 @@ namespace TRAEProject.Items.FlamethrowerAmmo
 
         public override void AddRecipes()
         {
-            CreateRecipe(100).AddIngredient(ItemID.Gel, 20)
+            CreateRecipe(2).AddIngredient(ItemID.Gel, 1)
                 .AddTile(TileID.WaterCandle)
                 .Register();
         }

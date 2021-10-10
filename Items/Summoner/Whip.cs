@@ -2,16 +2,16 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TRAEProject.Items.Summoner.AbsoluteZero;
+using TRAEProject.Buffs;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Enums;
 using Terraria.GameContent;
-using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Items.Accesories.ShadowflameCharm;
+using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.Summoner.Whip
 {
@@ -51,10 +51,65 @@ namespace TRAEProject.Items.Summoner.Whip
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
 			Projectile.damage = (int)(Projectile.damage * (1f - fallOff));
+			Player player = Main.player[Projectile.owner];
+			if (player.GetModPlayer<TRAEPlayer>().PirateSet)
+			{
+				target.AddBuff(BuffType<PirateTag>(), 240);
+			}
 			if (tag != -1)
 			{
 				target.AddBuff(tag, 240);
 			}
+			       if (player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge > 600)
+                {
+                    for (int i = 0; i < player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge / 500; ++i)
+                    {
+                        int direction = Main.rand.NextFromList(-1, 1);
+                        float k = Main.screenPosition.X;
+                        if (direction < 0)
+                        {
+                            k += (float)Main.screenWidth;
+                        }
+                        float y2 = Main.screenPosition.Y;
+                        y2 += (float)Main.rand.Next(Main.screenHeight);
+                        Vector2 vector = new Vector2(k, y2);
+                        float num2 = target.Center.X - vector.X;
+                        float num3 = target.Center.Y - vector.Y;
+                        num2 += (float)Main.rand.Next(-50, 51) * 0.1f;
+                        num3 += (float)Main.rand.Next(-50, 51) * 0.1f;
+                        float num4 = (float)Math.Sqrt(num2 * num2 + num3 * num3);
+                        num4 = 24f / num4;
+                        num2 *= num4;
+                        num3 *= num4;
+                        Projectile.NewProjectile(player.GetProjectileSource_SetBonus(5), k, y2, num2, num3, ProjectileType<ShadowflameApparition>(), 50, 0f, player.whoAmI);
+                        player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge -= 600;
+                    }
+                }
+                if (player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge > 600)
+                {
+                    for (int i = 0; i < player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge / 500; ++i)
+                    {
+                        int direction = Main.rand.NextFromList(-1, 1);
+                        float k = Main.screenPosition.X;
+                        if (direction < 0)
+                        {
+                            k += (float)Main.screenWidth;
+                        }
+                        float y2 = Main.screenPosition.Y;
+                        y2 += (float)Main.rand.Next(Main.screenHeight);
+                        Vector2 vector = new Vector2(k, y2);
+                        float num2 = target.Center.X - vector.X;
+                        float num3 = target.Center.Y - vector.Y;
+                        num2 += (float)Main.rand.Next(-50, 51) * 0.1f;
+                        num3 += (float)Main.rand.Next(-50, 51) * 0.1f;
+                        float num4 = (float)Math.Sqrt(num2 * num2 + num3 * num3);
+                        num4 = 24f / num4;
+                        num2 *= num4;
+                        num3 *= num4;
+                        Projectile.NewProjectile(player.GetProjectileSource_SetBonus(5), k, y2, num2, num3, ProjectileType<MoltenApparition>(), 50, 0f, player.whoAmI);
+                        player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge -= 600;
+                    }
+                }    
 			Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 			ProjectileID.Sets.IsAWhip[Type] = false;
 
@@ -62,7 +117,14 @@ namespace TRAEProject.Items.Summoner.Whip
 		
         public override void AI()
         {
-
+			// BAND-AID fix to the multiple whips bug
+			for (int i = 0; i < 1000; i++)
+			{
+				if (Main.projectile[i].active && Main.projectile[i].owner == Projectile.owner && Main.projectile[i].type == Projectile.type && Main.projectile[i].whoAmI != Projectile.whoAmI)
+				{
+					Main.projectile[i].Kill();
+				}
+			}
 			Player player = Main.player[Projectile.owner];
 			Projectile.rotation = Projectile.velocity.ToRotation() + (float)Math.PI / 2f;
 			Projectile.ai[0] += 1f;
@@ -84,7 +146,41 @@ namespace TRAEProject.Items.Summoner.Whip
 				Vector2 position = Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 1];
 				SoundEngine.PlaySound(SoundID.Item153, position);
 			}
-			
+			if (Projectile.type == ProjectileType<AbsoluteZeroP>())
+			{
+				float t4 = Projectile.ai[0] / timeToFlyOut;
+				float num7 = Utils.GetLerpValue(0.1f, 0.7f, t4, clamped: true) * Utils.GetLerpValue(0.9f, 0.7f, t4, clamped: true);
+				if (!(num7 > 0.1f) || !(Main.rand.NextFloat() < num7 / 2f))
+				{
+					return;
+				}
+				Projectile.WhipPointsForCollision.Clear();
+				FillWhipControlPoints(Projectile, Projectile.WhipPointsForCollision);
+				Rectangle r5 = Utils.CenteredRectangle(Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 1], new Vector2(30f, 30f));
+				Vector2 value2 = Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 2].DirectionTo(Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 1]).SafeNormalize(Vector2.Zero);
+				for (int j = 0; j < 5; j++)
+				{
+					Dust dust5 = Dust.NewDustDirect(r5.TopLeft(), r5.Width, r5.Height, 16, 0f, 0f, 0, default(Color), 1.2f);
+					dust5.noGravity = true;
+					dust5.velocity += value2 * 2f;
+				}
+				for (int k = 0; k < 2; k++)
+				{
+					Dust.NewDustDirect(r5.TopLeft(), r5.Width, r5.Height, DustID.Ice, 0f, 0f, 0, default(Color), 0.8f).velocity += value2 * 2f;
+				}
+				for (int l = 0; l < 4; l++)
+				{
+					if (Main.rand.Next(2) != 0)
+					{
+						Dust dust6 = Dust.NewDustDirect(r5.TopLeft(), r5.Width, r5.Height, 261, 0f, 0f, 0, Color.Transparent, 0.9f);
+						dust6.velocity += value2 * 2f;
+						dust6.velocity *= 0.3f;
+						dust6.noGravity = true;
+					}
+				}
+				Lighting.AddLight(r5.Center.ToVector2(), new Vector3(0.1f, 0.1f, 0.2f));
+				return; 
+			}
 		}
 		
 		public void GetWhipSettings(Projectile proj, out float timeToFlyOut, out int segments, out float rangeMultiplier)

@@ -35,24 +35,14 @@ namespace TRAEProject.Items.Accesories.AngelicStone
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
         }
-        class AngelicStoneEffects : ModPlayer
+	}
+        public class AngelicStoneEffects : ModPlayer
         {
             public int stones = 0;
             public override void ResetEffects()
             {
                 stones = 0;
             }
-            public override void PostUpdateEquips()
-            {
-                int maxTime = 60 / (1 + stones);
-                if (Player.HasBuff(BuffID.ManaSickness))
-                {
-                    if (Player.buffTime[Player.FindBuffIndex(BuffID.ManaSickness)] > maxTime)
-                    {
-                        Player.buffTime[Player.FindBuffIndex(BuffID.ManaSickness)] = maxTime;
-                    }
-                }
-            }
         }
-    }
+    
 }

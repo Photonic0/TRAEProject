@@ -31,13 +31,15 @@ namespace TRAEProject.Changes.Projectiles
                     item.autoReuse = true;
                     return;
                 case ItemID.OpticStaff:
-                    item.damage = 22; // down from 30
+                    item.damage = 23; // down from 30
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     break;
-                case ItemID.BabyBirdStaff:
                 case ItemID.ImpStaff:
+                    item.autoReuse = true;
+                    break;
+                case ItemID.BabyBirdStaff:  
                 case ItemID.SpiderStaff:
                 case ItemID.SanguineStaff:
                 case ItemID.RavenStaff:
@@ -47,7 +49,6 @@ namespace TRAEProject.Changes.Projectiles
                 case ItemID.XenoStaff:
                 case ItemID.EmpressBlade:
                 case ItemID.StardustCellStaff:
-                case ItemID.StardustDragonStaff:
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
@@ -69,6 +70,18 @@ namespace TRAEProject.Changes.Projectiles
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
+                    return;
+                case ItemID.RainbowCrystalStaff:
+                    item.damage = 40; // down from 150
+                    return;
+                case ItemID.StardustDragonStaff:
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    item.SetNameOverride("Lunar Dragon Staff");
+                    return;
+                case ItemID.MoonlordTurretStaff:
+                    item.SetNameOverride("Stardust Portal Staff");
                     return;
             }
         }
@@ -99,9 +112,11 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.localNPCHitCooldown = 30;
                     return;
                 case ProjectileID.MiniRetinaLaser:
+				        projectile.penetrate = 1;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 150f;
-                    projectile.penetrate = 1;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 200f;
+               projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 30;
                     return;
                 case ProjectileID.CoolWhip:
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<CoolWhipTag>();
@@ -139,6 +154,10 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 60; // up from 10, static 
                     return;
+                case ProjectileID.RainbowCrystalExplosion:
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
+                    return;
             }
 
         }
@@ -171,14 +190,6 @@ namespace TRAEProject.Changes.Projectiles
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            if ((projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && target.HasBuff(BuffID.RainbowWhipNPCDebuff) && crit == true)
-            {
-                float VelocityX = Main.rand.Next(-35, 36) * 0.02f;
-                float VelocityY = Main.rand.Next(-35, 36) * 0.02f;
-                VelocityX *= 10f;
-                VelocityY *= 10f;
-                Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), target.Center.X, target.Center.Y, VelocityX, VelocityY, ProjectileType<KaleidoscopeProjectile>(), (int)(projectile.damage * 0.5), 0, projectile.owner, 0, 0f);
-            }
             switch (projectile.type)
             {
                 case ProjectileID.JumperSpider:
@@ -186,6 +197,17 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.DangerousSpider:
                     {
                         projectile.localAI[1] = 30f; // up from 20
+                        return;
+                    }			
+				case ProjectileID.Smolstar:
+                    {
+                        int[] array = projectile.localNPCImmunity;
+                        for (int i = 0; i < 200; i++)
+                        {
+                            NPC nPC = Main.npc[i];
+                            array[i] = 25;
+                            nPC.immune[projectile.owner] = 0;
+                        }
                         return;
                     }
             }

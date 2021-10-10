@@ -10,7 +10,8 @@ using TRAEProject.Items.Accesories.LifeCuffs;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.Accesories.BalanceCuffs
-{
+{    
+[AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
     class BalanceCuffs : ModItem
     {
         public override void SetStaticDefaults()

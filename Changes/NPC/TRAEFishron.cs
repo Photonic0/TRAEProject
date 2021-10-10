@@ -1,13 +1,24 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using System;
-using Terraria.ID;
+using Terraria.ID;using TRAEProject.Common.GlobalNPCs;
 using Terraria.ModLoader;
 namespace TRAEProject.NPCs
 {
     public class ChangesFishron : GlobalNPC
     {
 		public override bool InstancePerEntity => true;
+	     public override void SetDefaults(NPC npc)
+        {
+            switch (npc.type)
+            {
+					case NPCID.DukeFishron:
+						{
+							npc.GetGlobalNPC<Freeze>().freezeImmune = true;
+						}
+						return;
+				}
+		}
 		public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
 		{
 			if (ServerConfig.Instance.DukeBuffs)
@@ -33,7 +44,7 @@ namespace TRAEProject.NPCs
 				switch (npc.type)
 				{
 					case NPCID.DukeFishron:
-						npc.lifeMax += (npc.lifeMax / 3);
+						npc.lifeMax += (npc.lifeMax / 2);
 						npc.defDefense = 60;
 						npc.defDamage = (int)(npc.defDamage * 0.9);
 						return;

@@ -7,6 +7,7 @@ using Terraria.Utilities;
 using TRAEProject.Buffs;
 using TRAEProject.Changes;
 using TRAEProject.Items.Accesories.EvilEye;
+using TRAEProject.Items.Accesories.ShadowflameCharm;
 public class ChangesAccessories : GlobalItem
 {
     public static readonly int[] AnkhDebuffList = new int[] { BuffID.Bleeding, BuffID.Poisoned, BuffID.OnFire, BuffID.Venom, 
@@ -20,6 +21,10 @@ public class ChangesAccessories : GlobalItem
     {
         switch (item.type)
         {
+            case ItemID.FastClock:
+                Main.time += 4;
+                player.buffImmune[BuffID.Slow] = false;
+                return;
             case ItemID.Bezoar:
                 player.GetModPlayer<Bezoar>().bezoar = true;
                 player.buffImmune[BuffID.Poisoned] = false;
@@ -78,7 +83,7 @@ public class ChangesAccessories : GlobalItem
                 //player.wingTimeMax += 7;
                 player.GetModPlayer<TRAEPlayer>().FastFall = true;
                 player.noFallDmg = true;
-                player.buffImmune[BuffID.Burning] = true; 
+                player.buffImmune[BuffID.Burning] = false; 
                 return;
             case ItemID.LavaCharm:
                 player.GetModPlayer<TRAEPlayer>().LavaShield = true;
@@ -123,11 +128,17 @@ public class ChangesAccessories : GlobalItem
                 return;
             case ItemID.TerrasparkBoots:
                 player.iceSkate = false;
-                player.lavaMax -= 42;
+                player.lavaMax -= 42; 
+                player.fireWalk = false;
                 player.waterWalk = false;
                 player.rocketTimeMax -= 7;
                 player.accRunSpeed = 9f;
                 player.moveSpeed -= 0.08f;
+                return;
+            case ItemID.MoltenCharm:
+            player.lavaImmune = true;
+                player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharm += 1; 
+                player.fireWalk = false;
                 return;
             case ItemID.IceSkates:
                 player.GetModPlayer<TRAEPlayer>().icceleration = true;
@@ -267,8 +278,7 @@ player.accRunSpeed = 6f;
                 player.GetModPlayer<TRAEPlayer>().MagicDagger = true;
                 return;
             case ItemID.ManaCloak:
-                player.starCloakItem_manaCloakOverrideItem = null;
-				player.starCloakItem = null;
+                player.starCloakItem_manaCloakOverrideItem = item;
 				player.GetModPlayer<TRAEPlayer>().manaCloak = true;
                 player.manaCost += 0.08f;
                 return;
@@ -355,13 +365,22 @@ player.accRunSpeed = 6f;
                     }
                 }
                 break;
+            case ItemID.FastClock:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Time goes by faster when equipped";
+                    }
+                }
+                return;
             case ItemID.Nazar:
                 foreach (TooltipLine line in tooltips)
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
                         line.text = "Unleashes curses to the wielder and nearby enemies when damaged" +
-                            "\nCurses either deal damage over time, reduce damage by 15% or defense by 16";
+                            "\nCurses either deal damage over time, reduce contact damage by 20% or defense by 25";
                     }
                 }
                 break;
@@ -818,6 +837,19 @@ player.accRunSpeed = 6f;
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
                         line.text = "Stores up to 16 bees while grounded, releases them while in mid-air\nIncreases jump height by 25%, and slightly more for every bee stored\nDamage, recharge delay and release rate doubled when honeyed";
+                    }
+                }
+                return;
+            case ItemID.MoltenCharm:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Minion damage is stored as Fire energy, up to 2250\nWhip strikes summon a friendly Molten Apparition for every 750 damage stored";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "The wearer is immune to lava";
                     }
                 }
                 return;

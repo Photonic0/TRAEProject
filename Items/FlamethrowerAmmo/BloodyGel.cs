@@ -17,7 +17,7 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         }
         public override void SetDefaults()
         {
-            Item.damage = 30;
+            Item.damage = 33;
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 2;
             Item.value = Item.sellPrice(0, 0, 0, 20);

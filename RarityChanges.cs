@@ -352,7 +352,10 @@ namespace ChangesWeapons
                 case ItemID.ApprenticeAltHead:
                 case ItemID.ApprenticeAltPants:
                 case ItemID.ApprenticeAltShirt:
-                case ItemID.ReindeerBells:
+                case ItemID.ReindeerBells:  
+				
+				item.rare = ItemRarityID.Cyan;
+                    return;
                 case ItemID.PortalGun:
                 case ItemID.MoonlordArrow:
                 case ItemID.MoonlordBullet:

@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace TRAEProject.Items.Accesories.TheBlackCross
-{
+{    [AutoloadEquip(EquipType.Neck)]
     class TheBlackCross : ModItem
     {
         public override void SetStaticDefaults()

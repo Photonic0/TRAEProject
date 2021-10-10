@@ -13,19 +13,19 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crystal Gel");
-            Tooltip.SetDefault("Splits multiple times");
+            Tooltip.SetDefault("Splits multiple times and withers armor");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
         {
-            Item.damage = 6;
+            Item.damage = 4;
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 2;
             Item.value = Item.sellPrice(0, 0, 10, 0);
             Item.rare = ItemRarityID.Pink;
             Item.width = 24;
             Item.height = 22;
-            Item.shootSpeed = 1f;
+            Item.shootSpeed = 0f;
             Item.consumable = true;
             Item.shoot = ProjectileType<CrystalGelP>();
             Item.ammo = AmmoID.Gel;
@@ -52,16 +52,16 @@ namespace TRAEProject.Items.FlamethrowerAmmo
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.hostile = false;
             Projectile.friendly = true;
-            Projectile.timeLeft = 30;
+            Projectile.timeLeft = 20;
             Projectile.width = 6;
             Projectile.height = 6;
             Projectile.alpha = 255;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 2;
             Projectile.extraUpdates = 2;
             Projectile.width = Projectile.height = 2;
+            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 60;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
         }
         int DustColor = 0;
         bool runOnce = true;
@@ -114,11 +114,11 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         {
             if (Projectile.ai[1] < 2f)
             {		
-		        float rotation = MathHelper.ToRadians(30);
+		        float rotation = MathHelper.ToRadians(45);
                 for (int i = 0; i < 2; ++i)
                 {
 	                 Vector2 perturbedSpeed = new Vector2(Projectile.velocity.X, Projectile.velocity.Y).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (2 - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
-                     Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Projectile.velocity.X + perturbedSpeed.X, Projectile.velocity.Y + perturbedSpeed.Y, Projectile.type, (int)(Projectile.damage * 0.7), Projectile.knockBack, Projectile.owner, 0f, Projectile.ai[1] + 1f);
+                     Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Projectile.velocity.X + perturbedSpeed.X, Projectile.velocity.Y + perturbedSpeed.Y, Projectile.type, (int)(Projectile.damage * 0.67), Projectile.knockBack, Projectile.owner, 0f, Projectile.ai[1] + 1f);
                   			    
                 }    
             }
