@@ -94,3 +94,11 @@ C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProjec
 C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.dll
 C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\ref\TRAEProject.dll
 C:\Users\jbouv\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net5.0\TRAEProject.pdb
+C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net5.0\FNA.pdb
+C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net5.0\Microsoft.CodeAnalysis.pdb
+C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.pdb
+C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net5.0\Mono.Cecil.pdb
+C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net5.0\Mono.Cecil.Mdb.pdb
+C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net5.0\Mono.Cecil.Pdb.pdb
+C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net5.0\Mono.Cecil.Rocks.pdb
+C:\Users\noahg\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net5.0\ReLogic.pdb

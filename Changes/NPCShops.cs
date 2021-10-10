@@ -105,6 +105,12 @@ namespace TRAEProject.Changes
                         }    
                     }
                     break;
+                case NPCID.Pirate:
+                    shop.item[nextSlot].SetDefaults(ItemID.ThePlan);
+                    nextSlot++;
+                    shop.item[nextSlot].SetDefaults(ItemID.TrifoldMap);
+                    nextSlot++;
+                    break;
             }
         }
     }
