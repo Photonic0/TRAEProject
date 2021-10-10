@@ -453,7 +453,7 @@ namespace TRAEProject.Changes.Projectiles
         {
             if (projectile.type == ProjectileID.PirateCaptain || projectile.type == ProjectileID.OneEyedPirate || projectile.type == ProjectileID.SoulscourgePirate)
             {
-                if (hook != null && hook.active)
+                if (hook != null && hook.active && hook.type == ProjectileType<PirateHook>())
                 {
                     Vector2 mountedCenter = hook.Center;
 
@@ -488,14 +488,6 @@ namespace TRAEProject.Changes.Projectiles
                         if (projectile.position.X + (float)(projectile.width / 2) < mountedCenter.X)
                         {
                             num132 = 1;
-                        }
-                        if (Main.player[projectile.owner].direction == 1)
-                        {
-                            Main.player[projectile.owner].itemRotation = (float)Math.Atan2(num130 * (float)num132, x9 * (float)num132);
-                        }
-                        else
-                        {
-                            Main.player[projectile.owner].itemRotation = (float)Math.Atan2(num130 * (float)num132, x9 * (float)num132);
                         }
                     }
                     bool flag24 = true;

@@ -5,10 +5,13 @@ using TRAEProject.Items.Accesories.PalladiumShield;
 using static Terraria.ModLoader.ModContent;
 public class ChangesWorld : ModSystem
 {
-    public static readonly int[] PyramidItems = new int[] { ItemID.SandstorminaBottle, ItemID.FlyingCarpet, ItemID.AnkhCharm, ItemID.AncientChisel, ItemID.SandBoots, ItemID.ThunderSpear, ItemID.ThunderStaff, ItemID.CatBast, ItemID.MagicConch };
-
-    public static readonly int[] ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury, ItemType<PalladiumShield>() };
-
+    public static int[] PyramidItems;
+    public static int[] ShadowItems;
+    public override void PostSetupContent()
+    {
+        PyramidItems = new int[] { ItemID.SandstorminaBottle, ItemID.FlyingCarpet, ItemID.AnkhCharm, ItemID.AncientChisel, ItemID.SandBoots, ItemID.ThunderSpear, ItemID.ThunderStaff, ItemID.CatBast, ItemID.MagicConch };
+        ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury, ItemType<PalladiumShield>() };
+    }
     public override void PostWorldGen()
     {
         for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
@@ -16,7 +19,25 @@ public class ChangesWorld : ModSystem
             Chest chest = Main.chest[chestIndex];
             if (chest != null)
             {
-                if (WorldGen.genRand.NextBool(2) && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 0 * 36)
+
+                if (chest.item[0].type == ItemID.TreasureMagnet)
+                {
+                    chest.item[0].SetDefaults(Main.rand.Next(ShadowItems), false);
+                    for (int i = 0; i < 40; i++)
+                    {
+                        if (chest.item[i].IsAir)
+                        {
+                            chest.item[i].SetDefaults(ItemID.TreasureMagnet);
+                            break;
+                        }
+                    }
+                }
+                if (chest.item[0].type == ItemID.DarkLance)
+                {
+                    chest.item[0].SetDefaults(ItemType<PalladiumShield>(), false);
+                }
+
+                if (WorldGen.genRand.NextBool(2)  && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 0 * 36)
                 {
                     for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
                     {
@@ -85,23 +106,11 @@ public class ChangesWorld : ModSystem
                     }
 
                 }
-                if (chest.item[0].type == ItemID.TreasureMagnet)
-                {
-                    chest.item[0].SetDefaults(Main.rand.Next(ShadowItems), false);
-                    for (int i = 0; i < 40; i++)
-                    {
-                        if (chest.item[i].IsAir)
-                        {
-                            chest.item[i].SetDefaults(ItemID.TreasureMagnet);
-                            break;
-                        }
-                    }
-                }
-                if (chest.item[0].type == ItemID.DarkLance)
-                {
-                    chest.item[0].SetDefaults(Main.rand.Next(ShadowItems), false);
-                }
             }
         }
     }
 }
+
+
+
+

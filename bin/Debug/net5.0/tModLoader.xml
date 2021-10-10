@@ -242,16 +242,21 @@
         <member name="M:Terraria.DataStructures.TileEntitiesManager.TryGetTileEntity``1(System.Int32,``0@)">
             <summary> Attempts to get the base ModTileEntity object with the given id. </summary>
         </member>
-        <member name="M:Terraria.DataStructures.TileEntity.Save">
+        <member name="M:Terraria.DataStructures.TileEntity.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to save custom data for this tile entity.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
-            <returns></returns>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
-        <member name="M:Terraria.DataStructures.TileEntity.Load(Terraria.ModLoader.IO.TagCompound)">
+        <member name="M:Terraria.DataStructures.TileEntity.LoadData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to load the custom data you have saved for this tile entity.
+            Allows you to load custom data that you have saved for this tile entity.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.DataStructures.TileEntity.NetSend(System.IO.BinaryWriter)">
             <summary>
@@ -317,6 +322,11 @@
             <summary>
             Locks the vanilla scrollbar for the upcoming cycle when called. Autoclears in Player.
             Takes a string to denote that your UI has registered to lock vanilla scrolling. String does not need to be unique.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ArmorIDs.Head.Sets.DrawBackHair">
+            <summary>
+            Index using Player.hair
             </summary>
         </member>
         <member name="F:Terraria.ID.DustID.Water">
@@ -2172,10 +2182,64 @@
             <br>You can also call this on the client to update visuals immediately, assuming it was/will be called serverside aswell (Journey Mode rain slider does this).</br>
             </summary>
         </member>
+        <member name="P:Terraria.Main.CurrentPlayer">
+            <summary>
+            A replacement for `Main.LocalPlayer` which respects whichever player is currently running hooks on the main thread.
+            This works in the player select screen, and in multiplayer (when other players are updating)
+            </summary>
+        </member>
         <member name="M:Terraria.Main.SyncRain">
             <summary>
             Syncs rain state if <see cref="M:Terraria.Main.StartRain"/> or <see cref="M:Terraria.Main.StopRain"/> were called in the same tick and caused a change to <seealso cref="F:Terraria.Main.maxRaining"/>.
             <br>Can be called on any side, but only the server will actually sync it.</br>
+            </summary>
+        </member>
+        <member name="T:Terraria.ModLoader.AccessorySlotLoader">
+            <summary>
+            This serves as a central place to store equipment slots and their corresponding textures. You will use this to obtain the IDs for your equipment textures.
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.AccessorySlotLoader.DrawVerticalAlignment">
+            <summary>
+            The variable known as num20 used to align all equipment slot drawing in Main.
+            Represents the y position where equipment slots start to be drawn from.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.Draw(System.Int32,System.Boolean,System.Int32,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws Vanilla and Modded Accessory Slots
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.SetDrawLocation(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <summary>
+            Applies Xloc and Yloc data for the slot, based on ModAccessorySlotPlayer.scrollSlots
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.AccessorySlotLoader.DrawVisibility(System.Boolean@,System.Int32,System.Int32,System.Int32,System.Int32@,System.Int32@,Microsoft.Xna.Framework.Graphics.Texture2D@)" -->
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.DrawSlot(Terraria.Item[],System.Int32,System.Int32,System.Boolean,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Is run in AccessorySlotLoader.Draw. 
+            Generates a significant amount of functionality for the slot, despite being named drawing because vanilla.
+            At the end, calls this.DrawRedirect to enable custom drawing
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.GetBackgroundTexture(System.Int32,System.Int32)">
+            <summary>
+            Provides the Texture for a Modded Accessory Slot
+            This probably will need optimization down the road.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.AccessorySlotLoader.ModSlotCheck(Terraria.Item,System.Int32,System.Int32)" -->
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.ModifyDefaultSwapSlot(Terraria.Item,System.Int32@)">
+            <summary>
+            After checking for empty slots in ItemSlot.AccessorySwap, this allows for changing what the target slot will be if the accessory isn't already equipped.
+            DOES NOT affect vanilla behaviour of swapping items like for like where existing in a slot
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.PreferredGolfBall(System.Int32@)">
+            <summary>
+            Mirrors Player.GetPreferredGolfBallToUse.
+            Provides the golf ball projectile from an accessory slot. 
             </summary>
         </member>
         <member name="T:Terraria.ModLoader.AutoloadAttribute">
@@ -2707,6 +2771,27 @@
             Handles conversion of legacy 1.3 world unloaded tile TML TagCompound data to the newer 1.4+ systems.
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.Default.ModAccessorySlotPlayer.UpdateVisibleAccessories">
+            <summary>
+            Updates functional slot visibility information on the player for Mod Slots, in a similar fashion to Player.UpdateVisibleAccessories()
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.Default.ModAccessorySlotPlayer.UpdateVisibleVanityAccessories">
+            <summary>
+            Updates vanity slot information on the player for Mod Slots, in a similar fashion to Player.UpdateVisibleAccessories()
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.Default.ModAccessorySlotPlayer.UpdateDyes">
+            <summary>
+            Mirrors Player.UpdateDyes() for modded slots
+            Runs On Player Select, so is Player instance sensitive!!!
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.Default.ModAccessorySlotPlayer.UpdateEquips">
+            <summary>
+            Runs a simplified version of Player.UpdateEquips for the Modded Accessory Slots
+            </summary>
+        </member>
         <member name="T:Terraria.ModLoader.DrawableTooltipLine">
             <summary>
             This class serves as a way to store information about a line that will be drawn of tooltip for an item. You will create and manipulate objects of this class if you use the draw hooks for tooltips in ModItem and GlobalItem. For examples, see ExampleSword
@@ -2916,38 +3001,6 @@
              <param name="male"></param>
              <param name="equipSlot"></param>
              <param name="robes"></param>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawHands(System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the skin/shirt on the player's arms and hands are drawn when this body equipment texture is worn. By default both flags will be false. Note that if drawHands is false, the arms will not be drawn either. If there is an associated ModItem, by default this will call that ModItem's DrawHands.
-            </summary>
-            <param name="drawHands"></param>
-            <param name="drawArms"></param>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawHair(System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the player's hair or alt (hat) hair draws when this head equipment texture is worn. By default both flags will be false. If there is an associated ModItem, by default this will call that ModItem's DrawHair.
-            </summary>
-            <param name="drawHair"></param>
-            <param name="drawAltHair"></param>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawHead">
-            <summary>
-            Return false to hide the player's head when this head equipment texture is worn. By default this will return the associated ModItem's DrawHead, or true if there is no associated ModItem.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawBody">
-            <summary>
-            Return false to hide the player's body when this body equipment texture is worn. By default this will return the associated ModItem's DrawBody, or true if there is no associated ModItem.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawLegs">
-            <summary>
-            Return false to hide the player's legs when this leg or shoe equipment texture is worn. By default this will return the associated ModItem's DrawLegs, or true if there is no associated ModItem.
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.EquipTexture.DrawArmorColor(Terraria.Player,System.Single,Microsoft.Xna.Framework.Color@,System.Int32@,Microsoft.Xna.Framework.Color@)">
             <summary>
@@ -3374,17 +3427,37 @@
             <param name="damage">The damage of the projectile shot</param>
             <param name="knockback">The speed of the projectile shot</param>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.ConsumeAmmo(Terraria.Item,Terraria.Player)">
+        <member name="M:Terraria.ModLoader.GlobalItem.CanConsumeAmmo(Terraria.Item,Terraria.Player)">
             <summary>
-            Whether or not ammo will be consumed upon usage. Called both by the gun and by the ammo; if at least one returns false then the ammo will not be used. By default returns true.
-            If false is returned, the OnConsumeAmmo hook is never called.
+            Whether or not ammo will be consumed upon usage. Called by the weapon; if at least one of this and <see cref="M:Terraria.ModLoader.GlobalItem.CanBeConsumedAsAmmo(Terraria.Item,Terraria.Player)"/> returns false then the ammo will not be used. By default returns true.
+            If false is returned, the <see cref="M:Terraria.ModLoader.GlobalItem.OnConsumeAmmo(Terraria.Item,Terraria.Player)"/> hook is never called.
             </summary>
+            <param name="weapon">The item that the player is using</param>
+            <param name="player">The player using the item</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.CanBeConsumedAsAmmo(Terraria.Item,Terraria.Player)">
+            <summary>
+            Whether or not ammo will be consumed upon usage. Called by the ammo; if at least one of this and <see cref="M:Terraria.ModLoader.GlobalItem.CanConsumeAmmo(Terraria.Item,Terraria.Player)"/> returns false then the ammo will not be used. By default returns true.
+            If false is returned, the <see cref="M:Terraria.ModLoader.GlobalItem.OnConsumeAmmo(Terraria.Item,Terraria.Player)"/> hook is never called.
+            </summary>
+            <param name="ammo">The ammo item</param>
+            <param name="player">The player consuming the ammo</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.OnConsumeAmmo(Terraria.Item,Terraria.Player)">
             <summary>
-            Allows you to make things happen when ammo is consumed. Called both by the gun and by the ammo.
-            Called before the ammo stack is reduced.
+            Allows you to make things happen when ammo is consumed. Called by the weapon.
+            <br>Called before the ammo stack is reduced.</br>
             </summary>
+            <param name="weapon">The item that the player is using</param>
+            <param name="player">The player consuming the ammo</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.OnConsumedAsAmmo(Terraria.Item,Terraria.Player)">
+            <summary>
+            Allows you to make things happen when ammo is consumed. Called by the ammo.
+            <br>Called before the ammo stack is reduced.</br>
+            </summary>
+            <param name="ammo">The ammo item</param>
+            <param name="player">The player consuming the ammo</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.CanShoot(Terraria.Item,Terraria.Player)">
             <summary>
@@ -3643,42 +3716,6 @@
             Useful for modifying modded data based on the reforge result.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawHands(System.Int32,System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the skin/shirt on the player's arms and hands are drawn when a body armor is worn.
-            Note that if drawHands is false, the arms will not be drawn either.
-            "body" is the player's associated body equipment texture.
-            This method is not instanced.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawHair(System.Int32,System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the player's hair or alt (hat) hair will be drawn when a head armor is worn.
-            "head" is the player's associated head equipment texture.
-            This method is not instanced.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawHead(System.Int32)">
-            <summary>
-            Return false to hide the player's head when a head armor is worn. Returns true by default.
-            "head" is the player's associated head equipment texture.
-            This method is not instanced.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawBody(System.Int32)">
-            <summary>
-            Return false to hide the player's body when a body armor is worn. Returns true by default.
-            "body" is the player's associated body equipment texture.
-            This method is not instanced.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawLegs(System.Int32,System.Int32)">
-            <summary>
-            Return false to hide the player's legs when a leg armor or shoe accessory is worn. Returns true by default.
-            "legs" and "shoes" are the player's associated legs and shoes equipment textures.
-            This method is not instanced.
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.GlobalItem.DrawArmorColor(Terraria.ModLoader.EquipType,System.Int32,Terraria.Player,System.Single,Microsoft.Xna.Framework.Color@,System.Int32@,Microsoft.Xna.Framework.Color@)">
             <summary>
             Allows you to modify the colors in which the player's armor and their surrounding accessories are drawn, in addition to which glow mask and in what color is drawn.
@@ -3797,13 +3834,20 @@
             This method is not instanced.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.CanEquipAccessory(Terraria.Item,Terraria.Player,System.Int32)">
+        <member name="M:Terraria.ModLoader.GlobalItem.CanEquipAccessory(Terraria.Item,Terraria.Player,System.Int32,System.Boolean)">
             <summary>
             Allows you to disallow the player from equipping an accessory. Return false to disallow equipping the accessory. Returns true by default.
             </summary>
             <param name="item">The item that is attepting to equip.</param>
             <param name="player">The player.</param>
             <param name="slot">The inventory slot that the item is attempting to occupy.</param>
+            <param name="modded">If the inventory slot index is for modded slots.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.CanAccessoryBeEquippedWith(Terraria.Item,Terraria.Item,Terraria.Player)">
+            <summary>
+            Allows you to prevent similar accessories from being equipped multiple times. For example, vanilla Wings.
+            Return false to have the currently equipped item swapped with the incoming item - ie both can't be equipped at same time.
+            </summary>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.ExtractinatorUse(System.Int32,System.Int32@,System.Int32@)">
             <summary>
@@ -3878,20 +3922,23 @@
             Allows you to modify all the tooltips that display for the given item. See here for information about TooltipLine.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.NeedsSaving(Terraria.Item)">
+        <member name="M:Terraria.ModLoader.GlobalItem.SaveData(Terraria.Item,Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Whether or not the given item needs to save custom data. Returning false will save on the memory used in saving an item, but returning true is necessary in order to save data across all items or vanilla items. Returns false by default. Note that the return value of this hook must be deterministic (randomness is not allowed).
+            Allows you to save custom data for this item.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
+            <param name="item"> The item. </param>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.Save(Terraria.Item)">
+        <member name="M:Terraria.ModLoader.GlobalItem.LoadData(Terraria.Item,Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to save custom data for the given item. Only called when NeedsCustomSaving returns true. Returns false by default.
+            Allows you to load custom data that you have saved for this item.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.Load(Terraria.Item,Terraria.ModLoader.IO.TagCompound)">
-            <summary>
-            Allows you to load custom data that you have saved for the given item.
-            </summary>
+            <param name="item"> The item. </param>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.NetSend(Terraria.Item,System.IO.BinaryWriter)">
             <summary>
@@ -5190,14 +5237,14 @@
             Calls ModItem.PickAmmo, then all GlobalItem.PickAmmo hooks.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.ConsumeAmmo(Terraria.Item,Terraria.Item,Terraria.Player)">
+        <member name="M:Terraria.ModLoader.ItemLoader.CanConsumeAmmo(Terraria.Item,Terraria.Item,Terraria.Player)">
             <summary>
-            Calls ModItem.ConsumeAmmo for the weapon, ModItem.ConsumeAmmo for the ammo, then each GlobalItem.ConsumeAmmo hook for the weapon and ammo, until one of them returns false. If all of them return true, returns true.
+            Calls <see cref="M:Terraria.ModLoader.ModItem.CanConsumeAmmo(Terraria.Player)"/> for the weapon, <see cref="M:Terraria.ModLoader.ModItem.CanBeConsumedAsAmmo(Terraria.Player)"/> for the ammo, then each corresponding hook for the weapon and ammo, until one of them returns false. If all of them return true, returns true.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.OnConsumeAmmo(Terraria.Item,Terraria.Item,Terraria.Player)">
             <summary>
-            Calls ModItem.OnConsumeAmmo for the weapon, ModItem.OnConsumeAmmo for the ammo, then each GlobalItem.OnConsumeAmmo hook for the weapon and ammo.
+            Calls <see cref="M:Terraria.ModLoader.ModItem.OnConsumeAmmo(Terraria.Player)"/> for the weapon, <see cref="M:Terraria.ModLoader.ModItem.OnConsumedAsAmmo(Terraria.Player)"/> for the ammo, then each corresponding hook for the weapon and ammo.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.CanShoot(Terraria.Item,Terraria.Player)">
@@ -5299,17 +5346,17 @@
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.UpdateEquip(Terraria.Item,Terraria.Player)">
             <summary>
-            Hook at the end of Player.VanillaUpdateEquip can be called from modded slots for modded equipments
+            Hook at the end of Player.VanillaUpdateEquip can be called to apply additional code related to accessory slots for a particular item
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.UpdateAccessory(Terraria.Item,Terraria.Player,System.Boolean)">
             <summary>
-            Hook at the end of Player.ApplyEquipFunctional can be called from modded slots for modded equipments
+            Hook at the end of Player.ApplyEquipFunctional can be called to apply additional code related to accessory slots for a particular item.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.UpdateVanity(Terraria.Item,Terraria.Player)">
             <summary>
-            Hook at the end of Player.ApplyEquipVanity can be called from modded slots for modded equipments
+            Hook at the end of Player.ApplyEquipVanity can be called to apply additional code related to accessory slots for a particular item
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.UpdateArmorSet(Terraria.Player,Terraria.Item,Terraria.Item,Terraria.Item)">
@@ -5397,36 +5444,6 @@
             Calls ModItem.PostReforge, then all GlobalItem.PostReforge hooks.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawHands(Terraria.Player,System.Boolean@,System.Boolean@)">
-            <summary>
-            Calls the item's body equipment texture's DrawHands hook, then all GlobalItem.DrawHands hooks.
-            "body" is the player's associated body equipment texture.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawHair(Terraria.Player,System.Boolean@,System.Boolean@)">
-            <summary>
-            Calls the item's head equipment texture's DrawHair hook, then all GlobalItem.DrawHair hooks.
-            "head" is the player's associated head equipment texture.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawHead(Terraria.Player)">
-            <summary>
-            Calls the item's head equipment texture's DrawHead hook, then all GlobalItem.DrawHead hooks, until one of them returns false. Returns true if none of them return false.
-            "head" is the player's associated head equipment texture.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawBody(Terraria.Player)">
-            <summary>
-            Calls the item's body equipment texture's DrawBody hook, then all GlobalItem.DrawBody hooks, until one of them returns false. Returns true if none of them return false.
-            "body" is the player's associated body equipment texture.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawLegs(Terraria.Player)">
-            <summary>
-            Calls the item's leg equipment texture's DrawLegs hook, then the item's shoe equipment texture's DrawLegs hook, then all GlobalItem.DrawLegs hooks, until one of them returns false. Returns true if none of them return false.
-            "legs" and "shoes" are the player's associated legs and shoes equipment textures.
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.ItemLoader.DrawArmorColor(Terraria.ModLoader.EquipType,System.Int32,Terraria.Player,System.Single,Microsoft.Xna.Framework.Color@,System.Int32@,Microsoft.Xna.Framework.Color@)">
             <summary>
             Calls the item's equipment texture's DrawArmorColor hook, then all GlobalItem.DrawArmorColor hooks.
@@ -5435,11 +5452,6 @@
         <member name="M:Terraria.ModLoader.ItemLoader.ArmorArmGlowMask(System.Int32,Terraria.Player,System.Single,System.Int32@,Microsoft.Xna.Framework.Color@)">
             <summary>
             Calls the item's body equipment texture's ArmorArmGlowMask hook, then all GlobalItem.ArmorArmGlowMask hooks.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.GetWing(Terraria.Player)">
-            <summary>s
-            Returns the wing item that the player is functionally using. If player.wingsLogic has been modified, so no equipped wing can be found to match what the player is using, this creates a new Item object to return.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.VerticalWingSpeeds(Terraria.Player,System.Single@,System.Single@,System.Single@,System.Single@,System.Single@)">
@@ -5731,6 +5743,13 @@
             <param name="name">The name.</param>
             <returns></returns>
         </member>
+        <member name="M:Terraria.ModLoader.Mod.GetFileNames">
+            <summary>
+            Retrieves the names of every file packaged into this mod.
+            Note that this includes extensions, and for images the extension will always be <c>.rawimg</c>.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Terraria.ModLoader.Mod.GetFileBytes(System.String)">
             <summary>
             Retrieve contents of files within the tmod file
@@ -5807,6 +5826,61 @@
             </summary>
             <param name="reader">The reader.</param>
             <param name="whoAmI">The player the message is from.</param>
+        </member>
+        <member name="T:Terraria.ModLoader.ModAccessorySlot">
+            <summary>
+            A ModAccessorySlot instance represents a net new accessory slot instance. You can store fields in the ModAccessorySlot class. 
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.PreDraw(Terraria.ModLoader.AccessorySlotType,Terraria.Item,Microsoft.Xna.Framework.Vector2,System.Boolean)">
+            <summary>
+            Allows drawing prior to vanilla ItemSlot.Draw code. Return false to NOT call ItemSlot.Draw
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.ApplyEquipEffects">
+            <summary>
+            Override to replace the vanilla effect behavior of the slot with your own.
+            By default calls:
+            Player.VanillaUpdateEquips(FunctionalItem), Player.ApplyEquipFunctional(FunctionalItem, ShowVisuals), Player.ApplyEquipVanity(VanityItem)
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.CanAcceptItem(Terraria.Item,Terraria.ModLoader.AccessorySlotType)">
+            <summary>
+            Override to set conditions on what can be placed in the slot. Return false to prevent the item going in slot. Return true for dyes, if you want dyes. Example: only wings can go in slot.
+            Receives data:
+            <para><paramref name="checkItem"/> :: the item that is attempting to enter the slot </para>
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.ModifyDefaultSwapSlot(Terraria.Item,System.Int32)">
+            <summary>
+            After checking for empty slots in ItemSlot.AccessorySwap, this allows for changing what the default target slot (accSlotToSwapTo) will be.
+            DOES NOT affect vanilla behaviour of swapping items like for like where existing in a slot
+            Return true to set this slot as the default targetted slot.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.IsHidden">
+            <summary>
+            Override to control whether or not drawing will be skipped during the given frame.
+            NOTE: Nothing will be drawn, nor will subsequent drawing hooks be called on this slot for the frame while true
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.IsEnabled">
+            <summary>
+            Override to set conditions on when the slot is valid for stat/vanity calculations and player usage.
+            Example: the demonHeart is consumed and in Expert mode in Vanilla.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.IsVisibleWhenNotEnabled">
+            <summary>
+            Override to change the condition on when the slot is visible, but otherwise non-functional for stat/vanity calculations.
+            Defaults to check 'property' IsEmpty
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.OnMouseHover(Terraria.ModLoader.AccessorySlotType)">
+            <summary>
+            Allows you to do stuff while the player is hovering over this slot.
+            </summary>
         </member>
         <member name="P:Terraria.ModLoader.ModBackgroundStyle.Slot">
             <summary>
@@ -6750,20 +6824,35 @@
             <param name="damage">The damage of the projectile shot</param>
             <param name="knockback">The speed of the projectile shot</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.ConsumeAmmo(Terraria.Player)">
+        <member name="M:Terraria.ModLoader.ModItem.CanConsumeAmmo(Terraria.Player)">
             <summary>
-            Whether or not ammo will be consumed upon usage. Called both by the gun and by the ammo; if at least one returns false then the ammo will not be used. By default returns true.
-            If false is returned, the OnConsumeAmmo hook is never called.
+            Whether or not ammo will be consumed upon usage. Called both by the weapon; if at least one of this and <see cref="M:Terraria.ModLoader.ModItem.CanBeConsumedAsAmmo(Terraria.Player)"/> returns false then the ammo will not be used. By default returns true.
+            <br>If false is returned, the <see cref="M:Terraria.ModLoader.ModItem.OnConsumeAmmo(Terraria.Player)"/> and <see cref="M:Terraria.ModLoader.ModItem.OnConsumedAsAmmo(Terraria.Player)"/> hooks are never called.</br>
             </summary>
-            <param name="player">The player.</param>
+            <param name="player">The player using the weapon</param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.CanBeConsumedAsAmmo(Terraria.Player)">
+            <summary>
+            Whether or not ammo will be consumed upon usage. Called by the ammo; if at least one of this and <see cref="M:Terraria.ModLoader.ModItem.CanConsumeAmmo(Terraria.Player)"/> returns false then the ammo will not be used. By default returns true.
+            <br>If false is returned, the <see cref="M:Terraria.ModLoader.ModItem.OnConsumeAmmo(Terraria.Player)"/> and <see cref="M:Terraria.ModLoader.ModItem.OnConsumedAsAmmo(Terraria.Player)"/> hooks are never called.</br>
+            </summary>
+            <param name="player">The player consuming the ammo</param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.OnConsumeAmmo(Terraria.Player)">
             <summary>
-            Allows you to makes things happen when ammo is consumed. Called both by the gun and by the ammo.
-            Called before the ammo stack is reduced.
+            Allows you to make things happen when ammo is consumed. Called by the weapon.
+            <br>Called before the ammo stack is reduced.</br>
             </summary>
-            <param name="player">The player.</param>
+            <param name="player">The player using the weapon</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.OnConsumedAsAmmo(Terraria.Player)">
+            <summary>
+            Allows you to make things happen when ammo is consumed. Called by the ammo.
+            <br>Called before the ammo stack is reduced.</br>
+            </summary>
+            <param name="player">The player consuming the ammo</param>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.CanShoot(Terraria.Player)">
             <summary>
@@ -7047,38 +7136,6 @@
             Useful for modifying modded data based on the reforge result.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawHands(System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the skin/shirt on the player's arms and hands are drawn when this body armor is worn. By default both flags will be false. Note that if drawHands is false, the arms will not be drawn either. Also note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <param name="drawHands">if set to <c>true</c> [draw hands].</param>
-            <param name="drawArms">if set to <c>true</c> [draw arms].</param>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawHair(System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the player's hair or alt (hat) hair draws when this head armor is worn. By default both flags will be false. Note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <param name="drawHair">if set to <c>true</c> [draw hair].</param>
-            <param name="drawAltHair">if set to <c>true</c> [draw alt hair].</param>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawHead">
-            <summary>
-            Return false to hide the player's head when this head armor is worn. Returns true by default. Note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawBody">
-            <summary>
-            Return false to hide the player's body when this body armor is worn. Returns true by default. Note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawLegs">
-            <summary>
-            Return false to hide the player's legs when this leg armor or shoe accessory is worn. Returns true by default. Note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Terraria.ModLoader.ModItem.DrawArmorColor(Terraria.Player,System.Single,Microsoft.Xna.Framework.Color@,System.Int32@,Microsoft.Xna.Framework.Color@)">
             <summary>
             Allows you to modify the colors in which this armor and surrounding accessories are drawn, in addition to which glow mask and in what color is drawn. Note that this hook is only ever called through this item's associated equipment texture.
@@ -7243,12 +7300,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.CanEquipAccessory(Terraria.Player,System.Int32)">
+        <member name="M:Terraria.ModLoader.ModItem.CanEquipAccessory(Terraria.Player,System.Int32,System.Boolean)">
             <summary>
             Allows you to disallow the player from equipping this accessory. Return false to disallow equipping this accessory. Returns true by default.
             </summary>
             <param name="player">The player.</param>
             <param name="slot">The inventory slot that the item is attempting to occupy.</param>
+            <param name="modded">If the inventory slot index is for modded slots.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.CanAccessoryBeEquippedWith(Terraria.Item,Terraria.Item,Terraria.Player)">
+            <summary>
+            Allows you to prevent similar accessories from being equipped multiple times. For example, vanilla Wings.
+            Return false to have the currently equipped item swapped with the incoming item - ie both can't be equipped at same time.
+            </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.ExtractinatorUse(System.Int32@,System.Int32@)">
             <summary>
@@ -7298,17 +7362,21 @@
             The type of NPC that drops this boss bag. Used to determine how many coins this boss bag contains. Defaults to 0, which means this isn't a boss bag.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.Save">
+        <member name="M:Terraria.ModLoader.ModItem.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to save custom data for this item. Returns null by default.
+            Allows you to save custom data for this item.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
-            <returns></returns>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.Load(Terraria.ModLoader.IO.TagCompound)">
+        <member name="M:Terraria.ModLoader.ModItem.LoadData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to load custom data that you have saved for this item.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
-            <param name="tag">The tag.</param>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.NetSend(System.IO.BinaryWriter)">
             <summary>
@@ -7411,6 +7479,10 @@
         <member name="M:Terraria.ModLoader.ModLoader.TryGetMod(System.String,Terraria.ModLoader.Mod@)">
             <summary> Safely attempts to get the instance of the Mod with the specified name. </summary>
             <returns> Whether or not the requested instance has been found. </returns>
+        </member>
+        <member name="M:Terraria.ModLoader.ModLoader.HasMod(System.String)">
+            <summary> Safely checks whether or not a mod with the specified internal name is currently loaded. </summary>
+            <returns> Whether or not a mod with the provided internal name has been found. </returns>
         </member>
         <member name="F:Terraria.ModLoader.ModLoader._enabledMods">
             <summary>A cached list of enabled mods (not necessarily currently loaded or even installed), mirroring the enabled.json file.</summary>
@@ -8164,17 +8236,21 @@
             Currently never gets called, so this is useless.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.Save">
+        <member name="M:Terraria.ModLoader.ModPlayer.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to save custom data for this player. Returns null by default.
+            Allows you to save custom data for this player.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
-            <returns></returns>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.Load(Terraria.ModLoader.IO.TagCompound)">
+        <member name="M:Terraria.ModLoader.ModPlayer.LoadData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to load custom data you have saved for this player.
+            Allows you to load custom data that you have saved for this player.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
-            <param name="tag"></param>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.PreSavePlayer">
             <summary>
@@ -8270,6 +8346,21 @@
             This is called right after all of this player's equipment and armor sets update on the player, which is sometime after PostUpdateBuffs is called. This can be used to modify the effects that the equipment had on this player, and can also be used for general update tasks.
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.ModPlayer.UpdateVisibleAccessories">
+            <summary>
+            Is called in Player.Frame() after vanilla functional slots are evaluated, including selection screen to prepare and denote visible accessories. Player Instance sensitive.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModPlayer.UpdateVisibleVanityAccessories">
+            <summary>
+            Is called in Player.Frame() after vanilla vanity slots are evaluated, including selection screen to prepare and denote visible accessories. Player Instance sensitive.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModPlayer.UpdateDyes">
+            <summary>
+            Is called in Player.UpdateDyes(), including selection screen. Player Instance sensitive.
+            </summary>
+        </member>
         <member name="M:Terraria.ModLoader.ModPlayer.PostUpdateMiscEffects">
             <summary>
             This is called after miscellaneous update code is called in Player.Update, which is sometime after PostUpdateEquips is called. This can be used for general update tasks.
@@ -8288,11 +8379,6 @@
         <member name="M:Terraria.ModLoader.ModPlayer.PostUpdate">
             <summary>
             This is called at the very end of the Player.Update method. Final general update tasks can be placed here.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.UpdateVanityAccessories">
-            <summary>
-            This is called after VanillaUpdateVanityAccessory() in player.UpdateEquips()
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.FrameEffects">
@@ -8463,22 +8549,22 @@
             <param name="item">The item</param>
             <param name="crit">The crit chance, ranging from 0 to 100</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.ConsumeAmmo(Terraria.Item,Terraria.Item)">
+        <member name="M:Terraria.ModLoader.ModPlayer.CanConsumeAmmo(Terraria.Item,Terraria.Item)">
             <summary>
             Whether or not ammo will be consumed upon usage. Return false to stop the ammo from being depleted. Returns true by default.
-            If false is returned, the OnConsumeAmmo hook is never called.
+            <br>If false is returned, the <see cref="M:Terraria.ModLoader.ModPlayer.OnConsumeAmmo(Terraria.Item,Terraria.Item)"/> hook is never called.</br>
             </summary>
-            <param name="weapon"></param>
-            <param name="ammo"></param>
+            <param name="weapon">The item that is using this ammo</param>
+            <param name="ammo">The ammo item</param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.OnConsumeAmmo(Terraria.Item,Terraria.Item)">
             <summary>
             Allows you to make things happen when ammo is consumed.
-            Called before the ammo stack is reduced.
+            <br>Called before the ammo stack is reduced.</br>
             </summary>
-            <param name="weapon"></param>
-            <param name="ammo"></param>
+            <param name="weapon">The item that is using this ammo</param>
+            <param name="ammo">The ammo item</param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.CanShoot(Terraria.Item)">
@@ -9504,15 +9590,22 @@
             <param name="tileUpdateRate">The speed at which tiles in the world update in min/sec.</param>
             <param name="eventUpdateRate">The speed at which various events in the world (weather changes, fallen star/fairy spawns, etc.) update in min/sec.</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModSystem.SaveWorldData">
+        <member name="M:Terraria.ModLoader.ModSystem.SaveWorldData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to save custom data for this system in the current world. Useful for things like saving world specific flags. For example, if your mod adds a boss and you want certain NPC to only spawn once it has been defeated, this is where you would store the information that that boss has been defeated in this world. Returns null by default.
+            Allows you to save custom data for this system in the current world. Useful for things like saving world specific flags. 
+            <br/>For example, if your mod adds a boss and you want certain NPC to only spawn once it has been defeated, this is where you would store the information that that boss has been defeated in this world.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModSystem.LoadWorldData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to load custom data you have saved for this system in the currently loading world.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModSystem.NetSend(System.IO.BinaryWriter)">
             <summary>
@@ -9968,11 +10061,6 @@
             Would make the base method internal if not for patch size
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModTileEntity.ValidTile(System.Int32,System.Int32)">
-            <summary>
-            Whether or not this tile entity is allowed to survive at the given coordinates. You should check whether the tile is active, as well as the tile's type and frame.
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.ModTileEntity.Hook_AfterPlacement(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             This method does not get called by tModLoader, and is only included for you convenience so you do not have to cast the result of Mod.GetTileEntity.
@@ -9996,6 +10084,11 @@
         <member name="M:Terraria.ModLoader.ModTileEntity.OnKill">
             <summary>
             This method only gets called in the Kill method. If you plan to use that, you can put code here to make things happen when it is called.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModTileEntity.IsTileValidForEntity(System.Int32,System.Int32)">
+            <summary>
+            Whether or not this tile entity is allowed to survive at the given coordinates. You should check whether the tile is active, as well as the tile's type and frame.
             </summary>
         </member>
         <member name="T:Terraria.ModLoader.ModType">
@@ -10807,6 +10900,12 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "P:Terraria.NPC.BossBar" -->
+        <member name="M:Terraria.NPC.HasBuff(System.Int32)">
+            <summary> Returns whether or not this NPC currently has a (de)buff of the provided type. </summary>
+        </member>
+        <member name="M:Terraria.NPC.HasBuff``1">
+            <inheritdoc cref="M:Terraria.NPC.HasBuff(System.Int32)" />
+        </member>
         <member name="M:Terraria.NPC.GetGlobalNPC``1(System.Boolean)">
             <summary> Gets the instance of the specified GlobalNPC type. This will throw exceptions on failure. </summary>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
@@ -10831,12 +10930,6 @@
             <param name="item">The item you want to be cloned</param>
             <param name="stack">The stack to give the item. Note that this will override maxStack if it's higher.</param>
         </member>
-        <member name="M:Terraria.Player.UpdateVisibleAccessory(Terraria.Item)">
-            <summary>
-            Won't work with yoraiz0rEye as effect needs target item slot.
-            </summary>
-            <param name="item"></param>
-        </member>
         <member name="M:Terraria.Player.GetModPlayer``1">
             <summary> Gets the instance of the specified ModPlayer type. This will throw exceptions on failure. </summary>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
@@ -10847,6 +10940,12 @@
             <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
             <exception cref="T:System.IndexOutOfRangeException"/>
             <exception cref="T:System.NullReferenceException"/>
+        </member>
+        <member name="M:Terraria.Player.HasBuff(System.Int32)">
+            <summary> Returns whether or not this Player currently has a (de)buff of the provided type. </summary>
+        </member>
+        <member name="M:Terraria.Player.HasBuff``1">
+            <inheritdoc cref="M:Terraria.Player.HasBuff(System.Int32)" />
         </member>
         <member name="M:Terraria.Player.GetCritChance``1">
             <summary>
@@ -10911,6 +11010,25 @@
             Calculates whether or not the player is in the purity/forest biome.
             </summary>
         </member>
+        <member name="M:Terraria.Player.LoadPlayer_LastMinuteFixes(Terraria.Item,Terraria.Player)">
+            <summary>
+            Invoked at the end of loading vanilla player data from files to fix stuff that isn't initialized coming out of load.
+            Only run on the Player select screen during loading of data. 
+            Primarily meant to prevent unwarranted first few frame fall damage/lava damage if load lagging
+            Corrects the player.lavaMax time, wingsLogic, and no fall dmg to be accurate for the provided items in accessory slots.
+            </summary>
+        </member>
+        <member name="M:Terraria.Player.UpdateVisibleAccessories(Terraria.Item,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            Invoked in UpdateVisibleAccessories. Runs common code for both modded slots and vanilla slots based on provided Items.
+            </summary>
+        </member>
+        <member name="M:Terraria.Player.DropItem(Microsoft.Xna.Framework.Vector2,Terraria.Item@)">
+            <summary>
+            Drops the ref'd item from the player at the position, and than turns the ref'd Item to air.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Terraria.Program.EnsureMinimumStackSizeOnThreads" -->
         <!-- Badly formed XML comment ignored for member "P:Terraria.Projectile.DamageType" -->
         <member name="M:Terraria.Projectile.GetGlobalProjectile``1(System.Boolean)">
             <summary> Gets the instance of the specified GlobalProjectile type. This will throw exceptions on failure. </summary>
@@ -11063,6 +11181,18 @@
         <member name="M:Terraria.Social.Steam.WorkshopHelper.QueryHelper.AQueryInstance.ReleaseWorkshopQuery">
             <summary>
             Ought be called to release the existing query when we are done with it. Frees memory associated with the handle.
+            </summary>
+        </member>
+        <member name="M:Terraria.UI.ItemSlot.ModSlotDyeSwap(Terraria.Item,System.Boolean@)">
+            <summary>
+            Alters the ItemSlot.DyeSwap method for modded slots; 
+            Unfortunately, I (Solxan) couldn't ever get ItemSlot.DyeSwap invoked so pretty sure this and its vanilla code is defunct.
+            Here in case someone proves my statement wrong later.
+            </summary>
+        </member>
+        <member name="M:Terraria.UI.ItemSlot.AccCheck_Inner(Terraria.Item[],Terraria.Item,System.Int32)">
+            <summary>
+            Returns true to disallow putting an item in to a given slot, typically invoked by mouse placement
             </summary>
         </member>
         <member name="M:Terraria.Utils.NextBool(Terraria.Utilities.UnifiedRandom,System.Int32)">
