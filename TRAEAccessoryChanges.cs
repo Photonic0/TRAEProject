@@ -74,6 +74,7 @@ public class ChangesAccessories : GlobalItem
                 player.waterWalk = true;
                 return;
             case ItemID.ObsidianHorseshoe:
+                player.fireWalk = false;
                 player.GetModPlayer<TRAEPlayer>().FastFall = true;
                 return;
             case ItemID.ObsidianWaterWalkingBoots:
@@ -83,6 +84,7 @@ public class ChangesAccessories : GlobalItem
                 //player.wingTimeMax += 7;
                 player.GetModPlayer<TRAEPlayer>().FastFall = true;
                 player.noFallDmg = true;
+                player.fireWalk = false;
                 player.buffImmune[BuffID.Burning] = false; 
                 return;
             case ItemID.LavaCharm:
@@ -320,8 +322,26 @@ player.accRunSpeed = 6f;
                 player.kbGlove = false;
                 player.meleeScaleGlove = false;
                 return;
-            case ItemID.BundleofBalloons:
-                player.noFallDmg = true;
+            case ItemID.SquireShield:
+                player.dd2Accessory = false;
+                player.GetDamage<MeleeDamageClass>() += 0.1f;
+                ++player.maxTurrets;
+                return;
+            case ItemID.ApprenticeScarf:
+                ++player.maxTurrets;
+                player.GetDamage<SummonDamageClass>() -= 0.1f;
+                player.GetDamage<MagicDamageClass>() += 0.1f;
+                player.dd2Accessory = false;
+                return;
+            case ItemID.MonkBelt:
+                ++player.maxTurrets;
+                player.GetDamage<SummonDamageClass>() += 0.1f;
+                player.dd2Accessory = false;
+                return;
+            case ItemID.HuntressBuckler:
+                ++player.maxTurrets;
+                player.GetDamage<RangedDamageClass>() += 0.1f;
+                player.dd2Accessory = false;
                 return;
         }
     }
@@ -329,12 +349,30 @@ player.accRunSpeed = 6f;
         {
         switch (item.type)
         {
-            case ItemID.Bezoar:
+            case ItemID.SquireShield:
                 foreach (TooltipLine line in tooltips)
                 {
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
-                        line.text = "Significantly increases the strength of friendly Poison";
+                        line.text = "10% increased melee damage";
+                    }
+                }
+                break;
+            case ItemID.ApprenticeScarf:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "10% increased magic damage";
+                    }
+                }
+                break;
+            case ItemID.HuntressBuckler:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "10% increased ranged damage";
                     }
                 }
                 break;
@@ -443,7 +481,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Defense")
                     {
-                        line.text += "\nIncreases damage by 1";
+                        line.text += "\nTemporarily increases defense when damaged";
                     }
                 }
                 return;
@@ -513,24 +551,6 @@ player.accRunSpeed = 6f;
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
                         line.text = "";
-                    }
-                }
-                return;
-            case ItemID.PanicNecklace:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                    {
-                        line.text = "Increases movement speed and damage after being struck";
-                    }
-                }
-                return;
-            case ItemID.SweetheartNecklace:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                    {
-                        line.text = "Increases movement speed, life regeneration and damage after being struck";
                     }
                 }
                 return;

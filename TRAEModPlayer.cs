@@ -211,7 +211,7 @@ namespace TRAEProject
             }
             if (LavaShield && waterRunning && Player.wet)
             {
-                Player.AddBuff(BuffType<LavaShield>(), 1800);
+                Player.AddBuff(BuffType<LavaShield>(), 9000);
             }            
             if (Player.shroomiteStealth && !Player.mount.Active) // Always active while on the ground, Stealth disappears slower, reduced all bonuses by 25%, max damage is reduced by a further 10%.  
             {
@@ -428,7 +428,7 @@ namespace TRAEProject
                     }
                 }
 
-                Player.jumpSpeedBoost += 0.2f * beesStored;
+                Player.jumpSpeedBoost += 0.225f * beesStored;
             }
             if (Player.HeldItem.type == ItemID.BeeGun)
             {

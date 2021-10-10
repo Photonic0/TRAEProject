@@ -20,8 +20,8 @@ namespace TRAEProject.Items.Accesories.SandstormBoots
         public override void SetDefaults()
         {
             Item.accessory = true;
-            Item.rare = ItemRarityID.Green;
-            Item.sellPrice(0, 2, 0, 0);
+            Item.rare = ItemRarityID.Orange;
+            Item.sellPrice(gold: 3);
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

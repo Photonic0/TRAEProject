@@ -20,7 +20,7 @@ namespace TRAEProject.Items.Accesories.PutridToothNecklace
         {
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
-            Item.value = 55555;
+            Item.value = 75000;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

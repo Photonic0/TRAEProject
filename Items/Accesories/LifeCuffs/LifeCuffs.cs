@@ -48,7 +48,7 @@ namespace TRAEProject.Items.Accesories.LifeCuffs
         {
             if(cuffs > 0)
             {
-                Player.AddBuff(BuffType<HeartAttack>(), cuffs * ((int)damage * 6 + 300));
+                Player.AddBuff(BuffType<HeartAttack>(), cuffs * ((int)damage * 3 + 300));
             }
         }
     }

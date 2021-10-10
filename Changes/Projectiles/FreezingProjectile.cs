@@ -34,7 +34,7 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.IceBoomerang:
                     if (Main.rand.Next(4) == 0)
                     {
-                        target.GetGlobalNPC<Freeze>().FreezeMe(target, 120);
+                        target.GetGlobalNPC<Freeze>().FreezeMe(target, 90);
                     }
                     break;
                 case ProjectileID.FrostBoltStaff:

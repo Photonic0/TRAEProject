@@ -6,7 +6,7 @@ using TRAEProject;
 using TRAEProject.Changes.Weapon;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-
+using TRAEProject.Items.Accesories.ShadowflameCharm;
 using static Terraria.ModLoader.ModContent;
 using ReLogic.Content;
 using TRAEProject.Items.Armor.IceArmor;
@@ -131,12 +131,16 @@ namespace TRAEProject
             BloodyTear.Register();
             Recipe BloodyTear2 = CreateRecipe(ItemID.BloodMoonStarter).AddIngredient(ItemID.Lens, 5).AddIngredient(ItemID.ViciousPowder, 50).AddIngredient(ItemID.Deathweed, 10).AddTile(TileID.DemonAltar);
             BloodyTear2.Register();
-            Recipe Mantra = CreateRecipe(ItemID.CountercurseMantra).AddIngredient(ItemID.AnkhCharm, 1).AddIngredient(ItemID.Nazar, 20).AddTile(TileID.TinkerersWorkbench);
-            Mantra.Register();
             Recipe Magnet = CreateRecipe(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
             Magnet.Register();
-            Recipe FrogGear = CreateRecipe(ItemID.FrogGear).AddIngredient(ItemID.FrogLeg, 1).AddIngredient(ItemID.Tabi, 1).AddTile(TileID.TinkerersWorkbench);
-            FrogGear.Register();
+
+Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 10).AddTile(TileID.TinkerersWorkbench);
+                 AvengerEmblem.Register();
+            Recipe DarkLance = CreateRecipe(ItemID.DarkLance);
+            DarkLance.AddIngredient(ItemID.DemoniteBar, 10);
+            DarkLance.AddIngredient(ItemID.ShadowScale, 5);
+            DarkLance.AddTile(TileID.Anvils);
+            DarkLance.Register();
             Recipe WaspGun = CreateRecipe(ItemID.WaspGun);
             WaspGun.AddIngredient(ItemID.BeeGun, 1);
             WaspGun.AddIngredient(ItemID.SoulofFright, 20);
@@ -207,16 +211,6 @@ namespace TRAEProject
                     recipe.AddIngredient(ItemID.WormTooth, 1);
                     recipe.ReplaceResult(ItemID.UnholyArrow, 50);
                 }
-                if (recipe.HasResult(ItemID.UnholyArrow))
-                {
-                    recipe.TryGetIngredient(ItemID.WoodenArrow, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.TryGetIngredient(ItemID.WormTooth, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.WoodenArrow, 50);
-                    recipe.AddIngredient(ItemID.WormTooth, 1);
-                    recipe.ReplaceResult(ItemID.UnholyArrow, 50);
-                }
                 if (recipe.HasResult(ItemID.JestersArrow))
                 {
                     recipe.TryGetIngredient(ItemID.WoodenArrow, out ingredientToRemove);
@@ -226,12 +220,6 @@ namespace TRAEProject
                     recipe.AddIngredient(ItemID.WoodenArrow, 25);
                     recipe.AddIngredient(ItemID.FallenStar, 1);
                     recipe.ReplaceResult(ItemID.JestersArrow, 25);
-                }
-                if (recipe.HasResult(ItemID.ArcticDivingGear))
-                {
-                    recipe.TryGetIngredient(ItemID.IceSkates, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.FrozenTurtleShell);
                 }
                 if (recipe.HasResult(ItemID.HeartreachPotion))
                 {
@@ -259,13 +247,7 @@ namespace TRAEProject
                 }
                 if (recipe.HasResult(ItemID.AvengerEmblem))
                 {
-                    recipe.TryGetIngredient(ItemID.SoulofSight, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.TryGetIngredient(ItemID.SoulofFright, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.SoulofMight, 10);
+					 recipe.RemoveRecipe();
                 }
                 if (recipe.HasResult(ItemID.FireGauntlet))
                 {
@@ -338,14 +320,6 @@ namespace TRAEProject
                     recipe.AddIngredient(ItemID.HermesBoots, 1);
                     recipe.AddIngredient(ItemID.SailfishBoots, 1);
                 }
-                if (recipe.HasResult(ItemID.TerrasparkBoots))
-                {
-                    recipe.TryGetIngredient(ItemID.FrogWebbing, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.TryGetIngredient(ItemID.TigerClimbingGear, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.Tabi, 1);
-                }
                 if (recipe.HasResult(ItemID.ObsidianWaterWalkingBoots))
                 {
                     recipe.TryGetIngredient(ItemID.WaterWalkingBoots, out ingredientToRemove);
@@ -359,7 +333,16 @@ namespace TRAEProject
                 {
                     recipe.TryGetIngredient(ItemID.ObsidianWaterWalkingBoots, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
+					recipe.TryGetIngredient(ItemID.ObsidianRose, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);		
+					recipe.TryGetIngredient(ItemID.MoltenCharm, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+							recipe.TryGetIngredient(ItemID.LavaCharm, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+							recipe.TryGetIngredient(ItemID.WaterWalkingBoots, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.WaterWalkingBoots, 1);
+					    recipe.AddIngredient(ItemID.LavaCharm, 1);
                 }
                 if (recipe.HasResult(ItemID.MoonShell))
                 {
@@ -370,6 +353,15 @@ namespace TRAEProject
                     recipe.TryGetIngredient(ItemID.MoonShell, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.NeptunesShell, 1);
+                }          
+				if (recipe.HasResult(ItemID.MoltenCharm))
+                {
+                    recipe.TryGetIngredient(ItemID.LavaCharm, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.TryGetIngredient(ItemID.ObsidianSkull, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+					recipe.AddIngredient(ItemID.LavaCharm);
+						recipe.AddIngredient(ItemType<ShadowflameCharmItem>());
                 }
                 if (recipe.HasResult(ItemID.Flamethrower))
                 {
@@ -384,7 +376,7 @@ namespace TRAEProject
                     recipe.TryGetIngredient(ItemID.AncientCloth, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.AncientCloth, 2);
-                    recipe.AddIngredient(ItemID.CobaltBar, 10);
+                    recipe.AddRecipeGroup("Cobalt", 10);
                     recipe.RemoveTile(TileID.Loom);
                     recipe.AddTile(TileID.MythrilAnvil);
                 }
@@ -393,7 +385,7 @@ namespace TRAEProject
                     recipe.TryGetIngredient(ItemID.AncientCloth, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.AncientCloth, 2);
-                    recipe.AddIngredient(ItemID.CobaltBar, 20);
+                     recipe.AddRecipeGroup("Cobalt", 20);
                     recipe.RemoveTile(TileID.Loom);
                     recipe.AddTile(TileID.MythrilAnvil);
                 }
@@ -402,7 +394,7 @@ namespace TRAEProject
                     recipe.TryGetIngredient(ItemID.AncientCloth, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.AncientCloth, 2);
-                    recipe.AddIngredient(ItemID.CobaltBar, 15);
+                    recipe.AddRecipeGroup("Cobalt", 15);
                     recipe.RemoveTile(TileID.Loom);
                     recipe.AddTile(TileID.MythrilAnvil);
                 }
@@ -562,7 +554,16 @@ namespace TRAEProject
                 }
                 if (recipe.HasResult(ItemID.FrogGear))
                 {
-                    recipe.RemoveRecipe();
+                    recipe.TryGetIngredient(ItemID.FrogWebbing, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+					       recipe.TryGetIngredient(ItemID.FrogFlipper, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+					       recipe.TryGetIngredient(ItemID.Flipper, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);	       
+					recipe.TryGetIngredient(ItemID.TigerClimbingGear, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                     recipe.AddIngredient(ItemID.FrogLeg, 1);
+					      recipe.AddIngredient(ItemID.Tabi, 1);
                 }
                 if (recipe.HasResult(ItemID.CountercurseMantra))
                 {
@@ -575,6 +576,16 @@ namespace TRAEProject
                     recipe.TryGetIngredient(ItemID.ObsidianShield, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.CobaltShield, 1);
+                }
+                if (recipe.HasResult(ItemID.ObsidianSkull))
+                {
+                    recipe.AddIngredient(ItemID.Bone, 20);
+                }
+                if (recipe.HasResult(ItemID.ObsidianHorseshoe))
+                {
+                    recipe.TryGetIngredient(ItemID.ObsidianSkull, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.Obsidian, 20);
                 }
             }
         }

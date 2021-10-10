@@ -15,7 +15,7 @@ namespace TRAEProject.Items.Accesories.TheBlackCross
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Black Cross");
-            Tooltip.SetDefault("Increases length of invincibility after taking damage.\nGrants the wearer an improved chance to dodge an attack");
+            Tooltip.SetDefault("Increases length of invincibility after taking damage.\nGrants the wearer a chance to dodge an attack");
         }
         public override void SetDefaults()
         {

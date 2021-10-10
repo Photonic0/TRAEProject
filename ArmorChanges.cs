@@ -63,7 +63,7 @@ namespace ChangesArmor
                     player.GetCritChance<GenericDamageClass>() -= 3;    
                     return;
                 case ItemID.OrichalcumMask:
-                    player.GetDamage<MeleeDamageClass>()  -= 0.07f;
+                    player.GetDamage<MeleeDamageClass>()  -= 0.11f;
                     player.GetCritChance<MeleeDamageClass>()  += 13;
                     return;
                 case ItemID.DjinnsCurse:
@@ -454,15 +454,7 @@ namespace ChangesArmor
                         }
                     }
                     return;
-                case ItemID.AncientBattleArmorShirt:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text += "\n8% increased magic critical strike chance";
-                        }
-                    }
-                    return;             
+                   
                 case ItemID.TikiMask:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -495,7 +487,7 @@ namespace ChangesArmor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Increases your maximum number of sentries and increases 30% melee speed and minion damage";
+                            line.text = "Increases your maximum number of sentries by 2 and melee speed and minion damage by 30%";
                         }
                     }
                     return;
@@ -513,7 +505,7 @@ namespace ChangesArmor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += " and life regeneration";
+                            line.text += "\nIncreases life regeneration";
                         }
                     }
                     return;      
@@ -522,7 +514,7 @@ namespace ChangesArmor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += "\n and greatly increased life regeneration";
+                            line.text += "\nGreatly increased life regeneration";
                         }
                     }
                     return;

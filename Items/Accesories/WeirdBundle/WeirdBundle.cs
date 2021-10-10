@@ -22,7 +22,7 @@ namespace TRAEProject.Items.Accesories.WeirdBundle
         public override void SetDefaults()
         {
             Item.accessory = true;
-            Item.sellPrice(0, 10, 0, 0);
+            Item.sellPrice(gold: 10);
             Item.rare = ItemRarityID.Yellow;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -52,12 +52,6 @@ namespace TRAEProject.Items.Accesories.WeirdBundle
         .AddIngredient(ItemID.FartInABalloon)
    .AddRecipeGroup("TsunamiJump")
      .AddRecipeGroup("HoneyBalloon")
-    .AddTile(TileID.TinkerersWorkbench)
-         .Register();
-            CreateRecipe().AddIngredient(ItemID.SoulofFlight, 20)
-        .AddIngredient(ItemID.HoneyBalloon)
-   .AddRecipeGroup("TsunamiJump")
-     .AddRecipeGroup("FartJump")
     .AddTile(TileID.TinkerersWorkbench)
          .Register();
         }

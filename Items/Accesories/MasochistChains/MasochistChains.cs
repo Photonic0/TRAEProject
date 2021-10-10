@@ -17,7 +17,7 @@ namespace TRAEProject.Items.Accesories.MasochistChains
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Masochist Chains");
-            Tooltip.SetDefault("Getting hit will temporarily increase damage by 20% and increase movement speed");
+            Tooltip.SetDefault("Getting hit will temporarily increase damage by 20% and movement speed");
         }
         public override void SetDefaults()
         {

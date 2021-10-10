@@ -67,7 +67,7 @@ namespace TRAEProject.Changes.Weapon
 					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<Javelin>();
 					altShoot = ProjectileType<JavelinThrow>();
-					item.useTime = item.useAnimation = 20;
+					item.useTime = item.useAnimation = 18;
 					item.DamageType = DamageClass.Melee;
 					item.autoReuse = false;
 					item.consumable = false;
@@ -242,8 +242,8 @@ namespace TRAEProject.Changes.Weapon
 					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<Daybreak>();
 					altShoot = ProjectileType<DaybreakThrow>();
-
-					item.useTime = item.useAnimation = 20;
+					item.damage = 75;
+					item.useTime = item.useAnimation = 16;
 					item.autoReuse = false;
 					break;
 

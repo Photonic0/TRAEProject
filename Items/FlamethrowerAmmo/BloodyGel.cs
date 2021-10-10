@@ -34,7 +34,6 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         public override void AddRecipes()
         {
             CreateRecipe(20).AddIngredient(ItemID.Gel)
-                .AddIngredient(ItemID.Gel, 1)
                 .AddTile(TileID.BloodMoonMonolith)
                 .Register();
         }
