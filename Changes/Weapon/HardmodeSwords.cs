@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
-using Terraria.DataStructures;
+using static Terraria.ModLoader.ModContent;
+using TRAEProject.Projectiles;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +14,12 @@ namespace TRAEProject.Changes.Weapon
 {
     class HardmodeSwords : GlobalItem
     {
+        public override bool InstancePerEntity => true;
+        public bool FetidHeal = false;
+        public override GlobalItem Clone(Item item, Item itemClone)
+        {
+            return base.Clone(item, itemClone);
+        }
         public override void SetDefaults(Item item)
         {
             switch(item.type)
@@ -112,7 +119,7 @@ namespace TRAEProject.Changes.Weapon
                     break;
                 case ItemID.BreakerBlade:
                     item.scale = 1.5f; // up from 1.05f
-                    item.damage = 160;
+                    item.damage = 80;
                     item.useTime = 60;
                     item.useAnimation = 60;
                     item.height = 90;
@@ -185,6 +192,13 @@ namespace TRAEProject.Changes.Weapon
 
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
+            if (FetidHeal && player.GetModPlayer<TRAEPlayer>().BaghnakhHeal <= player.GetModPlayer<TRAEPlayer>().LastHitDamage)
+            {
+                float healAmount = (float)(damage * 0.1f);
+                player.GetModPlayer<TRAEPlayer>().BaghnakhHeal += (int)healAmount;
+                player.HealEffect((int)healAmount, true);
+                player.statLife += (int)healAmount;
+            }
             switch (item.type)
             {
                 case ItemID.PalladiumSword:

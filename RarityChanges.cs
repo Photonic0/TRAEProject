@@ -336,7 +336,7 @@ namespace ChangesWeapons
                 case ItemID.DD2BetsyBow:
                 case ItemID.MonkStaffT3:
                 case ItemID.ApprenticeStaffT3:
-                case ItemID.RainbowWhip:
+
                 case ItemID.PiercingStarlight:
                 case ItemID.FairyQueenMagicItem:
                 case ItemID.FairyQueenRangedItem:
@@ -353,9 +353,10 @@ namespace ChangesWeapons
                 case ItemID.ApprenticeAltPants:
                 case ItemID.ApprenticeAltShirt:
                 case ItemID.ReindeerBells:  
-				
+				   case ItemID.RainbowCrystalStaff:
 				item.rare = ItemRarityID.Cyan;
                     return;
+					                case ItemID.RainbowWhip:
                 case ItemID.PortalGun:
                 case ItemID.MoonlordArrow:
                 case ItemID.MoonlordBullet:

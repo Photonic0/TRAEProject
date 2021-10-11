@@ -72,7 +72,11 @@ namespace TRAEProject.Items.DreadItems.BossBag
             {
                 player.QuickSpawnItem(ItemID.BloodMoonMonolith);
             }
-            if(Main.rand.Next(9) == 0)
+            if (Main.rand.Next(7) == 0)
+            {
+                player.QuickSpawnItem(ItemType<DreadMask.DreadMask>());
+            }
+            if (Main.rand.Next(9) == 0)
             {
                 player.QuickSpawnItem(ItemType<BottomlessChumBucket.BottomlessChumBucket>());
             }

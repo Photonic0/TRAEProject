@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TRAEProject.Items.DreadItems.DreadRelic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -20,6 +20,8 @@ using TRAEProject.Items.DreadItems.DreadSummon;
 using TRAEProject.Items.DreadItems.DreadTrophy;
 using TRAEProject.Items.DreadItems.ShellSpinner;
 using TRAEProject.Items.DreadItems.BloodSquidEgg;
+using TRAEProject.Items.DreadItems.BloodBoiler;
+using TRAEProject.Items.DreadItems.DreadMask;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Dreadnautilus
@@ -70,14 +72,16 @@ namespace TRAEProject.Changes.Dreadnautilus
 				LeadingConditionRule notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 			
 				//Notice we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal mode
-				notExpertRule.OnSuccess(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, ItemType<ShellSpinner>(), ItemType<ShellSpinner>(), ItemType<Brimstone>(), ItemID.SanguineStaff));
+				notExpertRule.OnSuccess(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, ItemType<ShellSpinner>(), ItemType<ShellSpinner>(), ItemType<Brimstone>(), ItemType<BloodBoiler>(), ItemID.SanguineStaff));
 				//Finally add the leading rule
 				npcLoot.Add(notExpertRule);
 
+				//Trophies are spawned with 1/10 chance
+				npcLoot.Add(ItemDropRule.Common(ItemType<DreadTrophy>(), 10));
 				//Boss masks are spawned with 1/7 chance
-				//notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
-				//notExpertRule.OnSuccess(ItemDropRule.Common(ItemType<PolarMask>(), 7));
-				//npcLoot.Add(notExpertRule);
+				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+				notExpertRule.OnSuccess(ItemDropRule.Common(ItemType<DreadMask>(), 7));
+				npcLoot.Add(notExpertRule);
 
 				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 				notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BloodHamaxe, 8));
@@ -86,7 +90,7 @@ namespace TRAEProject.Changes.Dreadnautilus
 				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 				notExpertRule.OnSuccess(ItemDropRule.Common(ItemType<BloodWings>(), 13));
 				npcLoot.Add(notExpertRule);
-
+				
 				notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
 				notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BloodMoonMonolith, 12));
 				npcLoot.Add(notExpertRule);
@@ -103,12 +107,11 @@ namespace TRAEProject.Changes.Dreadnautilus
 				notExpertRule.OnSuccess(ItemDropRule.Common(ItemID.BloodMoonStarter, 2));
 				npcLoot.Add(notExpertRule);
 				
-				MasterRule = new LeadingConditionRule(new Conditions.IsMasterMode());
-			    MasterRule.OnSuccess(ItemDropRule.Common(ItemType<BloodSquidEgg>(), 4));
+				MasterRule = new LeadingConditionRule(new Conditions.IsMasterMode()); 
+				MasterRule.OnSuccess(ItemDropRule.Common(ItemType<DreadnautilusRelic>()));
+				MasterRule.OnSuccess(ItemDropRule.Common(ItemType<BloodSquidEgg>(), 4));
 				npcLoot.Add(MasterRule);
-				//Trophies are spawned with 1/10 chance
-				npcLoot.Add(ItemDropRule.Common(ItemType<DreadTrophy>(), 10));
-
+		
 			}
 
 		}

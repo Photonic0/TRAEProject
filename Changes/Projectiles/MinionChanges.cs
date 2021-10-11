@@ -31,15 +31,19 @@ namespace TRAEProject.Changes.Projectiles
                     item.autoReuse = true;
                     return;
                 case ItemID.OpticStaff:
-                    item.damage = 23; // down from 30
+                    item.damage = 25; // down from 30
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     break;
                 case ItemID.ImpStaff:
+                    item.mana = 40;
+                    item.useTime = 10;
+                    item.useAnimation = 10;
                     item.autoReuse = true;
                     break;
                 case ItemID.BabyBirdStaff:  
+				case ItemID.SlimeStaff:  
                 case ItemID.SpiderStaff:
                 case ItemID.SanguineStaff:
                 case ItemID.RavenStaff:
@@ -93,9 +97,12 @@ namespace TRAEProject.Changes.Projectiles
         {
             switch (projectile.type)
             {
-                case ProjectileID.MiniSharkron:
-                    return;
                 case ProjectileID.FlinxMinion:
+                    projectile.usesIDStaticNPCImmunity = false;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 20;
+                    return;
+                case ProjectileID.BabySlime:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 20;

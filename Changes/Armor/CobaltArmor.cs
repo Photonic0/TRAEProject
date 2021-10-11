@@ -44,12 +44,13 @@ namespace TRAEProject.Changes.Armor
                     return;
                 case ItemID.CobaltMask:
                     player.moveSpeed += 0.15f;
-                    player.GetDamage(DamageClass.Ranged) -= 0.04f;
+                    player.GetDamage(DamageClass.Ranged) -= 0.04f; 
+                    player.GetCritChance(DamageClass.Ranged) -= 1;
                     return;
                 case ItemID.CobaltHat:
                     player.moveSpeed += 0.15f;
                     player.GetDamage(DamageClass.Magic) -= 0.03f;
-                    player.GetCritChance(DamageClass.Magic) += 1;
+                    player.GetCritChance(DamageClass.Magic) -= 1;
                     return;
                 case ItemID.CobaltBreastplate:
                     player.moveSpeed += 0.15f;
@@ -110,7 +111,7 @@ namespace TRAEProject.Changes.Armor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "6% increased ranged damage and 10% increased ranged critical strike chance";
+                            line.text = "5% increased ranged damage and 10% increased ranged critical strike chance";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -123,7 +124,7 @@ namespace TRAEProject.Changes.Armor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "7% increased magic damage and 10% increased magic critical strike chance";
+                            line.text = "5% increased magic damage and 10% increased magic critical strike chance";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {

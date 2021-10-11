@@ -136,6 +136,8 @@ namespace TRAEProject
 
 Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 10).AddTile(TileID.TinkerersWorkbench);
                  AvengerEmblem.Register();
+            Recipe StardustPortal = CreateRecipe(ItemID.MoonlordTurretStaff).AddIngredient(ItemID.TreasureMagnet, 18).AddTile(TileID.LunarCraftingStation);
+            StardustPortal.Register();
             Recipe DarkLance = CreateRecipe(ItemID.DarkLance);
             DarkLance.AddIngredient(ItemID.DemoniteBar, 10);
             DarkLance.AddIngredient(ItemID.ShadowScale, 5);
@@ -180,15 +182,25 @@ Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem
                 if (recipe.HasResult(ItemID.SilverBullet))
                 {
                     recipe.ReplaceResult(ItemID.SilverBullet, 100);
+                    recipe.TryGetIngredient(ItemID.MusketBall, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.MusketBall, 100);
                 }
                 if (recipe.HasResult(ItemID.TungstenBullet))
                 {
                     recipe.ReplaceResult(ItemID.TungstenBullet, 100);
+                    recipe.TryGetIngredient(ItemID.MusketBall, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.MusketBall, 100);
                 }
                 if (recipe.HasResult(ItemID.MeteorShot))
                 {
                     recipe.ReplaceResult(ItemID.MeteorShot, 100);
+                    recipe.TryGetIngredient(ItemID.MusketBall, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.MusketBall, 100);
                 }
+
                 if (recipe.HasResult(ItemID.MoonlordBullet))
                 {
                     recipe.ReplaceResult(ItemID.MoonlordBullet, 500);
@@ -200,6 +212,9 @@ Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem
                 if (recipe.HasResult(ItemID.VenomArrow))
                 {
                     recipe.ReplaceResult(ItemID.VenomArrow, 100);
+                    recipe.TryGetIngredient(ItemID.WoodenArrow, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.WoodenArrow, 100);
                 }
                 if (recipe.HasResult(ItemID.UnholyArrow))
                 {
@@ -549,6 +564,10 @@ Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem
                     recipe.AddIngredient(ItemID.BandofStarpower, 1);
                 }
                 if (recipe.HasResult(ItemID.AnkhCharm))
+                {
+                    recipe.RemoveRecipe();
+                }
+                if (recipe.HasResult(ItemID.StardustDragonStaff))
                 {
                     recipe.RemoveRecipe();
                 }

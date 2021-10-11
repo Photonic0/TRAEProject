@@ -35,6 +35,7 @@ namespace TRAEProject.Items.Accesories.MasochistChains
         {
             CreateRecipe().AddIngredient(ItemType<LifeCuffs.LifeCuffs>(), 1)
                 .AddIngredient(ItemID.PanicNecklace, 1)
+				.AddIngredient(ItemID.DarkShard, 1)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
         }

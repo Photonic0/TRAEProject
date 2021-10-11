@@ -27,6 +27,7 @@ namespace TRAEProject
         public bool cantCrit = false; // self-explanatory
         public bool dontHitTheSameEnemyMultipleTimes = false;// self-explanatory
         // Bouncing
+		  public bool onlyBounceOnce = false;
         public bool BouncesOffTiles = false;
         public bool BouncesBackOffTiles = false;
         public float DamageLossOffATileBounce = 0f;
@@ -103,10 +104,6 @@ namespace TRAEProject
                     projectile.usesLocalNPCImmunity = true;
                     dontHitTheSameEnemyMultipleTimes = true;
                     return;
-                case ProjectileID.PulseBolt:
-                    SmartBouncesOffTiles = true;
-                    SmartBouncesOffEnemies = true;
-                    return;
                 case ProjectileID.EyeFire:
                     if (Main.expertMode && ServerConfig.Instance.MechChanges)
                     {
@@ -154,9 +151,6 @@ namespace TRAEProject
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
-                case ProjectileID.FlaironBubble:
-                    projectile.extraUpdates = 1;
-                    return;
                 case ProjectileID.FlamingJack:
                     projectile.extraUpdates = 1;
                     projectile.scale = 1.25f;
@@ -166,14 +160,6 @@ namespace TRAEProject
                     projectile.DamageType = DamageClass.Melee;
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
-                    return;
-                case ProjectileID.MonkStaffT2:
-                    projectile.width = 43;
-                    projectile.height = 43;
-					projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    projectile.usesIDStaticNPCImmunity = false;
-                    //projectile.idStaticNPCHitCooldown = 10;
                     return;
                 case ProjectileID.ChlorophyteOrb: // Revisit
                     projectile.penetrate = 6;
@@ -274,10 +260,11 @@ namespace TRAEProject
                     DirectDamage = 0.5f;
                     IgnoresDefense = true;
                     return;
-                case ProjectileID.PhantasmArrow:
-                    DirectDamage = 1.3f;
-                    IgnoresDefense = true;
+                case ProjectileID.Electrosphere:
+                    projectile.usesIDStaticNPCImmunity = true;
+                    projectile.idStaticNPCHitCooldown = 10;
                     return;
+        
                 case ProjectileID.CursedDartFlame:
                     projectile.timeLeft = 75;
                     projectile.penetrate = 1;
@@ -294,7 +281,10 @@ namespace TRAEProject
 					projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
-				case ProjectileID.UnholyArrow:     
+                case ProjectileID.CursedArrow:
+                    projectile.extraUpdates = 1;
+                    return;
+                case ProjectileID.UnholyArrow:     
 					projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
@@ -310,16 +300,14 @@ namespace TRAEProject
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
+                case ProjectileID.IchorBullet:
+                    BouncesOffTiles = true;
+					onlyBounceOnce = true;
+                    return;
                 case ProjectileID.GrenadeI:
                 case ProjectileID.GrenadeII:
                 case ProjectileID.GrenadeIII:
                 case ProjectileID.GrenadeIV:
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    return;
-                case ProjectileID.ChlorophyteArrow:
-                    projectile.penetrate = 3;
-                    BouncesOffTiles = true;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
@@ -336,23 +324,7 @@ namespace TRAEProject
                     ExplosionRadius = 80;
                     DamageFalloff = 0.25f;
                     return;        
-                case ProjectileID.PlatinumCoin:          // EXPERIMENT
-                    projectile.timeLeft = 600;
-                    projectile.penetrate = 20;
-                    SmartBouncesOffEnemies = true;
-                    SmartBouncesOffTiles = true;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    return;
-                case ProjectileID.MeteorShot:          // Revisit 
-                    //projectile.penetrate = 3;
-                    //projectile.usesLocalNPCImmunity = true;
-                    //projectile.localNPCHitCooldown = 10;
-                    DamageFalloff = 0.33f;
-                    //DamageLossOffATileBounce = 0.2f;
-                    //BouncesBackOffTiles = true;
-                    //BouncesOffEnemies = true;
-                    return;
+        
                 case ProjectileID.MagicDagger:
                     projectile.aiStyle = 1;
                     projectile.extraUpdates = 0;
@@ -809,7 +781,12 @@ namespace TRAEProject
             }
             if (BouncesOffTiles)
             {
+				if (onlyBounceOnce)
+				{
+					BouncesOffTiles = false;
+				}
                 projectile.velocity.Y = -projectile.oldVelocity.Y;
+				return false;
             }
             if (BouncesBackOffTiles)
             { 
@@ -866,7 +843,7 @@ namespace TRAEProject
                         projectile.velocity.X = -projectile.oldVelocity.X;
                         projectile.velocity.Y = -projectile.oldVelocity.Y;
                     }
-                    return false;
+                    return false;       
                 case ProjectileID.CursedBullet:
                     {
                         Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X, projectile.position.Y, 0f, 0f, ProjectileID.CursedDartFlame, (projectile.damage * 1), 0, projectile.owner, 0f, 0f);

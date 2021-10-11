@@ -23,7 +23,7 @@ namespace TRAEProject.Changes.Projectiles
             switch(projectile.type)
             {
                 case ProjectileID.FrostBoltSword:
-                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 180);
+                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 120);
                     break;
                 case ProjectileID.BallofFrost:
                     target.GetGlobalNPC<Freeze>().FreezeMe(target, 60);

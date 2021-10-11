@@ -68,8 +68,6 @@ namespace ChangesBuffs
                     player.inferno = false;
                     player.infernoCounter = 0;
                     return;
-                case BuffID.Panic:
-                    return;
                 case BuffID.Archery:
                     player.arrowDamage -= 0.08f; //  because Archery Potion uses a unique multiplier -8% makes it effectively +10% arrow damage 
                     return;
@@ -90,7 +88,7 @@ namespace ChangesBuffs
                 case BuffID.Sharpened: // FIX THIS BUG
                     return;
                 case BuffID.ManaRegeneration:
-                    player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.125f;
+                    player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.2f;
                     return;
                 case BuffID.ManaSickness:               
                     player.manaSickReduction = 0f;

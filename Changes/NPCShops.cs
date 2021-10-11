@@ -23,6 +23,15 @@ namespace TRAEProject.Changes
                     }
                     shop[shop.Length - 1] = 0;
                     nextSlot--;
+                }    
+				if (shop[i] == ItemID.PulseBow)
+                {
+                    for (int j = i + 1; j < shop.Length; j++)
+                    {
+                        shop[j - 1] = shop[j];
+                    }
+                    shop[shop.Length - 1] = 0;
+                    nextSlot--;
                 }
             }
         }

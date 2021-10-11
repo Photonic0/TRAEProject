@@ -12,7 +12,7 @@ namespace TRAEProject.Items.DreadItems.DreadSummon
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bloody Sea Wasp");
-            Tooltip.SetDefault("66.6% bait power\nWill lure a powerful Blood Moon monster");
+            Tooltip.SetDefault("Summons a powerful Blood Moon monster");
 
         }
         public override void SetDefaults()
@@ -21,7 +21,7 @@ namespace TRAEProject.Items.DreadItems.DreadSummon
 			Item.consumable = true;
 			Item.width = 12;
 			Item.height = 12;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(0, 0, 10);
             Item.makeNPC = NPCID.BloodNautilus;
             Item.useStyle = 4;
@@ -33,7 +33,6 @@ namespace TRAEProject.Items.DreadItems.DreadSummon
             {
                 NPC.SpawnOnPlayer(player.whoAmI, NPCID.BloodNautilus);
                 SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
-                Item.stack--;
                 return true;
             }
             return false;

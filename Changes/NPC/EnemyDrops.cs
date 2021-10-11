@@ -47,7 +47,7 @@ namespace TRAEProject
                 case NPCID.Clown:
                     {
                         npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(4, ItemID.WhoopieCushion));
-                        npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(4, 3, ItemID.Bananarang));
+                        npcLoot.Add(ItemDropRule.NormalvsExpertOneFromOptions(1, ItemID.Bananarang));
                         return;
                     }
                 case NPCID.DesertLamiaDark:
@@ -215,7 +215,10 @@ namespace TRAEProject
                     NPCLoader.blockLoot.Add(ItemID.NorthPole);
                     NPCLoader.blockLoot.Add(ItemID.BlizzardStaff);
                     return true;
-                case NPCID.BigMimicHallow:
+                case 657: // queen slime
+                    NPCLoader.blockLoot.Add(ItemID.Smolstar);
+                    return true;
+				case NPCID.BigMimicHallow:
                     int[] HDrops = new int[] { ItemID.FlyingKnife, ItemID.DaedalusStormbow, ItemID.CrystalVileShard, ItemID.Smolstar };
                     int Ihook = Main.rand.Next(4); 
                     if (Ihook == 0)
@@ -228,6 +231,7 @@ namespace TRAEProject
                     NPCLoader.blockLoot.Add(ItemID.DaedalusStormbow);
                     NPCLoader.blockLoot.Add(ItemID.IlluminantHook);
                     return true;
+					
                 case NPCID.BigMimicCrimson:
                     int[] CRDrops = new int[] { ItemID.FetidBaghnakhs, ItemID.SoulDrain, ItemID.DartPistol, ItemID.FleshKnuckles };
                     int Thook = Main.rand.Next(4);

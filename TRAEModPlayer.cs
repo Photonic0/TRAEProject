@@ -300,7 +300,6 @@ namespace TRAEProject
         }
         public override void PostUpdateEquips()
         {
-            // coded by Qwerty
             for (int i = 3; i < 10; i++)
             {
                 //The Player.armor[] array represents the items the Player has equiped
@@ -460,7 +459,7 @@ namespace TRAEProject
             {
                 if (Player.lifeRegen > 0)
                 {
-                    Player.lifeRegen -= 1;
+                    Player.lifeRegen -= 2;
                 }
             }
             if (Player.HasBuff(BuffType<NanoHealing>()))

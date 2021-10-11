@@ -14,8 +14,8 @@ namespace TRAEProject
     public class TRAEGlobalItem : GlobalItem
     {
         public override bool InstancePerEntity => true;
-        public bool FetidHeal = false;
-		public int BaseDamage = 1;
+  
+        public int BaseDamage = 1;
         public float baseVelocity = 1f;
         public override GlobalItem Clone(Item item, Item itemClone)
         {
@@ -222,12 +222,9 @@ namespace TRAEProject
                     item.damage = 16;
                     item.crit = 4;
                     return;
-                case ItemID.MonkStaffT1: // REVISIT
-                    item.knockBack = 3.5f;
-                    return;
                 case ItemID.HelFire:
-                    item.damage = 40;
-                    item.knockBack = 6f;
+                    item.damage = 39;
+                    item.knockBack = 7f;
                     return;
                 case ItemID.Cascade:
                     item.damage = 27; // up from 27
@@ -263,26 +260,20 @@ namespace TRAEProject
                 /// RANGED 
                 case ItemID.Boomstick:
                     item.damage = 11; // down from 14
-                    item.value = 250000; // 25 gold
                     return;
 			    case ItemID.BeesKnees:
                     item.damage = 18; // down from 23?
-                    return;
-				case ItemID.HellwingBow:
-                    item.useTime = 16; // up from 13
-                    item.useAnimation = 16;
                     return;
 				case ItemID.Revolver:
                     item.damage = 30; // up from 20
                     item.value = 250000; // 25 gold
                     return;
                 case ItemID.Flamethrower:
-                    item.damage = 15; // down from 35
+                    item.damage = 14; // down from 35
                     item.shootSpeed = 5.33f; // down from 7
                     item.useAnimation = 60; // down from 30
                     item.useTime = 10; // up from 6
                     item.knockBack = 0.25f; // down from 0.3
-                    item.reuseDelay = 6; // up from 0
                     return;
                 case ItemID.EldMelter:
 				    item.damage = 30;
@@ -318,10 +309,10 @@ namespace TRAEProject
                     item.useAnimation = 14;
                     return;
                 case ItemID.DaedalusStormbow: // REVISIT
-                    item.shoot = ProjectileType<Starrow>();
-                    item.useAmmo = AmmoID.Arrow;
-                    item.shootSpeed = 18f;
-                    item.damage = 34;
+                    item.damage = 30;
+                    return;
+                case ItemID.Megashark:
+                    item.damage = 20; // down from 26
                     return;
                 case ItemID.TheUndertaker:
                 case ItemID.SniperRifle:
@@ -334,11 +325,8 @@ namespace TRAEProject
                     item.damage = 60; // up from 44
                     return;
                 case ItemID.StakeLauncher:
-                    item.useTime = 12;
-                    item.useAnimation = 12;
-                    return;
-                case ItemID.RocketLauncher:
-                    item.damage = 55; // up from 45
+                    item.useTime = 15;
+                    item.useAnimation = 15;
                     return;
                 case ItemID.TacticalShotgun:
                     item.damage = 34; // up from 29
@@ -346,7 +334,7 @@ namespace TRAEProject
                     item.useAnimation = 32; // down from 34
                     return;
                 case ItemID.NailGun:
-                    item.damage = 125; // up from 85
+                    item.damage = 110; // up from 85
                     return;
     
                 case ItemID.Tsunami:
@@ -359,6 +347,9 @@ namespace TRAEProject
 				    return;
                 case ItemID.ChainGun:
                     item.damage = 41; // up from 31
+                    return;
+                case ItemID.Phantasm:
+                    item.damage = 40; // down from 50
                     return;
                 case ItemID.VortexBeater:
                     item.damage = 42;
@@ -373,20 +364,12 @@ namespace TRAEProject
                     item.damage = 10; // unchanged
                     item.knockBack = 7f;
                     return;
-                case ItemID.VenomBullet:
-                    item.damage = 19; // up from 15
-                    item.knockBack = 5.5f;
-                    return;
-                case ItemID.MoonlordBullet: // not documented (?)
-                    item.damage = 25; // up from 20
+                case ItemID.MoonlordBullet:
+                    item.damage = 50; // up from 20
                     return;
                 case ItemID.FlamingArrow:
                     item.shootSpeed = 5f;
                     item.knockBack = 6f;
-                    return;
-                case ItemID.UnholyArrow:
-                    item.damage = 12;
-                    item.knockBack = 3f;
                     return;
                 case ItemID.HolyArrow:
                     item.damage = 10;
@@ -397,17 +380,6 @@ namespace TRAEProject
                 case ItemID.HellfireArrow:
                     item.damage = 14;
                     item.shootSpeed = 3.5f;
-                    return;
-                case ItemID.CursedArrow:
-                    item.damage = 20;
-                    return;
-                case ItemID.ChlorophyteArrow:
-                    item.damage = 12;
-                    item.knockBack = 1f;
-                    return;
-                case ItemID.VenomArrow:
-                    item.damage = 19;
-                    item.knockBack = 6.6f;
                     return;
                 // equipment
                 case ItemID.Rally:
@@ -420,26 +392,6 @@ namespace TRAEProject
                 case ItemID.PharaohsRobe:
                     item.defense = 3;
                     item.vanity = false;
-                    return;
-                case ItemID.WoodGreaves:
-                    item.defense = 1;
-                    return;
-                case ItemID.BorealWoodBreastplate:
-                case ItemID.PalmWoodBreastplate:
-                case ItemID.EbonwoodHelmet:
-                case ItemID.EbonwoodGreaves:
-                case ItemID.ShadewoodHelmet:
-                case ItemID.ShadewoodGreaves:
-                case ItemID.RichMahoganyHelmet:
-                case ItemID.RichMahoganyBreastplate:
-                case ItemID.RichMahoganyGreaves:
-                    item.defense = 2;
-                    return;
-                case ItemID.MagicHat:
-                case ItemID.CopperHelmet:
-                case ItemID.CopperGreaves:
-                case ItemID.TinGreaves:
-                    item.defense = 3;
                     return;
                 case ItemID.RuneHat:
                     item.defense = 4;
@@ -464,7 +416,26 @@ namespace TRAEProject
                     item.rare = ItemRarityID.Orange;
                     item.vanity = false;
                     return;
-                case ItemID.MythrilHood:
+             
+                case ItemID.WoodGreaves:
+                    item.defense = 1;
+                    return;
+                case ItemID.BorealWoodBreastplate:
+                case ItemID.PalmWoodBreastplate:
+                case ItemID.EbonwoodHelmet:
+                case ItemID.EbonwoodGreaves:
+                case ItemID.ShadewoodHelmet:
+                case ItemID.ShadewoodGreaves:
+                case ItemID.RichMahoganyHelmet:
+                case ItemID.RichMahoganyBreastplate:
+                case ItemID.RichMahoganyGreaves:
+                    item.defense = 2;
+                    return;
+                case ItemID.CopperHelmet:
+                case ItemID.CopperGreaves:
+                case ItemID.TinGreaves:
+                    item.defense = 3;
+                    return;
                 case ItemID.CopperChainmail:
                 case ItemID.TinHelmet:
                 case ItemID.TinChainmail:
@@ -474,7 +445,6 @@ namespace TRAEProject
                 case ItemID.LeadGreaves:
                     item.defense = 4;
                     return;
-                case ItemID.GypsyRobe:
                 case ItemID.IronChainmail:
                 case ItemID.LeadChainmail:
                 case ItemID.LeadHelmet:
@@ -485,7 +455,6 @@ namespace TRAEProject
                 case ItemID.FossilPants:
                     item.defense = 5;
                     return;
-                case ItemID.ArcticDivingGear:
                 case ItemID.JungleHat:
                 case ItemID.TungstenHelmet:
                 case ItemID.TungstenChainmail:
@@ -533,9 +502,7 @@ namespace TRAEProject
                 case ItemID.SpectreHood:
                     item.defense = 12;
                     return;
-                case ItemID.ChlorophyteMask:
-                    item.defense = 25;
-                    return;
+
                 case ItemID.ObsidianHorseshoe:
                     item.SetNameOverride("Heavy Horseshoe");
                     return;
@@ -603,10 +570,6 @@ namespace TRAEProject
         }
         public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
         {
-            //if (weapon.type == ItemID.DaedalusStormbow) REVISIT
-            //{
-            //    type = ProjectileType<Starrow>();
-            //}
             if (weapon.type == ItemID.VortexBeater && (ammo.type == ItemID.MusketBall || ammo.type == ItemID.EndlessMusketPouch))
             {
                 type = ProjectileType<LilRocket>();
@@ -765,13 +728,6 @@ namespace TRAEProject
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);
             }
-            if (FetidHeal && player.GetModPlayer<TRAEPlayer>().BaghnakhHeal <= player.GetModPlayer<TRAEPlayer>().LastHitDamage)
-            {
-                float healAmount = (float)(damage * 0.1f);
-                player.GetModPlayer<TRAEPlayer>().BaghnakhHeal += (int)healAmount;
-                player.HealEffect((int)healAmount, true);
-                player.statLife += (int)healAmount;
-            }
             if (item.type == ItemID.Cutlass)
             {
                 if (target.active && !target.dontTakeDamage && !target.friendly && target.lifeMax > 5 && !target.immortal && !target.SpawnedFromStatue)
@@ -803,7 +759,7 @@ namespace TRAEProject
                         return;
                     }
                 case ItemID.BottledHoney:
-                    player.AddBuff(BuffID.Honey, 3600, false);
+                    player.AddBuff(BuffID.Honey, 2400, false);
                     return;
             }
             return;
@@ -842,11 +798,6 @@ namespace TRAEProject
                         // This is to prevent shooting through blocks and to make the fire shoot from the muzzle.
                         return true;
                     }
-                case ItemID.DaedalusStormbow:
-                    {
-                        type = ProjectileType<Starrow>();
-                        return true;
-                    }/// probably don't need this
                 case ItemID.ChristmasTreeSword:
                     {
                         int chance = Main.rand.Next(5);

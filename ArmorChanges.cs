@@ -55,13 +55,6 @@ namespace ChangesArmor
                     player.GetDamage<MagicDamageClass>() += 0.15f;
                     player.GetCritChance<MagicDamageClass>()  += 15;
                     return;
-                case ItemID.CobaltLeggings:
-                    player.GetCritChance<GenericDamageClass>()  += 3;
-                    return;
-                case ItemID.CobaltBreastplate:
-                    player.GetDamage<GenericDamageClass>() += 0.05f;
-                    player.GetCritChance<GenericDamageClass>() -= 3;    
-                    return;
                 case ItemID.OrichalcumMask:
                     player.GetDamage<MeleeDamageClass>()  -= 0.11f;
                     player.GetCritChance<MeleeDamageClass>()  += 13;
@@ -76,7 +69,7 @@ namespace ChangesArmor
                     player.manaCost += 0.13f;
                     return;
                 case ItemID.SpectreHood:
-                    player.GetDamage<MagicDamageClass>() += 0.4f; // +0.4 to negate the reduction
+
                     player.statManaMax2 += 100;
                     player.manaCost -= 0.20f;
                     return;
@@ -92,14 +85,6 @@ namespace ChangesArmor
                     return;
                 case ItemID.SquireAltShirt:
                     player.lifeRegen -= 4;
-                    return;
-                case ItemID.MonkShirt:
-                    player.GetDamage<MeleeDamageClass>()  -= 0.2f;
-                    player.meleeSpeed += 0.2f;
-                    return;
-                case ItemID.MonkBrows:
-                    player.GetDamage<MeleeDamageClass>()  += 0.2f;
-                    player.meleeSpeed -= 0.2f;
                     return;
                 case ItemID.MonkAltShirt:
                     player.meleeSpeed -= 0.2f;
@@ -171,7 +156,9 @@ namespace ChangesArmor
             if ((head.type == ItemID.HallowedHeadgear || head.type == ItemID.HallowedHelmet || head.type == ItemID.HallowedMask || head.type == ItemID.HallowedHood) && body.type == ItemID.HallowedPlateMail && legs.type == ItemID.HallowedGreaves)
                 return "HallowedSet";
             if (head.type == ItemID.TikiMask && body.type == ItemID.TikiShirt && legs.type == ItemID.TikiPants)
-                return "TikiSet";
+                return "TikiSet"; 
+            if (head.type == ItemID.SpectreHood && body.type == ItemID.SpectreRobe && legs.type == ItemID.SpectrePants)
+                return "SpectreHoodSet";
             if ((head.type == ItemID.ShroomiteHeadgear || head.type == ItemID.ShroomiteHelmet || head.type == ItemID.ShroomiteMask) && body.type == ItemID.ShroomiteBreastplate && legs.type == ItemID.ShroomiteLeggings)
                 return "ShroomiteSet";
             if (head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
@@ -295,6 +282,10 @@ namespace ChangesArmor
             {
                 player.setBonus = "All whips gain an additional +5 tag damage and +5% summon tag critical strike chance";
 				player.GetModPlayer<TRAEPlayer>().PirateSet = true;
+            }
+            if (armorSet == "SpectreHoodSet")
+            {
+                player.GetDamage<MagicDamageClass>() += 0.4f; // +0.4 to negate the reduction
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -464,30 +455,12 @@ namespace ChangesArmor
                         }
                     }
                     return;              
-                case ItemID.MonkBrows:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Increases your max number of sentries and increases melee damage by 20%";
-                        }
-                    }
-                    return;
-                case ItemID.MonkShirt:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "20% increased minion damage and melee speed";
-                        }
-                    }
-                    return;
                 case ItemID.MonkAltHead:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Increases your maximum number of sentries by 2 and melee speed and minion damage by 30%";
+                            line.text = "Increases melee speed and minion damage by 30%\nIncreases your maximum number of sentries by 2 ";
                         }
                     }
                     return;

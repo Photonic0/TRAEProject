@@ -19,7 +19,7 @@ namespace TRAEProject.Items.Accesories.MagicalCarpet
 
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Grants flight, slow fall, and hover");
+			Tooltip.SetDefault("Grants flight, slow fall, and hover\n'I will show you the world...'");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
@@ -121,6 +121,4 @@ namespace TRAEProject.Items.Accesories.MagicalCarpet
         }
     }
 
-		
-	}
 }

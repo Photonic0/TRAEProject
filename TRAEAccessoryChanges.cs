@@ -121,12 +121,12 @@ public class ChangesAccessories : GlobalItem
                 return;
             case ItemID.AnkletoftheWind:
                 player.jumpSpeedBoost += 0.5f;
-                player.runAcceleration *= 1.1f;
                 return;
             case ItemID.LightningBoots:
                 player.moveSpeed += 0.02f;
                 player.jumpSpeedBoost += 0.5f;
-                player.runAcceleration *= 1.1f;            
+				player.rocketTimeMax = 7;
+                player.accRunSpeed = 6.75f;
                 return;
             case ItemID.TerrasparkBoots:
                 player.iceSkate = false;
@@ -554,6 +554,50 @@ player.accRunSpeed = 6f;
                     }
                 }
                 return;
+            case ItemID.MoltenSkullRose:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "Magic attacks lower enemy contact damage by 15%";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip2")
+                    {
+                        line.text = "Enemies near the player take 10% more damage";
+                    }
+                }
+                return;
+            case ItemID.ObsidianSkullRose:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Magic attacks lower enemy contact damage by 15%";
+                    }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "Enemies near the player take 10% more damage";
+                    }
+                }
+                return;
+            case 3999: // Magma Skull
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "Enemies near the player take 10% more damage";
+                    }
+                }
+                return;
+            case ItemID.ObsidianSkull:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "Enemies near the player take 10% more damage";
+                    }
+                }
+                return;
             case ItemID.ObsidianRose:
                 foreach (TooltipLine line in tooltips)
                 {
@@ -721,7 +765,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "10% increased movement, jump and acceleration speed";
+                        line.text = "10% increased movement and jump speed";
                     }
                 }
                 return;
@@ -730,7 +774,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
-                        line.text = "10% increased movement, jump and acceleration speed";
+                        line.text = "10% increased movement and jump and speed";
                     }
                 }
                 return;
@@ -773,7 +817,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Negates fall damage and grants immunity to fire blocks";
+                        line.text = "Negates fall damage";
                     }
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
@@ -794,7 +838,7 @@ player.accRunSpeed = 6f;
                     }
                     if (line.mod == "Terraria" && line.Name == "Tooltip2")
                     {
-                        line.text = "Grants immunity to fall damage and fire blocks";
+                        line.text = "Grants immunity to fall damage";
                     }
                 }
                 return;

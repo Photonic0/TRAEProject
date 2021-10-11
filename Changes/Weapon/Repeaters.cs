@@ -47,8 +47,8 @@ namespace TRAEProject.Changes.Weapon
                     item.useTime = item.useAnimation = 19;
                     break;
                 case ItemID.TitaniumRepeater:
-                    item.damage = 42;
-                    item.useTime = item.useAnimation = 30;
+                    item.damage = 36;
+                    item.useTime = item.useAnimation = 33;
                     item.SetNameOverride("Titanium Obliterator");
                     break;
                 case ItemID.HallowedRepeater:
@@ -57,7 +57,7 @@ namespace TRAEProject.Changes.Weapon
                     item.SetNameOverride("Sharanga");
                     break;
                 case ItemID.ChlorophyteShotbow:
-                    item.useTime = item.useAnimation = 20;
+                    item.useTime = item.useAnimation = 24;
                     break;
             }
         }
