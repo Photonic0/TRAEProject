@@ -9,10 +9,6 @@ namespace ChangesBuffs
 {
     public class ChangesBuffs : GlobalBuff
     {
-        public override void SetStaticDefaults()
-        {
-            Main.buffString = "Lunar Dragon";
-        }
         public override void Update(int type, NPC npc, ref int buffIndex)
         {
             if (BuffID.Sets.IsAnNPCWhipDebuff[type] && npc.HasBuff(BuffType<PirateTag>()))
@@ -52,6 +48,7 @@ namespace ChangesBuffs
                     return;
                 case BuffID.ObsidianSkin:
                     player.buffImmune[BuffID.OnFire] = false;
+					player.fireWalk = false;
                     return;
                 case BuffID.StarInBottle:
                     player.statManaMax2 += 20;

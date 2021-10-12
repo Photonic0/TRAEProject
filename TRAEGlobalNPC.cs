@@ -41,7 +41,7 @@ namespace TRAEProject
             switch (npc.type)
             {
 				case NPCID.PirateCaptain:
-                    npc.lifeMax = 1000;
+                    npc.lifeMax = 750;
                     return;
                 case NPCID.SkeletronPrime:
                     if (ServerConfig.Instance.MechChanges)
@@ -81,7 +81,7 @@ namespace TRAEProject
                 case NPCID.JungleCreeperWall:
 				    {
                         npc.lifeMax = 120;
-						npc.damage = 50;
+						npc.damage = 35;
                     npc.defense = 14;
 					}
                     return;

@@ -110,24 +110,6 @@ namespace TRAEProject
                     });
                     npcLoot.Add(ItemDropRule.Common(ItemID.AncientHorn, 25));
                     return;
-                case NPCID.EaterofWorldsHead:
-                case NPCID.EaterofWorldsBody:
-                case NPCID.EaterofWorldsTail:
-                    npcLoot.RemoveWhere(rule =>
-                    {
-                        if (rule is not CommonDrop drop) // Type of drop you expect here
-                            return false;
-                        return drop.itemId == ItemID.ShadowScale; // compare more fields if needed
-                    });
-                    return;
-                case NPCID.Creeper:
-                    npcLoot.RemoveWhere(rule =>
-                    {
-                        if (rule is not CommonDrop drop) // Type of drop you expect here
-                            return false;
-                        return drop.itemId == ItemID.TissueSample; // compare more fields if needed
-                    });
-                    return;
             }
         }
         public override bool PreKill(NPC npc)
@@ -150,7 +132,9 @@ namespace TRAEProject
                     int[] PDrops = new int[] { ItemID.FlowerPow, ItemID.Seedler, ItemID.LeafBlower, ItemID.NettleBurst, ItemID.GrenadeLauncher, ItemID.VenusMagnum};
                     int Drop1 = Main.rand.Next(4);
                     // there is 100% a cleaner way of doing this
-                    if (Drop1 == 0)
+                      if (!Main.expertMode && !Main.masterMode)
+                    {
+					if (Drop1 == 0)
                     {
                         Item.NewItem(npc.getRect(), ItemID.FlowerPow, 1); 
                         Item.NewItem(npc.getRect(), ItemID.Seedler, 1);
@@ -171,6 +155,7 @@ namespace TRAEProject
                         Item.NewItem(npc.getRect(), ItemID.PygmyStaff, 1);
                         Item.NewItem(npc.getRect(), Main.rand.Next(PDrops), 1);
                     }
+					}
                     NPCLoader.blockLoot.Add(ItemID.FlowerPow);
                     NPCLoader.blockLoot.Add(ItemID.Seedler);
                     NPCLoader.blockLoot.Add(ItemID.LeafBlower);             
@@ -183,7 +168,7 @@ namespace TRAEProject
                     return true;
                 case NPCID.MoonLordCore:
                     int[] MLDrops = new int[] { ItemID.Meowmere, ItemID.StarWrath, ItemID.Terrarian, ItemID.SDMG, ItemID.Celeb2, ItemID.LunarFlareBook, ItemID.LastPrism, ItemID.RainbowWhip, ItemID.StardustDragonStaff };
-                    if (!Main.expertMode || !Main.masterMode)
+                    if (!Main.expertMode && !Main.masterMode)
                     {
                         Item.NewItem(npc.getRect(), Main.rand.Next(MLDrops), 1);
                     }
@@ -199,7 +184,7 @@ namespace TRAEProject
                     return true;
                 case NPCID.HallowBoss:
                     int[] HallowDrops = new int[] { ItemID.PiercingStarlight, ItemID.FairyQueenMagicItem, ItemID.FairyQueenRangedItem, ItemID.RainbowCrystalStaff};
-                    if (!Main.expertMode || !Main.masterMode)
+                    if (!Main.expertMode && !Main.masterMode)
                     {
                         Item.NewItem(npc.getRect(), Main.rand.Next(HallowDrops), 1);
                     }

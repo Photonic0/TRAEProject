@@ -912,12 +912,6 @@ namespace TRAEProject
                         damage /= 100;
                     }
                     return;
-                case ProjectileID.VortexLightning:
-                    {
-                        damage *= 25;
-                        damage /= 10;
-                    }
-                    return;
             }
         }
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit,ref int hitDirection)

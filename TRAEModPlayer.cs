@@ -686,8 +686,6 @@ namespace TRAEProject
                     }
                     foreach (NPC enemy in Main.npc)
                     {
-                        if (enemyLimit <= 5)
-                            break;
                         float distance = 150f;
                         Vector2 newMove = enemy.Center - Player.Center;
                         float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
@@ -698,7 +696,7 @@ namespace TRAEProject
                         }
                         if (!enemy.dontTakeDamage && enemy.active && !enemy.friendly && !enemy.immortal && distanceTo < distance)
                         {
-                            ++enemyLimit;
+           
                             int thorndamage = (int)(damage * runethorns + enemy.defense * 0.5);
                             if (thorndamage > 1000)
                                 thorndamage = 1000;
@@ -736,8 +734,10 @@ namespace TRAEProject
                             damage /= 4;
                         int thorndamage = (int)(damage * newthorns + npc.defense * 0.5); 
                         if (thorndamage > 1000)
+						{
                             thorndamage = 1000;
-                        Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
+                        }
+						Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
                     }
                 }
             }
@@ -810,8 +810,10 @@ namespace TRAEProject
                         {
                             int thorndamage = (int)(damage * runethorns + enemy.defense * 0.5); 
                             if (thorndamage > 1000)
+							{
                                 thorndamage = 1000;
-                            if (enemy.type == NPCID.TheDestroyerBody)
+                            }
+							if (enemy.type == NPCID.TheDestroyerBody)
                                 thorndamage /= 10;
                             if (enemy.type == NPCID.TheDestroyerTail)
                                 thorndamage /= 40;

@@ -201,7 +201,7 @@ namespace TRAEProject.Changes.Weapon
 					item.shoot = ProjectileType<GhastlyGlaive>();
 					altShoot = ProjectileType<GhastlyGlaiveThrow>();
 
-					item.damage = 80;
+					item.damage = 70;
 					item.shootSpeed = 12; //only the throw uses this
 					item.channel = false;
 					break;
@@ -242,8 +242,8 @@ namespace TRAEProject.Changes.Weapon
 					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<Daybreak>();
 					altShoot = ProjectileType<DaybreakThrow>();
-					item.damage = 75;
-					item.useTime = item.useAnimation = 16;
+					item.damage = 94;
+					item.useTime = item.useAnimation = 20;
 					item.autoReuse = false;
 					break;
 

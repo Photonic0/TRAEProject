@@ -37,7 +37,7 @@ namespace TRAEProject.Changes.Projectiles.Spears
             spearLength = 127f;
             holdAt = 60f;
             maxSticks = 8;
-            stickingDps = 200;
+            stickingDps = 100;
         }
         public override void Kill(int timeLeft)
         {

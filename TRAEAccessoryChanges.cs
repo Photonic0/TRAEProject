@@ -93,7 +93,8 @@ public class ChangesAccessories : GlobalItem
             case ItemID.LavaWaders:
                 player.GetModPlayer<TRAEPlayer>().waterRunning = true;
                 player.GetModPlayer<TRAEPlayer>().LavaShield = true;
-                player.lavaImmune = true;
+                player.fireWalk = false;
+				player.lavaImmune = true;
 				player.lavaRose = false;
                 return;
             case ItemID.HiveBackpack:
@@ -118,6 +119,9 @@ public class ChangesAccessories : GlobalItem
                 player.spikedBoots = 0; 
                 player.extraFall += 15;
                 player.jumpSpeedBoost += 1.4f;
+                return;     
+			case ItemID.Aglet:
+                player.moveSpeed += 0.05f;
                 return;
             case ItemID.AnkletoftheWind:
                 player.jumpSpeedBoost += 0.5f;
@@ -757,6 +761,15 @@ player.accRunSpeed = 6f;
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
                         line.text = "Increases acceleration";
+                    }
+                }
+                return;
+			case ItemID.Aglet:        
+			foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.text = "10% increased movement speed";
                     }
                 }
                 return;
