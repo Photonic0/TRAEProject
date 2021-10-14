@@ -133,10 +133,9 @@ namespace TRAEProject
             BloodyTear2.Register();
             Recipe Magnet = CreateRecipe(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
             Magnet.Register();
-
 Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 10).AddTile(TileID.TinkerersWorkbench);
                  AvengerEmblem.Register();
-            Recipe StardustPortal = CreateRecipe(ItemID.MoonlordTurretStaff).AddIngredient(ItemID.TreasureMagnet, 18).AddTile(TileID.LunarCraftingStation);
+            Recipe StardustPortal = CreateRecipe(ItemID.MoonlordTurretStaff).AddIngredient(3459, 18).AddTile(TileID.LunarCraftingStation);
             StardustPortal.Register();
             Recipe DarkLance = CreateRecipe(ItemID.DarkLance);
             DarkLance.AddIngredient(ItemID.DemoniteBar, 10);
@@ -605,6 +604,13 @@ Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem
                     recipe.TryGetIngredient(ItemID.ObsidianSkull, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.Obsidian, 20);
+                }                
+				if (recipe.HasResult(ItemID.BoneJavelin))
+                {
+                     recipe.ReplaceResult(ItemID.BoneJavelin, 1);
+                    recipe.TryGetIngredient(3380, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(3380, 10);
                 }
             }
         }

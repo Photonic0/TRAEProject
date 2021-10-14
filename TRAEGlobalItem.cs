@@ -1065,15 +1065,6 @@ namespace TRAEProject
                         }
                     }
                     return;
-                case ItemID.TempestStaff:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Summons a powerful sharknado to fight for you\nUses three minion slots";
-                        }
-                    }
-                    return;
                 case ItemID.CoolWhip:
                     foreach (TooltipLine line in tooltips)
                     {

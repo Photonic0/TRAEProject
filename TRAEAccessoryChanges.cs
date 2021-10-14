@@ -601,6 +601,15 @@ player.accRunSpeed = 6f;
                         line.text = "Enemies near the player take 10% more damage";
                     }
                 }
+                return;     
+				case ItemID.ObsidianShield:
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "Enemies near the player take 10% more damage";
+                    }
+                }
                 return;
             case ItemID.ObsidianRose:
                 foreach (TooltipLine line in tooltips)
