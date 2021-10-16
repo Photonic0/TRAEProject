@@ -223,8 +223,8 @@ namespace TRAEProject.Changes.Weapon
 					altShoot = ProjectileType<NorthPoleThrow>();
 
 					item.shootSpeed = 9; //only the throw uses this
-					item.damage = 80;
-					item.useTime = item.useAnimation = 28;
+					item.damage = 98;
+					item.useTime = item.useAnimation = 24;
 					break;
 				case ItemID.ScourgeoftheCorruptor:
 					item.useStyle = 1;
