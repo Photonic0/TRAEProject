@@ -126,20 +126,30 @@ public class ChangesAccessories : GlobalItem
             case ItemID.AnkletoftheWind:
                 player.jumpSpeedBoost += 0.5f;
                 return;
-            case ItemID.LightningBoots:
-                player.moveSpeed += 0.02f;
-                player.jumpSpeedBoost += 0.5f;
-				player.rocketTimeMax = 7;
-                player.accRunSpeed = 6.75f;
+      
+            case ItemID.FrostsparkBoots:
+                player.rocketTimeMax = 0;
+                player.accRunSpeed = 6f;
+                player.moveSpeed -= 0.08f;
+                player.GetModPlayer<TRAEPlayer>().icceleration = true;
                 return;
             case ItemID.TerrasparkBoots:
                 player.iceSkate = false;
                 player.lavaMax -= 42; 
                 player.fireWalk = false;
                 player.waterWalk = false;
-                player.rocketTimeMax -= 7;
+                player.rocketTimeMax = 0;
                 player.accRunSpeed = 9f;
                 player.moveSpeed -= 0.08f;
+                return;
+            case ItemID.LightningBoots:
+                player.moveSpeed += 0.02f;
+                player.jumpSpeedBoost += 0.5f;
+                player.rocketTimeMax = 7;
+                player.accRunSpeed = 6.75f;
+                return;
+            case ItemID.RocketBoots:
+                player.rocketTimeMax = 7;
                 return;
             case ItemID.MoltenCharm:
             player.lavaImmune = true;
@@ -149,12 +159,7 @@ public class ChangesAccessories : GlobalItem
             case ItemID.IceSkates:
                 player.GetModPlayer<TRAEPlayer>().icceleration = true;
                 return;
-            case ItemID.FrostsparkBoots:
-			    player.rocketTimeMax -= 7;
-player.accRunSpeed = 6f;
-                player.moveSpeed -= 0.08f;
-                player.GetModPlayer<TRAEPlayer>().icceleration = true;
-                return;
+
             case ItemID.BalloonHorseshoeHoney:
             case ItemID.HoneyBalloon:
                 player.GetModPlayer<TRAEPlayer>().honeyBalloon = true;
@@ -385,7 +390,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Significantly increases potency of friendly Poison\nIncreases potency of friendly debuffs by 33%";
+                        line.text = "Significantly increases potency of friendly Poison\nIncreases potency of friendly debuffs by 50%";
                     }
                 }
                 break;
@@ -394,7 +399,7 @@ player.accRunSpeed = 6f;
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Significantly increases potency of friendly Poison\nIncreases potency of friendly debuffs by 33%";
+                        line.text = "Significantly increases potency of friendly Poison\nIncreases potency of friendly debuffs by 50%";
                     }
                 }
                 break;

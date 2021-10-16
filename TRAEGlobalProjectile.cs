@@ -264,7 +264,6 @@ namespace TRAEProject
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
                     return;
-        
                 case ProjectileID.CursedDartFlame:
                     projectile.timeLeft = 75;
                     projectile.penetrate = 1;
@@ -388,6 +387,44 @@ namespace TRAEProject
         public override bool PreAI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
+			if (projectile.type == ProjectileID.ChlorophyteArrow)
+			{
+            projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);			
+			++ChloroBulletTime; 
+                if (ChloroBulletTime <= 24)
+                {
+                    Vector2 move = Vector2.Zero;
+                    bool target = false;
+                    float distance = 300f;
+                    for (int k = 0; k < 200; k++)
+                    {
+                        if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5 && !Main.npc[k].immortal && projectile.localNPCImmunity[k] != 1)
+                        {
+                            Vector2 newMove = Main.npc[k].Center - projectile.Center;
+                            float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
+                            if (distanceTo < distance)
+                            {
+                                move = newMove;
+                                target = true;
+                                distance = distanceTo;
+                            }
+                            if (target)
+                            {
+                                float scaleFactor2 = projectile.velocity.Length();
+                                move.Normalize();
+                                move *= scaleFactor2;
+                                projectile.velocity = (projectile.velocity * 24f + move) / 25f;
+                                projectile.velocity.Normalize();
+                                projectile.velocity *= scaleFactor2;
+                            }
+                        }
+
+                    }
+                    return false;
+                }
+				return true;
+			}
+	
             if (projectile.type == ProjectileID.ChlorophyteBullet)
             {
                 ++ChloroBulletTime; // once this reaches 24, the bullet loses its homing
@@ -852,7 +889,8 @@ namespace TRAEProject
                 case ProjectileID.NanoBullet:
                 case ProjectileID.ChlorophyteArrow:
                     {
-                        return false;
+                        projectile.Kill();
+						return false;
                     }
             }
             return true;

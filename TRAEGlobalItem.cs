@@ -221,6 +221,9 @@ namespace TRAEProject
                 case ItemID.Sunfury:
                     item.damage = 16;
                     item.crit = 4;
+                    return;    
+				case ItemID.Flairon:
+                    item.noMelee = false;
                     return;
                 case ItemID.HelFire:
                     item.damage = 39;
@@ -380,6 +383,10 @@ namespace TRAEProject
                 case ItemID.HellfireArrow:
                     item.damage = 14;
                     item.shootSpeed = 3.5f;
+                    return;     
+			    case ItemID.ChlorophyteArrow:
+                    item.damage = 10; // down from 16
+                    item.knockBack = 2f; // down from 3.5
                     return;
                 // equipment
                 case ItemID.Rally:
@@ -1025,6 +1032,15 @@ namespace TRAEProject
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
                             line.text = "Causes confusion and increases health regeneration";
+                        }
+                    }
+                    return;    
+			 case ItemID.ChlorophyteArrow:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "Chases after your enemies";
                         }
                     }
                     return;

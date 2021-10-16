@@ -285,7 +285,9 @@ namespace TRAEProject
                     item.mana = 8; // down from 12
 					item.knockBack = 5f; // up from 0
                     return;
-					case ItemID.NebulaArcanum:
+				case ItemID.NebulaArcanum:
+					item.useTime = 34; // up from 30
+					item.useAnimation = 34; // up from 30
 					item.mana = 60; // up from 30
 					return;
                 case ItemID.LesserManaPotion:
