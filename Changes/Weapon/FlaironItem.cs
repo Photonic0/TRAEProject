@@ -18,6 +18,8 @@ namespace TRAEProject.Changes.Weapon
                 item.channel = true;
                 item.useTime = item.useAnimation = 40;
                 item.damage = 150;
+                item.autoReuse = false;
+                item.noMelee = true;
             }
         }
         //Heavy Flails actually display twice as much damage in thier tooltip than they actually have
