@@ -151,6 +151,9 @@ public class ChangesAccessories : GlobalItem
             case ItemID.RocketBoots:
                 player.rocketTimeMax = 7;
                 return;
+			case ItemID.BundleofBalloons:
+                player.noFallDmg = true;
+                return;
             case ItemID.MoltenCharm:
             player.lavaImmune = true;
                 player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharm += 1; 
@@ -801,7 +804,7 @@ public class ChangesAccessories : GlobalItem
                 {
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
-                        line.text = "10% increased movement and jump and speed";
+                        line.text = "10% increased movement and jump speed";
                     }
                 }
                 return;
