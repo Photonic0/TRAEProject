@@ -22,7 +22,6 @@ namespace TRAEProject.Projectiles
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.extraUpdates = 5;
-            Projectile.minion = true;
             Projectile.ignoreWater = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;

@@ -13,35 +13,35 @@ namespace TRAEProject
     {
         public override bool InstancePerEntity => true;
         public bool titaPenetrate;
+        public bool BoilingBlood = false;
+        public int BoilingBloodDMG = 0;
         public bool Heavyburn;
         public bool Decay;
         public bool Toxins;
         public bool Corrupted;
+        public int TagDamage = 0;
+        public int TagCritChance = 0;
         public bool Omegaburn;
-        public float frozenResistance = 0f;
-        private readonly bool[] PrimeBonus = new bool[] {NPC.downedMechBoss1, NPC.downedMechBoss2};
-        private readonly bool[] TwinsBonus = new bool[] {NPC.downedMechBoss1, NPC.downedMechBoss3};
-        private readonly bool[] DestroyerBonus = new bool[] {NPC.downedMechBoss2, NPC.downedMechBoss3};
         public override void ResetEffects(NPC npc)
         {
             Decay = false;
             Toxins = false;
-            titaPenetrate = false;
+        BoilingBlood = false;
+        titaPenetrate = false;
             Heavyburn = false;
             Omegaburn = false;
             Corrupted = false;
+            TagDamage = 0;
+            TagCritChance = 0;
         }
         public override void SetDefaults(NPC npc)
         {
-            frozenResistance = npc.lifeMax * 100 / (npc.lifeMax + 2000); 
             npc.buffImmune[BuffType<TitaPenetrate>()] = npc.buffImmune[BuffID.BoneJavelin];
             npc.buffImmune[BuffType<Decay>()] = npc.buffImmune[BuffID.Frostburn];
-            npc.buffImmune[BuffID.Daybreak] = false;
-            npc.buffImmune[BuffType<Omegaburn>()] = false;
             switch (npc.type)
             {
-                case NPCID.PirateCaptain:
-                    npc.lifeMax = 1000;
+				case NPCID.PirateCaptain:
+                    npc.lifeMax = 750;
                     return;
                 case NPCID.SkeletronPrime:
                     if (ServerConfig.Instance.MechChanges)
@@ -81,7 +81,7 @@ namespace TRAEProject
                 case NPCID.JungleCreeperWall:
 				    {
                         npc.lifeMax = 120;
-						npc.damage = 50;
+						npc.damage = 35;
                     npc.defense = 14;
 					}
                     return;
@@ -302,15 +302,6 @@ namespace TRAEProject
         }
         public int moths = 0;
         public float braintimer = 0;
-        public override bool PreAI(NPC npc)
-        {
-            if (npc.HasBuff(BuffID.Frozen))
-            {
-                npc.velocity = Vector2.Zero;
-                return false;
-            }
-            return base.PreAI(npc);
-        }
         public override void AI(NPC npc)
         {
             if (npc.HasBuff(BuffID.Weak))
@@ -623,7 +614,7 @@ namespace TRAEProject
                         {
                             if (npc.ai[1] == 0f)
                             {
-                                float speed = 4f;
+                                float speed = 2.7f;
                                 float tenpercent = 0.2f;
                                 int num425 = 1;
                                 if (npc.position.X + (float)(npc.width / 2) < Main.player[npc.target].position.X + (float)Main.player[npc.target].width)
@@ -748,13 +739,11 @@ namespace TRAEProject
                                             ref float y3 = ref npc.localAI[1];
                                             y3 += 2f;
                                         }
-                                        /*                                    npc.soundDelay = 240; *///duration of flamethrower attack, approximately
                                         if (npc.soundDelay <= 0)
                                         {
                                             Terraria.Audio.SoundEngine.PlaySound(SoundID.ForceRoar, (int)npc.position.X, (int)npc.position.Y, -1, 1.5f);
                                             npc.soundDelay = 240;
                                         }
-                                        npc.defense = 0;
                                         if (npc.localAI[1] > 8f)
                                         {
 
@@ -868,6 +857,19 @@ namespace TRAEProject
         }
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (BoilingBlood)
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= BoilingBloodDMG * 6;
+                if (damage < BoilingBloodDMG)
+                {
+                    damage = BoilingBloodDMG;
+                }
+            }
+            npc.netUpdate = true;
             if (Decay)
             {
                 if (npc.lifeRegen > 0)
@@ -879,6 +881,21 @@ namespace TRAEProject
                 {
                     damage = 2;
                 }
+                npc.netUpdate = true;
+            }
+			if (npc.HasBuff(BuffID.CursedInferno))
+            {
+                npc.lifeRegen -= 48;
+                npc.netUpdate = true;
+            }
+			if (npc.HasBuff(BuffID.ShadowFlame))
+            {
+                npc.lifeRegen -= 90;
+                npc.netUpdate = true;
+            }
+			if (npc.HasBuff(BuffID.Venom))
+            {
+                npc.lifeRegen -= 140;
                 npc.netUpdate = true;
             }
             if (Toxins)
@@ -916,29 +933,6 @@ namespace TRAEProject
                 }
                 npc.netUpdate = true;
             }
-            if (titaPenetrate)
-            {
-                if (npc.lifeRegen > 0)
-                {
-                    npc.lifeRegen = 0;
-                }
-                int TridentCount = 0;
-                for (int i = 0; i < 1000; i++)
-                {
-                    Projectile p = Main.projectile[i];
-                    if (p.active && p.type == ProjectileType<Projectiles.TitaTridentThrown>() && p.ai[0] == 1f && p.ai[1] == npc.whoAmI)
-                    {
-                        TridentCount++;
-                    }
-                }
-                npc.lifeRegen -= TridentCount * 2 * 10;
-                if (damage < TridentCount * 5)
-                {
-                    damage = TridentCount * 5;
-                }
-                npc.netUpdate = true;
-
-            }
         }
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
@@ -948,11 +942,50 @@ namespace TRAEProject
                 drawColor.G = 57;
                 drawColor.B = 49;
             }
+			if (npc.HasBuff(BuffID.WitheredWeapon))
+			{
+				if (Main.rand.Next(4) < 1)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 179, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 0.8f;
+                    Main.dust[dust].velocity.Y -= 0.3f;
+                    if (Main.rand.NextBool(4))
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+			}
+			if (npc.HasBuff(BuffID.WitheredArmor))
+			{
+				if (Main.rand.Next(5) < 1)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 21, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 0.8f;
+                    Main.dust[dust].velocity.Y -= 0.3f;
+                    if (Main.rand.NextBool(4))
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+			}
             if (Decay)
             {
                 drawColor.R = (byte)(drawColor.R * 0.85);
                 drawColor.G = (byte)(drawColor.G * 0.99);
                 drawColor.B = (byte)(drawColor.G * 0.47);
+            }
+            if (BoilingBlood)
+            {
+                if (Main.rand.Next(3) < 1)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, DustID.Smoke, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    Main.dust[dust].velocity *= 0.8f;
+                    Main.dust[dust].velocity.Y -= 0.3f;
+                }
             }
             if (Corrupted)
             {
@@ -961,7 +994,7 @@ namespace TRAEProject
                 drawColor.B = 153;
                 if (Main.rand.Next(4) < 1)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 184, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2.5f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 184, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 1.5f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0.8f;
                     Main.dust[dust].velocity.Y -= 0.3f;
@@ -978,6 +1011,31 @@ namespace TRAEProject
                 drawColor.G = (byte)(drawColor.G * 0.90);
                 drawColor.B = (byte)(drawColor.G * 0.40);
             }
+            if (Heavyburn)
+            {
+                if (Main.rand.Next(3) < 2)
+                {
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 127, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2.5f);
+                    Main.dust[dust].noGravity = true;
+                    Main.dust[dust].velocity *= 1.8f;
+                    Main.dust[dust].velocity.Y -= 0.5f;
+                    if (Main.rand.NextBool(4))
+                    {
+                        Main.dust[dust].noGravity = false;
+                        Main.dust[dust].scale *= 0.5f;
+                    }
+                }
+                Lighting.AddLight(npc.position, 0.1f, 0.2f, 0.7f);
+            }
+            if (BoilingBlood)
+            {
+                if (Main.rand.Next(3) < 3)
+                { 
+                Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, 115, 0f, 0f, 0, default, Main.rand.Next(8, 12) * 0.1f);
+                dust.noLight = true;
+                dust.velocity *= 0.5f;
+                }    
+            }    
             if (Heavyburn)
             {
                 if (Main.rand.Next(3) < 2)
@@ -1011,377 +1069,6 @@ namespace TRAEProject
                 Lighting.AddLight(npc.position, 0.1f, 0.2f, 0.7f);
             }
         }
-
-        public override void SetupTravelShop(int[] shop, ref int nextSlot)
-        {
-            for (int i = 0; i < shop.Length; i++)
-            {
-                if (shop[i] == ItemID.CelestialMagnet)
-                {
-                    for (int j = i + 1; j < shop.Length; j++)
-                    {
-                        shop[j - 1] = shop[j];
-                    }
-                    shop[shop.Length - 1] = 0;
-                    nextSlot--;
-                }
-            }
-        }
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
-        {
-            switch (type)
-            {
-                case NPCID.ArmsDealer:
-                    if (!NPC.downedBoss1) // when will this code run?
-                    {
-                        for (int i = 0; i < shop.item.Length; i++) // loop through the
-                        {
-                            if (shop.item[i] != null && shop.item[i].type == ItemID.Minishark) // check if the shop slot it is at has an item, and if that item is Minishark
-                            {
-                                shop.item[i].SetDefaults(ItemID.None); // if so, set that slot to none
-                                for (int j = i + 1; j < shop.item.Length; j++)
-                                {
-                                    shop.item[j - 1] = shop.item[j];
-                                }
-                                --nextSlot;
-                                break;                          
-                            }
-                        }
-                    }
-                    break;
-                case NPCID.SkeletonMerchant:
-                    if (Main.moonPhase == 2 || Main.moonPhase == 8)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.Rally);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 4 || Main.moonPhase == 6)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ChainKnife);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 3 || Main.moonPhase == 7)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BoneSword);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 1 || Main.moonPhase == 5) 
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BookofSkulls);
-                        nextSlot++;
-                    }
-                    break;
-                case NPCID.Wizard:
-                    if (!Main.dayTime)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CelestialMagnet);
-                        nextSlot++;
-                    }
-                    break;
-                case NPCID.WitchDoctor:
-                    if (!Main.dayTime)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PygmyNecklace);
-                        nextSlot++;
-                    }
-                    break;
-            }
-        }
-        public override bool PreKill(NPC npc)
-        {
-            if (npc.lifeMax < 15)       
-			{
-				NPCLoader.blockLoot.Add(ItemID.Star);
-				NPCLoader.blockLoot.Add(ItemID.SoulCake);
-				NPCLoader.blockLoot.Add(ItemID.SugarPlum);
-			}
-			if (npc.aiStyle == 18)
-            {
-                if (Main.rand.Next(33) == 0)
-                {
-                    Item.NewItem(npc.getRect(), ItemID.JellyfishNecklace, 1);
-                    NPCLoader.blockLoot.Add(ItemID.JellyfishNecklace);
-                }
-                return true;
-            }
-            switch (npc.type)
-            {
-                case NPCID.SkeletronHead:
-                    {
-                        NPCLoader.blockLoot.Add(ItemID.BookofSkulls);
-                    }
-                    return true;
-                case NPCID.DesertGhoul:
-                case NPCID.DesertGhoulHallow:
-                case NPCID.DesertGhoulCorruption:
-                case NPCID.DesertGhoulCrimson:
-                case NPCID.DesertLamiaDark:
-                case NPCID.DesertLamiaLight:
-                    if (Main.rand.Next(9) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.AncientCloth, 1);
-                    }
-                    NPCLoader.blockLoot.Add(ItemID.AncientCloth);
-                    return true;
-                case NPCID.Tim:
-                    int chance = 4;
-                    chance = Main.expertMode ? chance : 2;
-                    if (Main.rand.Next(chance) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.BookofSkulls, 1);
-                    }
-                    return true;
-                case NPCID.JungleCreeper:
-                case NPCID.JungleCreeperWall:
-                    {
-                        if (Main.rand.Next(50) == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.PoisonStaff, 1);
-                        }
-                    }
-                    return true;
-                case NPCID.BlackRecluse:
-                case NPCID.BlackRecluseWall:
-                    NPCLoader.blockLoot.Add(ItemID.PoisonStaff);
-                    return true;
-                case NPCID.ScutlixRider:
-                case NPCID.BrainScrambler:
-                    if (Main.rand.Next(50) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.BrainScrambler, 1);
-                    }
-                    return true;
-                case NPCID.ArmoredSkeleton:
-                    if (Main.rand.Next(100) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.DualHook, 1);
-                    }
-                    return true;
-                case NPCID.SkeletonArcher:
-                    {
-                        if (Main.rand.Next(100) == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.DualHook, 1);
-                        }
-                        if (Main.rand.Next(50) == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.MagicQuiver, 1);
-                            NPCLoader.blockLoot.Add(ItemID.MagicQuiver);
-                        }
-                    }
-                    return true;
-                case NPCID.Mimic:
-                    {
-                        int drop = Main.rand.Next(5);
-                        if (drop == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.PhilosophersStone, 1);
-                        }
-                        if (drop == 1)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.StarCloak, 1);
-                        }
-                        if (drop == 2)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.TitanGlove, 1);
-                        }
-                        if (drop == 3)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.CrossNecklace, 1);
-                        }
-                        if (drop == 4)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.MagicDagger, 1);
-                        }
-                        NPCLoader.blockLoot.Add(ItemID.StarCloak);
-                        NPCLoader.blockLoot.Add(ItemID.PhilosophersStone);
-                        NPCLoader.blockLoot.Add(ItemID.TitanGlove);
-                        NPCLoader.blockLoot.Add(ItemID.CrossNecklace);
-                        NPCLoader.blockLoot.Add(ItemID.DualHook);
-                    }
-                    return true;
-                case NPCID.BigMimicHallow:
-                    {
-                        int drop = Main.rand.Next(3);
-                        int hook = Main.rand.Next(4);
-                        if (drop == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.DaedalusStormbow, 1);
-                        }
-                        if (drop == 1)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.CrystalVileShard, 1);
-                        }
-                        if (drop == 2)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.FlyingKnife, 1);
-                        }
-                        if (hook == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.IlluminantHook, 1);
-                        }
-                        NPCLoader.blockLoot.Add(ItemID.DaedalusStormbow);
-                        NPCLoader.blockLoot.Add(ItemID.CrystalVileShard);
-                        NPCLoader.blockLoot.Add(ItemID.FlyingKnife);
-                        NPCLoader.blockLoot.Add(ItemID.IlluminantHook);
-                    }
-                    return true;
-                case NPCID.BigMimicCrimson:
-                    {
-                        int drop = Main.rand.Next(4);
-                        int hook = Main.rand.Next(4);
-                        if (drop == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.DartPistol, 1);
-                        }
-                        if (drop == 1)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.SoulDrain, 1);
-                        }
-                        if (drop == 2)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.FetidBaghnakhs, 1);
-                        }
-                        if (drop == 3)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.FleshKnuckles, 1);
-                        }
-                        if (hook == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.TendonHook, 1);
-                        }
-                        NPCLoader.blockLoot.Add(ItemID.DartPistol);
-                        NPCLoader.blockLoot.Add(ItemID.SoulDrain);
-                        NPCLoader.blockLoot.Add(ItemID.FetidBaghnakhs);
-                        NPCLoader.blockLoot.Add(ItemID.FleshKnuckles);
-                        NPCLoader.blockLoot.Add(ItemID.TendonHook);
-                    }
-                    return true;
-                case NPCID.BigMimicCorruption:
-                    {
-                        int drop = Main.rand.Next(4);
-                        int hook = Main.rand.Next(4);
-                        if (drop == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.DartRifle, 1);
-                        }
-                        if (drop == 1)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.PutridScent, 1);
-                        }
-                        if (drop == 2)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.ClingerStaff, 1);
-                        }
-                        if (drop == 3)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.ChainGuillotines, 1);
-                        }
-                        if (hook == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.WormHook, 1);
-                        }
-                        NPCLoader.blockLoot.Add(ItemID.DartRifle);
-                        NPCLoader.blockLoot.Add(ItemID.ClingerStaff);
-                        NPCLoader.blockLoot.Add(ItemID.ChainGuillotines);
-                        NPCLoader.blockLoot.Add(ItemID.PutridScent);
-                        NPCLoader.blockLoot.Add(ItemID.WormHook);
-                    }
-                    return true;
-                case NPCID.PirateShip:
-                    {
-                        int drop = Main.rand.Next(5);
-                        if (drop == 0)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.PirateStaff, 1);
-                        }
-                        if (drop == 1)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.LuckyCoin, 1);
-                        }
-                        if (drop == 2)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.CoinGun, 1);
-                        }
-                        if (drop == 3)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.GoldRing, 1);
-                        }
-                        if (drop == 4)
-                        {
-                            Item.NewItem(npc.getRect(), ItemID.DiscountCard, 1);
-                        }
-                        NPCLoader.blockLoot.Add(ItemID.LuckyCoin);
-                        NPCLoader.blockLoot.Add(ItemID.CoinGun);
-                        NPCLoader.blockLoot.Add(ItemID.PirateStaff);
-                        NPCLoader.blockLoot.Add(ItemID.GoldRing);
-                        NPCLoader.blockLoot.Add(ItemID.DiscountCard);
-                    }
-                    return true;
-                case NPCID.Wolf:
-                    if (Main.rand.Next(66) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.MoonCharm, 1);
-                    }
-                    return true;
-                case NPCID.NebulaHeadcrab:
-                    if (Main.rand.Next(4) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.Heart, 1);
-                        NPCLoader.blockLoot.Add(ItemID.Heart);
-                    }
-                    return true;
-                case NPCID.VortexLarva:
-                    if (Main.rand.Next(3) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.Heart, 1);
-                        NPCLoader.blockLoot.Add(ItemID.Heart);
-                    }
-                    return true;
-                case NPCID.Probe:
-                    if (Main.expertMode)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.Heart, 1);
-                        NPCLoader.blockLoot.Add(ItemID.Heart);
-                    }
-                    return true;
-                case NPCID.Medusa:
-                    if (Main.rand.Next(20) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.PocketMirror, 1);
-                    }
-                    NPCLoader.blockLoot.Add(ItemID.PocketMirror);
-                    return true;
-                case NPCID.IceTortoise:
-                    if (Main.rand.Next(50) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.FrozenTurtleShell, 1);
-                    }
-                    NPCLoader.blockLoot.Add(ItemID.FrozenTurtleShell);
-                    return true;
-                case NPCID.DesertBeast:
-                    if (Main.rand.Next(25) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.AncientHorn, 1);
-                    }
-                    NPCLoader.blockLoot.Add(ItemID.AncientHorn);
-                    return true;
-                case NPCID.LavaSlime:
-                    if (Main.rand.Next(50) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.LavaCharm, 1);
-                    }
-                    return true;
-                case NPCID.Shark:
-                    if (Main.rand.Next(33) == 0)
-                    {
-                        Item.NewItem(npc.getRect(), ItemID.DivingHelmet, 1);
-                        NPCLoader.blockLoot.Add(ItemID.DivingHelmet);
-                    }
-                    return true;
-            }
-            return true;
-        }
         public override bool CheckDead(NPC npc) // makes something happen when NPC dies
         {
             if (Corrupted)
@@ -1393,22 +1080,6 @@ namespace TRAEProject
                     Projectile.NewProjectile(npc.GetProjectileSpawnSource(),npc.position.X, npc.position.Y, velX, velY, ProjectileID.TinyEater, 52, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
-            //switch (npc.type)
-            //{
-            //    case NPCID.Plantera:
-            //        if (Main.expertMode && !NPC.downedPlantBoss)
-            //        {
-            //            if (Main.netMode == NetmodeID.SinglePlayer)
-            //            {
-            //                Main.NewText("You feel your armor harden...", 50, 255, 130, false);
-            //            }
-            //            else if (Main.netMode == NetmodeID.Server)
-            //            {
-            //                NetMessage.BroadcastChatMessage(NetworkText.FromKey("You feel your armor harden..."), new Color(50, 255, 130), -1);
-            //            }
-            //        }
-            //        return true;
-            //}
             return true;
         }
     }

@@ -16,7 +16,6 @@ namespace ChangesWeapons
                     item.rare = ItemRarityID.Blue;
                     return;
                 case ItemID.FrogWebbing:
-                case ItemID.FrogGear:
                 case ItemID.FrogFlipper:
                 case ItemID.AmphibianBoots:
                 case ItemID.FalconBlade:
@@ -121,7 +120,7 @@ namespace ChangesWeapons
                 case ItemID.StingerNecklace:
                 case ItemID.LavaFishingHook:
                 case ItemID.SuperheatedBlood:
-
+                case ItemID.ObsidianSwordfish:
                     item.rare = ItemRarityID.Orange;
                     return;
                 case ItemID.MythrilBar:
@@ -173,9 +172,7 @@ namespace ChangesWeapons
                 case ItemID.TendonHook:
                 case ItemID.WormHook:
                 case ItemID.NimbusRod:
-                case ItemID.MushroomSpear:
                 case ItemID.Hammush:
-                case ItemID.ObsidianSwordfish:
                 case ItemID.BundleofBalloons:
                 case ItemID.AncientHorn:
                 case ItemID.BlessedApple:
@@ -325,6 +322,8 @@ namespace ChangesWeapons
                 case ItemID.MiniNukeI:
                 case ItemID.MiniNukeII:
                 case ItemID.ReconScope:
+                case ItemID.MushroomSpear:
+                case ItemID.FrogGear:
                     item.rare = ItemRarityID.Yellow;
                     return;
                 case ItemID.BetsyWings:
@@ -337,7 +336,7 @@ namespace ChangesWeapons
                 case ItemID.DD2BetsyBow:
                 case ItemID.MonkStaffT3:
                 case ItemID.ApprenticeStaffT3:
-                case ItemID.RainbowWhip:
+
                 case ItemID.PiercingStarlight:
                 case ItemID.FairyQueenMagicItem:
                 case ItemID.FairyQueenRangedItem:
@@ -353,7 +352,11 @@ namespace ChangesWeapons
                 case ItemID.ApprenticeAltHead:
                 case ItemID.ApprenticeAltPants:
                 case ItemID.ApprenticeAltShirt:
-                case ItemID.ReindeerBells:
+                case ItemID.ReindeerBells:  
+				   case ItemID.RainbowCrystalStaff:
+				item.rare = ItemRarityID.Cyan;
+                    return;
+					                case ItemID.RainbowWhip:
                 case ItemID.PortalGun:
                 case ItemID.MoonlordArrow:
                 case ItemID.MoonlordBullet:

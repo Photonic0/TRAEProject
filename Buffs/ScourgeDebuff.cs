@@ -27,7 +27,7 @@ namespace TRAEProject.Buffs
 				{
 					float velX = Main.rand.Next(-35, 36) * 0.1f;
 					float velY = Main.rand.Next(-35, 36) * 0.1f;
-					Projectile.NewProjectile(npc.GetProjectileSpawnSource(), npc.position.X, npc.position.Y, velX, velY, ProjectileID.TinyEater, 52, 0f, Main.myPlayer, 0f, 0f);				
+					Projectile.NewProjectile(npc.GetProjectileSpawnSource(), npc.Center.X, npc.Center.Y, velX, velY, ProjectileID.TinyEater, 52, 0f, Main.myPlayer, 0f, 0f);				
 				}
 			}	
 		}

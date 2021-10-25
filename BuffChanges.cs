@@ -9,7 +9,28 @@ namespace ChangesBuffs
 {
     public class ChangesBuffs : GlobalBuff
     {
-    public override void Update(int type, Player player, ref int buffIndex)
+        public override void Update(int type, NPC npc, ref int buffIndex)
+        {
+            if (BuffID.Sets.IsAnNPCWhipDebuff[type] && npc.HasBuff(BuffType<PirateTag>()))
+            {
+                npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 5;
+                npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 5;
+            }
+            switch (type)
+            {
+                case BuffID.MaceWhipNPCDebuff:
+                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 10;
+                    return;
+                case BuffID.RainbowWhipNPCDebuff:
+                    npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 30;
+                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 20; // this isn't exactly 30% crit but whatevs
+                    return;
+                case BuffID.ScytheWhipEnemyDebuff:
+                    npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 10;
+                    return;
+            }
+        }
+        public override void Update(int type, Player player, ref int buffIndex)
         {
             switch (type)
             {
@@ -27,6 +48,7 @@ namespace ChangesBuffs
                     return;
                 case BuffID.ObsidianSkin:
                     player.buffImmune[BuffID.OnFire] = false;
+					player.fireWalk = false;
                     return;
                 case BuffID.StarInBottle:
                     player.statManaMax2 += 20;
@@ -38,21 +60,10 @@ namespace ChangesBuffs
                     player.thorns -= 0.33f;
                     player.GetModPlayer<TRAEPlayer>().newthorns += 0.33f;
                     return;
-                case BuffID.CatBast:
-                    player.GetModPlayer<TRAEPlayer>().FlatDamageReduction += 5;
-                    player.statDefense -= 5;
-                    return;
                 case BuffID.Inferno:
                     player.GetModPlayer<TRAEPlayer>().infernoNew = true;
                     player.inferno = false;
                     player.infernoCounter = 0;
-                    return;
-                case BuffID.Panic:
-                    player.GetDamage<GenericDamageClass>() += 0.2f;
-                    return;
-                case BuffID.Regeneration:
-                    if (player.lifeRegen > 0)
-                        player.lifeRegen -= 1;
                     return;
                 case BuffID.Archery:
                     player.arrowDamage -= 0.08f; //  because Archery Potion uses a unique multiplier -8% makes it effectively +10% arrow damage 
@@ -76,7 +87,7 @@ namespace ChangesBuffs
                 case BuffID.ManaRegeneration:
                     player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.2f;
                     return;
-                case BuffID.ManaSickness:
+                case BuffID.ManaSickness:               
                     player.manaSickReduction = 0f;
                     return;
     }
@@ -86,6 +97,9 @@ namespace ChangesBuffs
         {
             switch (type)
             {
+                case BuffID.StardustDragonMinion:
+                    tip = "The Lunar Dragon will fight for you";
+                    return;
                 case BuffID.BeetleEndurance1:
                     tip = "Damage taken reduced by 10%";
                     return;
@@ -96,7 +110,7 @@ namespace ChangesBuffs
                     tip = "Damage taken reduced by 30%";
                     return;
                 case BuffID.Panic:
-                    tip = "50% increased movement speed and 20% increased damage";
+                    tip = "Greatly increased movement capabilities";
                     return;
                 case BuffID.Archery:
                     tip = "10% increased arrow damage, 20% increased arrow speed";
@@ -113,14 +127,14 @@ namespace ChangesBuffs
                 case BuffID.Swiftness:
                     tip = "40% increased movement speed";
                     return;
-                case BuffID.CatBast:
-                    tip = "Damage Reduced by 5";
-                    return;
                 case BuffID.WeaponImbueNanites:
                     tip = "Melee attacks confuse enemies and increase health regeneration";
                     return;
                 case BuffID.ManaRegeneration:
                     tip = "Increases mana regeneration by 20%";
+                    return;
+	            case BuffID.ManaSickness:
+                    tip = "Can't drink another mana potion";
                     return;
             }
         }

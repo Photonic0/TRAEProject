@@ -26,12 +26,12 @@ namespace TRAEProject.Projectiles
         }
         // Note, this Texture is actually just a blank texture, FYI.
 
-        readonly int fireRate = 10;
+        readonly int fireRate = 15;
         readonly int[] offSetCenter = {3, 4, 5};
         readonly int projectilesPerShot = 4;
         readonly int projectileType = ProjectileID.Blizzard;
         readonly float velocity = 10;
-        readonly int SpreadX = 300;
+        readonly int SpreadX = 500;
         readonly int SpreadY = 800;
         public override void AI()
         {

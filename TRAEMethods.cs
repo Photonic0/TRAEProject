@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace TRAEProject
 {
-    public class TRAEMethods
+    public static class TRAEMethods
     {
         public static void SpawnProjectilesFromAbove(Terraria.DataStructures.IProjectileSource spawnSource, Vector2 Base, int projectileCount, int spreadX, int spreadY, int[] offsetCenter, float velocity, int type, int damage, float knockback, int player)
         {
@@ -79,6 +79,118 @@ namespace TRAEProject
                 dust = Main.dust[num734];
                 dust.velocity *= 2f;
             }
+        }
+        public static Vector2 PolarVector(float radius, float theta)
+        {
+            return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
+        }
+        /// <summary>
+        /// give an angle to shoot at to attempt to hit a moving target, returns NaN when this is impossible
+        /// </summary>
+        public static float PredictiveAim(Vector2 shootFrom, float shootSpeed, Vector2 targetPos, Vector2 targetVelocity, out float travelTime)
+        {
+            float angleToTarget = (targetPos - shootFrom).ToRotation();
+            float targetTraj = targetVelocity.ToRotation();
+            float targetSpeed = targetVelocity.Length();
+            float dist = (targetPos - shootFrom).Length();
+
+            //imagine a tirangle between the shooter, its target and where it think the target will be in the future
+            // we need to find an angle in the triangle z this is the angle located at the target's corner
+            float z = (float)Math.PI + (targetTraj - angleToTarget);
+
+            //with this angle z we can now use the law of cosines to find time
+            //the side opposite of z is equal to shootSpeed * time
+            //the other sides are dist and targetSpeed * time
+            // putting these values into law of cosines gets (shootSpeed * time)^2 = (targetSpeed * time)^2 + dist^2 -2*targetSpeed*time*cos(z)
+            //we can rearange it to (shootSpeed^2 - targetSpeed^2)time^2 + 2*targetSpeed*dist*cos(z)*time - dist^2 = 0, this is a quadratic!
+
+            //here we use the quadratic formula to find time
+            float a = shootSpeed * shootSpeed - targetSpeed * targetSpeed;
+            float b = 2 * targetSpeed * dist * (float)Math.Cos(z);
+            float c = -(dist * dist);
+            float time = (-b + (float)Math.Sqrt(b * b - 4 * a * c)) / (2 * a);
+
+            //we now know the time allowing use to find all sides of the tirangle, now we use law of Sines to calculate the angle to shoot at.
+            float calculatedShootAngle = angleToTarget - (float)Math.Asin((targetSpeed * time * (float)Math.Sin(z)) / (shootSpeed * time));
+            travelTime = time;
+            return calculatedShootAngle;
+        }
+        public delegate bool SpecialCondition(NPC possibleTarget);
+
+        //used for homing projectile
+        public static bool ClosestNPC(ref NPC target, float maxDistance, Vector2 position, bool ignoreTiles = false, int overrideTarget = -1, SpecialCondition specialCondition = null)
+        {
+            //very advance users can use a delegate to insert special condition into the function like only targetting enemies not currently having local iFrames, but if a special condition isn't added then just return it true
+            if (specialCondition == null)
+            {
+                specialCondition = delegate (NPC possibleTarget) { return true; };
+            }
+            bool foundTarget = false;
+            //If you want to prioritse a certain target this is where it's processed, mostly used by minions that haave a target priority
+            if (overrideTarget != -1)
+            {
+                if ((Main.npc[overrideTarget].Center - position).Length() < maxDistance && !Main.npc[overrideTarget].immortal && (Collision.CanHit(position, 0, 0, Main.npc[overrideTarget].Center, 0, 0) || ignoreTiles) && specialCondition(Main.npc[overrideTarget]))
+                {
+                    target = Main.npc[overrideTarget];
+                    return true;
+                }
+            }
+            //this is the meat of the targetting logic, it loops through every NPC to check if it is valid the miniomum distance and target selected are updated so that the closest valid NPC is selected
+            for (int k = 0; k < Main.npc.Length; k++)
+            {
+                NPC possibleTarget = Main.npc[k];
+                float distance = (possibleTarget.Center - position).Length();
+                if (distance < maxDistance && possibleTarget.active && possibleTarget.chaseable && !possibleTarget.dontTakeDamage && !possibleTarget.friendly && possibleTarget.lifeMax > 5 && !possibleTarget.immortal && (Collision.CanHit(position, 0, 0, possibleTarget.Center, 0, 0) || ignoreTiles) && specialCondition(possibleTarget))
+                {
+                    target = Main.npc[k];
+                    foundTarget = true;
+
+                    maxDistance = (target.Center - position).Length();
+                }
+            }
+            return foundTarget;
+        }
+
+        public static float AngularDifference(float angle1, float angle2)
+        {
+            angle1 = PolarVector(1f, angle1).ToRotation();
+            angle2 = PolarVector(1f, angle2).ToRotation();
+            if (Math.Abs(angle1 - angle2) > Math.PI)
+            {
+                return (float)Math.PI * 2 - Math.Abs(angle1 - angle2);
+            }
+            return Math.Abs(angle1 - angle2);
+        }
+        public static void SlowRotation(this ref float currentRotation, float targetAngle, float speed)
+        {
+            int f = 1; //this is used to switch rotation direction
+            float actDirection = new Vector2((float)Math.Cos(currentRotation), (float)Math.Sin(currentRotation)).ToRotation();
+            targetAngle = new Vector2((float)Math.Cos(targetAngle), (float)Math.Sin(targetAngle)).ToRotation();
+
+            //this makes f 1 or -1 to rotate the shorter distance
+            if (Math.Abs(actDirection - targetAngle) > Math.PI)
+            {
+                f = -1;
+            }
+            else
+            {
+                f = 1;
+            }
+
+            if (actDirection <= targetAngle + speed * 2 && actDirection >= targetAngle - speed * 2)
+            {
+                actDirection = targetAngle;
+            }
+            else if (actDirection <= targetAngle)
+            {
+                actDirection += speed * f;
+            }
+            else if (actDirection >= targetAngle)
+            {
+                actDirection -= speed * f;
+            }
+            actDirection = new Vector2((float)Math.Cos(actDirection), (float)Math.Sin(actDirection)).ToRotation();
+            currentRotation = actDirection;
         }
     }
 }

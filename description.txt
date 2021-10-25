@@ -1,1 +1,23 @@
-The Terraria Rebalanced and Expanded Project is exactly what it sounds like it is.
+Built for 1.4 Alpha version of tModLoader.
+Introducing the Terraria Rebalanced and Expanded Project!
+
+Made by certain Terraria fans who felt that 1.4 wasn't quite fitting to be the end of Terraria, this rather ambitious mod aims to fix all issues present in the vanilla game, balance or otherwise, and expand it where it currently feels lacking in content.
+
+This mod's primary feature is all its changes to the vanilla game, but it is not at all exempt from having brand new content to explore!
+
+Featuring:
+* Over 50 PAGES of vanilla changes, ranging from weapon buffs to boss reworks and much more!
+* Reworks to defense and general mobility.
+* An overhauled magic class with much more emphasis into mana than vanilla.
+* Overhauled Spear mechanics, with the added ability to throw all of them.
+* Over 20 new accessories, explore the Tinkerer's Workshop like never before.
+* The Glacial armor, the whip based counterpart to Spooky armor.
+* A Dreadnautilus overhaul, turning it into an official superboss fight!
+* A BIG flamethrower expansion, giving them relevance throughout the entire game.
+
+And more! This mod may build itself off vanilla balance, but it is guaranteed to shake up your experience dramatically.
+
+More information at:
+Forums page: https://forums.terraria.org/index.php?threads/w-i-p-trae-project.108733
+Changelog: https://docs.google.com/document/d/19rpmiLvxtzu7k0cWBHJrvMxoS0sAwcZK-ZcS_xCXlT0/edit?usp=sharing
+Discord Server: https://discord.gg/7CfJ8TRTtU
