@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject;
 using TRAEProject.Buffs;
-
+using TRAEProject.Changes.Items;
 namespace ChangesBuffs
 {
     public class ChangesBuffs : GlobalBuff
@@ -57,13 +57,8 @@ namespace ChangesBuffs
                     player.meleeScaleGlove = true;
                     return;
                 case BuffID.Thorns:
-                    player.thorns -= 0.33f;
-                    player.GetModPlayer<TRAEPlayer>().newthorns += 0.33f;
-                    return;
-                case BuffID.Inferno:
-                    player.GetModPlayer<TRAEPlayer>().infernoNew = true;
-                    player.inferno = false;
-                    player.infernoCounter = 0;
+                    player.thorns -= 1f;
+                    player.GetModPlayer<OnHitItems>().newthorns += 0.33f;
                     return;
                 case BuffID.Archery:
                     player.arrowDamage -= 0.08f; //  because Archery Potion uses a unique multiplier -8% makes it effectively +10% arrow damage 
@@ -72,25 +67,29 @@ namespace ChangesBuffs
                     player.AddBuff(BuffType<NeoFeralBite>(), player.buffTime[buffIndex], false);
                     player.DelBuff(buffIndex);
                     return;
-                case BuffID.Werewolf:
-                    // increasing stats here doesnt work
-                    player.wereWolf = true;
-                    //    Player.GetDamage<GenericDamageClass>() += 0.1111f;
-                    //player.magicCrit += 6;
-                    //player.meleeCrit += 6;
-                    //player.rangedCrit += 6;
-                    //player.thrownCrit += 6;
-                    //player.meleeSpeed += 0.08f;
-                    return;
-                case BuffID.Sharpened: // FIX THIS BUG
-                    return;
+
                 case BuffID.ManaRegeneration:
                     player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.2f;
                     return;
                 case BuffID.ManaSickness:               
                     player.manaSickReduction = 0f;
                     return;
-    }
+                case BuffID.WellFed:
+                    player.moveSpeed -= 0.15f;
+                    return;
+                case BuffID.WellFed2:
+                    player.moveSpeed -= 0.225f;
+                    return;
+                case BuffID.WellFed3:
+                    player.moveSpeed -= 0.3f;
+                    return;
+                case BuffID.Swiftness:
+                    player.moveSpeed -= 0.05f;
+                    return; 
+				case BuffID.Panic:
+                    player.moveSpeed -= 0.5f;
+                    return; 
+            }
         }
 
         public override void ModifyBuffTip(int type, ref string tip, ref int rare)
@@ -124,9 +123,6 @@ namespace ChangesBuffs
                 case BuffID.Inferno:
                     tip = "Your attacks cause fiery explosions";
                     return;
-                case BuffID.Swiftness:
-                    tip = "40% increased movement speed";
-                    return;
                 case BuffID.WeaponImbueNanites:
                     tip = "Melee attacks confuse enemies and increase health regeneration";
                     return;
@@ -135,6 +131,9 @@ namespace ChangesBuffs
                     return;
 	            case BuffID.ManaSickness:
                     tip = "Can't drink another mana potion";
+                    return;
+                case BuffID.Swiftness:
+                    tip = "20% increased movement speed";
                     return;
             }
         }

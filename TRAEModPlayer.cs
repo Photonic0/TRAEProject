@@ -16,51 +16,23 @@ namespace TRAEProject
     {
         public int shadowArmorDodgeChance = 0;
         private Item previousItem = new Item();
-        public int LastHitDamage;
         public float newManaRegen = 0;
-        public int overchargedMana = 0;
         public float manaRegenBoost = 1;
-        public int BaghnakhHeal = 0;
         public bool PirateSet = false;
-        public bool TitanGlove = false;
         public bool manaCloak = false;
         public bool newManaFlower = false;
 		public int manaFlowerTimer = 0;
 		public int manaFlowerLimit = 0;
-        public bool AncientSet = false;
-        public bool infernoNew = false;
         public bool wErewolf = false;
         public bool Celled = false;
         public bool MagicDagger = false;
-        public int magicCuffsCount = 0;
-        public bool NewbeesOnHit = false;
-        public bool NewstarsOnHit = false;
-        public float newthorns = 0f;
-        public float runethorns = 0f;
-        public bool whenHitDodge = false;
-        public bool HolyProtection = false;
-        public bool shackle = false;
-        public bool MagicQuiver = false;
-        public bool Huntressbuckler = false;
-        public bool monkbelt = false;
-        public bool fireGlove = false;
-        public bool pocketMirror = false;
-        public bool honeyBalloon = false;
-        public bool pbsidianRose = false;
         public bool icceleration = false;
-        public bool jellyfishNecklace = false;
-        public bool RoyalGel = false;
-        public bool RoyalGelDOT = false;
         public bool waterRunning = false;
-        public bool fleg = false;
-        public bool ammodam1 = false;
-        public bool ammodam2 = false;
         public bool Hivepack = false;
         int beetimer = 0;
         int beesStored = 0;
         int timebeforeReleasingBees = 0;
         int ifHoneyedWithBeepack = 1;
-        public int beedamage = 1;
         public int minionCritChance = 0;
         public int titatimer = 0;
         public bool FastFall = false;
@@ -70,9 +42,7 @@ namespace TRAEProject
         public int chanceNotToConsumeAmmo = 0;
         public override void ResetEffects()
         {
-            PirateSet = false; AncientSet = false;
-            infernoNew = false;
-            TitanGlove = false;
+            PirateSet = false;
             manaCloak = false;
             newManaFlower = false;
             manaRegenBoost = 1;
@@ -80,30 +50,9 @@ namespace TRAEProject
             wErewolf = false;
             Celled = false;
             MagicDagger = false;
-            magicCuffsCount = 0;
-            NewbeesOnHit = false;
-            NewstarsOnHit = false;
-            newthorns = 0f;
-            runethorns = 0f;
-            whenHitDodge = false;
-            honeyBalloon = false;
-            shackle = false;
-            fireGlove = false;
-            MagicQuiver = false;
-            pocketMirror = false;
-            Huntressbuckler = false;
-            monkbelt = false;
-            pbsidianRose = false;
-            HolyProtection = false;
             icceleration = false;
-            jellyfishNecklace = false;
-            RoyalGel = false;
-            RoyalGelDOT = false;
             waterRunning = false;
-            fleg = false;
             titatimer = 0;
-            ammodam1 = false;
-            ammodam2 = false;
             Hivepack = false;
             ifHoneyedWithBeepack = 1;
             FastFall = false;
@@ -114,40 +63,16 @@ namespace TRAEProject
         }
         public override void UpdateDead()
         {
-            PirateSet = false; AncientSet = false;
-            infernoNew = false;
+            PirateSet = false;
             manaCloak = false;
             newManaFlower = false;
-            TitanGlove = false;
             manaRegenBoost = 1;
             shadowArmorDodgeChance = 0;
             wErewolf = false;
             Celled = false;
-            magicCuffsCount = 0;
-            NewbeesOnHit = false;
-            runethorns = 0f;
-            newthorns = 0f;
-            NewstarsOnHit = false;
-            whenHitDodge = false;
-            honeyBalloon = false;
-            fireGlove = false;
-            pocketMirror = false;
-            shackle = false;
-            MagicQuiver = false;
-            Huntressbuckler = false;
-            monkbelt = false;
-            pbsidianRose = false;
-            HolyProtection = false;
             icceleration = false;
             waterRunning = false;
-            jellyfishNecklace = false;
-            RoyalGel = false;
-            RoyalGelDOT = false;
-            fleg = false;
-            beedamage = 0;
             titatimer = 0;
-            ammodam1 = false;
-            ammodam2 = false;
             Hivepack = false;
             beetimer = 0;
             beesStored = 0;
@@ -159,14 +84,8 @@ namespace TRAEProject
             chanceNotToConsumeAmmo = 0;
 			minionCritChance = 0;
         }
-        public override void PreUpdate()
-        {
-            Player.rocketTimeMax = 7; // without this Obsidian Hover Shoes permanently set it to 14          
-   
-        }
         public override void PostUpdate()
         {
-			Player.jumpSpeedBoost += 1f;
             Player.manaRegenCount = 0;
             Player.manaRegen = 0;
             Player.manaRegenDelay = 999;
@@ -191,7 +110,6 @@ namespace TRAEProject
 			   }
 			}
 			Player.lifeSteal -= 0.41666667f; // this stat increases by 0.5f every frame, or by 30 per second. with this change it goes down to 5 per second.
-
             if (Player.wingsLogic > 0 && Player.rocketBoots != 0 && Player.velocity.Y != 0f && Player.rocketTime != 0)
             {
                 int num45 = 6;
@@ -203,8 +121,7 @@ namespace TRAEProject
                 }
                 Player.rocketTime = 0;
             } // this is for Obsidian Rocket Boots to increase Flight time 
-            if (RoyalGelDOT)
-                Player.drippingSlime = true;
+
             if (LavaShield && Player.lavaWet)
             {
                 Player.AddBuff(BuffType<LavaShield>(), 900);
@@ -260,19 +177,6 @@ namespace TRAEProject
                     Player.stealthTimer--;
                 }
             }
-            if (Player.head == 56 && Player.body == 36 && Player.velocity.Y == 0f)
-            {
-                Vector2 position23 = new Vector2(Player.position.X, Player.position.Y + 2f);
-                int width22 = Player.width;
-                int height22 = Player.height;
-                float speedX6 = Player.velocity.X * 0.2f;
-                float speedY6 = Player.velocity.Y * 0.2f;
-                Dust dust = Dust.NewDustDirect(position23, width22, height22, 106, speedX6, speedY6, 100, default, 1.2f);
-                dust.noGravity = true;
-                dust.velocity.X *= 0.1f + Main.rand.Next(30) * 0.01f;
-                dust.velocity.Y *= 0.1f + Main.rand.Next(30) * 0.01f;
-                dust.scale *= 1f + Main.rand.Next(6) * 0.1f;
-            }
             if (Player.shieldRaised)
             {
                 Player.moveSpeed *= 1.5f;
@@ -300,48 +204,6 @@ namespace TRAEProject
         }
         public override void PostUpdateEquips()
         {
-            for (int i = 3; i < 10; i++)
-            {
-                //The Player.armor[] array represents the items the Player has equiped
-                //indexes 0-2 are the Player's armor
-                //indexes 3-9 are the accesories (what we are checking)
-                //indexes 10-19 are vanity slots
-                if (Player.armor[i].active)
-                {
-                    if (Player.armor[i].prefix == PrefixID.Brisk)
-                    {
-                        Player.moveSpeed += 0.015f;
-                    }
-                    if (Player.armor[i].prefix == PrefixID.Fleeting)
-                    {
-                        Player.moveSpeed += 0.03f;
-                    }
-                    if (Player.armor[i].prefix == PrefixID.Hasty2)
-                    {
-                        Player.moveSpeed += 0.045f;
-                    }
-                    if (Player.armor[i].prefix == PrefixID.Quick2)
-                    {
-                        Player.moveSpeed += 0.06f;
-                    }
-                    if (Player.armor[i].prefix == PrefixID.Wild)
-                    {
-                        Player.meleeSpeed += 0.01f;
-                    }
-                    if (Player.armor[i].prefix == PrefixID.Rash)
-                    {
-                        Player.meleeSpeed += 0.02f;
-                    }
-                    if (Player.armor[i].prefix == PrefixID.Intrepid)
-                    {
-                        Player.meleeSpeed += 0.03f;
-                    }
-                    if (Player.armor[i].prefix == PrefixID.Violent)
-                    {
-                        Player.meleeSpeed += 0.04f;
-                    }
-                }
-            }
             if (wErewolf && Player.statLife < Player.statLifeMax2 * 0.67)
             {
                 Player.buffImmune[BuffID.Werewolf] = false;
@@ -351,18 +213,9 @@ namespace TRAEProject
                 Player.GetCritChance<GenericDamageClass>() += 9;
                 Player.meleeSpeed += 0.07f;
             }
-            if (honeyBalloon)
-            {
-                Player.lifeRegen += 2;
-            }
             if (icceleration)
             {
                 Player.runAcceleration *= 2f;
-            }
-            if (Player.HasBuff(BuffType<WaterAffinity>()))
-            {
-                Player.maxRunSpeed += 1.5f;
-                Player.accRunSpeed *= 1.5f;
             }
             if (waterRunning)
             {
@@ -475,10 +328,6 @@ namespace TRAEProject
                 Player.lifeRegenTime += 3; // makes it tick up four times faster
                 Player.lifeRegenCount += 2; // adds 1 hp/s
             }
-            if (RoyalGelDOT)
-            {
-                Player.lifeRegen -= 12;
-            }
         }
         public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
@@ -490,11 +339,6 @@ namespace TRAEProject
             if (Player.HasBuff(BuffID.Bleeding) && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
             {
                 damageSource = PlayerDeathReason.ByCustomReason(Player.name + " bled to death");
-                return true;
-            }
-            if (RoyalGelDOT && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
-            {
-                damageSource = PlayerDeathReason.ByCustomReason(Player.name + " couldn't endure for long enough");
                 return true;
             }
             return true;
@@ -538,33 +382,7 @@ namespace TRAEProject
                         break;
                     }
             }
-            if (!RoyalGelDOT && RoyalGel) // keep this at the bottom
-            {
-                damage -= (int)Main.CalculateDamagePlayersTake(damage, Player.statDefense);
-                damage -= (int)(damage * Player.endurance);
-                Player.AddBuff(BuffType<DamageReferred>(), damage * 10);
-                damage = 1;
-                Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath1);
-                for (int i = 0; i < 25; i++)
-                {
-                    Dust.NewDust(Player.oldPosition, Player.width, Player.height, 4, 1, 1, 0, default, 0.75f);
-                }
-            }
-        }
-        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
-        {          
-            if (!RoyalGelDOT && RoyalGel) // keep this at the bottom
-            {
-                damage -= (int)Main.CalculateDamagePlayersTake(damage, Player.statDefense);
-                damage -= (int)(damage * Player.endurance);
-                Player.AddBuff(BuffType<DamageReferred>(), damage * 10);
-                damage = 1;
-                Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath1);
-                for (int i = 0; i < 25; i++)
-                {
-                    Dust.NewDust(Player.oldPosition, Player.width, Player.height, 4, 1, 1, 0, default, 0.75f);
-                }
-            }
+            
         }
         //public override void ModifyManaCost(Item item, ref float reduce, ref float mult)
         //{
@@ -649,254 +467,7 @@ namespace TRAEProject
             }
             return;
         }
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
-        {
-            LastHitDamage = damage;
-            BaghnakhHeal = 0;
-            if (damage > 1)
-            {
-                if (magicCuffsCount > 0)
-                {
-                    int manaRestored = damage * magicCuffsCount;
-                    Player.GetModPlayer<Mana>().GiveManaOverloadable(manaRestored);
-                }
-                int[] spread = { 1, 2 };
-                if (NewstarsOnHit)
-                {             
-                    TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI),Player.position, 2 + (damage / 33), 400, 600, spread, 20, ProjectileID.StarCloakStar, 100, 2f, Player.whoAmI);
-                }
-                if (NewbeesOnHit)
-                {
-                    if (!Player.HasBuff(BuffID.ShadowDodge))
-                    {
-                        beedamage = damage;
-                    }
-                    TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position, 3 + (damage / 33), 400, 600, spread, 20, ProjectileType<BuzzyStar>(), beedamage, 2f, Player.whoAmI);
-                }
-                if (runethorns > 0f)
-                {
-                    int enemyLimit = 0;
-                    Terraria.Audio.SoundEngine.PlaySound(SoundID.Item8, Player.position);
-                    for (int i = 0; i < 50; ++i)
-                    {
-                        Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
-                        Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, 106, 0f, 0f, 100, default(Color), 2.5f);
-                        dust.velocity *= 3f;
-                        dust.noGravity = true;
-                    }
-                    foreach (NPC enemy in Main.npc)
-                    {
-                        float distance = 150f;
-                        Vector2 newMove = enemy.Center - Player.Center;
-                        float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                        int direction = -1;
-                        if (enemy.position.X + (enemy.width / 2) < Player.position.X + (enemy.width / 2))
-                        {
-                            direction = 1;
-                        }
-                        if (!enemy.dontTakeDamage && enemy.active && !enemy.friendly && !enemy.immortal && distanceTo < distance)
-                        {
-           
-                            int thorndamage = (int)(damage * runethorns + enemy.defense * 0.5);
-                            if (thorndamage > 1000)
-                                thorndamage = 1000;
-                            //if (enemy.type == NPCID.TheDestroyerBody)
-                            //    thorndamage /= 10;
-                            //if (enemy.type == NPCID.TheDestroyerTail)
-                            //    thorndamage /= 40;
-                            Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
-                            for (int i = 0; i < 20; ++i)
-                            {
-                                Vector2 position10 = new Vector2(enemy.position.X, enemy.position.Y);
-                                Dust dust = Dust.NewDustDirect(position10, enemy.width, enemy.height, 106, 0f, 0f, 100, default, 2.5f);
-                                dust.velocity *= 2f;
-                                dust.noGravity = true;
-                            }
-                        }
-                    }
-                }
-            }
-            if (newthorns > 0f)
-            {
-                foreach (NPC enemy in Main.npc)
-                {
-                    float distance = 500f;
-                    Vector2 newMove = enemy.Center - Player.Center;
-                    float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                    int direction = -1;
-                    if (enemy.position.X + (enemy.width / 2) < Player.position.X + (enemy.width / 2))
-                    {
-                        direction = 1;
-                    }
-                    if (!enemy.dontTakeDamage && enemy.active && !enemy.friendly && !enemy.immortal && distanceTo < distance)
-                    {
-                        if (enemy.type == NPCID.TheDestroyerTail)
-                            damage /= 4;
-                        int thorndamage = (int)(damage * newthorns + npc.defense * 0.5); 
-                        if (thorndamage > 1000)
-						{
-                            thorndamage = 1000;
-                        }
-						Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
-                    }
-                }
-            }
-            Shadowdodge();
-            if (Player.honeyCombItem != null && !Player.honeyCombItem.IsAir)
-            {
-                Player.AddBuff(BuffID.Honey, 300 + damage * 4);
-            }
-            if (Player.panic)
-            {
-                Player.AddBuff(BuffID.Panic, 300 + damage * 4);
-            }
-            if (Player.longInvince && damage > 100)
-            {
-                int invintime = (int)((damage - 100) * 0.6); // every point of damage past 100 adds 0.01 seconds of invincibility. 
-                Player.immuneTime += invintime;
-            }
-            if (AncientSet)
-            {
-                Player.immuneTime += 40;
-            }
-        }
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
-        {
-            LastHitDamage = damage;
-            BaghnakhHeal = 0;
-            if (damage > 1)
-            {
-                if (magicCuffsCount > 0)
-                {
-					int manaRestored = damage * magicCuffsCount;
-					Player.statMana += manaRestored; 
-                    Player.ManaEffect(manaRestored);
-                }
-                int[] spread = { 1, 2 };
-                if (NewstarsOnHit)
-                {
-                    TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI),Player.position, 2 + (damage / 33), 400, 600, spread, 20, ProjectileID.HallowStar, 100, 2f, Player.whoAmI);
-                }
-                if (NewbeesOnHit)
-                {
-                    if (!Player.HasBuff(BuffID.ShadowDodge))
-                    {
-                        beedamage = damage;
-                    }
-                    TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position, 3 + (damage / 33), 400, 600, spread, 20, ProjectileType<BuzzyStar>(), beedamage, 2f, Player.whoAmI);
-                }
-                Shadowdodge();
-                if (runethorns > 0f)
-                {
-                    Terraria.Audio.SoundEngine.PlaySound(SoundID.Item8, Player.position);
-                    for (int i = 0; i < 50; ++i)
-                    {
-                        Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
-                        Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, 106, 0f, 0f, 100, default(Color), 2.5f);
-                        dust.velocity *= 3f;
-                        dust.noGravity = true;
-                    }
-                    foreach (NPC enemy in Main.npc)
-                    {
-                        float distance = 150f;
-                        Vector2 newMove = enemy.Center - Player.Center;
-                        float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                        int direction = -1;
-                        if (enemy.position.X + (enemy.width / 2) < Player.position.X + (enemy.width / 2))
-                        {
-                            direction = 1;
-                        }
-                        if (!enemy.dontTakeDamage && enemy.active && !enemy.friendly && !enemy.immortal && distanceTo < distance)
-                        {
-                            int thorndamage = (int)(damage * runethorns + enemy.defense * 0.5); 
-                            if (thorndamage > 1000)
-							{
-                                thorndamage = 1000;
-                            }
-							if (enemy.type == NPCID.TheDestroyerBody)
-                                thorndamage /= 10;
-                            if (enemy.type == NPCID.TheDestroyerTail)
-                                thorndamage /= 40;
-                            Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
-                            for (int i = 0; i < 20; ++i)
-                            {
-                                Vector2 position10 = new Vector2(enemy.position.X, enemy.position.Y);
-                                Dust dust = Dust.NewDustDirect(position10, enemy.width, enemy.height, 106, 0f, 0f, 100, default, 2.5f);
-                                dust.velocity *= 2f;
-                                dust.noGravity = true;
-                            }
-                        }
-                    }
-                }
-                if (newthorns > 0f)
-                {
-                    foreach (NPC enemy in Main.npc)
-                    {
-                        float distance = 500f;
-                        Vector2 newMove = enemy.Center - Player.Center;
-                        float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                        int direction = -1;
-                        if (enemy.position.X + (enemy.width / 2) < Player.position.X + (enemy.width / 2))
-                        {
-                            direction = 1;
-                        }
-                        if (!enemy.dontTakeDamage && enemy.active && !enemy.friendly && !enemy.immortal && distanceTo < distance)
-                        {
-                            if (enemy.type == NPCID.TheDestroyerTail)
-                                damage /= 4;
-
-                            int thorndamage = (int)(damage * newthorns + enemy.defense * 0.5);
-                            if (thorndamage > 1000)
-                                thorndamage = 1000;
-                            Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
-                        }
-                    }
-                }
-                if (!Player.HasBuff(BuffID.ShadowDodge))
-                {
-                    beedamage = damage;
-                    int starcount = 2 + damage / 33;
-                }
-                if (Player.honeyCombItem != null && !Player.honeyCombItem.IsAir)
-                {
-                    Player.AddBuff(BuffID.Honey, 300 + damage * 4, false);
-                }
-                if (Player.panic)
-                {
-                    Player.AddBuff(BuffID.Panic, 300 + damage * 4, false);
-                }
-                if (Player.longInvince && damage > 100)
-                {
-                    int invintime = (int)(damage - 100 * 0.6); // every point of damage past 100 adds 0.01 seconds of invincibility. 
-                    Player.immuneTime += invintime;
-                }
-                if (!RoyalGelDOT && RoyalGel) // keep this at the bottom
-                {
-                    double defensevalue = 0.5;
-                    if (Main.expertMode)
-                        defensevalue += 0.25;
-                    damage -= (int)(Player.statDefense * defensevalue);
-                    damage -= (int)(damage * Player.endurance);
-                    Player.AddBuff(BuffType<DamageReferred>(), damage * 10);
-                    Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath1);
-                    for (int i = 0; i < 25; i++)
-                    {
-                        Dust.NewDust(Player.oldPosition, Player.width, Player.height, 4, 1, 1, 0, default, 0.75f);
-                    }
-                }
-            }
-        }
-        void Shadowdodge()
-        {
-            if (HolyProtection && !whenHitDodge)
-            {
-                if (Player.shadowDodgeTimer == 0)
-                {
-                    Player.shadowDodgeTimer = 1500;
-                    Player.AddBuff(BuffID.ShadowDodge, 1500, false);
-                }
-            }
-        }
+      
         void DarkDodge()
         {
             Player.immune = true;

@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
+using TRAEProject.Changes.Projectiles;
 namespace TRAEProject.Items.FlamethrowerAmmo
 {
     public class IchorGel : ModItem

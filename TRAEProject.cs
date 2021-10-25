@@ -133,8 +133,8 @@ namespace TRAEProject
             BloodyTear2.Register();
             Recipe Magnet = CreateRecipe(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
             Magnet.Register();
-Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 10).AddTile(TileID.TinkerersWorkbench);
-                 AvengerEmblem.Register();
+//Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 10).AddTile(TileID.TinkerersWorkbench);
+//                 AvengerEmblem.Register();
             Recipe StardustPortal = CreateRecipe(ItemID.MoonlordTurretStaff).AddIngredient(3459, 18).AddTile(TileID.LunarCraftingStation);
             StardustPortal.Register();
             Recipe DarkLance = CreateRecipe(ItemID.DarkLance);
@@ -259,10 +259,6 @@ Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.CrimsonTigerfish, 1);
                 }
-                if (recipe.HasResult(ItemID.AvengerEmblem))
-                {
-					 recipe.RemoveRecipe();
-                }
                 if (recipe.HasResult(ItemID.FireGauntlet))
                 {
                     recipe.TryGetIngredient(ItemID.MechanicalGlove, out ingredientToRemove);
@@ -329,10 +325,9 @@ Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem
                     recipe.RemoveIngredient(ingredientToRemove); 
                     recipe.TryGetIngredient(ItemID.LavaWaders, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.FlurryBoots, 1); 
-                    recipe.AddIngredient(ItemID.SandBoots, 1);
-                    recipe.AddIngredient(ItemID.HermesBoots, 1);
-                    recipe.AddIngredient(ItemID.SailfishBoots, 1);
+                    recipe.AddIngredient(ItemID.LightningBoots, 1); 
+                    recipe.AddIngredient(ItemID.Tabi, 1);
+                    recipe.AddIngredient(ItemID.BrokenHeroSword, 1);
                 }
                 if (recipe.HasResult(ItemID.ObsidianWaterWalkingBoots))
                 {
@@ -612,6 +607,24 @@ Recipe AvengerEmblem = CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(3380, 10);
                 }
+                if (recipe.HasResult(ItemID.BoneJavelin))
+                {
+                    recipe.ReplaceResult(ItemID.BoneJavelin, 1);
+                    recipe.TryGetIngredient(3380, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(3380, 10);
+                }
+                if (recipe.HasResult(ItemID.AvengerEmblem))
+                {
+                    recipe.TryGetIngredient(ItemID.SoulofFright, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.TryGetIngredient(ItemID.SoulofSight, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove); 
+                    recipe.TryGetIngredient(ItemID.SoulofSight, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.SoulofMight, 15);
+                }
+                
             }
         }
     }

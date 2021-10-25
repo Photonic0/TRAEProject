@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TRAEProject.Changes.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +28,7 @@ namespace TRAEProject.Items.Accesories.BalanceCuffs
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<LifeCuffsEffect>().cuffs += 1;
-            player.GetModPlayer<TRAEPlayer>().magicCuffsCount += 1;
+            player.GetModPlayer<OnHitItems>().magicCuffsCount += 1;
         }
 
         public override void AddRecipes()

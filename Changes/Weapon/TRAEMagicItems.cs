@@ -10,7 +10,8 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 using TRAEProject.Changes;
 using TRAEProject.Items.Accesories.AngelicStone;
-namespace TRAEProject
+
+namespace TRAEProject.Changes.Items
 {
     public class TRAEMagicItem : GlobalItem
     {

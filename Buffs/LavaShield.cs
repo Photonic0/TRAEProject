@@ -7,15 +7,14 @@ namespace TRAEProject.Buffs
 	public class LavaShield : ModBuff
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("LavaShield");
-			Description.SetDefault("Reduces damage taken by 12% and increases defense by 10");
+			DisplayName.SetDefault("Lava Shield");
+			Description.SetDefault("Increases defense by 20");
 		}
 		public override string Texture => "TRAEProject/Buffs/LavaShield";
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.endurance += 0.12f;
-			player.statDefense += 10;
+			player.statDefense += 20;
 		}
 	}
 }

@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using System;
 using Terraria.GameContent.Creative;
+using TRAEProject.Changes.Projectiles;
 namespace TRAEProject.Items.FlamethrowerAmmo
 {        
     public class CrystalGel : ModItem

@@ -16,7 +16,7 @@ namespace TRAEProject.Items.Accesories.SoaringCarpet
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soaring Carpet");
-            Tooltip.SetDefault("Grants a soaring carpet, use it by holding DOWN\nIncreases movement and jump speed by 10%");
+            Tooltip.SetDefault("Grants a soaring carpet, use it by holding DOWN\n15% increased movement speed");
         }
 
         public override void SetDefaults()

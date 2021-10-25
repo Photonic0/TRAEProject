@@ -8,7 +8,7 @@ using Terraria.GameContent.Creative;
 using TRAEProject.Items.Materials;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Terraria.DataStructures;
+using TRAEProject.Changes.Projectiles;
 using Terraria.Audio;
 
 namespace TRAEProject.Items.Armor.IceArmor

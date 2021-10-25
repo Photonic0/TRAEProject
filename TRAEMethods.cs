@@ -5,11 +5,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using System.Collections.Generic;
+using TRAEProject.Changes.Projectiles;
 
 namespace TRAEProject
 {
-    public static class TRAEMethods
+    public class TRAEMethods
     {
         public static void SpawnProjectilesFromAbove(Terraria.DataStructures.IProjectileSource spawnSource, Vector2 Base, int projectileCount, int spreadX, int spreadY, int[] offsetCenter, float velocity, int type, int damage, float knockback, int player)
         {
@@ -150,7 +150,6 @@ namespace TRAEProject
             }
             return foundTarget;
         }
-
         public static float AngularDifference(float angle1, float angle2)
         {
             angle1 = PolarVector(1f, angle1).ToRotation();
@@ -160,37 +159,6 @@ namespace TRAEProject
                 return (float)Math.PI * 2 - Math.Abs(angle1 - angle2);
             }
             return Math.Abs(angle1 - angle2);
-        }
-        public static void SlowRotation(this ref float currentRotation, float targetAngle, float speed)
-        {
-            int f = 1; //this is used to switch rotation direction
-            float actDirection = new Vector2((float)Math.Cos(currentRotation), (float)Math.Sin(currentRotation)).ToRotation();
-            targetAngle = new Vector2((float)Math.Cos(targetAngle), (float)Math.Sin(targetAngle)).ToRotation();
-
-            //this makes f 1 or -1 to rotate the shorter distance
-            if (Math.Abs(actDirection - targetAngle) > Math.PI)
-            {
-                f = -1;
-            }
-            else
-            {
-                f = 1;
-            }
-
-            if (actDirection <= targetAngle + speed * 2 && actDirection >= targetAngle - speed * 2)
-            {
-                actDirection = targetAngle;
-            }
-            else if (actDirection <= targetAngle)
-            {
-                actDirection += speed * f;
-            }
-            else if (actDirection >= targetAngle)
-            {
-                actDirection -= speed * f;
-            }
-            actDirection = new Vector2((float)Math.Cos(actDirection), (float)Math.Sin(actDirection)).ToRotation();
-            currentRotation = actDirection;
         }
     }
 }

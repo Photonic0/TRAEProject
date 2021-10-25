@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject;
 using System.Collections.Generic;
+using TRAEProject.Changes.Items;
 namespace ChangesArmor
 {
     public class ChangesArmor : GlobalItem
@@ -220,13 +221,13 @@ namespace ChangesArmor
             if (armorSet == "PharaohSet")
             {
                 player.setBonus = "Grants an improved double jump and the ability to float for a few seconds";
-                player.canJumpAgain_Sandstorm = true;
+                player.hasJumpOption_Sandstorm = true;
                 player.carpet = true;
             }
             if (armorSet == "WizardSetHM")
             {
                 player.setBonus = "Return dectuple damage taken to near enemies";
-                player.GetModPlayer<TRAEPlayer>().runethorns += 10f;
+                player.GetModPlayer<OnHitItems>().runethorns += 10f;
             }
             if (armorSet == "ShadowSet")
             {
@@ -237,14 +238,13 @@ namespace ChangesArmor
             if (armorSet == "AncientSet")
             {
                 player.setBonus = "Increases melee speed by 30%\nIncreases maximum mana by 60\nIncreases length of invincibility after taking damage";
-                player.GetModPlayer<TRAEPlayer>().AncientSet = true;
                 player.meleeSpeed += 0.3f;
                 player.statManaMax2 += 60;
             }
             if (armorSet == "TurtleSet")
             {
                 player.setBonus = "Damage taken is reflected to nearby enemies with thrice the strength\nReduces damage taken by 15%";
-                player.GetModPlayer<TRAEPlayer>().newthorns += 3f;
+                player.GetModPlayer<OnHitItems>().newthorns += 3f;
                 player.thorns -= 2f;
                 player.turtleThorns = false;
             }
@@ -264,7 +264,7 @@ namespace ChangesArmor
             {
                 player.setBonus = "You gain immunity to the next attack after taking a hit";
                 player.GetModPlayer<TRAEPlayer>().titatimer = 900;
-                player.GetModPlayer<TRAEPlayer>().HolyProtection = true;
+                player.GetModPlayer<OnHitItems>().HolyProtection = true;
                 player.onHitDodge = false;
             }
             if (armorSet == "ShroomiteSet")

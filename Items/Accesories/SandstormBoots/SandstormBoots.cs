@@ -15,7 +15,7 @@ namespace TRAEProject.Items.Accesories.SandstormBoots
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sandstorm Boots");
-            Tooltip.SetDefault("The wearer can run super fast and perform an improved double jump\nRun even faster in sand");
+            Tooltip.SetDefault("25% increased movement speed\nThe wearer can perform an improved double jump\nRun even faster in sand");
         }
         public override void SetDefaults()
         {
@@ -25,7 +25,8 @@ namespace TRAEProject.Items.Accesories.SandstormBoots
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.accRunSpeed = 6f;
+            player.accRunSpeed = 4.8f;
+			player.moveSpeed += 0.25f; 
             player.desertBoots = true;
             player.hasJumpOption_Sandstorm = true;
         }
