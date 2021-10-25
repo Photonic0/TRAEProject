@@ -329,11 +329,6 @@
             Index using Player.hair
             </summary>
         </member>
-        <member name="F:Terraria.ID.ArmorIDs.Body.Sets.HidesArms">
-            <summary>
-            Hiding arms also hides hands
-            </summary>
-        </member>
         <member name="F:Terraria.ID.DustID.Water">
             <summary>
             Use Dust.dustWater() if you want to calculate water dust based on water style
@@ -2117,12 +2112,6 @@
         <member name="F:Terraria.ID.ProjAIStyleID.PrincessWeapon">
             <summary>
             Used by: <see cref="F:Terraria.ID.ProjectileID.PrincessWeapon"/>
-            </summary>
-        </member>
-        <member name="F:Terraria.ID.TileID.Sets.IgnoredByNpcStepUp">
-            <summary>
-            Whether or not the tile will be ignored for automatic step up regarding town NPC collision.
-            <br>Only checked when <see cref="M:Terraria.Collision.StepUp(Microsoft.Xna.Framework.Vector2@,Microsoft.Xna.Framework.Vector2@,System.Int32,System.Int32,System.Single@,System.Single@,System.Int32,System.Boolean,System.Int32)"/> with specialChecksMode set to 1 is called</br>
             </summary>
         </member>
         <member name="F:Terraria.ID.TileID.Sets.DisableSmartCursor">
@@ -5857,8 +5846,7 @@
         </member>
         <member name="M:Terraria.ModLoader.ModAccessorySlot.CanAcceptItem(Terraria.Item,Terraria.ModLoader.AccessorySlotType)">
             <summary>
-            Override to set conditions on what can be placed in the slot. Default is to return false only when item property FitsAccessoryVanity says can't go in to a vanity slot. 
-            Return false to prevent the item going in slot. Return true for dyes, if you want dyes. Example: only wings can go in slot.
+            Override to set conditions on what can be placed in the slot. Return false to prevent the item going in slot. Return true for dyes, if you want dyes. Example: only wings can go in slot.
             Receives data:
             <para><paramref name="checkItem"/> :: the item that is attempting to enter the slot </para>
             </summary>

@@ -217,11 +217,6 @@ namespace TRAEProject.Changes.Projectiles
                         }
                         return;
                     }
-                case ProjectileID.Tempest:
-                    target.immune[projectile.owner] = 0;
-                    projectile.localNPCImmunity[target.whoAmI] = 20;
-                    break;
-
             }
         }
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
