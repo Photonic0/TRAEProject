@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Changes.Projectiles;
 namespace TRAEProject.Projectiles
 {
     public class Starrow: ModProjectile

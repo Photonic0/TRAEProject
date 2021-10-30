@@ -17,7 +17,7 @@ namespace TRAEProject.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			// check ModPlayer for effects
+			player.moveSpeed += 0.5f;
 		}
-    }
+	}
 }

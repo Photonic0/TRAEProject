@@ -10,7 +10,8 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
 using TRAEProject.Changes;
 using TRAEProject.Items.Accesories.AngelicStone;
-namespace TRAEProject
+
+namespace TRAEProject.Changes.Items
 {
     public class TRAEMagicItem : GlobalItem
     {
@@ -86,10 +87,11 @@ namespace TRAEProject
                     item.mana = 45; // up from 22                  
                     return; 
                 case ItemID.BeeGun:
-                    item.damage = 9; 
-				    item.useTime = 18; // down from 16
-                    item.useAnimation = 18;
-                    item.mana = 22; // up from 6
+                    item.damage = 8; 
+				    item.useTime = 30; // down from 16
+                    item.useAnimation = 30;
+                    item.mana = 20; // up from 6
+				    item.knockBack = 1f;
                     return;
                 case ItemID.ZapinatorGray:
                 case ItemID.ZapinatorOrange:

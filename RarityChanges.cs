@@ -72,7 +72,8 @@ namespace ChangesWeapons
                 case ItemID.MajesticHorseSaddle:
                 case ItemID.PogoStick:
                 case ItemID.ThornWhip:
-                    case ItemID.AnkhCharm:
+                case ItemID.FrostStaff:
+                case ItemID.AnkhCharm:
                     item.rare = ItemRarityID.Green;
                     return;
                 case ItemID.AnkhShield:
@@ -156,7 +157,6 @@ namespace ChangesWeapons
                 case ItemID.AngelWings:
                 case ItemID.DemonWings:
                 case ItemID.LeafWings:
-                case ItemID.FrostStaff:
                 case ItemID.Frostbrand:
                 case ItemID.IceBow:
                 case ItemID.PirateMinecart:

@@ -206,7 +206,7 @@ namespace TRAEProject
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Has a chance to dodge an attack using illusions Temporarily increase critical chance after dodge\nGrants immunity to Petrified";
+                            line.text = "Has a chance to dodge an attack using illusions";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {

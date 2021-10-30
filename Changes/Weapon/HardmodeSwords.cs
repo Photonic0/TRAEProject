@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using TRAEProject.Changes.Items;
 using Terraria;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Projectiles;
@@ -108,6 +108,7 @@ namespace TRAEProject.Changes.Weapon
                 case ItemID.BluePhasesaber:
                 case ItemID.GreenPhasesaber:
                 case ItemID.RedPhasesaber:
+                case ItemID.OrangePhasesaber:
                 case ItemID.WhitePhasesaber:
                     item.damage = 60;
                     item.crit = 24;
@@ -132,6 +133,11 @@ namespace TRAEProject.Changes.Weapon
                     //item.useAnimation = 13;
                     //item.autoReuse = true;
                     //item.useTurn = false;
+                    break;
+                case ItemID.Seedler:
+                    item.scale = 1.3f;
+                    item.useTime = 64; // up from 23
+                    item.useAnimation = 16; // down from 23
                     break;
                 case ItemID.Keybrand:
                     item.scale = 1.7f;
@@ -192,10 +198,10 @@ namespace TRAEProject.Changes.Weapon
 
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            if (FetidHeal && player.GetModPlayer<TRAEPlayer>().BaghnakhHeal <= player.GetModPlayer<TRAEPlayer>().LastHitDamage)
+            if (FetidHeal && player.GetModPlayer<OnHitItems>().BaghnakhHeal <= player.GetModPlayer<OnHitItems>().LastHitDamage)
             {
                 float healAmount = (float)(damage * 0.1f);
-                player.GetModPlayer<TRAEPlayer>().BaghnakhHeal += (int)healAmount;
+                player.GetModPlayer<OnHitItems>().BaghnakhHeal += (int)healAmount;
                 player.HealEffect((int)healAmount, true);
                 player.statLife += (int)healAmount;
             }

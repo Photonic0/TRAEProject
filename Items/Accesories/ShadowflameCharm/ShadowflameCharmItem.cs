@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using TRAEProject.Items.Summoner.Whip;
 using TRAEProject.Buffs;
-using TRAEProject.Items.Summoner.AbsoluteZero;
+using TRAEProject.Changes.Projectiles;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.Accesories.ShadowflameCharm

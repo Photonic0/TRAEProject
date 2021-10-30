@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.DreadItems.ShellSpinner
@@ -16,13 +17,13 @@ namespace TRAEProject.Items.DreadItems.ShellSpinner
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shell Spinner");
-            Tooltip.SetDefault("Spin!");
+            Tooltip.SetDefault("Spin to win!");
         }
         public override void SetDefaults()
         {
             Item.width = 38;
             Item.height = 32;
-            Item.damage = 53;
+            Item.damage = 106;
             Item.useTime = Item.useAnimation = 30;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.LightPurple;
@@ -43,7 +44,7 @@ namespace TRAEProject.Items.DreadItems.ShellSpinner
         {
             Projectile.width = Projectile.height = 38;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 5;
+            Projectile.penetrate = 2;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 15;
             Projectile.friendly = true;

@@ -7,6 +7,8 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject;
+using Terraria.DataStructures;
 
 namespace TRAEProject.Items.DreadItems.Brimstone
 {
@@ -35,8 +37,22 @@ namespace TRAEProject.Items.DreadItems.Brimstone
             Item.SetShopValues(ItemRarityColor.LightPurple6, Item.sellPrice(0, 5));
             Item.UseSound = SoundID.NPCDeath13;
         }
+        public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(velocity.X, velocity.Y)) * 54f; //This gets the direction of the flame projectile, makes its length to 1 by normalizing it. It then multiplies it by 54 (the item width) to get the position of the tip of the flamethrower.
+            if (Collision.CanHit(position, 6, 6, position + muzzleOffset, 6, 6))
+            {
+                position += muzzleOffset;
+            }
+            // This is to prevent shooting through blocks and to make the fire shoot from the muzzle.
+            return true;
+        }
+        public override Vector2? HoldoutOffset()
+        // HoldoutOffset has to return a Vector2 because it needs two values (an X and Y value) to move your flamethrower sprite. Think of it as moving a point on a cartesian plane.
+        {
+            return new Vector2(0, -2); // If your own flamethrower is being held wrong, edit these values. You can test out holdout offsets using Modder's Toolkit.
+        }
     }
-    ///  TO DO: MAKE THE BOOK MOVE WITH THE BEAM
     class BrimstoneBeam : ModProjectile
     {
         public override void SetDefaults()
@@ -52,7 +68,8 @@ namespace TRAEProject.Items.DreadItems.Brimstone
             Projectile.localNPCHitCooldown = 5;
             Projectile.penetrate = -1;
         }
-        int beamLength = 1000;
+        int beamLength = 1250;
+
         public const int chargeTime = 30;
         int timer = 0;
         public override void AI()
@@ -68,7 +85,7 @@ namespace TRAEProject.Items.DreadItems.Brimstone
                 {
                     Projectile.rotation = (Main.MouseWorld - player.Center).ToRotation();
                 }
-                beamLength = 1000;
+                beamLength = 1250;
                 for (int i =0; i < beamLength; i++)
                 {
                     if(!Collision.CanHit(Projectile.Center, 1, 1, Projectile.Center + TRAEMethods.PolarVector(i, Projectile.rotation), 1, 1))

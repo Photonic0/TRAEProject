@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject;
 
 using static Terraria.ModLoader.ModContent;
 

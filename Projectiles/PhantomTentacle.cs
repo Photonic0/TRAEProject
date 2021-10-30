@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using TRAEProject.Changes.Projectiles;
 namespace TRAEProject.Projectiles
 {
     class PhantomTentacle : ModProjectile

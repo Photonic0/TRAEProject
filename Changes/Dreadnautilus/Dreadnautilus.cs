@@ -23,7 +23,7 @@ using TRAEProject.Items.DreadItems.BloodSquidEgg;
 using TRAEProject.Items.DreadItems.BloodBoiler;
 using TRAEProject.Items.DreadItems.DreadMask;
 using static Terraria.ModLoader.ModContent;
-
+using TRAEProject;
 namespace TRAEProject.Changes.Dreadnautilus
 {
 	class Dreadnautilus : GlobalNPC

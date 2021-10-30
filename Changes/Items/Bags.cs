@@ -58,7 +58,7 @@ namespace TRAEProject.Changes.Items
 						break;
 					case 1:
 						player.QuickSpawnItem(ItemID.Seedler);
-						player.QuickSpawnItem(ItemID.VenusMagnum);
+						player.QuickSpawnItem(ItemID.FlowerPow);
 						break;
 					case 2:
 						player.QuickSpawnItem(ItemID.LeafBlower);

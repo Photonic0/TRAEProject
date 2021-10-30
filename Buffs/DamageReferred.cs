@@ -1,6 +1,7 @@
 using TRAEProject.NPCs;
 using Terraria;
 using Terraria.ModLoader;
+using TRAEProject.Changes.Items;
 using static Terraria.ModLoader.ModContent;
 namespace TRAEProject.Buffs
 {
@@ -14,8 +15,9 @@ namespace TRAEProject.Buffs
 			Description.SetDefault("The gel absorbed the damage... temporarily");
 		}
 
-		public override void Update(Player player, ref int buffIndex) {
-			player.GetModPlayer<TRAEPlayer>().RoyalGelDOT = true;
+		public override void Update(Player player, ref int buffIndex) 
+		{
+			player.GetModPlayer<OnHitItems>().RoyalGelDOT = true;
 		}
 	}
 }

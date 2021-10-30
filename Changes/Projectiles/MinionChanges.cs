@@ -6,7 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Buffs;
-using TRAEProject.Projectiles;
+using System.Collections.Generic;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Projectiles
@@ -21,71 +21,186 @@ namespace TRAEProject.Changes.Projectiles
                 case ItemID.FlinxStaff:
                     item.useTime = 10;
                     item.useAnimation = 10;
-                    item.autoReuse = true;
+                    item.autoReuse = true; 
+                    item.mana = 25;
                     item.damage = 5; // down from 8
                     break;
                 case ItemID.HornetStaff:
                     item.damage = 12;
+                    item.mana = 25;
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     return;
                 case ItemID.OpticStaff:
                     item.damage = 25; // down from 30
+                    item.mana = 25;
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     break;
+                case ItemID.StormTigerStaff:
                 case ItemID.ImpStaff:
-                    item.mana = 40;
+                    item.mana = 25;
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     break;
-                case ItemID.BabyBirdStaff:  
-				case ItemID.SlimeStaff:  
+                case ItemID.QueenSpiderStaff:
+                    item.damage = 19; // down from 26
+                    item.mana = 25;
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    break;
+                case ItemID.BabyBirdStaff:
+                case ItemID.SlimeStaff:
                 case ItemID.SpiderStaff:
                 case ItemID.SanguineStaff:
                 case ItemID.RavenStaff:
                 case ItemID.Smolstar:
                 case ItemID.PirateStaff:
-                case ItemID.StormTigerStaff:
                 case ItemID.XenoStaff:
                 case ItemID.EmpressBlade:
                 case ItemID.StardustCellStaff:
+                case ItemID.DD2BallistraTowerT1Popper:
+                case ItemID.DD2BallistraTowerT2Popper:
+                case ItemID.DD2BallistraTowerT3Popper:
+                case ItemID.DD2FlameburstTowerT1Popper:
+                case ItemID.DD2FlameburstTowerT2Popper:
+                case ItemID.DD2FlameburstTowerT3Popper:
+                case ItemID.DD2LightningAuraT1Popper:
+                case ItemID.DD2LightningAuraT2Popper:
+                case ItemID.DD2LightningAuraT3Popper:
+                case ItemID.DD2ExplosiveTrapT1Popper:
+                case ItemID.DD2ExplosiveTrapT2Popper:
+                case ItemID.DD2ExplosiveTrapT3Popper:
+                case ItemID.StaffoftheFrostHydra:
+                    item.mana = 25;
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     break;
                 case ItemID.PygmyStaff:
+                    item.mana = 25;
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     item.damage = 45; // up from 34
                     break;
                 case ItemID.TempestStaff:
+                    item.mana = 25;
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     item.damage = 42;
                     break;
                 case ItemID.DeadlySphereStaff:
+                    item.mana = 25;
                     item.damage = 15; // down from 50
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     return;
                 case ItemID.RainbowCrystalStaff:
-                    item.damage = 40; // down from 150
+                    item.mana = 25; item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    item.damage = 30; // down from 150
                     return;
                 case ItemID.StardustDragonStaff:
+                    item.mana = 25;
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     item.SetNameOverride("Lunar Dragon Staff");
                     return;
                 case ItemID.MoonlordTurretStaff:
+                    item.mana = 25; item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
                     item.SetNameOverride("Stardust Portal Staff");
+                    return;               
+					/// SUMMONER
+                case ItemID.ThornWhip:
+                    item.damage = 19; // up from 18
+                    return;
+                case ItemID.BoneWhip:
+                    item.damage = 29; // down from 29
+                    return;
+                case ItemID.SwordWhip:
+                    item.damage = 70;
+                    return;
+                case ItemID.ScytheWhip:
+                    item.damage = 111; // up from 100
+                    return;
+                case ItemID.RainbowWhip:
+                    item.damage = 250; // up from 180
+                    item.autoReuse = true;
+                    return;
+            }
+        }
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            switch (item.type)
+            {
+                case ItemID.StardustDragonStaff:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "Summons a lunar dragon to fight for you";
+                        }
+                    }
+                    return;
+                case ItemID.MoonlordTurretStaff:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.text = "Summons a stardust portal to shoot lasers at your enemies";
+                        }
+                    }
+			return;                
+			case ItemID.CoolWhip:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text += "\n8 summon tag damage";
+                        }
+                    }
+                    return;
+                case ItemID.MaceWhip:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.text = "15% summon tag critical strike chance";
+                        }
+                    }
+                    return;
+                case ItemID.ScytheWhip:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text += "\n10 summon tag damage";
+                        }
+                    }
+                    return;
+                case ItemID.RainbowWhip:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "50 summon tag damage";
+                        }
+                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.text = "30% summon tag critical strike chance\nColorful destruction comes out of enemies hit by summons";
+                        }
+                    }
                     return;
             }
         }
@@ -95,13 +210,15 @@ namespace TRAEProject.Changes.Projectiles
         public override bool InstancePerEntity => true;
         public override void SetDefaults(Projectile projectile)
         {
+            if (projectile.sentry)
+            {
+                projectile.timeLeft = 216000; // An hour
+            }
             switch (projectile.type)
             {
                 case ProjectileID.FlinxMinion:
                     projectile.usesIDStaticNPCImmunity = false;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 20;
-                    return;
+                    return;    
                 case ProjectileID.BabySlime:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
@@ -116,18 +233,13 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.tileCollide = false;
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
+                    projectile.localNPCHitCooldown = 20;
                     return;
                 case ProjectileID.MiniRetinaLaser:
-				        projectile.penetrate = 1;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 200f;
-               projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
-                    return;
-                case ProjectileID.CoolWhip:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<CoolWhipTag>();
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 240;
+				    projectile.penetrate = 1;      
+					projectile.usesIDStaticNPCImmunity = false;
+					projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 20;          
                     return;
                 case ProjectileID.DeadlySphere:
                     projectile.extraUpdates = 1;
@@ -140,7 +252,7 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.JumperSpider:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
+                    projectile.localNPCHitCooldown = 300;
                     return;
                 case ProjectileID.HornetStinger:
                     projectile.extraUpdates = 2;
@@ -165,13 +277,27 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     return;
+                case ProjectileID.CoolWhip:
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<CoolWhipTag>();
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 240;
+                    return;
+                case ProjectileID.RainbowWhip:
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<KaleidoscopeSecondTag>();
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 240;
+                    return;
             }
 
         }
         public override void AI(Projectile projectile)
         {
             switch (projectile.type)
-            {
+            {  
+				case ProjectileID.Spazmamini:
+                    if (projectile.ai[1] > 1f)
+                    {
+                        projectile.ai[1] -= 0.5f;
+                    }
+                    return;
                 case ProjectileID.FlyingImp:
                     if (projectile.ai[1] > 0f)
                     {
@@ -192,6 +318,14 @@ namespace TRAEProject.Changes.Projectiles
                         }
                         return;
                     }
+                case ProjectileID.SpiderEgg:
+                    {
+                        if (projectile.ai[0] < 10f)
+                        {
+                            projectile.ai[0] -= 0.5f;
+                        }
+                        return;
+                    }
 
             }
         }
@@ -202,11 +336,27 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.JumperSpider:
                 case ProjectileID.VenomSpider:
                 case ProjectileID.DangerousSpider:
-                    {
-                        projectile.localAI[1] = 30f; // up from 20
+                    {           
+					projectile.localAI[1] = 45f; // up from 20
+                     		int buffIndex = target.FindBuffIndex(BuffID.Venom);
+				if (buffIndex != -1)
+				{ 
+					target.DelBuff(buffIndex); 
+				}
+				return;
                         return;
-                    }			
-				case ProjectileID.Smolstar:
+                    }      
+			    case ProjectileID.SpiderEgg:	    
+				case ProjectileID.BabySpider:
+                    {           			
+					int buffIndex = target.FindBuffIndex(BuffID.Venom);
+				if (buffIndex != -1)
+				{ 
+					target.DelBuff(buffIndex); 
+				}
+				return;
+                    }
+                case ProjectileID.Smolstar:
                     {
                         int[] array = projectile.localNPCImmunity;
                         for (int i = 0; i < 200; i++)
@@ -238,7 +388,8 @@ namespace TRAEProject.Changes.Projectiles
         Projectile hook;
         public override bool PreAI(Projectile projectile)
         {
-            if (projectile.type == ProjectileID.PirateCaptain || projectile.type == ProjectileID.OneEyedPirate || projectile.type == ProjectileID.SoulscourgePirate)
+            Player player = Main.player[projectile.owner];
+			if (projectile.type == ProjectileID.PirateCaptain || projectile.type == ProjectileID.OneEyedPirate || projectile.type == ProjectileID.SoulscourgePirate)
             {
                 //Main.NewText(projectile.ai[0] + ", " + projectile.ai[1] + ", " + projectile.localAI[0] + ", " + projectile.localAI[1]);
                 //Main.NewText(projectile.frame);
@@ -257,7 +408,7 @@ namespace TRAEProject.Changes.Projectiles
                             hook = null;
                         }
 
-                        Player player = Main.player[projectile.owner];
+
                         if (Main.player[projectile.owner].dead)
                         {
                             Main.player[projectile.owner].pirateMinion = false;
@@ -297,7 +448,6 @@ namespace TRAEProject.Changes.Projectiles
             if (projectile.type == ProjectileID.Tempest)
             {
                 //linking the minion to the player
-                Player player = Main.player[projectile.owner];
                 if (Main.player[projectile.owner].dead)
                 {
                     Main.player[projectile.owner].sharknadoMinion = false;
@@ -437,9 +587,6 @@ namespace TRAEProject.Changes.Projectiles
                             {
                                 Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center, TRAEMethods.PolarVector(shootSpeed, calculatedShootAngle), ProjectileID.MiniSharkron, projectile.damage, projectile.knockBack, projectile.owner);
                             }
-
-
-
                         }
                         projectile.ai[1] = 0f;
                         projectile.netUpdate = true;
@@ -533,6 +680,9 @@ namespace TRAEProject.Changes.Projectiles
         {
             switch (type)
             {
+                case BuffID.FlameWhipEnemyDebuff:
+                        npc.DelBuff(BuffID.OnFire);
+                    return;
                 case BuffID.MaceWhipNPCDebuff:
                     npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 15;
                     return;
