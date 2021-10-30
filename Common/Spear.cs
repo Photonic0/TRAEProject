@@ -156,7 +156,7 @@ namespace TRAEProject.Common
                 effects = SpriteEffects.None;
                 Projectile.rotation = stabDirection + 3f * (float)Math.PI / 4f;
             }
-            if (player.itemAnimation == 0 || (player.autoReuseGlove && player.itemAnimation == 1))
+            if (player.itemAnimation == 0 || player.itemAnimation == 1)
             {
                 Projectile.Kill();
             }

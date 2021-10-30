@@ -45,7 +45,7 @@ namespace TRAEProject.Items.FlamethrowerAmmo
     {   
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("CrystalFlamethrower");     //The English name of the Projectile
+            DisplayName.SetDefault("Crystal Flamethrower");     //The English name of the Projectile
         }
         public override string Texture => "Terraria/Images/Item_0";
         public override void SetDefaults()
@@ -60,6 +60,7 @@ namespace TRAEProject.Items.FlamethrowerAmmo
             Projectile.penetrate = 2;
             Projectile.extraUpdates = 2;
             Projectile.width = Projectile.height = 2;
+            //Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration = 100;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 60;

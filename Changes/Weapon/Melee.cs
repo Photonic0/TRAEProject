@@ -79,7 +79,7 @@ namespace TRAEProject.Changes.Weapon
                     item.damage = 29; // down from 29
                     return;
                 case ItemID.SwordWhip:
-                    item.damage = 59;
+                    item.damage = 70;
                     return;
                 case ItemID.ScytheWhip:
                     item.damage = 111; // up from 100

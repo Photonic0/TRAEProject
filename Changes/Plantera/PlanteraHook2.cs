@@ -24,6 +24,7 @@ namespace TRAEProject.Changes.Plantera
             Projectile.height = 30;
             Projectile.hostile = true;
             Projectile.tileCollide = false;
+            Projectile.timeLeft = 600;
             //28 32
         }
         Vector2? anchor = null;

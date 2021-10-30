@@ -29,7 +29,7 @@ namespace TRAEProject.Changes.Projectiles
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
-                    return;
+                    break;
                 case ItemID.OpticStaff:
                     item.damage = 25; // down from 30
                     item.useTime = 10;
@@ -48,7 +48,6 @@ namespace TRAEProject.Changes.Projectiles
                 case ItemID.SanguineStaff:
                 case ItemID.RavenStaff:
                 case ItemID.Smolstar:
-                case ItemID.PirateStaff:
                 case ItemID.StormTigerStaff:
                 case ItemID.XenoStaff:
                 case ItemID.EmpressBlade:
@@ -74,19 +73,25 @@ namespace TRAEProject.Changes.Projectiles
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
-                    return;
+                    break;
                 case ItemID.RainbowCrystalStaff:
                     item.damage = 40; // down from 150
-                    return;
+                    break;
                 case ItemID.StardustDragonStaff:
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
                     item.SetNameOverride("Lunar Dragon Staff");
-                    return;
+                    break;
                 case ItemID.MoonlordTurretStaff:
                     item.SetNameOverride("Stardust Portal Staff");
-                    return;
+                    break;
+                case ItemID.PirateStaff:
+                    item.useTime = 10;
+                    item.useAnimation = 10;
+                    item.autoReuse = true;
+                    item.damage = 31;
+                    break;
             }
         }
     }
@@ -119,11 +124,11 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.localNPCHitCooldown = 30;
                     return;
                 case ProjectileID.MiniRetinaLaser:
-				        projectile.penetrate = 1;
+				        projectile.penetrate = -1;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 200f;
-               projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = -1;
                     return;
                 case ProjectileID.CoolWhip:
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<CoolWhipTag>();
@@ -140,7 +145,7 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.JumperSpider:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
+                    projectile.localNPCHitCooldown = 45;
                     return;
                 case ProjectileID.HornetStinger:
                     projectile.extraUpdates = 2;
@@ -192,6 +197,13 @@ namespace TRAEProject.Changes.Projectiles
                         }
                         return;
                     }
+                case ProjectileID.Spazmamini:
+                case ProjectileID.Retanimini:
+                    if(projectile.ai[1] > 1)
+                    {
+                        projectile.ai[1] -= 0.5f;
+                    }
+                    return;
 
             }
         }
@@ -221,7 +233,9 @@ namespace TRAEProject.Changes.Projectiles
                     target.immune[projectile.owner] = 0;
                     projectile.localNPCImmunity[target.whoAmI] = 20;
                     break;
-
+                case ProjectileID.MiniRetinaLaser:
+                    projectile.Kill();
+                    break;
             }
         }
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -529,6 +543,17 @@ namespace TRAEProject.Changes.Projectiles
                 }
             }
             return base.PreDraw(projectile, ref lightColor);
+        }
+        public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
+        {
+            if (projectile.type == ProjectileID.PirateCaptain || projectile.type == ProjectileID.OneEyedPirate || projectile.type == ProjectileID.SoulscourgePirate)
+            {
+                if (projectile.velocity.X != oldVelocity.X)
+                {
+                    projectile.velocity.X = -oldVelocity.X;
+                }
+            }
+            return base.OnTileCollide(projectile, oldVelocity);
         }
     }
     public class SummonTags : GlobalBuff

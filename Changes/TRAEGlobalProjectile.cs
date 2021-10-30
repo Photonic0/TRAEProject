@@ -24,6 +24,7 @@ namespace TRAEProject.Changes.Projectiles
         public float DamageFallon = 1f; // How much damage the projectile gains every time it hits an enemy. 
         public float DirectDamage = 1f; // how much damage the projectile deals when it hits an enemy, independent of the weapon.
         public bool IgnoresDefense = false; // self-explanatory
+        public int armorPenetration = 0; //self-explanatory
         public bool cantCrit = false; // self-explanatory
         public bool dontHitTheSameEnemyMultipleTimes = false;// self-explanatory
         // Bouncing
@@ -322,9 +323,16 @@ namespace TRAEProject.Changes.Projectiles
                     return;
             }
         }
+
+        int extraAP = 0;
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit,ref int hitDirection)
         {
             Player player = Main.player[projectile.owner];
+            if (armorPenetration > 0)
+            {
+                player.armorPenetration += armorPenetration;
+                extraAP += armorPenetration;
+            }
             damage = (int)(damage * DirectDamage);
             if (IgnoresDefense && target.type != NPCID.DungeonGuardian)
             {
@@ -387,6 +395,13 @@ namespace TRAEProject.Changes.Projectiles
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            if(extraAP > 0)
+            {
+                Main.player[projectile.owner].armorPenetration -= extraAP;
+                extraAP = 0;
+            }
+
+
             if (dontHitTheSameEnemyMultipleTimes)
                 projectile.localNPCImmunity[target.whoAmI] = -1; // this makes the enemy invincible to the projectile.
             if (explodes)

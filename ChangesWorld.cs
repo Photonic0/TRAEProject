@@ -19,7 +19,6 @@ public class ChangesWorld : ModSystem
             Chest chest = Main.chest[chestIndex];
             if (chest != null)
             {
-
                 if (chest.item[0].type == ItemID.TreasureMagnet)
                 {
                     chest.item[0].SetDefaults(Main.rand.Next(ShadowItems), false);
@@ -102,7 +101,6 @@ public class ChangesWorld : ModSystem
                                 break;
                             }
                         }
-                        break;
                     }
 
                 }
