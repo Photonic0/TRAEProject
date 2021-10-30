@@ -53,6 +53,11 @@ namespace TRAEProject.Changes
                     item.useAnimation = 0;
                     item.accessory = true;
                     return;
+                case ItemID.VineRope:
+                    item.useTime = 5;
+                    item.useAnimation = 5;
+                    item.tileBoost = 6;
+                    return;
                 case ItemID.StrangeBrew:
                     item.healMana = 0;
                     return;
@@ -61,6 +66,25 @@ namespace TRAEProject.Changes
                     return;
                 case ItemID.FastClock:
                     item.value = 100000;
+                    return;
+                case ItemID.Amethyst:
+                    item.value = Item.sellPrice(silver: 75);
+                    return;
+                case ItemID.Topaz:
+                    item.value = Item.sellPrice(silver: 70);
+                    return;
+                case ItemID.Sapphire:
+                    item.value = Item.sellPrice(silver: 85);
+                    return;
+                case ItemID.Emerald:
+                    item.value = Item.sellPrice(silver: 90);
+                    return;
+                case ItemID.Ruby:
+                case ItemID.Amber:
+                    item.value = Item.sellPrice(silver: 95);
+                    return;
+                case ItemID.Diamond:
+                    item.value = Item.sellPrice(gold: 1);
                     return;
             }
             return;
@@ -203,7 +227,16 @@ namespace TRAEProject.Changes
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             switch (item.type)
-            {              
+            {
+                case ItemID.VineRope:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "+6 range";
+                        }
+                    }
+                    return;
                 case ItemID.MagicDagger:
                     foreach (TooltipLine line in tooltips)
                     {

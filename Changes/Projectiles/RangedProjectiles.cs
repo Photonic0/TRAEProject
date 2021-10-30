@@ -85,6 +85,11 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.ToxicBubble:
                     projectile.timeLeft = 120;
                     return;
+                case ProjectileID.BoneArrow:
+                    projectile.penetrate = 3; 
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BouncesOffTiles = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().onlyBounceOnce = true;
+                    return;
                 case ProjectileID.HallowStar:
                     projectile.penetrate = -1;
                     projectile.usesLocalNPCImmunity = true;

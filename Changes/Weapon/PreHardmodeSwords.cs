@@ -42,11 +42,13 @@ namespace TRAEProject.Changes.Weapon
                     item.damage = 12; // up from 10
                     item.scale = 1.15f; // up from 1
                     return;
+                case ItemID.PearlwoodSword:
+                    item.scale = 1.15f; // up from 1
+                    return;
                 case ItemID.CactusSword:
                     item.damage = 9; // up from 8
                     item.useTime = 25; // down from 32
                     item.useAnimation = 25;
-                    item.knockBack = 6f; // up from 5
                     return;
                 // ORES
                 case ItemID.CopperBroadsword:

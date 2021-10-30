@@ -56,6 +56,12 @@ namespace TRAEProject.Changes.Projectiles
         {
             switch (projectile.type)
             {
+                case ProjectileID.Bee:
+                case ProjectileID.GiantBee:
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 30;
+					projectile.penetrate = 2;
+                    return;
                 case ProjectileID.CrystalLeafShot:
                     homesIn = true;
                     return;
@@ -91,16 +97,6 @@ namespace TRAEProject.Changes.Projectiles
 
             }
             //
-        }
-        public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)
-        {
-            switch (projectile.type)
-            {
-                case ProjectileID.TitaniumStormShard:
-                    hitbox.Width = 50;
-                    hitbox.Height = 50;
-                    return;
-            }
         }
         public float timer = 0;
         public override void AI(Projectile projectile)
@@ -200,9 +196,22 @@ namespace TRAEProject.Changes.Projectiles
                         projectile.damage = 0;
                     }
                     else
-                        projectile.damage = 70;
-                    return;
-            }
+					{
+                        projectile.damage = 70;         
+					    projectile.position.X += projectile.width / 2;
+                        projectile.position.Y += projectile.height / 2;
+                        projectile.width = projectile.height = 70;
+                        projectile.position.X -= projectile.width / 2;
+                        projectile.position.Y -= projectile.height / 2;
+                        projectile.position.X += projectile.width / 2;
+                        projectile.position.Y += projectile.height / 2;
+                        projectile.width = projectile.height = 70;
+                        projectile.position.X -= (projectile.width / 2);
+                        projectile.position.Y -= (projectile.height / 2);
+					}
+					return;
+				}
+             
 
         }
     
@@ -315,7 +324,6 @@ namespace TRAEProject.Changes.Projectiles
                     }
                     return;
                 case ProjectileID.NebulaBolt:
-                case ProjectileID.VortexAcid:
                     {
                         damage *= 80;
                         damage /= 100;
