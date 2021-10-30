@@ -150,6 +150,15 @@ namespace TRAEProject
             }
             return foundTarget;
         }
-
+        public static float AngularDifference(float angle1, float angle2)
+        {
+            angle1 = PolarVector(1f, angle1).ToRotation();
+            angle2 = PolarVector(1f, angle2).ToRotation();
+            if (Math.Abs(angle1 - angle2) > Math.PI)
+            {
+                return (float)Math.PI * 2 - Math.Abs(angle1 - angle2);
+            }
+            return Math.Abs(angle1 - angle2);
+        }
     }
 }
