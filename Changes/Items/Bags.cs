@@ -12,7 +12,7 @@ namespace TRAEProject.Changes.Items
     public class Bags : GlobalItem
     {
 		public static readonly int[] PlanteraLoot = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury };
-
+		
 		public override bool PreOpenVanillaBag(string context, Player player, int arg)
 		{
 			if (context == "bossBag" && arg == ItemID.SkeletronBossBag)
@@ -132,7 +132,7 @@ namespace TRAEProject.Changes.Items
 				return false;
 			}
 
-				if (context == "crate" && (arg == ItemID.OasisCrate || arg == ItemID.OasisCrateHard))
+			if (context == "crate" && (arg == ItemID.OasisCrate || arg == ItemID.OasisCrateHard))
 			{
 				int index = Main.rand.Next(ChangesWorld.PyramidItems.Length);
 				int itemWhoAmI = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ChangesWorld.PyramidItems[index], 1, noBroadcast: false, -1);
@@ -162,7 +162,7 @@ namespace TRAEProject.Changes.Items
 				FishingCrateLoot(player, arg);
 				return false;
 			}
-			if (context == "lockBox" && arg == ItemID.ObsidianLockbox)
+			if (context == "obsidianLockBox")
 			{
 				int index = Main.rand.Next(ChangesWorld.ShadowItems.Length);
 				int number = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ChangesWorld.ShadowItems[index], 1, noBroadcast: false, -1);
