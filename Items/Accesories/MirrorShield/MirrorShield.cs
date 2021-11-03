@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Items.Accesories.MirrorShield
 {    [AutoloadEquip(EquipType.Shield)]
@@ -22,6 +23,13 @@ namespace TRAEProject.Items.Accesories.MirrorShield
             Item.rare = ItemRarityID.Orange;
             Item.value = 75000;
             Item.defense = 2;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe().AddIngredient(ItemID.PocketMirror, 1)
+                .AddIngredient(ItemType<PalladiumShield.PalladiumShield>(), 1)
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

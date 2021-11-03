@@ -49,9 +49,9 @@ namespace TRAEProject.Items.Accesories.WeirdBundle
     .AddTile(TileID.TinkerersWorkbench)
          .Register(); 
             CreateRecipe().AddIngredient(ItemID.SoulofFlight, 20)
-        .AddIngredient(ItemID.FartInABalloon)
+        .AddIngredient(ItemID.HoneyBalloon)
    .AddRecipeGroup("TsunamiJump")
-     .AddRecipeGroup("HoneyBalloon")
+     .AddRecipeGroup("FartJump")
     .AddTile(TileID.TinkerersWorkbench)
          .Register();
         }

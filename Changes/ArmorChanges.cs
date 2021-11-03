@@ -99,7 +99,7 @@ namespace ChangesArmor
                     player.lifeRegen += 2;
                     return;
                 case ItemID.SquireGreaves:
-                    player.GetCritChance<MeleeDamageClass>() -= 5;
+                    player.GetCritChance<MeleeDamageClass>() -= 10;
                     player.GetDamage<SummonDamageClass>() += 0.05f;
                     return;
                 case ItemID.SquireAltHead:
@@ -148,7 +148,9 @@ namespace ChangesArmor
             if (head.type == ItemID.RichMahoganyHelmet && body.type == ItemID.RichMahoganyBreastplate && legs.type == ItemID.RichMahoganyGreaves)
                 return "WoodSet"; 
             if (head.type == ItemID.PearlwoodHelmet && body.type == ItemID.PearlwoodBreastplate && legs.type == ItemID.PearlwoodGreaves)
-                return "WoodSet";
+                return "WoodSet"; 
+            if (head.type == ItemID.CopperHelmet && body.type == ItemID.CopperChainmail && legs.type == ItemID.CopperGreaves)
+                return "TinSet";
             if (head.type == ItemID.TinHelmet && body.type == ItemID.TinChainmail && legs.type == ItemID.TinGreaves)
                 return "TinSet";
             if ((head.type == ItemID.IronHelmet || head.type == ItemID.AncientIronHelmet) && body.type == ItemID.IronChainmail && legs.type == ItemID.IronGreaves)

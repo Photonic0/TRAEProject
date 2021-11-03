@@ -18,10 +18,11 @@ namespace TRAEProject.Buffs
 		public override string Texture => "TRAEProject/Buffs/StrongerPoisoned";
         public override void Update(NPC npc, ref int buffIndex)
         {
-            if (npc.HasBuff(BuffID.Poisoned))
-			{
-				npc.DelBuff(BuffID.Poisoned);
-			}				
+            int findbuffIndex = npc.FindBuffIndex(BuffID.Poisoned);
+            if (findbuffIndex != -1)
+            {
+                npc.DelBuff(findbuffIndex);
+            };
         }
     }
 	public class StrongerPoisonedEffect : GlobalNPC

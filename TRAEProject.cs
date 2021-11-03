@@ -667,10 +667,7 @@ namespace TRAEProject
                     recipe.AddIngredient(ItemID.Stinger, 8);
                     recipe.AddIngredient(ItemID.Hive, 10);
                 }
-				 if (recipe.HasResult(ItemID.QueenSpiderStaff))
-                {
-                    recipe.AddRecipeGroup("Cobalt", 12);
-                }
+
             }
         }
     }

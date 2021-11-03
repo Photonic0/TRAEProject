@@ -71,7 +71,7 @@ namespace TRAEProject.Changes
                     item.value = Item.sellPrice(silver: 75);
                     return;
                 case ItemID.Topaz:
-                    item.value = Item.sellPrice(silver: 70);
+                    item.value = Item.sellPrice(silver: 80);
                     return;
                 case ItemID.Sapphire:
                     item.value = Item.sellPrice(silver: 85);

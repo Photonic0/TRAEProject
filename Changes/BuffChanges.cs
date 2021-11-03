@@ -60,18 +60,6 @@ namespace ChangesBuffs
                     player.thorns -= 1f;
                     player.GetModPlayer<OnHitItems>().newthorns += 0.33f;
                     return;
-                case BuffID.Featherfall:
-                    player.slowFall = false;
-                    if (!player.TryingToHoverDown && (player.velocity.Y < -0.1 || player.velocity.Y > 0.1))
-                    {
-                        //if (player.TryingToHoverUp) // this is the extra slow fall
-                        //{
-                        //    player.gravity = player.gravity / 10f * player.gravDir;
-                        //}
-                        player.gravity = player.gravity / 3f * player.gravDir;
-                        player.velocity.Y += player.gravity;
-                    }
-                    return;
                 case BuffID.Archery:
                     player.arrowDamage -= 0.08f; //  because Archery Potion uses a unique multiplier -8% makes it effectively +10% arrow damage 
                     return;
