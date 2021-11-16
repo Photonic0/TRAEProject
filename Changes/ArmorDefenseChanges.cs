@@ -115,26 +115,20 @@ namespace TRAEProject
                 case ItemID.AncientShadowGreaves:
                     item.defense = 7;
                     return;
-                case ItemID.ChlorophyteGreaves:
-                    item.defense = 8;
-                    return;
                 case ItemID.FleshKnuckles:
                 case ItemID.BerserkerGlove:
                     item.defense = 10;
                     return;
-                case ItemID.ChlorophytePlateMail:
-                    item.defense = 13;
-                    return;   
                 case ItemID.AncientArmorHat:
                     item.defense = 13;
                     item.vanity = false;
                     return;
                 case ItemID.AncientArmorShirt:
-                    item.defense = 8;
+                    item.defense = 18;
                     item.vanity = false;
                     return;
                 case ItemID.AncientArmorPants:
-                    item.defense = 7;
+                    item.defense = 11;
                     item.vanity = false;
                     return;
                 case ItemID.DjinnsCurse:

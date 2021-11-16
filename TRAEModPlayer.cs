@@ -282,6 +282,10 @@ namespace TRAEProject
 
                 Player.jumpSpeedBoost += 0.225f * beesStored;
             }
+            if (Player.HeldItem.type == ItemID.BeeGun)
+            {
+                Player.strongBees = true;
+            }
         }
         public override void UpdateBadLifeRegen()
         {

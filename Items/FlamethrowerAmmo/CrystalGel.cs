@@ -60,8 +60,8 @@ namespace TRAEProject.Items.FlamethrowerAmmo
             Projectile.penetrate = 2;
             Projectile.extraUpdates = 2;
             Projectile.width = Projectile.height = 2;
-            //Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration = 100;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
+            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration = 25;
+            //Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 60;
         }

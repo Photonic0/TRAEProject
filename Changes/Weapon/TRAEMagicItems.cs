@@ -87,11 +87,10 @@ namespace TRAEProject.Changes.Items
                     item.mana = 45; // up from 22                  
                     return; 
                 case ItemID.BeeGun:
-                    item.damage = 8; 
-				    item.useTime = 30; // down from 16
-                    item.useAnimation = 30;
-                    item.mana = 20; // up from 6
-				    item.knockBack = 1f;
+                    item.damage = 9; 
+				    item.useTime = 18; // down from 16
+                    item.useAnimation = 18;
+                    item.mana = 22; // up from 6
                     return;
                 case ItemID.ZapinatorGray:
                 case ItemID.ZapinatorOrange:

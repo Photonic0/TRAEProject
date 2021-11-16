@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Buffs;
 using static Terraria.ModLoader.ModContent;
@@ -56,6 +57,25 @@ namespace TRAEProject.Common.ModPlayers
             {
                 if (item.CountsAsClass(DamageClass.Melee))
                 {
+                    //
+                    float bonusSize = 1f;
+                    switch (item.prefix)
+                    {
+                        case PrefixID.Large:
+                            bonusSize = (1.18f / 1.15f);
+                            break;
+                        case PrefixID.Massive:
+                            bonusSize = (1.25f / 1.18f);
+                            break;
+                        case PrefixID.Dangerous:
+                            bonusSize = (1.12f / 1.5f);
+                            break;
+                        case PrefixID.Bulky:
+                            bonusSize = (1.2f / 1.1f);
+                            break;
+                    }
+                    scale *= bonusSize;
+                    //
                     scale *= player.GetModPlayer<MeleeStats>().weaponSize;
                 }
                 return scale;

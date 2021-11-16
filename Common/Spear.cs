@@ -75,6 +75,29 @@ namespace TRAEProject.Common
 
         }
 
+        public static void SpearPrefixScaleing(Item item, Player player, Projectile projectile)
+        {
+            if (!item.IsAir)
+            {
+                float bonusSize = 1f;
+                switch (item.prefix)
+                {
+                    case PrefixID.Large:
+                        bonusSize = (1.18f / 1.15f);
+                        break;
+                    case PrefixID.Massive:
+                        bonusSize = (1.25f / 1.18f);
+                        break;
+                    case PrefixID.Dangerous:
+                        bonusSize = (1.12f / 1.5f);
+                        break;
+                    case PrefixID.Bulky:
+                        bonusSize = (1.2f / 1.1f);
+                        break;
+                }
+                projectile.scale = bonusSize * item.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
+            }
+        }
 
         bool runOnce = true;
         float stabDirection = 0;
@@ -109,7 +132,8 @@ namespace TRAEProject.Common
                 Projectile.velocity = Vector2.Zero;
                 OnStart();
             }
-            Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
+            //Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
+            SpearPrefixScaleing(player.HeldItem, player, Projectile);
             player.itemTime = player.itemAnimation;
             
             int switchStabTime = (int)(2f * (float)player.itemAnimationMax / 3f);
@@ -399,7 +423,8 @@ namespace TRAEProject.Common
                 }
                 else
                 {
-                    Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
+                    //Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
+                    Spear.SpearPrefixScaleing(player.HeldItem, player, Projectile);
                     if (player.itemTime > player.itemTimeMax - 1)
                     {
                         chargeTime = player.itemTime;
