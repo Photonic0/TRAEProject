@@ -23,7 +23,7 @@ namespace TRAEProject.Buffs
 		{
 			if (target.HasBuff<KaleidoscopeSecondTag>() && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && projectile.type != ProjectileID.StardustGuardian)
 			{
-				damage *= 3;
+				damage *= 5;
 			}
 		}
 		public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)

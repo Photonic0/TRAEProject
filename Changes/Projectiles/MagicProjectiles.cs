@@ -11,75 +11,8 @@ namespace TRAEProject.Changes.Projectiles
     public class MagicProjectile : GlobalProjectile
     {
         public override bool InstancePerEntity => true;
-        public int AnchorHit = 0;
-        public int HitCount = 0;
-
-        // Damage
-        public float DamageFalloff = 0f; // How much damage the projectile loses every time it hits an enemy. 
-        public float DamageFallon = 1f; // How much damage the projectile gains every time it hits an enemy. 
-        public float DirectDamage = 1f; // how much damage the projectile deals when it hits an enemy, independent of the weapon.
-        public bool IgnoresDefense = false; // self-explanatory
-        public bool cantCrit = false; // self-explanatory
-        public bool dontHitTheSameEnemyMultipleTimes = false;// self-explanatory
-        // Bouncing
-		  public bool onlyBounceOnce = false;
-        public bool BouncesOffTiles = false;
-        public bool BouncesBackOffTiles = false;
-        public float DamageLossOffATileBounce = 0f;
-        public bool BouncesOffEnemies = false;
-        public bool SmartBouncesOffTiles = false;
-        public bool SmartBouncesOffEnemies = false;
-        // AI
-        public bool homesIn = false;
-        public float homingRange = 300f;
-        public bool goThroughWallsUntilReachingThePlayer = false; 
-        // Adding Buffs
-        public int AddsBuff = 0; // Adds a buff when hitting a target
-        public int AddsBuffChance = 1; // 1 in [variable] chance of that buff being applied to the target
-        public int AddsBuffDuration = 300; // Measured in ticks, since the game runs at 60 frames per second, this base value is 5 seconds.
-        public bool BuffDurationScalesWithMeleeSpeed = false; // If true, the Duration gets multiplied by your extra melee speed
-        //
-        // Explosion
-        public bool explodes = false; // set to true to make the projectile explode. 
-        public int ExplosionRadius = 80; // Hitbox size of the base explosion. Base value is 80.
-        public float ExplosionDamage = 1f; // Makes the explosion deal Increased/decreased damage. 
-        public bool DontRunThisAgain = false;
-        public bool UsesDefaultExplosion = false; // Regular rocket Explosions. Helpful if you are too lazy/don't need to create a special explosion effect.
-        //
         public override void SetDefaults(Projectile projectile)
         {
-            // Yoyo Defaults
-            // Default: -1f lifetime, 200f Range, 10f Top Speed
-            // Wooden Yoyo: 3f lifetime, 130f Range, 9f Top Speed
-            // Rally: 5f lifetime, 170f Range, 11f Top Speed
-            // Malaise: 7f lifetime, 195f Range, 12.5f Top Speed
-            // Artery: 6f lifetime, 207f Range, 12f Top Speed
-            // Amazon: 8f lifetime, 215f Range, 13f Top Speed
-            // Code1: 9f lifetime, 220f Range, 13f Top Speed
-            // Valor: 11f lifetime, 225f Range, 14f Top Speed
-            // Cascade: 13f lifetime, 235f Range, 14f Top Speed
-            // Format C: 8f lifetime, 235f Range, 15f Top Speed
-            // Gradient: 10f lifetime, 250f Range, 12f Top Speed
-            // Chik: 16f lifetime, 275f range, 17f Top Speed
-            // Amarok: 15f lifetime, 270f range, 14f Top Speed
-            // Hel-fire: 12f lifetime, 275f range, 15f Top Speed
-            // Code 2: -1f (infinite) lifetime, 280 range, 17f Top Speed
-            // Yelets: 14f lifetime, 290f range, 16f Top Speed
-            // Kraken: -1f lifetime, 340f range, 16f Top Speed
-            // Red's Throw: -1f lifetime, 370f range, 16f Top Speed
-            // Valkyrie Yoyo: -1f lifetime, 370f range, 16f Top Speed
-            // Eye Of Cthulhu: -1f lifetime, 360f range, 16.5f Top Speed
-            // Terrarian: -4f lifetime, 400f range, 17.5f top speed
-            // 1f = 1 second
-            // 16f = 1 tile
-            ProjectileID.Sets.YoyosMaximumRange[ProjectileID.Kraken] = 175f; // 
-            ProjectileID.Sets.YoyosLifeTimeMultiplier[ProjectileID.Kraken] = 6f;
-            ProjectileID.Sets.YoyosTopSpeed[ProjectileID.Kraken] = 6f;
-            ProjectileID.Sets.YoyosLifeTimeMultiplier[ProjectileID.Code1] = -1f;
-            ProjectileID.Sets.YoyosLifeTimeMultiplier[ProjectileID.Chik] = 3f;
-            ProjectileID.Sets.YoyosMaximumRange[ProjectileID.Chik] = 220f;
-            ProjectileID.Sets.YoyosMaximumRange[ProjectileID.HelFire] = 330f; // up from 275f
-            //
             if (projectile.aiStyle == 99)
             {
                 projectile.usesIDStaticNPCImmunity = true;
@@ -94,16 +27,16 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.timeLeft = 180;
                     return;       
                 case ProjectileID.ShadowBeamFriendly:
-                    SmartBouncesOffEnemies = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().SmartBouncesOffEnemies = true;
                     projectile.usesLocalNPCImmunity = true;
-                    dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.ManaCloakStar:
                     projectile.penetrate = 2;
-                    homesIn = true;
-                    homingRange = 600f;
-                    dontHitTheSameEnemyMultipleTimes = true;
-                    cantCrit = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 600f;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().cantCrit = true;
                     projectile.tileCollide = false;
                     projectile.timeLeft = 120;
                     return;
@@ -120,12 +53,12 @@ namespace TRAEProject.Changes.Projectiles
                     return;
                 case ProjectileID.FlowerPetal: // what the fuck is this projectile, why can't i remember
                     projectile.usesLocalNPCImmunity = true;
-					homesIn = true;
-					dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.SharpTears:
                     projectile.penetrate = 5;
-                    DamageFallon = 1.42f;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFallon = 1.42f;
                     return;              
                 case ProjectileID.WaterStream:
                     projectile.penetrate = 1;
@@ -141,11 +74,11 @@ namespace TRAEProject.Changes.Projectiles
 					return;
 			 case ProjectileID.RainFriendly:
 				    projectile.penetrate = 2;
-					DamageFalloff = 0.25f;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.25f;
 				    projectile.aiStyle = 1;
-                    homesIn = true;
-                    homingRange = 120f;
-					dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 120f;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.Blizzard:
                     projectile.timeLeft = 150;
@@ -154,9 +87,9 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.Meteor2:
                 case ProjectileID.Meteor3:
                     projectile.tileCollide = false;
-					goThroughWallsUntilReachingThePlayer = true;
-                    homesIn = true;
-                    homingRange = 100f;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().goThroughWallsUntilReachingThePlayer = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 100f;
                     return;
                 case ProjectileID.ShadowFlame:
 		projectile.usesLocalNPCImmunity = true;
@@ -184,7 +117,7 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.RubyBolt:
                 case ProjectileID.DiamondBolt:
                     projectile.penetrate = 2;
-                    dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
                     projectile.usesLocalNPCImmunity = true;
                     return;
             }
