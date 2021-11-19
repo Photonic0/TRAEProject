@@ -110,14 +110,6 @@ namespace TRAEProject
                     });
                     npcLoot.Add(ItemDropRule.Common(ItemID.AncientHorn, 25));
                     return;
-                case NPCID.AngryTrapper:
-                    npcLoot.RemoveWhere(rule =>
-                    {
-                        if (rule is not CommonDrop drop) // Type of drop you expect here
-                            return false;
-                        return drop.itemId == ItemID.Uzi; // compare more fields if needed
-                    });                  
-                    return;
             }
         }
         public override bool PreKill(NPC npc)

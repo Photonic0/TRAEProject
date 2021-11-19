@@ -32,13 +32,9 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.Boomstick:
                     item.damage = 11; // down from 14
                     return;
-			    case ItemID.Beenade: 
-                    item.damage = 8; // down from 12				
-					item.useAnimation = 120; // up from 15
-                    item.useTime = 120; // up from 15    
-					item.shootSpeed = 12f; // up from 6
-                    item.autoReuse = true;
-					return;
+                case ItemID.BeesKnees:
+                    item.damage = 18; // down from 23?
+                    return;
                 case ItemID.Revolver:
                     item.damage = 30; // up from 20
                     item.value = 250000; // 25 gold
@@ -65,38 +61,16 @@ namespace TRAEProject.Changes.Weapons
                     item.shootSpeed = 7f;
                     item.autoReuse = true; //These are minishark's stats, BUT this weapon doesn't autofire
                     return;
-                case ItemID.Minishark:
-                    item.value = Item.buyPrice(gold: 50);
-                    return;
-                case ItemID.QuadBarrelShotgun:
-                    item.value = Item.buyPrice(gold: 50);
-                    item.autoReuse = true;
-                    return;
-                case ItemID.Gatligator:
-                    item.value = Item.buyPrice(gold: 75);
-                    return;
-                case ItemID.Uzi:
-                    item.value = Item.buyPrice(platinum: 1);
-					   item.shootSpeed = 5f;
-                    item.useTime = 7;
-                    item.useAnimation = 7;
-                    return;
                 case ItemID.Handgun:
                     item.damage = 20; // up from 17
                     return;
+
                 case ItemID.Toxikarp:
                     item.useTime = 14;
                     item.useAnimation = 14;
                     return;
                 case ItemID.DaedalusStormbow:
                     item.damage = 30;
-                    return;
-                case ItemID.Marrow:
-                    item.damage = 100;
-                    item.crit = 20;
-                    item.useTime = 50;
-                    item.useAnimation = 50;
-                    item.autoReuse = true;
                     return;
                 case ItemID.Megashark:
                     item.damage = 20; // down from 26
@@ -118,8 +92,8 @@ namespace TRAEProject.Changes.Weapons
                     return;
                 case ItemID.VenusMagnum:
                     item.damage = 100; // up from 50
-                    item.useTime = 24; // up from 8
-                    item.useAnimation = 24; // up from 8
+                    item.useTime = 20; // up from 8
+                    item.useAnimation = 20; // up from 8
                     item.autoReuse = true; 
                     return;
                 case ItemID.StakeLauncher:
@@ -167,6 +141,9 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.HolyArrow:
                     item.damage = 10;
                     return;
+                case ItemID.IchorArrow:
+                    item.damage = 14;
+                    return;
                 case ItemID.HellfireArrow:
                     item.damage = 14;
                     item.shootSpeed = 3.5f;
@@ -176,21 +153,6 @@ namespace TRAEProject.Changes.Weapons
                     item.knockBack = 2f; // down from 3.5
                     return;
             }
-        }
-        public override bool Shoot(Item item, Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-            switch (item.type)
-            {
-                case ItemID.Uzi:
-                    {
-                        Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(40));
-                        velocity.X = perturbedSpeed.X;
-                        velocity.Y = perturbedSpeed.Y;
-                        return true;
-                    }                 
-            }
-            return true;
         }
         public virtual bool ConsumeAmmo(Item weapon, Item ammo)
         {

@@ -18,17 +18,20 @@ namespace ChangesArmor
             switch (item.type)
             {
                 case ItemID.AncientArmorHat:
-                    player.GetDamage<SummonDamageClass>() += 0.17f;
-                    player.maxTurrets += 1;
+                    player.GetDamage<MagicDamageClass>()  += 0.17f;
+                    player.GetDamage<MeleeDamageClass>()  += 0.17f;
+                    player.manaCost -= 0.10f;
+                    player.meleeSpeed += 0.10f;
                     return;
                 case ItemID.AncientArmorShirt:
-                    player.GetDamage<SummonDamageClass>() += 0.05f; 
-                    player.maxTurrets += 1;
+                    player.canJumpAgain_Sandstorm = true;
+                    player.GetCritChance<MagicDamageClass>() += 3;
+                    player.GetCritChance<MeleeDamageClass>()  += 3;
                     return;
                 case ItemID.AncientArmorPants:
-                    player.canJumpAgain_Sandstorm = true;
-                    player.moveSpeed += 0.1f;
-                    player.GetDamage<SummonDamageClass>() += 0.03f;
+                    player.moveSpeed += 0.20f;
+                    player.GetDamage<MagicDamageClass>() += 0.03f;
+                    player.GetDamage<MeleeDamageClass>() += 0.03f;
                     return;
                 case ItemID.PharaohsMask:
                     player.moveSpeed += 0.10f;
@@ -36,24 +39,14 @@ namespace ChangesArmor
                 case ItemID.PharaohsRobe:
                     player.moveSpeed += 0.15f;
                     return;
-                case ItemID.CrimsonScalemail:
-                    player.lifeRegen += 1;
-                    return;
                 case ItemID.ShadowHelmet:
                 case ItemID.ShadowScalemail:
+                case ItemID.ShadowGreaves:
                 case ItemID.AncientShadowHelmet:
                 case ItemID.AncientShadowScalemail:
-                    player.meleeSpeed -= 0.07f;
-                    player.GetCritChance<GenericDamageClass>() += 2;
-                    return;
-                case ItemID.ShadowGreaves:
                 case ItemID.AncientShadowGreaves:
                     player.meleeSpeed -= 0.07f;
                     player.GetCritChance<GenericDamageClass>() += 2;
-                    player.moveSpeed += 0.1f;
-                    return;
-                case ItemID.ObsidianShirt:
-                    player.GetDamage<SummonDamageClass>() += 0.08f;
                     return;
                 case ItemID.RuneRobe:
                     player.statManaMax2 += 100;
@@ -67,40 +60,25 @@ namespace ChangesArmor
                     player.GetDamage<MeleeDamageClass>()  -= 0.11f;
                     player.GetCritChance<MeleeDamageClass>()  += 13;
                     return;
-                case ItemID.PirateHat:
-                    player.whipRangeMultiplier += 0.3f;
-                    player.GetDamage<SummonDamageClass>() += 0.1f;
-                    return;
-                case ItemID.PirateShirt:
-                    player.whipUseTimeMultiplier *= (1 / 1.12f);
-                    player.GetDamage<SummonDamageClass>() += 0.1f;
-                    return;
-                case ItemID.PiratePants:
-                    player.moveSpeed += 0.1f;
-                    player.whipUseTimeMultiplier *= (1 / 1.08f);
-                    player.GetDamage<SummonDamageClass>() += 0.1f;
-                    return;
                 case ItemID.DjinnsCurse:
                     player.jumpSpeedBoost += 1f;
                     return;
-                case ItemID.ChlorophytePlateMail:
-                    player.GetDamage<GenericDamageClass>() += 0.05f;
+                case ItemID.TikiMask:
+                    player.whipRangeMultiplier += 0.3f;
                     return;
-                case ItemID.ChlorophyteGreaves:
-                    player.GetCritChance<GenericDamageClass>() += 2;
-                    player.moveSpeed += 0.5f;
+                case ItemID.SpectreMask:
+                    player.manaCost += 0.13f;
+                    return;
+                case ItemID.SpectreHood:
+
+                    player.statManaMax2 += 100;
+                    player.manaCost -= 0.20f;
                     return;
                 case ItemID.SquireGreatHelm:
                     player.lifeRegen -= 2;
                     return;
                 case ItemID.SquirePlating:
-                    player.GetDamage<MeleeDamageClass>() -= 0.05f; 
-                    player.GetDamage<SummonDamageClass>() -= 0.05f;
                     player.lifeRegen += 2;
-                    return;
-                case ItemID.SquireGreaves:
-                    player.GetCritChance<MeleeDamageClass>() -= 10;
-                    player.GetDamage<SummonDamageClass>() += 0.05f;
                     return;
                 case ItemID.SquireAltHead:
                     player.lifeRegen += 4;
@@ -118,37 +96,26 @@ namespace ChangesArmor
                     player.GetDamage<SummonDamageClass>()  += 0.1f;
                     player.GetDamage<MeleeDamageClass>()  -= 0.2f;
                     return;
-
-
-                case ItemID.TikiMask:
+				case ItemID.ObsidianShirt:
+                    player.GetDamage<SummonDamageClass>() += 0.08f;
+                    return;
+                case ItemID.PirateHat:
                     player.whipRangeMultiplier += 0.3f;
+                    player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
-                case ItemID.SpectreMask:
-                    player.manaCost += 0.13f;
+                case ItemID.PirateShirt:
+                    player.whipUseTimeMultiplier *= (1 / 1.12f);
+                    player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
-                case ItemID.SpectreHood:
-
-                    player.statManaMax2 += 100;
-                    player.manaCost -= 0.20f;
+                case ItemID.PiratePants:
+				player.moveSpeed += 0.1f;
+                    player.whipUseTimeMultiplier *= (1 / 1.08f);
+                    player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
             }
         }
         public override string IsArmorSet(Item head, Item body, Item legs)
         {
-            if (head.type == ItemID.WoodHelmet && body.type == ItemID.WoodBreastplate && legs.type == ItemID.WoodGreaves)
-                return "WoodSet";
-            if (head.type == ItemID.BorealWoodHelmet && body.type == ItemID.BorealWoodBreastplate && legs.type == ItemID.BorealWoodGreaves)
-                return "WoodSet";
-            if (head.type == ItemID.PalmWoodHelmet && body.type == ItemID.PalmWoodBreastplate && legs.type == ItemID.PalmWoodGreaves)
-                return "WoodSet";
-            if (head.type == ItemID.ShadewoodHelmet && body.type == ItemID.ShadewoodBreastplate && legs.type == ItemID.ShadewoodGreaves)
-                return "WoodSet";
-            if (head.type == ItemID.EbonwoodHelmet && body.type == ItemID.EbonwoodBreastplate && legs.type == ItemID.EbonwoodGreaves)
-                return "WoodSet";
-            if (head.type == ItemID.RichMahoganyHelmet && body.type == ItemID.RichMahoganyBreastplate && legs.type == ItemID.RichMahoganyGreaves)
-                return "WoodSet"; 
-            if (head.type == ItemID.PearlwoodHelmet && body.type == ItemID.PearlwoodBreastplate && legs.type == ItemID.PearlwoodGreaves)
-                return "WoodSet"; 
             if (head.type == ItemID.CopperHelmet && body.type == ItemID.CopperChainmail && legs.type == ItemID.CopperGreaves)
                 return "CopperSet";
             if (head.type == ItemID.TinHelmet && body.type == ItemID.TinChainmail && legs.type == ItemID.TinGreaves)
@@ -187,12 +154,8 @@ namespace ChangesArmor
                 return "TitaniumSet";
             if (head.type == ItemID.CobaltMask && body.type == ItemID.CobaltBreastplate && legs.type == ItemID.CobaltLeggings)
                 return "CobaltSet";
-            if ((head.type == ItemID.AncientHallowedHeadgear || head.type == ItemID.AncientHallowedHelmet || head.type == ItemID.AncientHallowedMask || head.type == ItemID.HallowedHeadgear || head.type == ItemID.HallowedHelmet || head.type == ItemID.HallowedMask) && (body.type == ItemID.HallowedPlateMail || body.type == ItemID.AncientHallowedPlateMail) && (legs.type == ItemID.AncientHallowedGreaves || legs.type == ItemID.HallowedGreaves))
-                return "HallowedSet"; 
-            if ((head.type == ItemID.AncientHallowedHood || head.type == ItemID.HallowedHood) && (body.type == ItemID.HallowedPlateMail || body.type == ItemID.AncientHallowedPlateMail) && (legs.type == ItemID.AncientHallowedGreaves || legs.type == ItemID.HallowedGreaves))
-                return "HallowedSetSummon"; 
-            if (head.type == ItemID.ChlorophyteMask && body.type == ItemID.ChlorophytePlateMail && legs.type == ItemID.ChlorophyteGreaves)
-                return "ChloroMeleeSet";
+            if ((head.type == ItemID.AncientHallowedHeadgear || head.type == ItemID.AncientHallowedHelmet || head.type == ItemID.AncientHallowedMask || head.type == ItemID.AncientHallowedHood || head.type == ItemID.HallowedHeadgear || head.type == ItemID.HallowedHelmet || head.type == ItemID.HallowedMask || head.type == ItemID.HallowedHood) && (body.type == ItemID.HallowedPlateMail || body.type == ItemID.AncientHallowedPlateMail) && (legs.type == ItemID.AncientHallowedGreaves || legs.type == ItemID.HallowedGreaves))
+                return "HallowedSet";            
             if (head.type == ItemID.TikiMask && body.type == ItemID.TikiShirt && legs.type == ItemID.TikiPants)
                 return "TikiSet"; 
             if (head.type == ItemID.SpectreHood && body.type == ItemID.SpectreRobe && legs.type == ItemID.SpectrePants)
@@ -207,12 +170,7 @@ namespace ChangesArmor
         }
         public override void UpdateArmorSet(Player player, string armorSet)
         {
-            if (armorSet == "WoodSet")
-            {
-                player.setBonus = "Reduce damage taken by 5%";
-                player.statDefense -= 1;
-            }
-            if (armorSet == "CopperSet") 
+            if (armorSet == "CopperSet") // Revisit
             {
                 player.setBonus = "Reduce damage taken by 8%";
                 player.endurance += 0.08f;
@@ -275,13 +233,13 @@ namespace ChangesArmor
             {
                 player.moveSpeed -= 0.15f;
                 player.setBonus = "Gives a chance to dodge attacks";
-                player.GetModPlayer<TRAEPlayer>().shadowArmorDodgeChance = 6;
+                player.GetModPlayer<TRAEPlayer>().shadowArmorDodgeChance = 9;
             }
             if (armorSet == "AncientSet")
             {
-                player.setBonus = "Converts all minion slots into sentry slots";
-                player.maxTurrets += player.maxMinions;
-                player.maxMinions -= player.maxMinions;
+                player.setBonus = "Increases melee speed by 30%\nIncreases maximum mana by 60\nIncreases length of invincibility after taking damage";
+                player.meleeSpeed += 0.3f;
+                player.statManaMax2 += 60;
             }
             if (armorSet == "TurtleSet")
             {
@@ -300,20 +258,8 @@ namespace ChangesArmor
             {
                 player.setBonus = "12% increased ranged critical strike chance";
                 player.GetCritChance<RangedDamageClass>() += 12;
-                player.ammoCost80 = false;
-            }
-            if (armorSet == "ChloroMeleeSet")
-            {
-                player.setBonus = "Summons a powerful leaf crystal to shoot at nearby enemies";
-                player.endurance -= 0.05f;
-            }
-            if (armorSet == "HallowedSetSummon")
-            {
-                player.setBonus = "You gain immunity to the next attack after taking a hit\nIncreases your maximum number of minions by 2";
-                player.GetModPlayer<TRAEPlayer>().titatimer = 900;
-                player.GetModPlayer<OnHitItems>().HolyProtection = true;
-                player.onHitDodge = false;
-            }
+                player.ammoCost80 = false; 
+            }           
             if (armorSet == "HallowedSet")
             {
                 player.setBonus = "You gain immunity to the next attack after taking a hit";
@@ -423,7 +369,7 @@ namespace ChangesArmor
                     {
                         if (line.mod == "Terraria" && line.Name == "Defense")
                         {
-                            line.text += "\n17% increased summon damage\nIncreases your maximum number of sentries by 1";
+                            line.text += "\n17% increased magic and melee damage\n10% increased melee speed and decreased mana costs";
                         }
                     }
                     return;
@@ -432,7 +378,7 @@ namespace ChangesArmor
                     {
                         if (line.mod == "Terraria" && line.Name == "Defense")
                         {
-                            line.text += "\n5% increased summon damage\nIncreases your maximum number of sentries by 1";
+                            line.text += "\nAllows the player to perform an improved double jump\n3% increased magic and melee critical strike chance";
                         }
                     }
                     return;
@@ -441,23 +387,16 @@ namespace ChangesArmor
                     {
                         if (line.mod == "Terraria" && line.Name == "Defense")
                         {
-                            line.text += "\nIncreases movement speed by 10%\n3% increased summon damage";
-                        }
-                    }
-                    return;
-                case ItemID.CrimsonScalemail:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text += "\nSlightly increased life regeneration";
+                            line.text += "\nIncreases movement speed by 20%\n3% increased magic and melee damage";
                         }
                     }
                     return;
                 case ItemID.ShadowHelmet:
                 case ItemID.ShadowScalemail:
+                case ItemID.ShadowGreaves:
                 case ItemID.AncientShadowHelmet:
                 case ItemID.AncientShadowScalemail:
+                case ItemID.AncientShadowGreaves:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
@@ -465,17 +404,7 @@ namespace ChangesArmor
                             line.text = "2% increased critical strike chance";
                         }
                     }
-                    return;
-                case ItemID.ShadowGreaves:
-                case ItemID.AncientShadowGreaves:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "2% increased critical strike chance\n10% increased movement speed";
-                        }
-                    }
-                    return;
+                    return;              
                 case ItemID.RuneHat:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -516,28 +445,7 @@ namespace ChangesArmor
                         }
                     }
                     return;
-                case ItemID.ChlorophytePlateMail:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "10% increased damage";
-                        }
-                    }
-                    return;
-                case ItemID.ChlorophyteGreaves:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "10% increased critical strike chance and movement speed";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "";
-                        }
-                    }
-                    return;
+                   
                 case ItemID.TikiMask:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -564,22 +472,13 @@ namespace ChangesArmor
                             line.text = "20% increased melee and minion damage";
                         }
                     }
-                    return;
-                case ItemID.SquireGreaves:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "20% increased summon damage\n5% increased melee critical strike chance";
-                        }
-                    }
-                    return;
+                    return;     
                 case ItemID.SquirePlating:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "10% increased melee and minion damage\nIncreases life regeneration";
+                            line.text += "\nIncreases life regeneration";
                         }
                     }
                     return;      

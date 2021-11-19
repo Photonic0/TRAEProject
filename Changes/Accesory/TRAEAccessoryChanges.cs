@@ -1,8 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System;
 using TRAEProject;
 using System.Collections.Generic;
 using Terraria.Utilities;
@@ -11,7 +9,6 @@ using TRAEProject.Changes;
 using TRAEProject.Items.Accesories.EvilEye;
 using TRAEProject.Items.Accesories.ShadowflameCharm;
 using TRAEProject.Changes.Items;
-using TRAEProject.Common.ModPlayers;
 using static Terraria.ModLoader.ModContent;
 
 
@@ -33,72 +30,66 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.FastClock:
                     Main.time += 4;
                     player.buffImmune[BuffID.Slow] = false;
-                    break;
+                    return;
                 case ItemID.Bezoar:
                     player.GetModPlayer<Bezoar>().bezoar = true;
                     player.buffImmune[BuffID.Poisoned] = false;
-                    break;
+                    return;
                 case ItemID.AdhesiveBandage:
                     player.GetModPlayer<BandAid>().Bandaid = true;
                     player.buffImmune[BuffID.Bleeding] = false;
-                    break;
+                    return;
                 case ItemID.MedicatedBandage:
                     player.GetModPlayer<Bezoar>().bezoar = true;
                     player.GetModPlayer<BandAid>().Bandaid = true;
                     player.buffImmune[BuffID.Poisoned] = false;
                     player.buffImmune[BuffID.Bleeding] = false;
-                    break;
+                    return;
                 case ItemID.Blindfold:
                     player.AddBuff(BuffID.Obstructed, 1);
                     player.buffImmune[BuffID.Darkness] = false;
-                    break;
+                    return;
                 case ItemID.Nazar:
                     player.GetModPlayer<NazarDebuffs>().Nazar += 1;
                     player.buffImmune[BuffID.Cursed] = false;
-                    break;
+                    return;
                 case ItemID.CountercurseMantra:
                     player.GetModPlayer<NazarDebuffs>().Nazar += 1;
                     foreach (int i in AnkhDebuffList)
                     {
                         player.buffImmune[i] = true;
                     }
-                    break;
+                    return;
                 case ItemID.AnkhShield:
-				player.fireWalk = false;
-                    foreach (int i in AnkhDebuffList)
-                    {
-                        player.buffImmune[i] = true;
-                    }
-                    break;
                 case ItemID.AnkhCharm:
                     foreach (int i in AnkhDebuffList)
                     {
                         player.buffImmune[i] = true;
                     }
-                    break;
+                    return;
                 case ItemID.RoyalGel:
                     player.GetModPlayer<OnHitItems>().RoyalGel = true;
-                    break;
+                    return;
 
                 case ItemID.MoltenCharm:
                     player.lavaImmune = true;
                     player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharm += 1;
                     player.fireWalk = false;
-                    break;
+                    return;
                 case ItemID.BeeCloak:
                     player.honeyCombItem = null;
                     player.starCloakItem = null;
                     player.GetModPlayer<OnHitItems>().NewbeesOnHit = true;
-                    break;
+                    return;
                 case ItemID.CrossNecklace:
                 case ItemID.StarVeil:
                     player.starCloakItem = null;
                     player.GetModPlayer<OnHitItems>().NewstarsOnHit = true;
-                    break;
+                    return;
                 case ItemID.MechanicalGlove:
                     player.kbGlove = false;
                     player.meleeScaleGlove = false;
-                    break;
+                    return;
                 case ItemID.MoonShell:
                     if (player.statLife > player.statLifeMax2 * 0.67)
                     {
@@ -109,11 +100,11 @@ namespace TRAEProject.Changes.Accesory
                         player.AddBuff(BuffID.IceBarrier, 1, false);
                     player.accMerman = false;
                     player.wolfAcc = false;
-                    break;
+                    return;
                 case ItemID.MoonCharm:
                     player.GetModPlayer<TRAEPlayer>().wErewolf = true;
                     player.wolfAcc = false;
-                    break;
+                    return;
                 // CELESTIAL STONE CHANGES
                 case ItemID.CelestialStone:
                     player.skyStoneEffects = false;
@@ -126,7 +117,7 @@ namespace TRAEProject.Changes.Accesory
                     player.moveSpeed += 0.1f;
                     player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;// new bonus
                                                                                    // total stats: +8% damage, +2% crit, +0.5 hp/s, +4 defense. +5% melee speed, +20 max mana, +10% movement speed
-                    break;
+                    return;
                 case ItemID.MoonStone:
                     if (!Main.dayTime)
                     {
@@ -140,7 +131,7 @@ namespace TRAEProject.Changes.Accesory
                         player.moveSpeed += 0.1f;
                         player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;
                     }
-                    break;
+                    return;
                 case ItemID.SunStone:
                     if (Main.dayTime)
                     {
@@ -154,7 +145,7 @@ namespace TRAEProject.Changes.Accesory
                         player.moveSpeed += 0.1f;
                         player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;
                     }
-                    break;
+                    return;
                 case ItemID.CelestialShell:
                     player.skyStoneEffects = false;
                     player.GetDamage<GenericDamageClass>() += 0.08f;
@@ -166,122 +157,98 @@ namespace TRAEProject.Changes.Accesory
                     player.moveSpeed += 0.1f;
                     player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;
                     player.wolfAcc = false;
-                    break;
+                    return;
                 case ItemID.BandofStarpower:
                     player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.1f;
                     player.statManaMax2 -= 20;
-                    break;
+                    return;
                 case ItemID.ManaRegenerationBand:
                     player.statManaMax2 -= 20;
                     player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.1f;
                     player.lifeRegen += 2;
-                    break;
+                    return;
                 case ItemID.MagicCuffs:
                     player.GetModPlayer<OnHitItems>().magicCuffsCount += 1; // the duration of the buff is the Hit's damage multiplied by this number, then multiplied by 3. This also decides how much mana is recovered.
                     player.statManaMax2 -= 20;
                     player.magicCuffs = false;
-                    break;
+                    return;
                 case ItemID.CelestialCuffs:
                     player.statManaMax2 -= 20;
                     player.GetModPlayer<OnHitItems>().magicCuffsCount += 1;
                     player.magicCuffs = false;
                     player.GetModPlayer<Mana>().celestialCuffsOverload = true;
-                    break;
+                    return;
                 case ItemID.StarCloak:
                     player.starCloakItem = null;
                     player.GetModPlayer<OnHitItems>().NewstarsOnHit = true;
-                    break;
+                    return;
                 case ItemID.MagicDagger:
                     player.GetModPlayer<TRAEPlayer>().MagicDagger = true;
-                    break;
+                    return;
                 case ItemID.ManaCloak:
                     player.starCloakItem_manaCloakOverrideItem = item;
                     player.GetModPlayer<TRAEPlayer>().manaCloak = true;
                     player.manaCost += 0.08f;
-                    break;
+                    return;
                 case ItemID.ManaFlower:
                 case ItemID.MagnetFlower:
                     player.GetModPlayer<TRAEPlayer>().newManaFlower = true;
                     player.manaCost += 0.08f;
-                    break;
+                    return;
                 case ItemID.ArcaneFlower:
                     player.manaCost += 0.08f;
                     player.GetModPlayer<TRAEPlayer>().newManaFlower = true;
                     player.GetDamage<MagicDamageClass>() += 0.05f;
                     player.GetCritChance<MagicDamageClass>() += 5;
-                    break;
+                    return;
                 case ItemID.CelestialEmblem:
                     player.GetDamage<MagicDamageClass>() -= 0.03f;
-                    break;
+                    return;
                 case ItemID.DestroyerEmblem:
                     player.GetDamage<GenericDamageClass>() -= 0.1f;
                     player.GetCritChance<GenericDamageClass>() += 14;
-                    break;
+                    return;
                 case ItemID.HerculesBeetle:
                     ++player.maxTurrets;
                     player.GetDamage<SummonDamageClass>() -= 0.15f;
-                    break;
+                    return;
                 case ItemID.NecromanticScroll:
                     player.GetModPlayer<TRAEPlayer>().minionCritChance += 5;
                     player.GetDamage<SummonDamageClass>() -= 0.1f;
-                    break;
+                    return;
                 case ItemID.PapyrusScarab:
                     ++player.maxTurrets;
                     player.GetModPlayer<TRAEPlayer>().minionCritChance += 5;
                     player.GetDamage<SummonDamageClass>() -= 0.15f;
-                    break;
+                    return;
                 case ItemID.HeroShield:
                     player.hasPaladinShield = false;
-                    break;
+                    return;
                 case ItemID.BerserkerGlove:
                     player.kbGlove = false;
                     player.meleeScaleGlove = false;
-                    break;
+                    return;
                 case ItemID.SquireShield:
                     player.dd2Accessory = false;
                     player.GetDamage<MeleeDamageClass>() += 0.1f;
                     ++player.maxTurrets;
-                    break;
+                    return;
                 case ItemID.ApprenticeScarf:
                     ++player.maxTurrets;
                     player.GetDamage<SummonDamageClass>() -= 0.1f;
                     player.GetDamage<MagicDamageClass>() += 0.1f;
                     player.dd2Accessory = false;
-                    break;
+                    return;
                 case ItemID.MonkBelt:
                     ++player.maxTurrets;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
                     player.dd2Accessory = false;
-                    break;
+                    return;
                 case ItemID.HuntressBuckler:
                     ++player.maxTurrets;
                     player.GetDamage<RangedDamageClass>() += 0.1f;
                     player.dd2Accessory = false;
-                    break;
-                case ItemID.RifleScope:
-                    player.GetModPlayer<RangedStats>().gunVelocity += 0.8f; 
-                    break;
-                case ItemID.SniperScope:
-                    player.GetModPlayer<RangedStats>().gunVelocity += 0.8f;
-                    player.GetDamage<RangedDamageClass>() -= 0.1f;
-                    break;
-                case ItemID.ReconScope:
-                    player.GetModPlayer<RangedStats>().rangedVelocity += 0.8f;
-                    player.GetModPlayer<RangedStats>().Magicandgunquiver += 1; 
-                    player.GetDamage<RangedDamageClass>() -= 0.1f; 
-                    player.GetCritChance<RangedDamageClass>() -= 10;
-                    break;
-            }
-        }
-        public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
-            if (item.CountsAsClass(DamageClass.Ranged))
-            {
-                velocity *= player.GetModPlayer<RangedStats>().rangedVelocity;
-            }
-            if (item.CountsAsClass(DamageClass.Ranged) && (item.useAmmo == AmmoID.Bullet || item.useAmmo == AmmoID.CandyCorn))
-            {
-                velocity *= player.GetModPlayer<RangedStats>().gunVelocity;
+                    return;
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -359,7 +326,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Time goes by faster when equipped";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.Nazar:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -388,7 +355,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Releases bees and increases life regeneration when damaged";
                         }
                     }
-                    break;
+                    return;
 
                 case ItemID.BeeCloak:
                     foreach (TooltipLine line in tooltips)
@@ -398,7 +365,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Causes buzzy stars to fall when damaged";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.Shackle:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -407,7 +374,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text += "\nTemporarily increases defense when damaged";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.BandofStarpower:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -420,7 +387,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.ManaRegenerationBand:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -433,20 +400,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
-                case ItemID.AnkhShield:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Grants immunity to knockback and most debuffs";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "";
-                        }
-                    }
-                    break;
+                    return;
                 case ItemID.MagicCuffs:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -459,7 +413,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Can go over maximum mana";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.CelestialCuffs:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -476,7 +430,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.MechanicalGlove:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -489,7 +443,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.MoltenSkullRose:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -502,7 +456,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Enemies near the player take 10% more damage";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.ObsidianSkullRose:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -515,7 +469,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Enemies near the player take 10% more damage";
                         }
                     }
-                    break;
+                    return;
                 case 3999: // Magma Skull
                     foreach (TooltipLine line in tooltips)
                     {
@@ -524,7 +478,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Enemies near the player take 10% more damage";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.ObsidianSkull:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -533,7 +487,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Enemies near the player take 10% more damage";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.ObsidianShield:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -542,7 +496,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Enemies near the player take 10% more damage";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.ObsidianRose:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -551,7 +505,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Magic attacks lower enemy contact damage by 15%";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.CrossNecklace:
                 case ItemID.StarVeil:
                     foreach (TooltipLine line in tooltips)
@@ -561,7 +515,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text += "\nMore effective on strong hits";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.MagnetFlower:
                 case ItemID.ManaFlower:
                     foreach (TooltipLine line in tooltips)
@@ -571,7 +525,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Magic critical hits have a chance to spawn a mana star";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.ArcaneFlower:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -580,7 +534,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Magic critical hits have a chance to spawn a mana star\n5% increased magic damage and critical strike chance";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.ManaCloak:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -601,7 +555,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.DestroyerEmblem:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -614,7 +568,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.CelestialEmblem:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -623,7 +577,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "12% increased magic damage";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.HeroShield:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -648,7 +602,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.BerserkerGlove:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -673,7 +627,20 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
+                    return;
+                case ItemID.MagicQuiver:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "Allows arrows to bounce towards nearby enemies";
+                        }
+                    }
+                    return;
+
+
+
+
                 case ItemID.MoltenCharm:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -686,7 +653,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "The wearer is immune to lava";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.RoyalGel:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -695,7 +662,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text += "\nStores damage dealt, dealing it slowly over time";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.MoonCharm:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -704,7 +671,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Turns the holder into a werewolf when missing health";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.MoonShell:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -713,7 +680,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Turns the holder into a werewolf when missing health and into a merfolk when entering water\nPuts a shell around the owner when below 50% life";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.MoonStone:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -722,7 +689,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Minor increases to all stats during the night";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.SunStone:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -731,7 +698,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Minor increases to all stats during the day";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.CelestialStone:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -744,7 +711,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.CelestialShell:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -753,7 +720,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Turns into holder into a merfolk when entering water";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.NecromanticScroll:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -762,7 +729,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Gives minions a 5% chance to crit";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.HerculesBeetle:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -771,7 +738,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Increases your maximum number of sentries by 1";
                         }
                     }
-                    break;
+                    return;
                 case ItemID.PapyrusScarab:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -784,94 +751,7 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "Gives minions a 5% chance to crit";
                         }
                     }
-                    break;
-                case ItemID.MagicQuiver:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Your arrows will bounce towards nearby enemies after a certain time or hitting a tile, losing damage in the process";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "";
-                        }
-                    }
-                    break;
-                case ItemID.StalkersQuiver:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Your arrows will bounce towards nearby enemies after a certain time or hitting a tile, losing damage in the process";
-
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "5% increased ranged damage and critical strike chance";
-                        }
-                    }
-                    break;
-                case ItemID.MoltenQuiver:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Your arrows will bounce towards nearby enemies after a certain time or hitting a tile, losing damage in the process";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "Lights wooden arrows ablaze";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip2")
-                        {
-                            line.text = "Quiver in fear!";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip3")
-                        {
-                            line.text = "";
-                        }
-                    }
-                    break;
-                case ItemID.RifleScope:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Increases view range for guns (right click to zoom out!)";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "80% increased velocity for guns";
-                        }
-                    }
-                    break;
-                case ItemID.SniperScope:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "80% increased velocity for guns\n10% increased ranged critical strike chance";
-                        }
-                    }
-                    break;
-                case ItemID.ReconScope:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Increases view range for guns (right click to zoom out!)";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "80% increased velocity for ranged weapons";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip2")
-                        {
-                            line.text = "Your ranged attacks will bounce towards their nearby enemy";
-                        }
-                    }
-                    break;
+                    return;
             }
         }
         public override int ChoosePrefix(Item item, UnifiedRandom rand)

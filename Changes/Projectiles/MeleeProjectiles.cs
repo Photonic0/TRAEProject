@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Items.Summoner.Whip;
+
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Projectiles
@@ -115,7 +116,7 @@ namespace TRAEProject.Changes.Projectiles
                     return;
             }
         }
-        int timer = 0;
+        
         public override void AI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
@@ -126,14 +127,7 @@ namespace TRAEProject.Changes.Projectiles
             }
             switch (projectile.type)
             {
-                case ProjectileID.Shroomerang:
-                    ++timer;
-					if (timer > 20)
-                    {
-                        timer -= 20;
-                        Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center, projectile.velocity, 131, projectile.damage / 2, 0f, projectile.owner);
-                    }
-                    return;
+          
                 case ProjectileID.Gradient:
                     {
                         float PosX = projectile.position.X;
