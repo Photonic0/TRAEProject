@@ -71,7 +71,12 @@ namespace TRAEProject.Changes.Projectiles
 			    case 244:
 				  case 238:
 					projectile.timeLeft = 480;
-					return;
+					return;			
+				case ProjectileID.BloodRain:
+				    projectile.penetrate = 1;
+				    projectile.aiStyle = 1;
+                    homingRange = 120f;
+                    return;
 			 case ProjectileID.RainFriendly:
 				    projectile.penetrate = 2;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.25f;

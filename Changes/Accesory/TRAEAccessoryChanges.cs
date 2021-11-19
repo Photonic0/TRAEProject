@@ -314,13 +314,22 @@ namespace TRAEProject.Changes.Accesory
                             line.text = "10% increased ranged damage";
                         }
                     }
+                    break;   
+				case ItemID.Bezoar:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "Significantly increases potency of friendly Poison";
+                        }
+                    }
                     break;
                 case ItemID.AdhesiveBandage:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Significantly increases potency of friendly Poison\nIncreases potency of friendly debuffs by 50%";
+                            line.text = "Increases potency of friendly debuffs by 50%";
                         }
                     }
                     break;
@@ -443,11 +452,11 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Restores mana and briefly increases magic damage when damaged";
+                            line.text = "Restores mana when damaged";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "";
+                            line.text = "Can go over maximum mana";
                         }
                     }
                     break;
@@ -456,7 +465,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Restores mana and briefly increases magic damage when damaged";
+                            line.text = "Restores mana when damaged, can go over maximum mana";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {

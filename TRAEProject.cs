@@ -583,12 +583,6 @@ namespace TRAEProject
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.AnkhCharm, 1);
 			}          
-			if (recipe.HasResult(ItemID.AnkhShield))
-                {
-                    recipe.TryGetIngredient(ItemID.ObsidianShield, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.CobaltShield, 1);
-                }
                 if (recipe.HasResult(ItemID.SniperScope))
                 {
                     recipe.TryGetIngredient(ItemID.DestroyerEmblem, out ingredientToRemove);

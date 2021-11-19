@@ -25,7 +25,9 @@ namespace TRAEProject.Changes.Accesory
             if(item.type == ItemID.FireGauntlet)
             {
                 player.GetDamage<MeleeDamageClass>() -= 0.12f;
-                player.meleeSpeed -= 0.12f;
+                player.meleeSpeed -= 0.12f;           
+				player.autoReuseGlove = false;
+
                 player.GetModPlayer<MeleeStats>().inflictHeavyBurn += 60;
             }
         }
