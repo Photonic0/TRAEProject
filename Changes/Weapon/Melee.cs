@@ -271,46 +271,7 @@ namespace TRAEProject.Changes.Weapon
                         }
                     }
                     return;
-                case ItemID.CoolWhip:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text += "\n8 summon tag damage";
-                        }
-                    }
-                    return;
-                case ItemID.MaceWhip:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "15% summon tag critical strike chance";
-                        }
-                    }
-                    return;
-                case ItemID.ScytheWhip:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text += "\n10 summon tag damage";
-                        }
-                    }
-                    return;
-                case ItemID.RainbowWhip:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "50 summon tag damage";
-                        }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.text = "30% summon tag critical strike chance\nColorful destruction comes out of enemies hit by summons";
-                        }
-                    }
-                    return;
+
             }
         }
     }

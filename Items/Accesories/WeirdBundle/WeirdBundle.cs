@@ -22,7 +22,7 @@ namespace TRAEProject.Items.Accesories.WeirdBundle
         public override void SetDefaults()
         {
             Item.accessory = true;
-            Item.sellPrice(gold: 10);
+            Item.value = Item.sellPrice(gold: 10);
             Item.rare = ItemRarityID.Yellow;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

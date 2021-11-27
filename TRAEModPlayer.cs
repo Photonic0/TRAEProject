@@ -213,10 +213,6 @@ namespace TRAEProject
                 Player.GetCritChance<GenericDamageClass>() += 9;
                 Player.meleeSpeed += 0.07f;
             }
-            if (icceleration)
-            {
-                Player.runAcceleration *= 2f;
-            }
             if (waterRunning)
             {
                 int num = 2;
@@ -281,10 +277,6 @@ namespace TRAEProject
                 }
 
                 Player.jumpSpeedBoost += 0.225f * beesStored;
-            }
-            if (Player.HeldItem.type == ItemID.BeeGun)
-            {
-                Player.strongBees = true;
             }
         }
         public override void UpdateBadLifeRegen()

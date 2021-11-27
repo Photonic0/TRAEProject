@@ -19,7 +19,6 @@ namespace TRAEProject.Items.Armor.ChlorophyteHood
         {
             DisplayName.SetDefault("Chlorophyte Hood");
 
-            Head.Sets.DrawHatHair[Head.ChlorophyteHeadgear] = true;
             Head.Sets.DrawHatHair[Item.headSlot] = true;
             Tooltip.SetDefault("Increases your maximum number of minions by 2");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -46,10 +45,7 @@ namespace TRAEProject.Items.Armor.ChlorophyteHood
         {
             return body.type == ItemID.ChlorophytePlateMail && legs.type == ItemID.ChlorophyteGreaves;
         }
-        public override void UpdateVanitySet(Player player)
-        {
-            player.armorEffectDrawShadowSubtle = true;
-        }
+
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = "Summons a powerful leaf crystal to shoot at nearby enemies\n30% increased summon damage";

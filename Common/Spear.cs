@@ -74,7 +74,6 @@ namespace TRAEProject.Common
         {
 
         }
-
         public static void SpearPrefixScaleing(Item item, Player player, Projectile projectile)
         {
             if (!item.IsAir)
@@ -424,8 +423,8 @@ namespace TRAEProject.Common
                 else
                 {
                     //Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
-                    Spear.SpearPrefixScaleing(player.HeldItem, player, Projectile);
-                    if (player.itemTime > player.itemTimeMax - 1)
+                    Spear.SpearPrefixScaleing(player.HeldItem, player, Projectile);                    
+					if (player.itemTime > player.itemTimeMax - 1)
                     {
                         chargeTime = player.itemTime;
                         chargeTimeMax = player.itemTimeMax;

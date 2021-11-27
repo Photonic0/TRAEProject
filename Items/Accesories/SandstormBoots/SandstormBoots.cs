@@ -21,7 +21,7 @@ namespace TRAEProject.Items.Accesories.SandstormBoots
         {
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
-            Item.sellPrice(gold: 3);
+            Item.value = Item.sellPrice(gold: 3);
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

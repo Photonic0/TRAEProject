@@ -5,6 +5,25 @@ using Terraria.ModLoader;
 
 namespace TRAEProject
 {
+    public class TRAEPrefixChanges : ModPlayer
+    {
+
+        public override void PostItemCheck()
+        {
+            if (!Player.HeldItem.IsAir)
+            {
+                if (Player.HeldItem.prefix == PrefixID.Massive)
+                {
+                    Player.HeldItem.GetGlobalItem<PrefixChange>().newSizeModifier = 1.3f;
+                }
+                if (Player.HeldItem.prefix == PrefixID.Legendary)
+                {
+                    Player.HeldItem.GetGlobalItem<PrefixChange>().newSizeModifier = 1.1f;
+                }
+            }
+            return;
+        }
+    }
     class PrefixChange : GlobalItem
     {
 
@@ -13,6 +32,7 @@ namespace TRAEProject
         {
             return base.Clone(item, itemClone);
         }
+        public float newSizeModifier = 1f;
 
         public override void HoldItem(Item item, Player player)
         {

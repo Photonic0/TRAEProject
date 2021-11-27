@@ -25,6 +25,7 @@ namespace TRAEProject.Items.Accesories.SkeletonBeetle
         public override void UpdateEquip(Player player)
         {
 			player.maxTurrets += 2;
+			player.minionKB = player.minionKB + 2f;
         }
         public override void AddRecipes()
 		{

@@ -57,11 +57,10 @@ namespace TRAEProject.Changes.Accesory
                     player.moveSpeed += 0.05f;
                     return;
                 case ItemID.AnkletoftheWind:
-                    player.moveSpeed -= 0.1f;
-                    player.moveSpeed *= 1.2f;
+                    player.moveSpeed += 0.15f;
                     return;
                 case ItemID.IceSkates:
-                    player.GetModPlayer<TRAEPlayer>().icceleration = true;
+           	        player.runAcceleration *= 1.5f;
                     return;
                 case ItemID.FrostsparkBoots:
                     player.rocketTimeMax -= 7;
@@ -69,24 +68,24 @@ namespace TRAEProject.Changes.Accesory
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
                     player.GetModPlayer<TRAEPlayer>().icceleration = true; 
                     player.moveSpeed += 0.25f;
+            		player.runAcceleration *= 1.5f;
                     return;
                 case ItemID.TerrasparkBoots:
                     player.iceSkate = false;
                     player.lavaMax -= 42;
                     player.fireWalk = false;
                     player.waterWalk = false;
-                    player.accRunSpeed = 5.4f; 
+                    player.accRunSpeed = 6f; 
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
-                    player.moveSpeed += 0.25f;
-                    player.dash = 1;
+                    player.moveSpeed += 0.5f;
+                    player.dashType = 1;
                     return;
                 case ItemID.LightningBoots:
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
                     player.jumpSpeedBoost += 0.5f;
                     player.rocketTimeMax = 7;
-                    player.accRunSpeed = 5.4f; 
-                    player.moveSpeed += 0.25f;
-                    player.moveSpeed *= 1.2f;
+                    player.accRunSpeed = 6f; 
+                    player.moveSpeed += 0.5f;
                     return;
                 case ItemID.RocketBoots:
                     player.rocketTimeMax = 7;
@@ -143,7 +142,14 @@ namespace TRAEProject.Changes.Accesory
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             switch (item.type)
-            {
+            {           case ItemID.EmpressFlightBooster:       foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.text = "Doubles acceleration";
+                        }     
+                    }
+                    return;
                 case ItemID.HermesBoots:
                 case ItemID.SailfishBoots:
                 case ItemID.FlurryBoots:
@@ -178,7 +184,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Multiplies movement speed by 1.2";
+                            line.text = "25% increased movement speed";
                         }
                     }
                     return;
@@ -201,7 +207,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "Increases acceleration and mobility on ice";
+                            line.text = "Increases acceleration by 50%, and mobility on ice";
                         }
                     }
                     return;
@@ -223,7 +229,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "25% increased movement speed, then multiplied by 20%";
+                            line.text = "50% increased movement speed";
                         }
                     }
                     return;
@@ -232,7 +238,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "25% increased movement speed, then multiplied by 20%";
+                            line.text = "50% increased movement speed";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -366,7 +372,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Increases acceleration\nIncreases mobility in ice";
+                            line.text = "Increases acceleration by 50%\nIncreases mobility on ice";
                         }
                     }
                     return;

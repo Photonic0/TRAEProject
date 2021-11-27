@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -381,7 +381,8 @@ namespace TRAEProject.Changes.Prefixes
             if (line != null)
             {
                 switch (item.prefix)
-                {
+                {    
+				    case PrefixID.Strong:
                     case PrefixID.Forceful:
                     case PrefixID.Godly:
                     case PrefixID.Heavy:
@@ -397,7 +398,7 @@ namespace TRAEProject.Changes.Prefixes
             //insert knockback
             switch (item.prefix)
             {
-                case PrefixID.Strong:
+            
                 case PrefixID.Large:
                 case PrefixID.Massive:
                     line = new TooltipLine(TRAEProj.Instance, "TRAEKnockback", "+" + (int)((ModifyVanillaPrefixes.T1Knockback - 1f) * 100f) + "% knockback");

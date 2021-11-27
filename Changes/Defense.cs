@@ -74,7 +74,8 @@ namespace TRAEProject
 
                 }
                 Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.Center.X + (float)Main.rand.Next(-40, 40), Player.Center.Y - (float)Main.rand.Next(20, 60), Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 565, 0, 0f, Player.whoAmI);
-            }
+            return false;
+			}
             // New Defense calculation                    
             customDamage = true; // when set to true, the game will no longer substract defense from the damage.
             int defense = Player.statDefense;
@@ -206,7 +207,7 @@ namespace TRAEProject
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Has a chance to dodge an attack using illusions Temporarily increase critical chance after dodge\nGrants immunity to Petrified";
+                            line.text = "Has a chance to dodge an attack using illusions";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {

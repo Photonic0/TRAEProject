@@ -21,13 +21,14 @@ namespace TRAEProject.Items.Accesories.AlligatorBalloon
         {
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
-            Item.sellPrice(0, 4, 0, 0);
+            Item.value = 50000;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.jumpBoost = true;
             player.hasJumpOption_Sail = true;
             player.extraFall += 15;
+			player.autoJump = true;
             player.jumpSpeedBoost += 1.4f;
         }
         public override void AddRecipes()

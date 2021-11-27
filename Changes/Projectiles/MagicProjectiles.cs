@@ -75,7 +75,7 @@ namespace TRAEProject.Changes.Projectiles
 				case ProjectileID.BloodRain:
 				    projectile.penetrate = 1;
 				    projectile.aiStyle = 1;
-                    homingRange = 120f;
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 120f;
                     return;
 			 case ProjectileID.RainFriendly:
 				    projectile.penetrate = 2;

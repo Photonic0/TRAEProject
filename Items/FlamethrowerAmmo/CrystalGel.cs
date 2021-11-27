@@ -14,19 +14,19 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crystal Gel");
-            Tooltip.SetDefault("Splits multiple times and withers armor");
+            Tooltip.SetDefault("Splits 8 times and ignores 25 defense");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
         {
-            Item.damage = 4;
+            Item.damage = 15;
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 2;
             Item.value = Item.sellPrice(0, 0, 10, 0);
             Item.rare = ItemRarityID.Pink;
             Item.width = 24;
             Item.height = 22;
-            Item.shootSpeed = 0f;
+            Item.shootSpeed = 4f;
             Item.consumable = true;
             Item.shoot = ProjectileType<CrystalGelP>();
             Item.ammo = AmmoID.Gel;
@@ -53,15 +53,14 @@ namespace TRAEProject.Items.FlamethrowerAmmo
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.hostile = false;
             Projectile.friendly = true;
-            Projectile.timeLeft = 20;
+            Projectile.timeLeft = 5;
             Projectile.width = 6;
             Projectile.height = 6;
             Projectile.alpha = 255;
             Projectile.penetrate = 2;
             Projectile.extraUpdates = 2;
             Projectile.width = Projectile.height = 2;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration = 25;
-            //Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
+       Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration = 25;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 60;
         }
@@ -101,8 +100,6 @@ namespace TRAEProject.Items.FlamethrowerAmmo
             }
             Projectile.ai[0] += 1f;
             Projectile.localAI[0] += 1f;
-			if (Projectile.localAI[0] >= 10 && Projectile.ai[1] < 2f)
-				Projectile.Kill();
         }
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
@@ -114,14 +111,14 @@ namespace TRAEProject.Items.FlamethrowerAmmo
         }
         public override void Kill(int timeLeft)
         {
-            if (Projectile.ai[1] < 2f)
+            if (Projectile.ai[1] < 1f)
             {		
-		        float rotation = MathHelper.ToRadians(45);
-                for (int i = 0; i < 2; ++i)
+		        float rotation = MathHelper.ToRadians(60);
+                for (int i = 0; i < 4; ++i)
                 {
-	                 Vector2 perturbedSpeed = new Vector2(Projectile.velocity.X, Projectile.velocity.Y).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (2 - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
-                     Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Projectile.velocity.X + perturbedSpeed.X, Projectile.velocity.Y + perturbedSpeed.Y, Projectile.type, (int)(Projectile.damage * 0.67), Projectile.knockBack, Projectile.owner, 0f, Projectile.ai[1] + 1f);
-                  			    
+	                 Vector2 perturbedSpeed = new Vector2(Projectile.velocity.X, Projectile.velocity.Y).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (2 - 1))) * 0.2f; // Watch out for dividing by 0 if there is only 1 projectile.
+                     int Gel = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, Projectile.velocity.X + perturbedSpeed.X, Projectile.velocity.Y + perturbedSpeed.Y, Projectile.type, (int)(Projectile.damage * 0.25), Projectile.knockBack, Projectile.owner, 0f, Projectile.ai[1] + 1f);
+                     Main.projectile[Gel].timeLeft = 30;	    
                 }    
             }
         }

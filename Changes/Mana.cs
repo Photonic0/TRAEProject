@@ -1,4 +1,73 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
+//using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Microsoft.Win32;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using ReLogic.Content;
+using ReLogic.Content.Sources;
+using ReLogic.Graphics;
+using ReLogic.Localization.IME;
+using ReLogic.OS;
+using ReLogic.Peripherals.RGB;
+using ReLogic.Utilities;
+using Terraria.Achievements;
+using Terraria.Audio;
+using Terraria.Chat;
+using Terraria.Cinematics;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.GameContent;
+using Terraria.GameContent.Achievements;
+using Terraria.GameContent.Ambience;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Creative;
+using Terraria.GameContent.Drawing;
+using Terraria.GameContent.Events;
+using Terraria.GameContent.Golf;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Liquid;
+using Terraria.GameContent.NetModules;
+using Terraria.GameContent.Skies;
+using Terraria.GameContent.UI;
+using Terraria.GameContent.UI.BigProgressBar;
+using Terraria.GameContent.UI.Chat;
+using Terraria.GameContent.UI.States;
+using Terraria.GameInput;
+using Terraria.Graphics;
+using Terraria.Graphics.Capture;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Light;
+using Terraria.Graphics.Renderers;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
+using Terraria.Initializers;
+using Terraria.IO;
+using Terraria.Localization;
+using Terraria.Map;
+using Terraria.Net;
+using Terraria.ObjectData;
+using Terraria.Social;
+using Terraria.UI;
+using Terraria.UI.Chat;
+using Terraria.UI.Gamepad;
+using Terraria.Utilities;
+using Terraria.WorldBuilding;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -6,16 +75,18 @@ using ReLogic.Content;
 using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.GameContent.UI;
+using Terraria;
+using Terraria.UI.Chat;
+using Terraria.GameContent;
+using Terraria.GameInput;
+using Terraria.Localization;
+using Terraria.Social;
+using Terraria.UI;
+using Terraria.UI.Gamepad;
+using Terraria.GameContent.UI.ResourceSets;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.UI;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes
@@ -240,21 +311,23 @@ namespace TRAEProject.Changes
     public class DisplayOverload : ModSystem
     {
         const int OManaPerStar = 40;
+        public static IPlayerResourcesDisplaySet ActivePlayerResourcesSet;
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
+
             int index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Resource Bars"));
             LegacyGameInterfaceLayer overloadManaDraw = new LegacyGameInterfaceLayer("OverloadedMana",
                     delegate
                     {
-                        if(Main.ActivePlayerResourcesSet is ClassicPlayerResourcesDisplaySet)
+                        if(ActivePlayerResourcesSet is ClassicPlayerResourcesDisplaySet)
                         {
                             DrawClassicMana();
                         }
-                        if (Main.ActivePlayerResourcesSet is FancyClassicPlayerResourcesDisplaySet)
+                        if (ActivePlayerResourcesSet is FancyClassicPlayerResourcesDisplaySet)
                         {
                             DrawFancyClassicMana();
                         }
-                        if(Main.ActivePlayerResourcesSet is HorizontalBarsPlayerReosurcesDisplaySet)
+                        if(ActivePlayerResourcesSet is HorizontalBarsPlayerReosurcesDisplaySet)
                         {
                             DrawManaBar();
                         }

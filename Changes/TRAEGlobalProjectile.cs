@@ -4,12 +4,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Items.Summoner.Whip;
-using Mono.Cecil.Cil;
-using MonoMod.Cil;
+
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Projectiles
@@ -24,6 +25,7 @@ namespace TRAEProject.Changes.Projectiles
         public float DamageFalloff = 0f; // How much damage the projectile loses every time it hits an enemy. 
         public float DamageFallon = 1f; // How much damage the projectile gains every time it hits an enemy. 
         public float DirectDamage = 1f; // how much damage the projectile deals when it hits an enemy, independent of the weapon.
+        public bool IgnoresDefense = false; // self-explanatory
         public int armorPenetration = 0; //how much defense the projectile ignores
         public bool cantCrit = false; // self-explanatory
         public bool dontHitTheSameEnemyMultipleTimes = false;// self-explanatory
@@ -52,7 +54,7 @@ namespace TRAEProject.Changes.Projectiles
         public bool DontRunThisAgain = false;
         public bool UsesDefaultExplosion = false; // Regular rocket Explosions. Helpful if you are too lazy/don't need to create a special explosion effect.
         //
-        public override void SetStaticDefaults()
+		 public override void SetStaticDefaults()
         {
             IL.Terraria.Projectile.Damage += DamageHook;
         }
@@ -75,6 +77,12 @@ namespace TRAEProject.Changes.Projectiles
         {
             switch (projectile.type)
             {
+                case ProjectileID.Bee:
+                case ProjectileID.GiantBee:
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 30;
+					projectile.penetrate = 2;
+                    return;
                 case ProjectileID.CrystalLeafShot:
                     homesIn = true;
                     return;
@@ -110,16 +118,6 @@ namespace TRAEProject.Changes.Projectiles
 
             }
             //
-        }
-        public override void ModifyDamageHitbox(Projectile projectile, ref Rectangle hitbox)
-        {
-            switch (projectile.type)
-            {
-                case ProjectileID.TitaniumStormShard:
-                    hitbox.Width = 50;
-                    hitbox.Height = 50;
-                    return;
-            }
         }
         public float timer = 0;
         public override void AI(Projectile projectile)
@@ -219,9 +217,23 @@ namespace TRAEProject.Changes.Projectiles
                         projectile.damage = 0;
                     }
                     else
-                        projectile.damage = 70;
-                    return;
-            }
+					{
+                        projectile.damage = 70;         
+					    projectile.position.X += projectile.width / 2;
+                        projectile.position.Y += projectile.height / 2;
+                        projectile.width = projectile.height = 70;
+                        projectile.position.X -= projectile.width / 2;
+                        projectile.position.Y -= projectile.height / 2;
+                        projectile.position.X += projectile.width / 2;
+                        projectile.position.Y += projectile.height / 2;
+                        projectile.width = projectile.height = 70;
+                        projectile.position.X -= (projectile.width / 2);
+                        projectile.position.Y -= (projectile.height / 2);
+					}
+					return;
+				}
+             
+
         }
     
 
@@ -303,7 +315,7 @@ namespace TRAEProject.Changes.Projectiles
                             }
                         }
                     }
-                    break;
+                    return;
                 case ProjectileID.EyeLaser:
                 case ProjectileID.EyeFire:
                     {
@@ -313,39 +325,42 @@ namespace TRAEProject.Changes.Projectiles
                             damage /= 100;
                         }
                     }
-                    break;
+                    return;
                 case ProjectileID.StardustSoldierLaser:
                     {
                         damage *= 80;
                         damage /= 100;
                     }
-                    break;
+                    return;
                 case ProjectileID.StardustJellyfishSmall:
                     {
                         damage *= 65;
                         damage /= 100;
                     }
-                    break;
+                    return;
                 case ProjectileID.NebulaLaser:
                     {
                         damage *= 85;
                         damage /= 100;
                     }
-                    break;
+                    return;
                 case ProjectileID.NebulaBolt:
-                case ProjectileID.VortexAcid:
                     {
                         damage *= 80;
                         damage /= 100;
                     }
-                    break;
+                    return;
             }
         }
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit,ref int hitDirection)
         {
             Player player = Main.player[projectile.owner];
-            
+            if (armorPenetration > 0)
+            {
+                player.armorPenetration += armorPenetration;
+                extraAP += armorPenetration;
+            }
             damage = (int)(damage * DirectDamage);
             if (IgnoresDefense && target.type != NPCID.DungeonGuardian)
             {

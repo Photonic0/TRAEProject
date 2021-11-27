@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -61,14 +61,14 @@ namespace TRAEProject.Changes.Prefixes
 
         public override void ModifyValue(ref float valueMult)
         {
-            float multiplier = 1f * (1 + damage * 0.04f) 
-                * (1 + crit * 0.04f) 
-                * (1 + AP * 0.03f) 
-                * (1 + velocity * 0.01f) 
-                * (1 + knockback * 0.01f) 
-                * (1 - negDamage * 0.04f) 
-                * (1 - negVelocity * 0.01f) 
-                * (1 - negKnockback * 0.01f);
+            float multiplier = 1f * (1 + damage * 0.004f) 
+                * (1 + crit * 0.004f) 
+                * (1 + AP * 0.003f) 
+                * (1 + velocity * 0.001f) 
+                * (1 + knockback * 0.001f) 
+                * (1 - negDamage * 0.004f) 
+                * (1 - negVelocity * 0.001f) 
+                * (1 - negKnockback * 0.001f);
             valueMult *= multiplier;
         }
 

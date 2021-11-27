@@ -56,8 +56,7 @@ namespace TRAEProject.Common.ModPlayers
             c.EmitDelegate<Func<Item, Player, float, float>>((item, player, scale) =>
             {
                 if (item.CountsAsClass(DamageClass.Melee))
-                {
-                    //
+                {                    //
                     float bonusSize = 1f;
                     switch (item.prefix)
                     {
