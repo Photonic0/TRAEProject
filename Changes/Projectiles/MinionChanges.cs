@@ -47,8 +47,10 @@ namespace TRAEProject.Changes.Projectiles
                     item.useTime = 10;
                     item.useAnimation = 10;
                     item.autoReuse = true;
-                    break;
+                    break;				
                 case ItemID.BabyBirdStaff:
+                    item.mana = 20;
+                    break;
                 case ItemID.SlimeStaff:
                 case ItemID.ImpStaff:
                 case ItemID.SpiderStaff:

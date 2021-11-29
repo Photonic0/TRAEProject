@@ -24,7 +24,7 @@ namespace TRAEProject.Changes.Accesory
         BuffID.Confused, BuffID.Slow, BuffID.OgreSpit, BuffID.Weak, BuffID.BrokenArmor,
         BuffID.CursedInferno,   BuffID.Frostburn,  BuffID.Chilled,  BuffID.Frozen,
         BuffID.Ichor,   BuffID.Stoned,  BuffID.VortexDebuff,  BuffID.Obstructed,
-        BuffID.Electrified, BuffID.ShadowFlame, BuffID.WitheredWeapon, BuffID.WitheredArmor, BuffID.Dazed }; // 
+        BuffID.Electrified, BuffID.ShadowFlame, BuffID.WitheredWeapon, BuffID.WitheredArmor, BuffID.Dazed, BuffID.Burning}; // 
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -107,7 +107,6 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<TRAEPlayer>().wErewolf = true;
                     if (player.statLife < player.statLifeMax2 * 0.5)
                         player.AddBuff(BuffID.IceBarrier, 1, false);
-                    player.accMerman = false;
                     player.wolfAcc = false;
                     break;
                 case ItemID.MoonCharm:

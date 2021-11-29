@@ -610,7 +610,7 @@ namespace TRAEProject
                 }   
 				if (recipe.HasResult(ItemID.HeroShield))
                 {
-                    recipe.TryGetIngredient(ItemID.PaladinShield, out ingredientToRemove);
+                    recipe.TryGetIngredient(ItemID.PaladinsShield, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
                     recipe.AddIngredient(ItemID.CobaltShield, 1);
                 }
