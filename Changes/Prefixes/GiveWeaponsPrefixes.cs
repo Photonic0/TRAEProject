@@ -67,13 +67,20 @@ namespace TRAEProject.Changes.Prefixes
 				canGetYoyoModifers = true;
             }
         }
-
-        public override int ChoosePrefix(Item item, UnifiedRandom rand)
-		{
-			//reset custom modifiable stats before addign a new prefix
+		public override bool PreReforge(Item item)
+        {
 			item.GetGlobalItem<BoomerangFlailStats>().AP = 0;
 			item.GetGlobalItem<YoyoStats>().range = 1f;
 			item.GetGlobalItem<YoyoStats>().speed = 1f;
+
+			return base.PreReforge(item);
+		}
+		public override int ChoosePrefix(Item item, UnifiedRandom rand)
+		{
+			//reset custom modifiable stats before addign a new prefix
+			//item.GetGlobalItem<BoomerangFlailStats>().AP = 0;
+			//item.GetGlobalItem<YoyoStats>().range = 1f;
+			//item.GetGlobalItem<YoyoStats>().speed = 1f;
 
 			if (canGetRangedModifiers)
 			{
