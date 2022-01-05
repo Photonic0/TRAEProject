@@ -77,6 +77,10 @@ namespace TRAEProject.Changes.Projectiles
         {
             switch (projectile.type)
             {
+                case ProjectileID.FrostBlastFriendly:
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 30;
+                    break;
                 case ProjectileID.Bee:
                 case ProjectileID.GiantBee:
                     projectile.usesLocalNPCImmunity = true;

@@ -136,8 +136,8 @@ namespace TRAEProject.Changes.Weapon
                     break;
                 case ItemID.Seedler:
                     item.scale = 1.3f;
-                    item.useTime = 64; // up from 23
-                    item.useAnimation = 16; // down from 23
+                    //item.useTime = 64; // up from 23
+                    //item.useAnimation = 16; // down from 23
                     break;
                 case ItemID.Keybrand:
                     item.scale = 1.7f;
