@@ -1,6 +1,6 @@
 
-using TRAEProject.Buffs;
-using TRAEProject.Projectiles;
+using TRAEProject.NewContent.Buffs;
+using TRAEProject.NewContent.Projectiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

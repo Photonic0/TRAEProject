@@ -10,7 +10,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria.DataStructures;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Items.DreadItems.DreadSummon;
+using TRAEProject.NewContent.Items.DreadItems.DreadSummon;
 using Microsoft.Xna.Framework;
 
 namespace TRAEProject.Changes

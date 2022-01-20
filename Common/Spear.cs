@@ -13,9 +13,9 @@ using TRAEProject.Common.ModPlayers;
 using Terraria.Audio;
 using Terraria.ID;
 using TRAEProject.Changes.Weapon;
-using TRAEProject.Buffs;
+using TRAEProject.NewContent.Buffs;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Changes.Projectiles.Spears;
+using TRAEProject.Changes.Weapon.Melee.SpearProjectiles;
 
 namespace TRAEProject.Common
 {
@@ -283,7 +283,7 @@ namespace TRAEProject.Common
             Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, lightColor, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
             if (Projectile.type == ProjectileType<GhastlyGlaiveThrow>())
             {
-                texture = Request<Texture2D>("TRAEProject/Changes/Projectiles/Spears/GhastlyGlaiveGlow").Value;
+                texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee//SpearProjectiles/GhastlyGlaiveGlow").Value;
                 Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
             }
             if (debug)

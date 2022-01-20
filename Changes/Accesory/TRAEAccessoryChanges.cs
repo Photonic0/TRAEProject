@@ -6,10 +6,10 @@ using System;
 using TRAEProject;
 using System.Collections.Generic;
 using Terraria.Utilities;
-using TRAEProject.Buffs;
+using TRAEProject.NewContent.Buffs;
 using TRAEProject.Changes;
-using TRAEProject.Items.Accesories.EvilEye;
-using TRAEProject.Items.Accesories.ShadowflameCharm;
+using TRAEProject.NewContent.Items.Accesories.EvilEye;
+using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 using TRAEProject.Changes.Items;
 using TRAEProject.Common.ModPlayers;
 using static Terraria.ModLoader.ModContent;
@@ -176,12 +176,12 @@ namespace TRAEProject.Changes.Accesory
                     player.wolfAcc = false;
                     break;
                 case ItemID.BandofStarpower:
-                    player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.1f;
+                    player.GetModPlayer<Mana>().manaRegenBoost += 0.1f;
                     player.statManaMax2 -= 20;
                     break;
                 case ItemID.ManaRegenerationBand:
                     player.statManaMax2 -= 20;
-                    player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.1f;
+                    player.GetModPlayer<Mana>().manaRegenBoost += 0.1f;
                     player.lifeRegen += 2;
                     break;
                 case ItemID.MagicCuffs:
@@ -204,17 +204,17 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.ManaCloak:
                     player.starCloakItem_manaCloakOverrideItem = item;
-                    player.GetModPlayer<TRAEPlayer>().manaCloak = true;
+                    player.GetModPlayer<Mana>().manaCloak = true;
                     player.manaCost += 0.08f;
                     break;
                 case ItemID.ManaFlower:
                 case ItemID.MagnetFlower:
-                    player.GetModPlayer<TRAEPlayer>().newManaFlower = true;
+                    player.GetModPlayer<Mana>().newManaFlower = true;
                     player.manaCost += 0.08f;
                     break;
                 case ItemID.ArcaneFlower:
                     player.manaCost += 0.08f;
-                    player.GetModPlayer<TRAEPlayer>().newManaFlower = true;
+                    player.GetModPlayer<Mana>().newManaFlower = true;
                     player.GetDamage<MagicDamageClass>() += 0.05f;
                     player.GetCritChance<MagicDamageClass>() += 5;
                     break;

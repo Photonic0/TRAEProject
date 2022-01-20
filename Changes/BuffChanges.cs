@@ -3,8 +3,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject;
-using TRAEProject.Buffs;
+using TRAEProject.NewContent.Buffs;
 using TRAEProject.Changes.Items;
+using TRAEProject.Common;
+using TRAEProject.Changes;
+
 namespace ChangesBuffs
 {
     public class ChangesBuffs : GlobalBuff
@@ -13,20 +16,20 @@ namespace ChangesBuffs
         {
             if (BuffID.Sets.IsAnNPCWhipDebuff[type] && npc.HasBuff(BuffType<PirateTag>()))
             {
-                npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 5;
-                npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 5;
+                npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagDamage += 5;
+                npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagCritChance += 5;
             }
             switch (type)
             {
                 case BuffID.MaceWhipNPCDebuff:
-                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 10;
+                    npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagCritChance += 10;
                     return;
                 case BuffID.RainbowWhipNPCDebuff:
-                    npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 30;
-                    npc.GetGlobalNPC<ChangesNPCs>().TagCritChance += 20; // this isn't exactly 30% crit but whatevs
+                    npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagDamage += 30;
+                    npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagCritChance += 20; // this isn't exactly 30% crit but whatevs
                     return;
                 case BuffID.ScytheWhipEnemyDebuff:
-                    npc.GetGlobalNPC<ChangesNPCs>().TagDamage += 10;
+                    npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagDamage += 10;
                     return;
             }
         }
@@ -69,7 +72,7 @@ namespace ChangesBuffs
                     return;
 
                 case BuffID.ManaRegeneration:
-                    player.GetModPlayer<TRAEPlayer>().manaRegenBoost += 0.2f;
+                    player.GetModPlayer<Mana>().manaRegenBoost += 0.2f;
                     return;
                 case BuffID.ManaSickness:               
                     player.manaSickReduction = 0f;

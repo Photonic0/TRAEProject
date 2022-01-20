@@ -134,8 +134,8 @@ namespace TRAEProject.Changes.Items
 
 			if (context == "crate" && (arg == ItemID.OasisCrate || arg == ItemID.OasisCrateHard))
 			{
-				int index = Main.rand.Next(ChangesWorld.PyramidItems.Length);
-				int itemWhoAmI = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ChangesWorld.PyramidItems[index], 1, noBroadcast: false, -1);
+				int index = Main.rand.Next(ChestLoot.PyramidItems.Length);
+				int itemWhoAmI = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ChestLoot.PyramidItems[index], 1, noBroadcast: false, -1);
 				if (Main.netMode == 1)
 				{
 					NetMessage.SendData(21, -1, -1, null, itemWhoAmI, 1f);
@@ -164,8 +164,8 @@ namespace TRAEProject.Changes.Items
 			}
 			if (context == "obsidianLockBox")
 			{
-				int index = Main.rand.Next(ChangesWorld.ShadowItems.Length);
-				int number = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ChangesWorld.ShadowItems[index], 1, noBroadcast: false, -1);
+				int index = Main.rand.Next(ChestLoot.ShadowItems.Length);
+				int number = Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, ChestLoot.ShadowItems[index], 1, noBroadcast: false, -1);
 				if (Main.netMode == 1)
 				{
 					NetMessage.SendData(21, -1, -1, null, number, 1f);

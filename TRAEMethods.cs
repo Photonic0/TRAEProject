@@ -1,5 +1,5 @@
 ﻿using System;
-using TRAEProject.Projectiles;
+using TRAEProject.NewContent.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

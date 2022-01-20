@@ -2,8 +2,8 @@
 using System;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
-using TRAEProject.Buffs;
-using TRAEProject.Projectiles;
+using TRAEProject.NewContent.Buffs;
+using TRAEProject.NewContent.Projectiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;

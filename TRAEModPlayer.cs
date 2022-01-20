@@ -2,8 +2,8 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
-using TRAEProject.Buffs;
-using TRAEProject.Projectiles;
+using TRAEProject.NewContent.Buffs;
+using TRAEProject.NewContent.Projectiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -14,15 +14,7 @@ namespace TRAEProject
 {
     public class TRAEPlayer : ModPlayer
     {
-        public int shadowArmorDodgeChance = 0;
-        private Item previousItem = new Item();
-        public float newManaRegen = 0;
-        public float manaRegenBoost = 1;
-        public bool PirateSet = false;
-        public bool manaCloak = false;
-        public bool newManaFlower = false;
-		public int manaFlowerTimer = 0;
-		public int manaFlowerLimit = 0;
+        
         public bool wErewolf = false;
         public bool Celled = false;
         public bool MagicDagger = false;
@@ -42,11 +34,7 @@ namespace TRAEProject
         public int chanceNotToConsumeAmmo = 0;
         public override void ResetEffects()
         {
-            PirateSet = false;
-            manaCloak = false;
-            newManaFlower = false;
-            manaRegenBoost = 1;
-        shadowArmorDodgeChance = 0;
+            
             wErewolf = false;
             Celled = false;
             MagicDagger = false;
@@ -63,11 +51,6 @@ namespace TRAEProject
         }
         public override void UpdateDead()
         {
-            PirateSet = false;
-            manaCloak = false;
-            newManaFlower = false;
-            manaRegenBoost = 1;
-            shadowArmorDodgeChance = 0;
             wErewolf = false;
             Celled = false;
             icceleration = false;
@@ -86,29 +69,7 @@ namespace TRAEProject
         }
         public override void PostUpdate()
         {
-            Player.manaRegenCount = 0;
-            Player.manaRegen = 0;
-            Player.manaRegenDelay = 999;
-			Player.manaSickTimeMax = 9999;
-            int reachThisNumberAndThenIncreaseManaBy1 = 60;
-            if (Player.statMana < Player.statManaMax2)
-            {
-                newManaRegen += Player.statManaMax2 * 0.1f * manaRegenBoost;
-                if (newManaRegen >= reachThisNumberAndThenIncreaseManaBy1)
-                {
-                    newManaRegen -= 60;
-                    ++Player.statMana;
-                }
-            }
-			if (newManaFlower)
-			{	
-		       ++manaFlowerTimer;
-			   if (manaFlowerTimer >= 60)
-			   {
-				   manaFlowerTimer = 0;
-				   manaFlowerLimit = 0;
-			   }
-			}
+            
 			Player.lifeSteal -= 0.41666667f; // this stat increases by 0.5f every frame, or by 30 per second. with this change it goes down to 5 per second.
             if (Player.wingsLogic > 0 && Player.rocketBoots != 0 && Player.velocity.Y != 0f && Player.rocketTime != 0)
             {
@@ -193,11 +154,6 @@ namespace TRAEProject
             if (Player.hasRaisableShield && Player.HeldItem.type == ItemID.DD2SquireDemonSword && Main.rand.Next(5) == 0)
             {
                 Block();
-                return false;
-            }
-            if (Main.rand.Next(shadowArmorDodgeChance) == 1)
-            {
-                DarkDodge();
                 return false;
             }
             return true;
@@ -384,23 +340,6 @@ namespace TRAEProject
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (PirateSet && (ProjectileID.Sets.IsAWhip[proj.type]))
-            {
-                target.AddBuff(BuffType<PirateTag>(), 240);
-            }
-            if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && crit && manaFlowerLimit < 3)
-            {
-                if (Main.rand.Next(3) == 0)
-                {
-                    Item.NewItem(target.getRect(), ItemID.Star, 1);
-					++manaFlowerLimit;
-                } 
-            }
-            if (proj.CountsAsClass(DamageClass.Magic) && manaCloak == true && crit && Main.rand.Next(3) == 0)
-            {
-                int[] spread = {3, 4, 5};
-                TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI), target.position, 1, 400, 600, spread, 20, ProjectileID.ManaCloakStar, damage / 3, 2f, Player.whoAmI);
-            }
             if (Player.inferno)
             {
                 Lighting.AddLight((int)(target.Center.X / 16f), (int)(target.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
@@ -460,35 +399,7 @@ namespace TRAEProject
             return;
         }
       
-        void DarkDodge()
-        {
-            Player.immune = true;
-            Player.immuneTime = 80;
-            if (Player.longInvince)
-                Player.immuneTime = Player.immuneTime + 40;
-            for (int index = 0; index < Player.hurtCooldowns.Length; ++index)
-                Player.hurtCooldowns[index] = Player.immuneTime;
-            for (int i = 0; i < 80; i++)
-            {
-                int num = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y), Player.width, Player.height, Main.rand.Next(new int[]{65, 173}), 0f, 0f, 100, default, 2f);
-                Main.dust[num].position.X += Main.rand.Next(-20, 21);
-                Main.dust[num].position.Y += Main.rand.Next(-20, 21);
-                Main.dust[num].velocity *= 0.4f;
-                Main.dust[num].scale *= 1f + Main.rand.Next(40) * 0.01f;
-                Main.dust[num].shader = GameShaders.Armor.GetSecondaryShader(Player.cWaist, Player);
-                Main.dust[num].noGravity = true;
-                Main.dust[num].noLight = true;
-                if (Main.rand.Next(2) == 0)
-                {
-                    Main.dust[num].scale *= 1f + Main.rand.Next(40) * 0.01f;
-                    Main.dust[num].velocity *= 1.4f;
-                }
-            }
-            if (Player.whoAmI == Main.myPlayer)
-            {
-                NetMessage.SendData(62, -1, -1, null, Player.whoAmI, 1f);
-            }
-        }
+        
         void Block()
         {
             Player.immune = true;

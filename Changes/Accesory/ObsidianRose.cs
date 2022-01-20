@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
-using TRAEProject.Buffs;
+using TRAEProject.NewContent.Buffs;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 namespace TRAEProject.Changes.Accesory

@@ -1,5 +1,5 @@
-using TRAEProject.Buffs;
-using TRAEProject.Projectiles;
+using TRAEProject.NewContent.Buffs;
+using TRAEProject.NewContent.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,7 +9,7 @@ using MonoMod.Cil;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Items.Summoner.Whip;
+using TRAEProject.NewContent.Items.Summoner.Whip;
 
 using static Terraria.ModLoader.ModContent;
 

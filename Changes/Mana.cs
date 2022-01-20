@@ -1,105 +1,62 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
-//using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Win32;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
-using ReLogic.Content.Sources;
-using ReLogic.Graphics;
-using ReLogic.Localization.IME;
-using ReLogic.OS;
-using ReLogic.Peripherals.RGB;
-using ReLogic.Utilities;
-using Terraria.Achievements;
-using Terraria.Audio;
-using Terraria.Chat;
-using Terraria.Cinematics;
-using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.GameContent;
-using Terraria.GameContent.Achievements;
-using Terraria.GameContent.Ambience;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.Creative;
-using Terraria.GameContent.Drawing;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Golf;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.Liquid;
-using Terraria.GameContent.NetModules;
-using Terraria.GameContent.Skies;
-using Terraria.GameContent.UI;
-using Terraria.GameContent.UI.BigProgressBar;
-using Terraria.GameContent.UI.Chat;
-using Terraria.GameContent.UI.States;
-using Terraria.GameInput;
-using Terraria.Graphics;
-using Terraria.Graphics.Capture;
-using Terraria.Graphics.Effects;
-using Terraria.Graphics.Light;
-using Terraria.Graphics.Renderers;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.Initializers;
-using Terraria.IO;
-using Terraria.Localization;
-using Terraria.Map;
-using Terraria.Net;
-using Terraria.ObjectData;
-using Terraria.Social;
 using Terraria.UI;
-using Terraria.UI.Chat;
-using Terraria.UI.Gamepad;
-using Terraria.Utilities;
-using Terraria.WorldBuilding;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using ReLogic.Content;
-using ReLogic.Graphics;
-using System;
-using System.Collections.Generic;
-using Terraria.GameContent.UI;
 using Terraria;
-using Terraria.UI.Chat;
-using Terraria.GameContent;
-using Terraria.GameInput;
-using Terraria.Localization;
-using Terraria.Social;
-using Terraria.UI;
-using Terraria.UI.Gamepad;
 using Terraria.GameContent.UI.ResourceSets;
-using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Terraria.ID;
 
 namespace TRAEProject.Changes
 {
     public class Mana : ModPlayer
     {
+        public float newManaRegen = 0;
+        public float manaRegenBoost = 1;
+        public int manaFlowerTimer = 0;
+        public int manaFlowerLimit = 0;
         int maxManaOverride = 0;
         int manaOver400 = 0;
         public int overloadedMana = 0;
         public bool celestialCuffsOverload;
+        public bool newManaFlower = false;
+        public bool manaCloak = false;
         public override void ResetEffects()
         {
+            manaRegenBoost = 1;
             celestialCuffsOverload = false;
+            newManaFlower = false; 
+            manaCloak = false;
+        }
+        public override void UpdateDead()
+        {
+            manaRegenBoost = 1;
+            newManaFlower = false;
+            manaCloak = false;
+        }
+
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+
+            if (proj.CountsAsClass(DamageClass.Magic) && manaCloak == true && crit && Main.rand.Next(3) == 0)
+            {
+                int[] spread = { 3, 4, 5 };
+                TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI), target.position, 1, 400, 600, spread, 20, ProjectileID.ManaCloakStar, damage / 3, 2f, Player.whoAmI);
+            }
+            if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && crit && manaFlowerLimit < 3)
+            {
+                if (Main.rand.Next(3) == 0)
+                {
+                    Item.NewItem(target.getRect(), ItemID.Star, 1);
+                    ++manaFlowerLimit;
+                }
+            }
         }
         public override void PostUpdateEquips()
         {
@@ -116,6 +73,30 @@ namespace TRAEProject.Changes
         }
         public override void PostUpdate()
         {
+            Player.manaRegenCount = 0;
+            Player.manaRegen = 0;
+            Player.manaRegenDelay = 999;
+            Player.manaSickTimeMax = 9999;
+            int reachThisNumberAndThenIncreaseManaBy1 = 60;
+            if (Player.statMana < Player.statManaMax2)
+            {
+                newManaRegen += Player.statManaMax2 * 0.1f * manaRegenBoost;
+                if (newManaRegen >= reachThisNumberAndThenIncreaseManaBy1)
+                {
+                    newManaRegen -= 60;
+                    ++Player.statMana;
+                }
+            }
+            if (newManaFlower)
+            {
+                ++manaFlowerTimer;
+                if (manaFlowerTimer >= 60)
+                {
+                    manaFlowerTimer = 0;
+                    manaFlowerLimit = 0;
+                }
+            }
+
             //Main.NewText("PU: " + Player.statManaMax2);
             Player.statManaMax2 = maxManaOverride;
             Player.statMana += manaOver400;

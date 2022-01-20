@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Buffs;
+using TRAEProject.NewContent.Buffs;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Accesory
