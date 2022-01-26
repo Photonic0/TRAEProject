@@ -141,23 +141,30 @@ namespace TRAEProject.Changes
             if (player.inferno)
             {
                 Lighting.AddLight((int)(target.Center.X / 16f), (int)(target.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
+                int OnFireID = 24;
+                float range = 100f;
+                int RingDamage = damage / 10;
+                if (RingDamage < 1)
+                {
+                    RingDamage = 1;
+                }
                 Vector2 spinningpoint1 = ((float)Main.rand.NextDouble() * 6.283185f).ToRotationVector2();
                 Vector2 spinningpoint2 = spinningpoint1;
-                float RandomEvenNumberBetweenSixAndTen = Main.rand.Next(3, 5) * 2;
+                float RandomNumberBetweenSixAndTen = Main.rand.Next(3, 5) * 2;
                 int Twenty = 20;
                 float OneOrMinusOne = Main.rand.Next(2) == 0 ? 1f : -1f; // one in three chance of it being 1
                 bool flag = true;
-                for (int i = 0; i < Twenty * RandomEvenNumberBetweenSixAndTen; ++i) // makes 120 or 240 dusts total
+                for (int i = 0; i < Twenty * RandomNumberBetweenSixAndTen; ++i) // makes 120 or 240 dusts total
                 {
                     if (i % Twenty == 0)
                     {
-                        spinningpoint2 = spinningpoint2.RotatedBy(OneOrMinusOne * (6.28318548202515 / RandomEvenNumberBetweenSixAndTen), default);
+                        spinningpoint2 = spinningpoint2.RotatedBy(OneOrMinusOne * (6.28318548202515 / RandomNumberBetweenSixAndTen), default);
                         spinningpoint1 = spinningpoint2;
                         flag = !flag;
                     }
                     else
                     {
-                        float num4 = 6.283185f / (Twenty * RandomEvenNumberBetweenSixAndTen);
+                        float num4 = 6.283185f / (Twenty * RandomNumberBetweenSixAndTen);
                         spinningpoint1 = spinningpoint1.RotatedBy(num4 * OneOrMinusOne * 3.0, default);
                     }
                     float num5 = MathHelper.Lerp(7.5f, 60f, i % Twenty / Twenty);
@@ -169,31 +176,38 @@ namespace TRAEProject.Changes
                     if (flag)
                         Main.dust[index2].scale = 0.9f;
                     Main.dust[index2].noGravity = true;
-
                 }
-                float range = 100f;
-                int RingDamage = damage / 10;
+                int NPCLimit = 0;
                 for (int k = 0; k < 200; k++)
                 {
                     NPC nPC = Main.npc[k];
                     if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(target.Center, nPC.Center) <= range)
                     {
-                        int finalDefense = nPC.defense - player.armorPenetration;
-                        nPC.ichor = false;
-                        nPC.betsysCurse = false;
-                        if (finalDefense < 0)
+                        ++NPCLimit;
+                        if (NPCLimit < 5)
                         {
-                            finalDefense = 0;
-                        }
-                        RingDamage += finalDefense / 2;
-                        player.ApplyDamageToNPC(nPC, RingDamage, 0f, 0, crit: false);
-                        if (nPC.FindBuffIndex(BuffID.OnFire) == -1)
-                        {
-                            nPC.AddBuff(BuffID.OnFire, 120);
+                            int finalDefense = nPC.defense - player.armorPenetration;
+                            nPC.ichor = false;
+                            nPC.betsysCurse = false;
+                            if (finalDefense < 0)
+                            {
+                                finalDefense = 0;
+                            }
+                            if (finalDefense > 100)
+                            {
+                                finalDefense = 100;
+                            }
+                            RingDamage += finalDefense / 2;
+                            player.ApplyDamageToNPC(nPC, RingDamage, 0f, 0, crit: false);
+                            if (nPC.FindBuffIndex(OnFireID) == -1)
+                            {
+                                nPC.AddBuff(OnFireID, 120);
+                            }
                         }
                     }
                 }
-            }       
+            }
+            return;
         }
         /// SHOOT STUFF
 

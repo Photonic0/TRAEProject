@@ -98,9 +98,6 @@ namespace TRAEProject.Changes.Weapons
                     item.useAnimation = 50;
                     item.autoReuse = true;
                     return;
-                case ItemID.Megashark:
-                    item.damage = 20; // down from 26
-                    return;
                 case ItemID.TheUndertaker:
                 case ItemID.SniperRifle:
                     item.autoReuse = true;

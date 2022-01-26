@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.NewContent.Items.Weapons.Scorpio;
+using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Items
 {
@@ -24,7 +21,7 @@ namespace TRAEProject.Changes.Items
 					player.QuickSpawnItem(ItemID.SkeletronMask, 1);
 				return false;
 			}
-			if (context == "bossBag" && arg == ItemID.PlanteraBossBag) // TO DO
+			if (context == "bossBag" && arg == ItemID.PlanteraBossBag)
 			{
 				player.TryGettingDevArmor();
 				if (Main.rand.Next(7) == 0)
@@ -52,8 +49,7 @@ namespace TRAEProject.Changes.Items
 				switch (Main.rand.Next(3))
 				{
 					case 0:
-						player.QuickSpawnItem(ItemID.GrenadeLauncher);
-						player.QuickSpawnItem(ItemID.RocketI, Main.rand.Next(50, 150));
+						player.QuickSpawnItem(ItemType<Scorpio>());
 						player.QuickSpawnItem(ItemID.VenusMagnum);
 						break;
 					case 1:

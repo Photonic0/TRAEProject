@@ -38,6 +38,9 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.Flamarang:
                     item.damage = 45; // up from 32
                     return;
+                case ItemID.LightDisc:
+                    item.damage = 100; // up from 57
+                    return;
                 case ItemID.BlueMoon:
                     item.damage = 32;
                     item.crit = 11;
@@ -71,23 +74,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.Kraken:
                     item.damage = 88; // vanilla value = 95
                     return;
-                /// SUMMONER
-                case ItemID.ThornWhip:
-                    item.damage = 19; // up from 18
-                    return;
-                case ItemID.BoneWhip:
-                    item.damage = 29; // down from 29
-                    return;
-                case ItemID.SwordWhip:
-                    item.damage = 70;
-                    return;
-                case ItemID.ScytheWhip:
-                    item.damage = 111; // up from 100
-                    return;
-                case ItemID.RainbowWhip:
-                    item.damage = 250; // up from 180
-                    item.autoReuse = true;
-                    return;
+    
          
             }
             return;

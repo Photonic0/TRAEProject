@@ -193,8 +193,10 @@ namespace TRAEProject
             {
                 Player.maxFallSpeed *= 2f;
                 if (Player.velocity.Y < 0)
+                { 
                     Player.velocity.Y += 0.7f;
                 Player.velocity.Y += 0.2f;
+                }
             }
             if (Hivepack)
             {
@@ -345,7 +347,11 @@ namespace TRAEProject
                 Lighting.AddLight((int)(target.Center.X / 16f), (int)(target.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
                 int OnFireID = 24;
                 float range = 100f;
-                int RingDamage = damage / 10 + 1;
+                int RingDamage = damage / 10;
+                if (RingDamage < 1)
+                {
+                    RingDamage = 1;
+                }
                 Vector2 spinningpoint1 = ((float)Main.rand.NextDouble() * 6.283185f).ToRotationVector2();
                 Vector2 spinningpoint2 = spinningpoint1;
                 float RandomNumberBetweenSixAndTen = Main.rand.Next(3, 5) * 2;
@@ -375,23 +381,32 @@ namespace TRAEProject
                         Main.dust[index2].scale = 0.9f;
                     Main.dust[index2].noGravity = true;
                 }
+                int NPCLimit = 0;
                 for (int k = 0; k < 200; k++)
                 {
                     NPC nPC = Main.npc[k];
                     if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(target.Center, nPC.Center) <= range)
                     {
-                        int finalDefense = nPC.defense - Player.armorPenetration;
-                        nPC.ichor = false;
-                        nPC.betsysCurse = false;
-                        if (finalDefense < 0)
+                        ++NPCLimit;
+                        if (NPCLimit < 5)
                         {
-                            finalDefense = 0;
-                        }
-                        RingDamage += finalDefense / 2;
-                        Player.ApplyDamageToNPC(nPC, RingDamage, 0f, 0, crit: false);
-                        if (nPC.FindBuffIndex(OnFireID) == -1)
-                        {
-                            nPC.AddBuff(OnFireID, 120);
+                            int finalDefense = nPC.defense - Player.armorPenetration;
+                            nPC.ichor = false;
+                            nPC.betsysCurse = false;
+                            if (finalDefense < 0)
+                            {
+                                finalDefense = 0;
+                            }
+                            if (finalDefense > 100)
+                            {
+                                finalDefense = 100;
+                            }
+                            RingDamage += finalDefense / 2;
+                            Player.ApplyDamageToNPC(nPC, RingDamage, 0f, 0, crit: false);
+                            if (nPC.FindBuffIndex(OnFireID) == -1)
+                            {
+                                nPC.AddBuff(OnFireID, 120);
+                            }
                         }
                     }
                 }

@@ -100,6 +100,17 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 80;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.25f;
                     return;
+                case ProjectileID.DryRocket:
+                case ProjectileID.WetRocket:
+                case ProjectileID.LavaRocket:
+                case ProjectileID.HoneyRocket:
+                    ProjectileID.Sets.IsARocketThatDealsDoubleDamageToPrimaryEnemy[projectile.type] = false;
+                    break;
+                case ProjectileID.ClusterFragmentsI:
+                    ProjectileID.Sets.IsARocketThatDealsDoubleDamageToPrimaryEnemy[projectile.type] = false;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
+                    break;
             }
         }
         public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)

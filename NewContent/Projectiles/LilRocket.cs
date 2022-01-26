@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.CloneDefaults(ProjectileID.VortexBeaterRocket);           //The width of Projectile hitbox
             AIType = ProjectileID.VortexBeaterRocket;
             Projectile.scale = 0.8f;         
-     Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 10;
+          Projectile.usesLocalNPCImmunity = true;
+                    Projectile.localNPCHitCooldown = 10;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 10;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.33f;

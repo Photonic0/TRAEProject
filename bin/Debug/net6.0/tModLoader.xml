@@ -302,6 +302,21 @@
             <param name="mod">The mod to calculate bestiary completeness (null for Terraria)</param>
             <returns>A float ranging from 0 to 1 representing the completeness of the bestiary or returns -1 if the mod has no entries</returns>
         </member>
+        <member name="M:Terraria.GameContent.Creative.CreativeUI.GetSacrificeCount(System.Int32,System.Boolean@)">
+            <summary>
+            Method that allows you to easily get how many items of a type you have researched so far
+            </summary>
+            <param name="type">The item type to check.</param>
+            <param name="fullyResearched">True if it is fully researched.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.GameContent.Creative.CreativeUI.GetSacrificesRemaining(System.Int32)">
+            <summary>
+            Method that allows you to easily get how many items of a type you need to fully research that item
+            </summary>
+            <param name="type">The item type to check.</param>
+            <returns>The number of sacrifices remaining , or null if the item can never be unlocked.</returns>
+        </member>
         <member name="M:Terraria.GameContent.Events.Sandstorm.StartSandstorm">
             <summary>
             Starts sandstorm for a random amount of time. Should be called on the server (netMode != client) - the method syncs it automatically.
@@ -3369,6 +3384,15 @@
             Returns whether or not any item can be used. Returns true by default. The inability to use a specific item overrides this, so use this to stop an item from being used.
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.CanAutoReuseItem(Terraria.Item,Terraria.Player)">
+            <summary>
+            Allows you to modify the autoswing (auto-reuse) behavior of any item without having to mess with Item.autoReuse.
+            <br>Useful to create effects like the Feral Claws which makes melee weapons and whips auto-reusable.</br>
+            <br>Return true to enable autoswing (if not already enabled through autoReuse), return false to prevent autoswing. Returns null by default, which applies vanilla behavior.</br>
+            </summary>
+            <param name="item"> The item. </param>
+            <param name="player"> The player. </param>
+        </member>
         <member name="M:Terraria.ModLoader.GlobalItem.UseStyle(Terraria.Item,Terraria.Player,Microsoft.Xna.Framework.Rectangle)">
             <summary>
             Allows you to modify the location and rotation of any item in its use animation.
@@ -3472,6 +3496,27 @@
             </summary>
             <param name="item">The item being used</param>
             <param name="itemGroup">The item group this item is being assigned to</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.CanConsumeBait(Terraria.Player,Terraria.Item)">
+            <summary>
+            Allows you to choose if a given bait will be consumed by a given player
+            Not consuming will always take priority over forced consumption
+            </summary>
+            <param name="bait">The bait being used</param>
+            <param name="player">The player using the item</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.CanResearch(Terraria.Item)">
+            <summary>
+            Allows you to prevent an item from being researched by returning false. True is the default behaviour.
+            </summary>
+            <param name="item">The item being researched</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.OnResearched(Terraria.Item,System.Boolean)">
+            <summary>
+            Allows you to create custom behaviour when an item is accepted by the Research function 
+            </summary>
+            <param name="item">The item being researched</param>
+            <param name="fullyResearched">True if the item was completely researched, and is ready to be duplicated, false if only partially researched.</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.ModifyWeaponKnockback(Terraria.Item,Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)">
             <summary>
@@ -5305,6 +5350,12 @@
             Calls ModItem.OnConsumeMana, then all GlobalItem.OnConsumeMana hooks.
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.ItemLoader.CanResearch(Terraria.Item)">
+            <summary>
+            Hook that determines if an item will be prevented from being consumed by the research function. 
+            </summary>
+            <param name="item">The item to be consumed or not</param>
+        </member>
         <member name="M:Terraria.ModLoader.ItemLoader.ModifyWeaponDamage(Terraria.Item,Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)">
             <summary>
             Calls ModItem.HookModifyWeaponDamage, then all GlobalItem.HookModifyWeaponDamage hooks.
@@ -6704,6 +6755,11 @@
             The translations for the display name of this tooltip.
             </summary>
         </member>
+        <member name="P:Terraria.ModLoader.ModItem.SacrificeTotal">
+            <summary>
+            Easy get/set for an item's Sacrifice Total Count
+            </summary>
+        </member>
         <member name="M:Terraria.ModLoader.ModItem.Clone(Terraria.Item)">
             <summary>
             Create a copy of this ModItem. Called when an item is cloned.
@@ -6757,6 +6813,14 @@
             Returns whether or not this item can be used. By default returns true.
             </summary>
             <param name="player">The player using the item.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.CanAutoReuseItem(Terraria.Player)">
+            <summary>
+            Allows you to modify the autoswing (auto-reuse) behavior of this item without having to mess with Item.autoReuse.
+            <br>Useful to create effects like the Feral Claws which makes melee weapons and whips auto-reusable.</br>
+            <br>Return true to enable autoswing (if not already enabled through autoReuse), return false to prevent autoswing. Returns null by default, which applies vanilla behavior.</br>
+            </summary>
+            <param name="player"> The player. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.UseStyle(Terraria.Player,Microsoft.Xna.Framework.Rectangle)">
             <summary>
@@ -6852,6 +6916,23 @@
             Allows you to set an item's sorting group in Journey Mode's duplication menu. This is useful for setting custom item types that group well together, or whenever the default vanilla sorting doesn't sort the way you want it.
             </summary>
             <param name="itemGroup">The item group this item is being assigned to</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.CanConsumeBait(Terraria.Player)">
+            <summary>
+            Choose if this item will be consumed or not when used as bait. return null for vanilla behaviour.
+            </summary>
+            <param name="player">The Player that owns the bait</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.CanResearch">
+            <summary>
+            Allows you to prevent an item from being researched by returning false. True is the default behaviour.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.OnResearched(System.Boolean)">
+            <summary>
+            Allows you to create custom behaviour when an item is accepted by the Research function 
+            </summary>
+            <param name="fullyResearched">True if the item was completely researched, and is ready to be duplicated, false if only partially researched.</param>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.ModifyWeaponKnockback(Terraria.Player,Terraria.ModLoader.StatModifier@,System.Single@)">
             <summary>
@@ -8828,18 +8909,19 @@
             <param name="damage"></param>
             <param name="crit"></param>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.CatchFish(Terraria.Item,Terraria.Item,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32@)">
+        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.ModPlayer.CatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)" -->
+        <member name="M:Terraria.ModLoader.ModPlayer.ModifyCaughtFish(Terraria.Item)">
             <summary>
-            Allows you to change the item the player gains from catching a fish. The fishingRod and bait parameters refer to the said items in the player's inventory. The liquidType parameter is 0 if the player is fishing in water, 1 for lava, and 2 for honey. The poolSize parameter is the tile size of the pool the player is fishing in. The worldLayer parameter is 0 if the player is in the sky, 1 if the player is on the surface, 2 if the player is underground, 3 if the player is in the caverns, and 4 if the player is in the underworld. The questFish parameter is the item ID for the day's Angler quest. Modify the caughtType parameter to change the item the player catches. The junk parameter is whether the player catches junk; you can set this to true if you make the player catch a junk item, and is mostly used to pass information (has no effect on the game).
+            Allows you to modify the item caught by the fishing player, including stack
             </summary>
-            <param name="fishingRod"></param>
-            <param name="bait"></param>
-            <param name="power"></param>
-            <param name="liquidType"></param>
-            <param name="poolSize"></param>
-            <param name="worldLayer"></param>
-            <param name="questFish"></param>
-            <param name="caughtType"></param>
+            <param name="fish">The item (Fish) to modify</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModPlayer.CanConsumeBait(Terraria.Item)">
+            <summary>
+            Choose if this bait will be consumed or not when used for fishing. return null for vanilla behaviour.
+            Not consuming will always take priority over forced consumption
+            </summary>
+            <param name="bait">The item (bait) that would be consumed</param>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.GetFishingLevel(Terraria.Item,Terraria.Item,System.Single@)">
             <summary>
@@ -8976,6 +9058,14 @@
             Return false to prevent an item from being used. By default returns true.
             </summary>
             <param name="item">The item the player is attempting to use.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModPlayer.CanAutoReuseItem(Terraria.Item)">
+            <summary>
+            Allows you to modify the autoswing (auto-reuse) behavior of any item without having to mess with Item.autoReuse.
+            <br>Useful to create effects like the Feral Claws which makes melee weapons and whips auto-reusable.</br>
+            <br>Return true to enable autoswing (if not already enabled through autoReuse), return false to prevent autoswing. Returns null by default, which applies vanilla behavior.</br>
+            </summary>
+            <param name="item"> The item. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.ModifyNurseHeal(Terraria.NPC,System.Int32@,System.Boolean@,System.String@)">
             <summary>
@@ -10443,6 +10533,12 @@
             Y-frame must be divisible by 36
             </exception>
         </member>
+        <member name="T:Terraria.ModLoader.NPCHappiness">
+            <summary> This struct provides access to an NPC type's NPC &amp; Biome relationships. </summary>
+        </member>
+        <member name="F:Terraria.ModLoader.NPCHappiness.RelationshipToPriceMultiplier">
+            <summary> Allows you to modify the shop price multipliers associated with a (biome/npc type) relationship level. </summary>
+        </member>
         <member name="T:Terraria.ModLoader.NPCHeadLoader">
             <summary>
             This class serves as a central place from which NPC head slots are stored and NPC head textures are assigned. This can be used to obtain the corresponding slots to head textures.
@@ -10730,7 +10826,7 @@
             Returns a list of all modded prefixes of a certain category.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.PrefixLoader.Roll(Terraria.Item,System.Int32@,System.Int32,Terraria.ModLoader.PrefixCategory[])">
+        <member name="M:Terraria.ModLoader.PrefixLoader.Roll(Terraria.Item,System.Int32@,System.Int32,Terraria.Utilities.UnifiedRandom,Terraria.ModLoader.PrefixCategory[])">
             <summary>
             Performs a mod prefix roll. If the vanillaWeight wins the roll, then prefix is unchanged.
             </summary>
@@ -11003,6 +11099,9 @@
             Gets the ModWall instance with the given type. If no ModWall with the given type exists, returns null.
             </summary>
         </member>
+        <member name="P:Terraria.NPC.Happiness">
+            <summary> Provides access to (static) happiness data associated with this NPC's type. </summary>
+        </member>
         <member name="P:Terraria.NPC.BossBar">
             <summary>
             Assign a special boss bar, vanilla or modded. Not used by vanilla.
@@ -11160,6 +11259,15 @@
             <summary>
             Drops the ref'd item from the player at the position, and than turns the ref'd Item to air.
             </summary>
+        </member>
+        <member name="M:Terraria.Player.ShouldAutoReuseItem(Terraria.Item)">
+            <summary>
+            Helper method for modders to check if the player is able to autoswing (auto-reuse) an item.
+            <br>This checks item.autoReuse &amp;&amp; !player.noItems, and if Feral Claws effect applies to the item.</br>
+            <br>Additionally, any effects applied through the CanAutoReuseItem hooks.</br>
+            </summary>
+            <param name="item">The item currently in use</param>
+            <returns>true if player can autoswing using the item</returns>
         </member>
         <member name="P:Terraria.Projectile.DamageType">
             <summary>

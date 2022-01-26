@@ -32,7 +32,7 @@ namespace TRAEProject.Changes.Armor
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
 
-            if (Main.rand.Next(shadowArmorDodgeChance) == 0)
+            if (Main.rand.Next(shadowArmorDodgeChance) == 1)//if set to 0, it will give 100% dodge chance without the set bonus
             {
                 DarkDodge();
                 return false;

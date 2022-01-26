@@ -135,9 +135,8 @@ namespace TRAEProject.Changes.Weapon.Melee
                     //item.useTurn = false;
                     break;
                 case ItemID.Seedler:
-                    item.scale = 1.3f;
-                    item.useTime = 32; // up from 23
-                    item.useAnimation = 16; // down from 23
+                    item.useTime = 27;
+                    item.useAnimation = 27; 
                     break;
                 case ItemID.Keybrand:
                     item.scale = 1.7f;

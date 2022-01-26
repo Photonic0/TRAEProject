@@ -52,6 +52,7 @@ namespace TRAEProject.Changes.Projectiles
         public int ExplosionRadius = 80; // Hitbox size of the base explosion. Base value is 80.
         public float ExplosionDamage = 1f; // Makes the explosion deal Increased/decreased damage. 
         public bool DontRunThisAgain = false;
+        public bool dontExplodeOnTiles = false;
         public bool UsesDefaultExplosion = false; // Regular rocket Explosions. Helpful if you are too lazy/don't need to create a special explosion effect.
         //
 		 public override void SetStaticDefaults()
@@ -174,7 +175,7 @@ namespace TRAEProject.Changes.Projectiles
                 }
                 return;
             }
-            if (explodes && projectile.timeLeft == 3)
+            if (explodes && projectile.timeLeft < 3)
             {
                 TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
                 return;
@@ -243,7 +244,7 @@ namespace TRAEProject.Changes.Projectiles
 
     public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
-            if (explodes /*&&!Doesn'tExplodeOnTileCollide*/) // If you want a projectile that doesn't explode in contact with tiles, make the second variable.//
+            if (explodes && !dontExplodeOnTiles) // If you want a projectile that doesn't explode in contact with tiles, make the second variable.//
             {
                 TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
                 if (UsesDefaultExplosion)

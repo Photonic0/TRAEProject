@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 using System;
-using Terraria.Graphics.Shaders;
+using Terraria.Audio;
 using Terraria.ID;
 using TRAEProject.NewContent.Buffs;
 using TRAEProject.NewContent.Projectiles;
@@ -22,10 +22,13 @@ namespace TRAEProject
         public bool EndurancePot = false;
         public bool IceBarrier = false;
         public bool pocketMirror = false;
+		public bool RoyalGel = false;
+		public int RoyalGelCooldown = 0;
         public int FlatDamageReduction = 0;
 
         public override void ResetEffects()
         {
+			RoyalGel = false;
             DamageAfterDefenseAndDR = 0;
             IceBarrier = false;
    newBrain = false;
@@ -37,6 +40,8 @@ namespace TRAEProject
         }
         public override void UpdateDead()
         {
+			 RoyalGelCooldown = 0;
+			RoyalGel = false;
             DamageAfterDefenseAndDR = 0;
             IceBarrier = false; 
             newBrain = false;
@@ -48,6 +53,15 @@ namespace TRAEProject
         public override void PostUpdate()
         {
             Player.endurance = 0;
+			if (RoyalGelCooldown > 0)
+			{
+                Player.drippingSlime = true;
+				RoyalGelCooldown++;
+				if (RoyalGelCooldown > 1800)
+				{
+					RoyalGelCooldown = 0;
+				}
+			}
         }
         public override void PostUpdateEquips()
         {
@@ -91,6 +105,17 @@ namespace TRAEProject
         }   
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
+			if (RoyalGel && RoyalGelCooldown == 0)
+			{			
+		        damage -= 50;
+                SoundEngine.PlaySound(SoundID.NPCDeath1);
+                for (int i = 0; i < 25; ++i)
+                {
+                    Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
+                    Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.t_Slime, 0f, 0f, 100, default(Color), 2.5f);
+                    dust.velocity *= 3f;
+                }
+            }
             damage -= FlatDamageReduction;
             if (EndurancePot)
             {
@@ -118,7 +143,11 @@ namespace TRAEProject
         }
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            //
+            //	
+			if (RoyalGel && RoyalGelCooldown == 0)
+			{			
+		        damage -= 50;
+			}
             damage -= FlatDamageReduction;
             if (EndurancePot)
             {
@@ -157,6 +186,9 @@ namespace TRAEProject
                     return;
                 case ItemID.PocketMirror:
                     player.GetModPlayer<Defense>().pocketMirror = true;
+                    return;  
+			    case ItemID.RoyalGel:
+                    player.GetModPlayer<Defense>().RoyalGel = true;
                     return;
             }
 

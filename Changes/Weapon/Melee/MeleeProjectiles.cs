@@ -271,7 +271,7 @@ namespace TRAEProject.Changes.Weapon.Melee
             Player player = Main.player[projectile.owner];
             if(projectile.type == ProjectileID.TinyEater)
             {
-                TRAEDebuff.Apply<TRAEProject.NewContent.TRAEDebuffs.Corrupted>(target, 181, -1);
+                TRAEDebuff.Apply<TRAEProject.NewContent.TRAEDebuffs.Corrupted>(target, 181, 1);
             }
             if (player.HasBuff(BuffID.WeaponImbueNanites) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
             {

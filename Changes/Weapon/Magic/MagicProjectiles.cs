@@ -70,21 +70,13 @@ namespace TRAEProject.Changes.Weapon.Magic
                     projectile.idStaticNPCHitCooldown = 10;
                     return;
 			    case 244:
-				  case 238:
-					projectile.timeLeft = 480;
-					return;			
+				case 238:
+					projectile.timeLeft = 900;
+					return;				 
+				case ProjectileID.RainFriendly:		
 				case ProjectileID.BloodRain:
 				    projectile.penetrate = 1;
 				    projectile.aiStyle = 1;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 120f;
-                    return;
-			 case ProjectileID.RainFriendly:
-				    projectile.penetrate = 2;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.25f;
-				    projectile.aiStyle = 1;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 120f;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.Blizzard:
                     projectile.timeLeft = 150;

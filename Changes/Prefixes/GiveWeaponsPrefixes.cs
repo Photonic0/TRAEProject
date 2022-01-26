@@ -29,6 +29,7 @@ namespace TRAEProject.Changes.Prefixes
             {
 				case ItemID.VampireKnives:
 				case ItemID.ShadowFlameKnife:
+			    case ItemID.RocketLauncher:
 					canGetRangedModifiers = true;
 					break;
 				case ItemID.Mace:

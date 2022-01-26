@@ -22,8 +22,8 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
             if(item.CountsAsClass(DamageClass.Summon) && item.mana > 0) //give all minions and sentries quick resummon
             {
                 item.mana = 20;
-                item.useTime = 10;
-                item.useAnimation = 10;
+                item.useTime = 12;
+                item.useAnimation = 12;
                 item.autoReuse = true;
             }
             switch (item.type)

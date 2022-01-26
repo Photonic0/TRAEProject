@@ -17,7 +17,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
             DisplayName.SetDefault("Shadowflame Charm");
-            Tooltip.SetDefault("Minion damage is stored as Shadowflame energy, up to 2250\nWhip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored");
+            Tooltip.SetDefault("Minion damage is stored as Shadowflame energy, up to 2250\nWhip strikes spawn a friendly Shadowflame Apparition for every 600 damage stored");
         }
         public override void SetDefaults()
         {
@@ -49,9 +49,9 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
         public override void UpdateDead()
         {
             ShadowflameCharm = 0;
-            ShadowflameCharmCharge = 2250;
+            ShadowflameCharmCharge = 0;
             MoltenCharm = 0;
-            MoltenCharmCharge = 2250;
+            MoltenCharmCharge = 0;
         }
 
         public override void PostUpdate()

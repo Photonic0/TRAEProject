@@ -23,9 +23,7 @@ namespace TRAEProject.Changes.Items
         public float runeCooldown = 0;
         public float runethorns = 0f;
         public bool whenHitDodge = false;
-        public bool HolyProtection = false;
-        public bool RoyalGel = false;
-        public bool RoyalGelDOT = false; public int beedamage = 1;
+        public bool HolyProtection = false; public int beedamage = 1;
         
         public override void ResetEffects()
         {
@@ -36,8 +34,6 @@ namespace TRAEProject.Changes.Items
             runethorns = 0f;
             whenHitDodge = false;
             HolyProtection = false;
-            RoyalGel = false;
-            RoyalGelDOT = false;
         }
         public override void UpdateDead()
         {
@@ -48,14 +44,10 @@ namespace TRAEProject.Changes.Items
         newthorns = 0f;
             NewstarsOnHit = false;
             whenHitDodge = false;
-            RoyalGel = false;
-            RoyalGelDOT = false;
             beedamage = 0;
         }
         public override void PostUpdate()
         {
-            if (RoyalGelDOT)
-                Player.drippingSlime = true;
             if (runeCooldown > 0)
             {
                 --runeCooldown;
@@ -84,7 +76,11 @@ namespace TRAEProject.Changes.Items
             BaghnakhHeal = 0;
             if (damage > 1)
             {
-                if (magicCuffsCount > 0)
+				if (damage > 1000)
+				{
+					damage = 1000;
+                }
+				if (magicCuffsCount > 0)
                 {
                     int manaRestored = damage * magicCuffsCount;
                     Player.GetModPlayer<Mana>().GiveManaOverloadable(manaRestored);
@@ -135,7 +131,11 @@ namespace TRAEProject.Changes.Items
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)
-            {
+            {		
+		if (damage > 1000)
+				{
+					damage = 1000;
+                }
                 if (magicCuffsCount > 0)
                 {
                     int manaRestored = damage * magicCuffsCount;
@@ -181,69 +181,11 @@ namespace TRAEProject.Changes.Items
                 {
                     int invintime = (int)(damage - 100 * 0.6); // every point of damage past 100 adds 0.01 seconds of invincibility. 
                     Player.immuneTime += invintime;
-                }
-                if (!RoyalGelDOT && RoyalGel) // keep this at the bottom
-                {
-                    double defensevalue = 0.5;
-                    if (Main.expertMode)
-                        defensevalue += 0.25;
-                    damage -= (int)(Player.statDefense * defensevalue);
-                    damage -= (int)(damage * Player.endurance);
-                    Player.AddBuff(BuffType<DamageReferred>(), damage * 10);
-                    Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath1);
-                    for (int i = 0; i < 25; i++)
-                    {
-                        Dust.NewDust(Player.oldPosition, Player.width, Player.height, 4, 1, 1, 0, default, 0.75f);
-                    }
-                }
+                }            
+
             }
         }
-        public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
-        {
-            if (RoyalGelDOT && hitDirection == 0 && damageSource.SourceOtherIndex == 8)
-            {
-                damageSource = PlayerDeathReason.ByCustomReason(Player.name + " couldn't endure for long enough");
-                return true;
-            }
-            return true;
-        }
-        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
-        {
-            if (!RoyalGelDOT && RoyalGel) // keep this at the bottom
-            {
-                damage -= (int)Main.CalculateDamagePlayersTake(damage, Player.statDefense);
-                damage -= (int)(damage * Player.endurance);
-                Player.AddBuff(BuffType<DamageReferred>(), damage * 10);
-                damage = 1;
-                Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath1);
-                for (int i = 0; i < 25; i++)
-                {
-                    Dust.NewDust(Player.oldPosition, Player.width, Player.height, 4, 1, 1, 0, default, 0.75f);
-                }
-            }
-        }
-        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
-        {
-            if (!RoyalGelDOT && RoyalGel) // keep this at the bottom
-            {
-                damage -= (int)Main.CalculateDamagePlayersTake(damage, Player.statDefense);
-                damage -= (int)(damage * Player.endurance);
-                Player.AddBuff(BuffType<DamageReferred>(), damage * 10);
-                damage = 1;
-                Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath1);
-                for (int i = 0; i < 25; i++)
-                {
-                    Dust.NewDust(Player.oldPosition, Player.width, Player.height, 4, 1, 1, 0, default, 0.75f);
-                }
-            }
-        }
-        public override void UpdateLifeRegen()
-        {
-            if (RoyalGelDOT)
-            {
-                Player.lifeRegen -= 12;
-            }
-        }
+
         void RuneThorns(int damage) 
         {
 			runeCooldown = 300;

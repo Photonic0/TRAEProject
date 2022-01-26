@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.ItemDropRules;
+using TRAEProject.NewContent.Items.Weapons.Scorpio;
 using TRAEProject.NewContent.Items.Materials;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 
@@ -154,8 +155,7 @@ namespace TRAEProject.Changes.NPCs
                     }
                     if (Drop1 == 2)
                     {
-              Item.NewItem(npc.getRect(), ItemID.GrenadeLauncher, 1);			
-			 Item.NewItem(npc.getRect(), ItemID.RocketI, 100); 
+              Item.NewItem(npc.getRect(), ItemType<Scorpio>(), 1);			
                         Item.NewItem(npc.getRect(), ItemID.VenusMagnum, 1);
                     }
                     if (Drop1 == 3)

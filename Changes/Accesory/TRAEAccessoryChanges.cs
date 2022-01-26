@@ -86,7 +86,7 @@ namespace TRAEProject.Changes.Accesory
                     }
                     break;
                 case ItemID.RoyalGel:
-                    player.GetModPlayer<OnHitItems>().RoyalGel = true;
+                    player.GetModPlayer<Defense>().RoyalGel = true;
                     break;
 
                 case ItemID.MoltenCharm:
@@ -687,7 +687,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Minion damage is stored as Fire energy, up to 2250\nWhip strikes summon a friendly Molten Apparition for every 750 damage stored";
+                            line.text = "Minion damage is stored as Fire energy, up to 2250\nWhip strikes summon a friendly Molten Apparition for every 600 damage stored";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -700,7 +700,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += "\nStores damage dealt, dealing it slowly over time";
+                            line.text += "\nReduces damage by 50 every 30 seconds";
                         }
                     }
                     break;

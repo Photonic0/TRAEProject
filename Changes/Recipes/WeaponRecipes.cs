@@ -28,7 +28,38 @@ namespace TRAEProject.Changes.Recipes
             Recipe PulseBow = mod.CreateRecipe(ItemID.PulseBow);
             PulseBow.AddIngredient(ItemID.ShroomiteBar, 20);
             PulseBow.AddTile(TileID.Autohammer);
-            PulseBow.Register();
+            PulseBow.Register(); 
+            Recipe Rocket = mod.CreateRecipe(ItemID.RocketI, 50);
+            Rocket.AddIngredient(ItemID.IronBar, 1);
+            Rocket.AddIngredient(ItemID.ExplosivePowder, 2);
+            Rocket.AddTile(TileID.Anvils);
+            Rocket.Register();
+            Recipe DestructiveRocket = mod.CreateRecipe(ItemID.RocketII, 100);
+            DestructiveRocket.AddIngredient(ItemID.RocketI, 100);
+            DestructiveRocket.AddIngredient(ItemID.ExplosivePowder, 1);
+            DestructiveRocket.AddTile(TileID.Anvils);
+            DestructiveRocket.Register();
+            Recipe SuperRocket = mod.CreateRecipe(ItemID.RocketIII, 100);
+            SuperRocket.AddIngredient(ItemID.RocketI, 100);
+            SuperRocket.AddIngredient(ItemID.SoulofMight, 1);
+            SuperRocket.AddTile(TileID.Anvils);
+            SuperRocket.Register();
+            Recipe DirectRocket = mod.CreateRecipe(ItemID.RocketIV, 100);
+            DirectRocket.AddIngredient(ItemID.RocketI, 100);
+            DirectRocket.AddIngredient(ItemID.Cog, 1);
+            DirectRocket.AddTile(TileID.Anvils);
+            DirectRocket.Register(); 
+            Recipe ClusterRocket = mod.CreateRecipe(ItemID.ClusterRocketI, 100);
+            ClusterRocket.AddIngredient(ItemID.RocketI, 100);
+            ClusterRocket.AddIngredient(ItemID.ShroomiteBar, 1);
+            ClusterRocket.AddTile(TileID.Autohammer);
+            ClusterRocket.Register(); 
+            Recipe HeavyRocket = mod.CreateRecipe(ItemID.ClusterRocketII, 100);
+            HeavyRocket.AddIngredient(ItemID.RocketI, 100);
+            HeavyRocket.AddIngredient(ItemID.Nanites, 1);
+            HeavyRocket.AddTile(TileID.Autohammer);
+            HeavyRocket.Register();
+
         }
         public static void Modify(Recipe recipe)
         {
@@ -54,7 +85,6 @@ namespace TRAEProject.Changes.Recipes
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.MusketBall, 100);
             }
-
             if (recipe.HasResult(ItemID.MoonlordBullet))
             {
                 recipe.ReplaceResult(ItemID.MoonlordBullet, 500);
@@ -89,6 +119,18 @@ namespace TRAEProject.Changes.Recipes
                 recipe.AddIngredient(ItemID.WoodenArrow, 25);
                 recipe.AddIngredient(ItemID.FallenStar, 1);
                 recipe.ReplaceResult(ItemID.JestersArrow, 25);
+            }
+            if (recipe.HasResult(ItemID.HellfireArrow))
+            {
+                recipe.TryGetIngredient(ItemID.HellstoneBar, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.ExplosivePowder, 1);
+            }
+            if (recipe.HasResult(ItemID.MiniNukeII))
+            {
+                recipe.TryGetIngredient(ItemID.RocketIV, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.RocketII, 100);
             }
             if (recipe.HasResult(ItemID.TrueExcalibur))
             {
