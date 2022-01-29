@@ -112,7 +112,7 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
 					projectile.penetrate = 2;
-					projectile.timeLeft = 30;
+					projectile.timeLeft = 30:
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.25f;

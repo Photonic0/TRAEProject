@@ -26,7 +26,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
             Item.DamageType = DamageClass.Ranged;
             Item.useAmmo = AmmoID.Rocket;
             Item.shoot = ProjectileID.RocketI;
-            Item.knockBack = 4f;
+            Item.knockBack = 8f;
             Item.shootSpeed = 7f;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -62,7 +62,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
             Item.DamageType = DamageClass.Ranged;
             Item.useAmmo = AmmoID.Rocket;
             Item.shoot = ProjectileID.RocketI;
-            Item.knockBack = 4f;
+            Item.knockBack = 8f;
             Item.shootSpeed = 7f;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;

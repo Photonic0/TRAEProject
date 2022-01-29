@@ -131,6 +131,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.CloneDefaults(ProjectileType<Mine>());
             AIType = ProjectileType<Mine>();
             Projectile.penetrate = 3;
+            Projectile.extraUpdates = 1;
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 1.5f;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;

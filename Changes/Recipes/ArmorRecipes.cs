@@ -25,7 +25,7 @@ namespace TRAEProject.Changes.Recipes
                 recipe.TryGetIngredient(ItemID.AncientCloth, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.AncientCloth, 2);
-                recipe.AddRecipeGroup("Cobalt", 10);
+                recipe.AddRecipeGroup("Adamantite", 10);
                 recipe.RemoveTile(TileID.Loom);
                 recipe.AddTile(TileID.MythrilAnvil);
             }
@@ -34,7 +34,7 @@ namespace TRAEProject.Changes.Recipes
                 recipe.TryGetIngredient(ItemID.AncientCloth, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.AncientCloth, 2);
-                recipe.AddRecipeGroup("Cobalt", 20);
+                recipe.AddRecipeGroup("Adamantite", 20);
                 recipe.RemoveTile(TileID.Loom);
                 recipe.AddTile(TileID.MythrilAnvil);
             }
@@ -43,7 +43,7 @@ namespace TRAEProject.Changes.Recipes
                 recipe.TryGetIngredient(ItemID.AncientCloth, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.AncientCloth, 2);
-                recipe.AddRecipeGroup("Cobalt", 15);
+                recipe.AddRecipeGroup("Adamantite", 15);
                 recipe.RemoveTile(TileID.Loom);
                 recipe.AddTile(TileID.MythrilAnvil);
             }

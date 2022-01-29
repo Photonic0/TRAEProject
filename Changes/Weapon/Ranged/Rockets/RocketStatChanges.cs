@@ -64,8 +64,8 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     item.useAnimation = 33;
                     break;
                 case ItemID.RocketLauncher:
-                    item.damage = 90; // up from 45
-                    break;
+                    item.damage = 120; // up from 45
+					break;
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

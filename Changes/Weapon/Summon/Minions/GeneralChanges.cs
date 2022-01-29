@@ -243,7 +243,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
             {
                 projectile.ai[0] = projectile.timeLeft < (3600 - (16 * 5000) / 10) ? 45 : 0;
             }
-            return base.PreAI(projectile);
+            return true;
         }
         public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {

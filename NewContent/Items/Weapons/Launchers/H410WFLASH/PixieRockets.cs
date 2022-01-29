@@ -17,7 +17,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
         public bool PixieExplosion = false;
         public void PixieRocketAI(Projectile projectile)
         {     
---projectile.timeLeft; 		
 		projectile.rotation = (float)Math.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
             if (projectile.ai[0] < 25)
             {
@@ -52,7 +51,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
                 }
             }
 			/// Dusts
-                if (Math.Abs(projectile.velocity.X) >= 8f || Math.Abs(projectile.velocity.Y) >= 8f)
+                if ((Math.Abs(projectile.velocity.X) >= 8f || Math.Abs(projectile.velocity.Y) >= 8f) && Main.rand.Next(2) == 0)
                 {
 
                         float positionX = 0f;
@@ -70,7 +69,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
                         Vector2 position72 = new Vector2(projectile.position.X + 3f + positionX, projectile.position.Y + 3f + positionY) - projectile.velocity * 0.5f;
                         int width68 = projectile.width - 8;
                         int height68 = projectile.height - 8;
-                        Dust otherdust = Dust.NewDustDirect(position72, width68, height68, 31, 0f, 0f, 100, default, 0.5f);
+                        Dust otherdust = Dust.NewDustDirect(position72, width68, height68, DustID.Pixie, 0f, 0f, 100, default, 0.5f);
                         otherdust.fadeIn = 1f + Main.rand.Next(5) * 0.1f;
                         otherdust.velocity *= 0.05f;
                     
@@ -84,7 +83,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
         {
                 SoundEngine.PlaySound(SoundID.Item14, projectile.position);
                 float num846 = 3f;
-                for (int num847 = 0; num847 < 25; num847++)
+                for (int num847 = 0; num847 < 30; num847++)
                 {
                     Dust dust53 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
                     dust53.velocity = (dust53.position - projectile.Center).SafeNormalize(Vector2.Zero);
@@ -96,10 +95,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
                     {
                         dust53.scale = 0.5f;
                         dust53.fadeIn = 1f + (float)Main.rand.Next(10) * 0.1f;
-                        dust53.color = Color.Black * 0.8f;
+                        dust53.color = Color.Yellow * 0.8f;
                     }
                 }
-                for (int num848 = 0; num848 < 25; num848++)
+                for (int num848 = 0; num848 < 20; num848++)
                 {
                     Dust dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 6, 0f, 0f, 100);
                 dust54.noGravity = true;
@@ -108,7 +107,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
                     Dust dust = dust54;
                     dust.velocity *= 5.5f + (float)Main.rand.Next(61) * 0.1f;
                     dust54.velocity.Y -= num846 * 0.5f;
-                    dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 6, 0f, 0f, 100);
+                    dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Pixie, 0f, 0f, 100);
                     dust54.velocity = (dust54.position - projectile.Center).SafeNormalize(Vector2.Zero);
                     dust54.velocity.Y -= num846 * 0.25f;
                     dust = dust54;
@@ -220,6 +219,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
         {
             Projectile.CloneDefaults(ProjectileType<PixieRocket>());
             AIType = ProjectileType<PixieRocket>();
+            Projectile.extraUpdates = 1;
             Projectile.penetrate = 3;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 1.5f;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
@@ -289,30 +289,19 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
         {
             if (Projectile.owner == Main.myPlayer)
             {
-                int Cluster = ProjectileType<ClusterPixies>(); // snowman cannon's projectile, doesn't damage the player
+                int Cluster = 862; // snowman cannon's projectile, doesn't damage the player
                 float num852 = ((float)Math.PI * 2f);
                 for (float c = 0f; c < 1f; c += 355f / (678f * (float)Math.PI))
                 {
                     float f2 = num852 + c * ((float)Math.PI * 2f);
                     Vector2 velocity = f2.ToRotationVector2() * (4f + Main.rand.NextFloat() * 2f);
                     velocity += Vector2.UnitY * -1f;
-                    int num854 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, velocity, Cluster, Projectile.damage / 3, 0f, Projectile.owner);
+                    int num854 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, velocity, Cluster, Projectile.damage / 4, 0f, Projectile.owner);
                     Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
                     projectile2.timeLeft = 30;
                 }
             }
-        }
-    }
-    public class ClusterPixies : ModProjectile
-    {
-        public override void SetDefaults()
-        {
-            Projectile.CloneDefaults(862);
-            AIType = 862;
-            //Projectile.penetrate = 4;
-            //Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            //Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
         }
     }
     public class HeavyPixie: ModProjectile

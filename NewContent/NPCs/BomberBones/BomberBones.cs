@@ -699,11 +699,9 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
             TRAEMethods.Explode(Projectile, 80, Projectile.damage);
             TRAEMethods.DefaultExplosion(Projectile);
         }
-		public int boom = 0;
         public override void AI()
         {
-			++boom;
-            if (boom > 90)
+            if (Projectile.timeLeft == 5)
             {
                 TRAEMethods.Explode(Projectile, 80, 1);
                 TRAEMethods.DefaultExplosion(Projectile); 

@@ -22,7 +22,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             {
 				projectile.timeLeft = 120;
             }
-				base.SetDefaults(projectile);
+				//base.SetDefaults(projectile);
         }
         public override void Kill(Projectile projectile, int timeLeft)
         {

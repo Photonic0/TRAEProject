@@ -50,7 +50,10 @@ namespace TRAEProject.Changes.Weapon.Summon
         public override bool InstancePerEntity => true;
         public override void SetDefaults(Projectile projectile)
         {
-            projectile.timeLeft = Projectile.SentryLifeTime * 60;
+            if (projectile.sentry)
+            {
+                projectile.timeLeft = Projectile.SentryLifeTime * 60;
+            }
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {

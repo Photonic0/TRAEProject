@@ -38,6 +38,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
+		public override Vector2? HoldoutOffset() {
+			return new Vector2(-16f, -5f);
+		}
     }
     class TitaniumBazooka : ModItem
     {
@@ -59,12 +62,15 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
             Item.DamageType = DamageClass.Ranged;
             Item.useAmmo = AmmoID.Rocket;
             Item.shoot = ProjectileID.RocketI;
-            Item.knockBack = 4f;
+            Item.knockBack = 8f;
             Item.shootSpeed = 7f;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item11;
         }
+	    public override Vector2? HoldoutOffset() {
+			return new Vector2(-16f, -5f);
+		}
         public override bool Shoot(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             int numberProjectiles = 3 + Main.rand.Next(2); // 3 or 4 shots

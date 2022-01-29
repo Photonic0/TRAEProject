@@ -77,7 +77,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                 //Main.NewText(projectile.ai[0] + ", " + projectile.ai[1] + ", " + projectile.localAI[0] + ", " + projectile.localAI[1]);
                 return false;
             }
-            return base.PreAI(projectile);
+            return true;
         }
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
@@ -132,7 +132,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                 projectile.localAI[0] = 1;
                 return false;
             }
-            return base.OnTileCollide(projectile, oldVelocity);
+            return true;
         }
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {

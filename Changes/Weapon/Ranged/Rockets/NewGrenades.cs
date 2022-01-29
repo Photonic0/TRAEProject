@@ -47,8 +47,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.timeLeft = 120;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BouncesOffTiles = true;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontExplodeOnTiles = true;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().UsesDefaultExplosion = true;
+            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontExplodeOnTiles = true;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
         }
 
@@ -99,7 +99,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         {
             Projectile.CloneDefaults(ProjectileType<Grenade>());
             AIType = ProjectileType<Grenade>(); 
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 3; Projectile.extraUpdates = 1;
             Projectile.timeLeft = 120;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 1.5f;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;

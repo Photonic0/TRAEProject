@@ -36,7 +36,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Scorpio
         {
             float numberProjectiles = 3; 
             float rotation = MathHelper.ToRadians(10);
-            position += Vector2.Normalize(new Vector2(velocity.X, velocity.Y)) * 15f;
+            position += Vector2.Normalize(new Vector2(velocity.X, velocity.Y)) * 10f;
             for (int i = 0; i < numberProjectiles; i++)
             {
                 Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * 2f; // Watch out for dividing by 0 if there is only 1 projectile.

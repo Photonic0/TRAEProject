@@ -74,12 +74,12 @@ namespace TRAEProject
                 ItemID.YellowHorseshoeBalloon
             });
             RecipeGroup.RegisterGroup("SandstormJump", Jumpgroup3);
-            RecipeGroup Cobalt = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Adamantite Bar", new int[]
+            RecipeGroup Adamantite = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Adamantite Bar", new int[]
             {
                 ItemID.AdamantiteBar,
                 ItemID.TitaniumBar
             });
-            RecipeGroup.RegisterGroup("Cobalt", Cobalt); // RENAME THIS TO ADAMANTITE
+            RecipeGroup.RegisterGroup("Adamantite", Adamantite); // RENAME THIS TO ADAMANTITE
             RecipeGroup Shadowscales = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Evil Tissue", new int[]
             {
                 ItemID.ShadowScale,

@@ -7,10 +7,10 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.NPCs.Banners;
+using TRAEProject.NewContent.NPCs.Banners;
 using static Terraria.ModLoader.ModContent;
 
-namespace TRAEProject.NPCs.BomberBones
+namespace TRAEProject.NewContent.NPCs.BomberBones
 {
     public class BomberBones : ModNPC
     {
@@ -193,7 +193,8 @@ namespace TRAEProject.NPCs.BomberBones
 				}
 				if (NPC.ai[1] == (float)num144)
 				{
-					float num145 = 4f;
+					NPC.velocity.X = 0;
+					float num145 = 7f;
 
 					Vector2 vector34 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
 
@@ -689,8 +690,8 @@ namespace TRAEProject.NPCs.BomberBones
             Projectile.CloneDefaults(ProjectileID.GrenadeI);
             AIType = ProjectileID.GrenadeI;
             Projectile.friendly = false;
-            Projectile.hostile = false;
-            Projectile.timeLeft = 90;
+            Projectile.hostile = true;
+            Projectile.timeLeft = 180;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -698,11 +699,13 @@ namespace TRAEProject.NPCs.BomberBones
             TRAEMethods.Explode(Projectile, 80, Projectile.damage);
             TRAEMethods.DefaultExplosion(Projectile);
         }
+		public int boom = 0;
         public override void AI()
         {
-            if (Projectile.timeLeft == 5)
+			++boom;
+            if (boom > 90)
             {
-                TRAEMethods.Explode(Projectile, 80, Projectile.damage);
+                TRAEMethods.Explode(Projectile, 80, 1);
                 TRAEMethods.DefaultExplosion(Projectile); 
             }
         }

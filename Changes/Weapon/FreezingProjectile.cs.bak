@@ -1,7 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Weapon.Ranged.Rockets;
 using TRAEProject.NewContent.Items.Summoner.AbsoluteZero;
 using TRAEProject.NewContent.Items.FlamethrowerAmmo;
 using static Terraria.ModLoader.ModContent;
@@ -17,10 +16,6 @@ namespace TRAEProject.Changes.Weapon
             if (target.HasBuff(BuffType<AbsoluteZeroTag>()) && crit == true && projectile.minion)
             {
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, damage / 4);
-            }
-            if (projectile.GetGlobalProjectile<CryoRockets>().IceRocket && projectile.GetGlobalProjectile<NewRockets>().HeavyRocket == true)
-            {
-                target.GetGlobalNPC<Freeze>().FreezeMe(target, 240);
             }
             if (projectile.GetGlobalProjectile<CryoRockets>().IceRocket)
             {

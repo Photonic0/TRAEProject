@@ -110,7 +110,7 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
         public override void OnKill()
         {
             Vector2 zero = new Vector2(0, 0);
-            Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
+            Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center, zero, ProjectileType<Boom>(), 30, 0);
         }
     }
     public class LittleBoomxie : ModNPC
@@ -147,7 +147,7 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             Vector2 zero = new Vector2(0, 0);
             if (!Main.expertMode && !Main.masterMode)
             {
-                Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
+                Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center, zero, ProjectileType<Boom>(), 30, 0);
             }
             else
             {
@@ -169,10 +169,22 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             if (!runonce)
             {
                 runonce = true;
-                TRAEMethods.Explode(Projectile, 100, 1);
+                TRAEMethods.Explode(Projectile, 180, 1);
                 TRAEMethods.DefaultExplosion(Projectile);
             }
         }
+        public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
+        {
+            // for some reason it deals massive damage unless i do this. Bandaid fix, i know...
+            damage = 50;
+            if (Main.expertMode)
+            {
+                damage = 100;
+            }
+            if (Main.masterMode)
+            {
+                damage = 150;
+            }
+        }   
     }
-
 }

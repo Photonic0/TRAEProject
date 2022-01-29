@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Summoner.Whip;
@@ -178,6 +179,10 @@ namespace TRAEProject.Changes.Projectiles
             if (explodes && projectile.timeLeft < 3)
             {
                 TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
+                if (UsesDefaultExplosion)
+                {
+                    TRAEMethods.DefaultExplosion(projectile);
+                }
                 return;
             }
             switch (projectile.type)
