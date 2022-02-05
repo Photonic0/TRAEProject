@@ -211,6 +211,7 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.knockBack = 6.66f;
                     break;       
                 case ItemID.NettleBurst:
+                    item.damage = 50; // up from 35
                     item.mana = 24; // up from 12
                     break;
 				case ItemID.HeatRay:
@@ -221,15 +222,18 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.mana = 25; // up from 18
                     break;
 				 case ItemID.InfernoFork:
-				    item.damage = 95; // Vanilla value: 60
+				    item.damage = 90; // Vanilla value: 60
 					item.mana = 40; // up from 25
                     item.autoReuse = true;
                     item.useTime = 30; // vanilla value: 30
                     item.useAnimation = 30; // vanilla value: 30
                     break;
 				case ItemID.ShadowbeamStaff:
-                    item.damage = 64;
+                    item.damage = 80; // up from 60
                     item.mana = 14;
+                    break;
+                case ItemID.SpectreStaff:
+                    item.damage = 72; // up from 65
                     break;
                 case ItemID.ApprenticeStaffT3:
                     item.mana = 30; // up from 14
@@ -456,6 +460,15 @@ namespace TRAEProject.Changes.Weapon.Magic
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
                             line.text = "Shoots a double high pressure jet of water";
+                        }
+                    }
+                    return;
+                case ItemID.InfernoFork:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "Deals 50% more damage on a direct hit";
                         }
                     }
                     return;

@@ -52,6 +52,10 @@ namespace TRAEProject.Changes.Accesory
                     {
                         line.text = "";
                     }
+                    if (line.mod == "Terraria" && line.Name == "Tooltip2")
+                    {
+                        line.text = "";
+                    }
                 }
                 if (item.type == ItemID.FireGauntlet)
                 {

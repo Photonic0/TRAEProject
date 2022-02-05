@@ -26,7 +26,6 @@ namespace TRAEProject.Changes.Armor
                     player.maxTurrets += 1;
                     break;
                 case ItemID.AncientArmorPants:
-                    player.canJumpAgain_Sandstorm = true;
                     player.moveSpeed += 0.1f;
                     player.GetDamage<SummonDamageClass>() += 0.03f;
                     break;
@@ -104,7 +103,6 @@ namespace TRAEProject.Changes.Armor
                     break;
                 case ItemID.SquireAltHead:
                     player.lifeRegen += 4;
-                    ++player.maxMinions;
                     break;
                 case ItemID.SquireAltShirt:
                     player.lifeRegen -= 4;

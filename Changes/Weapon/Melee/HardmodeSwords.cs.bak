@@ -69,7 +69,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.Excalibur:
                 case ItemID.TrueExcalibur:
                     item.damage = 70;
-                    item.useTime = 32;
+                    item.useTime = 16;
                     item.useAnimation = 16;
                     item.scale = 1.8f;
                     break;
@@ -82,7 +82,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.shoot = ProjectileID.None;
                     break;
                 case ItemID.ChlorophyteClaymore:
-                    item.damage = 120;
+                    item.damage = 150;
                     item.useTime = 50;
                     item.useAnimation = 40;
                     item.scale = 2.4f;
@@ -90,7 +90,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.useTurn = false;
                     break;
                 case ItemID.BeamSword: // REVISIT
-                    item.useTime = 45;
+                    item.useTime = 60;
                     item.useAnimation = 15;
                     item.autoReuse = true;
                     item.useTurn = false;
