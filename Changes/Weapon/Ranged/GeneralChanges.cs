@@ -99,7 +99,6 @@ namespace TRAEProject.Changes.Weapons
                     item.autoReuse = true;
                     return;
                 case ItemID.TheUndertaker:
-                case ItemID.SniperRifle:
                     item.autoReuse = true;
                     return;
                 case ItemID.JackOLanternLauncher:
@@ -108,10 +107,15 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.CandyCornRifle:
                     item.damage = 60; // up from 44
                     return;
+                case ItemID.SniperRifle:
+                    item.damage = 200;
+                    item.crit = 50;
+                    item.autoReuse = true;
+                    return;
                 case ItemID.TacticalShotgun:
-                    item.damage = 34; // up from 29
-                    item.useTime = 32; // down from 34
-                    item.useAnimation = 32; // down from 34
+                    item.damage = 38; // up from 29
+                    item.useTime = 29; // down from 34
+                    item.useAnimation = 29; // down from 34
                     return;
                 case ItemID.VenusMagnum:
                     item.damage = 100; // up from 50
