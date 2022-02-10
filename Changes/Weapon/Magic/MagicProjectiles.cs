@@ -30,7 +30,15 @@ namespace TRAEProject.Changes.Weapon.Magic
                 case ProjectileID.ShadowBeamFriendly:
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().SmartBouncesOffEnemies = true;
                     projectile.usesLocalNPCImmunity = true;
+                    projectile.penetrate = 7;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
+                    return;
+                case ProjectileID.InfernoFriendlyBolt:
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 1.5f;
+                    return;
+                case ProjectileID.MagnetSphereBall:
+                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BouncesOffTiles = true;
+                    projectile.timeLeft = 25 * 60; // up from 11 seconds
                     return;
                 case ProjectileID.ManaCloakStar:
                     projectile.penetrate = 2;

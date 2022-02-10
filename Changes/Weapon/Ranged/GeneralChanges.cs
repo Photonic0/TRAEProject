@@ -115,8 +115,8 @@ namespace TRAEProject.Changes.Weapons
                     return;
                 case ItemID.VenusMagnum:
                     item.damage = 100; // up from 50
-                    item.useTime = 24; // up from 8
-                    item.useAnimation = 24; // up from 8
+                    item.useTime = 21; // up from 8
+                    item.useAnimation = 21; // up from 8
                     item.autoReuse = true; 
                     return;
                 case ItemID.StakeLauncher:

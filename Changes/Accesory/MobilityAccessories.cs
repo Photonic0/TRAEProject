@@ -72,7 +72,6 @@ namespace TRAEProject.Changes.Accesory
                     return;
                 case ItemID.TerrasparkBoots:
                     player.iceSkate = false;
-                    player.lavaMax -= 42;
                     player.fireWalk = false;
                     player.waterWalk = false;
                     player.accRunSpeed = 6f; 
@@ -242,7 +241,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.text = "";
+                            line.text = "Grants temporary immunity to lava";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip3")
                         {
