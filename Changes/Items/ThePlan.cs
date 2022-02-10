@@ -48,7 +48,7 @@ namespace TRAEProject.Changes.Items
                     {
                         if (WorldGen.InWorld(i, j))
                         {
-                            if ((Main.tile[i, j].type == TileID.Containers || Main.tile[i, j].type == TileID.Containers2))
+                            if ((Main.tile[i, j].TileType == TileID.Containers || Main.tile[i, j].TileType == TileID.Containers2))
                             {
                                 Main.Map.Update(i, j, 255);
                             }

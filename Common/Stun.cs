@@ -18,7 +18,7 @@ namespace TRAEProject.Common
 
         public override bool InstancePerEntity => true;
         public float stunResist = 0f;
-		 public bool stunImmune = false;
+		public bool stunImmune = false;
 		public override void SetDefaults(NPC npc)
         {
 			stunResist = 1f - (float)npc.lifeMax / ((float)npc.lifeMax + 2000f);

@@ -35,7 +35,6 @@ namespace TRAEProject.NewContent.TRAEDebuffs
         int TinyEaterCount = 2;
         public override void Update(NPC npc)
         {
-            npc.GetGlobalNPC<TRAENPCDebuffEffects>().Corrupted = true;
             ++ScourgeTime;
             if (ScourgeTime >= TinyEaterDelay)
             {

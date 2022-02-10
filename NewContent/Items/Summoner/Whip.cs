@@ -13,6 +13,7 @@ using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Armor;
+using TRAEProject.Common;
 
 namespace TRAEProject.NewContent.Items.Summoner.Whip
 {
@@ -53,16 +54,12 @@ namespace TRAEProject.NewContent.Items.Summoner.Whip
         {
 			Projectile.damage = (int)(Projectile.damage * (1f - fallOff));
 			Player player = Main.player[Projectile.owner];
-			if (player.GetModPlayer<SetBonuses>().PirateSet)
-			{
-				target.AddBuff(BuffType<PirateTag>(), 240);
-			}
 			if (tag != -1)
 			{
 				target.AddBuff(tag, 240);
 			}
 			       if (player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge > 600)
-                {
+                   {
                     for (int i = 0; i < player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge / 500; ++i)
                     {
                         int direction = Main.rand.NextFromList(-1, 1);

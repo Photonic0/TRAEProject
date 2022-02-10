@@ -1017,7 +1017,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 				num5++;
 				int num6 = Main.rand.Next(point2.X - num, point2.X + num + 1);
 				int num7 = Main.rand.Next(point2.Y - num, point2.Y + num + 1);
-				if ((num7 < point2.Y - num3 || num7 > point2.Y + num3 || num6 < point2.X - num3 || num6 > point2.X + num3) && (num7 < point.Y - num2 || num7 > point.Y + num2 || num6 < point.X - num2 || num6 > point.X + num2) && !Main.tile[num6, num7].IsActiveUnactuated)
+				if ((num7 < point2.Y - num3 || num7 > point2.Y + num3 || num6 < point2.X - num3 || num6 > point2.X + num3) && (num7 < point.Y - num2 || num7 > point.Y + num2 || num6 < point.X - num2 || num6 > point.X + num2) && !Main.tile[num6, num7].HasUnactuatedTile)
 				{
 					bool flag2 = true;
 					if (flag2 && Main.tile[num6, num7].LiquidType == LiquidID.Lava)
@@ -1056,7 +1056,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 							time += extraSnipeTime;
 							Vector2 aimLoc = npc.Center + TRAEMethods.PolarVector(snipeVelocity, aim) * time;
 							float distance = snipeVelocity * time;
-							Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/BloodDraw").Value;
+							Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/Boss/Dreadnautilus/BloodDraw").Value;
 							Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
 							spriteBatch.Draw(drawBlood, npc.Center - Main.screenPosition + TRAEMethods.PolarVector(distance / 2f, aim), null, color, aim, drawBlood.Size() * .5f, new Vector2(distance / 4f, 1f), SpriteEffects.None, 0f);
 							float subLength = 96;
@@ -1074,7 +1074,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 				if ((int)npc.ai[0] == 8)
                 {
 					float distance = BloodBeam.beamLength;
-					Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/BloodDraw").Value;
+					Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/Boss/Dreadnautilus/BloodDraw").Value;
 					Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
 					npc.BloodNautilus_GetMouthPositionAndRotation(out var mouthPosition3, out var mouthDirection3);
 					spriteBatch.Draw(drawBlood, mouthPosition3 - Main.screenPosition + TRAEMethods.PolarVector(distance / 2f, mouthDirection3.ToRotation()), null, color, mouthDirection3.ToRotation(), drawBlood.Size() * .5f, new Vector2(distance / 4f, 2f), SpriteEffects.None, 0f);
@@ -1096,8 +1096,8 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 				Texture2D tentacles = TextureAssets.Extra[129].Value;
 				if (phase > 1)
 				{
-					dreadTexture = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/Phase2").Value;
-					tentacles = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/Phase2Tentacles").Value;
+					dreadTexture = Request<Texture2D>("TRAEProject/Changes/Boss/Dreadnautilus/Phase2").Value;
+					tentacles = Request<Texture2D>("TRAEProject/Changes/Boss/Dreadnautilus/Phase2Tentacles").Value;
 				}
 				Vector2 halfSize = new Vector2(TextureAssets.Npc[npc.type].Width() / 2, TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type] / 2);
 				Vector2 vector35 = npc.Center - screenPos;

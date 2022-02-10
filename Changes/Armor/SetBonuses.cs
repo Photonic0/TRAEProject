@@ -9,7 +9,9 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Common;
 using TRAEProject.NewContent.Buffs;
+using TRAEProject.NewContent.TRAEDebuffs;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Armor
@@ -18,17 +20,37 @@ namespace TRAEProject.Changes.Armor
     {
         public int shadowArmorDodgeChance = 0;
         public bool PirateSet = false;
+        public bool HolyProtection = false;
+
+        public bool whenHitDodge = false;
         public override void ResetEffects()
         {
             PirateSet = false;
             shadowArmorDodgeChance = 0;
+            HolyProtection = false;
+            whenHitDodge = false;
         }
         public override void UpdateDead()
         {
             PirateSet = false;
             shadowArmorDodgeChance = 0;
+            HolyProtection = false;
+            whenHitDodge = false;
         }
-
+        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        {
+            if (damage > 1)
+            {
+                Shadowdodge();
+            }
+        }
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+            if (damage > 1)
+            {
+                Shadowdodge();
+            }
+        }
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
 
@@ -43,7 +65,7 @@ namespace TRAEProject.Changes.Armor
         {
             if (PirateSet && (ProjectileID.Sets.IsAWhip[proj.type]))
             {
-                target.AddBuff(BuffType<PirateTag>(), 240);
+                TRAEDebuff.Apply<PirateTag>(target, 240, -1);
             }
         }
         void DarkDodge()
@@ -72,7 +94,19 @@ namespace TRAEProject.Changes.Armor
             }
             if (Player.whoAmI == Main.myPlayer)
             {
-                NetMessage.SendData(62, -1, -1, null, Player.whoAmI, 1f);
+                NetMessage.SendData(MessageID.Dodge, -1, -1, null, Player.whoAmI, 1f);
+            }
+        }
+
+        void Shadowdodge()
+        {
+            if (HolyProtection && !whenHitDodge)
+            {
+                if (Player.shadowDodgeTimer == 0)
+                {
+                    Player.shadowDodgeTimer = 1500;
+                    Player.AddBuff(BuffID.ShadowDodge, 1500, false);
+                }
             }
         }
     }

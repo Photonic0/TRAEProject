@@ -131,13 +131,6 @@ namespace TRAEProject.Changes
         
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            if (player.GetModPlayer<TRAEPlayer>().MagicDagger)
-            {
-                if (Main.rand.Next(2) == 0)
-                {
-                    player.GetModPlayer<TRAEPlayer>().MagicDaggerSpawn(player, damage, knockBack);
-                }
-            }
             if (player.inferno)
             {
                 Lighting.AddLight((int)(target.Center.X / 16f), (int)(target.Center.Y / 16f), 0.65f, 0.4f, 0.1f);

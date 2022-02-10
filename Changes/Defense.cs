@@ -22,17 +22,17 @@ namespace TRAEProject
         public bool EndurancePot = false;
         public bool IceBarrier = false;
         public bool pocketMirror = false;
-		public bool RoyalGel = false;
-		public int RoyalGelCooldown = 0;
+        public bool RoyalGel = false;
+        public int RoyalGelCooldown = 0;
         public int FlatDamageReduction = 0;
 
         public override void ResetEffects()
         {
-			RoyalGel = false;
+            RoyalGel = false;
             DamageAfterDefenseAndDR = 0;
             IceBarrier = false;
-   newBrain = false;
-        EndurancePot = false;
+            newBrain = false;
+            EndurancePot = false;
             WormScarf = false;
             pocketMirror = false;
             FlatDamageReduction = 0;
@@ -40,10 +40,10 @@ namespace TRAEProject
         }
         public override void UpdateDead()
         {
-			 RoyalGelCooldown = 0;
-			RoyalGel = false;
+            RoyalGelCooldown = 0;
+            RoyalGel = false;
             DamageAfterDefenseAndDR = 0;
-            IceBarrier = false; 
+            IceBarrier = false;
             newBrain = false;
             EndurancePot = false;
             WormScarf = false;
@@ -53,15 +53,15 @@ namespace TRAEProject
         public override void PostUpdate()
         {
             Player.endurance = 0;
-			if (RoyalGelCooldown > 0)
-			{
+            if (RoyalGelCooldown > 0)
+            {
                 Player.drippingSlime = true;
-				RoyalGelCooldown++;
-				if (RoyalGelCooldown > 1800)
-				{
-					RoyalGelCooldown = 0;
-				}
-			}
+                RoyalGelCooldown++;
+                if (RoyalGelCooldown > 1800)
+                {
+                    RoyalGelCooldown = 0;
+                }
+            }
         }
         public override void PostUpdateEquips()
         {
@@ -88,8 +88,8 @@ namespace TRAEProject
 
                 }
                 Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.Center.X + (float)Main.rand.Next(-40, 40), Player.Center.Y - (float)Main.rand.Next(20, 60), Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 565, 0, 0f, Player.whoAmI);
-            return false;
-			}
+                return false;
+            }
             // New Defense calculation                    
             customDamage = true; // when set to true, the game will no longer substract defense from the damage.
             int defense = Player.statDefense;
@@ -100,14 +100,14 @@ namespace TRAEProject
             {
                 damage = 1; // if the damage is below 1, it defaults to 1
             }
-            
+
             return true;
-        }   
+        }
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-			if (RoyalGel && RoyalGelCooldown == 0)
-			{			
-		        damage -= 50;
+            if (RoyalGel && RoyalGelCooldown == 0)
+            {
+                damage -= 50;
                 SoundEngine.PlaySound(SoundID.NPCDeath1);
                 for (int i = 0; i < 25; ++i)
                 {
@@ -144,10 +144,10 @@ namespace TRAEProject
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
             //	
-			if (RoyalGel && RoyalGelCooldown == 0)
-			{			
-		        damage -= 50;
-			}
+            if (RoyalGel && RoyalGelCooldown == 0)
+            {
+                damage -= 50;
+            }
             damage -= FlatDamageReduction;
             if (EndurancePot)
             {
@@ -164,11 +164,11 @@ namespace TRAEProject
             if (Player.beetleDefense)
             {
                 float beetleEndurance = (1 - 0.15f * Player.beetleOrbs) / (1 - 0.10f * Player.beetleOrbs);
-                beetleEndurance = damage / beetleEndurance; 
+                beetleEndurance = damage / beetleEndurance;
                 damage = (int)beetleEndurance;
             }
             DamageAfterDefenseAndDR += damage;
-        }         
+        }
     }
     public class DRAccessories : GlobalItem
     {
@@ -186,8 +186,8 @@ namespace TRAEProject
                     return;
                 case ItemID.PocketMirror:
                     player.GetModPlayer<Defense>().pocketMirror = true;
-                    return;  
-			    case ItemID.RoyalGel:
+                    return;
+                case ItemID.RoyalGel:
                     player.GetModPlayer<Defense>().RoyalGel = true;
                     return;
             }
@@ -254,7 +254,7 @@ namespace TRAEProject
             }
         }
     }
-    public class DRBuffs: GlobalBuff
+    public class DRBuffs : GlobalBuff
     {
         public override void Update(int type, Player player, ref int buffIndex)
         {

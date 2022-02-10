@@ -310,15 +310,13 @@ namespace TRAEProject.Changes.Armor
             if (armorSet == "HallowedSetSummon")
             {
                 player.setBonus = "You gain immunity to the next attack after taking a hit\nIncreases your maximum number of minions by 2";
-                player.GetModPlayer<TRAEPlayer>().titatimer = 900;
-                player.GetModPlayer<OnHitItems>().HolyProtection = true;
+                player.GetModPlayer<SetBonuses>().HolyProtection = true;
                 player.onHitDodge = false;
             }
             if (armorSet == "HallowedSet")
             {
                 player.setBonus = "You gain immunity to the next attack after taking a hit";
-                player.GetModPlayer<TRAEPlayer>().titatimer = 900;
-                player.GetModPlayer<OnHitItems>().HolyProtection = true;
+                player.GetModPlayer<SetBonuses>().HolyProtection = true;
                 player.onHitDodge = false;
             }
             if (armorSet == "ShroomiteSet")
@@ -334,7 +332,7 @@ namespace TRAEProject.Changes.Armor
             }
             if (armorSet == "PirateSet")
             {
-                player.setBonus = "All whips gain an additional +5 tag damage and +5% summon tag critical strike chance";
+                player.setBonus = "All whips inflict an extra 2% tag crit.\nThis tag can be applied multiple times.";
                 player.GetModPlayer<SetBonuses>().PirateSet = true;
             }
             if (armorSet == "SpectreHoodSet")

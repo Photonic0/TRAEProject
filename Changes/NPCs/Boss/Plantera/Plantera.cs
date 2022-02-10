@@ -88,7 +88,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                         break;
                 }
                 Point coords = checkSpot.ToTileCoordinates();
-                if (!Main.tile[coords.X, coords.Y].IsActive)
+                if (!Main.tile[coords.X, coords.Y].HasTile)
                 {
                     return false;
                 }
@@ -586,7 +586,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                 }
                 if (currentAtk == 0 && timer > 0 && timer < 90)
                 {
-                    Texture2D pinkDraw = Request<Texture2D>("TRAEProject/Changes/Plantera/PinkDraw").Value;
+                    Texture2D pinkDraw = Request<Texture2D>("TRAEProject/Changes/Boss/Plantera/PinkDraw").Value;
                     Player player = Main.player[npc.target];
                     float rot = (player.Center - npc.Center).ToRotation();
                     Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
@@ -601,7 +601,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
 
                     if (timer > (180 + attackCounter * 150) - 30 && attackCounter < 3)
                     {
-                        Texture2D pinkDraw = Request<Texture2D>("TRAEProject/Changes/Plantera/PinkDraw").Value;
+                        Texture2D pinkDraw = Request<Texture2D>("TRAEProject/Changes/Boss/Plantera/PinkDraw").Value;
                         Player player = Main.player[npc.target];
                         for (int i = 0; i < hooks.Length; i++)
                         {

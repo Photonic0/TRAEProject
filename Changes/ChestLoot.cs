@@ -36,7 +36,7 @@ public class ChestLoot : ModSystem
                     chest.item[0].SetDefaults(ItemType<PalladiumShield>(), false);
                 }
 
-                if (WorldGen.genRand.NextBool(2)  && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 0 * 36)
+                if (WorldGen.genRand.NextBool(2)  && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 0 * 36)
                 {
                     for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
                     {
@@ -47,7 +47,7 @@ public class ChestLoot : ModSystem
                         }
                     }
                 }
-                if (WorldGen.genRand.NextBool(2) && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 1 * 36)
+                if (WorldGen.genRand.NextBool(2) && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 1 * 36)
                 {
                     for (int i = 0; i < 40; i++)
                     {
@@ -67,7 +67,7 @@ public class ChestLoot : ModSystem
                         }
                     }
                 }
-                if (WorldGen.genRand.NextBool(2) && Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 1 * 36)
+                if (WorldGen.genRand.NextBool(2) && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 1 * 36)
                 {
                     for (int i = 0; i < 40; i++)
                     {
@@ -80,14 +80,14 @@ public class ChestLoot : ModSystem
                         }
                     }
                 }
-                if (Main.tile[chest.x, chest.y].type == TileID.Containers && Main.tile[chest.x, chest.y].frameX == 11 * 36)
+                if (Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 11 * 36)
                 {
                     if (WorldGen.genRand.NextBool(8))
                     {
                         chest.item[0].SetDefaults(ItemID.FrostStaff, false);
                     }
                 }
-                if (Main.tile[chest.x, chest.y].type == TileID.Containers2 && Main.tile[chest.x, chest.y].frameX == 10 * 36)
+                if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2 && Main.tile[chest.x, chest.y].TileFrameX == 10 * 36)
                 {
                     int pyramiditem = Main.rand.Next(PyramidItems);
                     chest.item[0].SetDefaults(pyramiditem, false);

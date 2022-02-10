@@ -7,6 +7,9 @@ using Terraria;
 using TRAEProject.NewContent.Buffs;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Common;
+using TRAEProject.NewContent.TRAEDebuffs;
+
 namespace TRAEProject.Changes.Accesory
 {
     public class ObsidianRose : ModPlayer
@@ -28,7 +31,7 @@ namespace TRAEProject.Changes.Accesory
         {
             if(proj.CountsAsClass(DamageClass.Magic) && rose)
             {
-                target.AddBuff(BuffType<BindingFlames>(), Main.rand.Next(240, 360));
+                TRAEDebuff.Apply<BindingFlames>(target, Main.rand.Next(240, 360), 1);
             }
         }
     }

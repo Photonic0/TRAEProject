@@ -8,6 +8,8 @@ using TRAEProject.NewContent.Items.Summoner.Whip;
 using TRAEProject.NewContent.Buffs;
 using TRAEProject.Changes.Projectiles;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Common;
+using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
 {
@@ -190,8 +192,11 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
 			Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
             Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 80;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<Heavyburn>();
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 120;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            TRAEDebuff.Apply<HeavyBurn>(target, 120, 1);
         }
         public override void AI()
         {

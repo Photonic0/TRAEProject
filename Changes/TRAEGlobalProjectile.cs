@@ -499,14 +499,7 @@ namespace TRAEProject.Changes.Projectiles
             {
                 int length = BuffDurationScalesWithMeleeSpeed ? (int)(AddsBuffDuration * (1 + player.meleeSpeed)) : AddsBuffDuration; 
                 target.AddBuff(AddsBuff, length, false);          
-            }
-            if (player.GetModPlayer<TRAEPlayer>().MagicDagger && projectile.type != ProjectileID.MagicDagger && projectile.type != ProjectileType<MagicDaggerNeo>())
-            {
-                if (Main.rand.Next(2) == 0)
-                {
-                    player.GetModPlayer<TRAEPlayer>().MagicDaggerSpawn(player, damage, knockback);
-                }
-            }                               
+            }          
         }
         public override bool PreKill(Projectile projectile, int timeLeft)
         { 

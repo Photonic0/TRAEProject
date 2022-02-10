@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.Buffs;
+using TRAEProject.NewContent.TRAEDebuffs;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Common.ModPlayers
@@ -98,7 +99,7 @@ namespace TRAEProject.Common.ModPlayers
         {
             if(inflictHeavyBurn >0 && item.CountsAsClass(DamageClass.Melee))
             {
-                target.AddBuff(BuffType<Heavyburn>(), inflictHeavyBurn);
+                TRAEDebuff.Apply<HeavyBurn>(target, inflictHeavyBurn, 1);
             }
         }
 

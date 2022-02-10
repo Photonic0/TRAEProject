@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Common.ModPlayers;
 
 namespace TRAEProject.NewContent.Items.Accesories.RuneCobra
 {
@@ -27,7 +28,7 @@ namespace TRAEProject.NewContent.Items.Accesories.RuneCobra
         {
 			++player.maxMinions;
             player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharm += 1;
-            player.GetModPlayer<TRAEPlayer>().minionCritChance += 10;
+            player.GetModPlayer<SummonStats>().minionCritChance += 5;
         }
         public override void AddRecipes()
         {

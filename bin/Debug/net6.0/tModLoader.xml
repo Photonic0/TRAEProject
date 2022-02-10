@@ -352,6 +352,20 @@
             Hiding arms also hides hands
             </summary>
         </member>
+        <member name="T:Terraria.ID.PrimaryBiomeID">
+            <summary>
+            <b>WARNING:</b> This is not an exhaustive list of vanilla biomes.
+            This class only covers the biomes used for NPC happiness.
+            </summary>
+            TODO: biomeFullName does not exist for vanilla biomes and scope of class only covers biomes that are used in npc happiness
+        </member>
+        <member name="M:Terraria.ID.PrimaryBiomeID.GetLocalizedName(System.Int32)">
+            <summary>
+            Equivalent to <see cref="M:Terraria.GameContent.ShopHelper.BiomeNameByKey(System.Int32)"/>
+            </summary>
+            <param name="biomeID"></param>
+            <returns>Localized name of the biome with <paramref name="biomeID"/></returns>
+        </member>
         <member name="F:Terraria.ID.BuffID.Sets.LongerExpertDebuff">
             <summary>
             Set for debuffs.
@@ -494,13 +508,13 @@
             <summary>Enumerates the values used with Item.rare</summary>
         </member>
         <member name="F:Terraria.ID.ItemRarityID.Master">
-            <summary>Minus thirteen (-13)<para/>Master: Fiery Red<para/>Flag: item.master</summary>
+            <summary>Minus thirteen (-13)<br/>Master: Fiery Red<br/>Flag: item.master</summary>
         </member>
         <member name="F:Terraria.ID.ItemRarityID.Expert">
-            <summary>Minus twelve (-12)<para/>Expert: Rainbow<para/>Flag: item.expert</summary>
+            <summary>Minus twelve (-12)<br/>Expert: Rainbow<br/>Flag: item.expert</summary>
         </member>
         <member name="F:Terraria.ID.ItemRarityID.Quest">
-            <summary>Minus eleven (-11)<para/>Quest: Amber<para/>Flag: item.quest</summary>
+            <summary>Minus eleven (-11)<br/>Quest: Amber<br/>Flag: item.quest</summary>
         </member>
         <member name="F:Terraria.ID.ItemRarityID.Gray">
             <summary>Minus one (-1)</summary>
@@ -6015,7 +6029,7 @@
         </member>
         <member name="M:Terraria.ModLoader.ModUndergroundBackgroundStyle.FillTextureArray(System.Int32[])">
             <summary>
-            Allows you to determine which textures make up the background by assigning their background slots/IDs to the given array. Mod.GetBackgroundSlot may be useful here. Index 0 is the texture on the border of the ground and sky layers. Index 1 is the texture drawn between rock and ground layers. Index 2 is the texture on the border of ground and rock layers. Index 3 is the texture drawn in the rock layer. The border images are 160x16 pixels, and the others are 160x96, but it seems like the right 32 pixels of each is a duplicate of the far left 32 pixels.
+            Allows you to determine which textures make up the background by assigning their background slots/IDs to the given array. BackgroundTextureLoader.GetBackgroundSlot may be useful here. Index 0 is the texture on the border of the ground and sky layers. Index 1 is the texture drawn between rock and ground layers. Index 2 is the texture on the border of ground and rock layers. Index 3 is the texture drawn in the rock layer. The border images are 160x16 pixels, and the others are 160x96, but it seems like the right 32 pixels of each is a duplicate of the far left 32 pixels.
             </summary>
         </member>
         <member name="T:Terraria.ModLoader.ModSurfaceBackgroundStyle">
@@ -6030,7 +6044,7 @@
         </member>
         <member name="M:Terraria.ModLoader.ModSurfaceBackgroundStyle.ChooseFarTexture">
             <summary>
-            Allows you to determine which texture is drawn in the very back of the background. Mod.GetBackgroundSlot may be useful here, as well as for the other texture-choosing hooks.
+            Allows you to determine which texture is drawn in the very back of the background. BackgroundTextureLoader.GetBackgroundSlot may be useful here, as well as for the other texture-choosing hooks.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModSurfaceBackgroundStyle.ChooseMiddleTexture">
@@ -7626,6 +7640,18 @@
             <summary>
             Allows type inference on T and F
             </summary>
+        </member>
+        <member name="T:Terraria.ModLoader.ModMapLayer">
+            <summary>
+            This class is used to facilitate easily drawing icons and other things over the map. Pylons and spawn/bed icons are examples of vanilla map layers. Use <see cref="!:ModSystem.PreDrawMapIconOverlay(System.Collections.Generic.List&lt;IMapLayer&gt;, MapOverlayDrawContext)"/> to selectively hide vanilla layers if needed.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModMapLayer.Draw(Terraria.Map.MapOverlayDrawContext@,System.String@)">
+            <summary>
+            This method is called when this MapLayer is to be drawn. Map layers are drawn after the map itself is drawn. Use <see cref="M:Terraria.Map.MapOverlayDrawContext.Draw(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,Terraria.DataStructures.SpriteFrame,System.Single,System.Single,Terraria.UI.Alignment)"/> as described in ExampleMod and in vanilla examples for full compatibility and simplicity of code.
+            </summary>
+            <param name="context">Contains the scaling and positional data of the map being drawn. You should use the MapOverlayDrawContext.Draw method for all drawing</param>
+            <param name="text">The mouse hover text. Assign a value typically if the user is hovering over something you draw</param>
         </member>
         <member name="T:Terraria.ModLoader.ModMenu">
             <summary>
@@ -9740,9 +9766,16 @@
              </summary>
              <param name="spriteBatch">The sprite batch.</param>
         </member>
+        <member name="M:Terraria.ModLoader.ModSystem.PreDrawMapIconOverlay(System.Collections.Generic.IReadOnlyList{Terraria.Map.IMapLayer},Terraria.Map.MapOverlayDrawContext)">
+            <summary>
+            Called right before map icon overlays are drawn. Use this hook to selectively hide existing <see cref="T:Terraria.Map.IMapLayer"/> or <see cref="T:Terraria.ModLoader.ModMapLayer"/>
+            </summary>
+            <param name="layers"></param>
+            <param name="mapOverlayDrawContext"></param>
+        </member>
         <member name="M:Terraria.ModLoader.ModSystem.PostDrawFullscreenMap(System.String@)">
             <summary>
-            Called while the fullscreen map is active. Allows custom drawing to the map.
+            Called while the fullscreen map is active. Allows custom drawing to the map. Using <see cref="T:Terraria.ModLoader.ModMapLayer"/> is more compatible and allows drawing on the minimap and fullscreen maps.
             </summary>
             <param name="mouseText">The mouse text.</param>
         </member>
@@ -10950,6 +10983,30 @@
             <summary>
             Returns a LegacySoundStyle object which encapsulates both a sound type and a sound style (This is the new way to do sounds in 1.3.4) Returns null if there is no corresponding style.
             </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.StatModifier.op_Addition(Terraria.ModLoader.StatModifier,System.Single)">
+            <summary>
+            By using the add operator, the supplied additive modifier is combined with the existing modifiers. For example, adding 0.12f would be equivalent to a typical 12% damage boost. For 99% of effects used in the game, this approach is used.
+            </summary>
+            <param name="m"></param>
+            <param name="add">The additive modifier to add, where 0.01f is equivalent to 1%</param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.ModLoader.StatModifier.op_Subtraction(Terraria.ModLoader.StatModifier,System.Single)">
+            <summary>
+            By using the subtract operator, the supplied subtractive modifier is combined with the existing modifiers. For example, subtracting 0.12f would be equivalent to a typical 12% damage decrease. For 99% of effects used in the game, this approach is used.
+            </summary>
+            <param name="m"></param>
+            <param name="sub">The additive modifier to subtract, where 0.01f is equivalent to 1%</param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.ModLoader.StatModifier.op_Multiply(Terraria.ModLoader.StatModifier,System.Single)">
+            <summary>
+            The multiply operator applies a multiplicative effect to the resulting multiplicative modifier. This effect is very rarely used, typical effects use the add operator.
+            </summary>
+            <param name="m"></param>
+            <param name="mul">The factor by which the multiplicative modifier is scaled</param>
+            <returns></returns>
         </member>
         <member name="T:Terraria.ModLoader.SystemLoader">
             <summary>

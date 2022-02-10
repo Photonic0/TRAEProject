@@ -7,6 +7,8 @@ using TRAEProject.NewContent.Items.Summoner.Whip;
 using TRAEProject.Changes.Weapon;
 using Terraria.GameContent.Creative;
 using TRAEProject.Common;
+using TRAEProject.Changes.Weapon.Summon.Minions;
+
 namespace TRAEProject.NewContent.Items.Summoner.AbsoluteZero
 {
     public class AbsoluteZero : ModItem
@@ -66,8 +68,8 @@ namespace TRAEProject.NewContent.Items.Summoner.AbsoluteZero
         }
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagDamage += 12;
-            npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagCritChance += 25;
+            npc.GetGlobalNPC<Tag>().Damage += 12;
+            npc.GetGlobalNPC<Tag>().Crit += 25;
         }
     }
     public class AbsoluteZeroVisualOnHitEffect : GlobalProjectile

@@ -9,10 +9,11 @@ using Terraria.ModLoader;
 
 namespace TRAEProject.Common
 {
+    /// <summary> Created to get around vanilla's 5 buff limit on NPCs, also allows stacking multiple instances of the same debuff. Not applicable to players </summary>
     public abstract class TRAEDebuff
     {
         public int timeLeft = 10;
-        public static void Apply<T>(NPC npc, int time, int stackLimit = 1) where T : TRAEDebuff, new()
+        public static T Apply<T>(NPC npc, int time, int stackLimit = 1) where T : TRAEDebuff, new()
         {
             if(stackLimit != -1 && npc.GetGlobalNPC<ProcessTRAEDebuffs>().HasDebuff<T>())
             {
@@ -23,10 +24,12 @@ namespace TRAEProject.Common
                     {
                         list[0].timeLeft = time;
                     }
-                    return;
+                    return null;
                 }
             }
-            npc.GetGlobalNPC<ProcessTRAEDebuffs>().debuffs.Add(new T() { timeLeft = time });
+            T debuff = new T() { timeLeft = time };
+            npc.GetGlobalNPC<ProcessTRAEDebuffs>().debuffs.Add(debuff);
+            return debuff;
         }
         public virtual void Update(NPC npc)
         {

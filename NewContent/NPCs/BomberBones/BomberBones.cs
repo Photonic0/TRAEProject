@@ -354,12 +354,12 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 						flag20 = true;
 						continue;
 					}
-					if (Main.tile[num173, num168] != null && Main.tile[num173, num168].IsActiveUnactuated && Main.tileSolid[Main.tile[num173, num168].type])
+					if (Main.tile[num173, num168] != null && Main.tile[num173, num168].HasUnactuatedTile && Main.tileSolid[Main.tile[num173, num168].TileType])
 					{
 						flag5 = false;
 						break;
 					}
-					if (!flag20 && num173 >= num169 && num173 <= num170 && Main.tile[num173, num167].IsActiveUnactuated && Main.tileSolid[Main.tile[num173, num167].type])
+					if (!flag20 && num173 >= num169 && num173 <= num170 && Main.tile[num173, num167].HasUnactuatedTile && Main.tileSolid[Main.tile[num173, num167].TileType])
 					{
 						flag5 = true;
 					}
@@ -390,6 +390,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 					int num176 = (int)((vector37.Y + (float)NPC.height - 1f) / 16f);
 					if (WorldGen.InWorld(num175, num176, 4))
 					{
+					/*
 						if (Main.tile[num175, num176] == null)
 						{
 							Main.tile[num175, num176] = new Tile();
@@ -414,7 +415,8 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 						{
 							Main.tile[num175 - num174, num176 - 3] = new Tile();
 						}
-						if ((float)(num175 * 16) < vector37.X + (float)NPC.width && (float)(num175 * 16 + 16) > vector37.X && ((Main.tile[num175, num176].IsActiveUnactuated && Main.tile[num175, num176].Slope != SlopeType.SlopeUpLeft && Main.tile[num175, num176 - 1].Slope != SlopeType.SlopeUpRight && Main.tileSolid[Main.tile[num175, num176].type] && !Main.tileSolidTop[Main.tile[num175, num176].type]) || (Main.tile[num175, num176 - 1].IsHalfBlock && Main.tile[num175, num176 - 1].IsActiveUnactuated)) && (!Main.tile[num175, num176 - 1].IsActiveUnactuated || !Main.tileSolid[Main.tile[num175, num176 - 1].type] || Main.tileSolidTop[Main.tile[num175, num176 - 1].type] || (Main.tile[num175, num176 - 1].IsHalfBlock && (!Main.tile[num175, num176 - 4].IsActiveUnactuated || !Main.tileSolid[Main.tile[num175, num176 - 4].type] || Main.tileSolidTop[Main.tile[num175, num176 - 4].type]))) && (!Main.tile[num175, num176 - 2].IsActiveUnactuated || !Main.tileSolid[Main.tile[num175, num176 - 2].type] || Main.tileSolidTop[Main.tile[num175, num176 - 2].type]) && (!Main.tile[num175, num176 - 3].IsActiveUnactuated || !Main.tileSolid[Main.tile[num175, num176 - 3].type] || Main.tileSolidTop[Main.tile[num175, num176 - 3].type]) && (!Main.tile[num175 - num174, num176 - 3].IsActiveUnactuated || !Main.tileSolid[Main.tile[num175 - num174, num176 - 3].type]))
+					*/
+						if ((float)(num175 * 16) < vector37.X + (float)NPC.width && (float)(num175 * 16 + 16) > vector37.X && ((Main.tile[num175, num176].HasUnactuatedTile && Main.tile[num175, num176].Slope != SlopeType.SlopeUpLeft && Main.tile[num175, num176 - 1].Slope != SlopeType.SlopeUpRight && Main.tileSolid[Main.tile[num175, num176].TileType] && !Main.tileSolidTop[Main.tile[num175, num176].TileType]) || (Main.tile[num175, num176 - 1].IsHalfBlock && Main.tile[num175, num176 - 1].HasUnactuatedTile)) && (!Main.tile[num175, num176 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 1].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 1].TileType] || (Main.tile[num175, num176 - 1].IsHalfBlock && (!Main.tile[num175, num176 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 4].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 4].TileType]))) && (!Main.tile[num175, num176 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 2].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 2].TileType]) && (!Main.tile[num175, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 3].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 3].TileType]) && (!Main.tile[num175 - num174, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175 - num174, num176 - 3].TileType]))
 						{
 							float num177 = num176 * 16;
 							if (Main.tile[num175, num176].IsHalfBlock)
@@ -450,6 +452,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 				{
 					int num180 = (int)((NPC.position.X + (float)(NPC.width / 2) + (float)(15 * NPC.direction)) / 16f);
 					int num181 = (int)((NPC.position.Y + (float)NPC.height - 15f) / 16f);
+				/*
 					if (Main.tile[num180, num181] == null)
 					{
 						Main.tile[num180, num181] = new Tile();
@@ -482,8 +485,9 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 					{
 						Main.tile[num180 - NPC.direction, num181 + 1] = new Tile();
 					}
+				*/
 					//Main.tile[num180, num181 + 1].IsHalfBlock; why is this part of the code, if it returns an error every time...
-					if (Main.tile[num180, num181 - 1].IsActiveUnactuated && (Main.tile[num180, num181 - 1].type == 10 || Main.tile[num180, num181 - 1].type == 388) && flag8)
+					if (Main.tile[num180, num181 - 1].HasUnactuatedTile && (Main.tile[num180, num181 - 1].TileType == 10 || Main.tile[num180, num181 - 1].TileType == 388) && flag8)
 					{
 						NPC.ai[2] += 1f;
 						NPC.ai[3] = 0f;
@@ -492,7 +496,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 						    bool flag22 = Main.player[NPC.target].ZoneGraveyard && Main.rand.Next(60) == 0;
 							NPC.velocity.X = 0.5f * (float)(-NPC.direction);
 							int num182 = 5;
-							if (Main.tile[num180, num181 - 1].type == 388)
+							if (Main.tile[num180, num181 - 1].TileType == 388)
 							{
 								num182 = 2;
 							}
@@ -508,7 +512,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 							if ((Main.netMode != 1 || !flag23) && flag23 && Main.netMode != 1)
 							{
 
-									if (Main.tile[num180, num181 - 1].type == 10)
+									if (Main.tile[num180, num181 - 1].TileType == 10)
 									{
 										bool flag24 = WorldGen.OpenDoor(num180, num181 - 1, NPC.direction);
 										if (!flag24)
@@ -521,7 +525,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 											NetMessage.SendData(19, -1, -1, null, 0, num180, num181 - 1, NPC.direction);
 										}
 									}
-									if (Main.tile[num180, num181 - 1].type == 388)
+									if (Main.tile[num180, num181 - 1].TileType == 388)
 									{
 										bool flag25 = WorldGen.ShiftTallGate(num180, num181 - 1, closing: false);
 										if (!flag25)
@@ -544,9 +548,9 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 
 						if ((NPC.velocity.X < 0f && num183 == -1) || (NPC.velocity.X > 0f && num183 == 1))
 						{
-							if (NPC.height >= 32 && Main.tile[num180, num181 - 2].IsActiveUnactuated && Main.tileSolid[Main.tile[num180, num181 - 2].type])
+							if (NPC.height >= 32 && Main.tile[num180, num181 - 2].HasUnactuatedTile && Main.tileSolid[Main.tile[num180, num181 - 2].TileType])
 							{
-								if (Main.tile[num180, num181 - 3].IsActiveUnactuated && Main.tileSolid[Main.tile[num180, num181 - 3].type])
+								if (Main.tile[num180, num181 - 3].HasUnactuatedTile && Main.tileSolid[Main.tile[num180, num181 - 3].TileType])
 								{
 									NPC.velocity.Y = -8f;
 									NPC.netUpdate = true;
@@ -557,19 +561,19 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 									NPC.netUpdate = true;
 								}
 							}
-							else if (Main.tile[num180, num181 - 1].IsActiveUnactuated && Main.tileSolid[Main.tile[num180, num181 - 1].type])
+							else if (Main.tile[num180, num181 - 1].HasUnactuatedTile && Main.tileSolid[Main.tile[num180, num181 - 1].TileType])
 							{
 				
 									NPC.velocity.Y = -6f;
 								
 								NPC.netUpdate = true;
 							}
-							else if (NPC.position.Y + (float)NPC.height - (float)(num181 * 16) > 20f && Main.tile[num180, num181].IsActiveUnactuated && Main.tile[num180, num181].Slope != SlopeType.SlopeUpLeft && Main.tileSolid[Main.tile[num180, num181].type])
+							else if (NPC.position.Y + (float)NPC.height - (float)(num181 * 16) > 20f && Main.tile[num180, num181].HasUnactuatedTile && Main.tile[num180, num181].Slope != SlopeType.SlopeUpLeft && Main.tileSolid[Main.tile[num180, num181].TileType])
 							{
 								NPC.velocity.Y = -5f;
 								NPC.netUpdate = true;
 							}
-							else if (NPC.directionY < 0 && (!Main.tile[num180, num181 + 1].IsActiveUnactuated || !Main.tileSolid[Main.tile[num180, num181 + 1].type]) && (!Main.tile[num180 + NPC.direction, num181 + 1].IsActiveUnactuated || !Main.tileSolid[Main.tile[num180 + NPC.direction, num181 + 1].type]))
+							else if (NPC.directionY < 0 && (!Main.tile[num180, num181 + 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num180, num181 + 1].TileType]) && (!Main.tile[num180 + NPC.direction, num181 + 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num180 + NPC.direction, num181 + 1].TileType]))
 							{
 								NPC.velocity.Y = -8f;
 								NPC.velocity.X *= 1.5f;
@@ -599,7 +603,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 										int num188 = (int)(NPC.Bottom.Y / 16f) - 1;
 										for (int num189 = num188; num189 > num188 - num186; num189--)
 										{
-											if (Main.tile[num187, num189].IsActiveUnactuated && TileID.Sets.Platforms[Main.tile[num187, num189].type])
+											if (Main.tile[num187, num189].HasUnactuatedTile && TileID.Sets.Platforms[Main.tile[num187, num189].TileType])
 											{
 												NPC.velocity.Y = -7.9f;
 												break;
@@ -638,10 +642,10 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 					int num198 = Main.rand.Next(num192 - num196, num192 + num196);
 					for (int num199 = Main.rand.Next(num193 - num196, num193 + num196); num199 < num193 + num196; num199++)
 					{
-						if ((num199 < num193 - 4 || num199 > num193 + 4 || num198 < num192 - 4 || num198 > num192 + 4) && (num199 < num195 - 1 || num199 > num195 + 1 || num198 < num194 - 1 || num198 > num194 + 1) && Main.tile[num198, num199].IsActiveUnactuated)
+						if ((num199 < num193 - 4 || num199 > num193 + 4 || num198 < num192 - 4 || num198 > num192 + 4) && (num199 < num195 - 1 || num199 > num195 + 1 || num198 < num194 - 1 || num198 > num194 + 1) && Main.tile[num198, num199].HasUnactuatedTile)
 						{
 							bool flag27 = true;
-							if (Main.tile[num198, num199 - 1].wall == 0)
+							if (Main.tile[num198, num199 - 1].WallType == 0)
 							{
 								flag27 = false;
 							}
@@ -649,7 +653,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 							{
 								flag27 = false;
 							}
-							if (flag27 && Main.tileSolid[Main.tile[num198, num199].type] && !Collision.SolidTiles(num198 - 1, num198 + 1, num199 - 4, num199 - 1))
+							if (flag27 && Main.tileSolid[Main.tile[num198, num199].TileType] && !Collision.SolidTiles(num198 - 1, num198 + 1, num199 - 4, num199 - 1))
 							{
 								NPC.position.X = num198 * 16 - NPC.width / 2;
 								NPC.position.Y = num199 * 16 - NPC.height;

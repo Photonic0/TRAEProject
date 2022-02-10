@@ -7,6 +7,9 @@ using TRAEProject.NewContent.Buffs;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
+using TRAEProject.NewContent.TRAEDebuffs;
+
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class SolarGel : ModItem
@@ -62,8 +65,10 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.CloneDefaults(ProjectileID.HeatRay);
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.hostile = false;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<Heavyburn>();
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 60;
+        }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            TRAEDebuff.Apply<HeavyBurn>(target, 60, 1);
         }
         public override void Kill(int timeLeft)
         {

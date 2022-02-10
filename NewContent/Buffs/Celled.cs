@@ -1,3 +1,4 @@
+using ChangesBuffs;
 using Terraria;
 using Terraria.ModLoader;
 namespace TRAEProject.NewContent.Buffs
@@ -11,7 +12,7 @@ namespace TRAEProject.NewContent.Buffs
 			Description.SetDefault("Being eaten by cells");
 		}
 		public override void Update(Player player, ref int buffIndex) {
-			player.GetModPlayer<TRAEPlayer>().Celled = true;
+			player.GetModPlayer<BuffChangesModPlayer>().Celled = true;
 		}
 	}
 }

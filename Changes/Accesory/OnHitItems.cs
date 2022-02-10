@@ -22,8 +22,7 @@ namespace TRAEProject.Changes.Items
         public float newthorns = 0f;
         public float runeCooldown = 0;
         public float runethorns = 0f;
-        public bool whenHitDodge = false;
-        public bool HolyProtection = false; public int beedamage = 1;
+        public int beedamage = 1;
         
         public override void ResetEffects()
         {
@@ -32,8 +31,6 @@ namespace TRAEProject.Changes.Items
             NewstarsOnHit = false;
             newthorns = 0f;
             runethorns = 0f;
-            whenHitDodge = false;
-            HolyProtection = false;
         }
         public override void UpdateDead()
         {
@@ -41,9 +38,8 @@ namespace TRAEProject.Changes.Items
             NewbeesOnHit = false;
             runethorns = 0f;        
             runeCooldown = 0;
-        newthorns = 0f;
+            newthorns = 0f;
             NewstarsOnHit = false;
-            whenHitDodge = false;
             beedamage = 0;
         }
         public override void PostUpdate()
@@ -107,7 +103,6 @@ namespace TRAEProject.Changes.Items
             {
                 Thorns(damage);
             }
-            Shadowdodge();
             if (Player.honeyCombItem != null && !Player.honeyCombItem.IsAir)
             {
                 Player.AddBuff(BuffID.Honey, 300 + damage * 4);
@@ -132,7 +127,7 @@ namespace TRAEProject.Changes.Items
             BaghnakhHeal = 0;
             if (damage > 1)
             {		
-		if (damage > 1000)
+		        if (damage > 1000)
 				{
 					damage = 1000;
                 }
@@ -155,7 +150,6 @@ namespace TRAEProject.Changes.Items
                     }
                     TRAEMethods.SpawnProjectilesFromAbove(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position, 3 + (damage / 33), 400, 600, spread, 20, ProjectileType<BuzzyStar>(), beedamage, 2f, Player.whoAmI);
                 }
-                Shadowdodge();
                 if (runethorns > 0f && runeCooldown == 0)
                 {
                     RuneThorns(damage);
@@ -250,17 +244,6 @@ namespace TRAEProject.Changes.Items
                     if (thorndamage > 1000)
                         thorndamage = 1000;
                     Player.ApplyDamageToNPC(enemy, thorndamage, 10, -direction, false);
-                }
-            }
-        }
-        void Shadowdodge()
-        {
-            if (HolyProtection && !whenHitDodge)
-            {
-                if (Player.shadowDodgeTimer == 0)
-                {
-                    Player.shadowDodgeTimer = 1500;
-                    Player.AddBuff(BuffID.ShadowDodge, 1500, false);
                 }
             }
         }

@@ -9,6 +9,7 @@ using TRAEProject.NewContent.Items.Summoner.Whip;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Projectiles;
 using TRAEProject.Common;
+using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.Changes.Weapon.Melee
 {
@@ -57,7 +58,6 @@ namespace TRAEProject.Changes.Weapon.Melee
             //
             switch (projectile.type)
             {
-                // MELEE
                 case ProjectileID.CorruptYoyo:
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffID.Weak;
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 120;
@@ -72,10 +72,6 @@ namespace TRAEProject.Changes.Weapon.Melee
                     projectile.extraUpdates = 2; // up from 0
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
-                    break;
-                case ProjectileID.Sunfury:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<Heavyburn>();
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 120;
                     break;
                 case ProjectileID.FormatC:
                     projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.4f;
@@ -269,16 +265,16 @@ namespace TRAEProject.Changes.Weapon.Melee
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
             Player player = Main.player[projectile.owner];
-            if(projectile.type == ProjectileID.TinyEater)
+            if (projectile.type == ProjectileID.TinyEater)
             {
-                TRAEDebuff.Apply<TRAEProject.NewContent.TRAEDebuffs.Corrupted>(target, 181, 1);
+                TRAEDebuff.Apply<Corrupted>(target, 181, 1);
             }
             if (player.HasBuff(BuffID.WeaponImbueNanites) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);
             }
             switch (projectile.type)
-            {              
+            {
                 // melee
                 case ProjectileID.Chik:
                     {
@@ -289,21 +285,25 @@ namespace TRAEProject.Changes.Weapon.Melee
                             float velY = (0f - projectile.velocity.Y) * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.5f;
                             Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X + velX, projectile.position.Y + velY, velX, velY, ProjectileID.CrystalShard, 1, 0, projectile.owner, 0f, 0f);
                         }
-                        return;
+                        break;
                     }
                 case ProjectileID.Cascade:
                     {
                         ++HitCount;
                         if (HitCount >= 5)
                             projectile.Kill();
-                        return;
+                        break;
                     }
                 case ProjectileID.CrimsonYoyo:
                     {
                         player.lifeRegenCount += 30;
-                        return;
-                    }          
-            }    
+                        break;
+                    }
+                case ProjectileID.Sunfury:
+
+                    TRAEDebuff.Apply<HeavyBurn>(target, 120, 1);
+                    break;
+            }
         }
         public override bool PreKill(Projectile projectile, int timeLeft)
         { 

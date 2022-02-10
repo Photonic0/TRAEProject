@@ -11,6 +11,7 @@ using TRAEProject.Common;
 
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common.ModPlayers;
 
 namespace TRAEProject.Changes.Weapon.Summon.Minions
 {
@@ -109,9 +110,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = -1;
                     break;
-                case ProjectileID.CoolWhip:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<CoolWhipTag>();
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 240;
                     break;
                 case ProjectileID.DeadlySphere:
                     projectile.extraUpdates = 1;
@@ -202,12 +200,12 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
             }
             if (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type])
             {
-                damage += target.GetGlobalNPC<TRAENPCDebuffEffects>().TagDamage;
-                if (Main.rand.Next(100) < target.GetGlobalNPC<TRAENPCDebuffEffects>().TagCritChance)
+                damage += target.GetGlobalNPC<Tag>().Damage;
+                if (Main.rand.Next(100) < target.GetGlobalNPC<Tag>().Crit)
                 {
                     crit = true;
                 }
-                if (Main.rand.Next(100) < Main.player[projectile.owner].GetModPlayer<TRAEPlayer>().minionCritChance)
+                if (Main.rand.Next(100) < Main.player[projectile.owner].GetModPlayer<SummonStats>().minionCritChance)
                 {
                     crit = true;
                 }
@@ -276,20 +274,16 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
             return base.OnTileCollide(projectile, oldVelocity);
         }
     }
-    public class SummonTags : GlobalBuff
+
+    public class Tag : GlobalNPC
     {
-        
-        public override void Update(int type, NPC npc, ref int buffIndex)
+        public override bool InstancePerEntity => true;
+        public int Damage = 0;
+        public int Crit = 0;
+        public override void ResetEffects(NPC npc)
         {
-            switch (type)
-            {
-                case BuffID.MaceWhipNPCDebuff:
-                    npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagCritChance += 15;
-                    return;
-                case BuffID.RainbowWhipNPCDebuff:
-                    npc.GetGlobalNPC<TRAENPCDebuffEffects>().TagCritChance += 10;
-                    return;
-            }
+            Damage = 0;
+            Crit = 0;
         }
     }
     

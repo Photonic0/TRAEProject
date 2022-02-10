@@ -7,6 +7,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
+using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.Changes.Weapon.Summon
 {
@@ -19,20 +21,30 @@ namespace TRAEProject.Changes.Weapon.Summon
             {
                 case ItemID.ThornWhip:
                     item.damage = 19; // up from 18
-                    return;
+                    break;
                 case ItemID.BoneWhip:
                     item.damage = 29; // down from 29
-                    return;
+                    break;
                 case ItemID.SwordWhip:
                     item.damage = 70; //up from 55
-                    return;
+                    break;
                 case ItemID.ScytheWhip:
                     item.damage = 111; // up from 100
-                    return;
+                    break;
                 case ItemID.RainbowWhip:
                     item.damage = 250; // up from 180
                     item.autoReuse = true;
-                    return;
+                    break;
+
+            }
+        }
+        public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            switch (item.type)
+            {
+                case ProjectileID.CoolWhip:
+                    TRAEDebuff.Apply<CoolWhipTag>(target, 240, 1);
+                    break;
 
             }
         }

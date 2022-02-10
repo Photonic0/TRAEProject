@@ -113,13 +113,13 @@ namespace TRAEProject.Changes.Accesory
                     {
                         player.buffImmune[BuffID.Werewolf] = true;
                     }
-                    player.GetModPlayer<TRAEPlayer>().wErewolf = true;
+                    player.GetModPlayer<AccesoryEffects>().wErewolf = true;
                     if (player.statLife < player.statLifeMax2 * 0.5)
                         player.AddBuff(BuffID.IceBarrier, 1, false);
                     player.wolfAcc = false;
                     break;
                 case ItemID.MoonCharm:
-                    player.GetModPlayer<TRAEPlayer>().wErewolf = true;
+                    player.GetModPlayer<AccesoryEffects>().wErewolf = true;
                     player.wolfAcc = false;
                     break;
                 // CELESTIAL STONE CHANGES
@@ -132,8 +132,8 @@ namespace TRAEProject.Changes.Accesory
                     player.statManaMax2 += 20;
                     player.meleeSpeed += 0.05f;
                     player.moveSpeed += 0.1f;
-                    player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;// new bonus
-                                                                                   // total stats: +8% damage, +2% crit, +0.5 hp/s, +4 defense. +5% melee speed, +20 max mana, +10% movement speed
+                    player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;// new bonus
+                    // total stats: +8% damage, +2% crit, +0.5 hp/s, +4 defense. +5% melee speed, +20 max mana, +10% movement speed
                     break;
                 case ItemID.MoonStone:
                     if (!Main.dayTime)
@@ -146,7 +146,7 @@ namespace TRAEProject.Changes.Accesory
                         player.statManaMax2 += 20;
                         player.meleeSpeed += 0.05f;
                         player.moveSpeed += 0.1f;
-                        player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;
+                        player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;
                     }
                     break;
                 case ItemID.SunStone:
@@ -160,7 +160,7 @@ namespace TRAEProject.Changes.Accesory
                         player.statManaMax2 += 20;
                         player.meleeSpeed += 0.05f;
                         player.moveSpeed += 0.1f;
-                        player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;
+                        player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;
                     }
                     break;
                 case ItemID.CelestialShell:
@@ -172,7 +172,7 @@ namespace TRAEProject.Changes.Accesory
                     player.statManaMax2 += 20;
                     player.meleeSpeed += 0.05f;
                     player.moveSpeed += 0.1f;
-                    player.GetModPlayer<TRAEPlayer>().chanceNotToConsumeAmmo += 10;
+                    player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;
                     player.wolfAcc = false;
                     break;
                 case ItemID.BandofStarpower:
@@ -198,9 +198,6 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.StarCloak:
                     player.starCloakItem = null;
                     player.GetModPlayer<OnHitItems>().NewstarsOnHit = true;
-                    break;
-                case ItemID.MagicDagger:
-                    player.GetModPlayer<TRAEPlayer>().MagicDagger = true;
                     break;
                 case ItemID.ManaCloak:
                     player.starCloakItem_manaCloakOverrideItem = item;
@@ -230,12 +227,12 @@ namespace TRAEProject.Changes.Accesory
                     player.GetDamage<SummonDamageClass>() -= 0.15f;
                     break;
                 case ItemID.NecromanticScroll:
-                    player.GetModPlayer<TRAEPlayer>().minionCritChance += 5;
+                    player.GetModPlayer<SummonStats>().minionCritChance += 5;
                     player.GetDamage<SummonDamageClass>() -= 0.1f;
                     break;
                 case ItemID.PapyrusScarab:
                     ++player.maxTurrets;
-                    player.GetModPlayer<TRAEPlayer>().minionCritChance += 5;
+                    player.GetModPlayer<SummonStats>().minionCritChance += 5;
                     player.GetDamage<SummonDamageClass>() -= 0.15f;
                     break;
                 case ItemID.HeroShield:

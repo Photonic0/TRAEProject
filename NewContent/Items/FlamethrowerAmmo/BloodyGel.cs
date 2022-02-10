@@ -7,6 +7,8 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.Changes.Projectiles;
 using TRAEProject.Common;
+using TRAEProject.NewContent.TRAEDebuffs;
+
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class BloodyGel : ModItem
@@ -60,36 +62,36 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.hostile = false;
             Projectile.friendly = true;
             Projectile.usesLocalNPCImmunity = true;
-Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
-
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<BloodBoiling>();
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 120;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.GetGlobalNPC<TRAENPCDebuffEffects>().BoilingBloodDMG = damage;
+            BoilingBlood bb = TRAEDebuff.Apply<BoilingBlood>(target, 30, 5);
+            if(bb != null)
+            {
+                bb.SetDamage(damage);
+            }
         }
         public override void AI()
         {
-                            Projectile.localAI[0] += 1;
+            Projectile.localAI[0] += 1;
             if (Projectile.localAI[0] % 10f == 0f)
             {
                 Dust.NewDustDirect(Projectile.Center, 0, -1, DustID.Smoke, 0, -1);
             }
-			for (int i = 0; i < 3; i++)
-                {
-                    Vector2 ProjectilePosition = Projectile.position;
-                    ProjectilePosition -= Projectile.velocity * (i * 0.25f);
-                    Projectile.alpha = 255;
-                    int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.BloodWater, 0f, 0f, 0, default(Color), 1f);
-                    Main.dust[dust].noGravity = true;
-                    Main.dust[dust].position = ProjectilePosition;
-                    Main.dust[dust].scale = Main.rand.Next(70, 110) * 0.013f;
-                    Main.dust[dust].velocity *= 0.2f;
-                }
+            for (int i = 0; i < 3; i++)
+            {
+                Vector2 ProjectilePosition = Projectile.position;
+                ProjectilePosition -= Projectile.velocity * (i * 0.25f);
+                Projectile.alpha = 255;
+                int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.BloodWater, 0f, 0f, 0, default(Color), 1f);
+                Main.dust[dust].noGravity = true;
+                Main.dust[dust].position = ProjectilePosition;
+                Main.dust[dust].scale = Main.rand.Next(70, 110) * 0.013f;
+                Main.dust[dust].velocity *= 0.2f;
+            }
         }
-		public override void Kill(int timeLeft)
-		{		
+        public override void Kill(int timeLeft)
+        {
             for (int i = 0; i < 3; ++i)
             {
                 int dust = Dust.NewDust(new Vector2(Projectile.Center.X, Projectile.Center.Y), 6, 6, DustID.Smoke, 0.0f, 0.0f, 100, default, 3f);
@@ -97,20 +99,6 @@ Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultip
                 Main.dust[dust].velocity *= 0.8f;
                 Main.dust[dust].velocity.Y -= 0.3f;
             }
-        }
-        }
-    public class BloodBoiling : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("BloodBoiling");
-            Description.SetDefault("Mah blood! It hurts! No wait, i'm a player so this does nothing to me. Oh well.");
-            Main.debuff[Type] = true;
-
-        }
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            npc.GetGlobalNPC<TRAENPCDebuffEffects>().BoilingBlood = true;
         }
     }
 }

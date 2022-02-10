@@ -113,8 +113,8 @@ namespace TRAEProject.Changes.Weapon
 					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<ObsidianSwordfish>();
 					altShoot = ProjectileType<ObsidianSwordfishThrow>();
-
-					item.damage = 30;
+					item.crit = 0;
+					item.damage = 22;
 					item.shootSpeed = 10; //only the throw uses this
 					break;
 				case ItemID.CobaltNaginata:

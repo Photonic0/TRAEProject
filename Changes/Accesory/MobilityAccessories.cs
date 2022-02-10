@@ -66,7 +66,7 @@ namespace TRAEProject.Changes.Accesory
                     player.rocketTimeMax -= 7;
                     player.accRunSpeed = 4.8f;
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
-                    player.GetModPlayer<TRAEPlayer>().icceleration = true; 
+                    player.GetModPlayer<AccesoryEffects>().icceleration = true; 
                     player.moveSpeed += 0.25f;
             		player.runAcceleration *= 1.5f;
                     return;
@@ -98,13 +98,13 @@ namespace TRAEProject.Changes.Accesory
                     return;
                 case ItemID.ObsidianHorseshoe:
                     player.fireWalk = false;
-                    player.GetModPlayer<TRAEPlayer>().FastFall = true;
+                    player.GetModPlayer<AccesoryEffects>().FastFall = true;
                     return;
                 case ItemID.ObsidianWaterWalkingBoots:
                     player.waterWalk2 = false;
                     player.rocketBoots = 1;
                     player.rocketTimeMax = 14;
-                    player.GetModPlayer<TRAEPlayer>().FastFall = true;
+                    player.GetModPlayer<AccesoryEffects>().FastFall = true;
                     player.noFallDmg = true;
                     player.fireWalk = false;
                     player.buffImmune[BuffID.Burning] = false;
@@ -117,22 +117,18 @@ namespace TRAEProject.Changes.Accesory
                     player.noFallDmg = true;
                     return;
                 case ItemID.WaterWalkingBoots:
-                    player.GetModPlayer<TRAEPlayer>().waterRunning = true;
+                    player.GetModPlayer<AccesoryEffects>().waterRunning = true;
                     player.waterWalk = true;
                     return;
                 case ItemID.LavaCharm:
-                    player.GetModPlayer<TRAEPlayer>().LavaShield = true;
+                    player.GetModPlayer<AccesoryEffects>().LavaShield = true;
                     return;
                 case ItemID.LavaWaders:
-                    player.GetModPlayer<TRAEPlayer>().waterRunning = true;
-                    player.GetModPlayer<TRAEPlayer>().LavaShield = true;
+                    player.GetModPlayer<AccesoryEffects>().waterRunning = true;
+                    player.GetModPlayer<AccesoryEffects>().LavaShield = true;
                     player.fireWalk = false;
                     player.lavaImmune = true;
                     player.lavaRose = false;
-                    return;
-                case ItemID.HiveBackpack:
-                    player.GetModPlayer<TRAEPlayer>().Hivepack = true;
-                    player.strongBees = false;
                     return;
                 case ItemID.EmpressFlightBooster:
                     player.jumpSpeedBoost -= 2.4f;

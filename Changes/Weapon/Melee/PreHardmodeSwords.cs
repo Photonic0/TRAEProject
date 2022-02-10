@@ -8,6 +8,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using TRAEProject.Common;
+using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.Changes.Weapon.Melee
 {
@@ -280,7 +282,7 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
             if (item.type == ItemID.FieryGreatsword)
             {
-                target.AddBuff(BuffType<Heavyburn>(), 120, false);
+                TRAEDebuff.Apply<HeavyBurn>(target, 120, 1);
             }
         }
         /// SHOOT STUFF
