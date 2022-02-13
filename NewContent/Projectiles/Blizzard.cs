@@ -3,7 +3,7 @@ using TRAEProject;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Projectiles
 {
     class Blizzard : ModProjectile

@@ -48,7 +48,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D texture = Request<Texture2D>("TRAEProject/Changes/Boss/Dreadnautilus/BloodSnipe").Value;
+            Texture2D texture = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Dreadnautilus/BloodSnipe").Value;
             for (int i = 18; i > 0; i += -1)
             {
                 Color color = Color.Lerp(lightColor, lightColor * 0.5f, (float)i / (float)0);

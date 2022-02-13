@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Summoner.Whip;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
 
@@ -59,9 +59,9 @@ namespace TRAEProject.Changes.Weapon.Melee
             switch (projectile.type)
             {
                 case ProjectileID.CorruptYoyo:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffID.Weak;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 120;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BuffDurationScalesWithMeleeSpeed = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.Weak;
+                    projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 120;
+                    projectile.GetGlobalProjectile<ProjectileStats>().BuffDurationScalesWithMeleeSpeed = true;
                     break;
                 case ProjectileID.BlackCounterweight:
                 case ProjectileID.YellowCounterweight:
@@ -74,7 +74,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     projectile.idStaticNPCHitCooldown = 10;
                     break;
                 case ProjectileID.FormatC:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.4f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.4f;
                     break;
                 case ProjectileID.ButchersChainsaw:
                     projectile.penetrate = -1;
@@ -102,14 +102,14 @@ namespace TRAEProject.Changes.Weapon.Melee
                     projectile.tileCollide = false;
                     break;
                 case ProjectileID.EatersBite:
-                    //projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<Corrupted>();
-                    //projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 300;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BuffDurationScalesWithMeleeSpeed = true;
+                    //projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffType<Corrupted>();
+                    //projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
+                    projectile.GetGlobalProjectile<ProjectileStats>().BuffDurationScalesWithMeleeSpeed = true;
                     break;
                 case ProjectileID.TinyEater:
-                    //projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffType<Corrupted>();
-                    //projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 60;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BuffDurationScalesWithMeleeSpeed = true;
+                    //projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffType<Corrupted>();
+                    //projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 60;
+                    projectile.GetGlobalProjectile<ProjectileStats>().BuffDurationScalesWithMeleeSpeed = true;
                     break;
                 case ProjectileID.TerraBeam:
                     projectile.extraUpdates = 1;

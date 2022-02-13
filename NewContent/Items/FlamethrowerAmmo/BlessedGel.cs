@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class BlessedGel : ModItem
@@ -56,11 +56,11 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.ignoreWater = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.friendly = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().SmartBouncesOffEnemies = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().SmartBouncesOffTiles = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffTiles = true;
             Projectile.usesLocalNPCImmunity = true;
-Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.2f;
+Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.2f;
         }
         public override void AI()
         {

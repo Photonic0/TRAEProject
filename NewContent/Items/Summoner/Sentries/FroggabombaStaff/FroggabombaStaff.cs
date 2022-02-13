@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.Items.Summoner.Sentries.FroggabombaStaff
@@ -161,9 +161,9 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.FroggabombaStaff
             AIType = ProjectileID.BabySpider;
             ProjectileID.Sets.SentryShot[Type] = true;
             Projectile.minion = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 80;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().UsesDefaultExplosion = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
+            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
         }
         public override void AI()
         {

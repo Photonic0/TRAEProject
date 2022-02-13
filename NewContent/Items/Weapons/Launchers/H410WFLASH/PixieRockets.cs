@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Audio;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 using TRAEProject.Changes.Weapon.Ranged.Rockets;
 using static Terraria.ModLoader.ModContent;
 
@@ -172,9 +172,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
             Projectile.timeLeft = 300;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<PixieRockets>().PixieExplosion = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -204,9 +204,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             Projectile.CloneDefaults(ProjectileType<PixieRocket>());
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 6;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<PixieRockets>().PixieExplosion = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 180;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
         }
         public override void AI()
         {
@@ -221,10 +221,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             AIType = ProjectileType<PixieRocket>();
             Projectile.extraUpdates = 1;
             Projectile.penetrate = 3;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 1.5f;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 80;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionDamage = 0.67f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage = 0.67f;
             Projectile.GetGlobalProjectile<PixieRockets>().PixieExplosion = true;
         }
         public override void AI()
@@ -239,9 +239,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             Projectile.CloneDefaults(ProjectileType<PixieRocket>());
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 8;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<PixieRockets>().PixieExplosion = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 250;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
         }
         public override void AI()
         {
@@ -255,9 +255,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             Projectile.CloneDefaults(ProjectileType<PixieRocket>());
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 8;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<PixieRockets>().PixieExplosion = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 250;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
         }
         public override void AI()
         {
@@ -277,9 +277,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             Projectile.CloneDefaults(ProjectileType<PixieRocket>());
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 4;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<PixieRockets>().PixieExplosion = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -312,9 +312,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 4;
             Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<PixieRockets>().PixieExplosion = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -329,8 +329,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 4;
             Projectile.GetGlobalProjectile<NewRockets>().DryRocket = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -345,8 +345,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 4;
             Projectile.GetGlobalProjectile<NewRockets>().WetRocket = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -361,8 +361,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 4;
             Projectile.GetGlobalProjectile<NewRockets>().LavaRocket = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -377,8 +377,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             AIType = ProjectileType<PixieRocket>();
             Projectile.penetrate = 4;
             Projectile.GetGlobalProjectile<NewRockets>().HoneyRocket = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {

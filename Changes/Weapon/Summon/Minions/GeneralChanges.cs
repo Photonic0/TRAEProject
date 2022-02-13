@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using TRAEProject.Common;
 
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 using TRAEProject.Common.ModPlayers;
 
 namespace TRAEProject.Changes.Weapon.Summon.Minions
@@ -105,8 +105,8 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     break;
                 case ProjectileID.MiniRetinaLaser:
 				    projectile.penetrate = -1;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 200f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 200f;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = -1;
                     break;
@@ -126,8 +126,8 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     break;
                 case ProjectileID.HornetStinger:
                     projectile.extraUpdates = 2;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 150f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 150f;
                     break;
                 case ProjectileID.ImpFireball:
                     projectile.usesIDStaticNPCImmunity = false;

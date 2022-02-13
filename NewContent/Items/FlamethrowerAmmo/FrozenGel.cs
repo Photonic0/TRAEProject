@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.NewContent.Items.Materials;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class FrozenGel : ModItem
@@ -63,7 +63,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.hostile = false;
             Projectile.friendly = true;
 			Projectile.tileCollide = false;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.2f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.2f;
         }
         public override void AI()
         {

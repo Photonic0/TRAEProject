@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class CursedGel : ModItem
@@ -62,11 +62,11 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.friendly = true; 
             Projectile.timeLeft = 60;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffID.CursedInferno;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 240;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.1f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.CursedInferno;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 240;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.1f;
         }
         public override void AI()
         {

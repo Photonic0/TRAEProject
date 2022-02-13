@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 
 namespace TRAEProject.Changes.Weapon.Magic
 {
@@ -28,24 +28,24 @@ namespace TRAEProject.Changes.Weapon.Magic
                     projectile.timeLeft = 180;
                     return;       
                 case ProjectileID.ShadowBeamFriendly:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().SmartBouncesOffEnemies = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.penetrate = 7;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.InfernoFriendlyBolt:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 1.5f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
                     return;
                 case ProjectileID.MagnetSphereBall:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BouncesOffTiles = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
                     projectile.timeLeft = 25 * 60; // up from 11 seconds
                     return;
                 case ProjectileID.ManaCloakStar:
                     projectile.penetrate = 2;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 600f;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().cantCrit = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 600f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().cantCrit = true;
                     projectile.tileCollide = false;
                     projectile.timeLeft = 120;
                     return;
@@ -62,12 +62,12 @@ namespace TRAEProject.Changes.Weapon.Magic
                     return;
                 case ProjectileID.FlowerPetal: // what the fuck is this projectile, why can't i remember
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.SharpTears:
                     projectile.penetrate = 5;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFallon = 1.42f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFallon = 1.42f;
                     return;              
                 case ProjectileID.WaterStream:
                     projectile.penetrate = 1;
@@ -93,9 +93,9 @@ namespace TRAEProject.Changes.Weapon.Magic
                 case ProjectileID.Meteor2:
                 case ProjectileID.Meteor3:
                     projectile.tileCollide = false;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().goThroughWallsUntilReachingThePlayer = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homingRange = 100f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().goThroughWallsUntilReachingThePlayer = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 100f;
                     return;
                 case ProjectileID.ShadowFlame:
 		projectile.usesLocalNPCImmunity = true;
@@ -123,7 +123,7 @@ namespace TRAEProject.Changes.Weapon.Magic
                 case ProjectileID.RubyBolt:
                 case ProjectileID.DiamondBolt:
                     projectile.penetrate = 2;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                     projectile.usesLocalNPCImmunity = true;
                     return;
                 case ProjectileID.BoulderStaffOfEarth:

@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class PinkGel : GlobalItem
@@ -40,11 +40,11 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.hostile = false;
             Projectile.friendly = true;            Projectile.usesLocalNPCImmunity = true;
-Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BouncesOffTiles = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffID.OnFire;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 300;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.15f;
+Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.OnFire;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.15f;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

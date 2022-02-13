@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class IchorGel : ModItem
@@ -124,10 +124,10 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
                 Projectile.timeLeft = 45;
                 Projectile.usesLocalNPCImmunity = true;
                 Projectile.localNPCHitCooldown = 10;
-                Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BouncesOffTiles = true;
-                Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 0.75f;
-                Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffID.Ichor;
-                Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 240;
+                Projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
+                Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.75f;
+                Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.Ichor;
+                Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 240;
             }
             public override bool OnTileCollide(Vector2 oldVelocity)
             {

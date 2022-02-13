@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Weapon.Ranged.Rockets

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 
 namespace TRAEProject.Changes.Weapon.Summon
 {
@@ -53,6 +53,14 @@ namespace TRAEProject.Changes.Weapon.Summon
             if (projectile.sentry)
             {
                 projectile.timeLeft = Projectile.SentryLifeTime * 60;
+            }
+            switch(projectile.type)
+            {
+
+                case ProjectileID.FrostBlastFriendly:
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 30;
+                    break;
             }
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)

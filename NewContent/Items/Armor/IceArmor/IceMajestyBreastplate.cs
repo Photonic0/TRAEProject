@@ -8,7 +8,7 @@ using Terraria.GameContent.Creative;
 using TRAEProject.NewContent.Items.Materials;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 using Terraria.Audio;
 
 namespace TRAEProject.NewContent.Items.Armor.IceArmor
@@ -127,7 +127,7 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
 			Main.projFrames[Projectile.type] = 1;
 			Projectile.penetrate = -1;
 			Projectile.timeLeft = 2;
-			Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
+			Projectile.GetGlobalProjectile<ProjectileStats>().IgnoresDefense = true;
 			Projectile.tileCollide = false;
 			Projectile.minionSlots = 0; // is this needed? Wouldn't the default value be 0 already?
 			Projectile.timeLeft = 2;

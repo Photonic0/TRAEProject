@@ -21,7 +21,7 @@ namespace TRAEProject.Changes
         public override void SetDefaults(Item item)
         {
 
-			if (item.ammo > 0 && item.type != ItemID.SilverCoin && item.type != ItemID.GoldCoin && item.type != ItemID.CopperCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.Ale && item.type != ItemID.SandBlock)
+			if (item.ammo > 0 && item.type != ItemID.SilverCoin && item.type != ItemID.GoldCoin && item.type != ItemID.CopperCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.Ale && item.type != ItemID.SandBlock)
             {
                 item.maxStack = 3000;
             }
@@ -29,7 +29,7 @@ namespace TRAEProject.Changes
             {
                 case ItemID.AdamantitePickaxe:
 			       item.useTime = 7; // down from 8
-                    item.useAnimation = 7;
+                   item.useAnimation = 7;
 				   return;				
                 case ItemID.ObsidianHorseshoe:
                     item.SetNameOverride("Heavy Horseshoe");
@@ -42,16 +42,6 @@ namespace TRAEProject.Changes
                     return;
                 case ItemID.ManaRegenerationBand:
                     item.SetNameOverride("Band of Dual Regeneration");
-                    return;
-                case ItemID.MagicDagger: // REVISIT
-                    item.useStyle = 0;
-                    item.mana = 0;
-                    item.damage = 0;
-                    item.crit = 0;
-                    item.knockBack = 0f;
-                    item.useTime = 0;
-                    item.useAnimation = 0;
-                    item.accessory = true;
                     return;
                 case ItemID.VineRope:
                     item.useTime = 5;
@@ -100,6 +90,7 @@ namespace TRAEProject.Changes
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.DirtRod)
+            {
                 if (player.altFunctionUse == 2)
                 {
                     item.tileWand = 2;
@@ -126,6 +117,7 @@ namespace TRAEProject.Changes
                     item.autoReuse = true;
                     item.noMelee = true;
                 }
+            }
             return base.CanUseItem(item, player);
         }
         
@@ -200,7 +192,6 @@ namespace TRAEProject.Changes
                     }
                 }
             }
-            return;
         }
         /// SHOOT STUFF
 
@@ -228,7 +219,6 @@ namespace TRAEProject.Changes
             }
             return;
         }
-        private static int shootDelay = 1;
         public int useCount = 0;
        
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -243,16 +233,7 @@ namespace TRAEProject.Changes
                             line.text = "+6 range";
                         }
                     }
-                    return;
-                case ItemID.MagicDagger:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.text = "Summons magic daggers when striking an enemy";
-                        }
-                    }
-                    return;              
+                    break;
                 case ItemID.ArcheryPotion:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -261,7 +242,7 @@ namespace TRAEProject.Changes
                             line.text = "Increases arrow damage by 10% and arrow speed by 20%";
                         }
                     }
-                    return; 
+                    break; 
                 case ItemID.TitanPotion:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -270,7 +251,7 @@ namespace TRAEProject.Changes
                             line.text = "50% increased knockback and 10% increased melee weapon size";
                         }
                     }
-                    return;
+                    break;
                 case ItemID.InfernoPotion:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -279,7 +260,7 @@ namespace TRAEProject.Changes
                             line.text = "Attacks create fiery explosions, dealing 10% damage in a small area and igniting foes";
                         }
                     }
-                    return;
+                    break;
                 case ItemID.AmmoReservationPotion:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -288,7 +269,7 @@ namespace TRAEProject.Changes
                             line.text = "Prevents most ammo consumption while active";
                         }
                     }
-                    return;
+                    break;
                 case ItemID.SwiftnessPotion:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -297,7 +278,7 @@ namespace TRAEProject.Changes
                             line.text = "20% increased movement speed";
                         }
                     }
-                    return;
+                    break;
                 case ItemID.FlaskofNanites:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -306,7 +287,7 @@ namespace TRAEProject.Changes
                             line.text = "Melee attacks confuse enemies and increase health regeneration";
                         }
                     }
-                    return;              
+                    break;              
             }
         }
     }

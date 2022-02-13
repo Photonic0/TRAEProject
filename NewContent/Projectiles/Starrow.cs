@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Projectiles
 {
     public class Starrow: ModProjectile
@@ -26,7 +26,7 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.timeLeft = 120;                  
             Projectile.tileCollide = false;       
             Projectile.extraUpdates = 0;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().goThroughWallsUntilReachingThePlayer = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().goThroughWallsUntilReachingThePlayer = true;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
