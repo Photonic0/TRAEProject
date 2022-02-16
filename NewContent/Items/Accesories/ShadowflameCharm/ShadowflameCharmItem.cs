@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using TRAEProject.NewContent.Items.Summoner.Whip;
 using TRAEProject.NewContent.Buffs;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
@@ -154,9 +154,9 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
             Projectile.ignoreWater = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffID.ShadowFlame;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 60;
+            Projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.ShadowFlame;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 60;
         }
         public override void AI()
         {
@@ -189,9 +189,9 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
             Projectile.ignoreWater = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;  
-			Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 80;
+			Projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

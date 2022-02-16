@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class LavaGel : ModItem
@@ -56,13 +56,13 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.timeLeft = 60;
             Projectile.penetrate = 3;
             Projectile.DamageType = DamageClass.Ranged;            Projectile.usesLocalNPCImmunity = true;
-Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().dontHitTheSameEnemyMultipleTimes = true;
+Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                 Projectile.hostile = false;
                 Projectile.friendly = true;
                 Projectile.extraUpdates = 3;
-                Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuff = BuffID.OnFire3;
-                Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().AddsBuffDuration = 90;
-                Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.15f;
+                Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.OnFire3;
+                Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 90;
+                Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.15f;
             }
             public override void AI()
             {

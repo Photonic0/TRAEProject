@@ -31,23 +31,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lenovo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\noahg\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lenovo\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
+      "projectUniqueName": "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
       "projectName": "TRAEProject",
-      "projectPath": "C:\\Users\\lenovo\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
-      "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lenovo\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\obj\\",
+      "projectPath": "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\TRAEProject.csproj",
+      "packagesPath": "C:\\Users\\noahg\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\noahg\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\TRAEProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\noahg\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -94,7 +96,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

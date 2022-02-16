@@ -86,7 +86,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         public override bool PreDraw(ref Color lightColor)
         {
 
-            Texture2D vine = Request<Texture2D>("TRAEProject/Changes/Boss/Plantera/ThornyVine").Value;
+            Texture2D vine = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Plantera/ThornyVine").Value;
             float dist = (Projectile.Center - (Vector2)anchor).Length();
             float rot = ((Vector2)anchor - Projectile.Center).ToRotation();
             for (int k = 0; k < dist; k += vine.Height)

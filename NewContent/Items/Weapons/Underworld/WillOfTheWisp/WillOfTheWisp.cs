@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
@@ -63,7 +63,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
             Projectile.penetrate = 10;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().SmartBouncesOffEnemies = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
             Projectile.aiStyle = 1;
             Projectile.timeLeft = 600;
         }

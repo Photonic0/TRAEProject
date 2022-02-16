@@ -108,8 +108,8 @@ namespace TRAEProject.Changes.Weapons
                     item.damage = 60; // up from 44
                     return;
                 case ItemID.SniperRifle:
-                    item.damage = 200;
-                    item.crit = 50;
+                    item.damage = 200; // up from 185
+                    item.crit = 50; //up from 30
                     item.autoReuse = true;
                     return;
                 case ItemID.TacticalShotgun:

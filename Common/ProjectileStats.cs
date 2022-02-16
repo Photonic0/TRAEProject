@@ -14,9 +14,9 @@ using TRAEProject.NewContent.Items.Summoner.Whip;
 
 using static Terraria.ModLoader.ModContent;
 
-namespace TRAEProject.Changes.Projectiles
+namespace TRAEProject.Common
 {
-    public class TRAEGlobalProjectile : GlobalProjectile
+    public class ProjectileStats : GlobalProjectile
     {
         public override bool InstancePerEntity => true;
         public int AnchorHit = 0;
@@ -31,7 +31,7 @@ namespace TRAEProject.Changes.Projectiles
         public bool cantCrit = false; // self-explanatory
         public bool dontHitTheSameEnemyMultipleTimes = false;// self-explanatory
         // Bouncing
-		  public bool onlyBounceOnce = false;
+		public bool onlyBounceOnce = false;
         public bool BouncesOffTiles = false;
         public bool BouncesBackOffTiles = false;
         public float DamageLossOffATileBounce = 0f;
@@ -68,63 +68,14 @@ namespace TRAEProject.Changes.Projectiles
             c.Emit(OpCodes.Ldarg_0);
             c.EmitDelegate<Action<Projectile>>((projectile) =>
             {
-                if (projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration > 0)
+                if (projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration > 0)
                 {
-                    Main.player[projectile.owner].armorPenetration += projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().extraAP += projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration;
+                    Main.player[projectile.owner].armorPenetration += projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration;
+                    projectile.GetGlobalProjectile<ProjectileStats>().extraAP += projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration;
                 }
             });
         }
-        public override void SetDefaults(Projectile projectile)
-        {
-            switch (projectile.type)
-            {
-                case ProjectileID.FrostBlastFriendly:
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
-                    break;
-                case ProjectileID.Bee:
-                case ProjectileID.GiantBee:
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
-					projectile.penetrate = 2;
-                    return;
-                case ProjectileID.CrystalLeafShot:
-                    homesIn = true;
-                    return;
-                case ProjectileID.EyeFire:
-                    if (Main.expertMode && ServerConfig.Instance.MechChanges)
-                    {
-                        projectile.extraUpdates = 1; // down from 3(?)
-                    }
-                    return;
-                case ProjectileID.MagicDagger:
-                    projectile.aiStyle = 1;
-                    projectile.extraUpdates = 0;
-                    projectile.penetrate = 1;
-                    projectile.DamageType = DamageClass.Magic;
-                    projectile.timeLeft = 100;
-                    projectile.tileCollide = false;
-                    IgnoresDefense = true;
-                    return;
-                case ProjectileID.FlowerPetal: // what the fuck is this projectile, why can't i remember
-                    projectile.usesLocalNPCImmunity = true;
-                    homesIn = true;
-                    dontHitTheSameEnemyMultipleTimes = true;
-                    return;
-                case ProjectileID.StarCloakStar:
-                    projectile.penetrate = -1;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    projectile.tileCollide = false;
-                    explodes = true;
-                    ExplosionRadius = 80;
-                    DamageFalloff = 0.25f;
-                    return;
-
-            }
-            //
-        }
+        
         public float timer = 0;
         public override void AI(Projectile projectile)
         {
@@ -148,33 +99,17 @@ namespace TRAEProject.Changes.Projectiles
             }
             if (homesIn)
             {
-                Vector2 move = Vector2.Zero;
-                bool target = false;
-                float distance = homingRange;
-                for (int k = 0; k < 200; k++)
+                NPC target = null;
+                if(TRAEMethods.ClosestNPC(ref target, homingRange, projectile.Center))
                 {
-                    if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5 && !Main.npc[k].immortal && projectile.localNPCImmunity[k] != 1)
-                    {
-                        Vector2 newMove = Main.npc[k].Center - projectile.Center;
-                        float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                        if (distanceTo < distance)
-                        {
-                            move = newMove;
-                            target = true;
-                            distance = distanceTo;
-                        }
-                        if (target)
-                        {
-                            float scaleFactor2 = projectile.velocity.Length();
-                            move.Normalize();
-                            move *= scaleFactor2;
-                            projectile.velocity = (projectile.velocity * 24f + move) / 25f;
-                            projectile.velocity.Normalize();
-                            projectile.velocity *= scaleFactor2;
-                        }
-                    }
+                    float scaleFactor2 = projectile.velocity.Length();
+                    Vector2 diff = target.Center - projectile.Center;
+                    diff.Normalize();
+                    diff *= scaleFactor2;
+                    projectile.velocity = (projectile.velocity * 24f + diff) / 25f;
+                    projectile.velocity.Normalize();
+                    projectile.velocity *= scaleFactor2;
                 }
-                return;
             }
             if (explodes && projectile.timeLeft < 3)
             {
@@ -183,7 +118,6 @@ namespace TRAEProject.Changes.Projectiles
                 {
                     TRAEMethods.DefaultExplosion(projectile);
                 }
-                return;
             }
             switch (projectile.type)
             {
@@ -206,19 +140,23 @@ namespace TRAEProject.Changes.Projectiles
                             }
                             projectile.scale += 0.005f;
                         }
-                        return;
+                        break;
                     }
                 case ProjectileID.SharknadoBolt:
                     projectile.hostile = false;
-                    return;
+                    break;
                 case ProjectileID.Sharknado:
                 case ProjectileID.Cthulunado:
                     projectile.localAI[1] += 1f; // cannot damage the player before 60 updates
                     if (projectile.localAI[1] <= 60f)
+                    {
                         projectile.hostile = false;
+                    }
                     else
+                    {
                         projectile.hostile = true;
-                    return;
+                    }
+                    break;
                 case ProjectileID.TitaniumStormShard:
                     timer += 0.01f;
                     if (timer <= 1f)

@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 
 namespace TRAEProject.Changes.Weapon.Ranged
 {
@@ -21,7 +21,7 @@ namespace TRAEProject.Changes.Weapon.Ranged
             {
                 case ProjectileID.Hellwing:
                     projectile.penetrate = 1;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
                     return;
 				case ProjectileID.CandyCorn:
                     projectile.usesLocalNPCImmunity = true;
@@ -31,8 +31,8 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     projectile.extraUpdates = 1;
                     return;
                 case ProjectileID.CrystalShard:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 0.5f;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().IgnoresDefense = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.5f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().IgnoresDefense = true;
                     return;
                 case ProjectileID.Electrosphere:
                     projectile.usesIDStaticNPCImmunity = true;
@@ -43,11 +43,11 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     projectile.penetrate = 1;
                     return;
                 case ProjectileID.IchorDart:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 0.8f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.8f;
                     return;
                 case ProjectileID.CrystalDart:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.2f;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageLossOffATileBounce = 0.2f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.2f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageLossOffATileBounce = 0.2f;
                     return;
                 case ProjectileID.JestersArrow:
                     projectile.penetrate = 7;      
@@ -64,9 +64,9 @@ namespace TRAEProject.Changes.Weapon.Ranged
                 case ProjectileID.VortexBeaterRocket:
                     projectile.penetrate = -1;
                     projectile.scale = 1.15f;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 180;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 1.8f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.8f;
                     return;
                 case ProjectileID.HellfireArrow:
                     projectile.extraUpdates = 1;
@@ -74,8 +74,8 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     projectile.localNPCHitCooldown = 10;
                     return;
                 case ProjectileID.IchorBullet:
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BouncesOffTiles = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().onlyBounceOnce = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().onlyBounceOnce = true;
                     return;
                 case ProjectileID.GrenadeI:
                 case ProjectileID.GrenadeII:
@@ -89,17 +89,17 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     return;
                 case ProjectileID.BoneArrow:
                     projectile.penetrate = 3; 
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().BouncesOffTiles = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().onlyBounceOnce = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().onlyBounceOnce = true;
                     return;
                 case ProjectileID.HallowStar:
                     projectile.penetrate = -1;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     projectile.tileCollide = false;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 80;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.25f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.25f;
                     return;
                 case ProjectileID.DryRocket:
                 case ProjectileID.WetRocket:
@@ -113,9 +113,9 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     projectile.localNPCHitCooldown = 10;
 					projectile.penetrate = 2;
 					projectile.timeLeft = 30;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 120;
-                    projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.25f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.25f;
                     break;
             }
         }

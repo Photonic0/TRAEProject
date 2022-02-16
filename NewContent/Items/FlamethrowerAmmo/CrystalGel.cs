@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using System;
 using Terraria.GameContent.Creative;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {        
     public class CrystalGel : ModItem
@@ -60,7 +60,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.penetrate = 2;
             Projectile.extraUpdates = 2;
             Projectile.width = Projectile.height = 2;
-       Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().armorPenetration = 25;
+       Projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 25;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 60;
         }

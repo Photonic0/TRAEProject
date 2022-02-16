@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 
 namespace TRAEProject
 {
@@ -39,7 +39,7 @@ namespace TRAEProject
         }
         public static void Explode(Projectile projectile, int ExplosionRadius, float ExplosionDamage) // Doesn't set any special effects
         {
-            projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = false; // without this, the projectile will keep exploding infinitely
+            projectile.GetGlobalProjectile<ProjectileStats>().explodes = false; // without this, the projectile will keep exploding infinitely
             projectile.timeLeft = 3; // Explosion will stay active for 3 frames          
             projectile.alpha = 255; // Projectile becomes invisible
             projectile.damage = (int)(projectile.damage * ExplosionDamage); // Damage is multiplied by a certian amount if necessary

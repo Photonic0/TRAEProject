@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Projectiles
 {
     public class LilRocket : ModProjectile
@@ -18,10 +18,10 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.scale = 0.8f;         
           Projectile.usesLocalNPCImmunity = true;
                     Projectile.localNPCHitCooldown = 10;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().explodes = true;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().ExplosionRadius = 10;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.33f;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DirectDamage = 0.65f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 10;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.33f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.65f;
         }
         public override void Kill(int timeLeft)
         {       

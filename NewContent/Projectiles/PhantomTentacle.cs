@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Changes.Projectiles;
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.Projectiles
 {
     class PhantomTentacle : ModProjectile
@@ -15,7 +15,7 @@ namespace TRAEProject.NewContent.Projectiles
 			Projectile.MaxUpdates = 3;
 			Projectile.alpha = 255;
 			Projectile.penetrate = 1;
-			Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().homesIn = true;
+			Projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
         }
         public override void AI()
         {
