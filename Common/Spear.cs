@@ -263,6 +263,8 @@ namespace TRAEProject.Common
             SpearModfiyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
         }
         public int[] hitCount = new int[Main.npc.Length];
+        public int pierceLimit = 0;
+        public int MaxPierce = 6;
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             hitCount[target.whoAmI]++;
@@ -275,6 +277,11 @@ namespace TRAEProject.Common
                 Projectile.localNPCImmunity[target.whoAmI] = Main.player[Projectile.owner].itemAnimationMax / 3;
             }
             target.immune[Projectile.owner] = 0;
+            pierceLimit++;
+            if (pierceLimit == MaxPierce)
+            {
+                Projectile.damage = 0;
+            }
             SpearHitNPC(target, damage, knockback, crit);
         }
         public override bool PreDraw(ref Color lightColor)

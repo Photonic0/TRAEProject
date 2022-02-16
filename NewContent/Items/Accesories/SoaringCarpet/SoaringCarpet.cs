@@ -16,7 +16,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soaring Carpet");
-            Tooltip.SetDefault("Grants a soaring carpet, use it by holding DOWN\n15% increased movement speed");
+            Tooltip.SetDefault("Grants a soaring carpet, use it by holding UP\n25% increased movement speed\nFall damage immunity");
         }
 
         public override void SetDefaults()
@@ -30,8 +30,9 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<SoaringCarpetEffect>().soaringCarpet = true;
-			player.moveSpeed += 0.1f;
-			player.jumpSpeedBoost += 0.5f;
+			player.moveSpeed += 0.25f; 
+			player.noFallDmg = true;
+
 		}
 		public override void AddRecipes()
 		{
@@ -53,10 +54,11 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
         {
 			if (soaringCarpet)
 			{
-				if (soaringCarpetTime < 240 && Player.controlDown && Player.gravDir != -1)
+		
+				if (soaringCarpetTime < 240 && Player.controlUp && Player.gravDir != -1)
 				{
 					Player.runAcceleration *= 1.5f;
-			        Player.wingRunAccelerationMult *= 1.5f;				
+			        Player.wingRunAccelerationMult *= 1.5f;
 					if (Player.velocity.Y < 0)
 					{
 						Player.velocity.Y += 0.7f;
@@ -64,9 +66,9 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 					if (Player.velocity.Y > 0)
 					{
 						Player.velocity.Y -= 0.7f;
-						++soaringCarpetTime;
 					}
-			    }
+					++soaringCarpetTime;
+				}
 				if (Player.velocity.Y == 0)
                 {
 					soaringCarpetTime = 0;

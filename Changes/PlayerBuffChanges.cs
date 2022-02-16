@@ -33,7 +33,8 @@ namespace ChangesBuffs
                     return;
                 case BuffID.ObsidianSkin:
                     player.buffImmune[BuffID.OnFire] = false;
-					player.fireWalk = false;
+                    player.buffImmune[BuffID.Burning] = true;
+                    player.fireWalk = false;
                     return;
                 case BuffID.StarInBottle:
                     player.statManaMax2 += 20;

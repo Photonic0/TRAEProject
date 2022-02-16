@@ -47,6 +47,13 @@ namespace TRAEProject.Common
         {
 
         }
+        public virtual void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        {
+    
+        }
+        public virtual void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+        }
     }
     public class ProcessTRAEDebuffs : GlobalNPC
     {
@@ -80,6 +87,20 @@ namespace TRAEProject.Common
             for (int k = 0; k < debuffs.Count; k++)
             {
                 debuffs[k].Update(npc);
+            }
+        }
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        {
+            for (int k = 0; k < debuffs.Count; k++)
+            {
+                debuffs[k].ModifyHitByItem(npc, player, item, ref damage, ref knockback, ref crit);
+            }
+        }
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            for (int k = 0; k < debuffs.Count; k++)
+            {
+                debuffs[k].ModifyHitByProjectile(npc, projectile, ref damage, ref knockback, ref crit, ref hitDirection);
             }
         }
         public override void UpdateLifeRegen(NPC npc, ref int damage)

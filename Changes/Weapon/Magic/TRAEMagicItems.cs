@@ -69,12 +69,22 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.damage = 24; // up from 12
                     item.mana = 21; // up from 5
                     break;
+                case ItemID.MagicDagger:
+                    item.damage = 12; // down from 40
+                    item.mana = 7; // up from 6
+                    item.useTime = 13; // up from 8
+                    item.useAnimation = 13; // up from 8
+                    item.autoReuse = true;
+                    break;
                 case ItemID.Vilethorn:
-                    item.mana = 30; // up from 10
+                    item.mana = 75; // up from 10
                     break;
                 case ItemID.CrimsonRod:
                     item.damage = 10; // down from 12
                     item.mana = 100; // up from 10
+                    break;   
+                        case ItemID.WeatherPain:
+                    item.mana = 100; // up from 30
                     break;
                 case ItemID.SpaceGun:
                     item.damage = 22; // up from 17
@@ -156,7 +166,7 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.mana = 150; // up from 40
                     break;
                 case ItemID.CrystalVileShard:
-                    item.mana = 20; // up from 13
+                    item.mana = 80; // up from 13
                     break;
                 case ItemID.FlowerofFrost:
                     item.damage = 60;
@@ -212,7 +222,7 @@ namespace TRAEProject.Changes.Weapon.Magic
                     break;       
                 case ItemID.NettleBurst:
                     item.damage = 50; // up from 35
-                    item.mana = 24; // up from 12
+                    item.mana = 90; // up from 12
                     break;
 				case ItemID.HeatRay:
 				    item.damage = 88; //  up from 80
@@ -387,7 +397,40 @@ namespace TRAEProject.Changes.Weapon.Magic
                             }
                         }
                         return true;
-                    }      
+                    }
+                case ItemID.Vilethorn:
+                    {
+                        for (int i = 0; i < 1000; i++)
+                        {
+                            if ((Main.projectile[i].type == type || Main.projectile[i].type == ProjectileID.VilethornTip) && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
+                            {
+                                Main.projectile[i].Kill();
+                            }
+                        }
+                        return true;
+                    }
+                case ItemID.CrystalVileShard:
+                    {
+                        for (int i = 0; i < 1000; i++)
+                        {
+                            if ((Main.projectile[i].type == type || Main.projectile[i].type == ProjectileID.CrystalVileShardHead) && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
+                            {
+                                Main.projectile[i].Kill();
+                            }
+                        }
+                        return true;
+                    }
+                case ItemID.NettleBurst:
+                    {
+                        for (int i = 0; i < 1000; i++)
+                        {
+                            if ((Main.projectile[i].type == ProjectileID.NettleBurstRight || Main.projectile[i].type == ProjectileID.NettleBurstLeft || Main.projectile[i].type == ProjectileID.NettleBurstEnd) && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
+                            {
+                                Main.projectile[i].Kill();
+                            }
+                        }
+                        return true;
+                    }
             }
             return true;       
         }

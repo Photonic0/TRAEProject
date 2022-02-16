@@ -37,6 +37,11 @@ namespace TRAEProject.Changes.Recipes
                 recipe.TryGetIngredient(ItemID.WormTooth, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
             }
+            if (recipe.HasResult(ItemID.InfernoPotion))
+            {
+                recipe.TryGetIngredient(ItemID.Obsidifish, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+            }
             if (recipe.HasResult(ItemID.TitanPotion))
             {
                 recipe.TryGetIngredient(ItemID.Bone, out ingredientToRemove);

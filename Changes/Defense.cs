@@ -56,11 +56,7 @@ namespace TRAEProject
             if (RoyalGelCooldown > 0)
             {
                 Player.drippingSlime = true;
-                RoyalGelCooldown++;
-                if (RoyalGelCooldown > 1800)
-                {
-                    RoyalGelCooldown = 0;
-                }
+                RoyalGelCooldown--;
             }
         }
         public override void PostUpdateEquips()
@@ -107,7 +103,8 @@ namespace TRAEProject
         {
             if (RoyalGel && RoyalGelCooldown == 0)
             {
-                damage -= 50;
+                RoyalGelCooldown = 30 * 60;
+                damage -= 25;
                 SoundEngine.PlaySound(SoundID.NPCDeath1);
                 for (int i = 0; i < 25; ++i)
                 {
@@ -146,7 +143,15 @@ namespace TRAEProject
             //	
             if (RoyalGel && RoyalGelCooldown == 0)
             {
-                damage -= 50;
+                RoyalGelCooldown = 30 * 60;
+                damage -= 25;
+                SoundEngine.PlaySound(SoundID.NPCDeath1);
+                for (int i = 0; i < 25; ++i)
+                {
+                    Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
+                    Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.t_Slime, 0f, 0f, 100, default(Color), 2.5f);
+                    dust.velocity *= 3f;
+                }
             }
             damage -= FlatDamageReduction;
             if (EndurancePot)

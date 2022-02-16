@@ -17,14 +17,18 @@ namespace TRAEProject.Changes.NPCs
         {
             switch (npc.type)
             {
-				case NPCID.LavaSlime:
-                    npc.damage = 40; // up from 15
-                    npc.lifeMax = 50; // up from 50
-                    npc.knockBackResist = 0.7f; // up from 0%
+                case NPCID.Hellbat:
+                    npc.damage = 40; 
+                    npc.lifeMax = 70; 
+                    return;
+                case NPCID.LavaSlime:
+                    npc.damage = 80; // up from 15
+                    npc.lifeMax = 150; // up from 50
+                    npc.knockBackResist = 0.4f; // up from 0%
                     return;
                 case NPCID.BoneSerpentHead:
                     npc.damage = 70; // up from 30
-                    npc.lifeMax = 250; // up from 250
+                    npc.lifeMax = 400; // up from 250
                     return;
                 case NPCID.BoneSerpentBody:
                     npc.damage = 30; // up from 15

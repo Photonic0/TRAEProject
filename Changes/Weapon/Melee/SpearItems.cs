@@ -133,7 +133,7 @@ namespace TRAEProject.Changes.Weapon
 					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<PalladiumPike>();
 					altShoot = ProjectileType<PalladiumPikeThrow>();
-
+                                        item.useTime = item.useAnimation = 34;
 					item.channel = true;
 					item.damage = 45;
 					break;
@@ -151,6 +151,7 @@ namespace TRAEProject.Changes.Weapon
 					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<OrichalcumHookbill>();
 					altShoot = ProjectileType<OrichalcumHookbillThrow>();
+
 
 					item.damage = 40;
 					item.channel = true;

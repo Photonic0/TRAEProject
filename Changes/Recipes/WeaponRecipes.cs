@@ -24,7 +24,19 @@ namespace TRAEProject.Changes.Recipes
             WaspGun.AddIngredient(ItemID.BeeGun, 1);
             WaspGun.AddIngredient(ItemID.SoulofFright, 20);
             WaspGun.AddTile(TileID.MythrilAnvil);
-            WaspGun.Register();
+            WaspGun.Register(); 
+            Recipe MagicDagger = mod.CreateRecipe(ItemID.MagicDagger);
+            MagicDagger.AddIngredient(ItemID.ThrowingKnife, 1);
+            MagicDagger.AddIngredient(ItemID.FallenStar, 5);
+            MagicDagger.AddIngredient(ItemID.DemoniteBar, 10);
+            MagicDagger.AddTile(TileID.Anvils);
+            MagicDagger.Register();
+            Recipe IceSickle = mod.CreateRecipe(ItemID.IceSickle);
+            IceSickle.AddIngredient(ItemID.FrostCore, 1);
+            IceSickle.AddIngredient(ItemID.SoulofNight, 15);
+            IceSickle.AddIngredient(ItemID.Sickle, 1);
+            IceSickle.AddTile(TileID.MythrilAnvil);
+            IceSickle.Register();
             Recipe PulseBow = mod.CreateRecipe(ItemID.PulseBow);
             PulseBow.AddIngredient(ItemID.ShroomiteBar, 20);
             PulseBow.AddTile(TileID.Autohammer);
@@ -140,7 +152,6 @@ namespace TRAEProject.Changes.Recipes
                 recipe.AddIngredient(ItemID.SoulofMight, 20);
                 recipe.AddIngredient(ItemID.SoulofLight, 20);
             }
-
             if (recipe.HasResult(ItemID.Megashark))
             {
                 recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);

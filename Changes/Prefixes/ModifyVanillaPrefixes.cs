@@ -258,28 +258,28 @@ namespace TRAEProject.Changes.Prefixes
                 case PrefixID.Large:
                     int sizeIndex = tooltips.FindIndex(TL => TL.Name == "PrefixSize");
 
-                    line = new TooltipLine(TRAEProj.Instance, "TRAEDamage", "+"+ (int)((ModifyVanillaPrefixes.T1Damage - 1f) * 100f) + "% critical strike chance");
+                    line = new TooltipLine(TRAEProj.Instance, "TRAEDamage", "+"+ (int)((ModifyVanillaPrefixes.T1Damage - 1f) * 100f) + "% damage");
                     line.isModifier = true;
                     tooltips.Insert(sizeIndex, line);
                     break;
                 case PrefixID.Heavy:
                     int speedIndex = tooltips.FindIndex(TL => TL.Name == "PrefixSpeed");
 
-                    line = new TooltipLine(TRAEProj.Instance, "TRAEDamage", "+" + (int)((ModifyVanillaPrefixes.T1Damage - 1f) * 100f) + "% critical strike chance");
+                    line = new TooltipLine(TRAEProj.Instance, "TRAEDamage", "+" + (int)((ModifyVanillaPrefixes.T1Damage - 1f) * 100f) + "% damage");
                     line.isModifier = true;
                     tooltips.Insert(speedIndex, line);
                     break;
                 case PrefixID.Strong:
                     int kbIndex = tooltips.FindIndex(TL => TL.Name == "PrefixKnockback");
 
-                    line = new TooltipLine(TRAEProj.Instance, "TRAEDamage", "+" + (int)((ModifyVanillaPrefixes.T2Damage - 1f) * 100f) + "% critical strike chance");
+                    line = new TooltipLine(TRAEProj.Instance, "TRAEDamage", "+" + (int)((ModifyVanillaPrefixes.T2Damage - 1f) * 100f) + "% damage");
                     line.isModifier = true;
                     tooltips.Insert(kbIndex, line);
                     break;
                 case PrefixID.Massive:
                     int sizeIndex2 = tooltips.FindIndex(TL => TL.Name == "PrefixSize");
 
-                    line = new TooltipLine(TRAEProj.Instance, "TRAEDamage", "+" + (int)((ModifyVanillaPrefixes.T2Damage - 1f) * 100f) + "% critical strike chance");
+                    line = new TooltipLine(TRAEProj.Instance, "TRAEDamage", "+" + (int)((ModifyVanillaPrefixes.T2Damage - 1f) * 100f) + "% damage");
                     line.isModifier = true;
                     tooltips.Insert(sizeIndex2, line);
                     break;

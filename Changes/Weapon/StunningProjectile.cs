@@ -22,7 +22,11 @@ namespace TRAEProject.Changes.Weapon
             switch(projectile.type)
             {
                 case ProjectileID.TheDaoofPow:
-                    target.GetGlobalNPC<Stun>().StunMe(target, 90);
+                    if (Main.rand.Next(3) == 0)
+                    { 
+                        target.GetGlobalNPC<Stun>().StunMe(target, 60); 
+                    }
+                
                     break;
             }
         }

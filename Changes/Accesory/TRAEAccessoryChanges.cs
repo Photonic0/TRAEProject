@@ -697,7 +697,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += "\nReduces damage by 50 every 30 seconds";
+                            line.text += "\nReduces damage by 25 every 30 seconds";
                         }
                     }
                     break;
@@ -878,14 +878,6 @@ namespace TRAEProject.Changes.Accesory
                     }
                     break;
             }
-        }
-        public override int ChoosePrefix(Item item, UnifiedRandom rand)
-        {
-            if (item.type == ItemID.MagicDagger)
-            {
-                return rand.Next(62, 81);
-            }
-            return base.ChoosePrefix(item, rand);
         }
     }
 }

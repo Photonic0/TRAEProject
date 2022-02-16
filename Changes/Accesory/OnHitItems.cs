@@ -64,10 +64,11 @@ namespace TRAEProject.Changes.Items
         }
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
-            if (Player.HasBuff(BuffID.Frozen))
+            int findbuffIndex = Player.FindBuffIndex(BuffID.Frozen);
+            if (findbuffIndex != -1)
             {
-                Player.DelBuff(BuffID.Frozen);
-            }
+               Player.DelBuff(findbuffIndex);
+            };
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)
@@ -119,10 +120,11 @@ namespace TRAEProject.Changes.Items
         }
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
-            if (Player.HasBuff(BuffID.Frozen))
+            int findbuffIndex = Player.FindBuffIndex(BuffID.Frozen);
+            if (findbuffIndex != -1)
             {
-                Player.DelBuff(BuffID.Frozen);
-            }
+                Player.DelBuff(findbuffIndex);
+            };
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)

@@ -44,7 +44,7 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     item.SetNameOverride("Super Rocket");
                     break;
                 case ItemID.ClusterRocketI:
-                    item.damage = 50; // down from 65
+                    item.damage = 40; // down from 65
                     item.SetNameOverride("Cluster Rocket");
                     break;
                 case ItemID.ClusterRocketII:

@@ -62,6 +62,10 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.scale = 1.75f;
                     item.SetNameOverride("Adamantite Broadsword");
                     break;
+                case ItemID.Frostbrand:
+                    item.useTime = 40;
+                    item.scale = 1.5f; // up from 1.15
+                    return;
                 case ItemID.TitaniumSword:
                     item.scale = 1.75f;
                     item.SetNameOverride("Titanium Falchion");
@@ -182,6 +186,13 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.DD2SquireBetsySword:
                     item.scale = 1.7f;
                     break;
+                case 3063: // meowmere
+                    item.scale = 1.95f; // up from 1.05
+                    return;
+                case 3065: // star wrath
+                    item.scale = 1.85f; // up from 1.05
+                    return;
+
             }
         }
         public override bool? CanHitNPC(Item item, Player player, NPC target)

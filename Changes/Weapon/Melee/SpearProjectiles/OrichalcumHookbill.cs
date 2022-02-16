@@ -93,7 +93,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             if (maxInterupting > 0)
             {
                 Player player = Main.player[Projectile.owner];
-                damage += (int)(damage * (4 * (float)maxInterupting / (float)player.itemAnimationMax));
+                damage += (int)(damage * (3 * (float)maxInterupting / (float)player.itemAnimationMax));
             }
         }
         bool spawnedPetal = false;

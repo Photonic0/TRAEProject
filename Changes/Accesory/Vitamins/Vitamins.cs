@@ -80,7 +80,7 @@ namespace TRAEProject.Changes.NewContent.Accesory.Vitamins
             if (buffArms)
             {
                 Color color12 = drawInfo.colorBodySkin;
-                Texture2D texture = Request<Texture2D>("TRAEProject/Changes/Items/Vitamins/BuffArms").Value;
+                Texture2D texture = Request<Texture2D>("TRAEProject/Changes/Accesory/Vitamins/BuffArms").Value;
                 Vector2 vector = new Vector2((int)(drawInfo.Position.X - Main.screenPosition.X - (float)(drawInfo.drawPlayer.bodyFrame.Width / 2) + (float)(drawInfo.drawPlayer.width / 2)), (int)(drawInfo.Position.Y - Main.screenPosition.Y + (float)drawInfo.drawPlayer.height - (float)drawInfo.drawPlayer.bodyFrame.Height + 4f)) + drawInfo.drawPlayer.bodyPosition + new Vector2(drawInfo.drawPlayer.bodyFrame.Width / 2, drawInfo.drawPlayer.bodyFrame.Height / 2);
                 Vector2 value = Main.OffsetsPlayerHeadgear[drawInfo.drawPlayer.bodyFrame.Y / drawInfo.drawPlayer.bodyFrame.Height];
                 value.Y -= 2f;
@@ -188,7 +188,7 @@ namespace TRAEProject.Changes.NewContent.Accesory.Vitamins
             if (buffArms)
             {
                 Color color12 = drawInfo.colorBodySkin;
-                Texture2D texture = Request<Texture2D>("TRAEProject/Changes/Items/Vitamins/BuffArms").Value;
+                Texture2D texture = Request<Texture2D>("TRAEProject/Changes/Accesory/Vitamins/BuffArms").Value;
 
                 Vector2 vector = new Vector2((int)(drawInfo.Position.X - Main.screenPosition.X - (float)(drawInfo.drawPlayer.bodyFrame.Width / 2) + (float)(drawInfo.drawPlayer.width / 2)), (int)(drawInfo.Position.Y - Main.screenPosition.Y + (float)drawInfo.drawPlayer.height - (float)drawInfo.drawPlayer.bodyFrame.Height + 4f)) + drawInfo.drawPlayer.bodyPosition + new Vector2(drawInfo.drawPlayer.bodyFrame.Width / 2, drawInfo.drawPlayer.bodyFrame.Height / 2);
                 Vector2 value = Main.OffsetsPlayerHeadgear[drawInfo.drawPlayer.bodyFrame.Y / drawInfo.drawPlayer.bodyFrame.Height];

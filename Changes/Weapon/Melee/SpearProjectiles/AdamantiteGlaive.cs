@@ -25,7 +25,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
         {
             spearLength = 155.5f;
             holdAt = 93f;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 5;
             floatTime = 120;
         }
     }

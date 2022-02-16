@@ -28,6 +28,9 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.autoReuse = true;
                     item.value = 50000;
                     return;
+                case ItemID.ChainGuillotines:
+                    item.crit = 20;
+                    return;
                 case ItemID.VampireKnives:
                     item.damage = 41; // up from 29
                     return;
@@ -51,6 +54,9 @@ namespace TRAEProject.Changes.Weapon.Melee
                     return;    
 				case ItemID.Flairon:
                     item.noMelee = false;
+                    return;
+                case ItemID.DaoofPow:
+                    item.damage = 40;
                     return;
                     // yoyo
                 case ItemID.Rally:
@@ -258,7 +264,15 @@ namespace TRAEProject.Changes.Weapon.Melee
                         }
                     }
                     return;
-
+                case ItemID.ChainGuillotines:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "Heals on a critical hit";
+                        }
+                    }
+                    return;
             }
         }
     }

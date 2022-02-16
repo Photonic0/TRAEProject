@@ -236,6 +236,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.useTurn = false;
                     break;
                 case ItemID.BladeofGrass:
+                    item.damage = 36; // up from 28
                     item.useTime = 30;
                     item.useAnimation = 30;
                     item.shoot = ProjectileType<Blank>();
@@ -271,15 +272,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     player.statLife += 1;
                 }
             }
-            if (item.type == ItemID.BladeofGrass)
-            {
-                if (Main.rand.Next(3) == 0)
-                {
-                    float PositionX = player.position.X - Main.rand.Next(-50, 50);
-                    float PositionY = player.position.Y - Main.rand.Next(-50, 50);
-                    Projectile.NewProjectile(player.GetProjectileSource_Item(item), PositionX, PositionY, 0, 0, ProjectileID.SporeTrap, damage, knockBack, player.whoAmI);
-                }
-            }
+         
             if (item.type == ItemID.FieryGreatsword)
             {
                 TRAEDebuff.Apply<HeavyBurn>(target, 120, 1);

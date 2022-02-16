@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.Items.Misc.Potions;
 
 namespace TRAEProject.Changes
 {
@@ -65,6 +67,12 @@ namespace TRAEProject.Changes
                     nextSlot++;
                     break;
                 case NPCID.SkeletonMerchant:
+                    if (Main.hardMode)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemType<PowerBrew>());
+                        nextSlot++;
+                        break;
+                    }
                     if (Main.moonPhase == 2 || Main.moonPhase == 8)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.Rally);

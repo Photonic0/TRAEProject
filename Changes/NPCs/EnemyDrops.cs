@@ -14,7 +14,7 @@ namespace TRAEProject.Changes.NPCs
 {
     public class EnemyDrops: GlobalNPC
     {
-        public static readonly int[] MimicDrops = new int[] { ItemID.CrossNecklace, ItemID.PhilosophersStone, ItemID.TitanGlove, ItemID.StarCloak, ItemID.MagicDagger};
+        public static readonly int[] MimicDrops = new int[] { ItemID.CrossNecklace, ItemID.PhilosophersStone, ItemID.TitanGlove, ItemID.StarCloak};
        
         public static readonly int[] PirateDrops = new int[] { ItemID.LuckyCoin, ItemID.GoldRing, ItemID.DiscountCard, ItemID.PirateStaff };
       
@@ -90,7 +90,21 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.PirateShip:
                     npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, PirateDrops));
                     return;
+                case NPCID.ArmoredViking:
+                    npcLoot.RemoveWhere(rule =>
+                    {
+                        if (rule is not CommonDrop drop) // Type of drop you expect here
+                            return false;
+                        return drop.itemId == ItemID.IceSickle; // compare more fields if needed
+                    });
+                    return;
                 case NPCID.IceTortoise:
+                    npcLoot.RemoveWhere(rule =>
+                    {
+                        if (rule is not CommonDrop drop) // Type of drop you expect here
+                            return false;
+                        return drop.itemId == ItemID.IceSickle; // compare more fields if needed
+                    });
                     npcLoot.RemoveWhere(rule =>
                     {
                         if (rule is not CommonDrop drop) // Type of drop you expect here

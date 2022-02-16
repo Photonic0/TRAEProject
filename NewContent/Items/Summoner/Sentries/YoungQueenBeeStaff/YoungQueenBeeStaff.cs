@@ -5,6 +5,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.WorldBuilding;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
@@ -14,10 +15,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Young Queen Bee Staff");
-            Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies");
-            ItemID.Sets.SortingPriorityMaterials[Item.type] = 46; // what does this do
-            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller.
-            ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
+            Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies WIP NOT WORKING");
         }
         public override void SetDefaults()
         {
@@ -31,7 +29,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
             Item.useAnimation = 12;
             Item.useTurn = false;
             Item.autoReuse = true;
-     
+
             Item.mana = 25;
             Item.UseSound = SoundID.Item78;
 
@@ -39,6 +37,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
             Item.DamageType = DamageClass.Summon;
             Item.knockBack = 1f;
 
+            Item.sentry = true;
             Item.shoot = ProjectileType<YoungQueenBee>();
 
             //item.shootSpeed = 3.5f;
@@ -56,16 +55,22 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
             player.SpawnMinionOnCursor(source, player.whoAmI, type, Item.damage, knockback);
             return false;
         }
-        public override void AddRecipes()
+        public override bool AltFunctionUse(Player player)
         {
-            CreateRecipe(1).AddIngredient(ItemID.BeeWax, 12)
-                .AddTile(TileID.Anvils)
-                .Register();
+            return true;
+        }
+        public override bool? UseItem(Player player)
+        {
+            if (player.altFunctionUse == 2)
+            {
+                player.MinionNPCTargetAim(false);
+            }
+            return base.UseItem(player);
         }
     }
 
-        //______________________________________________________________________________________________________
-      public class YoungQueenBee : ModProjectile
+    //______________________________________________________________________________________________________
+    public class YoungQueenBee : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -77,22 +82,28 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
         {
             Projectile.width = 60;
             Projectile.height = 40;
+            Projectile.hostile = false;
             Projectile.friendly = true;
-            Projectile.ignoreWater = false;
-            Projectile.sentry = true;
-            Projectile.minion = true;
-            Projectile.penetrate = 1;
+            Projectile.ignoreWater = true;
             Projectile.timeLeft = Projectile.SentryLifeTime;
+            Projectile.knockBack = 10f;
+            Projectile.penetrate = -1;
             Projectile.tileCollide = true;
-
+            Projectile.sentry = true;
         }
+       
         public override bool? CanDamage()
         {
 
             return false;
         }
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            return false;
+        }
         public override void AI()
         {
+            Projectile.velocity.Y = 5;
             Projectile.frameCounter++;
             if (Projectile.frameCounter >= 12)
             {
@@ -110,11 +121,19 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
                 NPC npc = Main.npc[t];
 
                 float distance = Projectile.Distance(npc.Center); //Set the distance from the NPC and the sentry Projectile.
-
+                
                 //Convert distance to tile position, and continue if the following NPC parameters are met.
                 if (distance / 16 < SentryRange && Main.npc[t].active && !Main.npc[t].dontTakeDamage && !Main.npc[t].friendly && Main.npc[t].lifeMax > 5 && Main.npc[t].type != NPCID.TargetDummy)
                 {
                     Projectile.ai[1] = npc.whoAmI;
+                }
+                if (distance < 0)
+                {
+                    Projectile.direction = -1;
+                }
+                if (distance > 0)
+                {
+                    Projectile.direction = 1;
                 }
             }
 
@@ -133,25 +152,54 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
                 SoundEngine.PlaySound(SoundID.Item97, Projectile.Center); //Play a sound.
 
                 int damage = Projectile.damage; //How much damage the projectile shot from the sentry will do.
-               
+
                 int bees = Main.rand.Next(4, 7);
 
                 for (int index1 = 0; index1 < bees; ++index1)
                 {
                     float knockback = 0;
-                    int type = ProjectileID.Bee; //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded Projectile.
+                    int type = ProjectileType<Bee>(); //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded Projectile.
                     if (Main.rand.Next(4) == 0)
                     {
                         knockback = 2f;
-                        type = ProjectileID.GiantBee;
+                        type = ProjectileType<GiantBee>();
                     };
                     float num4 = 6f;
                     float num8 = 6f;
                     float SpeedX2 = num4 + (float)Main.rand.Next(-35, 36) * 0.02f;
                     float SpeedY2 = num8 + (float)Main.rand.Next(-35, 36) * 0.02f;
                     int index2 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, SpeedX2, SpeedY2, type, damage, knockback);
+                    ProjectileID.Sets.MinionShot[index2] = true;
                 }
             }
+        }
+    }
+    public class Bee : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bee");
+            Main.projFrames[Projectile.type] = 2;
+        }
+        public override void SetDefaults()
+        {
+            Projectile.CloneDefaults(ProjectileID.Bee);
+            AIType = ProjectileID.Bee;
+            Projectile.DamageType = DamageClass.Summon;
+        }
+    }
+    public class GiantBee : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Bee");
+            Main.projFrames[Projectile.type] = 2;
+        }
+        public override void SetDefaults()
+        {
+            Projectile.CloneDefaults(ProjectileID.GiantBee);
+            AIType = ProjectileID.GiantBee;
+            Projectile.DamageType = DamageClass.Summon;
         }
     }
 }

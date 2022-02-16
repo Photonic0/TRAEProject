@@ -30,7 +30,7 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             AnimationType = NPCID.Pixie;
             NPC.damage = 50;
             NPC.defense = 10;
-            NPC.lifeMax = 100;
+            NPC.lifeMax = 80;
             NPC.lavaImmune = true;
             NPC.noGravity = true;
             NPC.HitSound = SoundID.NPCHit5;
@@ -39,14 +39,24 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             Banner = NPC.type;
             BannerItem = ItemType<BoomxieBanner>();
         }
-        int timer = 0;
+        int attackCycleTimer = 0;
+        int spamTimer = 0;
         public override void AI()
         {
-            timer++;
-            if (timer >= 60)
-            { 
-                NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>()); 
-				timer = 0;
+          
+            attackCycleTimer++;
+            if (attackCycleTimer > 150)
+            {
+                spamTimer++;
+                if (spamTimer >= 75)
+                {
+                    NPC.NewNPC((int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
+                    spamTimer = 0;
+                }
+            }
+            if (attackCycleTimer > 750)
+            {
+                attackCycleTimer = 0;
             }
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

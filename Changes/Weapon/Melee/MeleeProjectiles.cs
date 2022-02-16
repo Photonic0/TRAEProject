@@ -114,6 +114,13 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ProjectileID.TerraBeam:
                     projectile.extraUpdates = 1;
                     break;
+                case ProjectileID.IceSickle:
+                    projectile.timeLeft = 180;
+                    projectile.penetrate = 6;
+                    break;
+                case ProjectileID.FrostBoltSword:
+                    projectile.penetrate = 3;
+                    break;
             }
         }
         int timer = 0;
@@ -268,6 +275,11 @@ namespace TRAEProject.Changes.Weapon.Melee
             if (projectile.type == ProjectileID.TinyEater)
             {
                 TRAEDebuff.Apply<Corrupted>(target, 181, 1);
+            }
+            if (projectile.type == ProjectileID.ChainGuillotine && crit)
+            {
+                player.HealEffect(1, true);
+                player.statLife += 1;
             }
             if (player.HasBuff(BuffID.WeaponImbueNanites) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
             {
