@@ -351,7 +351,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 							if (npc.ai[1] > idleTime)
 							{
                                 int attackCount = (int)npc.ai[3];
-								if(Main.expertMode && (float)npc.life / (float)npc.lifeMax < 0.15f)
+								if(Main.masterMode && (float)npc.life / (float)npc.lifeMax < 0.15f)
 								{
 									nextAttack = 9;
 									break;
