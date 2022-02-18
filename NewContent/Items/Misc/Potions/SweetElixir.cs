@@ -18,12 +18,12 @@ namespace TRAEProject.NewContent.Items.Misc.Potions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sweet Elixir");
-            Tooltip.SetDefault("Grants Honey for 40 seconds");
+            Tooltip.SetDefault("Grants Honey for 45 seconds");
         }
         public override void SetDefaults()
         {
 
-            Item.DefaultToHealingPotion(20, 30, 80);
+            Item.DefaultToHealingPotion(20, 30, 120);
          Item.consumable = true;
             Item.maxStack = 30;
             Item.useTime = Item.useAnimation = 30;
@@ -35,7 +35,7 @@ namespace TRAEProject.NewContent.Items.Misc.Potions
         }
         public override void OnConsumeItem(Player player)
         {
-            player.AddBuff(BuffID.Honey, 40 * 60);
+            player.AddBuff(BuffID.Honey, 45 * 60);
             int potionSickness = 60;
             if (player.pStone == true)
             {

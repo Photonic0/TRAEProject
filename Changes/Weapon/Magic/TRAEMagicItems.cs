@@ -65,23 +65,25 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.damage = 19; // down from 29
                     item.value = 100000;
                     break;
+                case ItemID.Vilethorn:
+                    item.mana = 30; // up from 5
+                    break;
                 case ItemID.ThunderStaff:
                     item.damage = 24; // up from 12
                     item.mana = 21; // up from 5
                     break;
                 case ItemID.MagicDagger:
-                    item.damage = 12; // down from 40
-                    item.mana = 7; // up from 6
-                    item.useTime = 13; // up from 8
-                    item.useAnimation = 13; // up from 8
+                    item.damage = 16; // down from 40
+                    item.mana = 8; // up from 6
+                    item.useTime = 12; // up from 8
+                    item.useAnimation = 12; // up from 8
                     item.autoReuse = true;
+                    item.value = 10000;
                     break;
-                case ItemID.Vilethorn:
-                    item.mana = 75; // up from 10
-                    break;
+            
                 case ItemID.CrimsonRod:
-                    item.damage = 10; // down from 12
-                    item.mana = 100; // up from 10
+                    item.damage = 12; // down from 12
+                    item.mana = 120; // up from 10
                     break;   
                         case ItemID.WeatherPain:
                     item.mana = 100; // up from 30
@@ -93,7 +95,7 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.useAnimation = 20;
 					break;
 		        case ItemID.PoisonStaff:
-                    item.damage = 15; // down from 48
+                    item.damage = 17; // down from 48
                     item.mana = 45; // up from 22                  
                     break; 
                 case ItemID.BeeGun:
@@ -166,7 +168,7 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.mana = 150; // up from 40
                     break;
                 case ItemID.CrystalVileShard:
-                    item.mana = 80; // up from 13
+                    item.mana = 20; // up from 5
                     break;
                 case ItemID.FlowerofFrost:
                     item.damage = 60;
@@ -188,7 +190,7 @@ namespace TRAEProject.Changes.Weapon.Magic
                     break;
                 case ItemID.NimbusRod:
 				item.damage = 36; // base value: 36
-                    item.mana = 100; // up from 22                  
+                    item.mana = 120; // up from 22                  
                     break;
                 case ItemID.SharpTears:
                     item.mana = 50; // up from 20
@@ -219,12 +221,11 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.mana = 22; // up from 19
                     item.shootSpeed = 0.66f;
                     item.knockBack = 6.66f;
-                    break;       
-                case ItemID.NettleBurst:
-                    item.damage = 50; // up from 35
-                    item.mana = 90; // up from 12
                     break;
-				case ItemID.HeatRay:
+                case ItemID.NettleBurst:
+                    item.mana = 12; // up from 5
+                    break;
+                case ItemID.HeatRay:
 				    item.damage = 88; //  up from 80
                     item.mana = 12; // up from 8
 					break;
@@ -398,40 +399,8 @@ namespace TRAEProject.Changes.Weapon.Magic
                         }
                         return true;
                     }
-                case ItemID.Vilethorn:
-                    {
-                        for (int i = 0; i < 1000; i++)
-                        {
-                            if ((Main.projectile[i].type == type || Main.projectile[i].type == ProjectileID.VilethornTip) && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
-                            {
-                                Main.projectile[i].Kill();
-                            }
-                        }
-                        return true;
-                    }
-                case ItemID.CrystalVileShard:
-                    {
-                        for (int i = 0; i < 1000; i++)
-                        {
-                            if ((Main.projectile[i].type == type || Main.projectile[i].type == ProjectileID.CrystalVileShardHead) && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
-                            {
-                                Main.projectile[i].Kill();
-                            }
-                        }
-                        return true;
-                    }
-                case ItemID.NettleBurst:
-                    {
-                        for (int i = 0; i < 1000; i++)
-                        {
-                            if ((Main.projectile[i].type == ProjectileID.NettleBurstRight || Main.projectile[i].type == ProjectileID.NettleBurstLeft || Main.projectile[i].type == ProjectileID.NettleBurstEnd) && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
-                            {
-                                Main.projectile[i].Kill();
-                            }
-                        }
-                        return true;
-                    }
-            }
+            } 
+    
             return true;       
         }
         public override void GrabRange(Item item, Player player, ref int grabRange)

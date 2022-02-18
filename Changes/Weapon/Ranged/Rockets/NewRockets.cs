@@ -183,15 +183,16 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             {
                 int Cluster = 862; // snowman cannon's projectile, doesn't damage the player
                 float num852 = ((float)Math.PI * 2f);
-                for (float c = 0f; c < 1f; c += 355f / (678f * (float)Math.PI))
+                float fragmentCount = 59.167f * 6/*Main.rand.Next(2, 3)*/;
+                for (float c = 0f; c < 1f; c += fragmentCount / (678f * (float)Math.PI))
                 {
+
                     float f2 = num852 + c * ((float)Math.PI * 2f);
                     Vector2 velocity = f2.ToRotationVector2() * (4f + Main.rand.NextFloat() * 2f);
                     velocity += Vector2.UnitY * -1f;
-                    int num854 = Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center, velocity, Cluster, projectile.damage / 4, 0f, projectile.owner);
-                    Projectile pRojectile = Main.projectile[num854];
+                    int num854 = Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center, velocity, Cluster, projectile.damage / 2, 0f, projectile.owner); Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
-                    projectile2.timeLeft = 30;
+                    projectile2.timeLeft = 40;
                 }
             }
         }
@@ -304,7 +305,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.penetrate = 4;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 600; Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 10;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;

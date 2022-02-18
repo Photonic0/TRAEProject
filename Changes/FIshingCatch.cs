@@ -55,9 +55,10 @@ namespace TRAEProject.Changes
 				Fishing_GetBait(out _, out int baitID, out int baitIndex);
 				if(baitID == ItemType<DreadSummon>())
                 {
-					npcSpawn = NPCID.BloodNautilus;
+					npcSpawn = NPCID.BloodNautilus; 
+					Player.inventory[baitIndex].stack--;
 				}
-				Player.inventory[baitIndex].stack--;
+			
             }
             if (!Main.hardMode && (itemDrop == 4819 || itemDrop == 4820 || itemDrop == 4872))
             {

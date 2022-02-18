@@ -19,7 +19,7 @@ namespace TRAEProject
         public bool wErewolf = false;
         public bool icceleration = false;
         public bool waterRunning = false;
-        
+        public bool sandRunning = false;
         public bool FastFall = false;
         public bool AquaAffinity = false;
         public bool LavaShield = false;
@@ -28,6 +28,7 @@ namespace TRAEProject
             wErewolf = false;
             icceleration = false;
             waterRunning = false;
+            sandRunning = false;
             FastFall = false;
             AquaAffinity = false;
             LavaShield = false;
@@ -37,6 +38,7 @@ namespace TRAEProject
             wErewolf = false;
             icceleration = false;
             waterRunning = false;
+            sandRunning = false;
             FastFall = false;
             AquaAffinity = false;
         }
@@ -141,6 +143,35 @@ namespace TRAEProject
                 Player.GetDamage<GenericDamageClass>() += 0.11f;
                 Player.GetCritChance<GenericDamageClass>() += 9;
                 Player.meleeSpeed += 0.07f;
+            }
+            if (sandRunning)
+            {
+                int num = 2;
+                int num2 = 2;
+                int num3 = (int)((Player.position.X + (Player.width / 2)) / 16f);
+                int num4 = (int)((Player.position.Y + Player.height) / 16f);
+                for (int j = num3 - num; j <= num3 + num; j++)
+                {
+                    for (int k = num4 - num2; k < num4 + num2; k++)
+                    {
+                        if (Main.tile[j, k].TileType == TileID.Sand ||
+                            Main.tile[j, k].TileType == TileID.Sandstone ||
+                            Main.tile[j, k].TileType == TileID.HardenedSand ||
+                            Main.tile[j, k].TileType == TileID.Ebonsand ||
+                       Main.tile[j, k].TileType == TileID.CorruptSandstone||
+                            Main.tile[j, k].TileType == TileID.CorruptHardenedSand ||
+                            Main.tile[j, k].TileType == TileID.Crimsand ||
+                           Main.tile[j, k].TileType == TileID.CrimsonSandstone ||
+                            Main.tile[j, k].TileType == TileID.CrimsonHardenedSand ||
+                                Main.tile[j, k].TileType == TileID.Pearlsand ||
+                       Main.tile[j, k].TileType == TileID.HallowSandstone ||
+                            Main.tile[j, k].TileType == TileID.HallowHardenedSand
+                            )
+                        {
+                            Player.AddBuff(BuffType<SandRush>(), 480);
+                        }
+                    }
+                }
             }
             if (waterRunning)
             {

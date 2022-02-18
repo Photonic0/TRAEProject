@@ -4,7 +4,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
-using TRAEProject.Changes.Projectiles;
 using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
 
@@ -56,7 +55,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             Projectile.CloneDefaults(ProjectileID.Bullet);
             Projectile.timeLeft = 1200;
             Projectile.alpha = 100;
-            Projectile.GetGlobalProjectile<TRAEGlobalProjectile>().DamageFalloff = 0.33f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.33f;
             Projectile.penetrate = 2;
             Projectile.extraUpdates = 2;
             Projectile.ignoreWater = true;

@@ -3,7 +3,7 @@ i:{00000000-0000-0000-0000-000000000000}:TRAE1.sln
 ++TRAEProject
 i:{00000000-0000-0000-0000-000000000000}:TRAEProject
 ++Dependencias
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:>2684
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:>3000
 ++Properties
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\properties\
 ++Changes
@@ -52,118 +52,17 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 ++Items
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\
-++ArmorPolish.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\armorpolish.cs
-++Bags.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\bags.cs
-++Megaphone.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\megaphone.cs
-++ThePlan.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\theplan.cs
-++TrifoldMap.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\trifoldmap.cs
 ++Mounts
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\mounts\
 ++NPCs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\npcs\
-++Boss
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\
-++Dreadnautilus
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\
-++BloodBeam.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodbeam.cs
-++BloodBeam.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodbeam.png
-++BloodDraw.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\blooddraw.png
-++BloodShot.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodshot.cs
-++BloodSnipe.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodsnipe.cs
-++BloodSnipe.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodsnipe.png
-++BloodSquid.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodsquid.cs
-++Dreadnautilus.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\dreadnautilus.cs
-++GlowPattern.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\glowpattern.png
-++MapIcon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\mapicon.png
-++MapIcon2.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\mapicon2.png
-++Phase2.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\phase2.png
-++Phase2Tentacles.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\phase2tentacles.png
-++Plantera
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\
-++MechBosses.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\mechbosses.cs
-++TRAEFishron.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\traefishron.cs
-++EnemyDrops.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\enemydrops.cs
-++GeneralNPCChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\generalnpcchanges.cs
-++HellEnemies.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\hellenemies.cs
-++SpawnRate.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\spawnrate.cs
 ++Prefixes
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\
-++AccessoryPrefixChange.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\accessoryprefixchange.cs
-++BoomerangFlailPrefixes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\boomerangflailprefixes.cs
-++GiveWeaponsPrefixes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\giveweaponsprefixes.cs
-++GiveWeaponsPrefixes.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\giveweaponsprefixes.cs.bak
-++ModifyVanillaPrefixes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\modifyvanillaprefixes.cs
-++YoyoPrefixes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\yoyoprefixes.cs
 ++Recipes
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\
-++AccesoryRecipes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\accesoryrecipes.cs
-++ArmorRecipes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\armorrecipes.cs
-++MiscRecipes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\miscrecipes.cs
-++WeaponRecipes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\weaponrecipes.cs
 ++Resprites
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\
-++BundleOfBalloonsFixed.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\bundleofballoonsfixed.png
-++BundleOfBalloonsFixed_Balloon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\bundleofballoonsfixed_balloon.png
-++DarkLance.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\darklance.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\melee\spearprojectiles\darklance.png
-++LunarDragonBody.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonbody.png
-++LunarDragonBuff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonbuff.png
-++LunarDragonHead.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonhead.png
-++LunarDragonSpike.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonspike.png
-++LunarDragonStaff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonstaff.png
-++LunarDragonTail.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragontail.png
-++Resprites.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\resprites.cs
-++StardustPortal.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\stardustportal.png
-++StardustPortalBeam.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\stardustportalbeam.png
-++StardustPortalStaff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\stardustportalstaff.png
 ++Weapon
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\
 ++Magic
@@ -210,6 +109,9 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\melee\spearprojectiles\cobaltnaginatathrow.png
 ++DarkLance.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\melee\spearprojectiles\darklance.cs
+++DarkLance.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\melee\spearprojectiles\darklance.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\darklance.png
 ++DarkLanceThrow.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\melee\spearprojectiles\darklancethrow.png
 ++Daybreak.cs
@@ -328,103 +230,10 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\melee\spearitems.cs
 ++Ranged
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\
-++Rockets
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\
-++ClusterGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\clustergrenade.png
-++ClusterMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\clustermine.png
-++ClusterRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\clusterrocket.png
-++ClusterSnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\clustersnowmanrocket.png
-++DestructiveGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivegrenade.png
-++DestructiveMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemine.png
-++DestructiveMiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemininuke.png
-++DestructiveMiniNukeGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemininukegrenade.png
-++DestructiveMiniNukeMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemininukemine.png
-++DestructiveMiniNukeSnowman.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemininukesnowman.png
-++DestructiveRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructiverocket.png
-++DestructiveSnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivesnowmanrocket.png
-++DirectGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\directgrenade.png
-++DirectMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\directmine.png
-++DirectRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\directrocket.png
-++DirectSnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\directsnowmanrocket.png
-++Grenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\grenade.png
-++HeavyGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\heavygrenade.png
-++HeavyMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\heavymine.png
-++HeavyRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\heavyrocket.png
-++HeavySnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\heavysnowmanrocket.png
-++Mine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mine.png
-++MiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mininuke.png
-++MiniNukeGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mininukegrenade.png
-++MiniNukeMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mininukemine.png
-++MiniNukeSnowman.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mininukesnowman.png
-++NewGrenades.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newgrenades.cs
-++NewProximityMines.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newproximitymines.cs
-++NewRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newrockets.cs
-++NewSnowmanRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newsnowmanrockets.cs
-++Rocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\rocket.png
-++RocketStatChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\rocketstatchanges.cs
-++RocketStatChanges.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\rocketstatchanges.cs.bak
-++ShootNewRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\shootnewrockets.cs
-++SnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\snowmanrocket.png
-++SuperGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\supergrenade.png
-++SuperMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\supermine.png
-++SuperRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\superrocket.png
-++SuperSnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\supersnowmanrocket.png
-++DolphinGun.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\dolphingun.cs
-++DolphinOutline.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\dolphinoutline.png
-++GeneralChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\generalchanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\summon\minions\generalchanges.cs
-++RangedProjectiles.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rangedprojectiles.cs
-++RangedProjectiles.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rangedprojectiles.cs.bak
-++Repeaters.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\repeaters.cs
-++TitaniumShrapnel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\titaniumshrapnel.png
 ++Summon
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\summon\
+++ClasslessProjectileChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\classlessprojectilechanges.cs
 ++FreezingProjectile.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\freezingprojectile.cs
 ++StunningProjectile.cs
@@ -437,8 +246,6 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\chestloot.cs
 ++Defense.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\defense.cs
-++Defense.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\defense.cs.bak
 ++FIshingCatch.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\fishingcatch.cs
 ++lkds3ahp.zx0~
@@ -461,8 +268,6 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\raritychanges.cs
 ++TRAEGlobalItem.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\traeglobalitem.cs
-++TRAEGlobalProjectile.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\traeglobalprojectile.cs
 ++Common
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\common\
 ++NewContent
@@ -471,6 +276,76 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\
 ++Accesories
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\
+++AlligatorBalloon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\alligatorballoon\
+++AngelicStone
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\angelicstone\
+++BalanceCuffs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\
+++ChainShield
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\chainshield\
+++EvilEye
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\evileye\
+++LifeCuffs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\
+++MagicalCarpet
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\magicalcarpet\
+++MagicalCarpet.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet.cs
+++MagicalCarpet.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet.png
+++MagicalCarpet_Wings.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet_wings.png
+++MasochistChains
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\
+++MirrorShield
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\mirrorshield\
+++PalladiumShield
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\palladiumshield\
+++PutridToothNecklace
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\putridtoothnecklace\
+++RuneCobra
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\runecobra\
+++SandstormBoots
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\sandstormboots\
+++SandstormBoots.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\sandstormboots\sandstormboots.cs
+++SandstormBoots.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\sandstormboots\sandstormboots.png
+++SandstormBoots_Shoes.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\sandstormboots\sandstormboots_shoes.png
+++ShadowClaws
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowclaws\
+++ShadowflameCharm
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\
+++ShamanNecklace
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shamannecklace\
+++SkeletonBeetle
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\skeletonbeetle\
+++SoaringCarpet
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\soaringcarpet\
+++SoaringCarpet.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\soaringcarpet\soaringcarpet.cs
+++SoaringCarpet.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\soaringcarpet\soaringcarpet.png
+++TheBlackCross
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\theblackcross\
+++TwoFlowers
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\twoflowers\
+++WeirdBundle
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\weirdbundle\
+++Helium_Symphony.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\helium_symphony.png
+++ChlorophyteHood
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\chlorophytehood\
+++ChlorophyteHood.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood.cs
+++ChlorophyteHood.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood.png
+++ChlorophyteHood_Head.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood_head.png
+++IceArmor
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\
 ++DreadItems
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\dreaditems\
 ++FlamethrowerAmmo
@@ -479,18 +354,6 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\materials\
 ++Misc
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\
-++Potions
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\
-++Power.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\power.png
-++PowerBrew.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\powerbrew.cs
-++PowerBrew.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\powerbrew.png
-++SweetElixir.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\sweetelixir.cs
-++SweetElixir.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\sweetelixir.png
 ++Summoner
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\summoner\
 ++AbsoluteZero
@@ -515,60 +378,24 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\
 ++Ammo
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\
+++GhostBullet.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\ghostbullet.cs
+++GhostBullet.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\ghostbullet.png
+++GhostShot.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\ghostshot.png
+++GhostShot_Glow.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\ghostshot_glow.png
+++ShroomiteBullet.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\shroomitebullet.cs
+++ShroomiteBullet.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\shroomitebullet.png
+++ShroomiteShot.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\shroomiteshot.png
+++ShroomiteShot_Glow.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\shroomiteshot_glow.png
 ++Launchers
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\
-++CryoCannon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\
-++ClusterCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\clustercryo.png
-++ClusterCryos.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\clustercryos.png
-++CryoCannon.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryocannon.cs
-++CryoCannon.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryocannon.cs.bak
-++CryoCannon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryocannon.png
-++CryoRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryorocket.png
-++CryoRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryorockets.cs
-++CryoRockets.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryorockets.cs.bak
-++DestructiveCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\destructivecryo.png
-++DestructiveMiniNukeCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\destructivemininukecryo.png
-++DirectCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\directcryo.png
-++DryCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\drycryo.png
-++HeavyCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\heavycryo.png
-++HoneyCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\honeycryo.png
-++LavaCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\lavacryo.png
-++LuminiteRocketCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\luminiterocketcryo.png
-++MiniNukeCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\mininukecryo.png
-++SuperCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\supercryo.png
-++WetCryo.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\wetcryo.png
-++H410WFLASH
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\
-++Polygon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\
-++Polygon2
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\
-++PolygonZ
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\
-++SkullCannon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\skullcannon\
-++T3Launcher
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\
 ++Scorpio
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\scorpio\
 ++Underworld
@@ -605,32 +432,87 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:marcos de trabajo
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:paquetes
 ++launchSettings.json
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\properties\launchsettings.json
+++ArmorPolish.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\armorpolish.cs
+++Bags.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\bags.cs
+++Megaphone.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\megaphone.cs
+++ThePlan.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\theplan.cs
+++TrifoldMap.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\items\trifoldmap.cs
 ++WingedSlime.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\mounts\wingedslime.cs
-++HostileCloud.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\hostilecloud.cs
-++HostileCloud.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\hostilecloud.png
-++PinkDraw.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\pinkdraw.png
-++Plantera.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\plantera.cs
-++PlanteraHook.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planterahook.cs
-++PlanteraHook.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planterahook.png
-++PlanteraHook2.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planterahook2.cs
-++PlanteraHook2.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planterahook2.png
-++PlanteraSpikeBall.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planteraspikeball.cs
-++PlanteraTentacle.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planteratentacle.cs
-++Seeds.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\seeds.cs
-++ThornyVine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\thornyvine.png
+++Boss
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\
+++EnemyDrops.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\enemydrops.cs
+++GeneralNPCChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\generalnpcchanges.cs
+++HellEnemies.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\hellenemies.cs
+++SpawnRate.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\spawnrate.cs
+++AccessoryPrefixChange.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\accessoryprefixchange.cs
+++BoomerangFlailPrefixes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\boomerangflailprefixes.cs
+++GiveWeaponsPrefixes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\giveweaponsprefixes.cs
+++GiveWeaponsPrefixes.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\giveweaponsprefixes.cs.bak
+++ModifyVanillaPrefixes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\modifyvanillaprefixes.cs
+++YoyoPrefixes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\prefixes\yoyoprefixes.cs
+++AccesoryRecipes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\accesoryrecipes.cs
+++ArmorRecipes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\armorrecipes.cs
+++MiscRecipes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\miscrecipes.cs
+++WeaponRecipes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\recipes\weaponrecipes.cs
+++BundleOfBalloonsFixed.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\bundleofballoonsfixed.png
+++BundleOfBalloonsFixed_Balloon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\bundleofballoonsfixed_balloon.png
+++LunarDragonBody.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonbody.png
+++LunarDragonBuff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonbuff.png
+++LunarDragonHead.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonhead.png
+++LunarDragonSpike.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonspike.png
+++LunarDragonStaff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragonstaff.png
+++LunarDragonTail.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\lunardragontail.png
+++Resprites.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\resprites.cs
+++StardustPortal.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\stardustportal.png
+++StardustPortalBeam.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\stardustportalbeam.png
+++StardustPortalStaff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\resprites\stardustportalstaff.png
+++Rockets
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\
+++DolphinGun.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\dolphingun.cs
+++DolphinOutline.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\dolphinoutline.png
+++GeneralChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\generalchanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\summon\minions\generalchanges.cs
+++RangedProjectiles.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rangedprojectiles.cs
+++Repeaters.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\repeaters.cs
+++TitaniumShrapnel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\titaniumshrapnel.png
 ++Minions
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\summon\minions\
 ++Sentries.cs
@@ -647,6 +529,8 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\common\freeze.cs.bak
 ++IceBlock.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\common\iceblock.png
+++ProjectileStats.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\common\projectilestats.cs
 ++Spear.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\common\spear.cs
 ++Stun.cs
@@ -683,8 +567,10 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\neoferalbite.cs
 ++NeoFeralBite.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\neoferalbite.png
-++Runeoverload.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\runeoverload.png
+++SandRush.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\sandrush.cs
+++SandRush.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\sandrush.png
 ++SBandAidFix.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\sbandaidfix.cs
 ++SBandAidFix.png
@@ -697,60 +583,146 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\strongerpoisoned.cs
 ++StrongerPoisoned.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\strongerpoisoned.png
-++Water_Walking_Boots.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\water_walking_boots.png
 ++WaterAffinity.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\wateraffinity.cs
 ++WaterAffinity.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\buffs\wateraffinity.png
-++AlligatorBalloon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\alligatorballoon\
-++AngelicStone
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\angelicstone\
-++BalanceCuffs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\
-++ChainShield
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\chainshield\
-++EvilEye
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\evileye\
-++LifeCuffs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\
-++MagicalCarpet
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\magicalcarpet\
-++MasochistChains
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\
-++MirrorShield
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\mirrorshield\
-++PalladiumShield
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\palladiumshield\
-++PutridToothNecklace
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\putridtoothnecklace\
-++RuneCobra
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\runecobra\
-++SandstormBoots
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\sandstormboots\
-++ShadowClaws
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowclaws\
-++ShadowflameCharm
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\
-++ShamanNecklace
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shamannecklace\
-++SkeletonBeetle
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\skeletonbeetle\
-++SoaringCarpet
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\soaringcarpet\
-++TheBlackCross
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\theblackcross\
-++TwoFlowers
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\twoflowers\
-++WeirdBundle
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\weirdbundle\
-++Helium_Symphony.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\helium_symphony.png
-++ChlorophyteHood
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\chlorophytehood\
-++IceArmor
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\
+++AlligatorBalloon.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon.cs
+++AlligatorBalloon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon.png
+++AlligatorBalloon_Balloon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon_balloon.png
+++AngelicStone.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\angelicstone\angelicstone.cs
+++AngelicStone.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\angelicstone\angelicstone.png
+++BalanceCuffs.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs.cs
+++BalanceCuffs.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs.png
+++BalanceCuffs_HandsOff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs_handsoff.png
+++BalanceCuffs_HandsOn.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs_handson.png
+++ChainShield.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\chainshield\chainshield.cs
+++ChainShield.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\chainshield\chainshield.png
+++ChainShield_Shield.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\chainshield\chainshield_shield.png
+++EvilEye.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\evileye\evileye.cs
+++EvilEye.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\evileye\evileye.png
+++HeartAttack.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\heartattack.png
+++LifeCuffs.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs.cs
+++LifeCuffs.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs.png
+++LifeCuffs_HandsOff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs_handsoff.png
+++LifeCuffs_HandsOn.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs_handson.png
+++MasochistChains.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains.cs
+++MasochistChains.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains.png
+++MasochistChains_HandsOff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains_handsoff.png
+++MasochistChains_HandsOn.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains_handson.png
+++MasochistChains_Neck.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains_neck.png
+++PanicAttack.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\panicattack.png
+++MirrorShield.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\mirrorshield\mirrorshield.cs
+++MirrorShield.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\mirrorshield\mirrorshield.png
+++MirrorShield_Shield.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\mirrorshield\mirrorshield_shield.png
+++PalladiumShield.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\palladiumshield\palladiumshield.cs
+++PalladiumShield.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\palladiumshield\palladiumshield.png
+++PalladiumShield_Shield.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\palladiumshield\palladiumshield_shield.png
+++PutridToothNecklace.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\putridtoothnecklace\putridtoothnecklace.cs
+++PutridToothNecklace.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\putridtoothnecklace\putridtoothnecklace.png
+++PutridToothNecklace_Neck.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\putridtoothnecklace\putridtoothnecklace_neck.png
+++RuneCobra.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\runecobra\runecobra.cs
+++RuneCobra.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\runecobra\runecobra.png
+++ShadowClaws.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowclaws\shadowclaws.cs
+++ShadowClaws.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowclaws\shadowclaws.png
+++MoltenApparition.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\moltenapparition.png
+++ShadowflameApparition.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\shadowflameapparition.png
+++ShadowflameCharmItem.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\shadowflamecharmitem.cs
+++ShadowflameCharmItem.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\shadowflamecharmitem.png
+++ShamanNecklace.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shamannecklace\shamannecklace.cs
+++ShamanNecklace.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shamannecklace\shamannecklace.png
+++ShamanNecklace_Neck.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shamannecklace\shamannecklace_neck.png
+++SkeletonBeetle.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\skeletonbeetle\skeletonbeetle.cs
+++SkeletonBeetle.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\skeletonbeetle\skeletonbeetle.png
+++TheBlackCross.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\theblackcross\theblackcross.cs
+++TheBlackCross.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\theblackcross\theblackcross.png
+++TheBlackCross_Neck.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\theblackcross\theblackcross_neck.png
+++TwoFlowers.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\twoflowers\twoflowers.cs
+++TwoFlowers.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\twoflowers\twoflowers.png
+++TwoFlowers_Waist.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\twoflowers\twoflowers_waist.png
+++BundleOfWeirdBalloons.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\weirdbundle\bundleofweirdballoons.png
+++BundleOfWeirdBalloons_Balloon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\weirdbundle\bundleofweirdballoons_balloon.png
+++WeirdBundle.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\weirdbundle\weirdbundle.cs
+++IceMajestyBreastplate.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate.cs
+++IceMajestyBreastplate.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate.png
+++IceMajestyBreastplate_Back.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate_back.png
+++IceMajestyBreastplate_Body.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate_body.png
+++IceMajestyCrown.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestycrown.cs
+++IceMajestyCrown.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestycrown.png
+++IceMajestyCrown_Head.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestycrown_head.png
+++IceMajestyLeggings.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings.cs
+++IceMajestyLeggings.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings.png
+++IceMajestyLeggings_Legs.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings_legs.png
+++MadFlocko.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\madflocko.png
+++MadFlockos.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\madflockos.png
 ++BloodBoiler
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\dreaditems\bloodboiler\
 ++BloodSquidEgg
@@ -815,6 +787,8 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\materials\icequeenjewel.cs
 ++IceQueenJewel.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\materials\icequeenjewel.png
+++Potions
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\
 ++FrogEggs.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\summoner\sentries\froggabombastaff\frogeggs.png
 ++FroggabombaStaff.cs
@@ -833,160 +807,20 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\summoner\sentries\youngqueenbeestaff\youngqueenbeestaff.cs
 ++YoungQueenBeeStaff.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\summoner\sentries\youngqueenbeestaff\youngqueenbeestaff.png
-++GhostBullet.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\ghostbullet.cs
-++GhostBullet.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\ghostbullet.png
-++GhostShot.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\ghostshot.png
-++GhostShot_Glow.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\ghostshot_glow.png
-++ShroomiteBullet.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\shroomitebullet.cs
-++ShroomiteBullet.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\shroomitebullet.png
-++ShroomiteShot.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\shroomiteshot.png
-++ShroomiteShot_Glow.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\ammo\shroomiteshot_glow.png
-++ClusterPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\clusterpixie.png
-++ClusterPixies.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\clusterpixies.png
-++DestructiveMiniNukePixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\destructivemininukepixie.png
-++DestructivePixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\destructivepixie.png
-++DirectPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\directpixie.png
-++DryPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\drypixie.png
-++H410WFLASH.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\h410wflash.cs
-++H410WFLASH.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\h410wflash.cs.bak
-++H410WFLASH.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\h410wflash.png
-++HeavyPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\heavypixie.png
-++HoneyPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\honeypixie.png
-++LavaPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\lavapixie.png
-++LuminiteRocketPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\luminiterocketpixie.png
-++MiniNukePixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\mininukepixie.png
-++PixieRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\pixierocket.png
-++PixieRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\pixierockets.cs
-++PixieRockets.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\pixierockets.cs.bak
-++SuperPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\superpixie.png
-++WetPixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\wetpixie.png
-++DestructivePolygonMiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\destructivepolygonmininuke.png
-++DestructivePolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\destructivepolygonrocket.png
-++DirectPolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\directpolygonrocket.png
-++DryPolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\drypolygonrocket.png
-++HoneyPolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\honeypolygonrocket.png
-++LavaPolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\lavapolygonrocket.png
-++LuminitePolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\luminitepolygonrocket.png
-++Polygon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygon.png
-++PolygonClusterRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonclusterrocket.png
-++PolygonFragments.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonfragments.png
-++PolygonHeavyRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonheavyrocket.png
-++PolygonMiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonmininuke.png
-++PolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonrocket.png
-++SuperPolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\superpolygonrocket.png
-++WetPolygonRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\wetpolygonrocket.png
-++image (9) (10).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (10).png
-++image (9) (11).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (11).png
-++image (9) (12).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (12).png
-++image (9) (13).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (13).png
-++image (9) (14).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (14).png
-++image (9) (3).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (3).png
-++image (9) (4).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (4).png
-++image (9) (5).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (5).png
-++image (9) (6).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (6).png
-++image (9) (7).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (7).png
-++image (9) (8).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (8).png
-++image (9) (9).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (9).png
-++LuminiteRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\luminiterocket.png
-++Polygon_2.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\polygon_2.png
-++Polygon_Z.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygon_z.png
-++PolygonZCluster.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzcluster.png
-++PolygonZDestructive.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzdestructive.png
-++PolygonZDirect.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzdirect.png
-++PolygonZDry.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzdry.png
-++PolygonZHeavy.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzheavy.png
-++PolygonZHoney.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzhoney.png
-++PolygonZLava.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzlava.png
-++PolygonZLuminite.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzluminite.png
-++PolygonZMiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzmininuke.png
-++PolygonZMiniNukeDestructive.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzmininukedestructive.png
-++PolygonZRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzrocket.png
-++PolygonZSuper.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzsuper.png
-++PolygonZWet.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzwet.png
-++SkullCannon.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\skullcannon\skullcannon.cs
-++SkullCannon.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\skullcannon\skullcannon.cs.bak
-++SkullCannon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\skullcannon\skullcannon.png
-++AdamantiteLauncher.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\adamantitelauncher.png
-++T3Launcher.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\t3launcher.cs
-++T3Launcher.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\t3launcher.cs.bak
-++TitaniumBazooka.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\titaniumbazooka.png
+++CryoCannon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\
+++H410WFLASH
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\
+++Polygon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\
+++Polygon2
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\
+++PolygonZ
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\
+++SkullCannon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\skullcannon\
+++T3Launcher
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\
 ++Scorpio.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\scorpio\scorpio.cs
 ++Scorpio.png
@@ -1170,7 +1004,95 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\
 ++Microsoft.NETCore.App
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\microsoft.netcore.app
 ++tModLoader.CodeAssist (0.1.3)
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:>2761
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:>3077
+++Dreadnautilus
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\
+++Plantera
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\
+++MechBosses.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\mechbosses.cs
+++TRAEFishron.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\traefishron.cs
+++ClusterGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\clustergrenade.png
+++ClusterMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\clustermine.png
+++ClusterRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\clusterrocket.png
+++ClusterSnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\clustersnowmanrocket.png
+++DestructiveGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivegrenade.png
+++DestructiveMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemine.png
+++DestructiveMiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemininuke.png
+++DestructiveMiniNukeGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemininukegrenade.png
+++DestructiveMiniNukeMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemininukemine.png
+++DestructiveMiniNukeSnowman.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivemininukesnowman.png
+++DestructiveRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructiverocket.png
+++DestructiveSnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\destructivesnowmanrocket.png
+++DirectGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\directgrenade.png
+++DirectMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\directmine.png
+++DirectRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\directrocket.png
+++DirectSnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\directsnowmanrocket.png
+++Grenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\grenade.png
+++HeavyGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\heavygrenade.png
+++HeavyMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\heavymine.png
+++HeavyRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\heavyrocket.png
+++HeavySnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\heavysnowmanrocket.png
+++Mine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mine.png
+++MiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mininuke.png
+++MiniNukeGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mininukegrenade.png
+++MiniNukeMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mininukemine.png
+++MiniNukeSnowman.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\mininukesnowman.png
+++NewGrenades.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newgrenades.cs
+++NewGrenades.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newgrenades.cs.bak
+++NewProximityMines.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newproximitymines.cs
+++NewRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newrockets.cs
+++NewRockets.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newrockets.cs.bak
+++NewSnowmanRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\newsnowmanrockets.cs
+++Rocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\rocket.png
+++RocketStatChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\rocketstatchanges.cs
+++ShootNewRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\shootnewrockets.cs
+++SnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\snowmanrocket.png
+++SuperGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\supergrenade.png
+++SuperMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\supermine.png
+++SuperRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\superrocket.png
+++SuperSnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\ranged\rockets\supersnowmanrocket.png
 ++OpticStaff.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\weapon\summon\minions\opticstaff.cs
 ++Pirate.cs
@@ -1189,164 +1111,6 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\common\modplayers\rangedstats.cs
 ++SummonStats.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\common\modplayers\summonstats.cs
-++AlligatorBalloon.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon.cs
-++AlligatorBalloon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon.png
-++AlligatorBalloon_Balloon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon_balloon.png
-++AngelicStone.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\angelicstone\angelicstone.cs
-++AngelicStone.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\angelicstone\angelicstone.png
-++BalanceCuffs.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs.cs
-++BalanceCuffs.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs.png
-++BalanceCuffs_HandsOff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs_handsoff.png
-++BalanceCuffs_HandsOn.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs_handson.png
-++ChainShield.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\chainshield\chainshield.cs
-++ChainShield.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\chainshield\chainshield.png
-++ChainShield_Shield.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\chainshield\chainshield_shield.png
-++EvilEye.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\evileye\evileye.cs
-++EvilEye.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\evileye\evileye.png
-++HeartAttack.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\heartattack.png
-++LifeCuffs.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs.cs
-++LifeCuffs.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs.png
-++LifeCuffs_HandsOff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs_handsoff.png
-++LifeCuffs_HandsOn.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs_handson.png
-++MagicalCarpet.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet.cs
-++MagicalCarpet.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet.png
-++MagicalCarpet_Wings.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet_wings.png
-++MasochistChains.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains.cs
-++MasochistChains.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains.png
-++MasochistChains_HandsOff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains_handsoff.png
-++MasochistChains_HandsOn.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains_handson.png
-++MasochistChains_Neck.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\masochistchains_neck.png
-++PanicAttack.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\masochistchains\panicattack.png
-++MirrorShield.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\mirrorshield\mirrorshield.cs
-++MirrorShield.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\mirrorshield\mirrorshield.png
-++MirrorShield_Shield.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\mirrorshield\mirrorshield_shield.png
-++PalladiumShield.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\palladiumshield\palladiumshield.cs
-++PalladiumShield.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\palladiumshield\palladiumshield.png
-++PalladiumShield_Shield.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\palladiumshield\palladiumshield_shield.png
-++PutridToothNecklace.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\putridtoothnecklace\putridtoothnecklace.cs
-++PutridToothNecklace.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\putridtoothnecklace\putridtoothnecklace.png
-++PutridToothNecklace_Neck.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\putridtoothnecklace\putridtoothnecklace_neck.png
-++RuneCobra.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\runecobra\runecobra.cs
-++RuneCobra.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\runecobra\runecobra.png
-++SandstormBoots.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\sandstormboots\sandstormboots.cs
-++SandstormBoots.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\sandstormboots\sandstormboots.png
-++SandstormBoots_Shoes.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\sandstormboots\sandstormboots_shoes.png
-++ShadowClaws.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowclaws\shadowclaws.cs
-++ShadowClaws.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowclaws\shadowclaws.png
-++MoltenApparition.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\moltenapparition.png
-++ShadowflameApparition.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\shadowflameapparition.png
-++ShadowflameCharmItem.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\shadowflamecharmitem.cs
-++ShadowflameCharmItem.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shadowflamecharm\shadowflamecharmitem.png
-++ShamanNecklace.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shamannecklace\shamannecklace.cs
-++ShamanNecklace.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shamannecklace\shamannecklace.png
-++ShamanNecklace_Neck.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\shamannecklace\shamannecklace_neck.png
-++SkeletonBeetle.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\skeletonbeetle\skeletonbeetle.cs
-++SkeletonBeetle.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\skeletonbeetle\skeletonbeetle.png
-++SoaringCarpet.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\soaringcarpet\soaringcarpet.cs
-++SoaringCarpet.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\soaringcarpet\soaringcarpet.png
-++TheBlackCross.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\theblackcross\theblackcross.cs
-++TheBlackCross.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\theblackcross\theblackcross.png
-++TheBlackCross_Neck.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\theblackcross\theblackcross_neck.png
-++TwoFlowers.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\twoflowers\twoflowers.cs
-++TwoFlowers.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\twoflowers\twoflowers.png
-++TwoFlowers_Waist.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\twoflowers\twoflowers_waist.png
-++BundleOfWeirdBalloons.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\weirdbundle\bundleofweirdballoons.png
-++BundleOfWeirdBalloons_Balloon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\weirdbundle\bundleofweirdballoons_balloon.png
-++WeirdBundle.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\accesories\weirdbundle\weirdbundle.cs
-++ChlorophyteHood.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood.cs
-++ChlorophyteHood.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood.png
-++ChlorophyteHood_Head.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood_head.png
-++IceMajestyBreastplate.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate.cs
-++IceMajestyBreastplate.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate.png
-++IceMajestyBreastplate_Back.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate_back.png
-++IceMajestyBreastplate_Body.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate_body.png
-++IceMajestyCrown.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestycrown.cs
-++IceMajestyCrown.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestycrown.png
-++IceMajestyCrown_Head.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestycrown_head.png
-++IceMajestyLeggings.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings.cs
-++IceMajestyLeggings.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings.png
-++IceMajestyLeggings_Legs.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings_legs.png
-++MadFlocko.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\madflocko.png
-++MadFlockos.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\armor\icearmor\madflockos.png
 ++BloodBoiler.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\dreaditems\bloodboiler\bloodboiler.cs
 ++BloodBoiler.png
@@ -1417,6 +1181,192 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\dreaditems\shellspinner\shellspinner.png
 ++ShellSpinnerP.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\dreaditems\shellspinner\shellspinnerp.png
+++Power.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\power.png
+++PowerBrew.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\powerbrew.cs
+++PowerBrew.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\powerbrew.png
+++SweetElixir.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\sweetelixir.cs
+++SweetElixir.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\misc\potions\sweetelixir.png
+++ClusterCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\clustercryo.png
+++ClusterCryos.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\clustercryos.png
+++CryoCannon.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryocannon.cs
+++CryoCannon.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryocannon.cs.bak
+++CryoCannon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryocannon.png
+++CryoRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryorocket.png
+++CryoRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryorockets.cs
+++CryoRockets.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\cryorockets.cs.bak
+++DestructiveCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\destructivecryo.png
+++DestructiveMiniNukeCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\destructivemininukecryo.png
+++DirectCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\directcryo.png
+++DryCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\drycryo.png
+++HeavyCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\heavycryo.png
+++HoneyCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\honeycryo.png
+++LavaCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\lavacryo.png
+++LuminiteRocketCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\luminiterocketcryo.png
+++MiniNukeCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\mininukecryo.png
+++SuperCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\supercryo.png
+++WetCryo.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\cryocannon\wetcryo.png
+++ClusterPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\clusterpixie.png
+++ClusterPixies.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\clusterpixies.png
+++DestructiveMiniNukePixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\destructivemininukepixie.png
+++DestructivePixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\destructivepixie.png
+++DirectPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\directpixie.png
+++DryPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\drypixie.png
+++H410WFLASH.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\h410wflash.cs
+++H410WFLASH.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\h410wflash.cs.bak
+++H410WFLASH.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\h410wflash.png
+++HeavyPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\heavypixie.png
+++HoneyPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\honeypixie.png
+++LavaPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\lavapixie.png
+++LuminiteRocketPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\luminiterocketpixie.png
+++MiniNukePixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\mininukepixie.png
+++PixieRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\pixierocket.png
+++PixieRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\pixierockets.cs
+++PixieRockets.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\pixierockets.cs.bak
+++SuperPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\superpixie.png
+++WetPixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\h410wflash\wetpixie.png
+++DestructivePolygonMiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\destructivepolygonmininuke.png
+++DestructivePolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\destructivepolygonrocket.png
+++DirectPolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\directpolygonrocket.png
+++DryPolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\drypolygonrocket.png
+++HoneyPolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\honeypolygonrocket.png
+++LavaPolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\lavapolygonrocket.png
+++LuminitePolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\luminitepolygonrocket.png
+++Polygon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygon.png
+++PolygonClusterRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonclusterrocket.png
+++PolygonFragments.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonfragments.png
+++PolygonHeavyRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonheavyrocket.png
+++PolygonMiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonmininuke.png
+++PolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\polygonrocket.png
+++SuperPolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\superpolygonrocket.png
+++WetPolygonRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon\wetpolygonrocket.png
+++image (9) (10).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (10).png
+++image (9) (11).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (11).png
+++image (9) (12).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (12).png
+++image (9) (13).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (13).png
+++image (9) (14).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (14).png
+++image (9) (3).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (3).png
+++image (9) (4).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (4).png
+++image (9) (5).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (5).png
+++image (9) (6).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (6).png
+++image (9) (7).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (7).png
+++image (9) (8).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (8).png
+++image (9) (9).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\image (9) (9).png
+++LuminiteRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\luminiterocket.png
+++Polygon_2.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygon2\polygon_2.png
+++Polygon_Z.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygon_z.png
+++PolygonZCluster.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzcluster.png
+++PolygonZDestructive.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzdestructive.png
+++PolygonZDirect.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzdirect.png
+++PolygonZDry.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzdry.png
+++PolygonZHeavy.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzheavy.png
+++PolygonZHoney.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzhoney.png
+++PolygonZLava.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzlava.png
+++PolygonZLuminite.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzluminite.png
+++PolygonZMiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzmininuke.png
+++PolygonZMiniNukeDestructive.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzmininukedestructive.png
+++PolygonZRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzrocket.png
+++PolygonZSuper.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzsuper.png
+++PolygonZWet.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\polygonz\polygonzwet.png
+++SkullCannon.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\skullcannon\skullcannon.cs
+++SkullCannon.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\skullcannon\skullcannon.cs.bak
+++SkullCannon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\skullcannon\skullcannon.png
+++AdamantiteLauncher.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\adamantitelauncher.png
+++T3Launcher.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\t3launcher.cs
+++T3Launcher.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\t3launcher.cs.bak
+++TitaniumBazooka.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\launchers\t3launcher\titaniumbazooka.png
 ++WillOfTheWisp.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\items\weapons\underworld\willofthewisp\willofthewisp.cs
 ++WillOfTheWisp.png
@@ -1471,3 +1421,53 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\npcs\froggabomba\froggabomba.png
 ++FroggabombaClone.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\newcontent\npcs\froggabomba\froggabombaclone.png
+++BloodBeam.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodbeam.cs
+++BloodBeam.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodbeam.png
+++BloodDraw.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\blooddraw.png
+++BloodShot.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodshot.cs
+++BloodSnipe.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodsnipe.cs
+++BloodSnipe.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodsnipe.png
+++BloodSquid.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\bloodsquid.cs
+++Dreadnautilus.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\dreadnautilus.cs
+++GlowPattern.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\glowpattern.png
+++MapIcon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\mapicon.png
+++MapIcon2.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\mapicon2.png
+++Phase2.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\phase2.png
+++Phase2Tentacles.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\dreadnautilus\phase2tentacles.png
+++HostileCloud.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\hostilecloud.cs
+++HostileCloud.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\hostilecloud.png
+++PinkDraw.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\pinkdraw.png
+++Plantera.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\plantera.cs
+++PlanteraHook.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planterahook.cs
+++PlanteraHook.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planterahook.png
+++PlanteraHook2.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planterahook2.cs
+++PlanteraHook2.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planterahook2.png
+++PlanteraSpikeBall.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planteraspikeball.cs
+++PlanteraTentacle.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\planteratentacle.cs
+++Seeds.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\seeds.cs
+++ThornyVine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\modloader\beta\mod sources\traeproject\changes\npcs\boss\plantera\thornyvine.png

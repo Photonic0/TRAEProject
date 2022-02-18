@@ -8,7 +8,6 @@ using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Summoner.Whip;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Common;
-using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.Changes.Weapon.Melee
@@ -90,7 +89,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     projectile.scale = 1.25f;
                     break;
                 case ProjectileID.SporeCloud:
-                    //projectile.scale = 1.4f;
+                    projectile.penetrate = 4;
                     projectile.DamageType = DamageClass.Melee;
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;

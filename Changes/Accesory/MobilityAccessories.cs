@@ -26,10 +26,15 @@ namespace TRAEProject.Changes.Accesory
             {
                 case ItemID.HermesBoots:
                 case ItemID.FlurryBoots:
-                case ItemID.SandBoots:
+        
                 case ItemID.SailfishBoots:
                     player.moveSpeed += 0.25f;
 					player.accRunSpeed = 4.8f;
+                    return;
+                case ItemID.SandBoots:
+                    player.moveSpeed += 0.25f;
+                    player.desertBoots = false;
+                    player.GetModPlayer<AccesoryEffects>().sandRunning = true;
                     return;
                 case ItemID.FrogLeg:
                 case ItemID.FrogWebbing:
@@ -162,7 +167,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "25% increased movement speed, run even faster on sand";
+                            line.text = "25% increased movement speed\nRunning and jumping speed increased by 25% on sand, and for 8 seconds after leaving it";
                         }
                     }
                     return;

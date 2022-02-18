@@ -32,15 +32,7 @@ namespace TRAEProject.Changes.Weapon
                         projectile.extraUpdates = 1; // down from 3(?)
                     }
                     break;
-                case ProjectileID.MagicDagger:
-                    projectile.aiStyle = 1;
-                    projectile.extraUpdates = 0;
-                    projectile.penetrate = 1;
-                    projectile.DamageType = DamageClass.Magic;
-                    projectile.timeLeft = 100;
-                    projectile.tileCollide = false;
-                    projectile.GetGlobalProjectile<ProjectileStats>().IgnoresDefense = true;
-                    break;
+      
                 case ProjectileID.FlowerPetal: // what the fuck is this projectile, why can't i remember
                     projectile.usesLocalNPCImmunity = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
@@ -50,7 +42,9 @@ namespace TRAEProject.Changes.Weapon
                     projectile.penetrate = -1;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
-                    projectile.tileCollide = false;
+                    projectile.tileCollide = false; 
+                    
+                    projectile.penetrate = 5;
                     projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.25f;

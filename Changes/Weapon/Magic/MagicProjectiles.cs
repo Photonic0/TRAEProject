@@ -77,7 +77,10 @@ namespace TRAEProject.Changes.Weapon.Magic
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
                     return;
-			    case 244:
+                case ProjectileID.MagicDagger:
+                    projectile.penetrate = 3; 
+                    return;
+                case 244:
 				case 238:
 					projectile.timeLeft = 900;
 					return;				 
@@ -241,6 +244,7 @@ namespace TRAEProject.Changes.Weapon.Magic
             Player player = Main.player[projectile.owner];           
             switch (projectile.type)
             {
+                
                 case ProjectileID.UnholyTridentFriendly:
                     projectile.ai[0] += 1f;
                     if (projectile.ai[0] >= 30.0)

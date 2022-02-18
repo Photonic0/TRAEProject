@@ -27,9 +27,17 @@ namespace TRAEProject.Changes
             }
             switch (item.type)
             {
+                case ItemID.GingerBeard:
+                    item.value = Item.sellPrice(gold: 8);
+                    return;
+                case ItemID.SiltBlock:
+                case ItemID.SlushBlock:
+                case ItemID.DesertFossil:
+                    item.useTime = 3; // down from 10
+                    item.useAnimation = 3;
+                    return;
                 case ItemID.AdamantitePickaxe:
 			       item.useTime = 7; // down from 8
-                   item.useAnimation = 7;
 				   return;				
                 case ItemID.ObsidianHorseshoe:
                     item.SetNameOverride("Heavy Horseshoe");
