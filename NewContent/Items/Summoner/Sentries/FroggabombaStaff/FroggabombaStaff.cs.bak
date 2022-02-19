@@ -15,7 +15,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.FroggabombaStaff
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Froggybomba Staff");
-            Tooltip.SetDefault("Summons a nest of kamikaze frogs\nWIP. NOT WORKING.");
+            Tooltip.SetDefault("Summons a nest of kamikaze frogs");
             //ItemID.Sets.SortingPriorityMaterials[Item.type] = 46; // what does this do
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller.
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;

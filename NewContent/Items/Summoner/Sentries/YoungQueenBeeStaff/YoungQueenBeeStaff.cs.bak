@@ -15,7 +15,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Young Queen Bee Staff");
-            Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies\nWIP. NOT WORKING.");
+            Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies WIP NOT WORKING");
         }
         public override void SetDefaults()
         {

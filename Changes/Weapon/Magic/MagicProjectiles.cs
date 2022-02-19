@@ -84,7 +84,9 @@ namespace TRAEProject.Changes.Weapon.Magic
 				case 238:
 					projectile.timeLeft = 900;
 					return;				 
-				case ProjectileID.RainFriendly:		
+				case ProjectileID.RainFriendly:	  
+				    projectile.penetrate = 2;
+                    return;	
 				case ProjectileID.BloodRain:
 				    projectile.penetrate = 1;
 				    projectile.aiStyle = 1;

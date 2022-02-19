@@ -22,7 +22,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Item.damage = 24;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.mana = 100;
+            Item.mana = 150;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
