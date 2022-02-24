@@ -18,38 +18,33 @@ namespace TRAEProject.Changes.NPCs.Boss
             {
                 
                 case NPCID.SkeletronPrime:
-                    if (ServerConfig.Instance.MechChanges)
-                    {
+          
                         npc.lifeMax = 24000;
                         npc.defense = 20;
-                    }
+                   
                     break;
                 case NPCID.PrimeVice:
-                    if (ServerConfig.Instance.MechChanges)
-                    {
+                   
                         npc.lifeMax = 12000;
-                    }
+                    
                     break;
                 case NPCID.PrimeLaser:
-                    if (ServerConfig.Instance.MechChanges)
-                    {
+                    
                         npc.lifeMax = 6000;
                         npc.damage = 90;
-                    }
+                    
                     break;
                 case NPCID.PrimeSaw:
-                    if (ServerConfig.Instance.MechChanges)
-                    {
+                 
                         npc.lifeMax = 6000;
                         npc.damage = 90;
-                    }
+                    
                     break;
                 case NPCID.TheDestroyer:
-                    if (ServerConfig.Instance.MechChanges)
-                    {
+                   
                         npc.damage = 125;
                         npc.lifeMax = 80000;
-                    }
+                    
                     break;
                 case NPCID.Probe:
                     {
@@ -61,47 +56,43 @@ namespace TRAEProject.Changes.NPCs.Boss
         }
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-            if (ServerConfig.Instance.MechChanges)
-            {
+         
                 switch (npc.type)
                 {
                     case NPCID.Retinazer:
-                        if (ServerConfig.Instance.MechChanges)
+                       
                             npc.lifeMax -= (int)(npc.lifeMax * 0.04);
                         return;
                     case NPCID.Spazmatism:
-                        if (ServerConfig.Instance.MechChanges)
-                        {
+                        
                             npc.lifeMax -= (int)(npc.lifeMax * 0.05);
-                        }
+                        
                         return;
                     case NPCID.TheDestroyer:
-                        if (ServerConfig.Instance.MechChanges)
-                        {
+                        
                             npc.damage = 220;
                             npc.lifeMax = (int)(npc.lifeMax * 0.95);
-                        }
+                        
                         break;
                     case NPCID.Probe:
-                        if (ServerConfig.Instance.MechChanges)
-                        {
+                        
                             npc.knockBackResist = 0f;
                             npc.scale *= 1.15f;
                             npc.height = (int)(npc.height * 1.25);
                             npc.width = (int)(npc.height * 1.25);
                             npc.knockBackResist = 0f;
                             npc.defense = 50;
-                        }
+                        
                         return;
                 }
-            }
+            
         }
         public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
         {
             switch (npc.type)
             {
                 case NPCID.TheDestroyerBody:
-                    if (Main.expertMode && ServerConfig.Instance.MechChanges)
+                    if (Main.expertMode)
                     {
                         int probecount = 0;
                         double probedr = damage * 0.05;
@@ -125,8 +116,8 @@ namespace TRAEProject.Changes.NPCs.Boss
                     }
                     return true;
                 case NPCID.TheDestroyerTail:
-                    if (ServerConfig.Instance.MechChanges)
-                    {
+
+                    
                         Terraria.Audio.SoundEngine.PlaySound(SoundID.Item92, npc.position);
                         for (int i = 0; i < 25; i++)
                         {
@@ -134,7 +125,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                             Main.dust[num].noGravity = true;
                             Main.dust[num].noLight = true;
                         }
-                    }
+                    
                     return true;
             }
             return true;
@@ -144,7 +135,7 @@ namespace TRAEProject.Changes.NPCs.Boss
             switch(npc.aiStyle)
             {
                 case 31://Spazmatism
-                    if (Main.expertMode && ServerConfig.Instance.MechChanges)
+                    if (Main.expertMode)
                     {
                         if (npc.ai[1] == 0f && npc.ai[0] != 1f && npc.ai[0] != 2f && npc.ai[0] != 0f)
                         {
@@ -293,8 +284,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                     }
                     return;
                 case 37://Destroyer
-                    if (ServerConfig.Instance.MechChanges)
-                    {
+           
                         if (npc.type == NPCID.TheDestroyerTail)
                         {
                             npc.takenDamageMultiplier = 4f;
@@ -307,7 +297,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                                 player.AddBuff(BuffID.Heartreach, 1, false);
                             }
                         }
-                    }
+                    
                     return;
             }
         }

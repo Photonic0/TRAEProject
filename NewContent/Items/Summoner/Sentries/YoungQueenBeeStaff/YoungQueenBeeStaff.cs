@@ -15,7 +15,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Young Queen Bee Staff");
-            Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies\nWIP. NOT WORKING.");
+            Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies");
         }
         public override void SetDefaults()
         {
@@ -33,7 +33,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
             Item.mana = 25;
             Item.UseSound = SoundID.Item78;
 
-            Item.damage = 10;
+            Item.damage = 9;
             Item.DamageType = DamageClass.Summon;
             Item.knockBack = 1f;
 
@@ -77,32 +77,117 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
             DisplayName.SetDefault("Young Queen Bee");
             Main.projFrames[Projectile.type] = 2;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
+
         }
         public override void SetDefaults()
         {
+
             Projectile.width = 60;
             Projectile.height = 40;
-            Projectile.hostile = false;
             Projectile.friendly = true;
-            Projectile.ignoreWater = true;
-            Projectile.timeLeft = Projectile.SentryLifeTime;
-            Projectile.knockBack = 10f;
-            Projectile.penetrate = -1;
-            Projectile.tileCollide = true;
+            Projectile.ignoreWater = false;
             Projectile.sentry = true;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = Projectile.SentryLifeTime;
+            Projectile.tileCollide = true;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
+            Projectile.aiStyle = 2;
         }
-       
         public override bool? CanDamage()
         {
 
             return false;
         }
-        public override bool OnTileCollide(Vector2 oldVelocity)
+        int summontime;
+        int shoottime = 0;
+        bool animate = false;
+        NPC target;
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
-            return false;
+
+            fallThrough = false;
+
+            return true;
         }
+
         public override void AI()
         {
+            //Projectile.velocity.Y = 10;
+            Projectile.rotation = 0;
+
+            Main.player[Projectile.owner].UpdateMaxTurrets();
+
+            shoottime++;
+            //Getting the npc to fire at
+            Player player = Main.player[Projectile.owner];
+
+            for (int i = 0; i < 200; i++)
+            {
+                if (player.HasMinionAttackTargetNPC)
+                {
+                    target = Main.npc[player.MinionAttackTargetNPC];
+                }
+                else
+                {
+                    target = Main.npc[i];
+
+                }
+                float shootToX = target.position.X + (float)target.width * 0.5f - Projectile.Center.X;
+                float shootToY = target.position.Y + (float)target.height * 0.5f - Projectile.Center.Y;
+                float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
+       
+                if (shoottime > 120)
+                {
+                    if (distance < 600f && !target.friendly && target.active && !target.dontTakeDamage && target.lifeMax > 5 && target.type != NPCID.TargetDummy)
+                    {
+
+                        if (Collision.CanHit(Projectile.Center, 0, 0, target.Center, 0, 0))
+                        {
+                            target.TargetClosest(true);
+                            SoundEngine.PlaySound(SoundID.Item97, Projectile.position);
+                            int type = ProjectileID.Bee;
+                            //Dividing the factor of 2f which is the desired velocity by distance
+                            distance = 1.6f / distance;
+
+                            //Multiplying the shoot trajectory with distance times a multiplier if you so choose to
+                            shootToX *= distance * 5f;
+                            shootToY *= distance * 5f;
+
+                            
+                          
+                            int numberProjectiles = 3 + Main.rand.Next(3); // 3 to 5 shots
+                            for (int l = 0; l < numberProjectiles; l++)
+                            {
+                               
+                                Vector2 perturbedSpeed = new Vector2(shootToX, shootToY).RotatedByRandom(MathHelper.ToRadians(30));
+                                if (perturbedSpeed.X < 0f)
+                                {
+                                    Projectile.spriteDirection = 1;
+                                }
+                                if (perturbedSpeed.X > 0f)
+                                {
+                                    Projectile.spriteDirection = -1;
+                                }
+                                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), type, Projectile.damage, Projectile.knockBack, Projectile.owner);
+                                if (Main.rand.Next(3) == 0)
+                                {
+                                    Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), ProjectileID.GiantBee, Projectile.damage, Projectile.knockBack, Projectile.owner);
+
+                                }
+
+                            }
+                            shoottime = 0;
+
+
+                        }
+
+                    }
+
+
+                }
+            }
+           
             Projectile.velocity.Y = 5;
             Projectile.frameCounter++;
             if (Projectile.frameCounter >= 12)
@@ -110,96 +195,26 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
                 Projectile.frameCounter = 0;
                 Projectile.frame = (Projectile.frame + 1) % 2;
             }
-            Player player = Main.player[Projectile.owner];
-            //Getting the npc to fire at
-            int SentryRange = 40; //The sentry's range
-            int Speed = 60; //How fast the sentry can shoot the Projectile.
-            float FireVelocity = 15f; //The velocity the sentry's shot projectile will travel. Slows down the closer the NPC is.
-            Main.player[Projectile.owner].UpdateMaxTurrets(); //This makes the sentry be able to spawn more if your sentry cap is greater than one.
-            for (int t = 0; t < Main.maxNPCs; t++)
-            {
-                NPC npc = Main.npc[t];
 
-                float distance = Projectile.Distance(npc.Center); //Set the distance from the NPC and the sentry Projectile.
-                
-                //Convert distance to tile position, and continue if the following NPC parameters are met.
-                if (distance / 16 < SentryRange && Main.npc[t].active && !Main.npc[t].dontTakeDamage && !Main.npc[t].friendly && Main.npc[t].lifeMax > 5 && Main.npc[t].type != NPCID.TargetDummy)
-                {
-                    Projectile.ai[1] = npc.whoAmI;
-                }
-                if (distance < 0)
-                {
-                    Projectile.direction = -1;
-                }
-                if (distance > 0)
-                {
-                    Projectile.direction = 1;
-                }
-            }
 
-            NPC target = Main.npc[(int)Projectile.ai[1]] ?? new NPC();
 
-            Projectile.ai[0]++;
-            if (target.active && Projectile.Distance(target.Center) / 16 < SentryRange && Projectile.ai[0] % Speed == 5)
-            {
-
-                Vector2 direction = target.Center - Projectile.Center; //The direction the projectile will fire.
-
-                direction.Normalize(); //Normalizes the direction vector.
-                direction.X *= FireVelocity; //Multiply direction by fireVelocity so the sentry can fire the projectile faster the farther the NPC is away.
-                direction.Y *= FireVelocity; //Same as above, but with Y velocity.
-
-                SoundEngine.PlaySound(SoundID.Item97, Projectile.Center); //Play a sound.
-
-                int damage = Projectile.damage; //How much damage the projectile shot from the sentry will do.
-
-                int bees = Main.rand.Next(4, 7);
-
-                for (int index1 = 0; index1 < bees; ++index1)
-                {
-                    float knockback = 0;
-                    int type = ProjectileType<Bee>(); //The type of projectile the sentry will shoot. Use ModContent.ProjectileType<>() to fire a modded Projectile.
-                    if (Main.rand.Next(4) == 0)
-                    {
-                        knockback = 2f;
-                        type = ProjectileType<GiantBee>();
-                    };
-                    float num4 = 6f;
-                    float num8 = 6f;
-                    float SpeedX2 = num4 + (float)Main.rand.Next(-35, 36) * 0.02f;
-                    float SpeedY2 = num8 + (float)Main.rand.Next(-35, 36) * 0.02f;
-                    int index2 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, SpeedX2, SpeedY2, type, damage, knockback);
-                    ProjectileID.Sets.MinionShot[index2] = true;
-                }
-            }
         }
-    }
-    public class Bee : ModProjectile
-    {
-        public override void SetStaticDefaults()
+
+
+
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            DisplayName.SetDefault("Bee");
-            Main.projFrames[Projectile.type] = 2;
+            return false;
         }
-        public override void SetDefaults()
+
+        public override void Kill(int timeLeft)
         {
-            Projectile.CloneDefaults(ProjectileID.Bee);
-            AIType = ProjectileID.Bee;
-            Projectile.DamageType = DamageClass.Summon;
+            int num528 = Gore.NewGore(Projectile.position, new Vector2(0f, 0f), Main.rand.Next(61, 64), 1f);
+            Gore gore = Main.gore[num528];
+            gore.velocity *= 0.1f;
         }
-    }
-    public class GiantBee : ModProjectile
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Bee");
-            Main.projFrames[Projectile.type] = 2;
-        }
-        public override void SetDefaults()
-        {
-            Projectile.CloneDefaults(ProjectileID.GiantBee);
-            AIType = ProjectileID.GiantBee;
-            Projectile.DamageType = DamageClass.Summon;
-        }
+       
+            
     }
 }

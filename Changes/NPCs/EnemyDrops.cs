@@ -9,7 +9,8 @@ using Terraria.GameContent.ItemDropRules;
 using TRAEProject.NewContent.Items.Weapons.Scorpio;
 using TRAEProject.NewContent.Items.Materials;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
-
+using TRAEProject.NewContent.Items.Accesories.MechanicalEye;
+using TRAEProject.NewContent.Items.Accesories.SpaceBalloon;
 namespace TRAEProject.Changes.NPCs
 {
     public class EnemyDrops: GlobalNPC
@@ -49,6 +50,16 @@ namespace TRAEProject.Changes.NPCs
                     {
                         npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(4, ItemID.WhoopieCushion));
                         npcLoot.Add(ItemDropRule.Common(ItemID.Bananarang, 1));
+                        return;
+                    }
+                case NPCID.SkeletonCommando:
+                    {
+                        npcLoot.Add(ItemDropRule.Common(ItemType<MechanicalEyeItem>(), 33));
+                        return;
+                    }
+                case NPCID.MartianDrone:
+                    {
+                        npcLoot.Add(ItemDropRule.Common(ItemType<SpaceBalloonItem>(), 25));
                         return;
                     }
                 case NPCID.DesertLamiaDark:

@@ -55,7 +55,9 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         {
             Projectile.height = 14;
             Projectile.width = 14;
-            Projectile.friendly = true;
+            Projectile.friendly = true; 
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 4;

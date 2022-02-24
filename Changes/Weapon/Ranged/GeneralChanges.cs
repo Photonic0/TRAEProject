@@ -63,7 +63,10 @@ namespace TRAEProject.Changes.Weapons
                     return;
                 case ItemID.FlintlockPistol:
                     item.shootSpeed = 7f;
-                    item.autoReuse = true; //These are minishark's stats, BUT this weapon doesn't autofire
+                    item.autoReuse = true;
+                    return;     
+                case ItemID.BeesKnees:
+                    item.damage = 16;
                     return;
                 case ItemID.Minishark:
                     item.value = Item.buyPrice(gold: 50);
@@ -211,7 +214,7 @@ namespace TRAEProject.Changes.Weapons
         }
         public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
         {
-            if (weapon.type == ItemID.VortexBeater && (ammo.type == ItemID.MusketBall || ammo.type == ItemID.EndlessMusketPouch))
+            if (weapon.type == ItemID.VortexBeater && (ammo.type == ItemID.MusketBall || ammo.type == ItemID.SilverBullet || ammo.type == ItemID.TungstenBullet || ammo.type == ItemID.EndlessMusketPouch))
             {
                 type = ProjectileType<LilRocket>();
             }
@@ -240,7 +243,16 @@ namespace TRAEProject.Changes.Weapons
                             line.text = "66% chance to not consume ammo";
                         }
                     }
-                    return;            
+                    return;
+                case ItemID.VortexBeater:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text += "\nConverts Musket Balls into homing rockets";
+                        }
+                    }
+                    return;
             }
         }
     }

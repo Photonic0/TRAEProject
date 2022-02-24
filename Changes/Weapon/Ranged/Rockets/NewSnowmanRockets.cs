@@ -134,7 +134,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 4;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 600; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;

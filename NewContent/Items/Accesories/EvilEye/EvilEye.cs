@@ -148,6 +148,7 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
         {
             switch (type)
             {
+       
                 case BuffID.WitheredWeapon:
                     npc.damage = (int)(npc.defDamage * 0.8f);
                     return;
@@ -157,6 +158,18 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
         {
             switch (type)
             {
+                case BuffID.ShadowFlame:
+                    Dust dust3 = Dust.NewDustDirect(new Vector2(player.position.X - 2f, player.position.Y - 2f), player.width + 4, player.height + 4, 27, player.velocity.X * 0.4f, player.velocity.Y * 0.4f, 180, default(Color), 1.95f);
+                    dust3.noGravity = true;
+                    dust3.velocity *= 0.75f;
+                    dust3.velocity.X *= 0.75f;
+                    dust3.velocity.Y -= 1f;
+                    if (Main.rand.Next(4) == 0)
+                    {
+                        dust3.noGravity = false;
+                        dust3.scale *= 0.5f;
+                    }
+                    return;
                 case BuffID.WitheredArmor:
                     player.witheredArmor = false;
                     player.statDefense -= 25;

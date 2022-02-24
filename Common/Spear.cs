@@ -680,6 +680,11 @@ namespace TRAEProject.Common
                 Player.altFunctionUse = 2;
                 Player.itemAnimationMax = Player.itemAnimation = Player.HeldItem.useAnimation;
             }
+            if (Player.HeldItem.type == ItemID.LucyTheAxe && Main.mouseRight && Player.autoReuseGlove && Player.itemAnimation == 1)
+            {
+                Player.altFunctionUse = 2;
+                Player.itemAnimationMax = Player.itemAnimation = Player.HeldItem.useAnimation;
+            }
             return base.PreItemCheck();
         }
     }

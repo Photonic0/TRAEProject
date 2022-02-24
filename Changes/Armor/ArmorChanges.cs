@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using TRAEProject;
 using System.Collections.Generic;
 using TRAEProject.Changes.Items;
+using TRAEProject.Common.ModPlayers;
 namespace TRAEProject.Changes.Armor
 {
     public class ChangesArmor : GlobalItem
@@ -34,6 +35,15 @@ namespace TRAEProject.Changes.Armor
                     break;
                 case ItemID.PharaohsRobe:
                     player.moveSpeed += 0.15f;
+                    break;
+                case ItemID.GladiatorHelmet:
+                    player.GetCritChance<MeleeDamageClass>() += 4;
+                    break;
+                case ItemID.GladiatorBreastplate:
+                    player.meleeSpeed += 0.07f;
+                    break;
+                case ItemID.GladiatorLeggings:
+                    player.GetCritChance<MeleeDamageClass>() += 4;
                     break;
                 case ItemID.CrimsonScalemail:
                     player.lifeRegen += 1;
@@ -200,7 +210,9 @@ namespace TRAEProject.Changes.Armor
             if (head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
                 return "ObsidianSet";
             if (head.type == ItemID.PirateHat && body.type == ItemID.PirateShirt && legs.type == ItemID.PiratePants)
-                return "PirateSet";
+                return "PirateSet"; 
+            if (head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
+                return "GladiatorSet";
             return base.IsArmorSet(head, body, legs);
         }
         public override void UpdateArmorSet(Player player, string armorSet)
@@ -332,6 +344,11 @@ namespace TRAEProject.Changes.Armor
             {
                 player.setBonus = "All whips inflict an extra 2% tag crit.\nThis tag can be applied multiple times.";
                 player.GetModPlayer<SetBonuses>().PirateSet = true;
+            }   
+            if (armorSet == "GladiatorSet")
+            {
+                player.setBonus += "\n25% increased weapon size";
+                player.GetModPlayer<MeleeStats>().weaponSize += 0.20f;
             }
             if (armorSet == "SpectreHoodSet")
             {
@@ -348,6 +365,33 @@ namespace TRAEProject.Changes.Armor
                         if (line.mod == "Terraria" && line.Name == "Defense")
                         {
                             line.text += "\nIncreases maximum mana by 100 and reduces mana costs by 20%";
+                        }
+                    }
+                    return;
+                case ItemID.GladiatorHelmet:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.text += "\n4% increased melee critical strike chance";
+                        }
+                    }
+                    return;
+                case ItemID.GladiatorBreastplate:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.text += "\n7% increased melee speed";
+                        }
+                    }
+                    return;
+                case ItemID.GladiatorLeggings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.text += "\n4% increased melee critical strike chance";
                         }
                     }
                     return;

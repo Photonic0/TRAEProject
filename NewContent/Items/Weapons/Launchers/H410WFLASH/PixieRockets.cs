@@ -166,7 +166,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
         {
             Projectile.height = 20;
             Projectile.width = 20;
-            Projectile.friendly = true;
+            Projectile.friendly = true; 
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 4;
             Projectile.usesLocalNPCImmunity = true;

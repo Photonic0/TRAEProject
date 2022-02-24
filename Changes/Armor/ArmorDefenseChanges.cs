@@ -30,11 +30,17 @@ namespace TRAEProject.Changes.Armor
                     item.defense = 3;
                     item.vanity = false;
                     break;
+          
                 case ItemID.RuneHat:
                     item.defense = 4;
                     item.vanity = false;
                     break;
+                case ItemID.GladiatorHelmet:
+                case ItemID.GladiatorLeggings:
+                    item.defense = 6;
+                    break;
                 case ItemID.RuneRobe:
+                case ItemID.GladiatorBreastplate:
                     item.defense = 8;
                     item.vanity = false;
                     break;

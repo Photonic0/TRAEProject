@@ -104,7 +104,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     projectile.localNPCHitCooldown = 30;
                     break;
                 case ProjectileID.MiniRetinaLaser:
-				    projectile.penetrate = -1;
+                    projectile.penetrate = -1;
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 200f;
                     projectile.usesLocalNPCImmunity = true;
@@ -138,6 +138,11 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 60; // up from 10, static 
+                    break;
+                case ProjectileID.RainbowCrystalExplosion:
+                    projectile.usesIDStaticNPCImmunity = false;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
                     break;
             }
 

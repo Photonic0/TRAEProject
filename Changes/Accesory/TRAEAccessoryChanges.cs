@@ -270,12 +270,7 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<RangedStats>().gunVelocity += 0.8f;
                     player.GetDamage<RangedDamageClass>() -= 0.1f;
                     break;
-                case ItemID.ReconScope:
-                    player.GetModPlayer<RangedStats>().rangedVelocity += 0.8f;
-                    player.GetModPlayer<RangedStats>().Magicandgunquiver += 1; 
-                    player.GetDamage<RangedDamageClass>() -= 0.1f; 
-                    player.GetCritChance<RangedDamageClass>() -= 10;
-                    break;
+             
             }
         }
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

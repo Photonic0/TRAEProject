@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
+using TRAEProject.NewContent.Items.Accesories.CounterweightString;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Recipes
@@ -16,6 +17,8 @@ namespace TRAEProject.Changes.Recipes
 
         public static void Load(Mod mod)
         {
+            Recipe YoyoBagAlt = mod.CreateRecipe(ItemID.YoyoBag).AddIngredient(ItemID.YoYoGlove, 1).AddIngredient(ItemType<CounterweightString>()).AddTile(TileID.Loom);
+            YoyoBagAlt.Register();
             Recipe HermesBoots = mod.CreateRecipe(ItemID.HermesBoots).AddIngredient(ItemID.Aglet, 1).AddIngredient(ItemID.Silk, 20).AddTile(TileID.Loom);
             HermesBoots.Register();
             Recipe Magnet = mod.CreateRecipe(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);

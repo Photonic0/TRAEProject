@@ -259,6 +259,16 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.damage = 34;
                     item.autoReuse = true;
                     break;
+                case ItemID.LucyTheAxe:
+                    item.damage = 42; // up from 26
+                    item.useTime = 24; // up from 17, slows down axe speed tho
+                    item.useAnimation = 24;
+                    item.shoot = 0;
+                    item.useTurn = false;
+ item.shootSpeed = 11f;
+                    break;
+                   
+
             }
         }
         
@@ -279,8 +289,16 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
         }
         /// SHOOT STUFF
+        int swingcount = 0;
+        public override void UseAnimation(Item item, Player player)
+        {
+            if (item.type == ItemID.LucyTheAxe && player.altFunctionUse != 2)
+            {
+                swingcount++;
+            }
+            return;
 
-      
+        }
         public override bool Shoot(Item item, Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
@@ -289,6 +307,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.NightsEdge:
                         Terraria.Audio.SoundEngine.PlaySound(SoundID.Item8);
                         return true;
+  
             }
             return true;       
         }
@@ -324,16 +343,56 @@ namespace TRAEProject.Changes.Weapon.Melee
                         }
                     }
                     break;
-                case ItemID.BladeofGrass:
+                case ItemID.LucyTheAxe:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += "\nCreates a spore on contact";
+                            line.text += "\nRight click to throw her as a boomerang";
                         }
                     }
                     break;
             }
+        }
+        public override bool AltFunctionUse(Item item, Player player)
+        {
+            if (item.type == ItemID.LucyTheAxe)
+            {
+                return true;
+            }
+            return base.AltFunctionUse(item, player);
+        }
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (item.type == ItemID.LucyTheAxe)
+            {
+                if (player.ownedProjectileCounts[item.shoot] > 0)
+                    return false;
+                if (player.altFunctionUse == 2)
+                {
+                    item.shoot = ProjectileType<ThrownLucy>();
+                    item.noMelee = true;
+                    item.noUseGraphic = true; 
+                    item.autoReuse = true; 
+                    item.useTime = 24; // up from 17, slows down axe speed tho
+                    item.useAnimation = 24;
+                    swingcount = 0;
+                }
+                if (player.altFunctionUse != 2)
+                {
+                    item.shoot = ProjectileType<Blank>(); 
+                    if (swingcount > 0)
+                    {
+                        item.shoot = 0;
+                        item.useTime = 17; // give her axe speed back
+                    }
+                    item.noMelee = false;
+                    item.noUseGraphic = false; 
+                    item.autoReuse = true;
+
+                }
+            }
+            return base.CanUseItem(item, player);
         }
     }
 }

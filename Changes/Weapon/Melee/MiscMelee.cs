@@ -38,8 +38,15 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.damage = 22; // up from 16
                     item.crit = 12; // up from 6%
                     return;
+                case ItemID.ThornChakram:
+                    item.damage = 30; // up from 25
+                    item.useTime = 19; // up from 15
+                    item.useAnimation = 19;
+                    return;
                 case ItemID.Flamarang:
-                    item.damage = 45; // up from 32
+                    item.damage = 60; // up from 32
+                    item.useTime = 20; // up from 15
+                    item.useAnimation = 20;
                     return;
                 case ItemID.LightDisc:
                     item.damage = 100; // up from 57

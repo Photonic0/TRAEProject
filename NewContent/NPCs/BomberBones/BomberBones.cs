@@ -390,33 +390,34 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 					int num176 = (int)((vector37.Y + (float)NPC.height - 1f) / 16f);
 					if (WorldGen.InWorld(num175, num176, 4))
 					{
-					/*
-						if (Main.tile[num175, num176] == null)
-						{
-							Main.tile[num175, num176] = new Tile();
-						}
-						if (Main.tile[num175, num176 - 1] == null)
-						{
-							Main.tile[num175, num176 - 1] = new Tile();
-						}
-						if (Main.tile[num175, num176 - 2] == null)
-						{
-							Main.tile[num175, num176 - 2] = new Tile();
-						}
-						if (Main.tile[num175, num176 - 3] == null)
-						{
-							Main.tile[num175, num176 - 3] = new Tile();
-						}
-						if (Main.tile[num175, num176 + 1] == null)
-						{
-							Main.tile[num175, num176 + 1] = new Tile();
-						}
-						if (Main.tile[num175 - num174, num176 - 3] == null)
-						{
-							Main.tile[num175 - num174, num176 - 3] = new Tile();
-						}
-					*/
-						if ((float)(num175 * 16) < vector37.X + (float)NPC.width && (float)(num175 * 16 + 16) > vector37.X && ((Main.tile[num175, num176].HasUnactuatedTile && Main.tile[num175, num176].Slope != SlopeType.SlopeUpLeft && Main.tile[num175, num176 - 1].Slope != SlopeType.SlopeUpRight && Main.tileSolid[Main.tile[num175, num176].TileType] && !Main.tileSolidTop[Main.tile[num175, num176].TileType]) || (Main.tile[num175, num176 - 1].IsHalfBlock && Main.tile[num175, num176 - 1].HasUnactuatedTile)) && (!Main.tile[num175, num176 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 1].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 1].TileType] || (Main.tile[num175, num176 - 1].IsHalfBlock && (!Main.tile[num175, num176 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 4].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 4].TileType]))) && (!Main.tile[num175, num176 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 2].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 2].TileType]) && (!Main.tile[num175, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 3].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 3].TileType]) && (!Main.tile[num175 - num174, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175 - num174, num176 - 3].TileType]))
+				         Tile tile = Main.tile[num175, num176];
+
+					if (tile == null)
+                    {
+						tile = new Tile();
+                    }
+                    if (tile == null)
+                    {
+                        tile = new Tile();
+                    }
+                    if (tile == null)
+                    {
+						tile = new Tile();
+                    }
+                    if (tile == null)
+                    {
+						tile = new Tile();
+                    }
+                    if (tile == null)
+                    {
+						tile = new Tile();
+                    }
+                    if (tile == null)
+                    {
+                        tile = new Tile();
+                    }
+
+                    if ((float)(num175 * 16) < vector37.X + (float)NPC.width && (float)(num175 * 16 + 16) > vector37.X && ((Main.tile[num175, num176].HasUnactuatedTile && Main.tile[num175, num176].Slope != SlopeType.SlopeUpLeft && Main.tile[num175, num176 - 1].Slope != SlopeType.SlopeUpRight && Main.tileSolid[Main.tile[num175, num176].TileType] && !Main.tileSolidTop[Main.tile[num175, num176].TileType]) || (Main.tile[num175, num176 - 1].IsHalfBlock && Main.tile[num175, num176 - 1].HasUnactuatedTile)) && (!Main.tile[num175, num176 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 1].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 1].TileType] || (Main.tile[num175, num176 - 1].IsHalfBlock && (!Main.tile[num175, num176 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 4].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 4].TileType]))) && (!Main.tile[num175, num176 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 2].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 2].TileType]) && (!Main.tile[num175, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 3].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 3].TileType]) && (!Main.tile[num175 - num174, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175 - num174, num176 - 3].TileType]))
 						{
 							float num177 = num176 * 16;
 							if (Main.tile[num175, num176].IsHalfBlock)
@@ -452,42 +453,43 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 				{
 					int num180 = (int)((NPC.position.X + (float)(NPC.width / 2) + (float)(15 * NPC.direction)) / 16f);
 					int num181 = (int)((NPC.position.Y + (float)NPC.height - 15f) / 16f);
-				/*
-					if (Main.tile[num180, num181] == null)
-					{
-						Main.tile[num180, num181] = new Tile();
-					}
-					if (Main.tile[num180, num181 - 1] == null)
-					{
-						Main.tile[num180, num181 - 1] = new Tile();
-					}
-					if (Main.tile[num180, num181 - 2] == null)
-					{
-						Main.tile[num180, num181 - 2] = new Tile();
-					}
-					if (Main.tile[num180, num181 - 3] == null)
-					{
-						Main.tile[num180, num181 - 3] = new Tile();
-					}
-					if (Main.tile[num180, num181 + 1] == null)
-					{
-						Main.tile[num180, num181 + 1] = new Tile();
-					}
-					if (Main.tile[num180 + NPC.direction, num181 - 1] == null)
-					{
-						Main.tile[num180 + NPC.direction, num181 - 1] = new Tile();
-					}
-					if (Main.tile[num180 + NPC.direction, num181 + 1] == null)
-					{
-						Main.tile[num180 + NPC.direction, num181 + 1] = new Tile();
-					}
-					if (Main.tile[num180 - NPC.direction, num181 + 1] == null)
-					{
-						Main.tile[num180 - NPC.direction, num181 + 1] = new Tile();
-					}
-				*/
-					//Main.tile[num180, num181 + 1].IsHalfBlock; why is this part of the code, if it returns an error every time...
-					if (Main.tile[num180, num181 - 1].HasUnactuatedTile && (Main.tile[num180, num181 - 1].TileType == 10 || Main.tile[num180, num181 - 1].TileType == 388) && flag8)
+				Tile tile2 = Main.tile[num180, num181];
+
+				if (tile2 == null)
+                {
+					tile2 = new Tile();
+                }
+                if (tile2 == null)
+                {
+					tile2 = new Tile();
+                }
+                if (tile2 == null)
+                {
+					tile2 = new Tile();
+                }
+                if (tile2 == null)
+                {
+					tile2 = new Tile();
+                }
+                if (tile2 == null)
+                {
+                  tile2 = new Tile();
+                }
+                if (tile2 == null)
+                {
+					tile2 = new Tile();
+                }
+                if (tile2 == null)
+                {
+					tile2 = new Tile();
+                }
+                if (tile2 == null)
+                {
+					tile2 = new Tile();
+                }
+
+                //Main.tile[num180, num181 + 1].IsHalfBlock; why is this part of the code, if it returns an error every time...
+                if (tile2.HasUnactuatedTile && (tile2.TileType == 10 || tile2.TileType == 388) && flag8)
 					{
 						NPC.ai[2] += 1f;
 						NPC.ai[3] = 0f;
@@ -623,45 +625,6 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 				if (Main.netMode == 1 || !(NPC.ai[3] >= (float)num55))
 				{
 					return;
-				}
-				int num192 = (int)Main.player[NPC.target].position.X / 16;
-				int num193 = (int)Main.player[NPC.target].position.Y / 16;
-				int num194 = (int)NPC.position.X / 16;
-				int num195 = (int)NPC.position.Y / 16;
-				int num196 = 20;
-				int num197 = 0;
-				bool flag26 = false;
-				if (Math.Abs(NPC.position.X - Main.player[NPC.target].position.X) + Math.Abs(NPC.position.Y - Main.player[NPC.target].position.Y) > 2000f)
-				{
-					num197 = 100;
-					flag26 = true;
-				}
-				while (!flag26 && num197 < 100)
-				{
-					num197++;
-					int num198 = Main.rand.Next(num192 - num196, num192 + num196);
-					for (int num199 = Main.rand.Next(num193 - num196, num193 + num196); num199 < num193 + num196; num199++)
-					{
-						if ((num199 < num193 - 4 || num199 > num193 + 4 || num198 < num192 - 4 || num198 > num192 + 4) && (num199 < num195 - 1 || num199 > num195 + 1 || num198 < num194 - 1 || num198 > num194 + 1) && Main.tile[num198, num199].HasUnactuatedTile)
-						{
-							bool flag27 = true;
-							if (Main.tile[num198, num199 - 1].WallType == 0)
-							{
-								flag27 = false;
-							}
-							else if (Main.tile[num198, num199 - 1].LiquidType == LiquidID.Lava)
-							{
-								flag27 = false;
-							}
-							if (flag27 && Main.tileSolid[Main.tile[num198, num199].TileType] && !Collision.SolidTiles(num198 - 1, num198 + 1, num199 - 4, num199 - 1))
-							{
-								NPC.position.X = num198 * 16 - NPC.width / 2;
-								NPC.position.Y = num199 * 16 - NPC.height;
-								NPC.netUpdate = true;
-								NPC.ai[3] = -120f;
-							}
-						}
-					}
 				}
 		}
 		public override void HitEffect(int hitdirection, double damage)

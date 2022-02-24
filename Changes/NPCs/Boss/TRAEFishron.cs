@@ -7,7 +7,7 @@ using TRAEProject.Common;
 
 namespace TRAEProject.NPCs.Boss
 {
-    public class ChangesFishron : GlobalNPC
+    public class Fishron : GlobalNPC
     {
 		public override bool InstancePerEntity => true;
 	     public override void SetDefaults(NPC npc)
@@ -23,41 +23,36 @@ namespace TRAEProject.NPCs.Boss
 		}
 		public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
 		{
-			if (ServerConfig.Instance.DukeBuffs)
+			switch (npc.type)
 			{
-				switch (npc.type)
-				{
-					case NPCID.DukeFishron:
+				case NPCID.DukeFishron:
+					{
+						if (Main.rand.Next(2) == 0)
 						{
-							if (Main.rand.Next(2) == 0)
-							{
-								int length = Main.rand.Next(360, 600);
-								target.AddBuff(BuffID.Rabies, length, false);
-							}
+							int length = Main.rand.Next(300, 600);
+							target.AddBuff(BuffID.Rabies, length, false);
 						}
-						return;
-				}
+					}
+					return;
 			}
+
 		}
 		public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-			if (ServerConfig.Instance.DukeBuffs)
+			switch (npc.type)
 			{
-				switch (npc.type)
-				{
-					case NPCID.DukeFishron:
-						npc.lifeMax += (npc.lifeMax / 2);
-						npc.defDefense = 60;
-						npc.defDamage = (int)(npc.defDamage * 0.9);
-						return;
-				}
+				case NPCID.DukeFishron:
+					npc.lifeMax += (npc.lifeMax / 2);
+					npc.defDefense = 60;
+					npc.defDamage = (int)(npc.defDamage * 0.9);
+					return;
 			}
-        }
+
+		}
 		float phase3NadoTimer = 0f;
         public override bool PreAI(NPC npc)
         {
-			if (ServerConfig.Instance.DukeBuffs)
-			{
+		
 				switch (npc.type)
 				{
 					case NPCID.DetonatingBubble:
@@ -1108,7 +1103,7 @@ namespace TRAEProject.NPCs.Boss
 							}
 						}
 						return false;
-				}
+				
             }
 			return true;
 		}

@@ -1,17 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TRAEProject.NewContent.Items.Accesories.MechanicalEye;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Common.ModPlayers;
-
+using TRAEProject.Changes.Weapon.Ranged.Rockets;
+using TRAEProject.Common;
 namespace TRAEProject.Changes.Accesory
 {
-    public class MagicQuiveritem : GlobalItem
+    public class AccessoryStats : GlobalItem
     {
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
@@ -32,6 +29,13 @@ namespace TRAEProject.Changes.Accesory
                 player.GetDamage<RangedDamageClass>() += 0.05f;
                 player.GetCritChance<RangedDamageClass>() += 5;
             }
+            if (item.type == ItemID.ReconScope)
+            {
+                player.GetModPlayer<RangedStats>().rangedVelocity += 0.8f;
+                player.GetModPlayer<RangedStats>().Magicandgunquiver += 1;
+                player.GetDamage<RangedDamageClass>() -= 0.1f;
+                player.GetCritChance<RangedDamageClass>() -= 10;
+            }
         }
     }
     public class MagicQuiverEffect : GlobalProjectile
@@ -40,7 +44,10 @@ namespace TRAEProject.Changes.Accesory
         public override bool InstancePerEntity => true;
 
         public int smartbounces = 0;
-        public bool hasBounced = false; public bool AffectedByReconScope = false;
+        public bool hasBounced = false;
+        public bool stunOnCrit = false;
+        public bool AffectedByAlphaScope = false;
+        public bool AffectedByReconScope = false;
         public float timer = 0;
         public override void SetDefaults(Projectile projectile)
         {
@@ -67,7 +74,16 @@ namespace TRAEProject.Changes.Accesory
                 case ProjectileID.MoonlordBullet:
                 case ProjectileID.HallowStar:
                     AffectedByReconScope = true;
+                    AffectedByAlphaScope = true;
                     break;
+            }
+            if (projectile.GetGlobalProjectile<NewRockets>().IsARocket)
+            {
+                AffectedByAlphaScope = true;
+            }
+            if (AffectedByAlphaScope)
+            {
+                stunOnCrit = true;
             }
         }
         public override void AI(Projectile projectile)
@@ -82,10 +98,15 @@ namespace TRAEProject.Changes.Accesory
             {
                 smartbounces += player.GetModPlayer<RangedStats>().Magicandgunquiver;
             }
+            if (AffectedByAlphaScope && smartbounces < player.GetModPlayer<RangedStats>().AlphaScope && !hasBounced)
+            {
+                smartbounces += player.GetModPlayer<RangedStats>().AlphaScope;
+                projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
+            }
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            if (smartbounces > 0 && projectile.penetrate > 1)
+            if (smartbounces > 0 && projectile.penetrate > 1 && !projectile.GetGlobalProjectile<ProjectileStats>().explodes)
             {
                 QuiverBounce(projectile);
             }

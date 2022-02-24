@@ -30,7 +30,13 @@ namespace TRAEProject.Changes.Recipes
             MagicDagger.AddIngredient(ItemID.FallenStar, 5);
             MagicDagger.AddIngredient(ItemID.DemoniteBar, 10);
             MagicDagger.AddTile(TileID.Anvils);
-            MagicDagger.Register();
+            MagicDagger.Register(); 
+            Recipe MagicDagger2 = mod.CreateRecipe(ItemID.MagicDagger);
+            MagicDagger2.AddIngredient(ItemID.ThrowingKnife, 1);
+            MagicDagger2.AddIngredient(ItemID.FallenStar, 5);
+            MagicDagger2.AddIngredient(ItemID.CrimtaneBar, 10);
+            MagicDagger2.AddTile(TileID.Anvils);
+            MagicDagger2.Register();
             Recipe IceSickle = mod.CreateRecipe(ItemID.IceSickle);
             IceSickle.AddIngredient(ItemID.FrostCore, 1);
             IceSickle.AddIngredient(ItemID.SoulofNight, 15);

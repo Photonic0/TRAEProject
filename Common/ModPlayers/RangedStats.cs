@@ -15,15 +15,18 @@ namespace TRAEProject.Common.ModPlayers
 {
     class RangedStats : ModPlayer
     {
-
+        public int RocketsStun = 0;
         public int Magicquiver = 0; 
         public int Magicandgunquiver = 0;
+        public int AlphaScope = 0;
         public float rangedVelocity = 1f; 
         public float gunVelocity = 1f;
         public int chanceNotToConsumeAmmo = 0;
 
         public override void ResetEffects()
         {
+            AlphaScope = 0;
+            RocketsStun = 0;
             Magicquiver = 0; 
             Magicandgunquiver = 0;
             rangedVelocity = 1f; 

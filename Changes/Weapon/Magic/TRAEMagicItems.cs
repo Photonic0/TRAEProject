@@ -85,8 +85,8 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.damage = 12; // down from 12
                     item.mana = 120; // up from 10
                     break;   
-                        case ItemID.WeatherPain:
-                    item.mana = 100; // up from 30
+                case ItemID.WeatherPain:
+                    item.mana = 200; // up from 30
                     break;
                 case ItemID.SpaceGun:
                     item.damage = 22; // up from 17

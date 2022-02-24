@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.GameContent.Creative;
 
 namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
 {
@@ -12,6 +13,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
         {
             DisplayName.SetDefault("Adamantite Launcher");
             Tooltip.SetDefault("Shoots Rockets");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
         }
         public override void SetDefaults()
         {
@@ -47,7 +50,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Titanium Bazooka");
-            Tooltip.SetDefault("Shoots three to four Rockets in one shot");
+            Tooltip.SetDefault("Shoots three to four Rockets in one shot"); CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
         }
         public override void SetDefaults()
         {

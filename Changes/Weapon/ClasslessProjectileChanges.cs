@@ -27,7 +27,7 @@ namespace TRAEProject.Changes.Weapon
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
                     break;
                 case ProjectileID.EyeFire:
-                    if (Main.expertMode && ServerConfig.Instance.MechChanges)
+                    if (Main.expertMode)
                     {
                         projectile.extraUpdates = 1; // down from 3(?)
                     }

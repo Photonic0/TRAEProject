@@ -13,6 +13,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     public class NewRockets : GlobalProjectile
     {
         public override bool InstancePerEntity => true;
+        public bool IsARocket = true;
         public bool HeavyRocket = false; 
         public bool DryRocket = false;
         public bool WetRocket = false;
@@ -305,8 +306,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.penetrate = 4;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
-            Projectile.timeLeft = 600; Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 10;
+            Projectile.timeLeft = 600;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;

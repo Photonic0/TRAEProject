@@ -267,7 +267,7 @@ namespace TRAEProject.Common
                 case ProjectileID.EyeLaser:
                 case ProjectileID.EyeFire:
                     {
-                        if (Main.expertMode && ServerConfig.Instance.MechChanges)
+                        if (Main.expertMode)
                         {
                             damage *= 90;
                             damage /= 100;

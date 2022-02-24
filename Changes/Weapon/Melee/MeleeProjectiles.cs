@@ -113,10 +113,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ProjectileID.TerraBeam:
                     projectile.extraUpdates = 1;
                     break;
-                case ProjectileID.IceSickle:
-                    projectile.timeLeft = 180;
-                    projectile.penetrate = 6;
-                    break;
+
                 case ProjectileID.FrostBoltSword:
                     projectile.penetrate = 3;
                     break;

@@ -12,12 +12,17 @@ namespace TRAEProject.NewContent.Buffs
 			DisplayName.SetDefault("Feral Bite");
 			Description.SetDefault("Causes confusion");
 		}
-
+		int timer = 0;
 		public override void Update(Player player, ref int buffIndex)
 		{
-			if (Main.rand.Next(600) == 0)
+			timer++;
+			if (timer > 240)
+            {
+				player.AddBuff(BuffID.Obstructed, 1);
+			}
+			if (timer == 300)
 			{
-				float duration = Main.rand.Next(15, 20);
+				float duration = Main.rand.Next(30, 60);
 				player.AddBuff(BuffID.Confused, (int)duration);
 			}
 		}

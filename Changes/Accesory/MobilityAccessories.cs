@@ -7,7 +7,7 @@ namespace TRAEProject.Changes.Accesory
 {
     public class MoveSpeed : ModPlayer
     {
-                public override void PreUpdate()
+        public override void PreUpdate()
         {
             Player.rocketTimeMax = 7; // without this Obsidian Hover Shoes permanently set it to 14          
    
@@ -16,6 +16,10 @@ namespace TRAEProject.Changes.Accesory
         {
             Player.jumpSpeedBoost += 1f;
             Player.moveSpeed *= 1.33f;
+            if (Player.isPerformingJump_Sandstorm)
+            {
+                Player.moveSpeed *= 0.8f;
+            }
         }
     }
     public class MobilityAccessories : GlobalItem
