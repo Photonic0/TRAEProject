@@ -81,6 +81,31 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
             Item.placeStyle = 0;
         }
     }
+    public class GraniteOvergrowthBanner : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("GraniteOvergrowth Banner");
+            Tooltip.SetDefault("Nearby players get a bonus against: GraniteOvergrowth");
+        }
+        public override void SetDefaults()
+        {
+
+            Item.width = 12;
+            Item.height = 28;
+            Item.maxStack = 99;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = 1;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.createTile = TileType<GraniteOvergrowthBannerPlaced>();
+            Item.placeStyle = 0;
+        }
+    }
 }
 
 ////then add this to the custom npc you want to drop the banner and in public override void SetDefaults()

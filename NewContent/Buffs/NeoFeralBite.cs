@@ -22,9 +22,11 @@ namespace TRAEProject.NewContent.Buffs
 			}
 			if (timer == 300)
 			{
-				float duration = Main.rand.Next(30, 60);
+				float duration = Main.rand.Next(30, 45);
 				player.AddBuff(BuffID.Confused, (int)duration);
+				timer = 0;
 			}
+		
 		}
 	}
 }

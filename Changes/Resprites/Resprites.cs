@@ -16,8 +16,6 @@ namespace TRAEProject.Changes.Resprites
         string path = "TRAEProject/Changes/Resprites/";
         public override void PostSetupContent()
         {
-            TextureAssets.Item[ItemID.BundleofBalloons] = Request<Texture2D>(path + "BundleOfBalloonsFixed");
-            TextureAssets.AccBalloon[3] = Request<Texture2D>(path + "BundleOfBalloonsFixed_Balloon");
 
             TextureAssets.Item[ItemID.StardustDragonStaff] = Request<Texture2D>(path + "LunarDragonStaff");
 

@@ -358,7 +358,7 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     }
                 case ProjectileID.VortexBeaterRocket:
                     {
-                        Terraria.Audio.SoundEngine.PlaySound(SoundID.Item14, projectile.position);
+                        SoundEngine.PlaySound(SoundID.Item14, projectile.position);
                         for (int i = 0; i < 4; i++)
                         {
                             Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default, 1.5f);

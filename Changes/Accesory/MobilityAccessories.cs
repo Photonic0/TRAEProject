@@ -50,7 +50,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.FrogGear:
                     player.frogLegJumpBoost = false;
                     player.accFlipper = true;
-                    player.dashType = 2;
+                    player.dashType = 1;
                     player.spikedBoots = 0;
                     player.extraFall += 15;
                     player.jumpSpeedBoost += 1.4f;
