@@ -149,7 +149,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 DownedOvergrowth.downedOvergrowth = true;
                 int i = (int)NPC.Center.X * 1;
                 int y = (int)NPC.Center.Y * 1;
-                NPC.NewNPC(i, y, NPCID.Cyborg);
+                NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(),i, y, NPCID.Cyborg);
              
             }
         }
@@ -237,7 +237,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 {
                     int i = (int)NPC.Center.X * 1;
                     int y = (int)NPC.Center.Y * 1;
-                    NPC.NewNPC(i, y, NPCType<GraniteCore>());
+                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), i, y, NPCType<GraniteCore>());
                 }
                 if (NPC.ai[1] == 1000)
                 {
@@ -261,7 +261,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 {
                     SoundEngine.PlaySound(SoundID.Item14, NPC.position);
                     NPC.ai[1] = 0;
-                    Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center, new Vector2(0, 0), ProjectileType<GraniteBoom>(), 100, 0f);
+                    Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center, new Vector2(0, 0), ProjectileType<GraniteBoom>(), 100, 0f);
                 }
                 // ring
 
@@ -302,7 +302,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                             shootToX *= distance2 * 5f;
                             shootToY *= distance2 * 5f;
                             Vector2 perturbedSpeed = new Vector2(shootToX, shootToY).RotatedByRandom(MathHelper.ToRadians(0));
-                            Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center.X, NPC.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<GraniteBolt>(), 50, 0);
+                            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center.X, NPC.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<GraniteBolt>(), 50, 0);
                         }
 
                     }
@@ -352,7 +352,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 float f2 = num852 + c * ((float)Math.PI * 2f);
                 Vector2 velocity = f2.ToRotationVector2() * (4f + Main.rand.NextFloat() * 2f);
                 velocity += Vector2.UnitY * -1f;
-                Projectile.NewProjectile(NPC.GetProjectileSpawnSource(), NPC.Center, velocity, bolt, 25, 0f);
+                Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center, velocity, bolt, 25, 0f);
             }
         }
 
@@ -480,7 +480,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 {
                     int i = (int)npc.Center.X * 1;
                     int y = (int)npc.Center.Y * 1;
-                    NPC.NewNPC(i, y, NPCID.Cyborg);
+                    NPC.NewNPC(npc.GetSpawnSourceForNPCFromNPCAI(), i, y, NPCID.Cyborg);
                 }
             }
         }

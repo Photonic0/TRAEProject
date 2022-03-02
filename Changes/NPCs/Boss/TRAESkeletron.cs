@@ -34,12 +34,12 @@ namespace TRAEProject.Changes.NPCs.Boss
 				{
 					npc.TargetClosest();
 					npc.ai[0] = 1f;
-					int Hand = NPC.NewNPC((int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, NPCID.SkeletronHand, npc.whoAmI);
+					int Hand = NPC.NewNPC(npc.GetSpawnSourceForNPCFromNPCAI(), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, NPCID.SkeletronHand, npc.whoAmI);
 					Main.npc[Hand].ai[0] = -1f;
 					Main.npc[Hand].ai[1] = npc.whoAmI;
 					Main.npc[Hand].target = npc.target;
 					Main.npc[Hand].netUpdate = true;
-					Hand = NPC.NewNPC((int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, 36, npc.whoAmI);
+					Hand = NPC.NewNPC(npc.GetSpawnSourceForNPCFromNPCAI(), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, 36, npc.whoAmI);
 					Main.npc[Hand].ai[0] = 1f;
 					Main.npc[Hand].ai[1] = npc.whoAmI;
                     Main.npc[Hand].ai[3] = 150f;
@@ -130,7 +130,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 								playerY2 = totalVelocity.Y;
 								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(17f, 17f);
 								center3 += totalVelocity * 5f;
-								int Skull = Projectile.NewProjectile(npc.GetProjectileSpawnSource(), center3.X, center3.Y, playerX2, playerY2, ProjectileID.Skull, attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
+								int Skull = Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), center3.X, center3.Y, playerX2, playerY2, ProjectileID.Skull, attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
 								Main.projectile[Skull].timeLeft = 300;
 							}
 						}
@@ -144,7 +144,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 							playerX2 *= distance2;
 							playerY2 *= distance2; 
 							int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(22f, 22f);
-							Projectile.NewProjectile(npc.GetProjectileSpawnSource(), npc.Center.X, npc.Center.Y, playerX2, playerY2, ProjectileType<ShadowflameSkull>(), attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
+							Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), npc.Center.X, npc.Center.Y, playerX2, playerY2, ProjectileType<ShadowflameSkull>(), attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
 						}
 					}
 				}

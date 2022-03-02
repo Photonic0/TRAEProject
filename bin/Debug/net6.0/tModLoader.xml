@@ -358,20 +358,6 @@
             Hiding arms also hides hands
             </summary>
         </member>
-        <member name="T:Terraria.ID.PrimaryBiomeID">
-            <summary>
-            <b>WARNING:</b> This is not an exhaustive list of vanilla biomes.
-            This class only covers the biomes used for NPC happiness.
-            </summary>
-            TODO: biomeFullName does not exist for vanilla biomes and scope of class only covers biomes that are used in npc happiness
-        </member>
-        <member name="M:Terraria.ID.PrimaryBiomeID.GetLocalizedName(System.Int32)">
-            <summary>
-            Equivalent to <see cref="M:Terraria.GameContent.ShopHelper.BiomeNameByKey(System.Int32)"/>
-            </summary>
-            <param name="biomeID"></param>
-            <returns>Localized name of the biome with <paramref name="biomeID"/></returns>
-        </member>
         <member name="F:Terraria.ID.BuffID.Sets.LongerExpertDebuff">
             <summary>
             Set for debuffs.
@@ -1196,7 +1182,7 @@
         </member>
         <member name="F:Terraria.ID.NPCID.Sets.SpawnFromLastEmptySlot">
             <summary>
-            Whether or not the spawned NPC will start looking for a suitable slot from the end of <seealso cref="F:Terraria.Main.npc"/>, ignoring the Start parameter of <see cref="M:Terraria.NPC.NewNPC(System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)"/>.
+            Whether or not the spawned NPC will start looking for a suitable slot from the end of <seealso cref="F:Terraria.Main.npc"/>, ignoring the Start parameter of <see cref="M:Terraria.NPC.NewNPC(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)"/>.
             Useful if you have a multi-segmented boss and want its parts to draw over the main body (body will be in this set).
             </summary>
         </member>
@@ -3639,7 +3625,7 @@
             <param name="damage"> The damage of the projectile. </param>
             <param name="knockback"> The knockback of the projectile. </param>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.Shoot(Terraria.Item,Terraria.Player,Terraria.DataStructures.ProjectileSource_Item_WithAmmo,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single)">
+        <member name="M:Terraria.ModLoader.GlobalItem.Shoot(Terraria.Item,Terraria.Player,Terraria.DataStructures.EntitySource_ItemUse_WithAmmo,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single)">
             <summary>
             Allows you to modify an item's shooting mechanism. Return false to prevent vanilla's shooting code from running. Returns true by default.
             </summary>
@@ -5459,7 +5445,7 @@
             Calls ModItem.ModifyShootStats, then each GlobalItem.ModifyShootStats hook.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.Shoot(Terraria.Item,Terraria.Player,Terraria.DataStructures.ProjectileSource_Item_WithAmmo,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single,System.Boolean)">
+        <member name="M:Terraria.ModLoader.ItemLoader.Shoot(Terraria.Item,Terraria.Player,Terraria.DataStructures.EntitySource_ItemUse_WithAmmo,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single,System.Boolean)">
             <summary>
             Calls each GlobalItem.Shoot hook then, if none of them returns false, calls the ModItem.Shoot hook and returns its value.
             </summary>
@@ -6144,11 +6130,6 @@
         <member name="T:Terraria.ModLoader.ModBiome">
             <summary>
             This class represents a biome added by a mod. It exists to centralize various biome related hooks, handling a lot of biome boilerplate.
-            </summary>
-        </member>
-        <member name="P:Terraria.ModLoader.ModBiome.IsPrimaryBiome">
-            <summary>
-            Whether or not this biome impacts NPC shop prices.
             </summary>
         </member>
         <member name="P:Terraria.ModLoader.ModBiome.DisplayName">
@@ -7070,7 +7051,7 @@
             <param name="damage"> The damage of the projectile. </param>
             <param name="knockback"> The knockback of the projectile. </param>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.Shoot(Terraria.Player,Terraria.DataStructures.ProjectileSource_Item_WithAmmo,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single)">
+        <member name="M:Terraria.ModLoader.ModItem.Shoot(Terraria.Player,Terraria.DataStructures.EntitySource_ItemUse_WithAmmo,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single)">
             <summary>
             Allows you to modify this item's shooting mechanism. Return false to prevent vanilla's shooting code from running. Returns true by default.
             </summary>
@@ -7913,9 +7894,6 @@
         </member>
         <member name="P:Terraria.ModLoader.ModNPC.AnimationType">
             <summary> Determines which type of vanilla NPC this ModNPC will copy the animation (FindFrame) of. Leave as 0 to not copy any animation. Defaults to 0. </summary>
-        </member>
-        <member name="P:Terraria.ModLoader.ModNPC.BossBag">
-            <summary> The item type of the boss bag that is dropped when DropBossBags is called for this NPC. </summary>
         </member>
         <member name="P:Terraria.ModLoader.ModNPC.Music">
             <summary> The ID of the music that plays when this NPC is on or near the screen. Defaults to -1, which means music plays normally. </summary>
@@ -8809,7 +8787,7 @@
             <param name="damage"> The damage of the projectile. </param>
             <param name="knockback"> The knockback of the projectile. </param>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.Shoot(Terraria.Item,Terraria.DataStructures.ProjectileSource_Item_WithAmmo,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single)">
+        <member name="M:Terraria.ModLoader.ModPlayer.Shoot(Terraria.Item,Terraria.DataStructures.EntitySource_ItemUse_WithAmmo,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single)">
             <summary>
             Allows you to modify an item's shooting mechanism. Return false to prevent vanilla's shooting code from running. Returns true by default.
             </summary>
@@ -10636,7 +10614,7 @@
         <member name="T:Terraria.ModLoader.NPCHappiness">
             <summary> This struct provides access to an NPC type's NPC &amp; Biome relationships. </summary>
         </member>
-        <member name="F:Terraria.ModLoader.NPCHappiness.RelationshipToPriceMultiplier">
+        <member name="F:Terraria.ModLoader.NPCHappiness.AffectionLevelToPriceMultiplier">
             <summary> Allows you to modify the shop price multipliers associated with a (biome/npc type) relationship level. </summary>
         </member>
         <member name="T:Terraria.ModLoader.NPCHeadLoader">
@@ -11274,15 +11252,21 @@
             <summary> Safely attempts to get the local instance of the type of the specified ModPlayer instance. </summary>
             <returns> Whether or not the requested instance has been found. </returns>
         </member>
-        <member name="M:Terraria.Player.QuickSpawnClonedItem(Terraria.Item,System.Int32)">
+        <member name="M:Terraria.Player.QuickSpawnClonedItem(Terraria.DataStructures.IEntitySource,Terraria.Item,System.Int32)">
             <summary>
             Will spawn an item like QuickSpawnItem, but clones it (handy when you need to retain item infos)
             </summary>
             <param name="item">The item you want to be cloned</param>
             <param name="stack">The stack to give the item. Note that this will override maxStack if it's higher.</param>
         </member>
-        <member name="M:Terraria.Player.QuickSpawnClonedItemDirect(Terraria.Item,System.Int32)">
-            <inheritdoc cref="M:Terraria.Player.QuickSpawnClonedItem(Terraria.Item,System.Int32)"/>
+        <member name="M:Terraria.Player.QuickSpawnClonedItemDirect(Terraria.DataStructures.IEntitySource,Terraria.Item,System.Int32)">
+            <inheritdoc cref="M:Terraria.Player.QuickSpawnClonedItem(Terraria.DataStructures.IEntitySource,Terraria.Item,System.Int32)"/>
+        </member>
+        <member name="M:Terraria.Player.QuickSpawnItemDirect(Terraria.DataStructures.IEntitySource,Terraria.Item,System.Int32)">
+            <inheritdoc cref="M:Terraria.Player.QuickSpawnClonedItem(Terraria.DataStructures.IEntitySource,Terraria.Item,System.Int32)"/>
+        </member>
+        <member name="M:Terraria.Player.QuickSpawnItemDirect(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Terraria.Player.QuickSpawnClonedItem(Terraria.DataStructures.IEntitySource,Terraria.Item,System.Int32)"/>
         </member>
         <member name="M:Terraria.Player.HasBuff(System.Int32)">
             <summary> Returns whether or not this Player currently has a (de)buff of the provided type. </summary>
@@ -11379,7 +11363,7 @@
             Invoked in UpdateVisibleAccessories. Runs common code for both modded slots and vanilla slots based on provided Items.
             </summary>
         </member>
-        <member name="M:Terraria.Player.DropItem(Microsoft.Xna.Framework.Vector2,Terraria.Item@)">
+        <member name="M:Terraria.Player.DropItem(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Terraria.Item@)">
             <summary>
             Drops the ref'd item from the player at the position, and than turns the ref'd Item to air.
             </summary>

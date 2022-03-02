@@ -85,8 +85,8 @@ namespace TRAEProject.Changes.Weapon.Magic
                     item.damage = 12; // down from 12
                     item.mana = 120; // up from 10
                     break;   
-                case ItemID.WeatherPain:
-                    item.mana = 200; // up from 30
+                        case ItemID.WeatherPain:
+                    item.mana = 100; // up from 30
                     break;
                 case ItemID.SpaceGun:
                     item.damage = 22; // up from 17
@@ -359,8 +359,9 @@ namespace TRAEProject.Changes.Weapon.Magic
         /// SHOOT STUFF
         private static int shootDelay = 1;
         public int useCount = 0;
-        public override bool Shoot(Item item, Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
+
             Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
             switch (item.type)
             {
