@@ -1,10 +1,16 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.NewContent.Buffs;
 using TRAEProject.NewContent.TRAEDebuffs;
+using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Common.ModPlayers
 {
@@ -28,12 +34,30 @@ namespace TRAEProject.Common.ModPlayers
             {
                 Player.autoReuseGlove = true;
             }
-         
         }
         #region Sword Size
-
-        public float bonusSize = 1f;
-
+        public override void SetStaticDefaults()
+        {
+            IL.Terraria.Player.GetAdjustedItemScale += HookSize;
+            IL.Terraria.Player.ItemCheck_GetMeleeHitbox += HookHey;
+            //IL.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_27_HeldItem += HookHey2;
+        }
+        private void HookHey(ILContext il)
+        {
+            var c = new ILCursor(il);
+            c.EmitDelegate(() =>
+               {
+                   //Main.NewText("GetHitbox");
+               });
+        }
+        private void HookHey2(ILContext il)
+        {
+            var c = new ILCursor(il);
+            c.EmitDelegate(() =>
+            {
+                Main.NewText("GetDraw");
+            });
+        }
         private void HookSize(ILContext il)
         {
             var c = new ILCursor(il);
@@ -61,6 +85,7 @@ namespace TRAEProject.Common.ModPlayers
             {
                 if (item.CountsAsClass(DamageClass.Melee))
                 {                    //
+                    float bonusSize = 1f;
                     switch (item.prefix)
                     {
                         case PrefixID.Large:
@@ -70,7 +95,7 @@ namespace TRAEProject.Common.ModPlayers
                             bonusSize = (1.25f / 1.18f);
                             break;
                         case PrefixID.Dangerous:
-                            bonusSize = (1.12f / 1.5f);
+                            bonusSize = (1.12f / 1.05f);
                             break;
                         case PrefixID.Bulky:
                             bonusSize = (1.2f / 1.1f);
@@ -80,6 +105,7 @@ namespace TRAEProject.Common.ModPlayers
                     //
                     scale *= player.GetModPlayer<MeleeStats>().weaponSize;
                 }
+                //Main.NewText(scale);
                 return scale;
             });
             //pop the variable at the top of the stack onto the local variable
@@ -87,17 +113,12 @@ namespace TRAEProject.Common.ModPlayers
             //push the local variable onto the stack
             c.Emit(OpCodes.Ldloc_0);
         }
-        public override void SetStaticDefaults()
-        {
-            IL.Terraria.Player.GetAdjustedItemScale += HookSize;
-        }
         #endregion
-
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             if(inflictHeavyBurn >0 && item.CountsAsClass(DamageClass.Melee))
             {
-                TRAEDebuff.Apply<HeavyBurn>(target, 120, 1);
+                TRAEDebuff.Apply<HeavyBurn>(target, inflictHeavyBurn, 1);
             }
         }
 
