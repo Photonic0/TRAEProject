@@ -1,18 +1,14 @@
 ﻿using System;
-using TRAEProject.NewContent.Projectiles;
+using TRAEProject.Common; 
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using TRAEProject.Common;
 
 namespace TRAEProject
 {
     public class TRAEMethods
     {
-        public static void SpawnProjectilesFromAbove(Player player1, Vector2 Base, int projectileCount, int spreadX, int spreadY, int[] offsetCenter, float velocity, int type, int damage, float knockback, int player)
+        public static void SpawnProjectilesFromAbove(Player Player, Vector2 Base, int projectileCount, int spreadX, int spreadY, int[] offsetCenter, float velocity, int type, int damage, float knockback, int player)
         {
             for (int i = 0; i < projectileCount; ++i)
             {
@@ -30,7 +26,7 @@ namespace TRAEProject
                 Y *= squareRoot;
                 ///
                 // Spawn the projectile
-                int Projectile = Terraria.Projectile.NewProjectile(player1.GetProjectileSource_Misc(player), x2, y, X, Y, type, damage, knockback, player);
+                int Projectile = Terraria.Projectile.NewProjectile(Player.GetItemSource_Misc(Player.HeldItem.type), x2, y, X, Y, type, damage, knockback, player);
                 // once the projectile reaches the base's position, it will no longer go through tiles.
                 Main.projectile[Projectile].localAI[1] += Base.Y;
            
@@ -42,7 +38,7 @@ namespace TRAEProject
             projectile.GetGlobalProjectile<ProjectileStats>().explodes = false; // without this, the projectile will keep exploding infinitely
             projectile.timeLeft = 3; // Explosion will stay active for 3 frames          
             projectile.alpha = 255; // Projectile becomes invisible
-            projectile.damage = (int)(projectile.damage * ExplosionDamage); // Damage is multiplied by a certian amount if necessary
+            projectile.damage = (int)(projectile.damage * ExplosionDamage); // Damage is lowered by a certian amount if necessary
             projectile.tileCollide = false; // if set to true, the explosion won't go through blocks (and probably be messed up)
             // Adjust the explosion's hitbox so that it spawns at the center of the projectile.
             projectile.position.X += projectile.width / 2;
@@ -58,57 +54,27 @@ namespace TRAEProject
         }
         public static void DefaultExplosion(Projectile projectile)
         {
-            SoundEngine.PlaySound(SoundID.Item14, projectile.position);
-            float num846 = 3f;
-            for (int num847 = 0; num847 < 50; num847++)
+            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item14, projectile.position);
+            for (int num731 = 0; num731 < 30; ++num731)
             {
-                Dust dust53 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
-                dust53.velocity = (dust53.position - projectile.Center).SafeNormalize(Vector2.Zero);
-                Dust dust = dust53;
-                dust.velocity *= 2f + (float)Main.rand.Next(5) * 0.1f;
-                dust53.velocity.Y -= num846 * 0.5f;
-                dust53.color = Color.Black * 0.9f;
+                int num732 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+                Dust dust = Main.dust[num732];
+                dust.velocity *= 2f;
                 if (Main.rand.Next(2) == 0)
                 {
-                    dust53.scale = 0.5f;
-                    dust53.fadeIn = 1f + (float)Main.rand.Next(10) * 0.1f;
-                    dust53.color = Color.Black * 0.8f;
+                    Main.dust[num732].scale = 0.5f;
+                    Main.dust[num732].fadeIn = 1f + Main.rand.Next(10) * 0.1f;
                 }
             }
-            for (int num848 = 0; num848 < 30; num848++)
+            for (int num733 = 0; num733 < 30; ++num733)
             {
-                Dust dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 6, 0f, 0f, 100);
-                dust54.noGravity = true;
-                dust54.fadeIn = 1.4f;
-                dust54.velocity = (dust54.position - projectile.Center).SafeNormalize(Vector2.Zero);
-                Dust dust = dust54;
-                dust.velocity *= 5.5f + (float)Main.rand.Next(61) * 0.1f;
-                dust54.velocity.Y -= num846 * 0.5f;
-                dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 6, 0f, 0f, 100);
-                dust54.velocity = (dust54.position - projectile.Center).SafeNormalize(Vector2.Zero);
-                dust54.velocity.Y -= num846 * 0.25f;
-                dust = dust54;
-                dust.velocity *= 1.5f + (float)Main.rand.Next(5) * 0.1f;
-                dust54.fadeIn = 0f;
-                dust54.scale = 0.6f;
-                dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 1.5f);
-                dust54.noGravity = num848 % 2 == 0;
-                dust54.velocity = (dust54.position - projectile.Center).SafeNormalize(Vector2.Zero);
-                dust = dust54;
-                dust.velocity *= 3f + (float)Main.rand.Next(21) * 0.2f;
-                dust54.velocity.Y -= num846 * 0.5f;
-                dust54.fadeIn = 1.2f;
-                if (!dust54.noGravity)
-                {
-                    dust54.scale = 0.4f;
-                    dust54.fadeIn = 0f;
-                }
-                else
-                {
-                    dust = dust54;
-                    dust.velocity *= 2f + (float)Main.rand.Next(5) * 0.2f;
-                    dust54.velocity.Y -= num846 * 0.5f;
-                }
+                int num734 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
+                Main.dust[num734].noGravity = true;
+                Dust dust = Main.dust[num734];
+                dust.velocity *= 4f;
+                num734 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
+                dust = Main.dust[num734];
+                dust.velocity *= 2f;
             }
         }
         public static Vector2 PolarVector(float radius, float theta)

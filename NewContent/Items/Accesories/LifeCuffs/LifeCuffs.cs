@@ -15,6 +15,8 @@ namespace TRAEProject.NewContent.Items.Accesories.LifeCuffs
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Life Cuffs");
             Tooltip.SetDefault("Getting hit will temporarily increase damage by 20%");
         }

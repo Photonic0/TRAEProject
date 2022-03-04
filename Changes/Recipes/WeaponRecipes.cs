@@ -206,13 +206,6 @@ namespace TRAEProject.Changes.Recipes
                 recipe.AddIngredient(ItemID.FallenStar, 5);
                 recipe.AddIngredient(ItemID.Ruby, 1);
             }
-            if (recipe.HasResult(ItemID.HornetStaff))
-            {
-                recipe.TryGetIngredient(ItemID.BeeWax, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.Stinger, 8);
-                recipe.AddIngredient(ItemID.Hive, 10);
-            }
         }
     }
 }

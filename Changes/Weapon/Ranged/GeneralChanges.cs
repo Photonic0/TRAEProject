@@ -28,7 +28,6 @@ namespace TRAEProject.Changes.Weapons
             switch (item.type)
             {
 
-                /// RANGED 
                 case ItemID.Boomstick:
                     item.damage = 11; // down from 14
                     return;

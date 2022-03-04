@@ -1,16 +1,16 @@
 using TRAEProject.NewContent.Buffs;
+using TRAEProject.Common;
 using TRAEProject.NewContent.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Common;
 
-namespace TRAEProject.Changes.Weapon.Ranged
+namespace TRAEProject.Changes.Projectiles
 {
     public class RangedProjectile : GlobalProjectile
     {
@@ -101,23 +101,6 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.25f;
                     return;
-                case ProjectileID.DryRocket:
-                case ProjectileID.WetRocket:
-                case ProjectileID.LavaRocket:
-                case ProjectileID.HoneyRocket:
-                    ProjectileID.Sets.IsARocketThatDealsDoubleDamageToPrimaryEnemy[projectile.type] = false;
-                    break;
-                case ProjectileID.ClusterFragmentsI:
-                    ProjectileID.Sets.IsARocketThatDealsDoubleDamageToPrimaryEnemy[projectile.type] = false;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-					projectile.penetrate = 2;
-					projectile.timeLeft = 30; 
-                    projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 50;
-                    projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-                    projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
-                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.25f;
-                    break;
             }
         }
         public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -309,6 +292,40 @@ namespace TRAEProject.Changes.Weapon.Ranged
         { 
             switch (projectile.type)
             {
+                case ProjectileID.BeeArrow:
+                    {
+                        int beeCount = Main.rand.Next(2, 3);
+                  
+                        for (int i = 0; i < beeCount; i++)
+                        {
+                            Vector2 vector56 = projectile.oldVelocity;
+                            vector56.Normalize();
+                            vector56 *= 8f;
+                            float X = (float)Main.rand.Next(-35, 36) * 0.01f;
+                            float Y = (float)Main.rand.Next(-35, 36) * 0.01f;
+                            X += projectile.oldVelocity.X / 6f;
+                            Y += projectile.oldVelocity.Y / 6f;
+                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage / 4, projectile.knockBack, projectile.owner);
+                        }
+                    }
+                    return false;
+                case ProjectileID.Beenade:
+                    {
+                        int beeCount = Main.rand.Next(6, 10);
+
+                        for (int i = 0; i < beeCount; i++)
+                        {
+                            Vector2 vector56 = projectile.oldVelocity;
+                            vector56.Normalize();
+                            vector56 *= 8f;
+                            float X = (float)Main.rand.Next(-35, 36) * 0.01f;
+                            float Y = (float)Main.rand.Next(-35, 36) * 0.01f;
+                            X += projectile.oldVelocity.X / 6f;
+                            Y += projectile.oldVelocity.Y / 6f;
+                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage, projectile.knockBack, projectile.owner);
+                        }
+                    }
+                    return false;
                 case ProjectileID.ClusterSnowmanFragmentsI:
                     {
                         SoundEngine.PlaySound(SoundID.Item62, projectile.position);
@@ -358,7 +375,7 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     }
                 case ProjectileID.VortexBeaterRocket:
                     {
-                        SoundEngine.PlaySound(SoundID.Item14, projectile.position);
+                        Terraria.Audio.SoundEngine.PlaySound(SoundID.Item14, projectile.position);
                         for (int i = 0; i < 4; i++)
                         {
                             Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default, 1.5f);

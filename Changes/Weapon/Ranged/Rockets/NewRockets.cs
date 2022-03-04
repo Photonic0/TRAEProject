@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Achievements;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Common;
@@ -49,6 +50,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         }
         public void DestroyTiles(Projectile projectile, int explosionRadius)
         {
+
             int minTileX = (int)(projectile.Center.X / 16f - (float)explosionRadius);
             int maxTileX = (int)(projectile.Center.X / 16f + (float)explosionRadius);
             int minTileY = (int)(projectile.Center.Y / 16f - (float)explosionRadius);
@@ -84,6 +86,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                     }
                 }
             }
+            AchievementsHelper.CurrentlyMining = true;
             for (int i = minTileX; i <= maxTileX; i++)
             {
                 for (int j = minTileY; j <= maxTileY; j++)
@@ -94,14 +97,15 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                     if (distanceToTile < (double)explosionRadius)
                     {
                         bool canKillTile = true;
-                        if (Main.tile[i, j] != null && Main.tile[i, j].IsActuated)
+                        Tile tile = Main.tile[i, j];
+                        if (tile.HasTile)
                         {
                             canKillTile = true;
-                            if (Main.tileDungeon[(int)Main.tile[i, j].TileType] || Main.tile[i, j].TileType == 88 || Main.tile[i, j].TileType == 21 || Main.tile[i, j].TileType == 26 || Main.tile[i, j].TileType == 107 || Main.tile[i, j].TileType == 108 || Main.tile[i, j].TileType == 111 || Main.tile[i, j].TileType == 226 || Main.tile[i, j].TileType == 237 || Main.tile[i, j].TileType == 221 || Main.tile[i, j].TileType == 222 || Main.tile[i, j].TileType == 223 || Main.tile[i, j].TileType == 211 || Main.tile[i, j].TileType == 404)
+                            if (Main.tileDungeon[(int)tile.TileType] || tile.TileType == 88 || tile.TileType == 21 || tile.TileType == 26 || tile.TileType == 107 || tile.TileType == 108 || tile.TileType == 111 || tile.TileType == 226 || tile.TileType == 237 || tile.TileType == 221 || tile.TileType == 222 || tile.TileType == 223 || tile.TileType == 211 || tile.TileType == 404)
                             {
                                 canKillTile = false;
                             }
-                            if (!Main.hardMode && Main.tile[i, j].TileType == 58)
+                            if (!Main.hardMode && tile.TileType == 58)
                             {
                                 canKillTile = false;
                             }
@@ -112,9 +116,9 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                             if (canKillTile)
                             {
                                 WorldGen.KillTile(i, j, false, false, false);
-                                if (!Main.tile[i, j].HasUnactuatedTile && Main.netMode != NetmodeID.SinglePlayer)
+                                if (!tile.HasTile && Main.netMode != NetmodeID.SinglePlayer)
                                 {
-                                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 0, (float)i, (float)j, 0f, 0, 0, 0);
+                                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, (float)i, (float)j, 0f, 0, 0, 0);
                                 }
                             }
                         }
@@ -129,7 +133,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                                         WorldGen.KillWall(x, y, false);
                                         if (Main.tile[x, y].WallType == 0 && Main.netMode != NetmodeID.SinglePlayer)
                                         {
-                                            NetMessage.SendData(MessageID.TileChange, -1, -1, null, 2, (float)x, (float)y, 0f, 0, 0, 0);
+                                            NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 2, (float)x, (float)y, 0f, 0, 0, 0);
                                         }
                                     }
                                 }
@@ -138,6 +142,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                     }
                 }
             }
+            AchievementsHelper.CurrentlyMining = false;
         }
         public void ClusterRocketExplosion(Projectile projectile)
         {

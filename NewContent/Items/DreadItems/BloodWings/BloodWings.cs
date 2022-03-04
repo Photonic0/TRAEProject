@@ -17,6 +17,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodWings
     {
 		public override void SetStaticDefaults()
 		{
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
 			DisplayName.SetDefault("Bloodfin Wings");
 			Tooltip.SetDefault("Allows flight and slow fall\nFlight is boosted upon taking damage");
 

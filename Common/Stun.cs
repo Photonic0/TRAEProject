@@ -1,12 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -22,17 +18,49 @@ namespace TRAEProject.Common
 		public override void SetDefaults(NPC npc)
         {
 			stunResist = 1f - (float)npc.lifeMax / ((float)npc.lifeMax + 2000f);
-		}
+            switch (npc.type)
+            {
+                case NPCID.QueenBee:
+                case NPCID.QueenSlimeBoss:
+                case NPCID.BrainofCthulhu:
+                case NPCID.MoonLordHand:
+                case NPCID.MoonLordCore:
+                case NPCID.MoonLordHead:
+                case NPCID.GolemFistLeft:
+                case NPCID.GolemFistRight:
+                case NPCID.GolemHead:
+                case NPCID.SkeletronHand:
+                case NPCID.DukeFishron:
+                case NPCID.WallofFlesh:
+                case NPCID.WallofFleshEye:
+                case NPCID.BigMimicCorruption:
+                case NPCID.BigMimicCrimson:
+                case NPCID.BigMimicHallow:
+                case NPCID.ScutlixRider:
+                case NPCID.SolarDrakomireRider:
+                case NPCID.DD2Betsy:
+                case NPCID.MartianSaucerCannon:
+                case NPCID.MartianSaucerTurret:
+                case NPCID.MartianSaucerCore:
+                case NPCID.MartianSaucer:
+
+                    stunImmune = true;
+                    return;
+            }
+        }
         private int stunTime = 0;
+            private int stunCooldown = 0;
+
         //Use this to freeze NPCs
         public void StunMe(NPC npc, int time)
         {
-            if(npc.aiStyle == 6 && !stunImmune && stunTime < 1)
+            if(npc.aiStyle == 6 || stunImmune || stunCooldown > 0)
             {
                 return;
             }
+            stunCooldown = time;
             time = (int)(time * stunResist);
-            if (time < 5)
+            if (time < 6)
             {
                 return;
             }
@@ -42,6 +70,7 @@ namespace TRAEProject.Common
                 npc.velocity = Vector2.Zero;
             }
             stunTime = Math.Max(time, stunTime);
+   
         }
         //Called whenever an NPC breaks out of the ice
         public override bool PreAI(NPC npc)

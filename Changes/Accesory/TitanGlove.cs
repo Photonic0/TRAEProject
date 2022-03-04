@@ -42,8 +42,9 @@ namespace TRAEProject.Changes.Accesory
         {
             foreach (TooltipLine line in tooltips)
             {
-                if (item.type == ItemID.TitanGlove || item.type == ItemID.PowerGlove)
+                if (item.type == ItemID.TitanGlove || item.type == ItemID.PowerGlove || item.type == ItemID.FireGauntlet)
                 {
+
                     if (line.mod == "Terraria" && line.Name == "Tooltip0")
                     {
                         line.text = "25% increased melee weapon size and 50% increased melee velocity";
@@ -51,21 +52,6 @@ namespace TRAEProject.Changes.Accesory
                     if (line.mod == "Terraria" && line.Name == "Tooltip1")
                     {
                         line.text = "";
-                    }
-                    if (line.mod == "Terraria" && line.Name == "Tooltip2")
-                    {
-                        line.text = "";
-                    }
-                }
-                if (item.type == ItemID.FireGauntlet)
-                {
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
-                    {
-                        line.text = "25% increased melee weapon size and 50% increased melee velocity";
-                    }
-                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
-                    {
-                        line.text = "Melee weapons inflict heavy fire damage";
                     }
                     if (line.mod == "Terraria" && line.Name == "Tooltip2")
                     {
@@ -74,6 +60,13 @@ namespace TRAEProject.Changes.Accesory
                     if (line.mod == "Terraria" && line.Name == "Tooltip3")
                     {
                         line.text = "";
+                    }
+                }
+                if (item.type == ItemID.FireGauntlet)
+                {
+                    if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.text = "Melee weapons inflict heavy fire damage";
                     }
                 }
             }

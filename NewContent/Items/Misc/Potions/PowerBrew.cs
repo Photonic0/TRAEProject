@@ -17,6 +17,8 @@ namespace TRAEProject.NewContent.Items.Misc.Potions
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
+
             DisplayName.SetDefault("Power Brew");
             Tooltip.SetDefault("Increases damage by 50% for 15 seconds after drunk");
         }

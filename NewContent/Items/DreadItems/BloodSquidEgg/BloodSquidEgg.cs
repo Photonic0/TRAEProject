@@ -10,6 +10,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodSquidEgg
 	{
 		public override void SetStaticDefaults()
 		{
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
 			DisplayName.SetDefault("Blood Squid Egg");
 			Tooltip.SetDefault("Summons a Baby Blood Squid");
 		}

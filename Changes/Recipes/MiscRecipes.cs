@@ -16,7 +16,9 @@ namespace TRAEProject.Changes.Recipes
             Recipe BloodyTear = mod.CreateRecipe(ItemID.BloodMoonStarter).AddIngredient(ItemID.Lens, 5).AddIngredient(ItemID.VilePowder, 50).AddIngredient(ItemID.Deathweed, 10).AddTile(TileID.DemonAltar);
             BloodyTear.Register();
             Recipe BloodyTear2 = mod.CreateRecipe(ItemID.BloodMoonStarter).AddIngredient(ItemID.Lens, 5).AddIngredient(ItemID.ViciousPowder, 50).AddIngredient(ItemID.Deathweed, 10).AddTile(TileID.DemonAltar);
-            BloodyTear2.Register();
+            BloodyTear2.Register(); 
+            Recipe Sashimi = mod.CreateRecipe(ItemID.Sashimi).AddIngredient(ItemID.NeonTetra, 1).AddTile(TileID.CookingPots);
+            Sashimi.Register();
         }
         public static void Modify(Recipe recipe)
         {
@@ -29,6 +31,34 @@ namespace TRAEProject.Changes.Recipes
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.Waterleaf, 1);
                 recipe.AddIngredient(ItemID.PrincessFish, 1);
+            }
+            if (recipe.HasResult(ItemID.SeafoodDinner))
+            {
+                if (recipe.HasIngredient(ItemID.SpecularFish))
+                {
+                    recipe.TryGetIngredient(ItemID.SpecularFish, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.SpecularFish, 6);
+                }
+                if (recipe.HasIngredient(ItemID.CrimsonTigerfish))
+                {
+                    recipe.TryGetIngredient(ItemID.CrimsonTigerfish, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.CrimsonTigerfish, 6);
+                }
+                if (recipe.HasIngredient(ItemID.PrincessFish))
+                {
+                    recipe.TryGetIngredient(ItemID.PrincessFish, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.AddIngredient(ItemID.PrincessFish, 6);
+                }
+                if (recipe.HasIngredient(ItemID.NeonTetra))
+                {
+                    recipe.TryGetIngredient(ItemID.NeonTetra, out ingredientToRemove);
+                    recipe.RemoveIngredient(ingredientToRemove);
+                    recipe.RemoveRecipe();
+                }
+  
             }
             if (recipe.HasResult(ItemID.ThornsPotion))
             {

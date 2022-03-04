@@ -168,7 +168,7 @@ namespace TRAEProject
                             Main.tile[j, k].TileType == TileID.HallowHardenedSand
                             )
                         {
-                            Player.AddBuff(BuffType<SandRush>(), 480);
+                            Player.AddBuff(BuffType<SandRush>(), 240);
                         }
                     }
                 }

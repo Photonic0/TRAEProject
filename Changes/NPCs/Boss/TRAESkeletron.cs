@@ -34,12 +34,12 @@ namespace TRAEProject.Changes.NPCs.Boss
 				{
 					npc.TargetClosest();
 					npc.ai[0] = 1f;
-					int Hand = NPC.NewNPC(npc.GetSpawnSourceForNPCFromNPCAI(), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, NPCID.SkeletronHand, npc.whoAmI);
+					int Hand = NPC.NewNPC(NPC.GetSpawnSource_NPCRelease(npc.whoAmI), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, NPCID.SkeletronHand, npc.whoAmI);
 					Main.npc[Hand].ai[0] = -1f;
 					Main.npc[Hand].ai[1] = npc.whoAmI;
 					Main.npc[Hand].target = npc.target;
 					Main.npc[Hand].netUpdate = true;
-					Hand = NPC.NewNPC(npc.GetSpawnSourceForNPCFromNPCAI(), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, 36, npc.whoAmI);
+					Hand = NPC.NewNPC(NPC.GetSpawnSource_NPCRelease(npc.whoAmI), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, 36, npc.whoAmI);
 					Main.npc[Hand].ai[0] = 1f;
 					Main.npc[Hand].ai[1] = npc.whoAmI;
                     Main.npc[Hand].ai[3] = 150f;
@@ -92,11 +92,22 @@ namespace TRAEProject.Changes.NPCs.Boss
 					}
 					if ((Hands < 2 || (double)npc.life < (double)npc.lifeMax * 0.75) && npc.ai[1] == 0f)
 					{
-						float ShadowflameSkullRate = 480f;
 						float fireRate = 80f;
 						if (Hands == 0)
 						{
-							ShadowflameSkullRate = 480f;
+							float ShadowflameSkullRate = 480f; 
+							if (Main.masterMode && Main.netMode != 1 && npc.ai[2] % ShadowflameSkullRate == 0f)
+							{
+								float baseVelocity = 6f;
+								float playerX2 = Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f - npc.Center.X + Main.rand.Next(-20, 21);
+								float playerY2 = Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f - npc.Center.Y + Main.rand.Next(-20, 21);
+								float distance2 = (float)Math.Sqrt(playerX2 * playerX2 + playerY2 * playerY2);
+								distance2 = baseVelocity / distance2;
+								playerX2 *= distance2;
+								playerY2 *= distance2;
+								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(22f, 22f);
+								Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), npc.Center.X, npc.Center.Y, playerX2, playerY2, ProjectileType<ShadowflameSkull>(), attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
+							}
 							fireRate /= 2f;
 						}
 						if (Main.getGoodWorld)
@@ -130,22 +141,11 @@ namespace TRAEProject.Changes.NPCs.Boss
 								playerY2 = totalVelocity.Y;
 								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(17f, 17f);
 								center3 += totalVelocity * 5f;
-								int Skull = Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), center3.X, center3.Y, playerX2, playerY2, ProjectileID.Skull, attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
+								int Skull = Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), center3.X, center3.Y, playerX2, playerY2, ProjectileID.Skull, attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
 								Main.projectile[Skull].timeLeft = 300;
 							}
 						}
-						if (Main.masterMode && Main.netMode != 1 && npc.ai[2] % ShadowflameSkullRate == 0f)
-						{
-							float baseVelocity = 7f;
-							float playerX2 = Main.player[npc.target].position.X + Main.player[npc.target].width * 0.5f - npc.Center.X + Main.rand.Next(-20, 21);
-							float playerY2 = Main.player[npc.target].position.Y + Main.player[npc.target].height * 0.5f - npc.Center.Y + Main.rand.Next(-20, 21);
-							float distance2 = (float)Math.Sqrt(playerX2 * playerX2 + playerY2 * playerY2);
-							distance2 = baseVelocity / distance2;
-							playerX2 *= distance2;
-							playerY2 *= distance2; 
-							int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(22f, 22f);
-							Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), npc.Center.X, npc.Center.Y, playerX2, playerY2, ProjectileType<ShadowflameSkull>(), attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
-						}
+				
 					}
 				}
 				// hovering above the player
@@ -250,11 +250,11 @@ namespace TRAEProject.Changes.NPCs.Boss
 					npc.damage = npc.GetAttackDamage_LerpBetweenFinalValues(npc.defDamage, npc.defDamage * 1.3f);
 					if (Main.expertMode)
 					{
-if (distance3 > 150f)
-{
-					        spinVelocity *= 1.2f;
-}							
-						
+						if (distance3 > 200f)
+						{
+							spinVelocity *= 1.2f;
+						}
+
 						switch (Hands)
 						{
 							case 0:
@@ -266,8 +266,8 @@ if (distance3 > 150f)
 						}
 						if (Main.masterMode && Hands == 0)
 						{
-							spinVelocity *= 1.2f - 0.1f * Hands; // NEW
-							if (npc.life <= (int)(npc.lifeMax * 0.5f))
+							//spinVelocity *= 1.2f - 0.1f * Hands; // NEW
+							if (npc.life <= (int)(npc.lifeMax * 0.67f))
 							{
 								if (npc.ai[2] == 250f)
 								{
@@ -586,7 +586,7 @@ if (distance3 > 150f)
                         }
 						if (Main.masterMode)
                         {
-							factor = 44f;
+							factor = 40f;
 						}
 						num187 = factor / num187;
                         npc.velocity.X = num185 * num187;
@@ -645,7 +645,7 @@ if (distance3 > 150f)
 						}
 						if (Main.masterMode)
 						{
-							factor = 44f;
+							factor = 40f;
 						}
 						num190 = factor / num190;
 						npc.velocity.X = num188 * num190;
@@ -698,7 +698,7 @@ if (distance3 > 150f)
 		}
 		public override void OnHitPlayer(Player target, int damage, bool crit)
 		{
-			target.AddBuff(BuffID.ShadowFlame, 900);
+			target.AddBuff(BuffID.ShadowFlame, 750);
 		}
 		public override void AI()
 		{
@@ -764,7 +764,7 @@ if (distance3 > 150f)
 					Vector2 unitY = Projectile.DirectionTo(Main.player[index1].Center);
 					if (unitY.HasNaNs())
 						unitY = Vector2.UnitY;
-					Projectile.velocity = Vector2.Multiply(unitY, 7f);
+					Projectile.velocity = Vector2.Multiply(unitY, 6f);
 				}
 			}
 			

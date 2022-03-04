@@ -12,6 +12,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("H410W FLASH");
             Tooltip.SetDefault("'Fairy Launching Assault Shoulder weapon'\nShoots explosive pixie Rockets that follow your cursor");
         }

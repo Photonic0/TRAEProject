@@ -15,6 +15,8 @@ namespace TRAEProject.NewContent.Items.Accesories.WeirdBundle
 
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Bundle of Weird Balloons");
             Tooltip.SetDefault("Allows the user to triple jump\nIncreases regeneration and jump height\nReleases bees and douses the wielder in honey when damaged\n'Weird people need weird people'");
         }

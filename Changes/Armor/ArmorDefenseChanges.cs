@@ -1,15 +1,8 @@
-
-using TRAEProject.NewContent.Buffs;
-using TRAEProject.NewContent.Projectiles;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.DataStructures;
 
-namespace TRAEProject.Changes.Armor
+namespace TRAEProject
 {
     public class DefenseChanges : GlobalItem
     {
@@ -25,44 +18,38 @@ namespace TRAEProject.Changes.Armor
                 case ItemID.PharaohsMask:
                     item.defense = 2;
                     item.vanity = false;
-                    break;
+                    return;
                 case ItemID.PharaohsRobe:
                     item.defense = 3;
                     item.vanity = false;
-                    break;
-          
+                    return;
                 case ItemID.RuneHat:
                     item.defense = 4;
                     item.vanity = false;
-                    break;
-                case ItemID.GladiatorHelmet:
-                case ItemID.GladiatorLeggings:
-                    item.defense = 6;
-                    break;
+                    return;
                 case ItemID.RuneRobe:
-                case ItemID.GladiatorBreastplate:
                     item.defense = 8;
                     item.vanity = false;
-                    break;
+                    return;
                 case ItemID.PirateHat:
                     item.defense = 7;
                     item.rare = ItemRarityID.Orange;
                     item.vanity = false;
-                    break;
+                    return;
                 case ItemID.PirateShirt:
                     item.defense = 12;
                     item.rare = ItemRarityID.Orange;
                     item.vanity = false;
-                    break;
+                    return;
                 case ItemID.PiratePants:
                     item.defense = 9;
                     item.rare = ItemRarityID.Orange;
                     item.vanity = false;
-                    break;
+                    return;
 
                 case ItemID.WoodGreaves:
                     item.defense = 1;
-                    break;
+                    return;
                 case ItemID.BorealWoodBreastplate:
                 case ItemID.PalmWoodBreastplate:
                 case ItemID.EbonwoodHelmet:
@@ -73,12 +60,12 @@ namespace TRAEProject.Changes.Armor
                 case ItemID.RichMahoganyBreastplate:
                 case ItemID.RichMahoganyGreaves:
                     item.defense = 2;
-                    break;
+                    return;
                 case ItemID.CopperHelmet:
                 case ItemID.CopperGreaves:
                 case ItemID.TinGreaves:
                     item.defense = 3;
-                    break;
+                    return;
                 case ItemID.CopperChainmail:
                 case ItemID.TinHelmet:
                 case ItemID.TinChainmail:
@@ -87,17 +74,15 @@ namespace TRAEProject.Changes.Armor
                 case ItemID.IronGreaves:
                 case ItemID.LeadGreaves:
                     item.defense = 4;
-                    break;
+                    return;
                 case ItemID.IronChainmail:
                 case ItemID.LeadChainmail:
                 case ItemID.LeadHelmet:
                 case ItemID.SilverGreaves:
                 case ItemID.TungstenGreaves:
                 case ItemID.SilverHelmet:
-                case ItemID.FossilHelm:
-                case ItemID.FossilPants:
                     item.defense = 5;
-                    break;
+                    return;
                 case ItemID.JungleHat:
                 case ItemID.TungstenHelmet:
                 case ItemID.TungstenChainmail:
@@ -106,9 +91,8 @@ namespace TRAEProject.Changes.Armor
                 case ItemID.GoldGreaves:
                 case ItemID.AncientGoldHelmet:
                 case ItemID.PlatinumGreaves:
-                case ItemID.FossilShirt:
                     item.defense = 6;
-                    break;
+                    return;
                 case ItemID.MythrilHat:
                 case ItemID.GoldChainmail:
                 case ItemID.PlatinumChainmail:
@@ -120,39 +104,41 @@ namespace TRAEProject.Changes.Armor
                 case ItemID.CrimsonGreaves:
                 case ItemID.AncientShadowGreaves:
                     item.defense = 7;
-                    break;
+                    return;
                 case ItemID.ChlorophyteGreaves:
                     item.defense = 8;
-                    break;
+                    return;
                 case ItemID.FleshKnuckles:
                 case ItemID.BerserkerGlove:
                     item.defense = 10;
-                    break;
+                    return;
                 case ItemID.ChlorophytePlateMail:
                     item.defense = 13;
-                    break;   
+                    return;   
                 case ItemID.AncientArmorHat:
                     item.defense = 13;
                     item.vanity = false;
-                    break;
+                    return;
                 case ItemID.AncientArmorShirt:
                     item.defense = 8;
                     item.vanity = false;
-                    break;
+                    return;
                 case ItemID.AncientArmorPants:
                     item.defense = 7;
                     item.vanity = false;
-                    break;
+                    return;
                 case ItemID.DjinnsCurse:
                     item.defense = 12;
                     item.vanity = false;
-                    break;
+                    return;
                 case ItemID.SpectreMask:
                 case ItemID.SpectreHood:
                     item.defense = 12;
-                    break;
+                    return;
 
             }
+      
+            return;
         }      
     }
 }

@@ -17,6 +17,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.ShellSpinner
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Shell Spinner");
             Tooltip.SetDefault("Spin to win!");
         }

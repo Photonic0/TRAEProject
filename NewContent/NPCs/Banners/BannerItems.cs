@@ -10,6 +10,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Bomber Bones Banner");
             Tooltip.SetDefault("Nearby players get a bonus against: Bomber Bones");
         }
@@ -35,6 +37,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Boomxie Banner");
             Tooltip.SetDefault("Nearby players get a bonus against: Boomxie");
         }
@@ -60,6 +64,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Froggabomba Banner");
             Tooltip.SetDefault("Nearby players get a bonus against: Froggabomba");
         }
@@ -85,6 +91,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("GraniteOvergrowth Banner");
             Tooltip.SetDefault("Nearby players get a bonus against: GraniteOvergrowth");
         }

@@ -22,6 +22,7 @@ namespace TRAEProject.Changes.Weapon
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 30;
                     projectile.penetrate = 2;
+                    projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 6;
                     break;
                 case ProjectileID.CrystalLeafShot:
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;

@@ -1,13 +1,13 @@
 using TRAEProject.NewContent.Projectiles;
+using TRAEProject.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Common;
 
-namespace TRAEProject.Changes.Weapon.Magic
+namespace TRAEProject.Changes.Projectiles
 {
     public class MagicProjectile : GlobalProjectile
     {
@@ -30,15 +30,10 @@ namespace TRAEProject.Changes.Weapon.Magic
                 case ProjectileID.ShadowBeamFriendly:
                     projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.penetrate = 7;
                     projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                     return;
-                case ProjectileID.InfernoFriendlyBolt:
-                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
-                    return;
-                case ProjectileID.MagnetSphereBall:
-                    projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
-                    projectile.timeLeft = 25 * 60; // up from 11 seconds
+                case ProjectileID.WeatherPainShot:
+                    projectile.penetrate = 15; // up from 12
                     return;
                 case ProjectileID.ManaCloakStar:
                     projectile.penetrate = 2;
@@ -77,19 +72,22 @@ namespace TRAEProject.Changes.Weapon.Magic
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
                     return;
-                case ProjectileID.MagicDagger:
-                    projectile.penetrate = 3; 
-                    return;
-                case 244:
-				case 238:
-					projectile.timeLeft = 900;
-					return;				 
-				case ProjectileID.RainFriendly:	  
-				    projectile.penetrate = 2;
-                    return;	
+			    case 244:
+				  case 238:
+					projectile.timeLeft = 480;
+					return;			
 				case ProjectileID.BloodRain:
 				    projectile.penetrate = 1;
 				    projectile.aiStyle = 1;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 120f;
+                    return;
+			 case ProjectileID.RainFriendly:
+				    projectile.penetrate = 2;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.25f;
+				    projectile.aiStyle = 1;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 120f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                     return;
                 case ProjectileID.Blizzard:
                     projectile.timeLeft = 150;
@@ -246,7 +244,6 @@ namespace TRAEProject.Changes.Weapon.Magic
             Player player = Main.player[projectile.owner];           
             switch (projectile.type)
             {
-                
                 case ProjectileID.UnholyTridentFriendly:
                     projectile.ai[0] += 1f;
                     if (projectile.ai[0] >= 30.0)

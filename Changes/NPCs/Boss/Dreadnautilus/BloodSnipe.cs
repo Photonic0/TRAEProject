@@ -10,7 +10,7 @@ using TRAEProject;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
-{
+{ 
     public class BloodSnipe : ModProjectile
     {
         public override void SetStaticDefaults()

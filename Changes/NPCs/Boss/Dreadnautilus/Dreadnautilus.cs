@@ -199,8 +199,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 				float bloodMachinegunChargeTime = 50f;
 				float bloodMachineGunDuration = 160f;
 				int bloodMachinegunShots = 30;
-				int bloodBeamChargeTime = BloodBeam.chargeTime;
-				int bloodBeamDuration = BloodBeam.duration;
+				
 				int phase3attackSpeed = 20;
 				int phase3spamDuration = 360;
 				int phase3chargeStart = 30;
@@ -351,7 +350,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 							if (npc.ai[1] > idleTime)
 							{
                                 int attackCount = (int)npc.ai[3];
-								if(Main.masterMode && (float)npc.life / (float)npc.lifeMax < 0.15f)
+								if(Main.expertMode && (float)npc.life / (float)npc.lifeMax < 0.15f)
 								{
 									nextAttack = 9;
 									break;
@@ -381,7 +380,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 										break;
 									case 2:
 										SoundEngine.PlaySound(SoundID.Item170, npc.Center);
-										int c = Main.expertMode ? 6 : 5;
+										int c = 5;
 										switch (attackCount % c)
                                         {
 											case 0:
@@ -399,9 +398,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 											case 4:
 												nextAttack = 2;
                                                 break;
-											case 5:
-												nextAttack = 8;
-												break;
+						
 										}
 										break;
 								}
@@ -569,7 +566,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 										for (int k = 0; k < projCount; k++)
 										{
 											Vector2 velocity = projVelocity.RotatedBy((float)Math.PI / 2 * ((float)k / (float)(projCount - 1)) - (float)Math.PI / 4f);
-											Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer);
+											Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer);
 										}
 									}
 								}
@@ -701,7 +698,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
                                     if (Main.netMode != 1)
                                     {
                                         int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(37.5f, 31.25f);
-                                        Projectile p = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), npc.Center, TRAEMethods.PolarVector(snipeVelocity, aim), ProjectileType<BloodSnipe>(), attackDamage_ForProjectiles, 0, 255, time)];
+                                        Projectile p = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), npc.Center, TRAEMethods.PolarVector(snipeVelocity, aim), ProjectileType<BloodSnipe>(), attackDamage_ForProjectiles, 0, 255, time)];
                                         p.ai[0] = time;
                                         p.netUpdate = true;
                                     }
@@ -813,7 +810,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 										int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(30f, 25f);
 
 										Vector2 velocity = projVelocity;
-										Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer, -180)];
+										Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer, -180)];
 										projectile.ai[0] = -180;
 										projectile.netUpdate = true;
 
@@ -880,7 +877,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(30f, 25f);
 								for (int i = 0; i < 8; i++)
 								{
-                                    Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), npc.Center, TRAEMethods.PolarVector(10, mouthDirection5.ToRotation() + ((float)i / 8f) * (float)Math.PI * 2f), ProjectileID.BloodShot, attackDamage_ForProjectiles, 0)];
+                                    Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), npc.Center, TRAEMethods.PolarVector(10, mouthDirection5.ToRotation() + ((float)i / 8f) * (float)Math.PI * 2f), ProjectileID.BloodShot, attackDamage_ForProjectiles, 0)];
 									projectile.ai[0] = -180;
 									projectile.netUpdate = true;
 								}
@@ -899,67 +896,6 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 							npc.position -= npc.netOffset;
 
 							npc.ai[1] += 1f;
-							break;
-						}
-					case 8:
-						{
-							//Blood Beam!
-							//Dread rotation
-							npc.position += npc.netOffset;
-							npc.velocity *= 0.8f;
-							float volleyValue = (npc.ai[1] - snipePullbackTime) % (snipeDuration / (float)snipes);
-							npc.BloodNautilus_GetMouthPositionAndRotation(out var mouthPosition3, out var mouthDirection3);
-							npc.direction = ((!(npc.Center.X < nPCAimedTarget.Center.X)) ? 1 : (-1));
-							float num20 = npc.Center.DirectionFrom(nPCAimedTarget.Center).ToRotation() - 213f / 452f * (float)npc.spriteDirection;
-							if (npc.spriteDirection == -1)
-							{
-								num20 += (float)Math.PI;
-							}
-							num20 += (float)Math.PI;
-							npc.rotation = npc.rotation.AngleLerp(num20, 0.01f);
-							if (npc.ai[1] < bloodBeamChargeTime - bloodBeamChargeTime/4)
-                            {
-								npc.rotation = npc.rotation.AngleLerp(num20, 0.15f);
-							}
-							if(npc.ai[1] == 0)
-                            {
-								beam = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), npc.Center, Vector2.Zero, ProjectileType<BloodBeam>(), 50, 0, 255, npc.whoAmI)];
-								beam.ai[0] = npc.whoAmI;
-								beam.netUpdate = true;
-                            }
-							if(beam != null && beam.active)
-                            {
-								beam.rotation = mouthDirection3.ToRotation();
-								beam.Center = mouthPosition3;
-							}
-							if(npc.ai[1] == bloodBeamChargeTime)
-                            {
-								SoundEngine.PlaySound(SoundID.NPCDeath13, npc.Center);
-
-							}
-							if (npc.ai[1] < bloodBeamChargeTime + bloodBeamDuration)
-							{
-								#region dust
-								if (volleyValue < bloodSpitChargeEndTime / (float)bloodShotVolleys * 0.8f)
-								{
-									for (int i = 0; i < 5; i++)
-									{
-										Dust dust4 = Dust.NewDustDirect(mouthPosition3 + mouthDirection3 * 50f - new Vector2(15f), 30, 30, 5, 0f, 0f, 0, Color.Transparent, 1.5f);
-										dust4.velocity = dust4.position.DirectionFrom(mouthPosition3 + Main.rand.NextVector2Circular(5f, 5f)) * dust4.velocity.Length();
-										dust4.position -= mouthDirection3 * 60f;
-										dust4 = Dust.NewDustDirect(mouthPosition3 + mouthDirection3 * 90f - new Vector2(20f), 40, 40, 5, 0f, 0f, 100, Color.Transparent, 1.5f);
-										dust4.velocity = dust4.position.DirectionFrom(mouthPosition3 + Main.rand.NextVector2Circular(10f, 10f)) * (dust4.velocity.Length() + 5f);
-										dust4.position -= mouthDirection3 * 100f;
-									}
-								}
-								#endregion
-							}
-							npc.position -= npc.netOffset;
-							npc.ai[1] += 1f;
-							if (npc.ai[1] >= bloodBeamChargeTime + bloodBeamDuration)
-							{
-								nextAttack = 0;
-							}
 							break;
 						}
 					case 9:
@@ -1034,7 +970,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 					}
 					if (flag2)
 					{
-						Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), num6 * 16 + 8, num7 * 16 + 8, 0f, 0f, 813, 0, 0f, Main.myPlayer);
+						Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), num6 * 16 + 8, num7 * 16 + 8, 0f, 0f, 813, 0, 0f, Main.myPlayer);
 						flag = true;
 						break;
 					}
@@ -1056,7 +992,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 							time += extraSnipeTime;
 							Vector2 aimLoc = npc.Center + TRAEMethods.PolarVector(snipeVelocity, aim) * time;
 							float distance = snipeVelocity * time;
-							Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Dreadnautilus/BloodDraw").Value;
+							Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/BloodDraw").Value;
 							Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
 							spriteBatch.Draw(drawBlood, npc.Center - Main.screenPosition + TRAEMethods.PolarVector(distance / 2f, aim), null, color, aim, drawBlood.Size() * .5f, new Vector2(distance / 4f, 1f), SpriteEffects.None, 0f);
 							float subLength = 96;
@@ -1071,22 +1007,8 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 					}
 
 				}
-				if ((int)npc.ai[0] == 8)
-                {
-					float distance = BloodBeam.beamLength;
-					Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Dreadnautilus/BloodDraw").Value;
-					Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
-					npc.BloodNautilus_GetMouthPositionAndRotation(out var mouthPosition3, out var mouthDirection3);
-					spriteBatch.Draw(drawBlood, mouthPosition3 - Main.screenPosition + TRAEMethods.PolarVector(distance / 2f, mouthDirection3.ToRotation()), null, color, mouthDirection3.ToRotation(), drawBlood.Size() * .5f, new Vector2(distance / 4f, 2f), SpriteEffects.None, 0f);
-					
-					if(npc.ai[1] > 60)
-                    {
-						if(beam != null && beam.active)
-                        {
-							BloodBeam.Draw(beam);
-                        }
-                    }
-				}
+
+
 					SpriteEffects spriteEffects = SpriteEffects.None;
 				if (npc.spriteDirection == 1)
 				{
@@ -1096,8 +1018,8 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 				Texture2D tentacles = TextureAssets.Extra[129].Value;
 				if (phase > 1)
 				{
-					dreadTexture = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Dreadnautilus/Phase2").Value;
-					tentacles = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Dreadnautilus/Phase2Tentacles").Value;
+					dreadTexture = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/Phase2").Value;
+					tentacles = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/Phase2Tentacles").Value;
 				}
 				Vector2 halfSize = new Vector2(TextureAssets.Npc[npc.type].Width() / 2, TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type] / 2);
 				Vector2 vector35 = npc.Center - screenPos;

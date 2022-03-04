@@ -15,6 +15,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ChainShield
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Chain Shield");
             Tooltip.SetDefault("Increases max life by 60\nTemporarily increases defense when damaged");
         }

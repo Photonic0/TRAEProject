@@ -8,6 +8,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.SkullCannon
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Skull Cannon");
             Tooltip.SetDefault("Shoots Rockets");
         }

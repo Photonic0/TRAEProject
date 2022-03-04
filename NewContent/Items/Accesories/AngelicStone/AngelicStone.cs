@@ -14,6 +14,8 @@ namespace TRAEProject.NewContent.Items.Accesories.AngelicStone
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Angelic Stone");
             Tooltip.SetDefault("10% increased mana regeneration\nReduces the cooldown of mana sickness by 50%");
         }

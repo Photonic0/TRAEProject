@@ -141,9 +141,9 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.BoomfrogStaff
                 float shootToY = target.position.Y + (float)target.height * 0.5f - Projectile.Center.Y;
                 float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
 
-                if (shoottime > 30)
+                if (shoottime > 35)
                 {
-                    if (distance < 600f && !target.friendly && target.active && !target.dontTakeDamage && target.lifeMax > 5 && target.type != NPCID.TargetDummy)
+                    if (distance < 400f && !target.friendly && target.active && !target.dontTakeDamage && target.lifeMax > 5 && target.type != NPCID.TargetDummy)
                     {
 
                         if (Collision.CanHit(Projectile.Center, 0, 0, target.Center, 0, 0))

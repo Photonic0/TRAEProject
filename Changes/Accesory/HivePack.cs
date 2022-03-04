@@ -74,7 +74,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             BeeID = ProjectileID.GiantBee;
                         }
-                        Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.X, Player.position.Y, 1 * Player.direction, 0, BeeID, 10 * ifHoneyedWithBeepack, 2, Player.whoAmI);
+                        Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.position.X, Player.position.Y, 1 * Player.direction, 0, BeeID, 5 * ifHoneyedWithBeepack, 2, Player.whoAmI);
                     }
                 }
 

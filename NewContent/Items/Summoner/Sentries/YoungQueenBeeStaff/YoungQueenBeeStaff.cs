@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
@@ -14,6 +15,8 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
     {
         public override void SetStaticDefaults()
         {
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Young Queen Bee Staff");
             Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies");
         }
@@ -66,6 +69,13 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
                 player.MinionNPCTargetAim(false);
             }
             return base.UseItem(player);
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe(1)
+                .AddIngredient(ItemID.BeeWax, 12)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 
@@ -137,9 +147,9 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
                 float shootToY = target.position.Y + (float)target.height * 0.5f - Projectile.Center.Y;
                 float distance = (float)System.Math.Sqrt((double)(shootToX * shootToX + shootToY * shootToY));
        
-                if (shoottime > 120)
+                if (shoottime > 180)
                 {
-                    if (distance < 600f && !target.friendly && target.active && !target.dontTakeDamage && target.lifeMax > 5 && target.type != NPCID.TargetDummy)
+                    if (distance < 400f && !target.friendly && target.active && !target.dontTakeDamage && target.lifeMax > 5 && target.type != NPCID.TargetDummy)
                     {
 
                         if (Collision.CanHit(Projectile.Center, 0, 0, target.Center, 0, 0))
@@ -156,7 +166,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
 
                             
                           
-                            int numberProjectiles = 3 + Main.rand.Next(3); // 3 to 5 shots
+                            int numberProjectiles = 2 + Main.rand.Next(3); // 2 to 4 shots
                             for (int l = 0; l < numberProjectiles; l++)
                             {
                                
@@ -170,7 +180,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
                                     Projectile.spriteDirection = -1;
                                 }
                                 Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), type, Projectile.damage, Projectile.knockBack, Projectile.owner);
-                                if (Main.rand.Next(3) == 0)
+                                if (Main.rand.Next(4) == 0)
                                 {
                                     Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), ProjectileID.GiantBee, Projectile.damage, Projectile.knockBack, Projectile.owner);
 

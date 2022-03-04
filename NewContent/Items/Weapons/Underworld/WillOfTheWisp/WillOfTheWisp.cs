@@ -12,6 +12,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Will O' Wisp");
             Tooltip.SetDefault("Shoots a smart bouncing fireball");
         }
@@ -22,12 +24,12 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Item.damage = 24;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.mana = 100;
+            Item.mana = 180;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
             Item.knockBack = 2f;
-            Item.shootSpeed = 16f;
+            Item.shootSpeed = 8f;
             Item.noMelee = true;
             Item.shoot = ProjectileType<WillOfTheWispFlame>();
             Item.useStyle = ItemUseStyleID.HoldUp;
@@ -61,13 +63,69 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Projectile.DamageType = DamageClass.Magic; 
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
-            Projectile.penetrate = 10;
-            Projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
+            Projectile.penetrate = 30;
             Projectile.aiStyle = 1;
             Projectile.timeLeft = 600;
+            Projectile.extraUpdates = 1;
+            Projectile.tileCollide = false;
         }
+        int timeBeforebounce = 16;
         public override void AI()
         {
+            Projectile.ai[0]++;
+            if (Projectile.ai[0] >= timeBeforebounce)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X, Projectile.velocity.Y);
+                    dust.noGravity = true;
+                }
+                Projectile.ai[0] = 0;
+                int[] array = new int[10];
+                int num6 = 0;
+                int Range = 200;
+                int num8 = 20;
+                for (int j = 0; j < 200; ++j)
+                {
+                    if (Main.npc[j].CanBeChasedBy((object)this, false))
+                    {
+                        float DistanceBetweenProjectileAndEnemy = (Projectile.Center - Main.npc[j].Center).Length();
+                        if (DistanceBetweenProjectileAndEnemy > num8 && DistanceBetweenProjectileAndEnemy < Range && Collision.CanHitLine(Projectile.Center, 1, 1, Main.npc[j].Center, 1, 1))
+                        {
+                            array[num6] = j;
+                            num6++;
+                            if (num6 >= 9)
+                            {
+                                break;
+                            }
+                        }
+
+                    }
+                }
+                if (num6 > 0)
+                {
+                    num6 = Main.rand.Next(num6);
+                    Vector2 value2 = Main.npc[array[num6]].Center - Projectile.Center;
+                    float scaleFactor2 = 8f;
+                    value2.Normalize();
+                    Projectile.velocity = value2 * scaleFactor2;
+                    Projectile.netUpdate = true;
+                    return;
+                }
+                else
+                {
+                    if (Projectile.velocity.X > Projectile.velocity.Y)
+                    {
+                        Projectile.velocity.Y = -Projectile.velocity.Y;
+                    }
+                    if (Projectile.velocity.X < Projectile.velocity.Y)
+                    {
+                        Projectile.velocity.X = -Projectile.velocity.X;
+                    }
+                    return;
+                }
+
+            }
             Projectile.frameCounter++;
             if (Projectile.frameCounter >= 4)
             {
@@ -89,46 +147,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
                 Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, DustID.Torch, 1f);
                 dust.noGravity = true;
             }
-        }
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-                int[] array = new int[10];
-            int num6 = 0;
-                int Range = 700;
-                int num8 = 20;
-            for (int j = 0; j < 200; ++j)
-            {
-                if (Main.npc[j].CanBeChasedBy((object)this, false))
-                {
-                        float DistanceBetweenProjectileAndEnemy = (Projectile.Center - Main.npc[j].Center).Length();
-                        if (DistanceBetweenProjectileAndEnemy > num8 && DistanceBetweenProjectileAndEnemy < Range && Collision.CanHitLine(Projectile.Center, 1, 1, Main.npc[j].Center, 1, 1))
-                        {
-                            array[num6] = j;
-                            num6++;
-                            if (num6 >= 9)
-                            {
-                                break;
-                            }
-                        }
-						
-                }
-            }
-            if (num6 > 0)
-                {
-                    num6 = Main.rand.Next(num6);
-                    Vector2 value2 = Main.npc[array[num6]].Center - Projectile.Center;
-                    float scaleFactor2 = Projectile.velocity.Length();
-                    value2.Normalize();
-                    Projectile.velocity = value2 * scaleFactor2;
-                    Projectile.netUpdate = true;
-					return false;
-                }
-            else
-            {
-                Projectile.velocity.Y = -Projectile.oldVelocity.Y;
-                return false;
-            }
-          
         }
     }   
 }

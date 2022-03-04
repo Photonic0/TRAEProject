@@ -1,16 +1,10 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.NewContent.Buffs;
 using TRAEProject.NewContent.TRAEDebuffs;
-using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Common.ModPlayers
 {
@@ -34,12 +28,12 @@ namespace TRAEProject.Common.ModPlayers
             {
                 Player.autoReuseGlove = true;
             }
+         
         }
         #region Sword Size
-        public override void SetStaticDefaults()
-        {
-            IL.Terraria.Player.GetAdjustedItemScale += HookSize;
-        }
+
+        public float bonusSize = 1f;
+
         private void HookSize(ILContext il)
         {
             var c = new ILCursor(il);
@@ -67,7 +61,6 @@ namespace TRAEProject.Common.ModPlayers
             {
                 if (item.CountsAsClass(DamageClass.Melee))
                 {                    //
-                    float bonusSize = 1f;
                     switch (item.prefix)
                     {
                         case PrefixID.Large:
@@ -94,12 +87,17 @@ namespace TRAEProject.Common.ModPlayers
             //push the local variable onto the stack
             c.Emit(OpCodes.Ldloc_0);
         }
+        public override void SetStaticDefaults()
+        {
+            IL.Terraria.Player.GetAdjustedItemScale += HookSize;
+        }
         #endregion
+
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             if(inflictHeavyBurn >0 && item.CountsAsClass(DamageClass.Melee))
             {
-                TRAEDebuff.Apply<HeavyBurn>(target, inflictHeavyBurn, 1);
+                TRAEDebuff.Apply<HeavyBurn>(target, 120, 1);
             }
         }
 

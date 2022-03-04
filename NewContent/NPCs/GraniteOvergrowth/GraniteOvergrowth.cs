@@ -209,6 +209,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
         public override void AI()
         {
             NPC.TargetClosest(false);
+            NPC.direction = 1;
             Player player = Main.player[NPC.target];
             bool isPlayernottargetable = player.dead || Math.Abs(NPC.position.X - player.position.X) > 2000f || Math.Abs(NPC.position.Y - player.position.Y) > 2000f;
             if (isPlayernottargetable)

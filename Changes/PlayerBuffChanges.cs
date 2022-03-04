@@ -2,12 +2,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject;
 using TRAEProject.NewContent.Buffs;
 using TRAEProject.Changes.Items;
-using TRAEProject.Common;
 using TRAEProject.Changes;
-using TRAEProject.Changes.Weapon.Summon.Minions;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 
@@ -64,16 +61,20 @@ namespace ChangesBuffs
                     player.moveSpeed -= 0.15f;
                     return;
                 case BuffID.WellFed2:
-                    player.moveSpeed -= 0.225f;
+                    player.moveSpeed -= 0.24f;
                     return;
                 case BuffID.WellFed3:
-                    player.moveSpeed -= 0.3f;
+                    player.moveSpeed -= 0.33f;
                     return;
                 case BuffID.Swiftness:
-                    player.moveSpeed -= 0.05f;
-                    return; 
-				case BuffID.Panic:
-                    player.moveSpeed -= 0.5f;
+                    player.moveSpeed -= 0.10f;
+                    return;
+                case BuffID.Sunflower:
+                case BuffID.SugarRush:
+                    player.moveSpeed -= 0.1f;
+                    return;
+                case BuffID.Panic:
+                    player.moveSpeed -= 0.6f;
                     return; 
             }
         }
@@ -119,7 +120,7 @@ namespace ChangesBuffs
                     tip = "Can't drink another mana potion";
                     return;
                 case BuffID.Swiftness:
-                    tip = "20% increased movement speed";
+                    tip = "15% increased movement speed";
                     return;
             }
         }

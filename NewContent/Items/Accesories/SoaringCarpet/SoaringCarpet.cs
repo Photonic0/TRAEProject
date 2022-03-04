@@ -14,8 +14,10 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
     class SoaringCarpet : ModItem
     {
         public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Soaring Carpet");
+		{
+			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+			DisplayName.SetDefault("Soaring Carpet");
             Tooltip.SetDefault("Grants a soaring carpet, use it by holding UP\n25% increased movement speed\nFall damage immunity");
         }
 

@@ -10,6 +10,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Scorpio
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Jungla");
             Tooltip.SetDefault("Shoots three darts at once");
         }

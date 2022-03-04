@@ -16,6 +16,8 @@ namespace TRAEProject.NewContent.Items.Accesories.BalanceCuffs
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Balance Cuffs");
             Tooltip.SetDefault("Temporarily increases damage by 20% and restore mana when damaged");
         }

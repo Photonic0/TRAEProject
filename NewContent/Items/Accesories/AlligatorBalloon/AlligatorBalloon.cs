@@ -14,6 +14,8 @@ namespace TRAEProject.NewContent.Items.Accesories.AlligatorBalloon
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Croco Balloon");
             Tooltip.SetDefault("Allows the holder to double jump\nGreatly increases jump speed and fall resistance\nAllows auto-jump");
         }

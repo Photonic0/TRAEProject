@@ -13,6 +13,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.RedPearl
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             DisplayName.SetDefault("Red Pearl");
             Tooltip.SetDefault("Increases enemy spawn rates and luck");
         }

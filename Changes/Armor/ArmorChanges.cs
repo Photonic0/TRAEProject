@@ -4,8 +4,9 @@ using Terraria.ModLoader;
 using TRAEProject;
 using System.Collections.Generic;
 using TRAEProject.Changes.Items;
-using TRAEProject.Common.ModPlayers;
-namespace TRAEProject.Changes.Armor
+using TRAEProject.Changes.Armor;
+
+namespace ChangesArmor
 {
     public class ChangesArmor : GlobalItem
     {
@@ -15,130 +16,123 @@ namespace TRAEProject.Changes.Armor
             return base.Clone(item, itemClone);
         }
         public override void UpdateEquip(Item item, Player player)
-        {
+    {
             switch (item.type)
             {
                 case ItemID.AncientArmorHat:
                     player.GetDamage<SummonDamageClass>() += 0.17f;
                     player.maxTurrets += 1;
-                    break;
+                    return;
                 case ItemID.AncientArmorShirt:
-                    player.GetDamage<SummonDamageClass>() += 0.05f;
+                    player.GetDamage<SummonDamageClass>() += 0.05f; 
                     player.maxTurrets += 1;
-                    break;
+                    return;
                 case ItemID.AncientArmorPants:
+                    player.canJumpAgain_Sandstorm = true;
                     player.moveSpeed += 0.1f;
                     player.GetDamage<SummonDamageClass>() += 0.03f;
-                    break;
+                    return;
                 case ItemID.PharaohsMask:
                     player.moveSpeed += 0.10f;
-                    break;
+                    return;
                 case ItemID.PharaohsRobe:
                     player.moveSpeed += 0.15f;
-                    break;
-                case ItemID.GladiatorHelmet:
-                    player.GetCritChance<MeleeDamageClass>() += 4;
-                    break;
-                case ItemID.GladiatorBreastplate:
-                    player.meleeSpeed += 0.07f;
-                    break;
-                case ItemID.GladiatorLeggings:
-                    player.GetCritChance<MeleeDamageClass>() += 4;
-                    break;
+                    return;
                 case ItemID.CrimsonScalemail:
                     player.lifeRegen += 1;
-                    break;
+                    return;
                 case ItemID.ShadowHelmet:
                 case ItemID.ShadowScalemail:
                 case ItemID.AncientShadowHelmet:
                 case ItemID.AncientShadowScalemail:
                     player.meleeSpeed -= 0.07f;
                     player.GetCritChance<GenericDamageClass>() += 2;
-                    break;
+                    return;
                 case ItemID.ShadowGreaves:
                 case ItemID.AncientShadowGreaves:
                     player.meleeSpeed -= 0.07f;
                     player.GetCritChance<GenericDamageClass>() += 2;
                     player.moveSpeed += 0.1f;
-                    break;
+                    return;
                 case ItemID.ObsidianShirt:
                     player.GetDamage<SummonDamageClass>() += 0.08f;
-                    break;
+                    return;
                 case ItemID.RuneRobe:
                     player.statManaMax2 += 100;
                     player.manaCost -= 0.21f;
-                    break;
+                    return;
                 case ItemID.RuneHat:
                     player.GetDamage<MagicDamageClass>() += 0.15f;
-                    player.GetCritChance<MagicDamageClass>() += 15;
-                    break;
+                    player.GetCritChance<MagicDamageClass>()  += 15;
+                    return;
                 case ItemID.OrichalcumMask:
-                    player.GetDamage<MeleeDamageClass>() -= 0.11f;
-                    player.GetCritChance<MeleeDamageClass>() += 13;
-                    break;
+                    player.GetDamage<MeleeDamageClass>()  -= 0.11f;
+                    player.GetCritChance<MeleeDamageClass>()  += 13;
+                    return;
                 case ItemID.PirateHat:
                     player.whipRangeMultiplier += 0.3f;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
-                    break;
+                    return;
                 case ItemID.PirateShirt:
                     player.whipUseTimeMultiplier *= (1 / 1.12f);
                     player.GetDamage<SummonDamageClass>() += 0.1f;
-                    break;
+                    return;
                 case ItemID.PiratePants:
                     player.moveSpeed += 0.1f;
                     player.whipUseTimeMultiplier *= (1 / 1.08f);
                     player.GetDamage<SummonDamageClass>() += 0.1f;
-                    break;
+                    return;
                 case ItemID.DjinnsCurse:
                     player.jumpSpeedBoost += 1f;
-                    break;
+                    return;
                 case ItemID.ChlorophytePlateMail:
                     player.GetDamage<GenericDamageClass>() += 0.05f;
-                    break;
+                    return;
                 case ItemID.ChlorophyteGreaves:
                     player.GetCritChance<GenericDamageClass>() += 2;
                     player.moveSpeed += 0.5f;
-                    break;
+                    return;
                 case ItemID.SquireGreatHelm:
                     player.lifeRegen -= 2;
-                    break;
+                    return;
                 case ItemID.SquirePlating:
-                    player.GetDamage<MeleeDamageClass>() -= 0.05f;
+                    player.GetDamage<MeleeDamageClass>() -= 0.05f; 
                     player.GetDamage<SummonDamageClass>() -= 0.05f;
                     player.lifeRegen += 2;
-                    break;
+                    return;
                 case ItemID.SquireGreaves:
                     player.GetCritChance<MeleeDamageClass>() -= 10;
                     player.GetDamage<SummonDamageClass>() += 0.05f;
-                    break;
+                    return;
                 case ItemID.SquireAltHead:
                     player.lifeRegen += 4;
-                    break;
+                    ++player.maxMinions;
+                    return;
                 case ItemID.SquireAltShirt:
                     player.lifeRegen -= 4;
-                    break;
+                    return;
                 case ItemID.MonkAltShirt:
                     player.meleeSpeed -= 0.2f;
-                    player.GetDamage<MeleeDamageClass>() += 0.2f;
-                    break;
+                    player.GetDamage<MeleeDamageClass>()  += 0.2f;
+                    return;
                 case ItemID.MonkAltHead:
                     player.meleeSpeed += 0.3f;
-                    player.GetDamage<SummonDamageClass>() += 0.1f;
-                    player.GetDamage<MeleeDamageClass>() -= 0.2f;
-                    break;
+                    player.GetDamage<SummonDamageClass>()  += 0.1f;
+                    player.GetDamage<MeleeDamageClass>()  -= 0.2f;
+                    return;
 
 
                 case ItemID.TikiMask:
                     player.whipRangeMultiplier += 0.3f;
-                    break;
+                    return;
                 case ItemID.SpectreMask:
                     player.manaCost += 0.13f;
-                    break;
+                    return;
                 case ItemID.SpectreHood:
 
                     player.statManaMax2 += 100;
                     player.manaCost -= 0.20f;
-                    break;
+                    return;
             }
         }
         public override string IsArmorSet(Item head, Item body, Item legs)
@@ -154,9 +148,9 @@ namespace TRAEProject.Changes.Armor
             if (head.type == ItemID.EbonwoodHelmet && body.type == ItemID.EbonwoodBreastplate && legs.type == ItemID.EbonwoodGreaves)
                 return "WoodSet";
             if (head.type == ItemID.RichMahoganyHelmet && body.type == ItemID.RichMahoganyBreastplate && legs.type == ItemID.RichMahoganyGreaves)
-                return "WoodSet";
+                return "WoodSet"; 
             if (head.type == ItemID.PearlwoodHelmet && body.type == ItemID.PearlwoodBreastplate && legs.type == ItemID.PearlwoodGreaves)
-                return "WoodSet";
+                return "WoodSet"; 
             if (head.type == ItemID.CopperHelmet && body.type == ItemID.CopperChainmail && legs.type == ItemID.CopperGreaves)
                 return "CopperSet";
             if (head.type == ItemID.TinHelmet && body.type == ItemID.TinChainmail && legs.type == ItemID.TinGreaves)
@@ -196,13 +190,13 @@ namespace TRAEProject.Changes.Armor
             if (head.type == ItemID.CobaltMask && body.type == ItemID.CobaltBreastplate && legs.type == ItemID.CobaltLeggings)
                 return "CobaltSet";
             if ((head.type == ItemID.AncientHallowedHeadgear || head.type == ItemID.AncientHallowedHelmet || head.type == ItemID.AncientHallowedMask || head.type == ItemID.HallowedHeadgear || head.type == ItemID.HallowedHelmet || head.type == ItemID.HallowedMask) && (body.type == ItemID.HallowedPlateMail || body.type == ItemID.AncientHallowedPlateMail) && (legs.type == ItemID.AncientHallowedGreaves || legs.type == ItemID.HallowedGreaves))
-                return "HallowedSet";
+                return "HallowedSet"; 
             if ((head.type == ItemID.AncientHallowedHood || head.type == ItemID.HallowedHood) && (body.type == ItemID.HallowedPlateMail || body.type == ItemID.AncientHallowedPlateMail) && (legs.type == ItemID.AncientHallowedGreaves || legs.type == ItemID.HallowedGreaves))
-                return "HallowedSetSummon";
+                return "HallowedSetSummon"; 
             if (head.type == ItemID.ChlorophyteMask && body.type == ItemID.ChlorophytePlateMail && legs.type == ItemID.ChlorophyteGreaves)
                 return "ChloroMeleeSet";
             if (head.type == ItemID.TikiMask && body.type == ItemID.TikiShirt && legs.type == ItemID.TikiPants)
-                return "TikiSet";
+                return "TikiSet"; 
             if (head.type == ItemID.SpectreHood && body.type == ItemID.SpectreRobe && legs.type == ItemID.SpectrePants)
                 return "SpectreHoodSet";
             if ((head.type == ItemID.ShroomiteHeadgear || head.type == ItemID.ShroomiteHelmet || head.type == ItemID.ShroomiteMask) && body.type == ItemID.ShroomiteBreastplate && legs.type == ItemID.ShroomiteLeggings)
@@ -212,7 +206,9 @@ namespace TRAEProject.Changes.Armor
             if (head.type == ItemID.PirateHat && body.type == ItemID.PirateShirt && legs.type == ItemID.PiratePants)
                 return "PirateSet"; 
             if (head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
-                return "GladiatorSet";
+                return "GladiatorSet"; 
+            if (head.type == ItemID.FossilHelm && body.type == ItemID.FossilShirt && legs.type == ItemID.FossilPants)
+                return "FossilSet";
             return base.IsArmorSet(head, body, legs);
         }
         public override void UpdateArmorSet(Player player, string armorSet)
@@ -222,7 +218,7 @@ namespace TRAEProject.Changes.Armor
                 player.setBonus = "Reduce damage taken by 5%";
                 player.statDefense -= 1;
             }
-            if (armorSet == "CopperSet")
+            if (armorSet == "CopperSet") 
             {
                 player.setBonus = "Reduce damage taken by 8%";
                 player.endurance += 0.08f;
@@ -259,11 +255,11 @@ namespace TRAEProject.Changes.Armor
                 player.statDefense -= 3;
             }
             if (armorSet == "GoldSet") // Revisit
-            {
+            { 
                 player.setBonus = "Reduce damage taken by 14%";
-                player.endurance += 0.08f;
-                player.statDefense -= 3;
-            }
+            player.endurance += 0.08f;
+            player.statDefense -= 3;
+        }
             if (armorSet == "PlatinumSet")
             {
                 player.setBonus = "Reduce damage taken by 15%";
@@ -303,7 +299,7 @@ namespace TRAEProject.Changes.Armor
             if (armorSet == "MythrilHood")
             {
                 player.setBonus = "15% increased magic critical strike chance";
-                player.GetCritChance<MagicDamageClass>() += 15;
+                player.GetCritChance<MagicDamageClass>()  += 15;
                 player.manaCost += 0.17f;
             }
             if (armorSet == "MythrilHat")
@@ -333,26 +329,30 @@ namespace TRAEProject.Changes.Armor
             {
                 player.setBonus = "Enter a stealth mode while on the ground, significantly increasing ranged abilities";
             }
-            if (armorSet == "ObsidianSet")
+			if (armorSet == "ObsidianSet")
             {
                 player.setBonus = "30% increased whip range and 15% increased whip speed";
-                player.whipRangeMultiplier -= 0.2f;
-                player.whipUseTimeMultiplier /= 0.869f;
-                player.GetDamage<SummonDamageClass>() -= 0.15f;
+				player.whipRangeMultiplier -= 0.2f;
+				player.whipUseTimeMultiplier /= 0.869f;
+				player.GetDamage<SummonDamageClass>() -= 0.15f;
             }
             if (armorSet == "PirateSet")
             {
-                player.setBonus = "All whips inflict an extra 2% tag crit.\nThis tag can be applied multiple times.";
-                player.GetModPlayer<SetBonuses>().PirateSet = true;
-            }   
-            if (armorSet == "GladiatorSet")
-            {
-                player.setBonus += "\n25% increased weapon size";
-                player.GetModPlayer<MeleeStats>().weaponSize += 0.20f;
+                player.setBonus = "All whips gain an additional +5 tag damage and +5% summon tag critical strike chance";
+				player.GetModPlayer<SetBonuses>().PirateSet = true;
             }
             if (armorSet == "SpectreHoodSet")
             {
+                player.setBonus = "Magic attacks heal the player and allies";
                 player.GetDamage<MagicDamageClass>() += 0.4f; // +0.4 to negate the reduction
+            }
+            if (armorSet == "FossilSet")
+            {
+                player.setBonus += "\nRanged weapons have 3 armor penetration";
+                if (player.HeldItem.CountsAsClass(DamageClass.Ranged))
+                {
+                    player.armorPenetration += 3;
+                }
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -365,33 +365,6 @@ namespace TRAEProject.Changes.Armor
                         if (line.mod == "Terraria" && line.Name == "Defense")
                         {
                             line.text += "\nIncreases maximum mana by 100 and reduces mana costs by 20%";
-                        }
-                    }
-                    return;
-                case ItemID.GladiatorHelmet:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Defense")
-                        {
-                            line.text += "\n4% increased melee critical strike chance";
-                        }
-                    }
-                    return;
-                case ItemID.GladiatorBreastplate:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Defense")
-                        {
-                            line.text += "\n7% increased melee speed";
-                        }
-                    }
-                    return;
-                case ItemID.GladiatorLeggings:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.mod == "Terraria" && line.Name == "Defense")
-                        {
-                            line.text += "\n4% increased melee critical strike chance";
                         }
                     }
                     return;
@@ -533,7 +506,7 @@ namespace TRAEProject.Changes.Armor
                             line.text += "\nIncreases maximum mana by 100\nReduces mana costs by 21%";
                         }
                     }
-                    return;
+                    return;              
                 case ItemID.OrichalcumMask:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -586,7 +559,7 @@ namespace TRAEProject.Changes.Armor
                             line.text += "\nIncreases whip range by 30%";
                         }
                     }
-                    return;
+                    return;              
                 case ItemID.MonkAltHead:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -622,7 +595,7 @@ namespace TRAEProject.Changes.Armor
                             line.text = "10% increased melee and minion damage\nIncreases life regeneration";
                         }
                     }
-                    return;
+                    return;      
                 case ItemID.SquireAltHead:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -640,7 +613,7 @@ namespace TRAEProject.Changes.Armor
                             line.text = "30% increased minion damage and greatly increased life regeneration";
                         }
                     }
-                    return;
+                    return;     
             }
         }
     }
