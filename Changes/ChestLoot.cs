@@ -51,13 +51,6 @@ public class ChestLoot : ModSystem
                 {
                     for (int i = 0; i < 40; i++)
                     {
-                        if (chest.item[i].type == ItemID.None)
-                        {
-                            {
-                                chest.item[i].SetDefaults(ItemID.FlaskofFire, false);
-                            }
-                            break;
-                        }
                         if (chest.item[i].type == ItemID.SandstorminaBottle || chest.item[i].type == ItemID.FlyingCarpet)
                         {
                             chest.item[i].SetDefaults(ItemID.PharaohsMask, false);
@@ -73,13 +66,15 @@ public class ChestLoot : ModSystem
                     {
                         if (chest.item[i].type == ItemID.None)
                         {
-                            {
+                            
                                 chest.item[i].SetDefaults(ItemID.FlaskofFire, false);
-                            }
-                            break;
+                                break;
+
+                            
                         }
                     }
                 }
+       
                 if (Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 11 * 36)
                 {
                     if (WorldGen.genRand.NextBool(8))

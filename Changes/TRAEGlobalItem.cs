@@ -66,20 +66,22 @@ namespace TRAEProject.Changes
                     item.value = 100000;
                     return;
                 case ItemID.Amethyst:
-                    item.value = Item.sellPrice(silver: 75);
+                    item.value = Item.sellPrice(silver: 40);
                     return;
                 case ItemID.Topaz:
-                    item.value = Item.sellPrice(silver: 80);
+                    item.value = Item.sellPrice(silver: 50);
                     return;
                 case ItemID.Sapphire:
-                    item.value = Item.sellPrice(silver: 85);
+                    item.value = Item.sellPrice(silver: 60);
                     return;
                 case ItemID.Emerald:
-                    item.value = Item.sellPrice(silver: 90);
+                    item.value = Item.sellPrice(silver: 70);
                     return;
                 case ItemID.Ruby:
+                    item.value = Item.sellPrice(silver: 80);
+                    return;
                 case ItemID.Amber:
-                    item.value = Item.sellPrice(silver: 95);
+                    item.value = Item.sellPrice(silver: 90);
                     return;
                 case ItemID.Diamond:
                     item.value = Item.sellPrice(gold: 1);
@@ -283,7 +285,7 @@ namespace TRAEProject.Changes
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "20% increased movement speed";
+                            line.text = "15% increased movement speed";
                         }
                     }
                     break;

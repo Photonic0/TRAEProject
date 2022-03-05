@@ -18,6 +18,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
         {
             DisplayName.SetDefault("Bomber Bones");
             Main.npcFrameCount[NPC.type] = 20;
+	NPC.buffImmune[BuffID.Poisoned] = true;
         }
 
         public override void SetDefaults()
@@ -25,14 +26,15 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
             NPC.width = 36;
             NPC.height = 46;
             NPC.aiStyle = -1;
-            NPC.damage = 33;
+            NPC.damage = 25;
             NPC.defense = 16;
-            NPC.lifeMax = 200;
+            NPC.lifeMax = 180;
             NPC.value = 750;
             AnimationType = NPCID.SkeletonCommando;
             NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = SoundID.NPCDeath2;
             NPC.knockBackResist = 0.4f;
+		
             NPC.rarity = 1;
             NPC.scale = 1.05f;;
             Banner = NPC.type;
@@ -49,7 +51,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemID.GrenadeLauncher, 33));
+            npcLoot.Add(ItemDropRule.Common(ItemID.GrenadeLauncher, 12));
             npcLoot.Add(ItemDropRule.Common(ItemID.RocketI, 2, 33, 100));
         }
 
@@ -174,13 +176,12 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 			}
 			if (NPC.justHit)
 			{
-				NPC.ai[1] = 30f;
+				NPC.ai[1] -= 10f;
 				NPC.ai[2] = 0f;
 			}
-			int num143 = 90;
+			int AttackTimer = 60;
 
-			bool flag17 = false;
-			int num144 = num143 / 2;
+			int EffectiveattackTimer = AttackTimer / 2;
 			if (NPC.confused)
 			{
 				NPC.ai[2] = 0f;
@@ -191,10 +192,10 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 				{
 					NPC.TargetClosest();
 				}
-				if (NPC.ai[1] == (float)num144)
+				if (NPC.ai[1] == (float)EffectiveattackTimer)
 				{
 					NPC.velocity.X = 0;
-					float num145 = 7f;
+					float num145 = 10f;
 
 					Vector2 vector34 = new Vector2(NPC.position.X + (float)NPC.width * 0.5f, NPC.position.Y + (float)NPC.height * 0.5f);
 
@@ -209,7 +210,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 					num146 *= num149;
 					num148 *= num149;
 					int TYPE = ProjectileType<BomberBonesGrenade>();
-					int Damage = 50;
+					int Damage = 25;
 					vector34.X += num146;
 					vector34.Y += num148;
 					if (Main.netMode != 1)
@@ -281,7 +282,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 						num156 *= num159;
 						num158 *= num159;
 						NPC.ai[2] = 3f;
-						NPC.ai[1] = num143;
+						NPC.ai[1] = AttackTimer;
 						if (Math.Abs(num158) > Math.Abs(num156) * 2f)
 						{
 							if (num158 > 0f)
@@ -658,7 +659,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
             AIType = ProjectileID.GrenadeI;
             Projectile.friendly = false;
             Projectile.hostile = true;
-            Projectile.timeLeft = 180;
+            Projectile.timeLeft = 120;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -670,7 +671,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
         {
             if (Projectile.timeLeft == 5)
             {
-                TRAEMethods.Explode(Projectile, 80, 1);
+                TRAEMethods.Explode(Projectile, 120, 1);
                 TRAEMethods.DefaultExplosion(Projectile); 
             }
         }

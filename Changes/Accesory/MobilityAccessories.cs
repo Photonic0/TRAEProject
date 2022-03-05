@@ -274,7 +274,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "50% increased running speed, 25% while grounded";
+                            line.text = "25% increased running speed, 25% movement speed while in the air";
                         }
                     }
                     return;
@@ -283,7 +283,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "50% increased running speed, 25% while grounded";
+                            line.text = "50% increased running speed, 25% movement speed while in the air";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {

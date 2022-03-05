@@ -33,8 +33,8 @@ namespace TRAEProject.Changes.Weapons
                     return;
 			    case ItemID.Beenade: 
                     item.damage = 8; // down from 12				
-					item.useAnimation = 120; // up from 15
-                    item.useTime = 120; // up from 15    
+					item.useAnimation = 45; // up from 15
+                    item.useTime = 45; // up from 15    
 					item.shootSpeed = 12f; // up from 6
                     item.autoReuse = true;
 					return;

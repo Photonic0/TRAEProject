@@ -114,14 +114,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
                 }
                 else
                 {
-                    if (Projectile.velocity.X > Projectile.velocity.Y)
-                    {
-                        Projectile.velocity.Y = -Projectile.velocity.Y;
-                    }
-                    if (Projectile.velocity.X < Projectile.velocity.Y)
-                    {
-                        Projectile.velocity.X = -Projectile.velocity.X;
-                    }
+
                     return;
                 }
 

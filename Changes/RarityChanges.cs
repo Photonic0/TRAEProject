@@ -74,6 +74,8 @@ namespace ChangesWeapons.Changes
                 case ItemID.ThornWhip:
                 case ItemID.FrostStaff:
                 case ItemID.AnkhCharm:
+                case ItemID.GrenadeLauncher:
+
                     item.rare = ItemRarityID.Green;
                     break;
                 case ItemID.AnkhShield:
@@ -283,7 +285,6 @@ namespace ChangesWeapons.Changes
                 case ItemID.VenomArrow:
                 case ItemID.NanoBullet:
                 case ItemID.Seedler:
-                case ItemID.GrenadeLauncher:
                 case ItemID.WaspGun:
                     item.rare = ItemRarityID.Lime;
                     break;
