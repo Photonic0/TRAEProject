@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,9 +18,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.SkullCannon
         {
             Item.width = 56;
             Item.height = 24;
-            Item.damage = 45;
-            Item.useAnimation = 42;
-            Item.useTime = 42;
+            Item.damage = 50;
+            Item.useAnimation = 39;
+            Item.useTime = 39;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.LightRed;
             Item.value = Item.sellPrice(gold: 3);
@@ -31,6 +32,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.SkullCannon
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item11;
+        }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-11, -8);
         }
         public override void AddRecipes()
         {

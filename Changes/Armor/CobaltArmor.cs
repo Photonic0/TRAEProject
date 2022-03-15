@@ -38,23 +38,18 @@ namespace TRAEProject.Changes.Armor
             switch (item.type)
             {
                 case ItemID.CobaltHelmet:
-                    player.moveSpeed += 0.05f;
+                    player.moveSpeed -= 0.1f;
                     player.GetDamage(DamageClass.Melee) -= 0.01f;
                     player.GetCritChance(DamageClass.Melee) += 10;
                     return;
                 case ItemID.CobaltMask:
-                    player.moveSpeed += 0.15f;
                     player.GetDamage(DamageClass.Ranged) -= 0.04f; 
                     player.GetCritChance(DamageClass.Ranged) -= 1;
                     return;
                 case ItemID.CobaltHat:
-                    player.moveSpeed += 0.15f;
                     player.GetDamage(DamageClass.Magic) -= 0.03f;
                     player.GetCritChance(DamageClass.Magic) -= 1;
                     return;
-                case ItemID.CobaltBreastplate:
-                    player.moveSpeed += 0.15f;
-                    break;
                 case ItemID.CobaltLeggings:
                     player.moveSpeed += 0.1f;
                     break;
@@ -102,7 +97,7 @@ namespace TRAEProject.Changes.Armor
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "15% increased movement speed";
+                            line.text = "";
                         }
                     }
                     break;
@@ -115,7 +110,7 @@ namespace TRAEProject.Changes.Armor
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "15% increased movement speed";
+                            line.text = "";
                         }
                     }
                     break;
@@ -128,11 +123,12 @@ namespace TRAEProject.Changes.Armor
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "15% increased movement speed";
+                            line.text = "Increases maximum mana by 40";
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.text = "Increases maximum mana by 40";
+                            line.text = "";
+
                         }
                     }
                     break;
@@ -141,10 +137,11 @@ namespace TRAEProject.Changes.Armor
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "15% increased movement speed and 5% increased critical strike chance";
+                            line.text = "5% increased critical strike chance";
                         }
                     }
                     break;
+
                 case ItemID.CobaltLeggings:
                     foreach (TooltipLine line in tooltips)
                     {

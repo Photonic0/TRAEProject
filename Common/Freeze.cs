@@ -113,7 +113,7 @@ case NPCID.ScutlixRider:
             if (freezeTime > 0)
             {
                 float extraSize = 30;
-                Texture2D texture = Request<Texture2D>("TRAEProject/Common/GlobalNPCs/IceBlock").Value;
+                Texture2D texture = Request<Texture2D>("TRAEProject/Common/IceBlock").Value;
                 Vector2 stretch = new Vector2((float)(npc.width+extraSize) / (float)texture.Width, (float)(npc.height + extraSize) / (float)texture.Height);
                 Vector2 offset = Vector2.Zero;
                 if (freezeTime < 30)

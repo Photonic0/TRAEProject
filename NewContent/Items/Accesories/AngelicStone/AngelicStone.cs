@@ -17,7 +17,7 @@ namespace TRAEProject.NewContent.Items.Accesories.AngelicStone
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Angelic Stone");
-            Tooltip.SetDefault("10% increased mana regeneration\nReduces the cooldown of mana sickness by 50%");
+            Tooltip.SetDefault("15% increased mana regeneration\nReduces the cooldown of mana sickness by 50%");
         }
         public override void SetDefaults()
         {
@@ -28,7 +28,7 @@ namespace TRAEProject.NewContent.Items.Accesories.AngelicStone
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<AngelicStoneEffects>().stones += 1;
-            player.GetModPlayer<Mana>().manaRegenBoost += 0.1f;
+            player.GetModPlayer<Mana>().manaRegenBoost += 0.15f;
         }
 
         public override void AddRecipes()

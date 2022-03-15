@@ -15,7 +15,7 @@ namespace TRAEProject.Changes.NPCs
 {
     public class EnemyDrops: GlobalNPC
     {
-        public static readonly int[] MimicDrops = new int[] { ItemID.CrossNecklace, ItemID.PhilosophersStone, ItemID.TitanGlove, ItemID.StarCloak};
+        public static readonly int[] MimicDrops = new int[] { ItemID.CrossNecklace, ItemID.PhilosophersStone, ItemID.TitanGlove, ItemID.StarCloak, ItemID.DualHook};
        
         public static readonly int[] PirateDrops = new int[] { ItemID.LuckyCoin, ItemID.GoldRing, ItemID.DiscountCard, ItemID.PirateStaff };
       
@@ -236,7 +236,15 @@ namespace TRAEProject.Changes.NPCs
                 case 657: // queen slime
                     NPCLoader.blockLoot.Add(ItemID.Smolstar);
                     return true;
-				case NPCID.BigMimicHallow:
+                case NPCID.Mimic:
+                    Item.NewItem(npc.GetItemSource_Loot(), npc.getRect(), Main.rand.Next(MimicDrops), 1);
+                    NPCLoader.blockLoot.Add(ItemID.PhilosophersStone);
+                    NPCLoader.blockLoot.Add(ItemID.CrossNecklace);
+                    NPCLoader.blockLoot.Add(ItemID.StarCloak);
+                    NPCLoader.blockLoot.Add(ItemID.DualHook);
+                    NPCLoader.blockLoot.Add(ItemID.TitanGlove);
+                    return true;
+                case NPCID.BigMimicHallow:
                     int[] HDrops = new int[] { ItemID.FlyingKnife, ItemID.DaedalusStormbow, ItemID.CrystalVileShard, ItemID.Smolstar };
                     int Ihook = Main.rand.Next(4); 
                     if (Ihook == 0)

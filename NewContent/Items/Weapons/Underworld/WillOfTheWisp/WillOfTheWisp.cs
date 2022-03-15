@@ -24,7 +24,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Item.damage = 24;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.mana = 180;
+            Item.mana = 200;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
@@ -63,7 +63,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Projectile.DamageType = DamageClass.Magic; 
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
-            Projectile.penetrate = 30;
+            Projectile.penetrate = 40;
             Projectile.aiStyle = 1;
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 1;

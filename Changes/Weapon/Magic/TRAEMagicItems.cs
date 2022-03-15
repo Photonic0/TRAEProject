@@ -76,8 +76,15 @@ namespace TRAEProject.Changes.Items
                     item.mana = 120; // up from 10
                     break;   
                 case ItemID.WeatherPain:
-                    item.mana = 150; // up from 30
+                    item.mana = 135; // up from 30
                     break;
+                case ItemID.MagicDagger:
+                    item.damage =16; // up from 17
+                    item.mana = 8; // up from 6
+                    item.useTime = 12; // up from 8
+                    item.useAnimation = 12;
+                    item.autoReuse = true;
+                    return;
                 case ItemID.SpaceGun:
                     item.damage = 22; // up from 17
 					item.mana = 10; // up from 6

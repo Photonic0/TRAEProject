@@ -52,14 +52,14 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.JestersArrow:
                     projectile.penetrate = 7;      
 					projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
+                    projectile.localNPCHitCooldown = 20;
                     return;
                 case ProjectileID.CursedArrow:
                     projectile.extraUpdates = 1;
                     return;
                 case ProjectileID.UnholyArrow:     
 					projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
+                    projectile.localNPCHitCooldown = 20;
                     return;
                 case ProjectileID.VortexBeaterRocket:
                     projectile.penetrate = -1;
@@ -69,6 +69,7 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.8f;
                     return;
                 case ProjectileID.HellfireArrow:
+                    projectile.penetrate = 4;
                     projectile.extraUpdates = 1;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;

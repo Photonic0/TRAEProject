@@ -41,6 +41,8 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 			CreateRecipe()
 				.AddIngredient(ItemID.FlyingCarpet)
 				.AddIngredient(ItemID.AnkletoftheWind)
+								.AddTile(TileID.TinkerersWorkbench)
+
 				.Register();
 		}
 	}

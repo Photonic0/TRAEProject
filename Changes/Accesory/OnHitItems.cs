@@ -23,14 +23,16 @@ namespace TRAEProject.Changes.Items
         public float runeCooldown = 0;
         public float runethorns = 0f;
         public int beedamage = 1;
-        
+        public bool Frozen = false;
+        int frozenHitCount = 0;
+
         public override void ResetEffects()
         {
             magicCuffsCount = 0;
             NewbeesOnHit = false;
             NewstarsOnHit = false;
             newthorns = 0f;
-            runethorns = 0f;
+            runethorns = 0f; 
         }
         public override void UpdateDead()
         {
@@ -40,10 +42,16 @@ namespace TRAEProject.Changes.Items
             runeCooldown = 0;
             newthorns = 0f;
             NewstarsOnHit = false;
-            beedamage = 0;
+            beedamage = 0; 
+            frozenHitCount = 0;
+        }
+        public override void PreUpdate()
+        {
+
         }
         public override void PostUpdate()
         {
+          
             if (runeCooldown > 0)
             {
                 --runeCooldown;
@@ -67,8 +75,13 @@ namespace TRAEProject.Changes.Items
             int findbuffIndex = Player.FindBuffIndex(BuffID.Frozen);
             if (findbuffIndex != -1)
             {
-               Player.DelBuff(findbuffIndex);
-            };
+                frozenHitCount++;
+                if (frozenHitCount > 1)
+                {
+                    frozenHitCount = 0;
+                    Player.DelBuff(findbuffIndex);
+                }
+            }
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)
@@ -123,8 +136,13 @@ namespace TRAEProject.Changes.Items
             int findbuffIndex = Player.FindBuffIndex(BuffID.Frozen);
             if (findbuffIndex != -1)
             {
-                Player.DelBuff(findbuffIndex);
-            };
+                frozenHitCount++;
+                if (frozenHitCount > 1)
+                {
+                    frozenHitCount = 0;
+                    Player.DelBuff(findbuffIndex);
+                }
+            }
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)

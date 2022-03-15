@@ -8,9 +8,6 @@ using Terraria.ModLoader;
 using TRAEProject.NewContent.Buffs;
 using System.Collections.Generic;
 using TRAEProject.Common;
-
-using static Terraria.ModLoader.ModContent;
-using TRAEProject.Common;
 using TRAEProject.Common.ModPlayers;
 
 namespace TRAEProject.Changes.Weapon.Summon.Minions
@@ -109,7 +106,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 200f;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = -1;
-                    break;
                     break;
                 case ProjectileID.DeadlySphere:
                     projectile.extraUpdates = 1;

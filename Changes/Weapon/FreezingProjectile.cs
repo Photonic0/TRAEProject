@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Summoner.AbsoluteZero;
+using TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon;
 using TRAEProject.Common;
 using TRAEProject.NewContent.Items.FlamethrowerAmmo;
 using static Terraria.ModLoader.ModContent;
@@ -14,8 +15,11 @@ namespace TRAEProject.Changes.Projectiles
         int duration = 0;
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-
-            
+            if (projectile.GetGlobalProjectile<CryoRockets>().IceRocket)
+            {
+                duration = Main.rand.Next(100, 120);
+                target.GetGlobalNPC<Freeze>().FreezeMe(target, duration);
+            }
             if (projectile.type == ProjectileType<FrozenGelP>() && Main.rand.Next(10) == 0)
             {
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, 30);

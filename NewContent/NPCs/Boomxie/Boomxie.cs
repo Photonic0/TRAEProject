@@ -76,33 +76,6 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             }
             return 0f;
         }
-        int damagestored = 0;
-        public override void OnHitByItem(Player player, Item item, int damage, float knockback, bool crit)
-        {
-            damagestored += damage;
-            if (damagestored > 10)
-            {
-                int smallBoomxiesToSpawn = damagestored / 30;
-                for (int i = 0; i < smallBoomxiesToSpawn; i++)
-                {
-                    damagestored -= 10;
-                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
-                }
-            }
-        }
-        public override void OnHitByProjectile(Projectile projectile, int damage, float knockback, bool crit)
-        {
-            damagestored += damage;
-            if (damagestored > 50)
-            {
-                int smallBoomxiesToSpawn = damagestored / 10;
-                for (int i = 0; i < smallBoomxiesToSpawn; i++)
-                {
-                    damagestored -= 50;
-                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
-                }
-            }
-        }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.ExplosivePowder, 2, 1, 3));

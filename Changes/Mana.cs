@@ -10,6 +10,7 @@ using MonoMod.Cil;
 using Terraria;
 using Terraria.GameContent.UI.ResourceSets;
 using Terraria.ModLoader;
+using TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll;
 using static Terraria.ModLoader.ModContent;
 using Terraria.ID;
 
@@ -31,7 +32,7 @@ namespace TRAEProject.Changes
         {
             manaRegenBoost = 1;
             celestialCuffsOverload = false;
-            newManaFlower = false; 
+            newManaFlower = false;
             manaCloak = false;
         }
         public override void UpdateDead()
@@ -62,7 +63,7 @@ namespace TRAEProject.Changes
         {
             //Main.NewText("PUE: " + Player.statManaMax2);
             maxManaOverride = Player.statManaMax2;
-            if(Player.statMana > 400)
+            if (Player.statMana > 400)
             {
                 manaOver400 = Player.statMana - 400;
             }
@@ -100,7 +101,7 @@ namespace TRAEProject.Changes
             //Main.NewText("PU: " + Player.statManaMax2);
             Player.statManaMax2 = maxManaOverride;
             Player.statMana += manaOver400;
-            if(overloadedMana > Player.statManaMax2 * 2)
+            if (overloadedMana > Player.statManaMax2 * 2)
             {
                 overloadedMana = Player.statManaMax2 * 2;
             }
@@ -108,9 +109,9 @@ namespace TRAEProject.Changes
         int counter = 0;
         public override bool PreItemCheck()
         {
-            if(overloadedMana > 0)
+            if (overloadedMana > 0)
             {
-               // Main.NewText("Overloaded Mana:" + overloadedMana);
+                // Main.NewText("Overloaded Mana:" + overloadedMana);
             }
             return base.PreItemCheck();
         }
@@ -118,15 +119,15 @@ namespace TRAEProject.Changes
         {
             Player.statMana += amount;
             int bonusMana = 0;
-            if(Player.statMana > Player.statManaMax2)
+            if (Player.statMana > Player.statManaMax2)
             {
                 bonusMana += Player.statMana - Player.statManaMax2;
                 Player.statMana = Player.statManaMax2;
             }
-            if(bonusMana > 0)
+            if (bonusMana > 0)
             {
                 overloadedMana += bonusMana;
-                if(bonusMana != amount)
+                if (bonusMana != amount)
                 {
                     Player.ManaEffect(amount - bonusMana);
                 }
@@ -201,7 +202,7 @@ namespace TRAEProject.Changes
             LegacyGameInterfaceLayer overloadManaDraw = new LegacyGameInterfaceLayer("OverloadedMana",
                     delegate
                     {
-                        if(ActivePlayerResourcesSet is ClassicPlayerResourcesDisplaySet)
+                        if (ActivePlayerResourcesSet is ClassicPlayerResourcesDisplaySet)
                         {
                             DrawClassicMana();
                         }
@@ -209,14 +210,14 @@ namespace TRAEProject.Changes
                         {
                             DrawFancyClassicMana();
                         }
-                        if(ActivePlayerResourcesSet is HorizontalBarsPlayerReosurcesDisplaySet)
+                        if (ActivePlayerResourcesSet is HorizontalBarsPlayerReosurcesDisplaySet)
                         {
                             DrawManaBar();
                         }
                         return true;
                     },
                     InterfaceScaleType.UI);
-            layers.Insert(index+1, overloadManaDraw);
+            layers.Insert(index + 1, overloadManaDraw);
         }
         void DrawClassicMana()
         {
@@ -272,7 +273,7 @@ namespace TRAEProject.Changes
         {
             Player localPlayer = Main.LocalPlayer;
             int manaPerStar = OManaPerStar;
-            int _starCount = (int)((float)(localPlayer.statManaMax2*2) / manaPerStar);
+            int _starCount = (int)((float)(localPlayer.statManaMax2 * 2) / manaPerStar);
 
 
             SpriteBatch spriteBatch = Main.spriteBatch;
@@ -305,7 +306,7 @@ namespace TRAEProject.Changes
         }
         void DrawManaBar()
         {
-            
+
             int num = 16;
             int num2 = 18;
             int num3 = Main.screenWidth - 300 - 22 + num;
@@ -317,7 +318,7 @@ namespace TRAEProject.Changes
             SpriteBatch spriteBatch = Main.spriteBatch;
             bool isHovered = false;
 
-           
+
 
             ResourceDrawSettings resourceDrawSettings = default(ResourceDrawSettings);
             resourceDrawSettings.ElementCount = _mpSegmentsCount;
@@ -351,7 +352,7 @@ namespace TRAEProject.Changes
         private void ManaFillingDrawer(int elementIndex, int firstElementIndex, int lastElementIndex, out Asset<Texture2D> sprite, out Vector2 offset, out float drawScale, out Rectangle? sourceRect)
         {
 
-            
+
             Player localPlayer = Main.LocalPlayer;
             int manaPerStar = OManaPerStar;
             int _mpSegmentsCount = (int)((float)(localPlayer.statManaMax2 * 2) / manaPerStar);

@@ -75,7 +75,7 @@ namespace ChangesWeapons.Changes
                 case ItemID.FrostStaff:
                 case ItemID.AnkhCharm:
                 case ItemID.GrenadeLauncher:
-
+                case ItemID.MagicDagger:
                     item.rare = ItemRarityID.Green;
                     break;
                 case ItemID.AnkhShield:

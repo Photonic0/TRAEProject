@@ -158,7 +158,6 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.LavaWaders:
                     player.GetModPlayer<AccesoryEffects>().waterRunning = true;
                     player.GetModPlayer<AccesoryEffects>().LavaShield = true;
-                    player.fireWalk = false;
                     player.lavaImmune = true;
                     player.lavaRose = false;
                     return;

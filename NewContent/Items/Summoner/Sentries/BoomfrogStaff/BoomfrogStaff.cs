@@ -38,7 +38,7 @@ namespace TRAEProject.NewContent.Items.Summoner.Sentries.BoomfrogStaff
             Item.mana = 25;
             Item.UseSound = SoundID.Item78;
             Item.DamageType = DamageClass.Summon;
-            Item.damage = 20;
+            Item.damage = 26;
             //item.crit = 4;
             Item.knockBack = 1f;
 

@@ -23,7 +23,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(100, 6.25f, 1f, hasHoldDownHoverFeatures: true, 7f, 7f);
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(100, 6f, 1f, hasHoldDownHoverFeatures: true, 7f, 7f);
 			
 		}
 
@@ -31,7 +31,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 		{
 		    Item.width = 66;
 			Item.height = 24;
-			Item.value = Item.sellPrice(gold: 10);
+			Item.value = Item.sellPrice(gold: 5);
 			Item.rare = ItemRarityID.LightPurple;
 			Item.accessory = true;
 		}
@@ -65,16 +65,13 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
         {
             if (player.controlDown && player.controlJump && player.wingTime > 0f)
             {
-                if (!player.controlLeft && !player.controlRight)
-                {
-                    player.wingTime += .8f;
-                }
+                player.wingTime += 0.7f;
                 speed = 7f;
-                acceleration = 7f;
+                acceleration = 4f;
             }
             else
             {
-                speed = 6.25f;
+                speed = 6f;
             }
         }
         public override bool WingUpdate(Player player, bool inUse)

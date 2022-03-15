@@ -246,23 +246,23 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.SquireShield:
                     player.dd2Accessory = false;
-                    player.GetDamage<MeleeDamageClass>() += 0.1f;
+                    player.GetDamage<MeleeDamageClass>() += 0.07f;
                     ++player.maxTurrets;
                     break;
                 case ItemID.ApprenticeScarf:
                     ++player.maxTurrets;
                     player.GetDamage<SummonDamageClass>() -= 0.1f;
-                    player.GetDamage<MagicDamageClass>() += 0.1f;
+                    player.GetDamage<MagicDamageClass>() += 0.07f;
                     player.dd2Accessory = false;
                     break;
                 case ItemID.MonkBelt:
                     ++player.maxTurrets;
-                    player.GetDamage<SummonDamageClass>() += 0.1f;
+                    player.GetDamage<SummonDamageClass>() += 0.07f;
                     player.dd2Accessory = false;
                     break;
                 case ItemID.HuntressBuckler:
                     ++player.maxTurrets;
-                    player.GetDamage<RangedDamageClass>() += 0.1f;
+                    player.GetDamage<RangedDamageClass>() += 0.07f;
                     player.dd2Accessory = false;
                     break;
                 case ItemID.RifleScope:
@@ -300,7 +300,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "10% increased melee damage";
+                            line.text = "7% increased melee damage";
                         }
                     }
                     break;
@@ -309,7 +309,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "10% increased magic damage";
+                            line.text = "7% increased magic damage";
                         }
                     }
                     break;
@@ -318,11 +318,20 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "10% increased ranged damage";
+                            line.text = "7% increased ranged damage";
                         }
                     }
-                    break;   
-				case ItemID.Bezoar:
+                    break;
+                case ItemID.MonkBelt:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.text = "7% increased summon damage";
+                        }
+                    }
+                    break;
+                case ItemID.Bezoar:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.mod == "Terraria" && line.Name == "Tooltip0")

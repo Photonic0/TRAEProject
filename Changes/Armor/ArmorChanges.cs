@@ -5,7 +5,7 @@ using TRAEProject;
 using System.Collections.Generic;
 using TRAEProject.Changes.Items;
 using TRAEProject.Changes.Armor;
-
+using TRAEProject.Common.ModPlayers;
 namespace ChangesArmor
 {
     public class ChangesArmor : GlobalItem
@@ -208,7 +208,9 @@ namespace ChangesArmor
             if (head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
                 return "GladiatorSet"; 
             if (head.type == ItemID.FossilHelm && body.type == ItemID.FossilShirt && legs.type == ItemID.FossilPants)
-                return "FossilSet";
+                return "FossilSet"; 
+            if (head.type == ItemID.FrostHelmet && body.type == ItemID.FrostBreastplate && legs.type == ItemID.FrostLeggings)
+                return "FrostSet";
             return base.IsArmorSet(head, body, legs);
         }
         public override void UpdateArmorSet(Player player, string armorSet)
@@ -338,13 +340,20 @@ namespace ChangesArmor
             }
             if (armorSet == "PirateSet")
             {
-                player.setBonus = "All whips gain an additional +5 tag damage and +5% summon tag critical strike chance";
+                player.setBonus = "All whips gain a stackable 2% minion crit tag";
 				player.GetModPlayer<SetBonuses>().PirateSet = true;
             }
             if (armorSet == "SpectreHoodSet")
             {
                 player.setBonus = "Magic attacks heal the player and allies";
                 player.GetDamage<MagicDamageClass>() += 0.4f; // +0.4 to negate the reduction
+            }
+            if (armorSet == "FrostSet")
+            {
+                player.setBonus = "Melee and ranged attacks inflict frostburn\nDouble tap down to freeze all enemies around you, 5 second cooldown";
+                player.GetModPlayer<FrostArmor>().frostArmor = true;
+                player.GetDamage<RangedDamageClass>() -= 0.1f;
+                player.GetDamage<MeleeDamageClass>() -= 0.1f;
             }
             if (armorSet == "FossilSet")
             {

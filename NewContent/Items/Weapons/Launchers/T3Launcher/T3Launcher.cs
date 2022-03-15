@@ -50,7 +50,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Titanium Bazooka");
-            Tooltip.SetDefault("Shoots three to four Rockets in one shot"); CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("Shoots two to four Rockets in one shot"); CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
         }
         public override void SetDefaults()
@@ -77,7 +77,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
 		}
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            int numberProjectiles = 3 + Main.rand.Next(2); // 3 or 4 shots
+            int numberProjectiles = 2 + Main.rand.Next(3); // 2 to 4 rockets 
             for (int i = 0; i < numberProjectiles; i++)
             {
                 Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(30));

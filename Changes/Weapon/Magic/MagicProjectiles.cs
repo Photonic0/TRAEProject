@@ -24,9 +24,12 @@ namespace TRAEProject.Changes.Projectiles
             {
                 // 
                 // Mage
+                case ProjectileID.MagicDagger:
+                    projectile.penetrate = 3;
+                    return;
                 case ProjectileID.BookOfSkullsSkull:
                     projectile.timeLeft = 180;
-                    return;       
+                    return;
                 case ProjectileID.ShadowBeamFriendly:
                     projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
                     projectile.usesLocalNPCImmunity = true;
@@ -119,7 +122,7 @@ namespace TRAEProject.Changes.Projectiles
                     return;
 				case ProjectileID.FrostBoltStaff:
                     projectile.penetrate = 2;
-                    return;  
+                    return;
                 case ProjectileID.SapphireBolt:
                 case ProjectileID.EmeraldBolt:
                 case ProjectileID.AmberBolt:

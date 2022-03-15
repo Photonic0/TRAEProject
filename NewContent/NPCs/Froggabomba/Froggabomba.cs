@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.NPCs.Boomxie;
+using TRAEProject.NewContent.Items.Summoner.Sentries.BoomfrogStaff;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.NPCs.Froggabomba
@@ -85,8 +86,10 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemID.ExplosivePowder, 10));
-       }
+            npcLoot.Add(ItemDropRule.Common(ItemID.ExplosivePowder, 4)); 
+            npcLoot.Add(ItemDropRule.Common(ItemType<BoomfrogStaff>(), 20));
+
+        }
         public override void HitEffect(int hitDirection, double damage)
         {
             for (int i = 0; i < 2; i++)
@@ -119,7 +122,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
             NPC.damage = 30;
             NPC.defense = 10;
             NPC.lifeMax = 30;
-			NPC.scale = 0.9f;
+			NPC.scale = 0.8f;
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit33;
             NPC.DeathSound = SoundID.NPCDeath36;
@@ -128,6 +131,8 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.ExplosivePowder, 10));
+            npcLoot.Add(ItemDropRule.Common(ItemType<BoomfrogStaff>(), 80));
+
         }
         int invincibilityTime = 0;
         public override void AI()
