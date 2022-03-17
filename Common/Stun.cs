@@ -104,7 +104,7 @@ namespace TRAEProject.Common
                 {
                     widthForScale = 300;
                 }
-                float scale = widthForScale / 100f;
+                float scale = widthForScale / 50f;
                 float stunnedHorizontalMovement = (npc.width / 2) * 1.5f;
                 float heightofStunned = (npc.height / 2) * 1.2f;
                 stunTime += (int)Math.PI / 60;

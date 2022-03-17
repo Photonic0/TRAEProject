@@ -24,7 +24,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Item.damage = 24;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.mana = 200;
+            Item.mana = 150;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
@@ -63,7 +63,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Projectile.DamageType = DamageClass.Magic; 
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
-            Projectile.penetrate = 40;
+            Projectile.penetrate = 30;
             Projectile.aiStyle = 1;
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 1;
@@ -90,7 +90,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
                     if (Main.npc[j].CanBeChasedBy((object)this, false))
                     {
                         float DistanceBetweenProjectileAndEnemy = (Projectile.Center - Main.npc[j].Center).Length();
-                        if (DistanceBetweenProjectileAndEnemy > num8 && DistanceBetweenProjectileAndEnemy < Range && Collision.CanHitLine(Projectile.Center, 1, 1, Main.npc[j].Center, 1, 1))
+                        if (DistanceBetweenProjectileAndEnemy > num8 && DistanceBetweenProjectileAndEnemy < Range)
                         {
                             array[num6] = j;
                             num6++;

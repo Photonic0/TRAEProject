@@ -26,18 +26,18 @@ namespace TRAEProject.Changes.Projectiles
                 // Mage
                 case ProjectileID.MagicDagger:
                     projectile.penetrate = 3;
-                    return;
+                    break;
                 case ProjectileID.BookOfSkullsSkull:
                     projectile.timeLeft = 180;
-                    return;
+                    break;
                 case ProjectileID.ShadowBeamFriendly:
                     projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
-                    return;
+                    break;
                 case ProjectileID.WeatherPainShot:
                     projectile.penetrate = 15; // up from 12
-                    return;
+                    break;
                 case ProjectileID.ManaCloakStar:
                     projectile.penetrate = 2;
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
@@ -46,55 +46,49 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.GetGlobalProjectile<ProjectileStats>().cantCrit = true;
                     projectile.tileCollide = false;
                     projectile.timeLeft = 120;
-                    return;
+                    break;
                 case ProjectileID.EighthNote:
                 case ProjectileID.TiedEighthNote:
                 case ProjectileID.QuarterNote:
                     projectile.penetrate = 5;
-                    return;
+                    break;
                 case ProjectileID.Typhoon:
                     projectile.timeLeft = 882; // oddly specific but this is apparently equal to 10 seconds for this weapon. Reason for this is in the code probably
-                    return;
+                    break;
                 case ProjectileID.ToxicFlask:
                     projectile.timeLeft = 75;
-                    return;
+                    break;
                 case ProjectileID.FlowerPetal: // what the fuck is this projectile, why can't i remember
                     projectile.usesLocalNPCImmunity = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
-                    return;
+                    break;
                 case ProjectileID.SharpTears:
                     projectile.penetrate = 5;
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFallon = 1.42f;
-                    return;              
+                    break;              
                 case ProjectileID.WaterStream:
                     projectile.penetrate = 1;
-                    return;
+                    break;
                 case ProjectileID.RainbowFront:
                 case ProjectileID.RainbowBack:
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
-                    return;
+                    break;
 			    case 244:
 				  case 238:
-					projectile.timeLeft = 480;
-					return;			
+					projectile.timeLeft = 900;
+					break;			
 				case ProjectileID.BloodRain:
-				    projectile.penetrate = 1;
-				    projectile.aiStyle = 1;
-                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 120f;
-                    return;
-			 case ProjectileID.RainFriendly:
-				    projectile.penetrate = 2;
-                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.25f;
-				    projectile.aiStyle = 1;
-                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
-                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 120f;
-                    projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
-                    return;
+                case ProjectileID.RainFriendly:
+                    projectile.penetrate = 1;
+                    break;
+                case ProjectileID.ClingerStaff:
+                    projectile.penetrate = 40;
+                    break;
                 case ProjectileID.Blizzard:
                     projectile.timeLeft = 150;
-                    return;
+                    break;
                 case ProjectileID.Meteor1:
                 case ProjectileID.Meteor2:
                 case ProjectileID.Meteor3:
@@ -102,27 +96,27 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.GetGlobalProjectile<ProjectileStats>().goThroughWallsUntilReachingThePlayer = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 100f;
-                    return;
+                    break;
                 case ProjectileID.ShadowFlame:
 		projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
-                    return;
+                    break;
 				 case ProjectileID.Wasp:
 				 	projectile.penetrate = 2;
 					projectile.timeLeft = 120;
 					projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
-                    return;
+                    break;
 				case ProjectileID.NebulaArcanum:
                     projectile.extraUpdates = 1;
-                    return;            
+                    break;            
                 case ProjectileID.GoldenShowerFriendly:
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
-                    return;
+                    projectile.penetrate = 2; // down from 5
+
+                    break;
 				case ProjectileID.FrostBoltStaff:
                     projectile.penetrate = 2;
-                    return;
+                    break;
                 case ProjectileID.SapphireBolt:
                 case ProjectileID.EmeraldBolt:
                 case ProjectileID.AmberBolt:
@@ -131,12 +125,12 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.penetrate = 2;
                     projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                     projectile.usesLocalNPCImmunity = true;
-                    return;
+                    break;
                 case ProjectileID.BoulderStaffOfEarth:
                     projectile.penetrate = 4;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = -1;
-                    return;
+                    break;
             }
         }
 

@@ -74,7 +74,11 @@ namespace TRAEProject.Changes.Items
                 case ItemID.CrimsonRod:
                     item.damage = 12; // down from 12
                     item.mana = 120; // up from 10
-                    break;   
+                    break;
+                case ItemID.NimbusRod:
+                    item.damage = 36; // base value: 36
+                    item.mana = 180; // up from 22                  
+                    return;
                 case ItemID.WeatherPain:
                     item.mana = 135; // up from 30
                     break;
@@ -92,7 +96,7 @@ namespace TRAEProject.Changes.Items
                     item.useAnimation = 20;
 					return;
 		        case ItemID.PoisonStaff:
-                    item.damage = 15; // down from 48
+                    item.damage = 17; // down from 48
                     item.mana = 45; // up from 22                  
                     return; 
                 case ItemID.BeeGun:
@@ -137,10 +141,12 @@ namespace TRAEProject.Changes.Items
                     item.damage = 33;
                     return;
                 case ItemID.CursedFlames:
+                    item.mana = 12; // up from 9
                     item.useTime = 18; // up from 15
                     item.useAnimation = 18;
 					return;
                 case ItemID.GoldenShower:
+                    item.damage = 21; // vanilla: 21
                     item.mana = 10; // up from 7
                     return;
 				case ItemID.CrystalStorm:
@@ -181,14 +187,12 @@ namespace TRAEProject.Changes.Items
                     return;
                 case ItemID.MeteorStaff:
                     item.damage = 53; // up from 53
+                    item.shootSpeed = 12.5f; // up from 10f
                     return;
                 case ItemID.ShadowFlameHexDoll:
                     item.mana = 30; // up from 6
                     return;
-                case ItemID.NimbusRod:
-				item.damage = 36; // base value: 36
-                    item.mana = 100; // up from 22                  
-                    return;
+  
                 case ItemID.SharpTears:
                     item.mana = 50; // up from 20
                     return;

@@ -17,13 +17,13 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Onyx Curse Doll");
-            Tooltip.SetDefault("Summons 3 fireballs to circle around you\nThe fireballs will drain 30 mana per second, affected by gear\nThey will curse nearby enemies, causing damage over time, lower damage or defense");
+            Tooltip.SetDefault("Summons 3 fireballs to circle around you\nThe fireballs will drain 50 mana per second, affected by gear\nThey will curse nearby enemies, causing damage over time, lower damage or defense");
         }
         public override void SetDefaults()
         {
             Item.width = 30;
             Item.height = 32;
-            Item.damage = 50;
+            Item.damage = 38;
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.mana = 30;
@@ -51,7 +51,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
                     Main.projectile[i].Kill();
                 }
             }
-            Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileType<CurseDollWeaponflame>(), damage, knockback, player.whoAmI);
+            //Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileType<CurseDollWeaponflame>(), damage, knockback, player.whoAmI);
             Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileType<CurseDollShadowflame>(), damage, knockback, player.whoAmI);
             Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileType<CurseDollArmorflame>(), damage, knockback, player.whoAmI);
 
@@ -94,7 +94,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            manaDrain += (int)(30 * player.manaCost);
+            manaDrain += (int)(50 * player.manaCost);
             if (manaDrain >= 60)
             {
                 manaDrain -= 60;
@@ -102,6 +102,13 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             }
             if (player.statMana <= 0)
             {
+                for (int i = 0; i < 1000; i++)
+                {
+                    if ((Main.projectile[i].type == ProjectileType<CurseDollArmorflame>() || Main.projectile[i].type == ProjectileType<CurseDollShadowflame>()) && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
+                    {
+                        Main.projectile[i].Kill();
+                    }
+                }
                 Projectile.Kill();
             }
             angletimer += 0.15f;
@@ -155,10 +162,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         public override void AI()
         {
             Player player = Main.player[Projectile.owner]; 
-            if (player.statMana <= 0)
-            {
-                Projectile.Kill();
-            }
+
             angletimer += 0.15f;
             if (angletimer > 450)
             {
@@ -209,10 +213,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            if (player.statMana <= 0)
-            {
-                Projectile.Kill();
-            }
+ 
             angletimer += 0.15f;
             if (angletimer > 540)
             {

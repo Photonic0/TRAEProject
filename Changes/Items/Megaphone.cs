@@ -36,7 +36,22 @@ namespace TRAEProject.Changes.Items
             }
             return base.CanUseItem(item, player);
         }
-    }
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            switch (item.type)
+            {
+                case ItemID.Megaphone:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.text = "Use it to scream";
+                        }
+                    }
+return;
+            }
+        }
+}
     public class HoldingMegaphone : ModPlayer
     {
         public override void PostItemCheck()

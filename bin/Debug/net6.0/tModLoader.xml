@@ -5367,14 +5367,6 @@
             Null gives vanilla behaviour
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.CanUseItem(Terraria.Item,Terraria.Player)">
-            <summary>
-            Returns the "and" operation on the results of ModItem.CanUseItem and all GlobalItem.CanUseItem hooks.
-            Does not fail fast (every hook is called).
-            </summary>
-            <param name="item">The item.</param>
-            <param name="player">The player holding the item.</param>
-        </member>
         <member name="M:Terraria.ModLoader.ItemLoader.UseStyle(Terraria.Item,Terraria.Player,Microsoft.Xna.Framework.Rectangle)">
             <summary>
             Calls ModItem.UseStyle and all GlobalItem.UseStyle hooks.
@@ -10513,6 +10505,19 @@
             Allows you to change the hair color resulting from the biome hair dye when this water style is in use.
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.ModWaterStyle.GetRainTexture">
+            <summary>
+            Returns the texture to be used when drawing rain of this water type.
+            <br/>Default uses the vanilla rain texture.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModWaterStyle.GetRainVariant">
+            <summary>
+            Return the variant of rain used. Equal to the offset in the rain texture divided by four.
+            <br/>Vanilla rain has three variants per biome, and so vanilla variants range from 0 to 3 * Main.maxLiquidTextures.
+            <br/>Default is a random number from 0 to 2, which creates normal vanilla forest biome rain.
+            </summary>
+        </member>
         <member name="T:Terraria.ModLoader.ModWaterfallStyle">
             <summary>
             Represents a style of waterfalls that gets drawn. This is mostly used to determine the color of the waterfall.
@@ -11041,7 +11046,7 @@
             <summary>
             Adds the given sound file to the game as the given type of sound and with the given custom sound playing. If no ModSound instance is provided, the custom sound will play in a similar manner as the default vanilla ones.
             </summary>
-            <param name="Mod">The mod.</param>
+            <param name="mod">The mod.</param>
             <param name="soundPath">The sound path.</param>
             <param name="modSound">The mod sound.</param>
         </member>

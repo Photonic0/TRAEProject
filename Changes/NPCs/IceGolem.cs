@@ -38,7 +38,7 @@ namespace TRAEProject.Changes.NPCs
 					{
 						MakeSpikesForward(npc, 1, targetData);
 						npc.netUpdate = true;
-						if (npc.ai[1] > 100)
+						if (npc.ai[1] > 120)
 						{
 							npc.ai[1] = 0;
 						}
@@ -203,8 +203,8 @@ namespace TRAEProject.Changes.NPCs
                 {
                     target.DelBuff(findbuffIndex);
                 };
-				target.AddBuff(BuffID.Chilled, 300);
-				target.AddBuff(BuffID.Frozen, 60);
+				target.AddBuff(BuffID.Chilled, 240);
+				target.AddBuff(BuffID.Frozen, 45);
 			}
 		}
     }

@@ -55,7 +55,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.FrogGear:
                     player.frogLegJumpBoost = false;
                     player.accFlipper = true;
-                    player.dashType = 2;
+                    player.dashType = 1;
                     player.spikedBoots = 0;
                     player.extraFall += 15;
                     player.jumpSpeedBoost += 1.4f;
@@ -95,6 +95,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.TerrasparkBoots:
                     player.iceSkate = false;
                     player.lavaMax -= 42;
+                    player.lavaRose = false;
                     player.fireWalk = false;
                     player.waterWalk = false;
                     player.accRunSpeed = 6f; 
@@ -273,7 +274,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "25% increased running speed, 25% movement speed while in the air";
+                            line.text = "50% increased running speed, 25% movement speed while in the air";
                         }
                     }
                     return;

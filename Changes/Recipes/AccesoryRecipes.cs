@@ -20,7 +20,9 @@ namespace TRAEProject.Changes.Recipes
             Recipe YoyoBagAlt = mod.CreateRecipe(ItemID.YoyoBag).AddIngredient(ItemID.YoYoGlove, 1).AddIngredient(ItemType<CounterweightString>()).AddTile(TileID.Loom);
             YoyoBagAlt.Register();
             Recipe HermesBoots = mod.CreateRecipe(ItemID.HermesBoots).AddIngredient(ItemID.Aglet, 1).AddIngredient(ItemID.Silk, 20).AddTile(TileID.Loom);
-            HermesBoots.Register();
+            HermesBoots.Register(); 
+            Recipe Mantra = mod.CreateRecipe(ItemID.CountercurseMantra).AddIngredient(ItemID.Nazar, 1).AddIngredient(ItemID.AnkhCharm, 1).AddTile(TileID.TinkerersWorkbench);
+            Mantra.Register();
             Recipe Magnet = mod.CreateRecipe(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
             Magnet.Register();
             Recipe AvengerEmblem = mod.CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 15).AddTile(TileID.TinkerersWorkbench);
@@ -50,6 +52,7 @@ namespace TRAEProject.Changes.Recipes
         public static void Modify(Recipe recipe)
         {
             Item ingredientToRemove;
+
             if (recipe.HasResult(ItemID.MechanicalGlove))
             {
                 recipe.TryGetIngredient(ItemID.PowerGlove, out ingredientToRemove);
@@ -148,12 +151,10 @@ namespace TRAEProject.Changes.Recipes
             {
                 recipe.RemoveRecipe();
             }
-            if (recipe.HasResult(ItemID.CountercurseMantra))
-            {
-                recipe.TryGetIngredient(ItemID.Megaphone, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.AnkhCharm, 1);
-            }
+            //if (recipe.HasResult(ItemID.CountercurseMantra))
+            //{
+            //    recipe.RemoveRecipe();
+            //}
             if (recipe.HasResult(ItemID.SniperScope))
             {
                 recipe.TryGetIngredient(ItemID.DestroyerEmblem, out ingredientToRemove);
