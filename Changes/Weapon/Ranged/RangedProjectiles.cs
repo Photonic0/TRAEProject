@@ -126,6 +126,10 @@ namespace TRAEProject.Changes.Projectiles
         public override bool PreAI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
+            if(projectile.arrow && !player.HeldItem.IsAir && (player.HeldItem.type == ItemID.Tsunami || player.HeldItem.type == ItemID.MythrilRepeater) && projectile.extraUpdates < 2)
+            {
+                projectile.extraUpdates += 2;
+            }
 			if (projectile.type == ProjectileID.ChlorophyteArrow)
 			{
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
