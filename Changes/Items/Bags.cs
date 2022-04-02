@@ -1,14 +1,15 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.NewContent.Items.Weapons.Scorpio;
+using TRAEProject.NewContent.Items.Materials;
+using TRAEProject.NewContent.Items.Weapons.Jungla;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Items
 {
     public class Bags : GlobalItem
     {
-		public static readonly int[] PlanteraLoot = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury };
+		public static readonly int[] ShadowChestLoot = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury };
 		
 		public override bool PreOpenVanillaBag(string context, Player player, int arg)
 		{
@@ -49,7 +50,7 @@ namespace TRAEProject.Changes.Items
 				switch (Main.rand.Next(3))
 				{
 					case 0:
-					player.QuickSpawnItem(player.GetItemSource_OpenItem(arg),ItemType<Scorpio>());
+					player.QuickSpawnItem(player.GetItemSource_OpenItem(arg),ItemType<Jungla>());
 					player.QuickSpawnItem(player.GetItemSource_OpenItem(arg),ItemID.VenusMagnum);
 						break;
 					case 1:
@@ -63,7 +64,12 @@ namespace TRAEProject.Changes.Items
 				}
 				return false;
 			}
-			if (context == "bossBag" && arg == ItemID.FairyQueenBossBag) // TO DO
+			if (context == "bossBag" && arg == ItemID.CultistBossBag) // TO DO
+			{
+				player.QuickSpawnItem(player.GetItemSource_OpenItem(arg), ItemID.LunarCraftingStation);
+				player.QuickSpawnItem(player.GetItemSource_OpenItem(arg), ItemType<LuminiteFeather>());
+			}
+				if (context == "bossBag" && arg == ItemID.FairyQueenBossBag) 
 			{
 				player.TryGettingDevArmor(player.GetItemSource_OpenItem(arg));
 			player.QuickSpawnItem(player.GetItemSource_OpenItem(arg),ItemID.EmpressFlightBooster);
@@ -123,7 +129,7 @@ namespace TRAEProject.Changes.Items
 			player.QuickSpawnItem(player.GetItemSource_OpenItem(arg),ItemID.GravityGlobe);
 			player.QuickSpawnItem(player.GetItemSource_OpenItem(arg),ItemID.SuspiciousLookingTentacle);
 			player.QuickSpawnItem(player.GetItemSource_OpenItem(arg),4954); // celestial starboard
-				int item = Utils.SelectRandom<int>(Main.rand, 3063, 3389, 3065, 1553, 3930, 3541, 3570, ItemID.RainbowWhip, ItemID.StardustDragonStaff);
+				int item = Utils.SelectRandom<int>(Main.rand, 3063, 3389, 1553, 3930, 3541, 3570, ItemID.RainbowWhip, ItemID.StardustDragonStaff);
 			player.QuickSpawnItem(player.GetItemSource_OpenItem(arg),item); 
 				return false;
 			}

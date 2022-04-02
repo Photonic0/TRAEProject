@@ -19,7 +19,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
         }
         public override void Update(NPC npc)
         {
-            npc.GetGlobalNPC<EnemyRing>().damage = projectile.damage / 2;
+            npc.GetGlobalNPC<EnemyRing>().damage = projectile.damage;
             npc.GetGlobalNPC<EnemyRing>().player = player;
             npc.GetGlobalNPC<EnemyRing>().howManyStacks += 1;
         }
@@ -46,7 +46,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
                 float dustScale = 0.9f;
 
                 attackDelay++;
-                if (attackDelay >= 30)
+                if (attackDelay >= 15)
                 {
                     attackDelay = 0;
 
@@ -58,6 +58,20 @@ namespace TRAEProject.NewContent.TRAEDebuffs
                             ++NPCLimit;
                             if (NPCLimit < 3)
                             {
+
+                                int finalDefense = nPC.defense - player.armorPenetration;
+                                nPC.ichor = false;
+                                nPC.betsysCurse = false;
+                                if (finalDefense < 0)
+                                {
+                                    finalDefense = 0;
+                                }
+                                if (finalDefense > 100)
+                                {
+                                    finalDefense = 100;
+                                }
+                                damage += finalDefense / 2;
+      
                                 player.ApplyDamageToNPC(nPC, damage, 0f, 0, crit: false);
                                 SoundEngine.PlaySound(SoundID.Item93, nPC.position);
                             }

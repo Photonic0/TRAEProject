@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 using TRAEProject.Common;
 using static Terraria.ModLoader.ModContent;
 
-namespace TRAEProject.NewContent.Items.Summoner.Sentries.BoomfrogStaff
+namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff
 {
     public class BoomfrogStaff : ModItem
     {

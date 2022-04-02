@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using static Terraria.ModLoader.ModContent;
 
-namespace TRAEProject.NewContent.Items.Summoner.Sentries.YoungQueenBeeStaff
+namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.YoungQueenBeeStaff
 {
     public class YoungQueenBeeStaff : ModItem
     {

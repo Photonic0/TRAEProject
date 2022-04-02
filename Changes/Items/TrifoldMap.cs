@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,9 +27,9 @@ namespace TRAEProject.Changes.Items
                 if (item.type == ItemID.TrifoldMap)
                 {
 
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Reveals the entire map";
+                        line.Text = "Reveals the entire map";
                     }
 
                 }
@@ -43,23 +41,40 @@ namespace TRAEProject.Changes.Items
         {
             if (item.type == ItemID.TrifoldMap)
             {
-                for (int i = 0; i < Main.maxTilesX; i++)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    for (int j = 0; j < Main.maxTilesY; j++)
+                    for (int i = 0; i < Main.maxTilesX; i++)
                     {
-                        if (WorldGen.InWorld(i, j))
+                        for (int j = 0; j < Main.maxTilesY; j++)
                         {
-                            if(!Main.Map.IsRevealed(i, j))
+                            if (WorldGen.InWorld(i, j))
                             {
-                                Main.Map.Update(i, j, 40);
+                                Main.Map.Update(i, j, 255);
                             }
                         }
                     }
+
+                    Main.refreshMap = true;
                 }
-                Main.refreshMap = true;
-                return true;
+                else
+                {
+                    Point center = Main.LocalPlayer.Center.ToTileCoordinates();
+                    int range = 300;
+                    for (int i = center.X - range / 2; i < center.X + range / 2; i++)
+                    {
+                        for (int j = center.Y - range / 2; j < center.Y + range / 2; j++)
+                        {
+                            if (WorldGen.InWorld(i, j))
+                            {
+                                Main.Map.Update(i, j, 255);
+                            }
+                        }
+                    }
+
+                    Main.refreshMap = true;
+                }
             }
-            return base.CanUseItem(item, player);
+            return true;
         }
     }
 }

@@ -114,7 +114,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 if (Main.npc[i].type == NPCType<GraniteOvergrowth>())
                     return 0f;
             }
-            if (spawnInfo.granite && Main.hardMode && spawnInfo.spawnTileType == TileID.Granite)
+            if (spawnInfo.Granite && Main.hardMode && spawnInfo.SpawnTileType == TileID.Granite)
             {
                 return 0.08f;
             }
@@ -405,7 +405,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("GraniteBolt");
+            DisplayName.SetDefault("Granite Bolt");
         }
         public override void SetDefaults()
         {

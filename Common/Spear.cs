@@ -293,6 +293,11 @@ namespace TRAEProject.Common
                 texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee/SpearProjectiles/GhastlyGlaiveGlow").Value;
                 Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
             }
+            if (Projectile.type == ProjectileType<Daybreak>())
+            {
+                texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee/SpearProjectiles/DaybreakGlow").Value;
+                Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            }
             if (debug)
             {
                 //spearLength
@@ -649,6 +654,11 @@ namespace TRAEProject.Common
             if(Projectile.type == ProjectileType<GhastlyGlaiveThrow>())
             {
                 texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee/SpearProjectiles/GhastlyGlaiveGlow").Value;
+                Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + (shake ? new Vector2(-2 + Main.rand.Next(5), -2 + Main.rand.Next(5)) : Vector2.Zero), null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            }
+            if (Projectile.type == ProjectileType<DaybreakThrow>())
+            {
+                texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee/SpearProjectiles/DaybreakGlow").Value;
                 Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + (shake ? new Vector2(-2 + Main.rand.Next(5), -2 + Main.rand.Next(5)) : Vector2.Zero), null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
             }
             return false;

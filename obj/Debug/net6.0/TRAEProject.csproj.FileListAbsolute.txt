@@ -286,3 +286,10 @@ C:\Users\lenovo\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProje
 C:\Users\lenovo\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\lenovo\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\lenovo\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\TRAEProject\obj\Debug\net6.0\TRAEProject.csproj.CopyComplete
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader-preview\ModSources\TRAEProject\obj\Debug\net6.0\TRAEProject.csproj.AssemblyReference.cache
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader-preview\ModSources\TRAEProject\obj\Debug\net6.0\TRAEProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader-preview\ModSources\TRAEProject\obj\Debug\net6.0\TRAEProject.AssemblyInfoInputs.cache
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader-preview\ModSources\TRAEProject\obj\Debug\net6.0\TRAEProject.AssemblyInfo.cs
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader-preview\ModSources\TRAEProject\obj\Debug\net6.0\TRAEProject.csproj.CoreCompileInputs.cache
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader-preview\ModSources\TRAEProject\obj\Debug\net6.0\TRAEProject.dll
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader-preview\ModSources\TRAEProject\obj\Debug\net6.0\TRAEProject.pdb

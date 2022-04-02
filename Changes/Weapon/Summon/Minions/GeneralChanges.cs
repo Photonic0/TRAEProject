@@ -26,6 +26,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
             }
             switch (item.type)
             {
+             
                 case ItemID.FlinxStaff:
                     item.damage = 5; // down from 8
                     break;
@@ -52,6 +53,9 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                 case ItemID.DeadlySphereStaff:
                     item.damage = 15; // down from 50
                     break;
+                case ItemID.StardustCellStaff:
+                    item.damage = 50; // down from 60
+                    break;
                 case ItemID.StardustDragonStaff:
                     item.damage = 60; // up from 40
                     item.SetNameOverride("Lunar Dragon Staff");
@@ -66,9 +70,9 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                 case ItemID.StardustDragonStaff:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Summons a lunar dragon to fight for you";
+                            line.Text = "Summons a lunar dragon to fight for you";
                         }
                     }
                     break;
@@ -140,6 +144,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     break;
+                   
             }
 
         }

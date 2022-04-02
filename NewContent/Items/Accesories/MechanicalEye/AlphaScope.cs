@@ -13,7 +13,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MechanicalEye
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             DisplayName.SetDefault("Alpha Scope");
-            Tooltip.SetDefault("80% increased ranged velocity\nRockets, guns and arrows smart bounce and stun enemies on critical hits\n'Prepare to be Terminated'");
+            Tooltip.SetDefault("Increased ranged velocity\nRockets, guns and arrows smart bounce and stun enemies on critical hits\n'Prepare to be Terminated'");
         }
         public override void SetDefaults()
         {

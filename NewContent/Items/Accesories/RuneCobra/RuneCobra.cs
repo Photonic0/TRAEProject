@@ -16,7 +16,7 @@ namespace TRAEProject.NewContent.Items.Accesories.RuneCobra
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
             DisplayName.SetDefault("Rune Cobra");
-            Tooltip.SetDefault("Increases your maximum number of minions by 1 and minion critical strike chance by 5%\nMinion damage is stored as Shadowflame energy, up to 2250\nWhip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored");
+            Tooltip.SetDefault("Increases your maximum number of minions by 1 and minion critical strike chance by 5%\nMinion damage is stored as Shadowflame energy, up to 3000\nWhip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored");
         }
         public override void SetDefaults()
         {

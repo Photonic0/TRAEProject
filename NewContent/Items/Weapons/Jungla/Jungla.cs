@@ -4,9 +4,9 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace TRAEProject.NewContent.Items.Weapons.Scorpio
+namespace TRAEProject.NewContent.Items.Weapons.Jungla
 {
-    class Scorpio : ModItem
+    class Jungla : ModItem
     {
         public override void SetStaticDefaults()
         {

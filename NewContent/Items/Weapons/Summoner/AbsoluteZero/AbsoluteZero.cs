@@ -3,13 +3,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.NewContent.Items.Summoner.Whip;
+using TRAEProject.NewContent.Items.Weapons.Summoner.Whip;
 using TRAEProject.Changes.Weapon;
 using Terraria.GameContent.Creative;
 using TRAEProject.Common;
 using TRAEProject.Changes.Weapon.Summon.Minions;
 
-namespace TRAEProject.NewContent.Items.Summoner.AbsoluteZero
+namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
 {
     public class AbsoluteZero : ModItem
     {

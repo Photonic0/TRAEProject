@@ -468,9 +468,9 @@ namespace TRAEProject.Changes.Items
                 case ItemID.AquaScepter:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Shoots a double high pressure jet of water";
+                            line.Text = "Shoots a double high pressure jet of water";
                         }
                     }
                     return;

@@ -16,12 +16,12 @@ namespace TRAEProject.Changes.Weapon
          
             if (Main.player[projectile.owner].GetModPlayer<RangedStats>().AlphaScope > 0 && projectile.GetGlobalProjectile<MagicQuiverEffect>().AffectedByAlphaScope && crit)
             {
-                int duration = 15 + 15 * Main.player[projectile.owner].GetModPlayer<RangedStats>().AlphaScope;
+                int duration = 30 + 15 * Main.player[projectile.owner].GetModPlayer<RangedStats>().AlphaScope;
                 target.GetGlobalNPC<Stun>().StunMe(target, duration);
             }
             if (Main.player[projectile.owner].GetModPlayer<RangedStats>().RocketsStun > 0 && projectile.GetGlobalProjectile<NewRockets>().IsARocket && crit)
             {
-                int duration = 15 + 15 * Main.player[projectile.owner].GetModPlayer<RangedStats>().RocketsStun + Main.player[projectile.owner].GetModPlayer<RangedStats>().AlphaScope;
+                int duration = 30 + 15 * Main.player[projectile.owner].GetModPlayer<RangedStats>().RocketsStun + Main.player[projectile.owner].GetModPlayer<RangedStats>().AlphaScope;
                 target.GetGlobalNPC<Stun>().StunMe(target, duration);
             }
             if (projectile.GetGlobalProjectile<NewRockets>().HeavyRocket == true)

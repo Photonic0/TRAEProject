@@ -18,13 +18,13 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
 		{
             if (npc.type == NPCID.CultistBoss)
             {
-                npc.lifeMax = 108000;
+                npc.lifeMax = 90000;
             }
 		}
 
         static float AttackSpeed(NPC npc)
         {
-            return 3f - 2f * ((float)npc.life / (float)npc.lifeMax);
+            return 2.75f - 1.75f * ((float)npc.life / (float)npc.lifeMax);
         }
         int attackNumber = 0;
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -49,8 +49,6 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 }
                 bool expert = Main.expertMode;
                 bool belowHalf = npc.life <= npc.lifeMax / 2;
-
-                npc.damage = 0;
             
 
 
@@ -244,12 +242,13 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
 
                     
                     int fireballAttackDelay = 10;
-                    int fireballCount = 6;
+                    int fireballCount = 5;
+                    float fireballChargeTime = 120;
                     int fireballDamage = npc.GetAttackDamage_ForProjectiles(50f, 40f);
                     if (expert)
                     {
-                        fireballAttackDelay = 5;
-                        fireballCount = 9;
+                        fireballAttackDelay = 7;
+                        fireballCount = 8;
                     }
 
                     npc.localAI[2] = 11f;
@@ -287,16 +286,15 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                             }
                         }
                     }
-                    if (npc.ai[1] < 180f)
+                    if (npc.ai[1] < fireballChargeTime)
                     {
                         npc.ai[1] += 1f;
-                        flag2 = true;
-                        for(int i =0; i < 2; i++)
-                        {
+                        //for(int i =0; i < 2; i++)
+                        //{
                             Dust d = Main.dust[Dust.NewDust(npc.position, npc.width, npc.height, 6)];
                             d.scale = 2f;
                             d.noGravity = true;
-                        }
+                        //}
                     }
                     else
                     {

@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 
 using static Terraria.ModLoader.ModContent;
+using Terraria.DataStructures;
 
 namespace TRAEProject.Changes.Projectiles
 {
@@ -192,7 +193,111 @@ namespace TRAEProject.Changes.Projectiles
                 }
                 return true;
             }
-
+            if (projectile.type == ProjectileID.Phantasm)
+            {
+                Vector2 vector = player.RotatedRelativePoint(player.MountedCenter);
+                float num = 0f;
+                if (projectile.spriteDirection == -1)
+                {
+                    num = (float)Math.PI;
+                }
+                projectile.ai[0] += 1f;
+                int speedMultiplier = 0;
+                if (projectile.ai[0] >= 40f)
+                {
+                    speedMultiplier++;
+                }
+                if (projectile.ai[0] >= 80f)
+                {
+                    speedMultiplier++;
+                }
+                if (projectile.ai[0] >= 120f)
+                {
+                    speedMultiplier++;
+                }
+                int num68 = 24;
+                int num69 = 2;
+                projectile.ai[1] -= 1f;
+                bool flag13 = false;
+                if (projectile.ai[1] <= 0f)
+                {
+                    projectile.ai[1] = num68 - num69 * speedMultiplier;
+                    flag13 = true;
+                    _ = (int)projectile.ai[0] / (num68 - num69 * speedMultiplier);
+                }
+                bool canShoot3 = player.channel && player.HasAmmo(player.inventory[player.selectedItem], canUse: true) && !player.noItems && !player.CCed;
+                if (projectile.localAI[0] > 0f)
+                {
+                    projectile.localAI[0] -= 1f;
+                }
+                if (projectile.soundDelay <= 0 && canShoot3)
+                {
+                    projectile.soundDelay = num68 - num69 * speedMultiplier;
+                    if (projectile.ai[0] != 1f)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item5, projectile.position);
+                    }
+                    projectile.localAI[0] = 12f;
+                }
+                player.phantasmTime = 2;
+                if (flag13 && Main.myPlayer == projectile.owner)
+                {
+                    int projToShoot3 = 14;
+                    float speed3 = 14f;
+                    int Damage3 = player.GetWeaponDamage(player.inventory[player.selectedItem]);
+                    float KnockBack3 = player.inventory[player.selectedItem].knockBack;
+                    if (canShoot3)
+                    {
+                        player.PickAmmo(player.inventory[player.selectedItem], ref projToShoot3, ref speed3, ref canShoot3, ref Damage3, ref KnockBack3, out var usedAmmoItemId3);
+                        IEntitySource projectileSource_Item_WithPotentialAmmo3 = player.GetProjectileSource_Item_WithPotentialAmmo(player.HeldItem, usedAmmoItemId3);
+                        KnockBack3 = player.GetWeaponKnockback(player.inventory[player.selectedItem], KnockBack3);
+                        float num70 = player.inventory[player.selectedItem].shootSpeed * projectile.scale;
+                        Vector2 vector30 = vector;
+                        Vector2 value11 = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY) - vector30;
+                        if (player.gravDir == -1f)
+                        {
+                            value11.Y = (float)(Main.screenHeight - Main.mouseY) + Main.screenPosition.Y - vector30.Y;
+                        }
+                        Vector2 vector31 = Vector2.Normalize(value11);
+                        if (float.IsNaN(vector31.X) || float.IsNaN(vector31.Y))
+                        {
+                            vector31 = -Vector2.UnitY;
+                        }
+                        vector31 *= num70;
+                        if (vector31.X != projectile.velocity.X || vector31.Y != projectile.velocity.Y)
+                        {
+                            projectile.netUpdate = true;
+                        }
+                        projectile.velocity = vector31 * 0.55f;
+                        for (int num71 = 0; num71 < 3; num71++)
+                        {
+                            Vector2 vector32 = Vector2.Normalize(projectile.velocity) * speed3 * (0.6f + Main.rand.NextFloat() * 0.8f);
+                            if (float.IsNaN(vector32.X) || float.IsNaN(vector32.Y))
+                            {
+                                vector32 = -Vector2.UnitY;
+                            }
+                            Vector2 vector33 = vector30 + Utils.RandomVector2(Main.rand, -15f, 15f);
+                            int num72 = Projectile.NewProjectile(projectileSource_Item_WithPotentialAmmo3, vector33.X, vector33.Y, vector32.X, vector32.Y, projToShoot3, Damage3, KnockBack3, projectile.owner);
+                            Main.projectile[num72].noDropItem = true;
+                        }
+                    }
+                    else
+                    {
+                        projectile.Kill();
+                    }
+                }
+                projectile.position = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false) - projectile.Size / 2f;
+                projectile.rotation = projectile.velocity.ToRotation() + num;
+                projectile.spriteDirection = projectile.direction;
+                projectile.timeLeft = 2;
+                player.ChangeDir(projectile.direction);
+                player.heldProj = projectile.whoAmI;
+                int num2 = 2;
+                float num3 = 0f;
+                player.SetDummyItemTime(num2);
+                player.itemRotation = MathHelper.WrapAngle((float)Math.Atan2(projectile.velocity.Y * (float)projectile.direction, projectile.velocity.X * (float)projectile.direction) + num3);
+                return false;
+            }
             if (projectile.type == 615)
             {
                 timer++;

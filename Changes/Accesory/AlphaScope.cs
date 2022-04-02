@@ -14,17 +14,20 @@ namespace TRAEProject.Changes.Accesory
         {
             if (item.type == ItemID.MagicQuiver)
             {
-                player.magicQuiver = false;
+                player.magicQuiver = false; 
+                player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
             }
             if (item.type == ItemID.MoltenQuiver)
             {
-                player.magicQuiver = false;
+                player.magicQuiver = false; 
+                player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
             }
             if (item.type == ItemID.StalkersQuiver)
             {
                 player.magicQuiver = false;
+                player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
                 player.GetDamage<RangedDamageClass>() += 0.05f;
                 player.GetCritChance<RangedDamageClass>() += 5;
@@ -34,6 +37,7 @@ namespace TRAEProject.Changes.Accesory
                 player.GetModPlayer<RangedStats>().rangedVelocity += 0.8f;
                 player.GetModPlayer<RangedStats>().Magicandgunquiver += 1;
                 player.GetDamage<RangedDamageClass>() -= 0.1f;
+
                 player.GetCritChance<RangedDamageClass>() -= 10;
             }
         }

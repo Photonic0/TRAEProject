@@ -143,9 +143,7 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.ChainGun:
                     item.damage = 41; // up from 31
                     return;
-                case ItemID.Phantasm:
-                    item.damage = 40; // down from 50
-                    return;
+   
                 case ItemID.VortexBeater:
                     item.damage = 42;
                     return;
@@ -228,27 +226,36 @@ namespace TRAEProject.Changes.Weapons
 				case ItemID.Flamethrower:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += "\n33% chance to not consume ammo";
+                            line.Text += "\n33% chance to not consume ammo";
                         }
                     }
                     return;
                 case ItemID.ChainGun:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "66% chance to not consume ammo";
+                            line.Text = "66% chance to not consume ammo";
                         }
                     }
                     return;
                 case ItemID.VortexBeater:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += "\nConverts Musket Balls into homing rockets";
+                            line.Text += "\nConverts Musket Balls into homing rockets";
+                        }
+                    }
+                    return;
+                case ItemID.ChlorophyteArrow:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "Seeks out nearby enemies";
                         }
                     }
                     return;
