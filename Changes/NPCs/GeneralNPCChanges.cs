@@ -98,6 +98,10 @@ namespace TRAEProject.Changes.NPCs
                     npc.width = 51;
                     npc.height = 81;
                     break;
+                case NPCID.DuneSplicerHead:
+                    npc.lifeMax = 4000;
+                    npc.noGravity = true;
+                    break;
             }
         }
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
@@ -146,11 +150,11 @@ namespace TRAEProject.Changes.NPCs
             {
                 case NPCID.SolarCorite:
                     npc.knockBackResist = 0.2f;
-                    return;
+                    break;
                 case NPCID.SolarSolenian:
                     npc.reflectsProjectiles = false;
                     npc.takenDamageMultiplier = 1f;
-                    return;
+                    break;
                 case NPCID.StardustSpiderSmall:
                     int spidres = Main.rand.Next(1, 2);
                     if (npc.ai[2] < spidres && Main.expertMode)
@@ -160,7 +164,7 @@ namespace TRAEProject.Changes.NPCs
                         Main.npc[spider].ai[2] = spidres;
                         npc.ai[2] += 1f;
                     }
-                    return;
+                    break;
                 case NPCID.SolarCrawltipedeHead:
                     if (npc.ai[2] < 2f)
                     {
@@ -168,7 +172,7 @@ namespace TRAEProject.Changes.NPCs
                         Main.npc[worms].ai[2] = 2f;
                         npc.ai[2] += 1f;
                     }
-                    return;
+                    break;
                 case NPCID.LunarTowerNebula:
                     if (Main.expertMode)
                     {
@@ -188,7 +192,13 @@ namespace TRAEProject.Changes.NPCs
                             braintimer = 0f;
                         }
                     }
-                    return;
+                    break;
+                case NPCID.DuneSplicerHead:
+                    if(npc.velocity.Length() > 1.4f)
+                    {
+                        npc.velocity = npc.velocity.SafeNormalize(Vector2.UnitY) * 1.4f;
+                    }
+                    break;
             }
             switch (npc.aiStyle)
             {
