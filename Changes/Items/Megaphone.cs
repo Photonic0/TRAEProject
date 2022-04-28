@@ -43,9 +43,9 @@ namespace TRAEProject.Changes.Items
                 case ItemID.Megaphone:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Use it to scream";
+                            line.Text = "Use it to scream";
                         }
                     }
 return;

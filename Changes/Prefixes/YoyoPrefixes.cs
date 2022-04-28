@@ -215,7 +215,7 @@ namespace TRAEProject.Changes.Prefixes
 						projectile.localAI[0] += (float)Main.rand.Next(10, 31) * 0.1f;
 					}
 					float num = projectile.localAI[0] / 60f;
-					num /= (1f + Main.player[projectile.owner].meleeSpeed) / 2f;
+					num /= (1f + Main.player[projectile.owner].GetAttackSpeed(DamageClass.Melee)) / 2f;
 					float num2 = ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type];
 					if (num2 != -1f && num > num2)
 					{
@@ -314,8 +314,8 @@ namespace TRAEProject.Changes.Prefixes
 				{
 					num7 = num7 * 1.25f + 30f;
 				}
-				num7 /= (1f + Main.player[projectile.owner].meleeSpeed * 3f) / 4f;
-				num8 /= (1f + Main.player[projectile.owner].meleeSpeed * 3f) / 4f;
+				num7 /= (1f + Main.player[projectile.owner].GetAttackSpeed(DamageClass.Melee) * 3f) / 4f;
+				num8 /= (1f + Main.player[projectile.owner].GetAttackSpeed(DamageClass.Melee) * 3f) / 4f;
 				float num11 = 14f - num8 / 2f;
 				if (num11 < 1f)
 				{
@@ -481,10 +481,10 @@ namespace TRAEProject.Changes.Prefixes
             if (speed != 1)
             {
                 TooltipLine line = new TooltipLine(TRAEProj.Instance, "TRAEYoyoSpeed", (speed <1 ? "-" : "+") + (int)Math.Round((speed < 1 ? (1f - speed): (speed - 1f)) * 100) + "% yoyo speed");
-                line.isModifier = true;
+                line.IsModifier = true;
                 if(speed < 1)
                 {
-                    line.isModifierBad = true;
+                    line.IsModifierBad = true;
                 }
                 int kbIndex = tooltips.FindIndex(TL => TL.Name == "PrefixKnockback");
                 if (kbIndex != -1)
@@ -499,10 +499,10 @@ namespace TRAEProject.Changes.Prefixes
             if (range != 1)
             {
                 TooltipLine line = new TooltipLine(TRAEProj.Instance, "TRAEYoyoRange", (range < 1 ? "-" : "+") + (int)Math.Round((range < 1 ? (1f - range) : (range - 1f)) * 100) + "% range");
-                line.isModifier = true;
+                line.IsModifier = true;
                 if (range < 1)
                 {
-                    line.isModifierBad = true;
+                    line.IsModifierBad = true;
                 }
                 int kbIndex = tooltips.FindIndex(TL => TL.Name == "PrefixKnockback");
                 if (kbIndex != -1)

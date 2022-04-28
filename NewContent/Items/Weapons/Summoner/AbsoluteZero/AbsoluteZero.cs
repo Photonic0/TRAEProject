@@ -3,13 +3,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.NewContent.Items.Summoner.Whip;
+using TRAEProject.NewContent.Items.Weapons.Summoner.Whip;
 using TRAEProject.Changes.Weapon;
 using Terraria.GameContent.Creative;
 using TRAEProject.Common;
 using TRAEProject.Changes.Weapon.Summon.Minions;
 
-namespace TRAEProject.NewContent.Items.Summoner.AbsoluteZero
+namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
 {
     public class AbsoluteZero : ModItem
     {
@@ -17,7 +17,6 @@ namespace TRAEProject.NewContent.Items.Summoner.AbsoluteZero
         {
             DisplayName.SetDefault("Absolute Zero");
             Tooltip.SetDefault("Your summons will focus struck enemies\n12 summon tag damage\n25% summon tag critical strike chance");
-            ItemID.Sets.SummonerWeaponThatScalesWithAttackSpeed[Item.type] = true;
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
         public override void SetDefaults()
@@ -30,7 +29,7 @@ namespace TRAEProject.NewContent.Items.Summoner.AbsoluteZero
             Item.shoot = ProjectileType<AbsoluteZeroP>();
             Item.UseSound = SoundID.Item152;
             Item.noMelee = true;
-            Item.DamageType = DamageClass.Summon;
+            Item.DamageType = DamageClass.SummonMeleeSpeed;
             Item.noUseGraphic = true;
             Item.damage = 150;
             Item.useTime = Item.useAnimation = 30;

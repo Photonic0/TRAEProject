@@ -12,6 +12,7 @@ using ReLogic.Content;
 using TRAEProject.NewContent.Items.Armor.IceArmor;
 using TRAEProject.Changes.Weapon.Ranged;
 using TRAEProject.Changes.Recipes;
+using Terraria.DataStructures;
 
 namespace TRAEProject
 {
@@ -123,7 +124,41 @@ namespace TRAEProject
                 }
 
             });
-            
+            // WingStats[] array = new WingStats[47];
+            //array[46] = new WingStats(25, 4f); // fledgling, speed up from 3f
+            //array[1] = new WingStats(100, 6.25f); // Demon
+            //array[2] = new WingStats(100, 6.25f); // Angel 
+            //array[13] = new WingStats(100, 6.25f); // leaf
+            //array[25] = new WingStats(130, 6.75f); // fin
+            //array[7] = new WingStats(130, 6.75f);// fairy
+            //array[6] = new WingStats(130, 6.75f);// harpy
+            //array[10] = new WingStats(130, 6.75f); // frozen
+            //array[4] = new WingStats(150, 6.5f); // jetpack
+            //array[15] = new WingStats(160, 7.5f); // bee
+            //array[5] = new WingStats(160, 7.5f); // butterfly
+            //array[14] = new WingStats(160, 8f, 2f); // bat, horizontal speed 7.5f > 8f and acceleration boost
+            //array[9] = new WingStats(160, 7.5f); // flame
+            //array[11] = new WingStats(170, 7.5f); // spectre
+            //array[8] = new WingStats(170, 7.5f); // steampunk
+            //array[27] = new WingStats(170, 7.5f); // Mothron, 20% faster ascent
+            //array[24] = new WingStats(170, 7.5f); // Beetle
+            //array[22] = new WingStats(170, 6.5f, 1f, hasHoldDownHoverFeatures: true, 8f, 8f); // hoverboard
+            //array[21] = new WingStats(180, 7.5f); // spooky
+            //array[20] = new WingStats(180, 9f); // tattered fairy, buffed horizontal speed
+            //array[12] = new WingStats(180, 7.5f); // steampunk
+            //array[23] = new WingStats(180, 9f, 2f); // festive, increased horizontal speed and acceleration
+            //array[26] = new WingStats(180, 8f, 2f); // fishron
+            //array[45] = new WingStats(180, 8f, 4.5f, hasHoldDownHoverFeatures: true, 16f, 16f); // starboard
+            //array[37] = new WingStats(150, 7f, 2.5f, hasHoldDownHoverFeatures: true, 9f, 8f); // Betsy's, nerfed hover speed
+            //array[44] = new WingStats(150, 7.2f, 2f); // empress, nerfed horizontal speed to 7.2
+            //new WingStats(150, 6f, 2.5f, hasHoldDownHoverFeatures: true, 12f, 12f);
+            //array[29] = new WingStats(180, 9f, 2.5f); // solar
+            //array[32] = new WingStats(180, 11f, 3f); // stardust
+            //array[30] = new WingStats(180, 7.5f, 1.5f, hasHoldDownHoverFeatures: false, -1, 1f); // booster, buffed horizontal speed from 6.5 to 7.5f, removed hover
+            //array[31] = new WingStats(180, 7.5f, 1.5f, hasHoldDownHoverFeatures: true, 10f, 8f); // mantle, buffed horizontal velocity from 6.5f to 7.5
+            //array[43] = (array[41] = (array[42] = (array[40] = (array[39] = (array[38] = (array[36] = (array[35] = (array[34] = (array[33] = (array[28] = (array[19] = (array[18] = (array[17] = (array[16] = (array[3] = new WingStats(150, 7f)))))))))))))))); // devs
+            //ArmorIDs.Wing.Sets.Stats = array;
+
         }
         public override void AddRecipes()
         {

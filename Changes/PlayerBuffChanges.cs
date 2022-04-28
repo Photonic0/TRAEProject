@@ -17,15 +17,15 @@ namespace ChangesBuffs
             switch (type)
             {
                 case BuffID.ThornWhipPlayerBuff:
-                    player.meleeSpeed -= 0.05f;
+                    player.GetAttackSpeed(DamageClass.Melee) -= 0.05f;
                     player.autoReuseGlove = true;
                     return;
                 case BuffID.SwordWhipPlayerBuff:
-                    player.meleeSpeed -= 0.1f;
+                    player.GetAttackSpeed(DamageClass.Melee) -= 0.1f;
                     player.autoReuseGlove = true; 
                     return;
                 case BuffID.ScytheWhipPlayerBuff:
-                    player.meleeSpeed -= 0.15f;
+                    player.GetAttackSpeed(DamageClass.Melee) -= 0.15f;
                     player.autoReuseGlove = true;
                     return;
                 case BuffID.ObsidianSkin:
@@ -249,7 +249,7 @@ namespace ChangesBuffs
                         ++NPCLimit;
                         if (NPCLimit < 5)
                         {
-                            int finalDefense = nPC.defense - Player.armorPenetration;
+                            int finalDefense = nPC.defense - (int)Player.GetArmorPenetration(DamageClass.Generic);
                             nPC.ichor = false;
                             nPC.betsysCurse = false;
                             if (finalDefense < 0)

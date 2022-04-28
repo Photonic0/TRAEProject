@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.Common;
-using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo

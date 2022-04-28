@@ -71,6 +71,9 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             floatTime = 120;
             maxSticks = 1;
             stickingDps = 0;
+            DustOnDeath = DustID.Torch; DustOnDeathCount = 40;
+
+
         }
         public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
         {

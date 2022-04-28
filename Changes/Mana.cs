@@ -18,7 +18,7 @@ namespace TRAEProject.Changes
 {
     public class Mana : ModPlayer
     {
-        public float newManaRegen = 0;
+        public double newManaRegen = 0;
         public float manaRegenBoost = 1;
         public int manaFlowerTimer = 0;
         public int manaFlowerLimit = 0;
@@ -30,6 +30,10 @@ namespace TRAEProject.Changes
         public bool manaCloak = false;
         public override void ResetEffects()
         {
+            Player.manaRegenCount = 0;
+            Player.manaRegen = 0;
+            Player.manaRegenDelay = 999;
+            Player.manaSickTimeMax = 9999;
             manaRegenBoost = 1;
             celestialCuffsOverload = false;
             newManaFlower = false;
@@ -71,13 +75,6 @@ namespace TRAEProject.Changes
             {
                 manaOver400 = 0;
             }
-        }
-        public override void PostUpdate()
-        {
-            Player.manaRegenCount = 0;
-            Player.manaRegen = 0;
-            Player.manaRegenDelay = 999;
-            Player.manaSickTimeMax = 9999;
             int reachThisNumberAndThenIncreaseManaBy1 = 60;
             if (Player.statMana < Player.statManaMax2)
             {

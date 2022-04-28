@@ -15,21 +15,22 @@ namespace TRAEProject.Changes.Recipes
 
         public static void Load(Mod mod)
         {
-            Recipe AncientShadowHead = mod.CreateRecipe(ItemID.AncientShadowHelmet);
-            AncientShadowHead.AddIngredient(ItemID.DemoniteBar, 15);
-            AncientShadowHead.AddIngredient(ItemID.ShadowScale, 105);
-            AncientShadowHead.AddTile(TileID.DemonAltar);
-            AncientShadowHead.Register();
+
             Recipe AncientShadowLegs = mod.CreateRecipe(ItemID.AncientShadowGreaves);
             AncientShadowLegs.AddIngredient(ItemID.DemoniteBar, 20);
             AncientShadowLegs.AddIngredient(ItemID.ShadowScale, 15);
             AncientShadowLegs.AddTile(TileID.DemonAltar);
             AncientShadowLegs.Register();
-            Recipe AncientShadowChest = mod.CreateRecipe(ItemID.AncientShadowHelmet);
-            AncientShadowLegs.AddIngredient(ItemID.DemoniteBar, 25);
-            AncientShadowLegs.AddIngredient(ItemID.ShadowScale, 20);
+            Recipe AncientShadowChest = mod.CreateRecipe(ItemID.AncientShadowScalemail);
+            AncientShadowChest.AddIngredient(ItemID.DemoniteBar, 25);
+            AncientShadowChest.AddIngredient(ItemID.ShadowScale, 20);
             AncientShadowChest.AddTile(TileID.DemonAltar);
             AncientShadowChest.Register();
+            Recipe AncientShadowHead = mod.CreateRecipe(ItemID.AncientShadowHelmet);
+            AncientShadowHead.AddIngredient(ItemID.DemoniteBar, 15);
+            AncientShadowHead.AddIngredient(ItemID.ShadowScale, 10);
+            AncientShadowHead.AddTile(TileID.DemonAltar);
+            AncientShadowHead.Register();
         }
         public static void Modify(Recipe recipe)
         {

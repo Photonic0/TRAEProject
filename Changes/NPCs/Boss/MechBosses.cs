@@ -301,5 +301,5 @@ namespace TRAEProject.Changes.NPCs.Boss
                     return;
             }
         }
-    }
+    }  
 }

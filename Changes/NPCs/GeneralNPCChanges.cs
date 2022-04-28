@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.NPCs.GraniteOvergrowth;
 
 namespace TRAEProject.Changes.NPCs
 {
@@ -16,17 +17,17 @@ namespace TRAEProject.Changes.NPCs
         {
             switch (npc.type)
             {
-				case NPCID.PirateCaptain:
+    
+                case NPCID.PirateCaptain:
                     npc.lifeMax = 750;
                     break;
-				case NPCID.JungleCreeper:
+                case NPCID.JungleCreeper:
                 case NPCID.JungleCreeperWall:
-				    {
+                    {
                         npc.lifeMax = 120;
-						npc.damage = 35;
+                        npc.damage = 35;
                         npc.defense = 14;
-					}
-                    break;
+                    }
                     break;
                 case NPCID.GigaZapper:
                     npc.knockBackResist = 0f;
@@ -42,11 +43,11 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.SolarDrakomire:
                     npc.lifeMax = 1250; // up from 800;
                     npc.defense = 48;
-                    npc.knockBackResist = 0.4f; // nerfed from 0.2
+                    npc.knockBackResist = 0f; // nerfed from 0.2
                     break;
                 case NPCID.SolarCorite:
                     npc.lifeMax = 600; // down from 600 
-                    /*npc.knockBackResist = 0.7f;*/ // nerfed from 0.2
+                    npc.knockBackResist = 0.6f; // nerfed from 0.2
                     break;
                 case NPCID.SolarSolenian:
                     npc.lifeMax = 800; // unchanged from 800 
@@ -55,13 +56,13 @@ namespace TRAEProject.Changes.NPCs
                     break;
                 case NPCID.SolarSroller:
                     npc.damage = 60; // down from 80
-                    npc.knockBackResist = 0.2f; // nerfed from 1
+                    npc.knockBackResist = 0.35f; // nerfed from 1
                     break;
                 case NPCID.SolarCrawltipedeHead:
-                    npc.lifeMax = 25000; // unchanged
-                    npc.damage = 70; // down from 150
+                    npc.lifeMax = 25000; 
+                    npc.damage = 100; // down from 150
                     break;
-                case NPCID.SolarCrawltipedeBody:
+                case NPCID.SolarCrawltipedeBody:            
                     npc.damage = 50; // down from 100
                     break;
                 case NPCID.SolarCrawltipedeTail:
@@ -113,7 +114,7 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.SolarSroller:
                     if (Main.expertMode && npc.ai[0] == 6.0 /*&& npc.ai[3] > 0 && npc.ai[3] < 4.0*/)
                     {
-                        int length = Main.rand.Next(300, 480);
+                        int length = Main.rand.Next(240, 420);
                         target.AddBuff(BuffID.Dazed, length, false);
                     }
                     break;
@@ -121,7 +122,7 @@ namespace TRAEProject.Changes.NPCs
         }
         public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-            
+
             switch (npc.type)
             {
                 case NPCID.SolarFlare:
@@ -140,7 +141,7 @@ namespace TRAEProject.Changes.NPCs
         {
             if (npc.HasBuff(BuffID.Weak))
             {
-                npc.damage = (int)(npc.defDamage * 0.85f);   
+                npc.damage = (int)(npc.defDamage * 0.85f);
             }
             switch (npc.type)
             {
@@ -152,7 +153,7 @@ namespace TRAEProject.Changes.NPCs
                     npc.takenDamageMultiplier = 1f;
                     return;
                 case NPCID.StardustSpiderSmall:
-                    int spidres = Main.rand.Next(1, 2);
+                    int spidres = Main.rand.Next(2, 4);
                     if (npc.ai[2] < spidres && Main.expertMode)
                     {
                         int spider = NPC.NewNPC(npc.GetItemSource_Loot(), (int)npc.position.X, (int)npc.position.Y, NPCID.StardustSpiderSmall);
@@ -161,14 +162,7 @@ namespace TRAEProject.Changes.NPCs
                         npc.ai[2] += 1f;
                     }
                     return;
-                case NPCID.SolarCrawltipedeHead:
-                    if (npc.ai[2] < 2f)
-                    {
-                        int worms = NPC.NewNPC(npc.GetItemSource_Loot(), (int)npc.position.X, (int)npc.position.Y, NPCID.SolarCrawltipedeHead);
-                        Main.npc[worms].ai[2] = 2f;
-                        npc.ai[2] += 1f;
-                    }
-                    return;
+    
                 case NPCID.LunarTowerNebula:
                     if (Main.expertMode)
                     {
@@ -177,7 +171,7 @@ namespace TRAEProject.Changes.NPCs
                         {
                             for (int i = 0; i < Main.rand.Next(5, 7); i++)
                             {
-                                NPC.NewNPC(npc.GetItemSource_Loot(),(int)npc.position.X, (int)npc.position.Y, NPCID.NebulaHeadcrab);
+                                NPC.NewNPC(npc.GetItemSource_Loot(), (int)npc.position.X, (int)npc.position.Y, NPCID.NebulaHeadcrab);
                                 for (int x = 0; x < Main.rand.Next(10, 15); x++)
                                 {
                                     Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, 243, 0f, 0f, 0, default, 1);
@@ -426,14 +420,14 @@ namespace TRAEProject.Changes.NPCs
                         }
                     }
                     return;
-                
+
             }
         }
         public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
         {
             switch (npc.type)
             {
-                
+
                 case NPCID.SolarSpearman:
                     for (int i = 0; i < 5; i++)
                     {
@@ -445,6 +439,20 @@ namespace TRAEProject.Changes.NPCs
             }
             return true;
         }
+        public override void OnKill(NPC npc)
+        {
+            if (npc.type == NPCID.WallofFlesh)
+            {
+                NPC.downedMechBoss1 = true;
+                NPC.downedMechBoss2 = true;
+                NPC.downedMechBoss3 = true;
+                NPC.downedMechBossAny = true;
+            }
+            if (npc.type == NPCID.Plantera)
+            {
+                DownedOvergrowth.downedOvergrowth = true;
+            }
 
+        }
     }
 }

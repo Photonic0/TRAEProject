@@ -22,7 +22,7 @@ namespace TRAEProject.Changes.Weapon.Melee
         }
         public override void SetDefaults(Item item)
         {
-            switch(item.type)
+            switch (item.type)
             {
                 case ItemID.CobaltSword:
                     item.damage = 42; // up from 39
@@ -103,8 +103,8 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.autoReuse = true;
                     item.damage = 100;
                     item.useTime = 30;
-                    item.useAnimation = 30;      
-					item.scale = 1.75f;
+                    item.useAnimation = 30;
+                    item.scale = 1.75f;
                     return;
                 //phasesabars
                 case ItemID.PurplePhasesaber:
@@ -140,7 +140,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     break;
                 case ItemID.Seedler:
                     item.useTime = 27;
-                    item.useAnimation = 27; 
+                    item.useAnimation = 27;
                     break;
                 case ItemID.Keybrand:
                     item.scale = 1.7f;
@@ -157,7 +157,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.damage = 150;
                     item.scale = 1.75f;
                     break;
-			    case ItemID.DD2SquireDemonSword:
+                case ItemID.DD2SquireDemonSword:
                     item.useTurn = false;
                     item.scale = 1.7f;
                     item.shoot = ProjectileType<Blank>();
@@ -166,20 +166,22 @@ namespace TRAEProject.Changes.Weapon.Melee
                     FetidHeal = true;
                     item.useTurn = false;
                     item.shoot = ProjectileType<Blank>();
-                    item.damage = 60;
-                    item.useTime = 12;
-                    item.useAnimation = 12;
+                    item.damage = 48; // down from 60
+                    item.useTime = 8;
+                    item.useAnimation = 8;
                     break;
                 case ItemID.PsychoKnife:
                     FetidHeal = true;
                     item.shoot = ProjectileType<Blank>();
-                    item.useTime = 12;
-                    item.useAnimation = 12;
+                    item.damage = 70; // down from 85
+                    item.useTime = 8;
+                    item.useAnimation = 8;
                     break;
                 case ItemID.ChristmasTreeSword: // REVISIT
                     item.useTime = 31;
-                    item.damage = 76;
                     item.useAnimation = 31;
+                    item.damage = 76;
+                  
                     item.knockBack = 4f;
                     item.autoReuse = true;
                     break;
@@ -190,7 +192,8 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.scale = 1.95f; // up from 1.05
                     return;
                 case 3065: // star wrath
-                    item.scale = 1.85f; // up from 1.05
+                    item.damage = 110; // down from 110
+                    item.scale = 1.7f; // up from 1.05
                     return;
 
             }
@@ -209,7 +212,7 @@ namespace TRAEProject.Changes.Weapon.Melee
 
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            if (FetidHeal && player.GetModPlayer<OnHitItems>().BaghnakhHeal <= player.GetModPlayer<OnHitItems>().LastHitDamage)
+            if (FetidHeal && player.GetModPlayer<OnHitItems>().BaghnakhHeal <= (int)(player.GetModPlayer<OnHitItems>().LastHitDamage * 0.5))
             {
                 float healAmount = (float)(damage * 0.1f);
                 player.GetModPlayer<OnHitItems>().BaghnakhHeal += (int)healAmount;

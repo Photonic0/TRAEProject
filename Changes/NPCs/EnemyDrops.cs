@@ -1,12 +1,12 @@
 using Terraria;
-using TRAEProject.NewContent.Items.Summoner.AbsoluteZero;
+using TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System;
 using System.Linq;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.ItemDropRules;
-using TRAEProject.NewContent.Items.Weapons.Scorpio;
+using TRAEProject.NewContent.Items.Weapons.Jungla;
 using TRAEProject.NewContent.Items.Materials;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 using TRAEProject.NewContent.Items.Accesories.MechanicalEye;
@@ -144,6 +144,9 @@ namespace TRAEProject.Changes.NPCs
                         return drop.itemId == ItemID.Uzi; // compare more fields if needed
                     });                  
                     return;
+                case NPCID.CultistBoss:
+                    npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));
+                    return;
             }
         }
         public override bool PreKill(NPC npc)
@@ -152,6 +155,12 @@ namespace TRAEProject.Changes.NPCs
             NPCLoader.blockLoot.Add(ItemID.FastClock);
             switch (npc.type)
             {
+                case NPCID.CultistBoss:
+                    if (Main.expertMode)
+                    {
+                        NPCLoader.blockLoot.Add(ItemID.LunarCraftingStation);
+                    }
+                    return true;
                 case NPCID.SkeletronHead:
                     NPCLoader.blockLoot.Add(ItemID.BookofSkulls);
                     return true;
@@ -180,7 +189,7 @@ namespace TRAEProject.Changes.NPCs
                     }
                     if (Drop1 == 2)
                     {
-              Item.NewItem(npc.GetItemSource_Loot(), npc.getRect(), ItemType<Scorpio>(), 1);			
+              Item.NewItem(npc.GetItemSource_Loot(), npc.getRect(), ItemType<Jungla>(), 1);			
                         Item.NewItem(npc.GetItemSource_Loot(), npc.getRect(), ItemID.VenusMagnum, 1);
                     }
                     if (Drop1 == 3)
@@ -200,7 +209,7 @@ namespace TRAEProject.Changes.NPCs
                     NPCLoader.blockLoot.Add(ItemID.PygmyStaff);
                     return true;
                 case NPCID.MoonLordCore:
-                    int[] MLDrops = new int[] { ItemID.Meowmere, ItemID.StarWrath, ItemID.Terrarian, ItemID.SDMG, ItemID.Celeb2, ItemID.LunarFlareBook, ItemID.LastPrism, ItemID.RainbowWhip, ItemID.StardustDragonStaff };
+                    int[] MLDrops = new int[] { ItemID.Meowmere, ItemID.Terrarian, ItemID.SDMG, ItemID.Celeb2, ItemID.LunarFlareBook, ItemID.LastPrism, ItemID.RainbowWhip, ItemID.StardustDragonStaff };
                     if (!Main.expertMode && !Main.masterMode)
                     {
                         Item.NewItem(npc.GetItemSource_Loot(), npc.getRect(), Main.rand.Next(MLDrops), 1);

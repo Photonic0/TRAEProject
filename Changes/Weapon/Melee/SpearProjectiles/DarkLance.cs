@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Terraria.ID;
 using Terraria;
 using TRAEProject.Common;
 
@@ -17,6 +14,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             stabStart = 99f;
             stabEnd = -10;
             swingAmount = (float)Math.PI / 32;
+            
         }
         public override void SpearActive()
         {
@@ -40,6 +38,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             floatTime = -1;
             stickingDps = 5;
             maxSticks = 4;
+            DustOnDeath = DustID.Demonite;
         }
 
         public override void SpearActive()

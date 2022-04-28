@@ -40,7 +40,9 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             spearLength = 164f;
             holdAt = 92f;
             floatTime = 24;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = -1; DustOnDeath = DustID.NorthPole; DustOnDeathCount = 40;
+
+
         }
         float counter = 0;
         public override void ThrownUpdate()

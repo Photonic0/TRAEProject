@@ -293,6 +293,11 @@ namespace TRAEProject.Common
                 texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee/SpearProjectiles/GhastlyGlaiveGlow").Value;
                 Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
             }
+            if (Projectile.type == ProjectileType<Daybreak>())
+            {
+                texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee/SpearProjectiles/DaybreakGlow").Value;
+                Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            }
             if (debug)
             {
                 //spearLength
@@ -513,7 +518,7 @@ namespace TRAEProject.Common
             {
                 floatTime = (int)(floatTime * chargeAmt);
             }
-            Projectile.velocity = PolarVector(player.HeldItem.shootSpeed * player.GetModPlayer<MeleeStats>().meleeVelocity * (1 / player.meleeSpeed) * (chargeAmt == 1 ? 1 : 0.6f), dir);
+            Projectile.velocity = PolarVector(player.HeldItem.shootSpeed * player.GetModPlayer<MeleeStats>().meleeVelocity * (1 / player.GetAttackSpeed(DamageClass.Melee)) * (chargeAmt == 1 ? 1 : 0.6f), dir);
             SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
             player.itemAnimationMax += chargeTime;
             player.itemAnimation = player.itemAnimationMax - 1;
@@ -651,6 +656,11 @@ namespace TRAEProject.Common
                 texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee/SpearProjectiles/GhastlyGlaiveGlow").Value;
                 Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + (shake ? new Vector2(-2 + Main.rand.Next(5), -2 + Main.rand.Next(5)) : Vector2.Zero), null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
             }
+            if (Projectile.type == ProjectileType<DaybreakThrow>())
+            {
+                texture = Request<Texture2D>("TRAEProject/Changes/Weapon/Melee/SpearProjectiles/DaybreakGlow").Value;
+                Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + (shake ? new Vector2(-2 + Main.rand.Next(5), -2 + Main.rand.Next(5)) : Vector2.Zero), null, Color.White, Projectile.rotation, effects == SpriteEffects.None ? Vector2.Zero : Vector2.UnitY * texture.Width, Projectile.scale, effects, 0);
+            }
             return false;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -670,6 +680,8 @@ namespace TRAEProject.Common
         {
             return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
         }
+        public int DustOnDeath = 81;
+        public int DustOnDeathCount = 20;
         public override void Kill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, (int)Projectile.position.X, (int)Projectile.position.Y); // Play a death sound
@@ -677,19 +689,19 @@ namespace TRAEProject.Common
 
             // Please note the usage of MathHelper, please use this!
             // We subtract 90 degrees as radians to the rotation vector to offset the sprite as its default rotation in the sprite isn't aligned properly.
-            Vector2 rotVector = (Projectile.rotation - MathHelper.ToRadians(90f)).ToRotationVector2(); // rotation vector to use for dust velocity
+            Vector2 rotVector = (Projectile.rotation + MathHelper.ToRadians(135) * Projectile.direction).ToRotationVector2(); // rotation vector to use for dust velocity
             usePos += rotVector * 16f;
 
             // Declaring a constant in-line is fine as it will be optimized by the compiler
             // It is however recommended to define it outside method scope if used elswhere as well
             // They are useful to make numbers that don't change more descriptive
-            const int NUM_DUSTS = 20;
+           
 
             // Spawn some dusts upon javelin death
-            for (int i = 0; i < NUM_DUSTS; i++)
+            for (int i = 0; i < DustOnDeathCount; i++)
             {
                 // Create a new dust
-                Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, 81);
+                Dust dust = Dust.NewDustDirect(usePos, Projectile.width, Projectile.height, DustOnDeath);
                 dust.position = (dust.position + Projectile.Center) / 2f;
                 dust.velocity += rotVector * 2f;
                 dust.velocity *= 0.5f;

@@ -106,6 +106,8 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             maxSticks = 1;
             stickingDps = 0;
             floatTime = 10;
+            DustOnDeath = DustID.Mythril;
+            DustOnDeathCount = 35;
         }
     }
 }

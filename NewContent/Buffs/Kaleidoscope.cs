@@ -27,6 +27,11 @@ namespace TRAEProject.NewContent.Buffs
 		}
 		public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
 		{
+			if (projectile.type == ProjectileID.RainbowWhip)
+			{
+				target.AddBuff(BuffType<KaleidoscopeSecondTag>(), 240);
+                
+			}
 			if (target.HasBuff(BuffType<KaleidoscopeSecondTag>()) && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && projectile.type != ProjectileID.StardustGuardian)
 			{
 				int buffIndex = target.FindBuffIndex(BuffType<KaleidoscopeSecondTag>());

@@ -17,7 +17,7 @@ namespace TRAEProject.NewContent.Items.Accesories.PalladiumShield
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Palladium Shield");
-            Tooltip.SetDefault("Increases max life by 60");
+            Tooltip.SetDefault("Increases max life by 40");
         }
         public override void SetDefaults()
         {
@@ -28,7 +28,7 @@ namespace TRAEProject.NewContent.Items.Accesories.PalladiumShield
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 += 60;
+            player.statLifeMax2 += 40;
         }
 
     }

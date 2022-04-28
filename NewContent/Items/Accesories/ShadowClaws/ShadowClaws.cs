@@ -17,7 +17,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowClaws
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
             DisplayName.SetDefault("Shadow Claws");
-            Tooltip.SetDefault("Increases melee speed by 12% and allows all melee weapons and whips to autoswing\nMinion damage is stored as Shadowflame energy, up to 2250\nWhip strikes spawn a friendly Shadowflame Apparition for every 600 damage stored");
+            Tooltip.SetDefault("Increases melee speed by 12% and allows all melee weapons and whips to autoswing\nMinion damage is stored as Shadowflame energy, up to 3000\nWhip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored");
         }
         public override void SetDefaults()
         {
@@ -27,7 +27,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowClaws
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.meleeSpeed += 0.12f;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.12f;
             player.autoReuseGlove = true;
             player.GetModPlayer<MeleeStats>().TRAEAutoswing = true;
             player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharm += 1;

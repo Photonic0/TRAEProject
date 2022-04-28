@@ -48,6 +48,8 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             spearLength = 113f;
             holdAt = 60f;//25.4f;
             floatTime = -1;
+            DustOnDeath = DustID.ScourgeOfTheCorruptor;
+
         }
         public override void ThrownUpdate()
         {

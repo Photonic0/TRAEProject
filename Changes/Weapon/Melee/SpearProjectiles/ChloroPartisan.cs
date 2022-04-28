@@ -25,7 +25,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
         public override void OnMaxReach(float direction)
         {
             Player player = Main.player[Projectile.owner];
-            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, TRAEMethods.PolarVector(5 * player.GetModPlayer<MeleeStats>().meleeVelocity * (1 / player.meleeSpeed), direction), ProjectileID.SporeCloud, Projectile.damage, Projectile.knockBack, Projectile.owner);
+            Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, TRAEMethods.PolarVector(5 * player.GetModPlayer<MeleeStats>().meleeVelocity * (1 / player.GetAttackSpeed(DamageClass.Melee)), direction), ProjectileID.SporeCloud, Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
     }
     public class ChloroPartisanThrow : SpearThrow
@@ -37,6 +37,9 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             maxSticks = 1;
             stickingDps = 0;
             floatTime = 10;
+            DustOnDeath = DustID.ChlorophyteWeapon; DustOnDeathCount = 40;
+
+
         }
         public override void ThrownUpdate()
         {

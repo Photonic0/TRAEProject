@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using TRAEProject.NewContent.Items.Summoner.AbsoluteZero;
-using TRAEProject.NewContent.Buffs;
+using TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero;
+using TRAEProject.NewContent.Items.Weapons.Summoner.Starflow;
 using Terraria;
 using Terraria.Audio;
 using Terraria.Enums;
@@ -15,7 +15,7 @@ using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Armor;
 using TRAEProject.Common;
 
-namespace TRAEProject.NewContent.Items.Summoner.Whip
+namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 {
     public abstract class WhipProjectile : ModProjectile
     {
@@ -58,56 +58,56 @@ namespace TRAEProject.NewContent.Items.Summoner.Whip
 			{
 				target.AddBuff(tag, 240);
 			}
-			       if (player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge > 600)
-                   {
-                    for (int i = 0; i < player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge / 500; ++i)
-                    {
-                        int direction = Main.rand.NextFromList(-1, 1);
-                        float k = Main.screenPosition.X;
-                        if (direction < 0)
-                        {
-                            k += (float)Main.screenWidth;
-                        }
-                        float y2 = Main.screenPosition.Y;
-                        y2 += (float)Main.rand.Next(Main.screenHeight);
-                        Vector2 vector = new Vector2(k, y2);
-                        float num2 = target.Center.X - vector.X;
-                        float num3 = target.Center.Y - vector.Y;
-                        num2 += (float)Main.rand.Next(-50, 51) * 0.1f;
-                        num3 += (float)Main.rand.Next(-50, 51) * 0.1f;
-                        float num4 = (float)Math.Sqrt(num2 * num2 + num3 * num3);
-                        num4 = 24f / num4;
-                        num2 *= num4;
-                        num3 *= num4;
-                        Projectile.NewProjectile(player.GetProjectileSource_SetBonus(5), k, y2, num2, num3, ProjectileType<ShadowflameApparition>(), 50, 0f, player.whoAmI);
-                        player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge -= 600;
-                    }
-                }
-                if (player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge > 600)
-                {
-                    for (int i = 0; i < player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge / 500; ++i)
-                    {
-                        int direction = Main.rand.NextFromList(-1, 1);
-                        float k = Main.screenPosition.X;
-                        if (direction < 0)
-                        {
-                            k += (float)Main.screenWidth;
-                        }
-                        float y2 = Main.screenPosition.Y;
-                        y2 += (float)Main.rand.Next(Main.screenHeight);
-                        Vector2 vector = new Vector2(k, y2);
-                        float num2 = target.Center.X - vector.X;
-                        float num3 = target.Center.Y - vector.Y;
-                        num2 += (float)Main.rand.Next(-50, 51) * 0.1f;
-                        num3 += (float)Main.rand.Next(-50, 51) * 0.1f;
-                        float num4 = (float)Math.Sqrt(num2 * num2 + num3 * num3);
-                        num4 = 24f / num4;
-                        num2 *= num4;
-                        num3 *= num4;
-                        Projectile.NewProjectile(player.GetProjectileSource_SetBonus(5), k, y2, num2, num3, ProjectileType<MoltenApparition>(), 50, 0f, player.whoAmI);
-                        player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge -= 600;
-                    }
-                }    
+			if (player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge > 600)
+			{
+				for (int i = 0; i < player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge / 500; ++i)
+				{
+					int direction = Main.rand.NextFromList(-1, 1);
+					float k = Main.screenPosition.X;
+					if (direction < 0)
+					{
+						k += (float)Main.screenWidth;
+					}
+					float y2 = Main.screenPosition.Y;
+					y2 += (float)Main.rand.Next(Main.screenHeight);
+					Vector2 vector = new Vector2(k, y2);
+					float num2 = target.Center.X - vector.X;
+					float num3 = target.Center.Y - vector.Y;
+					num2 += (float)Main.rand.Next(-50, 51) * 0.1f;
+					num3 += (float)Main.rand.Next(-50, 51) * 0.1f;
+					float num4 = (float)Math.Sqrt(num2 * num2 + num3 * num3);
+					num4 = 24f / num4;
+					num2 *= num4;
+					num3 *= num4;
+					Projectile.NewProjectile(player.GetProjectileSource_SetBonus(5), k, y2, num2, num3, ProjectileType<ShadowflameApparition>(), 50, 0f, player.whoAmI);
+					player.GetModPlayer<ShadowflameCharmPlayer>().ShadowflameCharmCharge -= 600;
+				}
+			}
+			if (player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge > 600)
+			{
+				for (int i = 0; i < player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge / 500; ++i)
+				{
+					int direction = Main.rand.NextFromList(-1, 1);
+					float k = Main.screenPosition.X;
+					if (direction < 0)
+					{
+						k += (float)Main.screenWidth;
+					}
+					float y2 = Main.screenPosition.Y;
+					y2 += (float)Main.rand.Next(Main.screenHeight);
+					Vector2 vector = new Vector2(k, y2);
+					float num2 = target.Center.X - vector.X;
+					float num3 = target.Center.Y - vector.Y;
+					num2 += (float)Main.rand.Next(-50, 51) * 0.1f;
+					num3 += (float)Main.rand.Next(-50, 51) * 0.1f;
+					float num4 = (float)Math.Sqrt(num2 * num2 + num3 * num3);
+					num4 = 24f / num4;
+					num2 *= num4;
+					num3 *= num4;
+					Projectile.NewProjectile(player.GetProjectileSource_SetBonus(5), k, y2, num2, num3, ProjectileType<MoltenApparition>(), 50, 0f, player.whoAmI);
+					player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharmCharge -= 600;
+				}
+			}
 			Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 			ProjectileID.Sets.IsAWhip[Type] = false;
 
@@ -177,7 +177,39 @@ namespace TRAEProject.NewContent.Items.Summoner.Whip
 					}
 				}
 				Lighting.AddLight(r5.Center.ToVector2(), new Vector3(0.1f, 0.1f, 0.2f));
-				return; 
+				return;
+			}
+			if (Projectile.type == ProjectileType<StarflowP>())
+			{
+				float t4 = Projectile.ai[0] / timeToFlyOut;
+				float num7 = Utils.GetLerpValue(0.1f, 0.7f, t4, clamped: true) * Utils.GetLerpValue(0.9f, 0.7f, t4, clamped: true);
+				if (!(num7 > 0.1f) || !(Main.rand.NextFloat() < num7 / 2f))
+				{
+					return;
+				}
+				Projectile.WhipPointsForCollision.Clear();
+				FillWhipControlPoints(Projectile, Projectile.WhipPointsForCollision);
+				Rectangle r5 = Utils.CenteredRectangle(Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 1], new Vector2(30f, 30f));
+				Vector2 value2 = Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 2].DirectionTo(Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 1]).SafeNormalize(Vector2.Zero);
+				for (int j = 0; j < 4; j++)
+				{
+					Dust dust5 = Dust.NewDustDirect(r5.TopLeft(), r5.Width, r5.Height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1.5f);
+					dust5.noGravity = true;
+					dust5.velocity += value2 * 2f;
+				}
+				for (int l = 0; l < 4; l++)
+				{
+					if (Main.rand.Next(2) != 0)
+					{
+						Dust dust6 = Dust.NewDustDirect(r5.TopLeft(), r5.Width, r5.Height, DustID.YellowStarDust, 0f, 0f, 0, Color.Transparent, 0.9f);
+						dust6.velocity += value2 * 2f;
+						dust6.velocity *= 0.3f;
+						dust6.noGravity = true;
+					}
+				}
+				Lighting.AddLight(r5.Center.ToVector2(), new Vector3(0.1f, 0.1f, 0.2f));
+
+				return;
 			}
 		}
 		
