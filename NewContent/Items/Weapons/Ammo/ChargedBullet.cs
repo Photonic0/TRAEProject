@@ -93,7 +93,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                         shootToX *= distance2 * 10f;
                         shootToY *= distance2 * 10f;
                         Vector2 perturbedSpeed = new Vector2(shootToX, shootToY).RotatedByRandom(MathHelper.ToRadians(0));
-                        Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<ChargedBulletBolt>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<ChargedBulletBolt>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
                         
                         break;
                     }

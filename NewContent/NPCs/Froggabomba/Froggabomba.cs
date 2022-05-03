@@ -67,7 +67,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
                 {
                     damagestored -= 30;
                     NPC.life -= 30;
-                NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
                 for (int i = 0; i < smallBoomxiesToSpawn; i++)
                 {
                     damagestored -= 30;
-                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
                 }
             }
         }
@@ -102,7 +102,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
         public override void OnKill()
         {
             Vector2 zero = new Vector2(0, 0);
-            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
         }
     }
     public class FroggabombaClone : ModNPC
@@ -174,7 +174,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
         public override void OnKill()
         {
             Vector2 zero = new Vector2(0, 0);
-            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
         }
     }
 

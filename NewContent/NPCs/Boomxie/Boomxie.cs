@@ -50,7 +50,7 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
                 spamTimer++;
                 if (spamTimer >= 75)
                 {
-                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
                     spamTimer = 0;
                 }
             }
@@ -93,7 +93,7 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
         public override void OnKill()
         {
             Vector2 zero = new Vector2(0, 0);
-            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center, zero, ProjectileType<Boom>(), 30, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), 30, 0);
         }
     }
     public class LittleBoomxie : ModNPC
@@ -130,11 +130,11 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             Vector2 zero = new Vector2(0, 0);
             if (!Main.expertMode && !Main.masterMode)
             {
-                Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center, zero, ProjectileType<Boom>(), 30, 0);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), 30, 0);
             }
             else
             {
-                NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCID.BurningSphere);
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCID.BurningSphere);
             }
         }
     }

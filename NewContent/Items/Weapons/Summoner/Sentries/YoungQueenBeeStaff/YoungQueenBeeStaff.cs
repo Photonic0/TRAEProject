@@ -179,10 +179,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.YoungQueenBeeSt
                                 {
                                     Projectile.spriteDirection = -1;
                                 }
-                                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), type, Projectile.damage, Projectile.knockBack, Projectile.owner);
+                                Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), type, Projectile.damage, Projectile.knockBack, Projectile.owner);
                                 if (Main.rand.Next(4) == 0)
                                 {
-                                    Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), ProjectileID.GiantBee, Projectile.damage, Projectile.knockBack, Projectile.owner);
+                                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), ProjectileID.GiantBee, Projectile.damage, Projectile.knockBack, Projectile.owner);
 
                                 }
 
@@ -220,7 +220,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.YoungQueenBeeSt
 
         public override void Kill(int timeLeft)
         {
-            int num528 = Gore.NewGore(Projectile.position, new Vector2(0f, 0f), Main.rand.Next(61, 64), 1f);
+            int num528 = Gore.NewGore(Projectile.GetSource_FromThis(), Projectile.position, new Vector2(0f, 0f), Main.rand.Next(61, 64), 1f);
             Gore gore = Main.gore[num528];
             gore.velocity *= 0.1f;
         }

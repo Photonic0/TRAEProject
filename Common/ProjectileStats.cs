@@ -441,7 +441,7 @@ namespace TRAEProject.Common
                
                 case ProjectileID.DirtBall:
                     {
-                        Item.NewItem(projectile.GetItemSource_DropAsItem(), projectile.getRect(), ItemID.DirtBlock, 1);
+                        Item.NewItem(projectile.GetSource_DropAsItem(), projectile.getRect(), ItemID.DirtBlock, 1);
                         return false;
                     }
              
@@ -469,7 +469,7 @@ namespace TRAEProject.Common
                         int stormChance = Main.rand.Next(0, 2);
                         if (stormChance == 0 && Main.expertMode)
                         {
-                            NPC.NewNPC(projectile.GetNPCSource_FromThis(), (int)projectile.position.X, (int)projectile.position.Y, NPCID.VortexRifleman);
+                            NPC.NewNPC(projectile.GetSource_FromThis(), (int)projectile.position.X, (int)projectile.position.Y, NPCID.VortexRifleman);
                         }
                     }
                     return;             

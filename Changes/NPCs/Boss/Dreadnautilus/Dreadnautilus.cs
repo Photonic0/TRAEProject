@@ -143,26 +143,26 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 					//Gore.NewGore(npc.position, npc.velocity, num67, npc.scale);
 					//Gore.NewGore(new Vector2(npc.Right.X - 30f, npc.position.Y), npc.velocity, num67 + 1, npc.scale);
 					//Gore.NewGore(npc.position, npc.velocity, num67 + 1, npc.scale);
-					Gore.NewGore(npc.position, npc.velocity, num67 + 2, npc.scale);
+					Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 2, npc.scale);
 					//Gore.NewGore(npc.position, npc.velocity, num67 + 3, npc.scale);
-					Gore.NewGore(npc.position, npc.velocity, num67 + 4, npc.scale);
-					Gore.NewGore(npc.position, npc.velocity, num67 + 4, npc.scale);
-					Gore.NewGore(npc.position, npc.velocity, num67 + 5, npc.scale);
-					Gore.NewGore(npc.position, npc.velocity, num67 + 5, npc.scale);
-					Gore.NewGore(npc.position, npc.velocity, num67 + 6, npc.scale);
-					Gore.NewGore(npc.position, npc.velocity, num67 + 6, npc.scale);
+					Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 4, npc.scale);
+					Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 4, npc.scale);
+					Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 5, npc.scale);
+					Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 5, npc.scale);
+					Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 6, npc.scale);
+					Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 6, npc.scale);
 				}
 			}
 		}
 		void BreakShell(NPC npc)
         {
 			int num67 = 1172;
-			Gore.NewGore(new Vector2(npc.Right.X - 30f, npc.position.Y), npc.velocity, num67, npc.scale);
-			Gore.NewGore(npc.position, npc.velocity, num67, npc.scale);
-			Gore.NewGore(new Vector2(npc.Right.X - 30f, npc.position.Y), npc.velocity, num67 + 1, npc.scale);
-			Gore.NewGore(npc.position, npc.velocity, num67 + 1, npc.scale);
+			Gore.NewGore(npc.GetSource_FromThis(), new Vector2(npc.Right.X - 30f, npc.position.Y), npc.velocity, num67, npc.scale);
+			Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67, npc.scale);
+			Gore.NewGore(npc.GetSource_FromThis(), new Vector2(npc.Right.X - 30f, npc.position.Y), npc.velocity, num67 + 1, npc.scale);
+			Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 1, npc.scale);
 			//Gore.NewGore(npc.position, npc.velocity, num67 + 2, npc.scale);
-			Gore.NewGore(npc.position, npc.velocity, num67 + 3, npc.scale);
+			Gore.NewGore(npc.GetSource_FromThis(), npc.position, npc.velocity, num67 + 3, npc.scale);
 			//Gore.NewGore(npc.position, npc.velocity, num67 + 4, npc.scale);
 			//Gore.NewGore(npc.position, npc.velocity, num67 + 4, npc.scale);
 			//Gore.NewGore(npc.position, npc.velocity, num67 + 5, npc.scale);
@@ -566,7 +566,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 										for (int k = 0; k < projCount; k++)
 										{
 											Vector2 velocity = projVelocity.RotatedBy((float)Math.PI / 2 * ((float)k / (float)(projCount - 1)) - (float)Math.PI / 4f);
-											Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer);
+											Projectile.NewProjectile(npc.GetSource_FromAI(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer);
 										}
 									}
 								}
@@ -698,7 +698,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
                                     if (Main.netMode != 1)
                                     {
                                         int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(37.5f, 31.25f);
-                                        Projectile p = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), npc.Center, TRAEMethods.PolarVector(snipeVelocity, aim), ProjectileType<BloodSnipe>(), attackDamage_ForProjectiles, 0, 255, time)];
+                                        Projectile p = Main.projectile[Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, TRAEMethods.PolarVector(snipeVelocity, aim), ProjectileType<BloodSnipe>(), attackDamage_ForProjectiles, 0, 255, time)];
                                         p.ai[0] = time;
                                         p.netUpdate = true;
                                     }
@@ -810,7 +810,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 										int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(30f, 25f);
 
 										Vector2 velocity = projVelocity;
-										Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer, -180)];
+										Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetSource_FromAI(), mouthPosition3 - mouthDirection3 * 5f, velocity, 814, attackDamage_ForProjectiles, 0f, Main.myPlayer, -180)];
 										projectile.ai[0] = -180;
 										projectile.netUpdate = true;
 
@@ -877,7 +877,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(30f, 25f);
 								for (int i = 0; i < 8; i++)
 								{
-                                    Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), npc.Center, TRAEMethods.PolarVector(10, mouthDirection5.ToRotation() + ((float)i / 8f) * (float)Math.PI * 2f), ProjectileID.BloodShot, attackDamage_ForProjectiles, 0)];
+                                    Projectile projectile = Main.projectile[Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, TRAEMethods.PolarVector(10, mouthDirection5.ToRotation() + ((float)i / 8f) * (float)Math.PI * 2f), ProjectileID.BloodShot, attackDamage_ForProjectiles, 0)];
 									projectile.ai[0] = -180;
 									projectile.netUpdate = true;
 								}
@@ -970,7 +970,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 					}
 					if (flag2)
 					{
-						Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), num6 * 16 + 8, num7 * 16 + 8, 0f, 0f, 813, 0, 0f, Main.myPlayer);
+						Projectile.NewProjectile(npc.GetSource_FromAI(), num6 * 16 + 8, num7 * 16 + 8, 0f, 0f, 813, 0, 0f, Main.myPlayer);
 						flag = true;
 						break;
 					}

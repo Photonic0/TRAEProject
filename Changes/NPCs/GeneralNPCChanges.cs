@@ -156,7 +156,7 @@ namespace TRAEProject.Changes.NPCs
                     int spidres = Main.rand.Next(2, 4);
                     if (npc.ai[2] < spidres && Main.expertMode)
                     {
-                        int spider = NPC.NewNPC(npc.GetItemSource_Loot(), (int)npc.position.X, (int)npc.position.Y, NPCID.StardustSpiderSmall);
+                        int spider = NPC.NewNPC(npc.GetSource_FromThis(), (int)npc.position.X, (int)npc.position.Y, NPCID.StardustSpiderSmall);
                         Main.npc[spider].velocity = npc.velocity;
                         Main.npc[spider].ai[2] = spidres;
                         npc.ai[2] += 1f;
@@ -171,7 +171,7 @@ namespace TRAEProject.Changes.NPCs
                         {
                             for (int i = 0; i < Main.rand.Next(5, 7); i++)
                             {
-                                NPC.NewNPC(npc.GetItemSource_Loot(), (int)npc.position.X, (int)npc.position.Y, NPCID.NebulaHeadcrab);
+                                NPC.NewNPC(npc.GetSource_FromThis(), (int)npc.position.X, (int)npc.position.Y, NPCID.NebulaHeadcrab);
                                 for (int x = 0; x < Main.rand.Next(10, 15); x++)
                                 {
                                     Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, 243, 0f, 0f, 0, default, 1);

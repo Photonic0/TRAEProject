@@ -196,7 +196,7 @@ namespace TRAEProject.Changes.NPCs
                     int spidres = Main.rand.Next(2, 4);
                     if (npc.ai[2] < spidres && Main.expertMode)
                     {
-                        int spider = NPC.NewNPC(npc.GetItemSource_Loot(), (int)npc.position.X, (int)npc.position.Y, NPCID.StardustSpiderSmall);
+                        int spider = NPC.NewNPC(npc.GetSource_Loot(), (int)npc.position.X, (int)npc.position.Y, NPCID.StardustSpiderSmall);
                         Main.npc[spider].velocity = npc.velocity;
                         Main.npc[spider].ai[2] = spidres;
                         npc.ai[2] += 1f;

@@ -3,242 +3,19 @@ i:{00000000-0000-0000-0000-000000000000}:TRAE1.sln
 ++TRAEProject
 i:{00000000-0000-0000-0000-000000000000}:TRAEProject
 ++Dependencias
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:>6827
-++Analizadores
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:analizadores
-++Ensamblados
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:ensamblados
-++Basic.Reference.Assemblies.Net60
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\basic.reference.assemblies.net60\1.2.4\lib\netstandard2.0\basic.reference.assemblies.net60.dll
-++CsvHelper
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\csvhelper\2.0.0.0\csvhelper.dll
-++FNA
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\fna\1.0.0\fna.dll
-++Hjson
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\hjson\3.0.0\lib\netstandard1.3\hjson.dll
-++Ionic.Zip.Reduced
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\ionic.zip.reduced\1.9.1.8\ionic.zip.reduced.dll
-++log4net
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\log4net\2.0.8.0\log4net.dll
-++Microsoft.CodeAnalysis
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\microsoft.codeanalysis.common\4.0.0-6.final\lib\netcoreapp3.1\microsoft.codeanalysis.dll
-++Microsoft.CodeAnalysis.CSharp
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\microsoft.codeanalysis.csharp\4.0.0-6.final\lib\netcoreapp3.1\microsoft.codeanalysis.csharp.dll
-++Microsoft.Win32.SystemEvents
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\microsoft.win32.systemevents\6.0.0\lib\net6.0\microsoft.win32.systemevents.dll
-++Mono.Cecil
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mono.cecil\0.11.4\lib\netstandard2.0\mono.cecil.dll
-++Mono.Cecil.Mdb
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mono.cecil\0.11.4\lib\netstandard2.0\mono.cecil.mdb.dll
-++Mono.Cecil.Pdb
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mono.cecil\0.11.4\lib\netstandard2.0\mono.cecil.pdb.dll
-++Mono.Cecil.Rocks
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mono.cecil\0.11.4\lib\netstandard2.0\mono.cecil.rocks.dll
-++MonoMod.RuntimeDetour
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\monomod.runtimedetour\22.1.29.1\lib\net5.0\monomod.runtimedetour.dll
-++MonoMod.Utils
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\monomod.utils\22.1.29.1\lib\net5.0\monomod.utils.dll
-++MP3Sharp
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mp3sharp\1.0.0.0\mp3sharp.dll
-++Newtonsoft.Json
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\newtonsoft.json\12.0.0.0\newtonsoft.json.dll
-++NVorbis
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\nvorbis\0.10.0.3\nvorbis.dll
-++RailSDK.Net
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\railsdk.net\1.0.0.0\railsdk.net.dll
-++ReLogic
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\relogic\1.0.0\relogic.dll
-++SixLabors.ImageSharp
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\sixlabors.imagesharp\1.0.3\lib\netcoreapp3.1\sixlabors.imagesharp.dll
-++Steamworks.NET
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\steamworks.net\20.1.0.0\steamworks.net.dll
-++SteelSeriesEngineWrapper
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\steelseriesenginewrapper\1.0.0.0\steelseriesenginewrapper.dll
-++System.CodeDom
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.codedom\6.0.0\lib\net6.0\system.codedom.dll
-++System.Configuration.ConfigurationManager
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.configuration.configurationmanager\6.0.0\lib\net6.0\system.configuration.configurationmanager.dll
-++System.Diagnostics.PerformanceCounter
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.diagnostics.performancecounter\6.0.0\lib\net6.0\system.diagnostics.performancecounter.dll
-++System.Drawing.Common
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.drawing.common\6.0.0\lib\net6.0\system.drawing.common.dll
-++System.Security.Cryptography.ProtectedData
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.security.cryptography.protecteddata\6.0.0\lib\net6.0\system.security.cryptography.protecteddata.dll
-++System.Security.Permissions
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.security.permissions\6.0.0\lib\net6.0\system.security.permissions.dll
-++System.Windows.Extensions
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.windows.extensions\6.0.0\lib\net6.0\system.windows.extensions.dll
-++TerrariaHooks
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\terrariahooks\0.0.0.0\terrariahooks.dll
-++tModLoader
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\tmodloader.dll
-++Marcos de trabajo
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:marcos de trabajo
-++Paquetes
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:paquetes
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:>7415
 ++Properties
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\properties\
 ++Changes
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\
 ++Accesory
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\
-++Armor
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\
-++ArmorChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\armorchanges.cs
-++ArmorDefenseChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\armordefensechanges.cs
-++CobaltArmor.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\cobaltarmor.cs
-++FrostArmor.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\frostarmor.cs
-++HairHeadpiece.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\hairheadpiece.cs
-++SetBonuses.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\setbonuses.cs
-++Shadowarmor.txt
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\shadowarmor.txt
-++Items
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\
-++Mounts
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\mounts\
-++NPCs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\
-++Prefixes
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\
-++Recipes
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\
-++Resprites
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\
-++Weapon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\
-++ArmorPenetrationFix.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armorpenetrationfix.cs
-++BladeImmuneFix.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\bladeimmunefix.cs
-++ChestLoot.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\chestloot.cs
-++Defense.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\defense.cs
-++FIshingCatch.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\fishingcatch.cs
-++lkds3ahp.zx0~
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\lkds3ahp.zx0~
-++Mana.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\mana.cs
-++NPCBuffChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcbuffchanges.cs
-++NPCShops.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcshops.cs
-++OMana.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\omana.png
-++OManaFancy.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\omanafancy.png
-++OMPFill.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\ompfill.png
-++PlayerBuffChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\playerbuffchanges.cs
-++Progression.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\progression.cs
-++RarityChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\raritychanges.cs
-++TRAEGlobalItem.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\traeglobalitem.cs
-++Common
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\
-++NewContent
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\
-++Buffs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\
-++Celled.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\celled.cs
-++Celled.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\celled.png
-++Impaled.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\impaled.cs
-++Impaled.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\impaled.png
-++Kaleidoscope.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\kaleidoscope.cs
-++KaleidoscopeSecondTag.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\kaleidoscopesecondtag.png
-++LavaShield.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\lavashield.cs
-++LavaShield.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\lavashield.png
-++MagicBoost.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\magicboost.cs
-++MagicBoost.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\magicboost.png
-++NanoHealing.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\nanohealing.cs
-++NanoHealing.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\nanohealing.png
-++NeoFeralBite.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\neoferalbite.cs
-++NeoFeralBite.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\neoferalbite.png
-++SandRush.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\sandrush.cs
-++SandRush.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\sandrush.png
-++SBandAidFix.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\sbandaidfix.cs
-++SBandAidFix.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\sbandaidfix.png
-++ShackledDefenses.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\shackleddefenses.cs
-++ShackledDefenses.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\shackleddefenses.png
-++StrongerPoisoned.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\strongerpoisoned.cs
-++StrongerPoisoned.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\strongerpoisoned.png
-++WaterAffinity.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\wateraffinity.cs
-++WaterAffinity.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\wateraffinity.png
-++Projectiles
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\
-++TRAEDebuffs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\
-++.gitattributes
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\.gitattributes
-++build.txt
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\build.txt
-++DebugCross.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\debugcross.png
-++description.txt
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\description.txt
-++icon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\icon.png
-++TRAEMethods.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\traemethods.cs
-++TRAEProject.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\traeproject.cs
-++Wingstats.txt
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\wingstats.txt
-++workshop.json
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\workshop.json
-++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
-++Microsoft.CodeAnalysis.NetAnalyzers
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
-++System.Text.Json.SourceGeneration
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
-++tModLoader.CodeAssist
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\.nuget\packages\tmodloader.codeassist\0.1.3\analyzers\dotnet\cs\tmodloader.codeassist.dll
-++Microsoft.NETCore.App
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\microsoft.netcore.app
-++tModLoader.CodeAssist (0.1.3)
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:>6904
-++launchSettings.json
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\properties\launchsettings.json
 ++Vitamins
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\vitamins\
+++BuffArms.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\vitamins\buffarms.png
+++Vitamins.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\vitamins\vitamins.cs
 ++AccesoryEffects.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\accesoryeffects.cs
 ++AlphaScope.cs
@@ -264,239 +41,33 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\volatilegelatin.cs
 ++Wings.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\wings.cs
-++ArmorPolish.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\armorpolish.cs
-++Bags.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\bags.cs
-++Megaphone.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\megaphone.cs
-++ThePlan.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\theplan.cs
-++TrifoldMap.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\trifoldmap.cs
-++WingedSlime.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\mounts\wingedslime.cs
+++Armor
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\
+++ArmorChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\armorchanges.cs
+++ArmorDefenseChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\armordefensechanges.cs
+++CobaltArmor.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\cobaltarmor.cs
+++FrostArmor.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\frostarmor.cs
+++HairHeadpiece.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\hairheadpiece.cs
+++SetBonuses.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\setbonuses.cs
+++Shadowarmor.txt
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armor\shadowarmor.txt
+++Items
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\
+++Mounts
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\mounts\
+++NPCs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\
 ++Boss
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\
-++DEERCLOPS.txt
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\deerclops.txt
-++EnemyDrops.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\enemydrops.cs
-++GeneralNPCChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\generalnpcchanges.cs
-++HellEnemies.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\hellenemies.cs
-++IceGolem.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\icegolem.cs
-++Pillars.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\pillars.cs
-++SpawnRate.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\spawnrate.cs
-++AccessoryPrefixChange.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\accessoryprefixchange.cs
-++BoomerangFlailPrefixes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\boomerangflailprefixes.cs
-++GiveWeaponsPrefixes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\giveweaponsprefixes.cs
-++ModifyVanillaPrefixes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\modifyvanillaprefixes.cs
-++YoyoPrefixes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\yoyoprefixes.cs
-++AccesoryRecipes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\accesoryrecipes.cs
-++ArmorRecipes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\armorrecipes.cs
-++MiscRecipes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\miscrecipes.cs
-++WeaponRecipes.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\weaponrecipes.cs
-++DarkLance.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\darklance.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\darklance.png
-++LunarDragonBody.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonbody.png
-++LunarDragonBuff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonbuff.png
-++LunarDragonHead.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonhead.png
-++LunarDragonSpike.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonspike.png
-++LunarDragonStaff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonstaff.png
-++LunarDragonTail.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragontail.png
-++Resprites.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\resprites.cs
-++StardustPortal.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\stardustportal.png
-++StardustPortalBeam.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\stardustportalbeam.png
-++StardustPortalStaff.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\stardustportalstaff.png
-++StarWrath.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\starwrath.png
-++StarWrathProjectile.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\starwrathprojectile.png
-++Magic
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\magic\
-++Melee
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\
-++Ranged
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\
-++Summon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\
-++ClasslessProjectileChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\classlessprojectilechanges.cs
-++FreezingProjectile.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\freezingprojectile.cs
-++StunningProjectile.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\stunningprojectile.cs
-++AIs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\ais\
-++ModPlayers
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\modplayers\
-++Freeze.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\freeze.cs
-++IceBlock.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\iceblock.png
-++ProjectileStats.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\projectilestats.cs
-++Spear.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\spear.cs
-++Stun.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\stun.cs
-++Stun.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\stun.png
-++TRAEDebuff.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\traedebuff.cs
-++Accesories
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\
-++DreadItems
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\
-++FlamethrowerAmmo
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\
-++Materials
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\
-++Misc
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\
-++Weapons
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\
-++Banners
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\
-++BomberBones
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones\
-++Boomxie
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\
-++Froggabomba
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\froggabomba\
-++GraniteOvergrowth
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\
-++BomberBones (1).png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones (1).png
-++KamikazePixie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\kamikazepixie.png
-++BigBubble.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\bigbubble.cs
-++BigBubble.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\bigbubble.png
-++Blank.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\blank.cs
-++Blank.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\blank.png
-++Blizzard.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\blizzard.cs
-++Blizzard.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\blizzard.png
-++BuzzyStar.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\buzzystar.cs
-++BuzzyStar.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\buzzystar.png
-++BuzzyStar_Glow.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\buzzystar_glow.png
-++CosmicStingy.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\cosmicstingy.cs
-++CosmicStingy.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\cosmicstingy.png
-++CosmicStingy_Glow.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\cosmicstingy_glow.png
-++Harpoon.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\harpoon.cs
-++Harpoon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\harpoon.png
-++Lightning Bolt.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lightning bolt.cs
-++LightningBolt.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lightningbolt.png
-++LightsLong.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lightslong.cs
-++LightsLong.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lightslong.png
-++LilRocket.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lilrocket.cs
-++LilRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lilrocket.png
-++NightsBeam.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\nightsbeam.cs
-++NightsBeam.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\nightsbeam.png
-++NightsBeam_Glow.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\nightsbeam_glow.png
-++PhantomTentacle.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\phantomtentacle.cs
-++PhantomTentacle.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\phantomtentacle.png
-++SolarExplosion.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\solarexplosion.cs
-++SolarExplosion.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\solarexplosion.png
-++Star1.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\star1.cs
-++Star1.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\star1.png
-++Starrow.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\starrow.cs
-++Starrow.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\starrow.png
-++ThrownLucy.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\thrownlucy.cs
-++ThrownLucy.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\thrownlucy.png
-++ToxicCloud.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\toxiccloud.cs
-++ToxicCloud.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\toxiccloud.png
-++ToxicDrop.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\toxicdrop.cs
-++ToxicDrop.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\toxicdrop.png
-++BindingFlames.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\bindingflames.cs
-++BoilingBlood.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\boilingblood.cs
-++ChargedArrowStacks.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\chargedarrowstacks.cs
-++CoolWhipTag.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\coolwhiptag.cs
-++Corrupted.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\corrupted.cs
-++Decay.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\decay.cs
-++GhostBulletStacks.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\ghostbulletstacks.cs
-++HeavyBurn.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\heavyburn.cs
-++OmegaBurn.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\omegaburn.cs
-++PirateTag.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\piratetag.cs
-++ShroomBonus.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\shroombonus.cs
-++Toxins.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\toxins.cs
-++BuffArms.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\vitamins\buffarms.png
-++Vitamins.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\accesory\vitamins\vitamins.cs
 ++Dreadnautilus
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\
 ++LunaticCultist
@@ -517,311 +88,42 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\traequeenbee.cs
 ++TRAESkeletron.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\traeskeletron.cs
-++MagicProjectiles.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\magic\magicprojectiles.cs
-++TRAEMagicItems.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\magic\traemagicitems.cs
+++DEERCLOPS.txt
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\deerclops.txt
+++EnemyDrops.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\enemydrops.cs
+++GeneralNPCChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\generalnpcchanges.cs
+++HellEnemies.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\hellenemies.cs
+++IceGolem.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\icegolem.cs
+++Pillars.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\pillars.cs
+++SpawnRate.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\spawnrate.cs
+++Prefixes
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\
+++Recipes
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\
+++AccesoryRecipes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\accesoryrecipes.cs
+++ArmorRecipes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\armorrecipes.cs
+++MiscRecipes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\miscrecipes.cs
+++WeaponRecipes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\recipes\weaponrecipes.cs
+++Resprites
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\
+++Weapon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\
+++Magic
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\magic\
+++Melee
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\
 ++SpearProjectiles
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\
-++Flairon.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\flairon.cs
-++HardmodeSwords.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\hardmodeswords.cs
-++MeleeProjectiles.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\meleeprojectiles.cs
-++MiscMelee.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\miscmelee.cs
-++PreHardmodeSwords.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\prehardmodeswords.cs
-++SpearItems.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearitems.cs
-++Rockets
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\
-++DolphinGun.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\dolphingun.cs
-++DolphinOutline.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\dolphinoutline.png
-++GeneralChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\generalchanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\generalchanges.cs
-++RangedProjectiles.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rangedprojectiles.cs
-++Repeaters.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\repeaters.cs
-++TitaniumShrapnel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\titaniumshrapnel.png
-++Minions
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\
-++Sentries.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\sentries.cs
-++Whips.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\whips.cs
-++HeavyFlail.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\ais\heavyflail.cs
-++MeleeStats.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\modplayers\meleestats.cs
-++RangedStats.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\modplayers\rangedstats.cs
-++SummonStats.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\modplayers\summonstats.cs
-++AlligatorBalloon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\alligatorballoon\
-++AngelicStone
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\angelicstone\
-++BalanceCuffs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\balancecuffs\
-++BigBundle
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\bigbundle\
-++ChainShield
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\chainshield\
-++CounterweightString
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\counterweightstring\
-++EvilEye
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\evileye\
-++LifeCuffs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\lifecuffs\
-++MagicalCarpet
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\magicalcarpet\
-++MasochistChains
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\masochistchains\
-++MechanicalEye
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\mechanicaleye\
-++MirrorShield
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\mirrorshield\
-++Moonwalkers
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\moonwalkers\
-++PalladiumShield
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\palladiumshield\
-++PutridToothNecklace
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\putridtoothnecklace\
-++RuneCobra
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\runecobra\
-++SandstormBoots
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\sandstormboots\
-++ShadowClaws
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\shadowclaws\
-++ShadowflameCharm
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\shadowflamecharm\
-++ShamanNecklace
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\shamannecklace\
-++SkeletonBeetle
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\skeletonbeetle\
-++SoaringCarpet
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\soaringcarpet\
-++SpaceBalloon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\spaceballoon\
-++TheBlackCross
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\theblackcross\
-++TwoFlowers
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\twoflowers\
-++WeirdBundle
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\weirdbundle\
-++ChlorophyteHood
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\chlorophytehood\
-++IceArmor
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\
-++BloodBoiler
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodboiler\
-++BloodSquidEgg
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodsquidegg\
-++BloodWings
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodwings\
-++BossBag
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bossbag\
-++BottomlessChumBucket
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bottomlesschumbucket\
-++Brimstone
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\brimstone\
-++DreadMask
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\dreadmask\
-++DreadRelic
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\dreadrelic\
-++DreadSummon
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\dreadsummon\
-++DreadTrophy
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\dreadtrophy\
-++RedPearl
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\redpearl\
-++ShellSpinner
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\shellspinner\
-++BlessedGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\blessedgel.cs
-++BlessedGel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\blessedgel.png
-++BloodBoiling.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\bloodboiling.png
-++BloodyGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\bloodygel.cs
-++BloodyGel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\bloodygel.png
-++CrystalGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\crystalgel.cs
-++CrystalGel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\crystalgel.png
-++CursedGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\cursedgel.cs
-++CursedGel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\cursedgel.png
-++FrozenGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\frozengel.cs
-++FrozenGel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\frozengel.png
-++IchorGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\ichorgel.cs
-++IchorGel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\ichorgel.png
-++LavaGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\lavagel.cs
-++LavaGel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\lavagel.png
-++PinkGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\pinkgel.cs
-++SolarGel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\solargel.cs
-++SolarGel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\solargel.png
-++GraniteBattery.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\granitebattery.cs
-++GraniteBattery.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\granitebattery.png
-++IceQueenJewel.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\icequeenjewel.cs
-++IceQueenJewel.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\icequeenjewel.png
-++LuminiteFeather.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\luminitefeather.cs
-++LuminiteFeather.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\luminitefeather.png
-++Potions
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\
-++Ammo
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\ammo\
-++BAM
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\
-++GraniteBook
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\granitebook\
-++Jungla
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\jungla\
-++Launchers
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\launchers\
-++NebulaMaelstrom
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\nebulamaelstrom\
-++OnyxCurseDoll
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\onyxcursedoll\
-++Summoner
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\summoner\
-++Underworld
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\underworld\
-++BannerItems.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\banneritems.cs
-++BannerPlaced.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\bannerplaced.cs
-++BomberBonesBanner.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\bomberbonesbanner.png
-++BomberBonesBannerPlaced.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\bomberbonesbannerplaced.png
-++BoomxieBanner.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\boomxiebanner.png
-++BoomxieBannerPlaced.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\boomxiebannerplaced.png
-++FroggabombaBanner.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\froggabombabanner.png
-++FroggabombaBannerPlaced.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\froggabombabannerplaced.png
-++GraniteOvergrowthBanner.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\graniteovergrowthbanner.png
-++GraniteOvergrowthBannerPlaced.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\graniteovergrowthbannerplaced.png
-++BomberBones.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones\bomberbones.cs
-++BomberBones.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones\bomberbones.png
-++BomberBonesGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones\bomberbonesgrenade.png
-++Boom.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\boom.png
-++Boomxie.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\boomxie.cs
-++Boomxie.cs.bak
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\boomxie.cs.bak
-++Boomxie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\boomxie.png
-++LittleBoomxie.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\littleboomxie.png
-++Froggabomba.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\froggabomba\froggabomba.cs
-++Froggabomba.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\froggabomba\froggabomba.png
-++FroggabombaClone.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\froggabomba\froggabombaclone.png
-++GraniteBolt.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\granitebolt.png
-++GraniteBoom.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\graniteboom.png
-++GraniteCore.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\granitecore.png
-++GraniteCore_Glow.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\granitecore_glow.png
-++GraniteOvergrowth.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\graniteovergrowth.cs
-++GraniteOvergrowth.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\graniteovergrowth.png
-++GraniteOvergrowth_Glow.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\graniteovergrowth_glow.png
-++BloodBeam.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodbeam.cs
-++BloodBeam.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodbeam.png
-++BloodDraw.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\blooddraw.png
-++BloodShot.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodshot.cs
-++BloodSnipe.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodsnipe.cs
-++BloodSnipe.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodsnipe.png
-++BloodSquid.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodsquid.cs
-++Dreadnautilus.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\dreadnautilus.cs
-++GlowPattern.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\glowpattern.png
-++MapIcon.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\mapicon.png
-++MapIcon2.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\mapicon2.png
-++Phase2.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\phase2.png
-++Phase2Tentacles.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\phase2tentacles.png
-++Cultist.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\lunaticcultist\cultist.cs
-++CultistSpells.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\lunaticcultist\cultistspells.cs
-++HostileCloud.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\hostilecloud.cs
-++HostileCloud.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\hostilecloud.png
-++PinkDraw.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\pinkdraw.png
-++Plantera.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\plantera.cs
-++PlanteraHook.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planterahook.cs
-++PlanteraHook.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planterahook.png
-++PlanteraHook2.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planterahook2.cs
-++PlanteraHook2.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planterahook2.png
-++PlanteraSpikeBall.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planteraspikeball.cs
-++PlanteraTentacle.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planteratentacle.cs
-++Seeds.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\seeds.cs
-++ThornyVine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\thornyvine.png
 ++AdamantiteGlaive.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\adamantiteglaive.cs
 ++AdamantiteGlaive.png
@@ -854,6 +156,9 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\cobaltnaginatathrow.png
 ++DarkLance.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\darklance.cs
+++DarkLance.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\darklance.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\darklance.png
 ++DarkLanceThrow.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\darklancethrow.png
 ++Daybreak.cs
@@ -960,102 +265,493 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\trident.png
 ++TridentThrow.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearprojectiles\tridentthrow.png
-++ClusterGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\clustergrenade.png
-++ClusterMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\clustermine.png
-++ClusterRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\clusterrocket.png
-++ClusterSnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\clustersnowmanrocket.png
-++DestructiveGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivegrenade.png
-++DestructiveMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemine.png
-++DestructiveMiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemininuke.png
-++DestructiveMiniNukeGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemininukegrenade.png
-++DestructiveMiniNukeMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemininukemine.png
-++DestructiveMiniNukeSnowman.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemininukesnowman.png
-++DestructiveRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructiverocket.png
-++DestructiveSnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivesnowmanrocket.png
-++DirectGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\directgrenade.png
-++DirectMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\directmine.png
-++DirectRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\directrocket.png
-++DirectSnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\directsnowmanrocket.png
-++Grenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\grenade.png
-++HeavyGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\heavygrenade.png
-++HeavyMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\heavymine.png
-++HeavyRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\heavyrocket.png
-++HeavySnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\heavysnowmanrocket.png
-++Mine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mine.png
-++MiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mininuke.png
-++MiniNukeGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mininukegrenade.png
-++MiniNukeMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mininukemine.png
-++MiniNukeSnowman.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mininukesnowman.png
-++NewGrenades.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\newgrenades.cs
-++NewProximityMines.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\newproximitymines.cs
-++NewRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\newrockets.cs
-++NewSnowmanRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\newsnowmanrockets.cs
-++Rocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\rocket.png
-++RocketStatChanges.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\rocketstatchanges.cs
-++ShootNewRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\shootnewrockets.cs
-++SnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\snowmanrocket.png
-++SuperGrenade.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\supergrenade.png
-++SuperMine.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\supermine.png
-++SuperRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\superrocket.png
-++SuperSnowmanRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\supersnowmanrocket.png
-++OpticStaff.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\opticstaff.cs
-++Pirate.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\pirate.cs
-++PirateHook.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\piratehook.png
-++Pygmy.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\pygmy.cs
-++Tempest.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\tempest.cs
+++Flairon.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\flairon.cs
+++HardmodeSwords.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\hardmodeswords.cs
+++MeleeProjectiles.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\meleeprojectiles.cs
+++MiscMelee.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\miscmelee.cs
+++PreHardmodeSwords.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\prehardmodeswords.cs
+++SpearItems.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\melee\spearitems.cs
+++Ranged
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\
+++Summon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\
+++ClasslessProjectileChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\classlessprojectilechanges.cs
+++FreezingProjectile.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\freezingprojectile.cs
+++StunningProjectile.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\stunningprojectile.cs
+++ArmorPenetrationFix.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\armorpenetrationfix.cs
+++BladeImmuneFix.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\bladeimmunefix.cs
+++ChestLoot.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\chestloot.cs
+++Defense.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\defense.cs
+++FIshingCatch.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\fishingcatch.cs
+++lkds3ahp.zx0~
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\lkds3ahp.zx0~
+++Mana.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\mana.cs
+++NPCBuffChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcbuffchanges.cs
+++NPCShops.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcshops.cs
+++OMana.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\omana.png
+++OManaFancy.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\omanafancy.png
+++OMPFill.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\ompfill.png
+++PlayerBuffChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\playerbuffchanges.cs
+++Progression.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\progression.cs
+++RarityChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\raritychanges.cs
+++TRAEGlobalItem.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\traeglobalitem.cs
+++Common
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\
+++AIs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\ais\
+++ModPlayers
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\modplayers\
+++Freeze.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\freeze.cs
+++IceBlock.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\iceblock.png
+++ProjectileStats.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\projectilestats.cs
+++Spear.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\spear.cs
+++Stun.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\stun.cs
+++Stun.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\stun.png
+++TRAEDebuff.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\traedebuff.cs
+++NewContent
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\
+++Buffs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\
+++Celled.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\celled.cs
+++Celled.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\celled.png
+++Impaled.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\impaled.cs
+++Impaled.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\impaled.png
+++Kaleidoscope.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\kaleidoscope.cs
+++KaleidoscopeSecondTag.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\kaleidoscopesecondtag.png
+++LavaShield.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\lavashield.cs
+++LavaShield.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\lavashield.png
+++MagicBoost.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\magicboost.cs
+++MagicBoost.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\magicboost.png
+++NanoHealing.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\nanohealing.cs
+++NanoHealing.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\nanohealing.png
+++NeoFeralBite.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\neoferalbite.cs
+++NeoFeralBite.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\neoferalbite.png
+++Red - Acceso directo.lnk
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\red - acceso directo.lnk
+++SandRush.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\sandrush.cs
+++SandRush.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\sandrush.png
+++SBandAidFix.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\sbandaidfix.cs
+++SBandAidFix.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\sbandaidfix.png
+++ShackledDefenses.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\shackleddefenses.cs
+++ShackledDefenses.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\shackleddefenses.png
+++StrongerPoisoned.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\strongerpoisoned.cs
+++StrongerPoisoned.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\strongerpoisoned.png
+++WaterAffinity.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\wateraffinity.cs
+++WaterAffinity.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\buffs\wateraffinity.png
+++Accesories
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\
+++AlligatorBalloon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\alligatorballoon\
+++AngelicStone
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\angelicstone\
+++AngelicStone.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\angelicstone\angelicstone.cs
+++AngelicStone.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\angelicstone\angelicstone.png
+++BalanceCuffs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\balancecuffs\
+++BigBundle
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\bigbundle\
+++ChainShield
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\chainshield\
+++CounterweightString
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\counterweightstring\
+++EvilEye
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\evileye\
+++LifeCuffs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\lifecuffs\
+++MagicalCarpet
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\magicalcarpet\
+++MagicalCarpet.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet.cs
+++MagicalCarpet.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet.png
+++MagicalCarpet_Wings.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet_wings.png
+++MasochistChains
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\masochistchains\
+++MechanicalEye
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\mechanicaleye\
+++MirrorShield
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\mirrorshield\
+++Moonwalkers
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\moonwalkers\
+++PalladiumShield
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\palladiumshield\
+++PutridToothNecklace
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\putridtoothnecklace\
+++RuneCobra
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\runecobra\
+++SandstormBoots
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\sandstormboots\
+++ShadowClaws
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\shadowclaws\
+++ShadowflameCharm
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\shadowflamecharm\
+++ShamanNecklace
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\shamannecklace\
+++SkeletonBeetle
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\skeletonbeetle\
+++SoaringCarpet
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\soaringcarpet\
+++SpaceBalloon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\spaceballoon\
+++TheBlackCross
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\theblackcross\
+++TwoFlowers
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\twoflowers\
+++WeirdBundle
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\weirdbundle\
+++DreadItems
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\
+++BloodBoiler
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodboiler\
+++BloodBoiler.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodboiler\bloodboiler.cs
+++BloodBoiler.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodboiler\bloodboiler.png
+++BloodSquidEgg
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodsquidegg\
+++BloodWings
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodwings\
+++BossBag
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bossbag\
+++BottomlessChumBucket
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bottomlesschumbucket\
+++Brimstone
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\brimstone\
+++DreadMask
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\dreadmask\
+++DreadRelic
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\dreadrelic\
+++DreadSummon
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\dreadsummon\
+++DreadTrophy
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\dreadtrophy\
+++RedPearl
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\redpearl\
+++ShellSpinner
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\shellspinner\
+++FlamethrowerAmmo
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\
+++BlessedGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\blessedgel.cs
+++BlessedGel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\blessedgel.png
+++BloodBoiling.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\bloodboiling.png
+++BloodyGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\bloodygel.cs
+++BloodyGel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\bloodygel.png
+++CrystalGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\crystalgel.cs
+++CrystalGel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\crystalgel.png
+++CursedGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\cursedgel.cs
+++CursedGel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\cursedgel.png
+++FrozenGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\frozengel.cs
+++FrozenGel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\frozengel.png
+++IchorGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\ichorgel.cs
+++IchorGel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\ichorgel.png
+++LavaGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\lavagel.cs
+++LavaGel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\lavagel.png
+++PinkGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\pinkgel.cs
+++SolarGel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\solargel.cs
+++SolarGel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\flamethrowerammo\solargel.png
+++Materials
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\
+++Misc
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\
+++Weapons
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\
+++Ammo
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\ammo\
+++BAM
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\
+++BAM.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bam.cs
+++BAM.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bam.png
+++BAMP.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamp.png
+++BAMRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocket.png
+++BAMRocketCluster.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketcluster.png
+++BAMRocketDestructive.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketdestructive.png
+++BAMRocketDirect.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketdirect.png
+++BAMRocketDMiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketdmininuke.png
+++BAMRocketDry.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketdry.png
+++BAMRocketHeavy.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketheavy.png
+++BAMRocketHoney.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrockethoney.png
+++BAMRocketLava.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketlava.png
+++BAMRocketLiquid.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketliquid.png
+++BAMRocketMiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketmininuke.png
+++BAMRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrockets.cs
+++BAMRocketSuper.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketsuper.png
+++GraniteBook
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\granitebook\
+++Jungla
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\jungla\
+++Launchers
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\launchers\
+++NebulaMaelstrom
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\nebulamaelstrom\
+++OnyxCurseDoll
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\onyxcursedoll\
+++Summoner
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\summoner\
+++Underworld
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\underworld\
+++Projectiles
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\
+++TRAEDebuffs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\
+++.gitattributes
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\.gitattributes
+++build.txt
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\build.txt
+++DebugCross.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\debugcross.png
+++description.txt
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\description.txt
+++icon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\icon.png
+++TRAEMethods.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\traemethods.cs
+++TRAEProject.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\traeproject.cs
+++Wingstats.txt
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\wingstats.txt
+++workshop.json
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\workshop.json
+++Analizadores
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:analizadores
+++Ensamblados
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:ensamblados
+++Marcos de trabajo
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:marcos de trabajo
+++Paquetes
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:paquetes
+++launchSettings.json
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\properties\launchsettings.json
+++ArmorPolish.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\armorpolish.cs
+++Bags.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\bags.cs
+++Megaphone.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\megaphone.cs
+++ThePlan.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\theplan.cs
+++TrifoldMap.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\items\trifoldmap.cs
+++WingedSlime.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\mounts\wingedslime.cs
+++BloodBeam.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodbeam.cs
+++BloodBeam.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodbeam.png
+++BloodDraw.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\blooddraw.png
+++BloodShot.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodshot.cs
+++BloodSnipe.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodsnipe.cs
+++BloodSnipe.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodsnipe.png
+++BloodSquid.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\bloodsquid.cs
+++Dreadnautilus.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\dreadnautilus.cs
+++GlowPattern.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\glowpattern.png
+++MapIcon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\mapicon.png
+++MapIcon2.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\mapicon2.png
+++Phase2.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\phase2.png
+++Phase2Tentacles.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\dreadnautilus\phase2tentacles.png
+++Cultist.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\lunaticcultist\cultist.cs
+++CultistSpells.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\lunaticcultist\cultistspells.cs
+++HostileCloud.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\hostilecloud.cs
+++HostileCloud.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\hostilecloud.png
+++PinkDraw.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\pinkdraw.png
+++Plantera.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\plantera.cs
+++PlanteraHook.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planterahook.cs
+++PlanteraHook.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planterahook.png
+++PlanteraHook2.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planterahook2.cs
+++PlanteraHook2.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planterahook2.png
+++PlanteraSpikeBall.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planteraspikeball.cs
+++PlanteraTentacle.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\planteratentacle.cs
+++Seeds.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\seeds.cs
+++ThornyVine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\npcs\boss\plantera\thornyvine.png
+++AccessoryPrefixChange.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\accessoryprefixchange.cs
+++BoomerangFlailPrefixes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\boomerangflailprefixes.cs
+++GiveWeaponsPrefixes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\giveweaponsprefixes.cs
+++ModifyVanillaPrefixes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\modifyvanillaprefixes.cs
+++YoyoPrefixes.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\prefixes\yoyoprefixes.cs
+++LunarDragonBody.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonbody.png
+++LunarDragonBuff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonbuff.png
+++LunarDragonHead.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonhead.png
+++LunarDragonSpike.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonspike.png
+++LunarDragonStaff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragonstaff.png
+++LunarDragonTail.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\lunardragontail.png
+++Resprites.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\resprites.cs
+++StardustPortal.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\stardustportal.png
+++StardustPortalBeam.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\stardustportalbeam.png
+++StardustPortalStaff.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\stardustportalstaff.png
+++StarWrath.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\starwrath.png
+++StarWrathProjectile.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\resprites\starwrathprojectile.png
+++MagicProjectiles.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\magic\magicprojectiles.cs
+++TRAEMagicItems.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\magic\traemagicitems.cs
+++Rockets
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\
+++DolphinGun.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\dolphingun.cs
+++DolphinOutline.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\dolphinoutline.png
+++GeneralChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\generalchanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\generalchanges.cs
+++RangedProjectiles.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rangedprojectiles.cs
+++Repeaters.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\repeaters.cs
+++TitaniumShrapnel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\titaniumshrapnel.png
+++Minions
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\
+++Sentries.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\sentries.cs
+++Whips.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\whips.cs
+++HeavyFlail.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\ais\heavyflail.cs
+++MeleeStats.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\modplayers\meleestats.cs
+++RangedStats.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\modplayers\rangedstats.cs
+++SummonStats.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\common\modplayers\summonstats.cs
 ++AlligatorBalloon.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon.cs
 ++AlligatorBalloon.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon.png
 ++AlligatorBalloon_Balloon.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\alligatorballoon\alligatorballoon_balloon.png
-++AngelicStone.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\angelicstone\angelicstone.cs
-++AngelicStone.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\angelicstone\angelicstone.png
 ++BalanceCuffs.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\balancecuffs\balancecuffs.cs
 ++BalanceCuffs.png
@@ -1094,12 +790,6 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs_handsoff.png
 ++LifeCuffs_HandsOn.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\lifecuffs\lifecuffs_handson.png
-++MagicalCarpet.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet.cs
-++MagicalCarpet.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet.png
-++MagicalCarpet_Wings.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\magicalcarpet\magicalcarpet_wings.png
 ++MasochistChains.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\masochistchains\masochistchains.cs
 ++MasochistChains.png
@@ -1212,40 +902,10 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\weirdbundle\bundleofweirdballoons_balloon.png
 ++WeirdBundle.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\accesories\weirdbundle\weirdbundle.cs
-++ChlorophyteHood.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood.cs
-++ChlorophyteHood.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood.png
-++ChlorophyteHood_Head.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood_head.png
-++IceMajestyBreastplate.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate.cs
-++IceMajestyBreastplate.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate.png
-++IceMajestyBreastplate_Back.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate_back.png
-++IceMajestyBreastplate_Body.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate_body.png
-++IceMajestyCrown.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestycrown.cs
-++IceMajestyCrown.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestycrown.png
-++IceMajestyCrown_Head.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestycrown_head.png
-++IceMajestyLeggings.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings.cs
-++IceMajestyLeggings.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings.png
-++IceMajestyLeggings_Legs.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings_legs.png
-++MadFlocko.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\madflocko.png
-++MadFlockos.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\madflockos.png
-++BloodBoiler.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodboiler\bloodboiler.cs
-++BloodBoiler.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodboiler\bloodboiler.png
+++ChlorophyteHood
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\chlorophytehood\
+++IceArmor
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\
 ++BloodSquidBuff.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\bloodsquidegg\bloodsquidbuff.png
 ++BloodSquidEgg.cs
@@ -1312,16 +972,20 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\shellspinner\shellspinner.png
 ++ShellSpinnerP.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\dreaditems\shellspinner\shellspinnerp.png
-++Power.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\power.png
-++PowerBrew.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\powerbrew.cs
-++PowerBrew.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\powerbrew.png
-++SweetElixir.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\sweetelixir.cs
-++SweetElixir.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\sweetelixir.png
+++GraniteBattery.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\granitebattery.cs
+++GraniteBattery.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\granitebattery.png
+++IceQueenJewel.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\icequeenjewel.cs
+++IceQueenJewel.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\icequeenjewel.png
+++LuminiteFeather.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\luminitefeather.cs
+++LuminiteFeather.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\materials\luminitefeather.png
+++Potions
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\
 ++ChargedArrow.cs
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\ammo\chargedarrow.cs
 ++ChargedArrow.png
@@ -1356,38 +1020,6 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\ammo\shroomiteshot.png
 ++ShroomiteShot_Glow.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\ammo\shroomiteshot_glow.png
-++BAM.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bam.cs
-++BAM.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bam.png
-++BAMP.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamp.png
-++BAMRocket.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocket.png
-++BAMRocketCluster.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketcluster.png
-++BAMRocketDestructive.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketdestructive.png
-++BAMRocketDirect.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketdirect.png
-++BAMRocketDMiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketdmininuke.png
-++BAMRocketDry.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketdry.png
-++BAMRocketHeavy.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketheavy.png
-++BAMRocketHoney.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrockethoney.png
-++BAMRocketLava.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketlava.png
-++BAMRocketLiquid.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketliquid.png
-++BAMRocketMiniNuke.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketmininuke.png
-++BAMRockets.cs
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrockets.cs
-++BAMRocketSuper.png
-i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\bam\bamrocketsuper.png
 ++ElectricRIng.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\granitebook\electricring.png
 ++GraniteBook.cs
@@ -1450,6 +1082,320 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\summoner\whip.cs
 ++WillOfTheWisp
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\underworld\willofthewisp\
+++Banners
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\
+++BomberBones
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones\
+++Boomxie
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\
+++Froggabomba
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\froggabomba\
+++GraniteOvergrowth
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\
+++BomberBones (1).png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones (1).png
+++KamikazePixie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\kamikazepixie.png
+++BigBubble.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\bigbubble.cs
+++BigBubble.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\bigbubble.png
+++Blank.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\blank.cs
+++Blank.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\blank.png
+++Blizzard.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\blizzard.cs
+++Blizzard.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\blizzard.png
+++BuzzyStar.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\buzzystar.cs
+++BuzzyStar.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\buzzystar.png
+++BuzzyStar_Glow.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\buzzystar_glow.png
+++CosmicStingy.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\cosmicstingy.cs
+++CosmicStingy.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\cosmicstingy.png
+++CosmicStingy_Glow.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\cosmicstingy_glow.png
+++Harpoon.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\harpoon.cs
+++Harpoon.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\harpoon.png
+++Lightning Bolt.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lightning bolt.cs
+++LightningBolt.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lightningbolt.png
+++LightsLong.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lightslong.cs
+++LightsLong.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lightslong.png
+++LilRocket.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lilrocket.cs
+++LilRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\lilrocket.png
+++NightsBeam.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\nightsbeam.cs
+++NightsBeam.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\nightsbeam.png
+++NightsBeam_Glow.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\nightsbeam_glow.png
+++PhantomTentacle.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\phantomtentacle.cs
+++PhantomTentacle.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\phantomtentacle.png
+++SolarExplosion.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\solarexplosion.cs
+++SolarExplosion.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\solarexplosion.png
+++Star1.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\star1.cs
+++Star1.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\star1.png
+++Starrow.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\starrow.cs
+++Starrow.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\starrow.png
+++ThrownLucy.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\thrownlucy.cs
+++ThrownLucy.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\thrownlucy.png
+++ToxicCloud.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\toxiccloud.cs
+++ToxicCloud.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\toxiccloud.png
+++ToxicDrop.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\toxicdrop.cs
+++ToxicDrop.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\projectiles\toxicdrop.png
+++BindingFlames.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\bindingflames.cs
+++BoilingBlood.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\boilingblood.cs
+++ChargedArrowStacks.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\chargedarrowstacks.cs
+++CoolWhipTag.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\coolwhiptag.cs
+++Corrupted.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\corrupted.cs
+++Decay.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\decay.cs
+++GhostBulletStacks.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\ghostbulletstacks.cs
+++HeavyBurn.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\heavyburn.cs
+++OmegaBurn.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\omegaburn.cs
+++PirateTag.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\piratetag.cs
+++ShroomBonus.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\shroombonus.cs
+++Toxins.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\traedebuffs\toxins.cs
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++System.Text.Json.SourceGeneration
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++tModLoader.CodeAssist
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\.nuget\packages\tmodloader.codeassist\0.1.3\analyzers\dotnet\cs\tmodloader.codeassist.dll
+++Basic.Reference.Assemblies.Net60
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\basic.reference.assemblies.net60\1.2.4\lib\netstandard2.0\basic.reference.assemblies.net60.dll
+++CsvHelper
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\csvhelper\2.0.0.0\csvhelper.dll
+++FNA
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\fna\1.0.0\fna.dll
+++Hjson
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\hjson\3.0.0\lib\netstandard1.3\hjson.dll
+++Ionic.Zip.Reduced
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\ionic.zip.reduced\1.9.1.8\ionic.zip.reduced.dll
+++log4net
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\log4net\2.0.8.0\log4net.dll
+++Microsoft.CodeAnalysis
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\microsoft.codeanalysis.common\4.0.0-6.final\lib\netcoreapp3.1\microsoft.codeanalysis.dll
+++Microsoft.CodeAnalysis.CSharp
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\microsoft.codeanalysis.csharp\4.0.0-6.final\lib\netcoreapp3.1\microsoft.codeanalysis.csharp.dll
+++Microsoft.Win32.SystemEvents
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\microsoft.win32.systemevents\6.0.0\lib\net6.0\microsoft.win32.systemevents.dll
+++Mono.Cecil
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mono.cecil\0.11.4\lib\netstandard2.0\mono.cecil.dll
+++Mono.Cecil.Mdb
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mono.cecil\0.11.4\lib\netstandard2.0\mono.cecil.mdb.dll
+++Mono.Cecil.Pdb
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mono.cecil\0.11.4\lib\netstandard2.0\mono.cecil.pdb.dll
+++Mono.Cecil.Rocks
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mono.cecil\0.11.4\lib\netstandard2.0\mono.cecil.rocks.dll
+++MonoMod.RuntimeDetour
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\monomod.runtimedetour\22.1.29.1\lib\net5.0\monomod.runtimedetour.dll
+++MonoMod.Utils
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\monomod.utils\22.1.29.1\lib\net5.0\monomod.utils.dll
+++MP3Sharp
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\mp3sharp\1.0.0.0\mp3sharp.dll
+++Newtonsoft.Json
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\newtonsoft.json\12.0.0.0\newtonsoft.json.dll
+++NVorbis
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\nvorbis\0.10.0.3\nvorbis.dll
+++RailSDK.Net
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\railsdk.net\1.0.0.0\railsdk.net.dll
+++ReLogic
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\relogic\1.0.0\relogic.dll
+++SixLabors.ImageSharp
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\sixlabors.imagesharp\1.0.3\lib\netcoreapp3.1\sixlabors.imagesharp.dll
+++Steamworks.NET
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\steamworks.net\20.1.0.0\steamworks.net.dll
+++SteelSeriesEngineWrapper
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\steelseriesenginewrapper\1.0.0.0\steelseriesenginewrapper.dll
+++System.CodeDom
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.codedom\6.0.0\lib\net6.0\system.codedom.dll
+++System.Configuration.ConfigurationManager
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.configuration.configurationmanager\6.0.0\lib\net6.0\system.configuration.configurationmanager.dll
+++System.Diagnostics.PerformanceCounter
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.diagnostics.performancecounter\6.0.0\lib\net6.0\system.diagnostics.performancecounter.dll
+++System.Drawing.Common
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.drawing.common\6.0.0\lib\net6.0\system.drawing.common.dll
+++System.Security.Cryptography.ProtectedData
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.security.cryptography.protecteddata\6.0.0\lib\net6.0\system.security.cryptography.protecteddata.dll
+++System.Security.Permissions
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.security.permissions\6.0.0\lib\net6.0\system.security.permissions.dll
+++System.Windows.Extensions
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\system.windows.extensions\6.0.0\lib\net6.0\system.windows.extensions.dll
+++TerrariaHooks
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\libraries\terrariahooks\0.0.0.0\terrariahooks.dll
+++tModLoader
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\program files (x86)\steam\steamapps\common\tmodloader\tmodloader.dll
+++Microsoft.NETCore.App
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\microsoft.netcore.app
+++tModLoader.CodeAssist (0.1.3)
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:>7492
+++ClusterGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\clustergrenade.png
+++ClusterMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\clustermine.png
+++ClusterRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\clusterrocket.png
+++ClusterSnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\clustersnowmanrocket.png
+++DestructiveGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivegrenade.png
+++DestructiveMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemine.png
+++DestructiveMiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemininuke.png
+++DestructiveMiniNukeGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemininukegrenade.png
+++DestructiveMiniNukeMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemininukemine.png
+++DestructiveMiniNukeSnowman.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivemininukesnowman.png
+++DestructiveRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructiverocket.png
+++DestructiveSnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\destructivesnowmanrocket.png
+++DirectGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\directgrenade.png
+++DirectMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\directmine.png
+++DirectRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\directrocket.png
+++DirectSnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\directsnowmanrocket.png
+++Grenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\grenade.png
+++HeavyGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\heavygrenade.png
+++HeavyMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\heavymine.png
+++HeavyRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\heavyrocket.png
+++HeavySnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\heavysnowmanrocket.png
+++Mine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mine.png
+++MiniNuke.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mininuke.png
+++MiniNukeGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mininukegrenade.png
+++MiniNukeMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mininukemine.png
+++MiniNukeSnowman.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\mininukesnowman.png
+++NewGrenades.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\newgrenades.cs
+++NewProximityMines.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\newproximitymines.cs
+++NewRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\newrockets.cs
+++NewSnowmanRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\newsnowmanrockets.cs
+++Rocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\rocket.png
+++RocketStatChanges.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\rocketstatchanges.cs
+++ShootNewRockets.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\shootnewrockets.cs
+++SnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\snowmanrocket.png
+++SuperGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\supergrenade.png
+++SuperMine.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\supermine.png
+++SuperRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\superrocket.png
+++SuperSnowmanRocket.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\ranged\rockets\supersnowmanrocket.png
+++OpticStaff.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\opticstaff.cs
+++Pirate.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\pirate.cs
+++PirateHook.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\piratehook.png
+++Pygmy.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\pygmy.cs
+++Tempest.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\changes\weapon\summon\minions\tempest.cs
+++ChlorophyteHood.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood.cs
+++ChlorophyteHood.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood.png
+++ChlorophyteHood_Head.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\chlorophytehood\chlorophytehood_head.png
+++IceMajestyBreastplate.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate.cs
+++IceMajestyBreastplate.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate.png
+++IceMajestyBreastplate_Back.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate_back.png
+++IceMajestyBreastplate_Body.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestybreastplate_body.png
+++IceMajestyCrown.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestycrown.cs
+++IceMajestyCrown.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestycrown.png
+++IceMajestyCrown_Head.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestycrown_head.png
+++IceMajestyLeggings.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings.cs
+++IceMajestyLeggings.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings.png
+++IceMajestyLeggings_Legs.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\icemajestyleggings_legs.png
+++MadFlocko.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\madflocko.png
+++MadFlockos.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\armor\icearmor\madflockos.png
+++Power.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\power.png
+++PowerBrew.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\powerbrew.cs
+++PowerBrew.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\powerbrew.png
+++SweetElixir.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\sweetelixir.cs
+++SweetElixir.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\misc\potions\sweetelixir.png
 ++ClusterCryo.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\launchers\cryocannon\clustercryo.png
 ++ClusterCryos.png
@@ -1656,6 +1602,62 @@ i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terr
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\underworld\willofthewisp\willofthewispflame.png
 ++WillOfTheWispFlame_Glow.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\underworld\willofthewisp\willofthewispflame_glow.png
+++BannerItems.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\banneritems.cs
+++BannerPlaced.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\bannerplaced.cs
+++BomberBonesBanner.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\bomberbonesbanner.png
+++BomberBonesBannerPlaced.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\bomberbonesbannerplaced.png
+++BoomxieBanner.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\boomxiebanner.png
+++BoomxieBannerPlaced.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\boomxiebannerplaced.png
+++FroggabombaBanner.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\froggabombabanner.png
+++FroggabombaBannerPlaced.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\froggabombabannerplaced.png
+++GraniteOvergrowthBanner.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\graniteovergrowthbanner.png
+++GraniteOvergrowthBannerPlaced.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\banners\graniteovergrowthbannerplaced.png
+++BomberBones.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones\bomberbones.cs
+++BomberBones.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones\bomberbones.png
+++BomberBonesGrenade.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\bomberbones\bomberbonesgrenade.png
+++Boom.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\boom.png
+++Boomxie.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\boomxie.cs
+++Boomxie.cs.bak
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\boomxie.cs.bak
+++Boomxie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\boomxie.png
+++LittleBoomxie.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\boomxie\littleboomxie.png
+++Froggabomba.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\froggabomba\froggabomba.cs
+++Froggabomba.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\froggabomba\froggabomba.png
+++FroggabombaClone.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\froggabomba\froggabombaclone.png
+++GraniteBolt.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\granitebolt.png
+++GraniteBoom.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\graniteboom.png
+++GraniteCore.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\granitecore.png
+++GraniteCore_Glow.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\granitecore_glow.png
+++GraniteOvergrowth.cs
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\graniteovergrowth.cs
+++GraniteOvergrowth.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\graniteovergrowth.png
+++GraniteOvergrowth_Glow.png
+i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\npcs\graniteovergrowth\graniteovergrowth_glow.png
 ++Boomfrog.png
 i:{92f48d59-1e12-4c6b-9068-91155c93b293}:c:\users\lenovo\documents\my games\terraria\tmodloader\modsources\traeproject\newcontent\items\weapons\summoner\sentries\boomfrogstaff\boomfrog.png
 ++Boomfrog_Glow.png

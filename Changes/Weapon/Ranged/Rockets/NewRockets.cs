@@ -177,7 +177,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                 {
                     for (int num850 = -1; num850 <= 1; num850 += 2)
                     {
-                        Gore gore12 = Gore.NewGoreDirect(projectile.position, Vector2.Zero, Main.rand.Next(61, 64));
+                        Gore gore12 = Gore.NewGoreDirect(projectile.GetSource_FromThis(), projectile.position, Vector2.Zero, Main.rand.Next(61, 64));
                         Gore gore = gore12;
                         gore.velocity *= ((num848 == 1) ? 0.4f : 0.8f);
                         gore = gore12;
@@ -196,7 +196,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                     float f2 = num852 + c * ((float)Math.PI * 2f);
                     Vector2 velocity = f2.ToRotationVector2() * (4f + Main.rand.NextFloat() * 2f);
                     velocity += Vector2.UnitY * -1f;
-                    int num854 = Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center, velocity, Cluster, projectile.damage / 2, 0f, projectile.owner); Projectile pRojectile = Main.projectile[num854];
+                    int num854 = Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, velocity, Cluster, projectile.damage / 2, 0f, projectile.owner); Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
                     projectile2.timeLeft = 40;
                 }
@@ -242,7 +242,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                 {
                     for (int num845 = -1; num845 <= 1; num845 += 2)
                     {
-                        Gore gore9 = Gore.NewGoreDirect(projectile.position, Vector2.Zero, Main.rand.Next(61, 64));
+                        Gore gore9 = Gore.NewGoreDirect(projectile.GetSource_FromThis(), projectile.position, Vector2.Zero, Main.rand.Next(61, 64));
                         Gore gore = gore9;
                         gore.velocity *= ((num843 == 1) ? 0.4f : 0.8f);
                         gore = gore9;

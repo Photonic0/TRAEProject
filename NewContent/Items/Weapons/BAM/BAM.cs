@@ -1,4 +1,4 @@
-/*using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -160,7 +160,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
                 num = (float)Math.PI;
             }
             Projectile.ai[0] += 1f;
-     
+
             int UseTime = 40;
             Projectile.ai[1] -= 1f;
             bool flag13 = false;
@@ -168,7 +168,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             {
                 Projectile.ai[1] = UseTime;
                 flag13 = true;
-                _ = (int)Projectile.ai[0] / (UseTime );
+                _ = (int)Projectile.ai[0] / (UseTime);
             }
             bool canShoot3 = player.channel && player.HasAmmo(player.inventory[player.selectedItem], canUse: true) && !player.noItems && !player.CCed;
             if (Projectile.localAI[0] > 0f)
@@ -194,7 +194,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
                 if (canShoot3)
                 {
                     player.PickAmmo(player.inventory[player.selectedItem], ref projToShoot3, ref speed3, ref canShoot3, ref Damage3, ref KnockBack3, out var usedAmmoItemId3);
-                    IEntitySource projectileSource_Item_WithPotentialAmmo3 = player.GetProjectileSource_Item_WithPotentialAmmo(player.HeldItem, usedAmmoItemId3);
+                    IEntitySource projectileSource_Item_WithPotentialAmmo3 = player.GetSource_ItemUse_WithPotentialAmmo(player.HeldItem, usedAmmoItemId3);
                     KnockBack3 = player.GetWeaponKnockback(player.inventory[player.selectedItem], KnockBack3);
                     float num70 = player.inventory[player.selectedItem].shootSpeed * Projectile.scale;
                     Vector2 vector30 = vector;
@@ -241,4 +241,4 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             player.itemRotation = MathHelper.WrapAngle((float)Math.Atan2(Projectile.velocity.Y * (float)Projectile.direction, Projectile.velocity.X * (float)Projectile.direction) + num3);
         }
     }
-}*/
+}

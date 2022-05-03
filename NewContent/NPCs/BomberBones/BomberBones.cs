@@ -216,7 +216,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 					if (Main.netMode != 1)
 					{
 
-						Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), vector34.X, vector34.Y, num146, num148, TYPE, Damage, 0f, Main.myPlayer);
+						Projectile.NewProjectile(NPC.GetSource_FromAI(), vector34.X, vector34.Y, num146, num148, TYPE, Damage, 0f, Main.myPlayer);
 
 					}
 					if (Math.Abs(num148) > Math.Abs(num146) * 2f)
@@ -642,9 +642,9 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 			{
 				Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 2.5f * (float)hitdirection, -2.5f);
 			}
-			Gore.NewGore(NPC.position, NPC.velocity, 42, NPC.scale);
-			Gore.NewGore(new Vector2(NPC.position.X, NPC.position.Y + 20f), NPC.velocity, 43, NPC.scale);
-			Gore.NewGore(new Vector2(NPC.position.X, NPC.position.Y + 34f), NPC.velocity, 44, NPC.scale);
+			Gore.NewGore(NPC.GetSource_FromThis(), NPC.position, NPC.velocity, 42, NPC.scale);
+			Gore.NewGore(NPC.GetSource_FromThis(), new Vector2(NPC.position.X, NPC.position.Y + 20f), NPC.velocity, 43, NPC.scale);
+			Gore.NewGore(NPC.GetSource_FromThis(), new Vector2(NPC.position.X, NPC.position.Y + 34f), NPC.velocity, 44, NPC.scale);
 		}
 	}
 	public class BomberBonesGrenade : ModProjectile

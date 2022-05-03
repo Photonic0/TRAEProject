@@ -130,7 +130,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
                 for (int i = 0; i < 2; i++)
                 {
                     float velocity = i < 1 ? 3f : -3f;
-                    Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, direction * velocity, ProjectileType<MaelstromSubshot>(), Projectile.damage, 1f, Projectile.owner);
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, direction * velocity, ProjectileType<MaelstromSubshot>(), Projectile.damage, 1f, Projectile.owner);
                 }
             }
         }

@@ -257,7 +257,7 @@ namespace TRAEProject.Changes.Prefixes
 							}
 						}
 						vector *= 0.8f;
-						Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center.X - vector.X, projectile.Center.Y - vector.Y, vector.X, vector.Y, 604, projectile.damage, projectile.knockBack, projectile.owner, 0f, 0f);
+						Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center.X - vector.X, projectile.Center.Y - vector.Y, vector.X, vector.Y, 604, projectile.damage, projectile.knockBack, projectile.owner, 0f, 0f);
 						projectile.localAI[1] = 0f;
 					}
 				}

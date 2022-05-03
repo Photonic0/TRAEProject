@@ -253,7 +253,7 @@ namespace TRAEProject.Changes.Projectiles
                     if (canShoot3)
                     {
                         player.PickAmmo(player.inventory[player.selectedItem], ref projToShoot3, ref speed3, ref canShoot3, ref Damage3, ref KnockBack3, out var usedAmmoItemId3);
-                        IEntitySource projectileSource_Item_WithPotentialAmmo3 = player.GetProjectileSource_Item_WithPotentialAmmo(player.HeldItem, usedAmmoItemId3);
+                        IEntitySource projectileSource_Item_WithPotentialAmmo3 = player.GetSource_ItemUse_WithPotentialAmmo(player.HeldItem, usedAmmoItemId3);
                         KnockBack3 = player.GetWeaponKnockback(player.inventory[player.selectedItem], KnockBack3);
                         float num70 = player.inventory[player.selectedItem].shootSpeed * projectile.scale;
                         Vector2 vector30 = vector;
@@ -367,7 +367,7 @@ namespace TRAEProject.Changes.Projectiles
                     return false;      
                 case ProjectileID.CursedBullet:
                     {
-                        Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X, projectile.position.Y, 0f, 0f, ProjectileID.CursedDartFlame, (projectile.damage * 1), 0, projectile.owner, 0f, 0f);
+                        Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.position.X, projectile.position.Y, 0f, 0f, ProjectileID.CursedDartFlame, (projectile.damage * 1), 0, projectile.owner, 0f, 0f);
                         return true;
                     }
                 case ProjectileID.NanoBullet:
@@ -415,7 +415,7 @@ namespace TRAEProject.Changes.Projectiles
                             float Y = (float)Main.rand.Next(-35, 36) * 0.01f;
                             X += projectile.oldVelocity.X / 6f;
                             Y += projectile.oldVelocity.Y / 6f;
-                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage / 4, projectile.knockBack, projectile.owner);
+                            Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage / 4, projectile.knockBack, projectile.owner);
                         }
                     }
                     return false;
@@ -432,7 +432,7 @@ namespace TRAEProject.Changes.Projectiles
                             float Y = (float)Main.rand.Next(-35, 36) * 0.01f;
                             X += projectile.oldVelocity.X / 6f;
                             Y += projectile.oldVelocity.Y / 6f;
-                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage, projectile.knockBack, projectile.owner);
+                            Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage, projectile.knockBack, projectile.owner);
                         }
                     }
                     return false;
@@ -471,7 +471,7 @@ namespace TRAEProject.Changes.Projectiles
                             {
                                 if (Main.rand.Next(5) == 0)
                                 {
-                                    Gore gore11 = Gore.NewGoreDirect(projectile.position, Vector2.Zero, Main.rand.Next(61, 64));
+                                    Gore gore11 = Gore.NewGoreDirect(projectile.GetSource_FromThis(), projectile.position, Vector2.Zero, Main.rand.Next(61, 64));
                                     Gore gore = gore11;
                                     gore.velocity *= 0.2f;
                                     gore = gore11;
@@ -503,7 +503,7 @@ namespace TRAEProject.Changes.Projectiles
                         }
                         for (int i = 0; i < 1; i++)
                         {
-                            int num371 = Gore.NewGore(projectile.position + new Vector2(projectile.width * Main.rand.Next(100) / 100f, projectile.height * Main.rand.Next(100) / 100f) - Vector2.One * 10f, default, Main.rand.Next(61, 64));
+                            int num371 = Gore.NewGore(projectile.GetSource_FromThis(), projectile.position + new Vector2(projectile.width * Main.rand.Next(100) / 100f, projectile.height * Main.rand.Next(100) / 100f) - Vector2.One * 10f, default, Main.rand.Next(61, 64));
                             Gore gore = Main.gore[num371];
                             gore.velocity *= 0.3f;
                             Main.gore[num371].velocity.X += Main.rand.Next(-10, 11) * 0.05f;
@@ -521,7 +521,7 @@ namespace TRAEProject.Changes.Projectiles
                         }
                         for (int i = 0; i < 3; ++i)
                         {
-                            Gore.NewGore(projectile.position, new Vector2(projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.05f), Main.rand.Next(16, 18), 1f);
+                            Gore.NewGore(projectile.GetSource_FromThis(), projectile.position, new Vector2(projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.05f), Main.rand.Next(16, 18), 1f);
                         }
                         int[] spread = { 1 };
                         TRAEMethods.SpawnProjectilesFromAbove(Main.player[projectile.owner], projectile.Center, 1, 400, 750, spread, 22, ProjectileID.HallowStar, (int)(projectile.damage * 0.5), projectile.knockBack, projectile.owner);
@@ -553,7 +553,7 @@ namespace TRAEProject.Changes.Projectiles
                         {
                             float velX = Main.rand.Next(-2, 2);
                             float velY = Main.rand.NextFloat(10, 20);
-                            int buble = Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X + velX, projectile.position.Y, velX, velY, ProjectileType<ToxicDrop>(), (int)(projectile.damage * 0.67), 0, projectile.owner, 0f, 0f);
+                            int buble = Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.position.X + velX, projectile.position.Y, velX, velY, ProjectileType<ToxicDrop>(), (int)(projectile.damage * 0.67), 0, projectile.owner, 0f, 0f);
                             Main.projectile[buble].scale *= projectile.scale;
                         }
                         return;

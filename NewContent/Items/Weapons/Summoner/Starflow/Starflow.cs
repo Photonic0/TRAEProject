@@ -104,7 +104,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
 					Dust dust = Dust.NewDustDirect(proj.oldPosition, proj.width, proj.height, DustID.YellowStarDust, 1f);
 					dust.noGravity = true;
 				}
-				Projectile.NewProjectile(Player.GetProjectileSource_Item(Player.HeldItem), Player.position, new Vector2(0), ProjectileType<StarflowInvader>(), damage / 10, 1f, Player.whoAmI);
+				Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.position, new Vector2(0), ProjectileType<StarflowInvader>(), damage / 10, 1f, Player.whoAmI);
             }
 
         }

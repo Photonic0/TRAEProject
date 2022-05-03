@@ -52,7 +52,7 @@ namespace TRAEProject.Changes.Recipes
             Rocket.AddIngredient(ItemID.ExplosivePowder, 2);
             Rocket.AddTile(TileID.Anvils);
             Rocket.Register();
-Recipe Rocket1 = mod.CreateRecipe(ItemID.RocketI, 50);
+            Recipe Rocket1 = mod.CreateRecipe(ItemID.RocketI, 50);
             Rocket1.AddIngredient(ItemID.LeadBar, 1);
             Rocket1.AddIngredient(ItemID.ExplosivePowder, 2);
             Rocket1.AddTile(TileID.Anvils);

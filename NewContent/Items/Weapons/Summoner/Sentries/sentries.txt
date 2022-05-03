@@ -217,7 +217,7 @@ else if (aiStyle == 53)
 						num453 *= num455;
 						num454 *= num455;
 						int num457 = damage;
-						int num458 = NewProjectile(GetProjectileSource_FromThis(), vector38.X, vector38.Y, num453, num454, num452, num457, knockBack, Main.myPlayer);
+						int num458 = NewProjectile(GetSource_FromThis(), vector38.X, vector38.Y, num453, num454, num452, num457, knockBack, Main.myPlayer);
 					}
 				}
 			}
