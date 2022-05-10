@@ -53,6 +53,7 @@ namespace ChangesBuffs
                     return;
                 case BuffID.WaterWalking:
                     player.GetModPlayer<MoveSpeed>().TRAEwaterwalk = true;
+					return;
                 case BuffID.ManaRegeneration:
                     player.GetModPlayer<Mana>().manaRegenBoost += 0.2f;
                     return;

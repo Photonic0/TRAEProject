@@ -19,6 +19,8 @@ namespace TRAEProject.Changes.Resprites
             TextureAssets.Item[ItemID.StarWrath] = Request<Texture2D>(path + "StarWrath");
             TextureAssets.Projectile[ProjectileID.StarWrath] = Request<Texture2D>(path + "StarWrathProjectile");
 
+            TextureAssets.Item[ItemID.AdamantiteSword] = Request<Texture2D>(path + "AdamantiteSword");
+
             TextureAssets.Item[ItemID.StardustDragonStaff] = Request<Texture2D>(path + "LunarDragonStaff");
 
             TextureAssets.Projectile[ProjectileID.StardustDragon1] = Request<Texture2D>(path + "LunarDragonHead");

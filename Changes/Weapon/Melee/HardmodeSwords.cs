@@ -56,6 +56,8 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.SetNameOverride("Orichalcum Flamberge");
                     break;
                 case ItemID.AdamantiteSword:
+				item.width = 72;
+				item.height = 72;
                     item.damage = 60;
                     item.useTime = 17;
                     item.useAnimation = 17;
