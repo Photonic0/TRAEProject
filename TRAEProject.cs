@@ -113,7 +113,7 @@ namespace TRAEProject
             AddBossHeadTexture(DreadHead2);
             if(!Main.dedServ)
             {
-                IceMajestyCape = AddEquipTexture(GetModItem(ItemType<IceMajestyBreastplate>()), EquipType.Back, "TRAEProject/NewContent/Items/Armor/IceArmor/IceMajestyBreastplate_Back");
+                IceMajestyCape = EquipLoader.AddEquipTexture(this, "TRAEProject/NewContent/Items/Armor/IceArmor/IceMajestyBreastplate_Back", EquipType.Back, GetModItem(ItemType<IceMajestyBreastplate>()));
             }
             Main.QueueMainThreadAction(() =>
             {

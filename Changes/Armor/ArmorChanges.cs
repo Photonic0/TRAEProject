@@ -74,12 +74,12 @@ namespace ChangesArmor
                     player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
                 case ItemID.PirateShirt:
-                    player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) *= (1 / 1.12f);
+                    player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) += 0.12f;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
                 case ItemID.PiratePants:
                     player.moveSpeed += 0.1f;
-                    player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) *= (1 / 1.08f);
+                    player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) += 0.08f;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
                 case ItemID.DjinnsCurse:
