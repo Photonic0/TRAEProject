@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.ID;
 using TRAEProject.Common;
 
 namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
@@ -26,7 +27,9 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             spearLength = 141.4f;
             holdAt = 93f;
             Projectile.penetrate = 3;
-            floatTime = 90;
+            floatTime = 90; DustOnDeath = DustID.Cobalt; DustOnDeathCount = 30;
+
+
         }
     }
 }

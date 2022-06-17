@@ -34,6 +34,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             holdAt = 59f;
             Projectile.penetrate = 6;
             floatTime = 65;
+            DustOnDeath = 115;
         }
         public override void SpearActive()
         {

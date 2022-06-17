@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using TRAEProject.Common;
-
+using Terraria.ID;
 namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
 {
     class AdamantiteGlaive : Spear
@@ -27,6 +27,8 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             holdAt = 93f;
             Projectile.penetrate = 5;
             floatTime = 120;
+            DustOnDeath = DustID.Adamantite; DustOnDeathCount = 40;
+
         }
     }
 }

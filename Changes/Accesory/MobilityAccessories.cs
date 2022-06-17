@@ -7,14 +7,25 @@ namespace TRAEProject.Changes.Accesory
 {
     public class MoveSpeed : ModPlayer
     {
-                public override void PreUpdate()
+        public bool TRAEwaterwalk = false;
+        public override void ResetEffects()
+        {
+
+            TRAEwaterwalk = false;
+        }
+        public override void PreUpdate()
         {
             Player.rocketTimeMax = 7; // without this Obsidian Hover Shoes permanently set it to 14          
    
         }
 		public override void PostUpdateEquips()
-        {
-            Player.jumpSpeedBoost += 1f;
+        {    
+            if (TRAEwaterwalk)
+            {
+                Player.waterWalk = true;
+                Player.waterWalk2 = true;
+            }       
+        Player.jumpSpeedBoost += 1f;
             Player.moveSpeed *= 1.33f;
             if (Player.isPerformingJump_Sandstorm)
             {
@@ -96,6 +107,7 @@ namespace TRAEProject.Changes.Accesory
                     player.iceSkate = false;
                     player.lavaMax -= 42;
                     player.lavaRose = false;
+
                     player.fireWalk = false;
                     player.waterWalk = false;
                     player.accRunSpeed = 6f; 
@@ -151,6 +163,7 @@ namespace TRAEProject.Changes.Accesory
                     return;
                 case ItemID.WaterWalkingBoots:
                     player.GetModPlayer<AccesoryEffects>().waterRunning = true;
+                    player.GetModPlayer<MoveSpeed>().TRAEwaterwalk = true;
                     player.waterWalk = true;
                     return;
                 case ItemID.LavaCharm:
@@ -159,6 +172,8 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.LavaWaders:
                     player.GetModPlayer<AccesoryEffects>().waterRunning = true;
                     player.GetModPlayer<AccesoryEffects>().LavaShield = true;
+                    player.GetModPlayer<MoveSpeed>().TRAEwaterwalk = true;
+
                     player.lavaImmune = true;
                     player.lavaRose = false;
                     return;
