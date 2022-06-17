@@ -47,7 +47,7 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     for (int b = 0; b < Dolhphin.Count; b++)
                     {
                         Player form = Player;
-                        bool canShoot = form.HasAmmo(form.inventory[form.selectedItem], canUse: true) && !form.noItems && !form.CCed;
+                        bool canShoot = form.HasAmmo(form.inventory[form.selectedItem]) && !form.noItems && !form.CCed;
                         int projToShoot = 14;
                         float speed = 14f;
                         int usedAmmoItemID = 0;
@@ -55,7 +55,7 @@ namespace TRAEProject.Changes.Weapon.Ranged
                         float KnockBack = form.inventory[form.selectedItem].knockBack;
                         if (canShoot)
                         {
-                            form.PickAmmo(form.inventory[form.selectedItem], ref projToShoot, ref speed, ref canShoot, ref Damage, ref KnockBack, out usedAmmoItemID, true);
+                            form.PickAmmo(form.inventory[form.selectedItem], out projToShoot, out speed, out Damage, out KnockBack, out usedAmmoItemID, true);
                             KnockBack = form.GetWeaponKnockback(form.inventory[form.selectedItem], KnockBack);
                             Vector2 unit = (Main.MouseWorld - Player.Center);
                             unit.Normalize();
@@ -66,7 +66,7 @@ namespace TRAEProject.Changes.Weapon.Ranged
                                 offset.Y *= -1;
                             }
                             offset = offset.RotatedBy(dir);
-                            Projectile p = Main.projectile[Projectile.NewProjectile(Player.GetProjectileSource_Item(Player.HeldItem), Player.Center + offset, unit * speed, projToShoot, Damage, KnockBack, Player.whoAmI)];
+                            Projectile p = Main.projectile[Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.Center + offset, unit * speed, projToShoot, Damage, KnockBack, Player.whoAmI)];
                             p.timeLeft = Math.Min(p.timeLeft, 45);
                         }
                     }

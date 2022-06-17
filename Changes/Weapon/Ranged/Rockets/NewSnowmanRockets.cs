@@ -77,7 +77,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
 				}
 				if (Main.rand.Next(2) == 0)
 				{
-					int num17 = Dust.NewDust(new Vector2(projectile.position.X + 3f + num14, projectile.position.Y + 3f + num15) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, 31, 0f, 0f, 100, default(Color), 0.5f);
+					int num17 = Dust.NewDust(new Vector2(projectile.position.X + 3f + num14, projectile.position.Y + 3f + num15) - projectile.velocity * 0.5f, projectile.width - 8, projectile.height - 8, 31, 0f, 0f, 100, default, 0.5f);
 					Main.dust[num17].fadeIn = 0.5f + (float)Main.rand.Next(5) * 0.1f;
 					Main.dust[num17].velocity *= 0.05f;
 				}

@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.NPCs.Boomxie;
-using TRAEProject.NewContent.Items.Summoner.Sentries.BoomfrogStaff;
+using TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.NPCs.Froggabomba
@@ -50,7 +50,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.ZoneUnderworldHeight)
+            if (spawnInfo.Player.ZoneUnderworldHeight)
             {
                 return 0.10f;
             }
@@ -67,7 +67,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
                 {
                     damagestored -= 30;
                     NPC.life -= 30;
-                NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
                 for (int i = 0; i < smallBoomxiesToSpawn; i++)
                 {
                     damagestored -= 30;
-                    NPC.NewNPC(NPC.GetSpawnSourceForNPCFromNPCAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
                 }
             }
         }
@@ -94,7 +94,6 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
         {
             for (int i = 0; i < 2; i++)
             {
-                Vector2 vel = new Vector2(Main.rand.NextFloat(-2, -2), Main.rand.NextFloat(2, 2));
                 var dust = Dust.NewDustDirect(new Vector2(NPC.Center.X - 10, NPC.Center.Y - 10), 20, 20, DustID.Torch);
                 dust.scale = 0.5f;
             }
@@ -102,7 +101,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
         public override void OnKill()
         {
             Vector2 zero = new Vector2(0, 0);
-            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
         }
     }
     public class FroggabombaClone : ModNPC
@@ -134,7 +133,6 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
             npcLoot.Add(ItemDropRule.Common(ItemType<BoomfrogStaff>(), 80));
 
         }
-        int invincibilityTime = 0;
         public override void AI()
         {
             NPC.dontTakeDamage = false;
@@ -174,7 +172,7 @@ namespace TRAEProject.NewContent.NPCs.Froggabomba
         public override void OnKill()
         {
             Vector2 zero = new Vector2(0, 0);
-            Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
         }
     }
 

@@ -102,7 +102,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 		}
 		static void Poof(Vector2 position)
         {
-			int num528 = Gore.NewGore(position, new Vector2(0f, 0f), Main.rand.Next(61, 64), 1f);
+			int num528 = Gore.NewGore(Projectile.GetSource_None(), position, new Vector2(0f, 0f), Main.rand.Next(61, 64), 1f);
 			Gore gore = Main.gore[num528];
 			gore.velocity *= 0.1f;
 		}
@@ -219,7 +219,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 					{
 						projectile.localAI[0] = attackRecencyCooldown;
 						projectile.ai[1] = attackCooldown;
-						int spearIndex = Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), shootFrom, TRAEMethods.PolarVector(shootSpeed, shootAngle), ProjectileID.PygmySpear, projectile.damage * (1 + projectile.GetGlobalProjectile<MinionChanges>().pygmyCharge), projectile.knockBack, Main.myPlayer);
+						int spearIndex = Projectile.NewProjectile(projectile.GetSource_FromThis(), shootFrom, TRAEMethods.PolarVector(shootSpeed, shootAngle), ProjectileID.PygmySpear, projectile.damage * (1 + projectile.GetGlobalProjectile<MinionChanges>().pygmyCharge), projectile.knockBack, Main.myPlayer);
 						Main.projectile[spearIndex].timeLeft = 300;
 						Main.projectile[spearIndex].extraUpdates = projectile.GetGlobalProjectile<MinionChanges>().pygmyCharge;
 						projectile.GetGlobalProjectile<MinionChanges>().pygmyCharge = 0;
@@ -240,8 +240,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 		static void Movement(Projectile projectile, ref bool moveLeft, ref bool moveRight)
 		{
 			Player player = Main.player[projectile.owner];
-
-
 			bool playerBelow = false;
 			bool aboutToHitWall = false;
 
@@ -806,7 +804,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 					distance = 18f / distance;
 					shootTowardX *= distance;
 					shootTowardY *= distance;
-					int spearIndex = Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), shootFrom, new Vector2(shootTowardX, shootTowardY), ProjectileID.PygmySpear, projectile.damage, projectile.knockBack, Main.myPlayer);
+					int spearIndex = Projectile.NewProjectile(projectile.GetSource_FromThis(), shootFrom, new Vector2(shootTowardX, shootTowardY), ProjectileID.PygmySpear, projectile.damage, projectile.knockBack, Main.myPlayer);
 					Main.projectile[spearIndex].timeLeft = 300;
 					if (shootTowardX < 0f)
 					{
@@ -824,9 +822,8 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 		static void LegacyMovement(Projectile projectile, ref bool moveLeft, ref bool moveRight)
 		{
 			Player player = Main.player[projectile.owner];
-
-
 			bool playerBelow = false;
+
 			bool aboutToHitWall = false;
 
 			//don't move if attacking

@@ -123,7 +123,7 @@ namespace TRAEProject.Changes.NPCs
 			{
 				Vector2 vector = new Vector2(num2 * 16 + 8, num3 * 16 - 8);
 				Vector2 vector2 = new Vector2(0f, -1f).RotatedBy((float)(whichOne * dir) * 0.7f * ((float)Math.PI / 4f / (float)howMany));
-				Projectile.NewProjectile(npc.GetSpawnSource_ForProjectile(), vector, vector2, 961, num, 0f, Main.myPlayer, 0f, 0.1f + Main.rand.NextFloat() * 0.1f + (float)xOffset * 1.1f / (float)howMany);
+				Projectile.NewProjectile(npc.GetSource_FromThis(), vector, vector2, 961, num, 0f, Main.myPlayer, 0f, 0.1f + Main.rand.NextFloat() * 0.1f + (float)xOffset * 1.1f / (float)howMany);
 			}
 		}
 		private int TryMakingSpike_FindBestY(NPC npc, ref Point sourceTileCoords, int x)

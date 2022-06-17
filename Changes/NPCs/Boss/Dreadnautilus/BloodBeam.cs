@@ -26,10 +26,8 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
         public const int beamLength = 4000;
         public const int chargeTime = 25;
         public const int duration = 60;
-        int timer = 0;
         public override void AI()
         {
-
             NPC owner = Main.npc[(int)Projectile.ai[0]];
             if (!owner.active || owner.type != NPCID.BloodNautilus)
             {

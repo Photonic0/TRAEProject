@@ -31,7 +31,8 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
         {
             spearLength = 99f;
             holdAt = 46f;
-            floatTime = 60;
+            floatTime = 60; DustOnDeath = DustID.Electric;
+
         }
         public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
         {
@@ -55,7 +56,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             NPC npc = null;
             if (TRAEMethods.ClosestNPC(ref npc, 400, projectile.Center, false, -1, delegate(NPC possibleTarget) { return possibleTarget != target; }))
             {
-                Projectile p = Main.projectile[Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center, TRAEMethods.PolarVector(12, (npc.Center - projectile.Center).ToRotation()), ProjectileID.ThunderSpearShot, projectile.damage, 0, projectile.owner)];
+                Projectile p = Main.projectile[Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, TRAEMethods.PolarVector(12, (npc.Center - projectile.Center).ToRotation()), ProjectileID.ThunderSpearShot, projectile.damage, 0, projectile.owner)];
                 for (int n = 0; n < 200; n++)
                 {
                     if (Main.npc[n] != npc)

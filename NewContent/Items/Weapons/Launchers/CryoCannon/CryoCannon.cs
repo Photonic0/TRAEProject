@@ -57,7 +57,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
         {
             return base.Clone(item, itemClone);
         }
-        public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
+        public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
             if (weapon.type == ItemType<CryoCannon>())
             {

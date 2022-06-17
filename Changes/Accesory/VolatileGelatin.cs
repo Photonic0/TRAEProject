@@ -30,9 +30,9 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.VolatileGelatin:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Critical hits temporarily raise defense\nWhen hit, all stored defense is released as damaging gel\nLimited to 25 extra defense";
+                            line.Text = "Critical hits temporarily raise defense\nWhen hit, all stored defense is released as damaging gel\nLimited to 25 extra defense";
                         }
                     }
                     break;
@@ -72,7 +72,7 @@ namespace TRAEProject.Changes.Accesory
                 {
                     int DustColor = Main.rand.NextFromList(DustID.BlueTorch, DustID.PinkTorch, DustID.PurpleTorch);
                     Rectangle r3 = Utils.CenteredRectangle(Player.Center, Vector2.One * Player.width);
-                    int num3 = Dust.NewDust(r3.TopLeft(), r3.Width, r3.Height, DustColor, 0f, 0f, 150, default(Color), 0.3f);
+                    int num3 = Dust.NewDust(r3.TopLeft(), r3.Width, r3.Height, DustColor, 0f, 0f, 150, default, 0.3f);
                     Main.dust[num3].fadeIn = 1f;
                     Main.dust[num3].velocity *= 0.2f;
                     Main.dust[num3].noLight = true;
@@ -122,7 +122,7 @@ namespace TRAEProject.Changes.Accesory
                     float f2 = num852 + c * ((float)Math.PI * 2f);
                     Vector2 velocity = f2.ToRotationVector2() * (8f + Main.rand.NextFloat() * 3f);
                     velocity += Vector2.UnitY * -1f;
-                    int num854 = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.Center, velocity, GelID, 50, 0f, Player.whoAmI);
+                    int num854 = Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, velocity, GelID, 50, 0f, Player.whoAmI);
                     Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
                     projectile2.timeLeft = 40;
@@ -143,7 +143,7 @@ namespace TRAEProject.Changes.Accesory
                     float f2 = num852 + c * ((float)Math.PI * 2f);
                     Vector2 velocity = f2.ToRotationVector2() * (4f + Main.rand.NextFloat() * 2f);
                     velocity += Vector2.UnitY * -1f;
-                    int num854 = Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.Center, velocity, GelID, 50, 0f, Player.whoAmI);
+                    int num854 = Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, velocity, GelID, 50, 0f, Player.whoAmI);
                     Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
      

@@ -31,15 +31,15 @@ namespace TRAEProject.Changes.Weapon.Melee.Flairon
             {
                 foreach (TooltipLine line in tooltips)
                 {
-                    if (line.mod == "Terraria" && line.Name == "Damage") //this checks if it's the line we're interested in
+                    if (line.Mod == "Terraria" && line.Name == "Damage") //this checks if it's the line we're interested in
                     {
-                        string[] strings = line.text.Split(' ');
+                        string[] strings = line.Text.Split(' ');
                         int dmg = int.Parse(strings[0]);
                         dmg *= 2;
-                        line.text = dmg + "";//change tooltip
+                        line.Text = dmg + "";//change tooltip
                         for (int i = 1; i < strings.Length; i++)
                         {
-                            line.text += " " + strings[i];
+                            line.Text += " " + strings[i];
                         }
                     }
                 }
@@ -83,7 +83,7 @@ namespace TRAEProject.Changes.Weapon.Melee.Flairon
                     spinningpoint3.Normalize();
                     spinningpoint3 *= (float)Main.rand.Next(45, 65) * 0.1f;
                     spinningpoint3 = spinningpoint3.RotatedBy((Main.rand.NextDouble() - 0.5) * 1.5707963705062866);
-                    Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center.X, projectile.Center.Y, spinningpoint3.X, spinningpoint3.Y, 405, projectile.damage / 2, projectile.knockBack, projectile.owner, -10f);
+                    Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center.X, projectile.Center.Y, spinningpoint3.X, spinningpoint3.Y, 405, projectile.damage / 2, projectile.knockBack, projectile.owner, -10f);
                 }
             }
             return base.PreAI(projectile);

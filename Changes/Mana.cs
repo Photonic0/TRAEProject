@@ -54,7 +54,7 @@ namespace TRAEProject.Changes
             {
                 if (Main.rand.Next(3) == 0)
                 {
-                    Item.NewItem(Player.GetItemSource_OnHit(target, Player.HeldItem.type), target.getRect(), ItemID.Star, 1);
+                    Item.NewItem(Player.GetSource_OnHit(target), target.getRect(), ItemID.Star, 1);
                     ++manaFlowerLimit;
                 }
             }
@@ -279,7 +279,7 @@ namespace TRAEProject.Changes
             SpriteBatch spriteBatch = Main.spriteBatch;
             Vector2 vector = new Vector2(Main.screenWidth - 40, 22f);
             bool isHovered = false;
-            ResourceDrawSettings resourceDrawSettings = default(ResourceDrawSettings);
+            ResourceDrawSettings resourceDrawSettings = default;
             resourceDrawSettings.ElementCount = _starCount;
             resourceDrawSettings.ElementIndexOffset = 0;
             resourceDrawSettings.TopLeftAnchor = vector + new Vector2(15f, 16f);
@@ -320,7 +320,7 @@ namespace TRAEProject.Changes
 
 
 
-            ResourceDrawSettings resourceDrawSettings = default(ResourceDrawSettings);
+            ResourceDrawSettings resourceDrawSettings = default;
             resourceDrawSettings.ElementCount = _mpSegmentsCount;
             resourceDrawSettings.ElementIndexOffset = 0;
             resourceDrawSettings.TopLeftAnchor = vector2 + new Vector2(6f, 6f);

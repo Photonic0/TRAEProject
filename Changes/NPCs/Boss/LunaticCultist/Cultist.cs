@@ -45,7 +45,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
             {
                 if (npc.ai[0] != -1f && Main.rand.Next(1000) == 0)
                 {
-                    SoundEngine.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, Main.rand.Next(88, 92));
+                    SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
                 }
                 bool expert = Main.expertMode;
                 bool belowHalf = npc.life <= npc.lifeMax / 2;
@@ -150,7 +150,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 float attackTally = npc.ai[3];
                 if (npc.localAI[0] == 0f)
                 {
-                    SoundEngine.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 89);
+                    SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
                     npc.localAI[0] = 1f;
                     npc.alpha = 255;
                     npc.rotation = 0f;
@@ -228,7 +228,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                             for (int n = 0; n < 1; n++)
                             {
                                 Vector2 vector3 = vec * 4f;
-                                Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), vector2.X, vector2.Y, vector3.X, vector3.Y, 464, iceDamage, 0f, Main.myPlayer, 0f, 1f);
+                                Projectile.NewProjectile(npc.GetSource_FromThis(), vector2.X, vector2.Y, vector3.X, vector3.Y, 464, iceDamage, 0f, Main.myPlayer, 0f, 1f);
                             }
                         }
                     }
@@ -283,7 +283,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                             {
                                 Vector2 spinninpoint3 = vec2 * (6f + (float)Main.rand.NextDouble() * 4f);
                                 spinninpoint3 = spinninpoint3.RotatedByRandom(0.52359879016876221);
-                                Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), vector5.X, vector5.Y, spinninpoint3.X, spinninpoint3.Y, 467, fireballDamage, 0f, Main.myPlayer);
+                                Projectile.NewProjectile(npc.GetSource_FromThis(), vector5.X, vector5.Y, spinninpoint3.X, spinninpoint3.Y, 467, fireballDamage, 0f, Main.myPlayer);
                             }
                         }
                     }
@@ -332,7 +332,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                         {
                             IllusionsAttack(npc, player);
                             attackNumber++;
-                            Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), npc.Center.X, npc.Center.Y - 100f, 0f, 0f, 465, lightningDamage, 0f, Main.myPlayer);
+                            Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y - 100f, 0f, 0f, 465, lightningDamage, 0f, Main.myPlayer);
                         }
                     }
                     npc.ai[1] += AttackSpeed(npc);
@@ -399,7 +399,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                                     Vector2 center6 = npc.Center + spinningpoint.RotatedBy((float)num35 * ((float)Math.PI * 2f) / (float)num30 - (float)Math.PI / 2f);
                                     if (num34-- > 0)
                                     {
-                                        int num36 = NPC.NewNPC(npc.GetSpawnSourceForNPCFromNPCAI(), (int)center6.X, (int)center6.Y + npc.height / 2, 440, npc.whoAmI);
+                                        int num36 = NPC.NewNPC(npc.GetSource_FromAI(), (int)center6.X, (int)center6.Y + npc.height / 2, 440, npc.whoAmI);
                                         Main.npc[num36].ai[3] = npc.whoAmI;
                                         Main.npc[num36].netUpdate = true;
                                         Main.npc[num36].localAI[1] = npc.localAI[1];
@@ -412,7 +412,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                                     }
                                 }
                             }
-                            npc.ai[2] = Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), npc.Center.X, npc.Center.Y, 0f, 0f, 490, 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                            npc.ai[2] = Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y, 0f, 0f, 490, 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
                             npc.Center += spinningpoint.RotatedBy((float)num32 * ((float)Math.PI * 2f) / (float)num30 - (float)Math.PI / 2f);
                             npc.netUpdate = true;
                             list6.Clear();
@@ -606,7 +606,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                                 Vector2 spinningpoint2 = vec4 * scaleFactor;
                                 spinningpoint2 = spinningpoint2.RotatedBy((num48 / 5f) * 2f * (float)Math.PI + (float)Math.PI / 5f);
                                 float ai = (Main.rand.NextFloat() - 0.5f) * 0.3f * ((float)Math.PI * 2f) / 60f;
-                                int num49 = NPC.NewNPC(npc.GetSpawnSourceForNPCFromNPCAI(), (int)vector8.X, (int)vector8.Y + 7, 522, 0, 0f, ai, spinningpoint2.X, spinningpoint2.Y);
+                                int num49 = NPC.NewNPC(npc.GetSource_FromAI(), (int)vector8.X, (int)vector8.Y + 7, 522, 0, 0f, ai, spinningpoint2.X, spinningpoint2.Y);
                                 Main.npc[num49].velocity = spinningpoint2;
                             }
                         }
@@ -677,7 +677,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                                         }
                                         if (flag6)
                                         {
-                                            NPC.NewNPC(npc.GetSpawnSourceForNPCFromNPCAI(), num59 * 16 + 8, num60 * 16 + 8, 523, 0, npc.whoAmI);
+                                            NPC.NewNPC(npc.GetSource_FromAI(), num59 * 16 + 8, num60 * 16 + 8, 523, 0, npc.whoAmI);
                                             flag5 = true;
                                             break;
                                         }
@@ -739,7 +739,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                     {
                         Vector2 spinninpoint4 = vec3 * (6f + (float)Main.rand.NextDouble() * 4f);
                         spinninpoint4 = spinninpoint4.RotatedByRandom(0.52359879016876221);
-                        Projectile.NewProjectile(nPC5.GetSpawnSourceForProjectileNPC(), vector6.X, vector6.Y, spinninpoint4.X, spinninpoint4.Y, 468, 18, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(nPC5.GetSource_FromThis(), vector6.X, vector6.Y, spinninpoint4.X, spinninpoint4.Y, 468, 18, 0f, Main.myPlayer);
                     }
                 }
             }
@@ -955,7 +955,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 npc.velocity *= 0.95f;
                 if (npc.localAI[2] != 13f)
                 {
-                    SoundEngine.PlaySound(29, (int)npc.position.X, (int)npc.position.Y, 105);
+                    SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
                 }
                 npc.localAI[2] = 13f;
             }

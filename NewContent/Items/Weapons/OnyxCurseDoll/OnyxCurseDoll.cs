@@ -127,7 +127,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         }
         public override void Kill(int timeLeft)
         {
-            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, (int)Projectile.position.X, (int)Projectile.position.Y);
+            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
             for (int i = 0; i < 50; i++)
             {
                 Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, 179, 1f);
@@ -178,7 +178,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
 
         public override void Kill(int timeLeft)
         {
-            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, (int)Projectile.position.X, (int)Projectile.position.Y);
+            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
             for (int i = 0; i < 50; i++)
             {
                 Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, DustID.Shadowflame, 1f);
@@ -228,7 +228,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         }
         public override void Kill(int timeLeft)
         {
-            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, (int)Projectile.position.X, (int)Projectile.position.Y);
+            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
             for (int i = 0; i < 50; i++)
             {
                 Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, 21, 1f);

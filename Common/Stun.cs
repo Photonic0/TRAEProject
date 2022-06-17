@@ -75,7 +75,9 @@ namespace TRAEProject.Common
         //Called whenever an NPC breaks out of the ice
         public override bool PreAI(NPC npc)
         {
-            if(stunTime > 0)
+            if (stunCooldown > 0 && stunTime == 0)
+                stunCooldown--;
+            if (stunTime > 0)
             {
                 stunTime--;
                 if(npc.noGravity)

@@ -30,16 +30,16 @@ namespace TRAEProject.Changes.NPCs.Boss
 			{
 	
 				npc.defense = npc.defDefense;
-				if (npc.ai[0] == 0f && Main.netMode != 1)
+				if (npc.ai[0] == 0f && Main.netMode != NetmodeID.MultiplayerClient)
 				{
 					npc.TargetClosest();
 					npc.ai[0] = 1f;
-					int Hand = NPC.NewNPC(NPC.GetSpawnSource_NPCRelease(npc.whoAmI), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, NPCID.SkeletronHand, npc.whoAmI);
+					int Hand = NPC.NewNPC(NPC.GetBossSpawnSource(npc.target), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, NPCID.SkeletronHand, npc.whoAmI);
 					Main.npc[Hand].ai[0] = -1f;
 					Main.npc[Hand].ai[1] = npc.whoAmI;
 					Main.npc[Hand].target = npc.target;
 					Main.npc[Hand].netUpdate = true;
-					Hand = NPC.NewNPC(NPC.GetSpawnSource_NPCRelease(npc.whoAmI), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, 36, npc.whoAmI);
+					Hand = NPC.NewNPC(NPC.GetBossSpawnSource(npc.target), (int)(npc.position.X + (npc.width / 2)), (int)npc.position.Y + npc.height / 2, 36, npc.whoAmI);
 					Main.npc[Hand].ai[0] = 1f;
 					Main.npc[Hand].ai[1] = npc.whoAmI;
                     Main.npc[Hand].ai[3] = 150f;
@@ -52,7 +52,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 				if ((/*type == 68 ||*/ Main.netMode == 1) && npc.localAI[0] == 0f)
 				{
 					npc.localAI[0] = 1f;
-					SoundEngine.PlaySound(SoundID.Roar, (int)npc.position.X, (int)npc.position.Y, 0);
+					SoundEngine.PlaySound(SoundID.Roar, npc.Center);
 				}
 				if (Main.player[npc.target].dead || Math.Abs(npc.position.X - Main.player[npc.target].position.X) > 2000f || Math.Abs(npc.position.Y - Main.player[npc.target].position.Y) > 2000f)
 				{
@@ -65,7 +65,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 				if (Main.dayTime && npc.ai[1] != 3f && npc.ai[1] != 2f)
 				{
 					npc.ai[1] = 2f;
-					SoundEngine.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+					SoundEngine.PlaySound(SoundID.Roar, npc.Center);
 				}
 				int Hands = 0;
 				// expert changes (more defense with more hands, shoot skulls)
@@ -84,7 +84,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 						if (Main.rand.Next(10) < 3 * Hands)
 						{
 							Rectangle r3 = Utils.CenteredRectangle(npc.Center, Vector2.One * npc.width);
-							int num3 = Dust.NewDust(r3.TopLeft(), r3.Width, r3.Height, 204, 0f, 0f, 150, default(Color), 0.3f);
+							int num3 = Dust.NewDust(r3.TopLeft(), r3.Width, r3.Height, 204, 0f, 0f, 150, default, 0.3f);
 							Main.dust[num3].fadeIn = 1f;
 							Main.dust[num3].velocity *= 0.1f;
 							Main.dust[num3].noLight = true;
@@ -106,7 +106,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 								playerX2 *= distance2;
 								playerY2 *= distance2;
 								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(22f, 22f);
-								Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), npc.Center.X, npc.Center.Y, playerX2, playerY2, ProjectileType<ShadowflameSkull>(), attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
+								Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y, playerX2, playerY2, ProjectileType<ShadowflameSkull>(), attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
 							}
 							fireRate /= 2f;
 						}
@@ -114,12 +114,9 @@ namespace TRAEProject.Changes.NPCs.Boss
 						{
 							fireRate *= 0.8f;
 						}
-						if (Main.netMode != 1 && npc.ai[2] % fireRate == 0f)
+						if (Main.netMode != NetmodeID.MultiplayerClient && npc.ai[2] % fireRate == 0f)
 						{
 							Vector2 center3 = npc.Center;
-							float playerX = Main.player[npc.target].position.X + (Main.player[npc.target].width / 2) - center3.X;
-							float playerY = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - center3.Y;
-							float distance = (float)Math.Sqrt(playerX * playerX + playerY * playerY);
 							if (Collision.CanHit(center3, 1, 1, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
 							{
 								float baseVelocity = 3f;
@@ -141,7 +138,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 								playerY2 = totalVelocity.Y;
 								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(17f, 17f);
 								center3 += totalVelocity * 5f;
-								int Skull = Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), center3.X, center3.Y, playerX2, playerY2, ProjectileID.Skull, attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
+								int Skull = Projectile.NewProjectile(npc.GetSource_FromThis(), center3.X, center3.Y, playerX2, playerY2, ProjectileID.Skull, attackDamage_ForProjectiles, 0f, Main.myPlayer, -1f);
 								Main.projectile[Skull].timeLeft = 300;
 							}
 						}
@@ -234,7 +231,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 					npc.ai[2] += 1f;
 					if (npc.ai[2] == 2f)
 					{
-						SoundEngine.PlaySound(15, (int)npc.position.X, (int)npc.position.Y, 0);
+						SoundEngine.PlaySound(SoundID.Roar, npc.Center);
 					}
 					if (npc.ai[2] >= 400f)
 					{
@@ -271,7 +268,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 							{
 								if (npc.ai[2] == 250f)
 								{
-									SoundEngine.PlaySound(SoundID.ForceRoar, (int)npc.position.X, (int)npc.position.Y, -1, 1.5f);
+									SoundEngine.PlaySound(SoundID.ForceRoar, npc.Center);
 									Vector2 spinningpoint1 = ((float)Main.rand.NextDouble() * 6.283185f).ToRotationVector2();
 									Vector2 spinningpoint2 = spinningpoint1;
 									float fourToSix = Main.rand.Next(2, 3) * 2;
@@ -343,14 +340,14 @@ namespace TRAEProject.Changes.NPCs.Boss
 				}
 				if (npc.ai[1] != 2f && npc.ai[1] != 3f && (Hands != 0 || !Main.expertMode))
 				{
-					int num180 = Dust.NewDust(new Vector2(npc.position.X + (npc.width / 2) - 15f - npc.velocity.X * 5f, npc.position.Y + npc.height - 2f), 30, 10, 5, (0f - npc.velocity.X) * 0.2f, 3f, 0, default(Color), 2f);
+					int num180 = Dust.NewDust(new Vector2(npc.position.X + (npc.width / 2) - 15f - npc.velocity.X * 5f, npc.position.Y + npc.height - 2f), 30, 10, 5, (0f - npc.velocity.X) * 0.2f, 3f, 0, default, 2f);
 					Main.dust[num180].noGravity = true;
 					Main.dust[num180].velocity.X *= 1.3f;
 					Main.dust[num180].velocity.X += npc.velocity.X * 0.4f;
 					Main.dust[num180].velocity.Y += 2f + npc.velocity.Y;
 					for (int num181 = 0; num181 < 2; num181++)
 					{
-						num180 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 120f), npc.width, 60, 5, npc.velocity.X, npc.velocity.Y, 0, default(Color), 2f);
+						num180 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + 120f), npc.width, 60, 5, npc.velocity.X, npc.velocity.Y, 0, default, 2f);
 						Main.dust[num180].noGravity = true;
 						Dust dust = Main.dust[num180];
 						dust.velocity -= npc.velocity;
@@ -544,18 +541,16 @@ namespace TRAEProject.Changes.NPCs.Boss
 							}
 						}
 					}
-					Vector2 vector22 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
+					Vector2 vector22 = new(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
 					float num182 = Main.npc[(int)npc.ai[1]].position.X + (Main.npc[(int)npc.ai[1]].width / 2) - 200f * npc.ai[0] - vector22.X;
 					float num183 = Main.npc[(int)npc.ai[1]].position.Y + 230f - vector22.Y;
-					float num184 = (float)Math.Sqrt(num182 * num182 + num183 * num183);
 					npc.rotation = (float)Math.Atan2(num183, num182) + 1.57f;
 				}
 				else if (npc.ai[2] == 1f)
 				{
-					Vector2 vector23 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
+					Vector2 vector23 = new(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
 					float num185 = Main.npc[(int)npc.ai[1]].position.X + (Main.npc[(int)npc.ai[1]].width / 2) - 200f * npc.ai[0] - vector23.X;
 					float num186 = Main.npc[(int)npc.ai[1]].position.Y + 230f - vector23.Y;
-					float num187 = (float)Math.Sqrt(num185 * num185 + num186 * num186);
 					npc.rotation = (float)Math.Atan2(num186, num185) + 1.57f;
 					npc.velocity.X *= 0.95f;
 					npc.velocity.Y -= 0.1f;
@@ -578,7 +573,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 						vector23 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
 						num185 = Main.player[npc.target].position.X + (Main.player[npc.target].width / 2) - vector23.X;
 						num186 = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - vector23.Y;
-						num187 = (float)Math.Sqrt(num185 * num185 + num186 * num186);
+						float num187 = (float)Math.Sqrt(num185 * num185 + num186 * num186);
 						float factor = 18f;
 						if (Main.expertMode)
                         {
@@ -603,10 +598,9 @@ namespace TRAEProject.Changes.NPCs.Boss
 				}
 				else if (npc.ai[2] == 4f)
 				{
-					Vector2 vector24 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
+					Vector2 vector24 = new(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
 					float num188 = Main.npc[(int)npc.ai[1]].position.X + (Main.npc[(int)npc.ai[1]].width / 2) - 200f * npc.ai[0] - vector24.X;
 					float num189 = Main.npc[(int)npc.ai[1]].position.Y + 230f - vector24.Y;
-					float num190 = (float)Math.Sqrt(num188 * num188 + num189 * num189);
 					npc.rotation = (float)Math.Atan2(num189, num188) + 1.57f;
 					npc.velocity.Y *= 0.95f;
 					npc.velocity.X += 0.1f * (0f - npc.ai[0]);
@@ -637,7 +631,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 						vector24 = new Vector2(npc.position.X + npc.width * 0.5f, npc.position.Y + npc.height * 0.5f);
 						num188 = Main.player[npc.target].position.X + (Main.player[npc.target].width / 2) - vector24.X;
 						num189 = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - vector24.Y;
-						num190 = (float)Math.Sqrt(num188 * num188 + num189 * num189);
+						float num190 = (float)Math.Sqrt(num188 * num188 + num189 * num189);
 						float factor = 18f;
 						if (Main.expertMode)
 						{
@@ -708,7 +702,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 				SoundEngine.PlaySound(SoundID.Item8, Projectile.position);
 				for (int num134 = 0; num134 < 3; num134++)
 				{
-					int num135 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 27, Projectile.velocity.X, Projectile.velocity.Y, 0, default(Color), 2f);
+					int num135 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 27, Projectile.velocity.X, Projectile.velocity.Y, 0, default, 2f);
 					Main.dust[num135].noGravity = true;
 					Main.dust[num135].velocity = Projectile.Center - Main.dust[num135].position;
 					Main.dust[num135].velocity.Normalize();
@@ -739,7 +733,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 			Lighting.AddLight(Projectile.Center, vector24.X, vector24.Y, vector24.Z);
 			if (Main.rand.Next(3) == 0)
 			{
-				int num136 = Dust.NewDust(new Vector2(Projectile.position.X + 4f, Projectile.position.Y + 4f), Projectile.width - 8, Projectile.height - 8, 27, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default(Color), 2f);
+				int num136 = Dust.NewDust(new Vector2(Projectile.position.X + 4f, Projectile.position.Y + 4f), Projectile.width - 8, Projectile.height - 8, 27, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default, 2f);
 				Main.dust[num136].position -= Projectile.velocity * 2f;
 				Main.dust[num136].noLight = true;
 				Main.dust[num136].noGravity = true;
@@ -772,10 +766,10 @@ namespace TRAEProject.Changes.NPCs.Boss
 		}
 		public override void Kill(int timeLeft)
 		{
-			SoundEngine.PlaySound(0, (int)Projectile.position.X, (int)Projectile.position.Y, 27, 1f, 0.0f);
+			SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
 			for (int index1 = 0; index1 < 20; ++index1)
 			{
-				int index2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 26, 0.0f, 0.0f, 100, default, 1f);
+				int index2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Bone, 0.0f, 0.0f, 100, default, 1f);
 				Main.dust[index2].noGravity = true;
 				Dust dust1 = Main.dust[index2];
 				dust1.velocity = Vector2.Multiply(dust1.velocity, 1.2f);

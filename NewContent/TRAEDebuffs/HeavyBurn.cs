@@ -29,7 +29,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
         {
             if (Main.rand.Next(3) < 2)
             {
-                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 127, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2.5f);
+                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 127, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default, 2.5f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 1.8f;
                 Main.dust[dust].velocity.Y -= 0.5f;
@@ -42,7 +42,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
             Lighting.AddLight(npc.position, 0.1f, 0.2f, 0.7f);
             if (Main.rand.Next(3) < 2)
             {
-                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 127, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2.5f);
+                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 127, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default, 2.5f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 1.8f;
                 Main.dust[dust].velocity.Y -= 0.5f;

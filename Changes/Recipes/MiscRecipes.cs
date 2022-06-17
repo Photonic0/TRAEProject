@@ -56,7 +56,7 @@ namespace TRAEProject.Changes.Recipes
                 {
                     recipe.TryGetIngredient(ItemID.NeonTetra, out ingredientToRemove);
                     recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.RemoveRecipe();
+                    recipe.DisableRecipe();
                 }
   
             }

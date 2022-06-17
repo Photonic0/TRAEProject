@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Bullet");
-            Tooltip.SetDefault("Critical hits very briefly make enemies 5% more vulnerable to all damage\nStacks up to +35%, with the duration of the stack being 0.03 seconds for every 1 damage");
+            Tooltip.SetDefault("Critical deal 35% more damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -61,12 +61,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             Projectile.hostile = false;
             Projectile.friendly = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if (crit)
-            { 
-                 TRAEDebuff.Apply<ShroomBonus>(target, damage * 2, 6);
-            }
+                damage = (int)(damage * 1.35f); 
         }
         public override void AI()
         {

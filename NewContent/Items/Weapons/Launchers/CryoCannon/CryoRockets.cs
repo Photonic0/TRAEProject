@@ -56,7 +56,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
             float num846 = 3f;
             for (int num847 = 0; num847 < 40; num847++)
             {
-                Dust dust53 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+                Dust dust53 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 31, 0f, 0f, 100, default, 2f);
                 dust53.velocity = (dust53.position - projectile.Center).SafeNormalize(Vector2.Zero);
                 Dust dust = dust53;
                 dust.velocity *= 2f + (float)Main.rand.Next(5) * 0.1f;
@@ -264,7 +264,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
                     float f2 = num852 + c * ((float)Math.PI * 2f);
                     Vector2 velocity = f2.ToRotationVector2() * (4f + Main.rand.NextFloat() * 2f);
                     velocity += Vector2.UnitY * -1f;
-                    int num854 = Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, velocity, Cluster, Projectile.damage / 4, 0f, Projectile.owner);
+                    int num854 = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity, Cluster, Projectile.damage / 4, 0f, Projectile.owner);
                     Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
                     projectile2.timeLeft = 30;

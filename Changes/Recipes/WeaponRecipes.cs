@@ -81,7 +81,11 @@ Recipe Rocket1 = mod.CreateRecipe(ItemID.RocketI, 50);
             HeavyRocket.AddIngredient(ItemID.RocketI, 100);
             HeavyRocket.AddIngredient(ItemID.Nanites, 1);
             HeavyRocket.AddTile(TileID.Autohammer);
-            HeavyRocket.Register();
+            HeavyRocket.Register(); 
+            Recipe StarWrath = mod.CreateRecipe(ItemID.StarWrath, 1);
+            StarWrath.AddIngredient(ItemID.FragmentSolar, 18);
+            StarWrath.AddTile(TileID.LunarCraftingStation);
+            StarWrath.Register();
 
         }
         public static void Modify(Recipe recipe)
@@ -188,7 +192,7 @@ Recipe Rocket1 = mod.CreateRecipe(ItemID.RocketI, 50);
             }
             if (recipe.HasResult(ItemID.StardustDragonStaff))
             {
-                recipe.RemoveRecipe();
+                recipe.DisableRecipe();
             }
             if (recipe.HasResult(ItemID.BoneJavelin))
             {

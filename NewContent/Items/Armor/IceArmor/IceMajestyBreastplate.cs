@@ -74,7 +74,7 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
 				Player.AddBuff(BuffType<MadFlockos>(), 1);
 				if (Player.ownedProjectileCounts[ProjectileType<MadFlocko>()] < 3)
 				{
-					Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(Player.whoAmI), Player.Center.X, Player.Center.Y, 0, 0, ProjectileType<MadFlocko>(), 15, 1f, Player.whoAmI, 0f, 0f);
+					Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center.X, Player.Center.Y, 0, 0, ProjectileType<MadFlocko>(), 15, 1f, Player.whoAmI, 0f, 0f);
 				}
 			}
 
@@ -233,7 +233,7 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
             	{
             		if (Projectile.ai[1] == 0f)
             	{
-            			SoundEngine.PlaySound(0, (int)Projectile.position.X, (int)Projectile.position.Y);
+            			SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
             			for (int i = 0; i < 2; i++)
             			{
             				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 15, Projectile.oldVelocity.X * 0.2f, Projectile.oldVelocity.Y * 0.2f, 0, default(Color), 1.4f);

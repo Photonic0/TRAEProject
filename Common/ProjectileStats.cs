@@ -1,16 +1,11 @@
-using TRAEProject.NewContent.Buffs;
-using TRAEProject.NewContent.Projectiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.NewContent.Items.Summoner.Whip;
+using TRAEProject.NewContent.Items.Weapons.Summoner.Whip;
 
 using static Terraria.ModLoader.ModContent;
 
@@ -46,7 +41,6 @@ namespace TRAEProject.Common
         public int AddsBuff = 0; // Adds a buff when hitting a target
         public int AddsBuffChance = 1; // 1 in [variable] chance of that buff being applied to the target
         public int AddsBuffDuration = 300; // Measured in ticks, since the game runs at 60 frames per second, this base value is 5 seconds.
-        public bool BuffDurationScalesWithMeleeSpeed = false; // If true, the Duration gets multiplied by your extra melee speed
         //
         // Explosion
         public bool explodes = false; // set to true to make the projectile explode. 
@@ -70,7 +64,7 @@ namespace TRAEProject.Common
             {
                 if (projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration > 0)
                 {
-                    Main.player[projectile.owner].armorPenetration += projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration;
+                    Main.player[projectile.owner].GetArmorPenetration(DamageClass.Generic) += projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration;
                     projectile.GetGlobalProjectile<ProjectileStats>().extraAP += projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration;
                 }
             });
@@ -306,13 +300,13 @@ namespace TRAEProject.Common
             Player player = Main.player[projectile.owner];
             if (armorPenetration > 0)
             {
-                player.armorPenetration += armorPenetration;
+                player.GetArmorPenetration(DamageClass.Generic) += armorPenetration;
                 extraAP += armorPenetration;
             }
             damage = (int)(damage * DirectDamage);
             if (IgnoresDefense && target.type != NPCID.DungeonGuardian)
             {
-                int finalDefense = target.defense - player.armorPenetration;
+                int finalDefense = target.defense - (int)player.GetArmorPenetration(DamageClass.Generic);
                 target.ichor = false;
                 target.betsysCurse = false;
                 if (finalDefense < 0)
@@ -373,7 +367,7 @@ namespace TRAEProject.Common
         {
             if(extraAP > 0)
             {
-                Main.player[projectile.owner].armorPenetration -= extraAP;
+                Main.player[projectile.owner].GetArmorPenetration(DamageClass.Generic) -= extraAP;
                 extraAP = 0;
             }
 
@@ -433,11 +427,7 @@ namespace TRAEProject.Common
             projectile.damage -= (int)(projectile.damage * DamageFalloff);
             projectile.damage = (int)(projectile.damage * DamageFallon);
             //
-            if (Main.rand.Next(AddsBuffChance) == 0)
-            {
-                int length = BuffDurationScalesWithMeleeSpeed ? (int)(AddsBuffDuration * (1 + player.meleeSpeed)) : AddsBuffDuration; 
-                target.AddBuff(AddsBuff, length, false);          
-            }          
+     
         }
         public override bool PreKill(Projectile projectile, int timeLeft)
         { 
@@ -446,7 +436,7 @@ namespace TRAEProject.Common
                
                 case ProjectileID.DirtBall:
                     {
-                        Item.NewItem(projectile.GetItemSource_DropAsItem(), projectile.getRect(), ItemID.DirtBlock, 1);
+                        Item.NewItem(projectile.GetSource_DropAsItem(), projectile.getRect(), ItemID.DirtBlock, 1);
                         return false;
                     }
              
@@ -457,28 +447,13 @@ namespace TRAEProject.Common
                         int[] DustTypes = { 15, 57, 58 };
                         for (int i = 0; i < DustCount; ++i)
                         {
-                            Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.Next(DustTypes), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default(Color), 1.5f);
+                            Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.Next(DustTypes), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default, 1.5f);
                             dust.noGravity = true;
                         }
                         return false;
                     }
             }
             return true;
-        }
-        public override void Kill(Projectile projectile, int timeLeft)
-        {
-            switch (projectile.type)
-            {
-                case ProjectileID.VortexVortexLightning:
-                    {
-                        int stormChance = Main.rand.Next(0, 2);
-                        if (stormChance == 0 && Main.expertMode)
-                        {
-                            NPC.NewNPC(projectile.GetNPCSource_FromThis(), (int)projectile.position.X, (int)projectile.position.Y, NPCID.VortexRifleman);
-                        }
-                    }
-                    return;             
-            }    
-        }        
+        }       
     }
 }

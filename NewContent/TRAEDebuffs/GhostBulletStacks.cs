@@ -23,7 +23,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
             Vector2 velocity = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 0));
             velocity.Normalize();
             velocity *= Main.rand.Next(10, 101) * 0.5f;
-            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), npc.position, velocity, ProjectileType<GhostShot>(), projectile.damage, 4f);
+            Projectile.NewProjectile(projectile.GetSource_FromThis(), npc.position, velocity, ProjectileType<GhostShot>(), projectile.damage, 4f);
         }
         public override void CheckDead(NPC npc)
         {
@@ -34,7 +34,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
         {
             if (Main.rand.Next(6) < 1)
             {
-                int d = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, DustID.SpectreStaff, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2f);
+                int d = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, DustID.SpectreStaff, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default, 2f);
                 Main.dust[d].velocity *= 0.8f;
                 Main.dust[d].velocity.Y -= 0.3f;
             }

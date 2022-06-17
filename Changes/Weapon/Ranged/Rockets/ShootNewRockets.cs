@@ -17,7 +17,7 @@ namespace TRAEProject.Changes.Weapons.Rockets
         {
             return base.Clone(item, itemClone);
         }
-        public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
+        public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
             if (weapon.type == ItemID.RocketLauncher || weapon.type == ItemType<SkullCannon>() || weapon.type == ItemType<AdamantiteLauncher>() || weapon.type == ItemType<TitaniumBazooka>())
             {

@@ -28,9 +28,9 @@ namespace TRAEProject.Changes.Items
             {
                 if (item.type == ItemID.ArmorPolish)
                 {
-                    if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.text = "Your armor sparkles";
+                        line.Text = "Your armor sparkles";
                     }
 
                 }
@@ -62,7 +62,7 @@ namespace TRAEProject.Changes.Items
             if (armorPolish != null && Main.rand.Next(10)==0)
             {
                 Rectangle r3 = Utils.CenteredRectangle(Player.Center, Vector2.One * Player.width);
-                int num3 = Dust.NewDust(r3.TopLeft(), r3.Width, r3.Height, 204, 0f, 0f, 150, default(Color), 0.3f);
+                int num3 = Dust.NewDust(r3.TopLeft(), r3.Width, r3.Height, 204, 0f, 0f, 150, default, 0.3f);
                 Main.dust[num3].fadeIn = 1f;
                 Main.dust[num3].velocity *= 0.1f;
                 Main.dust[num3].noLight = true;

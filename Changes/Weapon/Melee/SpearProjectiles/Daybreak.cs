@@ -21,12 +21,13 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             stabStart = 85f;
             stabEnd = 0;
             swingAmount = (float)Math.PI / 24;
+            
         }
         public override void SpearHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (Main.myPlayer == Projectile.owner)
             {
-                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0f, 0f, 953, Projectile.damage / 2, 10f, Projectile.owner, 0f, 0.85f + Main.rand.NextFloat() * 1.15f);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0f, 0f, 953, Projectile.damage / 3, 10f, Projectile.owner, 0f, 0.85f + Main.rand.NextFloat() * 1.15f);
             }
         }
     }
@@ -38,6 +39,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             holdAt = 60f;
             maxSticks = 8;
             stickingDps = 100;
+            DustOnDeath = DustID.SolarFlare;
         }
         public override void Kill(int timeLeft)
         {
@@ -59,7 +61,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             }
             if (Main.myPlayer == Projectile.owner)
             {
-                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0f, 0f, 953, Projectile.damage, 10f, Projectile.owner, 0f, 0.85f + Main.rand.NextFloat() * 1.15f);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0f, 0f, 953, Projectile.damage, 10f, Projectile.owner, 0f, 0.85f + Main.rand.NextFloat() * 1.15f);
             }
         }
         public override void StuckEffects(NPC victim)

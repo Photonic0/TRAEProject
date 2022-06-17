@@ -23,7 +23,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(80, 6f, 1f, hasHoldDownHoverFeatures: true, 7f, 7f);
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(70, 5f, 1f, hasHoldDownHoverFeatures: true, 6.5f, 6.5f);
 			
 		}
 

@@ -56,7 +56,7 @@ namespace TRAEProject.Common
             {
                 if (Main.rand.Next(4) < 1)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 179, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 3f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 179, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default, 3f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0.8f;
                     Main.dust[dust].velocity.Y -= 0.3f;
@@ -71,7 +71,7 @@ namespace TRAEProject.Common
             {
                 if (Main.rand.Next(5) < 1)
                 {
-                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 21, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2f);
+                    int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 21, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default, 2f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].velocity *= 0.8f;
                     Main.dust[dust].velocity.Y -= 0.3f;

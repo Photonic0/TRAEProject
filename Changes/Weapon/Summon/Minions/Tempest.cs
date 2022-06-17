@@ -122,7 +122,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
             projectile.frame = projectile.frameCounter / num27;
             if (Main.rand.Next(5) == 0)
             {
-                int num28 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 217, 0f, 0f, 100, default(Color), 2f);
+                int num28 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 217, 0f, 0f, 100, default, 2f);
                 Main.dust[num28].velocity *= 0.3f;
                 Main.dust[num28].noGravity = true;
                 Main.dust[num28].noLight = true;
@@ -154,7 +154,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                         float calculatedShootAngle = TRAEMethods.PredictiveAim(projectile.Center, shootSpeed, projectile.GetGlobalProjectile<MinionChanges>().target.Center, projectile.GetGlobalProjectile<MinionChanges>().target.velocity, out _);
                         if (!float.IsNaN(calculatedShootAngle))
                         {
-                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center, TRAEMethods.PolarVector(shootSpeed, calculatedShootAngle), ProjectileID.MiniSharkron, projectile.damage, projectile.knockBack, projectile.owner);
+                            Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, TRAEMethods.PolarVector(shootSpeed, calculatedShootAngle), ProjectileID.MiniSharkron, projectile.damage, projectile.knockBack, projectile.owner);
                         }
 
 

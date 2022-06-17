@@ -61,7 +61,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodBoiler
         {
             return new Vector2(0, -2); // If your own flamethrower is being held wrong, edit these values. You can test out holdout offsets using Modder's Toolkit.
         }
-        public override bool CanConsumeAmmo(Player player)
+        public override bool CanConsumeAmmo(Item ammo, Player player)
         {
             // To make this item only consume ammo during the first jet, we check to make sure the animation just started. ConsumeAmmo is called 5 times because of item.useTime and item.useAnimation values in SetDefaults above.
             return player.itemAnimation >= player.itemAnimationMax - 4;

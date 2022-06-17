@@ -29,8 +29,8 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             if(projectile.type == 276 && projectile.localAI[1] == 1)
             {
 
-				SoundEngine.PlaySound(SoundID.NPCHit, projectile.Center);
-				Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center, Vector2.Zero, ProjectileType<HostileCloud>(), projectile.damage, 0);
+				SoundEngine.PlaySound(SoundID.NPCHit1, projectile.Center);
+				Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, Vector2.Zero, ProjectileType<HostileCloud>(), projectile.damage, 0);
             }
         }
         public override bool PreAI(Projectile projectile)

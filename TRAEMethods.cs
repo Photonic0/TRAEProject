@@ -26,7 +26,7 @@ namespace TRAEProject
                 Y *= squareRoot;
                 ///
                 // Spawn the projectile
-                int Projectile = Terraria.Projectile.NewProjectile(Player.GetItemSource_Misc(Player.HeldItem.type), x2, y, X, Y, type, damage, knockback, player);
+                int Projectile = Terraria.Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), x2, y, X, Y, type, damage, knockback, player);
                 // once the projectile reaches the base's position, it will no longer go through tiles.
                 Main.projectile[Projectile].localAI[1] += Base.Y;
            
@@ -57,7 +57,7 @@ namespace TRAEProject
             Terraria.Audio.SoundEngine.PlaySound(SoundID.Item14, projectile.position);
             for (int num731 = 0; num731 < 30; ++num731)
             {
-                int num732 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+                int num732 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default, 2f);
                 Dust dust = Main.dust[num732];
                 dust.velocity *= 2f;
                 if (Main.rand.Next(2) == 0)
@@ -68,11 +68,11 @@ namespace TRAEProject
             }
             for (int num733 = 0; num733 < 30; ++num733)
             {
-                int num734 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
+                int num734 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default, 3f);
                 Main.dust[num734].noGravity = true;
                 Dust dust = Main.dust[num734];
                 dust.velocity *= 4f;
-                num734 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
+                num734 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default, 2f);
                 dust = Main.dust[num734];
                 dust.velocity *= 2f;
             }

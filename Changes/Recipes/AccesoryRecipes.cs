@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 using TRAEProject.NewContent.Items.Accesories.CounterweightString;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.Items.Materials;
 
 namespace TRAEProject.Changes.Recipes
 {
@@ -48,6 +49,26 @@ namespace TRAEProject.Changes.Recipes
             BoBrecipe2.AddRecipeGroup("BlizzardJump");
             BoBrecipe2.AddTile(TileID.TinkerersWorkbench);
             BoBrecipe2.Register();
+            Recipe SolarWings = mod.CreateRecipe(ItemID.WingsSolar);
+            SolarWings.AddIngredient(ItemID.FragmentSolar, 12);
+            SolarWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
+            SolarWings.AddTile(TileID.LunarCraftingStation);
+            SolarWings.Register();
+            Recipe NebulaWings = mod.CreateRecipe(ItemID.WingsNebula);
+            NebulaWings.AddIngredient(ItemID.FragmentNebula, 12);
+            NebulaWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
+            NebulaWings.AddTile(TileID.LunarCraftingStation);
+            NebulaWings.Register();
+            Recipe VortexWings = mod.CreateRecipe(ItemID.WingsVortex);
+            VortexWings.AddIngredient(ItemID.FragmentVortex, 12);
+            VortexWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
+            VortexWings.AddTile(TileID.LunarCraftingStation);
+            VortexWings.Register();
+            Recipe StardustWings = mod.CreateRecipe(ItemID.WingsStardust);
+            StardustWings.AddIngredient(ItemID.FragmentStardust, 12);
+            StardustWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
+            StardustWings.AddTile(TileID.LunarCraftingStation);
+            StardustWings.Register();
         }
         public static void Modify(Recipe recipe)
         {
@@ -145,15 +166,15 @@ namespace TRAEProject.Changes.Recipes
             }
             if (recipe.HasResult(ItemID.AnkhCharm))
             {
-                recipe.RemoveRecipe();
+                recipe.DisableRecipe();
             }
             if (recipe.HasResult(ItemID.ThePlan))
             {
-                recipe.RemoveRecipe();
+                recipe.DisableRecipe();
             }
             //if (recipe.HasResult(ItemID.CountercurseMantra))
             //{
-            //    recipe.RemoveRecipe();
+            //    recipe.DisableRecipe();
             //}
             if (recipe.HasResult(ItemID.SniperScope))
             {

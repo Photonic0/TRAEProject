@@ -60,6 +60,7 @@ namespace TRAEProject.Changes.Prefixes
 				case ItemID.LightDisc:
 				case ItemID.PaladinsHammer:
 				case ItemID.PossessedHatchet:
+				case ItemID.SolarEruption:
 					canGetBoomerangModifers = true;
 					break;
 			}

@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 
 using static Terraria.ModLoader.ModContent;
+using Terraria.DataStructures;
 
 namespace TRAEProject.Changes.Projectiles
 {
@@ -192,7 +193,111 @@ namespace TRAEProject.Changes.Projectiles
                 }
                 return true;
             }
-
+            if (projectile.type == ProjectileID.Phantasm)
+            {
+                Vector2 vector = player.RotatedRelativePoint(player.MountedCenter);
+                float num = 0f;
+                if (projectile.spriteDirection == -1)
+                {
+                    num = (float)Math.PI;
+                }
+                projectile.ai[0] += 1f;
+                int speedMultiplier = 0;
+                if (projectile.ai[0] >= 40f)
+                {
+                    speedMultiplier++;
+                }
+                if (projectile.ai[0] >= 80f)
+                {
+                    speedMultiplier++;
+                }
+                if (projectile.ai[0] >= 120f)
+                {
+                    speedMultiplier++;
+                }
+                int num68 = 24;
+                int num69 = 2;
+                projectile.ai[1] -= 1f;
+                bool flag13 = false;
+                if (projectile.ai[1] <= 0f)
+                {
+                    projectile.ai[1] = num68 - num69 * speedMultiplier;
+                    flag13 = true;
+                    _ = (int)projectile.ai[0] / (num68 - num69 * speedMultiplier);
+                }
+                bool canShoot3 = player.channel && player.HasAmmo(player.inventory[player.selectedItem]) && !player.noItems && !player.CCed;
+                if (projectile.localAI[0] > 0f)
+                {
+                    projectile.localAI[0] -= 1f;
+                }
+                if (projectile.soundDelay <= 0 && canShoot3)
+                {
+                    projectile.soundDelay = num68 - num69 * speedMultiplier;
+                    if (projectile.ai[0] != 1f)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item5, projectile.position);
+                    }
+                    projectile.localAI[0] = 12f;
+                }
+                player.phantasmTime = 2;
+                if (flag13 && Main.myPlayer == projectile.owner)
+                {
+                    int projToShoot3 = 14; 
+                    float speed3 = 14f;
+                    int Damage3 = player.GetWeaponDamage(player.inventory[player.selectedItem]);
+                    float KnockBack3 = player.inventory[player.selectedItem].knockBack;
+                    if (canShoot3)
+                    {
+                        bool HasAmmo = player.PickAmmo(player.inventory[player.selectedItem], out projToShoot3, out speed3, out Damage3, out KnockBack3, out var usedAmmoItemId);
+                        IEntitySource projectileSource_Item_WithPotentialAmmo3 = player.GetSource_ItemUse_WithPotentialAmmo(player.HeldItem, usedAmmoItemId);
+                        KnockBack3 = player.GetWeaponKnockback(player.inventory[player.selectedItem], KnockBack3);
+                        float num70 = player.inventory[player.selectedItem].shootSpeed * projectile.scale;
+                        Vector2 vector30 = vector;
+                        Vector2 value11 = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY) - vector30;
+                        if (player.gravDir == -1f)
+                        {
+                            value11.Y = (float)(Main.screenHeight - Main.mouseY) + Main.screenPosition.Y - vector30.Y;
+                        }
+                        Vector2 vector31 = Vector2.Normalize(value11);
+                        if (float.IsNaN(vector31.X) || float.IsNaN(vector31.Y))
+                        {
+                            vector31 = -Vector2.UnitY;
+                        }
+                        vector31 *= num70;
+                        if (vector31.X != projectile.velocity.X || vector31.Y != projectile.velocity.Y)
+                        {
+                            projectile.netUpdate = true;
+                        }
+                        projectile.velocity = vector31 * 0.55f;
+                        for (int num71 = 0; num71 < 3; num71++)
+                        {
+                            Vector2 vector32 = Vector2.Normalize(projectile.velocity) * speed3 * (0.6f + Main.rand.NextFloat() * 0.8f);
+                            if (float.IsNaN(vector32.X) || float.IsNaN(vector32.Y))
+                            {
+                                vector32 = -Vector2.UnitY;
+                            }
+                            Vector2 vector33 = vector30 + Utils.RandomVector2(Main.rand, -15f, 15f);
+                            int num72 = Projectile.NewProjectile(projectileSource_Item_WithPotentialAmmo3, vector33.X, vector33.Y, vector32.X, vector32.Y, projToShoot3, Damage3, KnockBack3, projectile.owner);
+                            Main.projectile[num72].noDropItem = true;
+                        }
+                    }
+                    else
+                    {
+                        projectile.Kill();
+                    }
+                }
+                projectile.position = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false) - projectile.Size / 2f;
+                projectile.rotation = projectile.velocity.ToRotation() + num;
+                projectile.spriteDirection = projectile.direction;
+                projectile.timeLeft = 2;
+                player.ChangeDir(projectile.direction);
+                player.heldProj = projectile.whoAmI;
+                int num2 = 2;
+                float num3 = 0f;
+                player.SetDummyItemTime(num2);
+                player.itemRotation = MathHelper.WrapAngle((float)Math.Atan2(projectile.velocity.Y * (float)projectile.direction, projectile.velocity.X * (float)projectile.direction) + num3);
+                return false;
+            }
             if (projectile.type == 615)
             {
                 timer++;
@@ -258,7 +363,7 @@ namespace TRAEProject.Changes.Projectiles
                     return false;      
                 case ProjectileID.CursedBullet:
                     {
-                        Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X, projectile.position.Y, 0f, 0f, ProjectileID.CursedDartFlame, (projectile.damage * 1), 0, projectile.owner, 0f, 0f);
+                        Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.position.X, projectile.position.Y, 0f, 0f, ProjectileID.CursedDartFlame, (projectile.damage * 1), 0, projectile.owner, 0f, 0f);
                         return true;
                     }
                 case ProjectileID.NanoBullet:
@@ -306,7 +411,7 @@ namespace TRAEProject.Changes.Projectiles
                             float Y = (float)Main.rand.Next(-35, 36) * 0.01f;
                             X += projectile.oldVelocity.X / 6f;
                             Y += projectile.oldVelocity.Y / 6f;
-                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage / 4, projectile.knockBack, projectile.owner);
+                            Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage / 4, projectile.knockBack, projectile.owner);
                         }
                     }
                     return false;
@@ -323,7 +428,7 @@ namespace TRAEProject.Changes.Projectiles
                             float Y = (float)Main.rand.Next(-35, 36) * 0.01f;
                             X += projectile.oldVelocity.X / 6f;
                             Y += projectile.oldVelocity.Y / 6f;
-                            Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage, projectile.knockBack, projectile.owner);
+                            Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center.X, projectile.Center.Y, X, Y, ProjectileID.Bee, projectile.damage, projectile.knockBack, projectile.owner);
                         }
                     }
                     return false;
@@ -362,7 +467,7 @@ namespace TRAEProject.Changes.Projectiles
                             {
                                 if (Main.rand.Next(5) == 0)
                                 {
-                                    Gore gore11 = Gore.NewGoreDirect(projectile.position, Vector2.Zero, Main.rand.Next(61, 64));
+                                    Gore gore11 = Gore.NewGoreDirect(projectile.GetSource_FromThis(), projectile.position, Vector2.Zero, Main.rand.Next(61, 64));
                                     Gore gore = gore11;
                                     gore.velocity *= 0.2f;
                                     gore = gore11;
@@ -394,7 +499,7 @@ namespace TRAEProject.Changes.Projectiles
                         }
                         for (int i = 0; i < 1; i++)
                         {
-                            int num371 = Gore.NewGore(projectile.position + new Vector2(projectile.width * Main.rand.Next(100) / 100f, projectile.height * Main.rand.Next(100) / 100f) - Vector2.One * 10f, default, Main.rand.Next(61, 64));
+                            int num371 = Gore.NewGore(projectile.GetSource_FromThis(), projectile.position + new Vector2(projectile.width * Main.rand.Next(100) / 100f, projectile.height * Main.rand.Next(100) / 100f) - Vector2.One * 10f, default, Main.rand.Next(61, 64));
                             Gore gore = Main.gore[num371];
                             gore.velocity *= 0.3f;
                             Main.gore[num371].velocity.X += Main.rand.Next(-10, 11) * 0.05f;
@@ -412,7 +517,7 @@ namespace TRAEProject.Changes.Projectiles
                         }
                         for (int i = 0; i < 3; ++i)
                         {
-                            Gore.NewGore(projectile.position, new Vector2(projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.05f), Main.rand.Next(16, 18), 1f);
+                            Gore.NewGore(projectile.GetSource_FromThis(), projectile.position, new Vector2(projectile.velocity.X * 0.05f, projectile.velocity.Y * 0.05f), Main.rand.Next(16, 18), 1f);
                         }
                         int[] spread = { 1 };
                         TRAEMethods.SpawnProjectilesFromAbove(Main.player[projectile.owner], projectile.Center, 1, 400, 750, spread, 22, ProjectileID.HallowStar, (int)(projectile.damage * 0.5), projectile.knockBack, projectile.owner);
@@ -425,7 +530,7 @@ namespace TRAEProject.Changes.Projectiles
                         int[] DustTypes = { 15, 57, 58 };
                         for (int i = 0; i < DustCount; ++i)
                         {
-                            Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.Next(DustTypes), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default(Color), 1.5f);
+                            Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.Next(DustTypes), projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default, 1.5f);
                             dust.noGravity = true;
                         }
                         return false;
@@ -444,7 +549,7 @@ namespace TRAEProject.Changes.Projectiles
                         {
                             float velX = Main.rand.Next(-2, 2);
                             float velY = Main.rand.NextFloat(10, 20);
-                            int buble = Projectile.NewProjectile(projectile.GetProjectileSource_FromThis(), projectile.position.X + velX, projectile.position.Y, velX, velY, ProjectileType<ToxicDrop>(), (int)(projectile.damage * 0.67), 0, projectile.owner, 0f, 0f);
+                            int buble = Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.position.X + velX, projectile.position.Y, velX, velY, ProjectileType<ToxicDrop>(), (int)(projectile.damage * 0.67), 0, projectile.owner, 0f, 0f);
                             Main.projectile[buble].scale *= projectile.scale;
                         }
                         return;

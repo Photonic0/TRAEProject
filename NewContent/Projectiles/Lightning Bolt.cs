@@ -34,7 +34,7 @@ namespace TRAEProject.NewContent.Projectiles
                     Vector2 ProjectilePosition = Projectile.position;
                     ProjectilePosition -= Projectile.velocity * ((float)i * 0.25f);
                     Projectile.alpha = 255;
-                    int dust = Dust.NewDust(ProjectilePosition, 1, 1, 226, 0f, 0f, 0, default(Color), 1f);
+                    int dust = Dust.NewDust(ProjectilePosition, 1, 1, 226, 0f, 0f, 0, default, 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].noLight = true;
                     Main.dust[dust].position = ProjectilePosition;
@@ -48,9 +48,9 @@ namespace TRAEProject.NewContent.Projectiles
         }
         public override void Kill(int timeLeft)
         {
-            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, (int)Projectile.position.X, (int)Projectile.position.Y); 
+            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, Projectile.Center); 
             const int NUM_DUSTS = 36;
-            Dust.NewDust(Projectile.oldPosition, 1, 1, 226, 0f, 0f, 0, default(Color), 1f);
+            Dust.NewDust(Projectile.oldPosition, 1, 1, 226, 0f, 0f, 0, default, 1f);
             for (int i = 0; i < NUM_DUSTS; i++) 
             {
                 // Create a new dust
