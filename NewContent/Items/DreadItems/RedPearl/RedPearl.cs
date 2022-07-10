@@ -22,8 +22,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.RedPearl
         {
             Item.expert = true;
             Item.accessory = true;
-            Item.width = 22;
-            Item.height = 26;
+            Item.width = 26;
+            Item.height = 32;
             Item.rare = ItemRarityID.LightPurple;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

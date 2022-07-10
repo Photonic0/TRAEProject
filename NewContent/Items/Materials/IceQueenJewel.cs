@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.NewContent.Items.Summoner.Whip;
+using TRAEProject.NewContent.Items.Weapons.Summoner.Whip;
 using TRAEProject.Changes.Weapon;
 
 namespace TRAEProject.NewContent.Items.Materials

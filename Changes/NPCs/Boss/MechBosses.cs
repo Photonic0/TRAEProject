@@ -108,7 +108,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                         {
                             for (int i = 0; i < 2; i++)
                             {
-                                int num = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 182, 0f, 0f, 100, default(Color), 3.5f);
+                                int num = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 182, 0f, 0f, 100, default, 3.5f);
                                 Main.dust[num].noGravity = true;
                                 Main.dust[num].noLight = true;
                             }
@@ -121,7 +121,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                         Terraria.Audio.SoundEngine.PlaySound(SoundID.Item92, npc.position);
                         for (int i = 0; i < 25; i++)
                         {
-                            int num = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 182, 0f, 0f, 100, default(Color), 2f);
+                            int num = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y), npc.width, npc.height, 182, 0f, 0f, 100, default, 2f);
                             Main.dust[num].noGravity = true;
                             Main.dust[num].noLight = true;
                         }
@@ -268,7 +268,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                                         }
                                         if (npc.soundDelay <= 0)
                                         {
-                                            Terraria.Audio.SoundEngine.PlaySound(SoundID.ForceRoar, (int)npc.position.X, (int)npc.position.Y, -1, 1.5f);
+                                            Terraria.Audio.SoundEngine.PlaySound(SoundID.ForceRoar, npc.Center);
                                             npc.soundDelay = 240;
                                         }
                                         if (npc.localAI[1] > 8f)
@@ -301,5 +301,5 @@ namespace TRAEProject.Changes.NPCs.Boss
                     return;
             }
         }
-    }
+    }  
 }

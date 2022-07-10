@@ -190,7 +190,7 @@ namespace TRAEProject.Changes.Prefixes
             if(AP > 0)
             {
                 TooltipLine line = new TooltipLine(TRAEProj.Instance, "TRAEAP", "+" + AP + " armor penetration");
-                line.isModifier = true;
+                line.IsModifier = true;
                 int kbIndex = tooltips.FindIndex(TL => TL.Name == "PrefixKnockback");
                 int velIndex = tooltips.FindIndex(TL => TL.Name == "PrefixShootSpeed");
                 if(velIndex != -1)
@@ -216,7 +216,7 @@ namespace TRAEProject.Changes.Prefixes
             if (!Player.HeldItem.IsAir)
             {
                 //give the player armor penetration
-                Player.armorPenetration += Player.HeldItem.GetGlobalItem<BoomerangFlailStats>().AP;
+                Player.GetArmorPenetration(DamageClass.Generic) += Player.HeldItem.GetGlobalItem<BoomerangFlailStats>().AP;
 
 
                 //heavy flails don't benifit from getting item.shootspeed increased so give them a melee speed bonus
@@ -235,19 +235,19 @@ namespace TRAEProject.Changes.Prefixes
                         int pre = Player.HeldItem.prefix;
                         if (pre == PrefixType<Kinetic>() || pre == PrefixType<Aerodynamic>())
                         {
-                            Player.meleeSpeed /= 1.5f;
+                            Player.GetAttackSpeed(DamageClass.Melee) /= 1.5f;
                         }
                         if (pre == PrefixType<Devastating>() || pre == PrefixType<Enchanted>())
                         {
-                            Player.meleeSpeed /= 1.35f;
+                            Player.GetAttackSpeed(DamageClass.Melee) /= 1.35f;
                         }
                         if (pre == PrefixType<Brutal>())
                         {
-                            Player.meleeSpeed /= 1.2f;
+                            Player.GetAttackSpeed(DamageClass.Melee) /= 1.2f;
                         }
                         if (pre == PrefixType<Dense>() || pre == PrefixType<Pathetic>())
                         {
-                            Player.meleeSpeed /= 0.5f;
+                            Player.GetAttackSpeed(DamageClass.Melee) /= 0.5f;
                         }
                         break;
                 }

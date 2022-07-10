@@ -57,7 +57,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.player.ZoneDungeon)
+            if (spawnInfo.Player.ZoneDungeon)
             {
                 return 0.1f;
             }
@@ -129,7 +129,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 			{
 				if (Main.rand.Next(1000) == 0)
 				{
-					SoundEngine.PlaySound(14, (int)NPC.position.X, (int)NPC.position.Y);
+					SoundEngine.PlaySound(SoundID.ZombieMoan, NPC.Center);
 				}
 				NPC.TargetClosest();
 				if (NPC.directionY > 0 && Main.player[NPC.target].Center.Y <= NPC.Bottom.Y)
@@ -216,7 +216,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 					if (Main.netMode != 1)
 					{
 
-						Projectile.NewProjectile(NPC.GetSpawnSourceForNPCFromNPCAI(), vector34.X, vector34.Y, num146, num148, TYPE, Damage, 0f, Main.myPlayer);
+						Projectile.NewProjectile(NPC.GetSource_FromAI(), vector34.X, vector34.Y, num146, num148, TYPE, Damage, 0f, Main.myPlayer);
 
 					}
 					if (Math.Abs(num148) > Math.Abs(num146) * 2f)
@@ -413,12 +413,7 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
                     {
 						tile = new Tile();
                     }
-                    if (tile == null)
-                    {
-                        tile = new Tile();
-                    }
-
-                    if ((float)(num175 * 16) < vector37.X + (float)NPC.width && (float)(num175 * 16 + 16) > vector37.X && ((Main.tile[num175, num176].HasUnactuatedTile && Main.tile[num175, num176].Slope != SlopeType.SlopeUpLeft && Main.tile[num175, num176 - 1].Slope != SlopeType.SlopeUpRight && Main.tileSolid[Main.tile[num175, num176].TileType] && !Main.tileSolidTop[Main.tile[num175, num176].TileType]) || (Main.tile[num175, num176 - 1].IsHalfBlock && Main.tile[num175, num176 - 1].HasUnactuatedTile)) && (!Main.tile[num175, num176 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 1].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 1].TileType] || (Main.tile[num175, num176 - 1].IsHalfBlock && (!Main.tile[num175, num176 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 4].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 4].TileType]))) && (!Main.tile[num175, num176 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 2].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 2].TileType]) && (!Main.tile[num175, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 3].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 3].TileType]) && (!Main.tile[num175 - num174, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175 - num174, num176 - 3].TileType]))
+                    if ((num175 * 16) < vector37.X + NPC.width && (num175 * 16 + 16) > vector37.X && ((Main.tile[num175, num176].HasUnactuatedTile && Main.tile[num175, num176].Slope != SlopeType.SlopeUpLeft && Main.tile[num175, num176 - 1].Slope != SlopeType.SlopeUpRight && Main.tileSolid[Main.tile[num175, num176].TileType] && !Main.tileSolidTop[Main.tile[num175, num176].TileType]) || (Main.tile[num175, num176 - 1].IsHalfBlock && Main.tile[num175, num176 - 1].HasUnactuatedTile)) && (!Main.tile[num175, num176 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 1].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 1].TileType] || (Main.tile[num175, num176 - 1].IsHalfBlock && (!Main.tile[num175, num176 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 4].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 4].TileType]))) && (!Main.tile[num175, num176 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 2].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 2].TileType]) && (!Main.tile[num175, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175, num176 - 3].TileType] || Main.tileSolidTop[Main.tile[num175, num176 - 3].TileType]) && (!Main.tile[num175 - num174, num176 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num175 - num174, num176 - 3].TileType]))
 						{
 							float num177 = num176 * 16;
 							if (Main.tile[num175, num176].IsHalfBlock)
@@ -496,7 +491,6 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 						NPC.ai[3] = 0f;
 						if (NPC.ai[2] >= 60f)
 						{
-						    bool flag22 = Main.player[NPC.target].ZoneGraveyard && Main.rand.Next(60) == 0;
 							NPC.velocity.X = 0.5f * (float)(-NPC.direction);
 							int num182 = 5;
 							if (Main.tile[num180, num181 - 1].TileType == 388)
@@ -523,9 +517,9 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 											NPC.ai[3] = num55;
 											NPC.netUpdate = true;
 										}
-										if (Main.netMode == 2 && flag24)
+										if (Main.netMode == NetmodeID.Server && flag24)
 										{
-											NetMessage.SendData(19, -1, -1, null, 0, num180, num181 - 1, NPC.direction);
+											NetMessage.SendData(MessageID.ToggleDoorState, -1, -1, null, 0, num180, num181 - 1, NPC.direction);
 										}
 									}
 									if (Main.tile[num180, num181 - 1].TileType == 388)
@@ -536,9 +530,9 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 											NPC.ai[3] = num55;
 											NPC.netUpdate = true;
 										}
-										if (Main.netMode == 2 && flag25)
+										if (Main.netMode == NetmodeID.Server && flag25)
 										{
-											NetMessage.SendData(19, -1, -1, null, 4, num180, num181 - 1);
+											NetMessage.SendData(MessageID.ToggleDoorState, -1, -1, null, 4, num180, num181 - 1);
 										}
 									}
 								
@@ -642,9 +636,9 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 			{
 				Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 2.5f * (float)hitdirection, -2.5f);
 			}
-			Gore.NewGore(NPC.position, NPC.velocity, 42, NPC.scale);
-			Gore.NewGore(new Vector2(NPC.position.X, NPC.position.Y + 20f), NPC.velocity, 43, NPC.scale);
-			Gore.NewGore(new Vector2(NPC.position.X, NPC.position.Y + 34f), NPC.velocity, 44, NPC.scale);
+			Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, 42, NPC.scale);
+			Gore.NewGore(NPC.GetSource_Death(), new Vector2(NPC.position.X, NPC.position.Y + 20f), NPC.velocity, 43, NPC.scale);
+			Gore.NewGore(NPC.GetSource_Death(), new Vector2(NPC.position.X, NPC.position.Y + 34f), NPC.velocity, 44, NPC.scale);
 		}
 	}
 	public class BomberBonesGrenade : ModProjectile

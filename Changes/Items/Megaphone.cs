@@ -31,7 +31,7 @@ namespace TRAEProject.Changes.Items
         {
             if (item.type == ItemID.Megaphone)
             {
-                SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
                 return true;
             }
             return base.CanUseItem(item, player);
@@ -43,9 +43,9 @@ namespace TRAEProject.Changes.Items
                 case ItemID.Megaphone:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Use it to scream";
+                            line.Text = "Use it to scream";
                         }
                     }
 return;

@@ -37,7 +37,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
         {
             if (Main.rand.Next(3) < 1)
             {
-                int d = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, DustID.Smoke, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2f);
+                int d = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, DustID.Smoke, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default, 2f);
                 Main.dust[d].velocity *= 0.8f;
                 Main.dust[d].velocity.Y -= 0.3f;
             }

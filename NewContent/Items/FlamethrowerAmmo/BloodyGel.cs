@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.Common;
-using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
@@ -83,7 +82,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
                 Vector2 ProjectilePosition = Projectile.position;
                 ProjectilePosition -= Projectile.velocity * (i * 0.25f);
                 Projectile.alpha = 255;
-                int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.BloodWater, 0f, 0f, 0, default(Color), 1f);
+                int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.BloodWater, 0f, 0f, 0, default, 1f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].position = ProjectilePosition;
                 Main.dust[dust].scale = Main.rand.Next(70, 110) * 0.013f;

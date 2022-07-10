@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace TRAEProject.Common.AIs
 {
@@ -62,7 +64,7 @@ namespace TRAEProject.Common.AIs
 				Point scanAreaStart = Projectile.TopLeft.ToTileCoordinates();
 				Point scanAreaEnd = Projectile.BottomRight.ToTileCoordinates();
 				i = 2;
-				CreateImpactExplosion(Projectile, 2, Projectile.Center, ref scanAreaStart, ref scanAreaEnd, Projectile.width, out var causedShockwaves);
+				CreateImpactExplosion(2, Projectile.Center, ref scanAreaStart, ref scanAreaEnd, Projectile.width, out var causedShockwaves);
 				CreateImpactExplosion2_FlailTileCollision(Projectile, Projectile.Center, causedShockwaves, velocity);
 				Projectile.position -= velocity;
 			}
@@ -73,7 +75,7 @@ namespace TRAEProject.Common.AIs
 				{
 					Collision.HitTiles(Projectile.position, velocity, Projectile.width, Projectile.height);
 				}
-				SoundEngine.PlaySound(0, (int)Projectile.position.X, (int)Projectile.position.Y);
+				SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
 			}
 			if (Projectile.ai[0] != 3f && Projectile.ai[0] != 0f && Projectile.ai[0] != 5f && Projectile.ai[0] != 6f && Projectile.localAI[0] >= 10f)
 			{
@@ -112,7 +114,7 @@ namespace TRAEProject.Common.AIs
 			int num16 = 10;
 			int num17 = throwTime + 5;
 
-			float meleeSpeed = player.meleeSpeed;
+			float meleeSpeed = player.GetAttackSpeed(DamageClass.Melee);
 			float num18 = 1f / meleeSpeed;
 			throwSpeed *= num18;
 			num11 *= num18;
@@ -327,7 +329,7 @@ namespace TRAEProject.Common.AIs
 			}
 			player.itemRotation = MathHelper.WrapAngle(player.itemRotation);
 		}
-		private static void CreateImpactExplosion(Projectile Projectile, int dustAmountMultiplier, Vector2 explosionOrigin, ref Point scanAreaStart, ref Point scanAreaEnd, int explosionRange, out bool causedShockwaves)
+		private static void CreateImpactExplosion(int dustAmountMultiplier, Vector2 explosionOrigin, ref Point scanAreaStart, ref Point scanAreaEnd, int explosionRange, out bool causedShockwaves)
 		{
 			causedShockwaves = false;
 			int num = 4;
@@ -375,14 +377,14 @@ namespace TRAEProject.Common.AIs
 		}
 		private static void CreateImpactExplosion2_FlailTileCollision(Projectile Projectile, Vector2 explosionOrigin, bool causedShockwaves, Vector2 velocityBeforeCollision)
 		{
-			Vector2 spinningpoint = new Vector2(7f, 0f);
-			Vector2 value = new Vector2(1f, 0.7f);
+			Vector2 spinningpoint = new(7f, 0f);
+			Vector2 value = new(1f, 0.7f);
 			Color color = Color.White * 0.5f;
 			Vector2 value2 = velocityBeforeCollision.SafeNormalize(Vector2.Zero);
 			for (float num = 0f; num < 8f; num += 1f)
 			{
 				Vector2 value3 = spinningpoint.RotatedBy(num * ((float)Math.PI * 2f) / 8f) * value;
-				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 31);
+				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
 				dust.alpha = 0;
 				if (!causedShockwaves)
 				{
@@ -402,7 +404,7 @@ namespace TRAEProject.Common.AIs
 				for (float num2 = 0f; num2 < 8f; num2 += 1f)
 				{
 					Vector2 value4 = spinningpoint.RotatedBy(num2 * ((float)Math.PI * 2f) / 8f) * value;
-					Dust dust2 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 31);
+					Dust dust2 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
 					dust2.alpha = 100;
 					dust2.color = color;
 					dust2.position = explosionOrigin + value4;

@@ -1,0 +1,79 @@
+ public class SetBonuses : ModPlayer
+    {
+        public int shadowArmorDodgeChance = 0;
+
+        public override void ResetEffects()
+        {
+            shadowArmorDodgeChance = 0;
+
+        }  
+public override void UpdateDead()
+        {
+            shadowArmorDodgeChance = 0;
+
+        }
+     public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+
+            if (Main.rand.Next(shadowArmorDodgeChance) == 1)//if set to 0, it will give 100% dodge chance without the set bonus
+            {
+                DarkDodge();
+                return false;
+            }
+            return true;
+        }
+void DarkDodge()
+        {
+            Player.immune = true;
+            Player.immuneTime = 80;
+            if (Player.longInvince)
+                Player.immuneTime = Player.immuneTime + 40;
+            for (int index = 0; index < Player.hurtCooldowns.Length; ++index)
+                Player.hurtCooldowns[index] = Player.immuneTime;
+            for (int i = 0; i < 80; i++)
+            {
+                int num = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y), Player.width, Player.height, Main.rand.Next(new int[] { 65, 173 }), 0f, 0f, 100, default, 2f);
+                Main.dust[num].position.X += Main.rand.Next(-20, 21);
+                Main.dust[num].position.Y += Main.rand.Next(-20, 21);
+                Main.dust[num].velocity *= 0.4f;
+                Main.dust[num].scale *= 1f + Main.rand.Next(40) * 0.01f;
+                Main.dust[num].shader = GameShaders.Armor.GetSecondaryShader(Player.cWaist, Player);
+                Main.dust[num].noGravity = true;
+                Main.dust[num].noLight = true;
+                if (Main.rand.Next(2) == 0)
+                {
+                    Main.dust[num].scale *= 1f + Main.rand.Next(40) * 0.01f;
+                    Main.dust[num].velocity *= 1.4f;
+                }
+            }
+            if (Player.whoAmI == Main.myPlayer)
+            {
+                NetMessage.SendData(MessageID.Dodge, -1, -1, null, Player.whoAmI, 1f);
+            }
+        }
+    }
+}    
+public class ChangesArmor : GlobalItem
+    {
+        public override bool InstancePerEntity => true;
+        public override GlobalItem Clone(Item item, Item itemClone)
+        {
+            return base.Clone(item, itemClone);
+        }
+      public override string IsArmorSet(Item head, Item body, Item legs)
+        {
+
+            if ((head.type == ItemID.ShadowHelmet || head.type == ItemID.AncientShadowHelmet) && (body.type == ItemID.ShadowScalemail || body.type == ItemID.AncientShadowScalemail) && (legs.type == ItemID.ShadowGreaves || legs.type == ItemID.AncientShadowGreaves))
+                return "ShadowSet";
+}
+public override void UpdateArmorSet(Player player, string armorSet)
+        {
+
+            if (armorSet == "ShadowSet")
+            {
+                player.moveSpeed -= 0.15f;
+                player.setBonus = "Gives a chance to dodge attacks";
+                player.GetModPlayer<SetBonuses>().shadowArmorDodgeChance = 6;
+            }
+}
+}

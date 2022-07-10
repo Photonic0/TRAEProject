@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 using TRAEProject.NewContent.Items.Accesories.CounterweightString;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.Items.Materials;
 
 namespace TRAEProject.Changes.Recipes
 {
@@ -17,37 +18,57 @@ namespace TRAEProject.Changes.Recipes
 
         public static void Load(Mod mod)
         {
-            Recipe YoyoBagAlt = mod.CreateRecipe(ItemID.YoyoBag).AddIngredient(ItemID.YoYoGlove, 1).AddIngredient(ItemType<CounterweightString>()).AddTile(TileID.Loom);
+            Recipe YoyoBagAlt = Recipe.Create(ItemID.YoyoBag).AddIngredient(ItemID.YoYoGlove, 1).AddIngredient(ItemType<CounterweightString>()).AddTile(TileID.Loom);
             YoyoBagAlt.Register();
-            Recipe HermesBoots = mod.CreateRecipe(ItemID.HermesBoots).AddIngredient(ItemID.Aglet, 1).AddIngredient(ItemID.Silk, 20).AddTile(TileID.Loom);
+            Recipe HermesBoots = Recipe.Create(ItemID.HermesBoots).AddIngredient(ItemID.Aglet, 1).AddIngredient(ItemID.Silk, 20).AddTile(TileID.Loom);
             HermesBoots.Register(); 
-            Recipe Mantra = mod.CreateRecipe(ItemID.CountercurseMantra).AddIngredient(ItemID.Nazar, 1).AddIngredient(ItemID.AnkhCharm, 1).AddTile(TileID.TinkerersWorkbench);
+            Recipe Mantra = Recipe.Create(ItemID.CountercurseMantra).AddIngredient(ItemID.Nazar, 1).AddIngredient(ItemID.AnkhCharm, 1).AddTile(TileID.TinkerersWorkbench);
             Mantra.Register();
-            Recipe Magnet = mod.CreateRecipe(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
+            Recipe Magnet = Recipe.Create(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
             Magnet.Register();
-            Recipe AvengerEmblem = mod.CreateRecipe(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 15).AddTile(TileID.TinkerersWorkbench);
+            Recipe AvengerEmblem = Recipe.Create(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 15).AddTile(TileID.TinkerersWorkbench);
             AvengerEmblem.Register();
-            Recipe BoBrecipe = mod.CreateRecipe(ItemID.BundleofBalloons);
+            Recipe BoBrecipe = Recipe.Create(ItemID.BundleofBalloons);
             BoBrecipe.AddIngredient(ItemID.SoulofFlight, 20);
             BoBrecipe.AddRecipeGroup("CloudBalloon");
             BoBrecipe.AddRecipeGroup("BlizzardJump");
             BoBrecipe.AddRecipeGroup("SandstormJump");
             BoBrecipe.AddTile(TileID.TinkerersWorkbench);
             BoBrecipe.Register();
-            Recipe BoBrecipe1 = mod.CreateRecipe(ItemID.BundleofBalloons);
+            Recipe BoBrecipe1 = Recipe.Create(ItemID.BundleofBalloons);
             BoBrecipe1.AddIngredient(ItemID.SoulofFlight, 20);
             BoBrecipe1.AddRecipeGroup("BlizzardBalloon");
             BoBrecipe1.AddRecipeGroup("CloudJump");
             BoBrecipe1.AddRecipeGroup("SandstormJump");
             BoBrecipe1.AddTile(TileID.TinkerersWorkbench);
             BoBrecipe1.Register();
-            Recipe BoBrecipe2 = mod.CreateRecipe(ItemID.BundleofBalloons);
+            Recipe BoBrecipe2 = Recipe.Create(ItemID.BundleofBalloons);
             BoBrecipe2.AddIngredient(ItemID.SoulofFlight, 20);
             BoBrecipe2.AddRecipeGroup("SandstormBalloon");
             BoBrecipe2.AddRecipeGroup("CloudJump");
             BoBrecipe2.AddRecipeGroup("BlizzardJump");
             BoBrecipe2.AddTile(TileID.TinkerersWorkbench);
             BoBrecipe2.Register();
+            Recipe SolarWings = Recipe.Create(ItemID.WingsSolar);
+            SolarWings.AddIngredient(ItemID.FragmentSolar, 12);
+            SolarWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
+            SolarWings.AddTile(TileID.LunarCraftingStation);
+            SolarWings.Register();
+            Recipe NebulaWings = Recipe.Create(ItemID.WingsNebula);
+            NebulaWings.AddIngredient(ItemID.FragmentNebula, 12);
+            NebulaWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
+            NebulaWings.AddTile(TileID.LunarCraftingStation);
+            NebulaWings.Register();
+            Recipe VortexWings = Recipe.Create(ItemID.WingsVortex);
+            VortexWings.AddIngredient(ItemID.FragmentVortex, 12);
+            VortexWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
+            VortexWings.AddTile(TileID.LunarCraftingStation);
+            VortexWings.Register();
+            Recipe StardustWings = Recipe.Create(ItemID.WingsStardust);
+            StardustWings.AddIngredient(ItemID.FragmentStardust, 12);
+            StardustWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
+            StardustWings.AddTile(TileID.LunarCraftingStation);
+            StardustWings.Register();
         }
         public static void Modify(Recipe recipe)
         {
@@ -145,15 +166,15 @@ namespace TRAEProject.Changes.Recipes
             }
             if (recipe.HasResult(ItemID.AnkhCharm))
             {
-                recipe.RemoveRecipe();
+                recipe.DisableRecipe();
             }
             if (recipe.HasResult(ItemID.ThePlan))
             {
-                recipe.RemoveRecipe();
+                recipe.DisableRecipe();
             }
             //if (recipe.HasResult(ItemID.CountercurseMantra))
             //{
-            //    recipe.RemoveRecipe();
+            //    recipe.DisableRecipe();
             //}
             if (recipe.HasResult(ItemID.SniperScope))
             {

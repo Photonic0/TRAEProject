@@ -279,14 +279,14 @@ if (aiStyle == 11)
 		}
 		if (this.ai[1] != 2f && this.ai[1] != 3f && type != 68 && (num157 != 0 || !Main.expertMode))
 		{
-			int num180 = Dust.NewDust(new Vector2(position.X + (float)(width / 2) - 15f - velocity.X * 5f, position.Y + (float)height - 2f), 30, 10, 5, (0f - velocity.X) * 0.2f, 3f, 0, default(Color), 2f);
+			int num180 = Dust.NewDust(new Vector2(position.X + (float)(width / 2) - 15f - velocity.X * 5f, position.Y + (float)height - 2f), 30, 10, 5, (0f - velocity.X) * 0.2f, 3f, 0, default, 2f);
 			Main.dust[num180].noGravity = true;
 			Main.dust[num180].velocity.X *= 1.3f;
 			Main.dust[num180].velocity.X += velocity.X * 0.4f;
 			Main.dust[num180].velocity.Y += 2f + velocity.Y;
 			for (int num181 = 0; num181 < 2; num181++)
 			{
-				num180 = Dust.NewDust(new Vector2(position.X, position.Y + 120f), width, 60, 5, velocity.X, velocity.Y, 0, default(Color), 2f);
+				num180 = Dust.NewDust(new Vector2(position.X, position.Y + 120f), width, 60, 5, velocity.X, velocity.Y, 0, default, 2f);
 				Main.dust[num180].noGravity = true;
 				Dust dust = Main.dust[num180];
 				dust.velocity -= velocity;

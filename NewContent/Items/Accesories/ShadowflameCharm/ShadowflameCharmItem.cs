@@ -4,11 +4,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
-using TRAEProject.NewContent.Items.Summoner.Whip;
+using TRAEProject.NewContent.Items.Weapons.Summoner.Whip;
 using TRAEProject.NewContent.Buffs;
 using TRAEProject.Common;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
@@ -19,7 +18,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
             DisplayName.SetDefault("Shadowflame Charm");
-            Tooltip.SetDefault("Minion damage is stored as Shadowflame energy, up to 2250\nWhip strikes spawn a friendly Shadowflame Apparition for every 600 damage stored");
+            Tooltip.SetDefault("Minion damage is stored as Shadowflame energy, up to 3000\nWhip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored");
         }
         public override void SetDefaults()
         {
@@ -36,17 +35,17 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
     {
         public int ShadowflameCharm = 0;
         public int ShadowflameCharmCharge = 0;
-		public int ShadowflameCharmLimit = 2250;
+		public int ShadowflameCharmLimit = 3000;
         public int MoltenCharm = 0;
         public int MoltenCharmCharge = 0;
-        public int MoltenCharmLimit = 2250;
+        public int MoltenCharmLimit = 2400;
 
         public override void ResetEffects()
         {
             ShadowflameCharm = 0;
-			ShadowflameCharmLimit = 2250;
+			ShadowflameCharmLimit = 3000;
             MoltenCharm = 0;
-			MoltenCharmLimit = 2250;
+			MoltenCharmLimit = 2400;
         }
         public override void UpdateDead()
         {
@@ -78,10 +77,10 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
             }
             if (ProjectileID.Sets.IsAWhip[proj.type] || proj.type == ProjectileType<WhipProjectile>())
             {
-                if (ShadowflameCharmCharge > 600)
+                if (ShadowflameCharmCharge > 750)
                 {
                     Player player = Main.player[proj.owner];
-                    for (int i = 0; i < ShadowflameCharmCharge / 600; ++i)
+                    for (int i = 0; i < ShadowflameCharmCharge / 750; ++i)
                     {
                         int direction = Main.rand.NextFromList(-1, 1);
                         float k = Main.screenPosition.X;
@@ -100,8 +99,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
                         num4 = 24f / num4;
                         num2 *= num4;
                         num3 *= num4;
-                        Projectile.NewProjectile(player.GetProjectileSource_SetBonus(5), k, y2, num2, num3, ProjectileType<ShadowflameApparition>(), 50, 0f, player.whoAmI);
-                        ShadowflameCharmCharge -= 600;
+                        Projectile.NewProjectile(player.GetSource_FromThis(), k, y2, num2, num3, ProjectileType<ShadowflameApparition>(), 50, 0f, player.whoAmI);
+                        ShadowflameCharmCharge -= 750;
                     }
                 }
                 if (MoltenCharmCharge > 600)
@@ -126,7 +125,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
                         num4 = 24f / num4;
                         num2 *= num4;
                         num3 *= num4;
-                        Projectile.NewProjectile(player.GetProjectileSource_SetBonus(5), k, y2, num2, num3, ProjectileType<MoltenApparition>(), 50, 0f, player.whoAmI);
+                        Projectile.NewProjectile(player.GetSource_FromThis(), k, y2, num2, num3, ProjectileType<MoltenApparition>(), 50, 0f, player.whoAmI);
                         MoltenCharmCharge -= 600;
                     }
                 }    

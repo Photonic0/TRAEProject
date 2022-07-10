@@ -83,7 +83,7 @@ namespace TRAEProject
                     }
 
                 }
-                Projectile.NewProjectile(Player.GetProjectileSource_Misc(Player.whoAmI), Player.Center.X + (float)Main.rand.Next(-40, 40), Player.Center.Y - (float)Main.rand.Next(20, 60), Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 565, 0, 0f, Player.whoAmI);
+                Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center.X + (float)Main.rand.Next(-40, 40), Player.Center.Y - (float)Main.rand.Next(20, 60), Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 565, 0, 0f, Player.whoAmI);
                 return false;
             }
             // New Defense calculation                    
@@ -109,7 +109,7 @@ namespace TRAEProject
                 for (int i = 0; i < 25; ++i)
                 {
                     Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
-                    Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.t_Slime, 0f, 0f, 100, default(Color), 2.5f);
+                    Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.t_Slime, 0f, 0f, 100, default, 2.5f);
                     dust.velocity *= 3f;
                 }
             }
@@ -149,7 +149,7 @@ namespace TRAEProject
                 for (int i = 0; i < 25; ++i)
                 {
                     Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
-                    Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.t_Slime, 0f, 0f, 100, default(Color), 2.5f);
+                    Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.t_Slime, 0f, 0f, 100, default, 2.5f);
                     dust.velocity *= 3f;
                 }
             }
@@ -206,53 +206,53 @@ namespace TRAEProject
                 case ItemID.WormScarf:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Reduces damage taken by 14%";
+                            line.Text = "Reduces damage taken by 14%";
                         }
                     }
                     return;
                 case ItemID.FrozenTurtleShell:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Puts a shell around the owner when below 50% life that reduces damage by 20%";
+                            line.Text = "Puts a shell around the owner when below 50% life that reduces damage by 20%";
                         }
                     }
                     return;
                 case ItemID.FrozenShield:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "Puts a shell around the owner when below 50% life that reduces damage by 20%";
+                            line.Text = "Puts a shell around the owner when below 50% life that reduces damage by 20%";
                         }
                     }
                     return;
                 case ItemID.PocketMirror:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "15% reduced damage from projectiles\nGrants immunity to Petrified";
+                            line.Text = "15% reduced damage from projectiles\nGrants immunity to Petrified";
                         }
                     }
                     return;
                 case ItemID.BrainOfConfusion:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Has a chance to dodge an attack using illusions";
+                            line.Text = "Has a chance to dodge an attack using illusions";
                         }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip1")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.text = "Temporarily increase critical strike chance and confuse nearby enemies after a dodge";
+                            line.Text = "Temporarily increase critical strike chance and confuse nearby enemies after a dodge";
                         }
-                        if (line.mod == "Terraria" && line.Name == "Tooltip2")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.text = "";
+                            line.Text = "";
                         }
                     }
                     return;

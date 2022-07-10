@@ -426,7 +426,7 @@ namespace TRAEProject.Changes.Items
             // based off Qwerty's code for Recovery from his mod.
             if (item.type == ItemID.Star || item.type == ItemID.SoulCake || item.type == ItemID.SugarPlum)
             {
-                Terraria.Audio.SoundEngine.PlaySound(SoundID.Grab, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
+                Terraria.Audio.SoundEngine.PlaySound(SoundID.Grab, player.Center);
                 if(player.GetModPlayer<Mana>().celestialCuffsOverload)
                 {
                     player.GetModPlayer<Mana>().GiveManaOverloadable(10);
@@ -447,7 +447,7 @@ namespace TRAEProject.Changes.Items
             }
             if (item.type == ItemID.ManaCloakStar)
             {
-                Terraria.Audio.SoundEngine.PlaySound(SoundID.Grab, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
+                Terraria.Audio.SoundEngine.PlaySound(SoundID.Grab, player.Center);
                 player.statMana += 10;
                 if (Main.myPlayer == player.whoAmI)
                 {
@@ -468,9 +468,9 @@ namespace TRAEProject.Changes.Items
                 case ItemID.AquaScepter:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "Shoots a double high pressure jet of water";
+                            line.Text = "Shoots a double high pressure jet of water";
                         }
                     }
                     return;

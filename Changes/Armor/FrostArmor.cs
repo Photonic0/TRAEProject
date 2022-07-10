@@ -34,7 +34,7 @@ namespace TRAEProject.Changes.Armor
             {
                 if (Main.rand.Next(2) == 0)
                 {
-                    Dust dust3 = Dust.NewDustDirect(new Vector2(Player.position.X - 2f, Player.position.Y - 2f), Player.width + 4, Player.height + 4, DustID.IceTorch, Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 0, default(Color), 1.25f);
+                    Dust dust3 = Dust.NewDustDirect(new Vector2(Player.position.X - 2f, Player.position.Y - 2f), Player.width + 4, Player.height + 4, DustID.IceTorch, Player.velocity.X * 0.4f, Player.velocity.Y * 0.4f, 0, default, 1.25f);
                     dust3.noGravity = true;
                     dust3.velocity *= 0.75f;
                     dust3.velocity.X *= 0.75f;

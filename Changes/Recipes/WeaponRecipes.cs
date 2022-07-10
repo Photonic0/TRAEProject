@@ -13,75 +13,79 @@ namespace TRAEProject.Changes.Recipes
     {
         public static void Load(Mod mod)
         {
-            Recipe StardustPortal = mod.CreateRecipe(ItemID.MoonlordTurretStaff).AddIngredient(3459, 18).AddTile(TileID.LunarCraftingStation);
+            Recipe StardustPortal = Recipe.Create(ItemID.MoonlordTurretStaff).AddIngredient(3459, 18).AddTile(TileID.LunarCraftingStation);
             StardustPortal.Register();
-            Recipe DarkLance = mod.CreateRecipe(ItemID.DarkLance);
+            Recipe DarkLance = Recipe.Create(ItemID.DarkLance);
             DarkLance.AddIngredient(ItemID.DemoniteBar, 10);
             DarkLance.AddIngredient(ItemID.ShadowScale, 5);
             DarkLance.AddTile(TileID.Anvils);
             DarkLance.Register();
-            Recipe WaspGun = mod.CreateRecipe(ItemID.WaspGun);
+            Recipe WaspGun = Recipe.Create(ItemID.WaspGun);
             WaspGun.AddIngredient(ItemID.BeeGun, 1);
             WaspGun.AddIngredient(ItemID.SoulofFright, 20);
             WaspGun.AddTile(TileID.MythrilAnvil);
             WaspGun.Register(); 
-            Recipe MagicDagger = mod.CreateRecipe(ItemID.MagicDagger);
+            Recipe MagicDagger = Recipe.Create(ItemID.MagicDagger);
             MagicDagger.AddIngredient(ItemID.ThrowingKnife, 1);
             MagicDagger.AddIngredient(ItemID.FallenStar, 5);
             MagicDagger.AddIngredient(ItemID.DemoniteBar, 10);
             MagicDagger.AddTile(TileID.Anvils);
             MagicDagger.Register(); 
-            Recipe MagicDagger2 = mod.CreateRecipe(ItemID.MagicDagger);
+            Recipe MagicDagger2 = Recipe.Create(ItemID.MagicDagger);
             MagicDagger2.AddIngredient(ItemID.ThrowingKnife, 1);
             MagicDagger2.AddIngredient(ItemID.FallenStar, 5);
             MagicDagger2.AddIngredient(ItemID.CrimtaneBar, 10);
             MagicDagger2.AddTile(TileID.Anvils);
             MagicDagger2.Register();
-            Recipe IceSickle = mod.CreateRecipe(ItemID.IceSickle);
+            Recipe IceSickle = Recipe.Create(ItemID.IceSickle);
             IceSickle.AddIngredient(ItemID.FrostCore, 1);
             IceSickle.AddIngredient(ItemID.SoulofNight, 15);
             IceSickle.AddIngredient(ItemID.Sickle, 1);
             IceSickle.AddTile(TileID.MythrilAnvil);
             IceSickle.Register();
-            Recipe PulseBow = mod.CreateRecipe(ItemID.PulseBow);
+            Recipe PulseBow = Recipe.Create(ItemID.PulseBow);
             PulseBow.AddIngredient(ItemID.ShroomiteBar, 20);
             PulseBow.AddTile(TileID.Autohammer);
             PulseBow.Register(); 
-            Recipe Rocket = mod.CreateRecipe(ItemID.RocketI, 50);
+            Recipe Rocket = Recipe.Create(ItemID.RocketI, 50);
             Rocket.AddIngredient(ItemID.IronBar, 1);
             Rocket.AddIngredient(ItemID.ExplosivePowder, 2);
             Rocket.AddTile(TileID.Anvils);
             Rocket.Register();
-Recipe Rocket1 = mod.CreateRecipe(ItemID.RocketI, 50);
+Recipe Rocket1 = Recipe.Create(ItemID.RocketI, 50);
             Rocket1.AddIngredient(ItemID.LeadBar, 1);
             Rocket1.AddIngredient(ItemID.ExplosivePowder, 2);
             Rocket1.AddTile(TileID.Anvils);
             Rocket1.Register();
-            Recipe DestructiveRocket = mod.CreateRecipe(ItemID.RocketII, 100);
+            Recipe DestructiveRocket = Recipe.Create(ItemID.RocketII, 100);
             DestructiveRocket.AddIngredient(ItemID.RocketI, 100);
             DestructiveRocket.AddIngredient(ItemID.ExplosivePowder, 1);
             DestructiveRocket.AddTile(TileID.Anvils);
             DestructiveRocket.Register();
-            Recipe SuperRocket = mod.CreateRecipe(ItemID.RocketIII, 100);
+            Recipe SuperRocket = Recipe.Create(ItemID.RocketIII, 100);
             SuperRocket.AddIngredient(ItemID.RocketI, 100);
             SuperRocket.AddIngredient(ItemID.SoulofMight, 1);
             SuperRocket.AddTile(TileID.Anvils);
             SuperRocket.Register();
-            Recipe DirectRocket = mod.CreateRecipe(ItemID.RocketIV, 100);
+            Recipe DirectRocket = Recipe.Create(ItemID.RocketIV, 100);
             DirectRocket.AddIngredient(ItemID.RocketI, 100);
             DirectRocket.AddIngredient(ItemID.Cog, 1);
             DirectRocket.AddTile(TileID.Anvils);
             DirectRocket.Register(); 
-            Recipe ClusterRocket = mod.CreateRecipe(ItemID.ClusterRocketI, 100);
+            Recipe ClusterRocket = Recipe.Create(ItemID.ClusterRocketI, 100);
             ClusterRocket.AddIngredient(ItemID.RocketI, 100);
             ClusterRocket.AddIngredient(ItemID.ShroomiteBar, 1);
             ClusterRocket.AddTile(TileID.Autohammer);
             ClusterRocket.Register(); 
-            Recipe HeavyRocket = mod.CreateRecipe(ItemID.ClusterRocketII, 100);
+            Recipe HeavyRocket = Recipe.Create(ItemID.ClusterRocketII, 100);
             HeavyRocket.AddIngredient(ItemID.RocketI, 100);
             HeavyRocket.AddIngredient(ItemID.Nanites, 1);
             HeavyRocket.AddTile(TileID.Autohammer);
-            HeavyRocket.Register();
+            HeavyRocket.Register(); 
+            Recipe StarWrath = Recipe.Create(ItemID.StarWrath, 1);
+            StarWrath.AddIngredient(ItemID.FragmentSolar, 18);
+            StarWrath.AddTile(TileID.LunarCraftingStation);
+            StarWrath.Register();
 
         }
         public static void Modify(Recipe recipe)
@@ -188,7 +192,7 @@ Recipe Rocket1 = mod.CreateRecipe(ItemID.RocketI, 50);
             }
             if (recipe.HasResult(ItemID.StardustDragonStaff))
             {
-                recipe.RemoveRecipe();
+                recipe.DisableRecipe();
             }
             if (recipe.HasResult(ItemID.BoneJavelin))
             {

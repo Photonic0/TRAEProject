@@ -17,7 +17,7 @@ private void AI_123_Deerclops()
 		while (num3 > 0f)
 		{
 			num3 -= 1f;
-			Dust.NewDustDirect(position, width, height, 109, 0f, -3f, 0, default(Color), 1.4f).noGravity = true;
+			Dust.NewDustDirect(position, width, height, 109, 0f, -3f, 0, default, 1.4f).noGravity = true;
 		}
 	}
 	if (homeTileX == -1 && homeTileY == -1)

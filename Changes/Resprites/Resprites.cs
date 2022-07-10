@@ -16,6 +16,8 @@ namespace TRAEProject.Changes.Resprites
         string path = "TRAEProject/Changes/Resprites/";
         public override void PostSetupContent()
         {
+            TextureAssets.Item[ItemID.StarWrath] = Request<Texture2D>(path + "StarWrath");
+            TextureAssets.Projectile[ProjectileID.StarWrath] = Request<Texture2D>(path + "StarWrathProjectile");
 
             TextureAssets.Item[ItemID.StardustDragonStaff] = Request<Texture2D>(path + "LunarDragonStaff");
 

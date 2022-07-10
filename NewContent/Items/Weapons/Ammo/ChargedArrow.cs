@@ -67,7 +67,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             Projectile.localAI[0]++;
             if (Projectile.localAI[0] % 3 == 0)
             {
-                int dust = Dust.NewDust(Projectile.position, 1, 1, DustID.Electric, Projectile.velocity.X, Projectile.velocity.Y, 0, default(Color), 1f);
+                int dust = Dust.NewDust(Projectile.position, 1, 1, DustID.Electric, Projectile.velocity.X, Projectile.velocity.Y, 0, default, 1f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0.2f;
                 Projectile.localAI[0] = 0;

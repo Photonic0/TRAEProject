@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
         }
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 32;
+            Item.width = 42;
+            Item.height = 42;
             Item.damage = 24;
             Item.useAnimation = 30;
             Item.useTime = 30;
@@ -134,7 +134,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
         }
         public override void Kill(int timeLeft)
         {
-            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, (int)Projectile.position.X, (int)Projectile.position.Y);
+            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
             for (int i = 0; i < 15; i++)
             {
                 Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, DustID.Torch, 1f);

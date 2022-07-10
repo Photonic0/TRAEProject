@@ -19,7 +19,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
             drawColor.B = 153;
             if (Main.rand.Next(4) < 1)
             {
-                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 184, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 1.5f);
+                int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 184, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default, 1.5f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0.8f;
                 Main.dust[dust].velocity.Y -= 0.3f;
@@ -43,7 +43,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
                 {
                     float velX = Main.rand.Next(-35, 36) * 0.1f;
                     float velY = Main.rand.Next(-35, 36) * 0.1f;
-                    Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), npc.Center.X, npc.Center.Y, velX, velY, ProjectileID.TinyEater, 52, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center.X, npc.Center.Y, velX, velY, ProjectileID.TinyEater, 52, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
             {
                 float velX = Main.rand.Next(-35, 36) * 0.2f;
                 float velY = Main.rand.Next(-35, 36) * 0.2f;
-                Projectile.NewProjectile(npc.GetSpawnSourceForNPCFromNPCAI(), npc.position.X, npc.position.Y, velX, velY, ProjectileID.TinyEater, 52, 0f, Main.myPlayer, 0f, 0f);
+                Projectile.NewProjectile(npc.GetSource_FromAI(), npc.position.X, npc.position.Y, velX, velY, ProjectileID.TinyEater, 52, 0f, Main.myPlayer, 0f, 0f);
             }
         }
     }

@@ -21,8 +21,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.DreadSummon
 		{
 			Item.maxStack = 999;
 			Item.consumable = true;
-			Item.width = 12;
-			Item.height = 12;
+			Item.width = 34;
+			Item.height = 36;
             Item.rare = ItemRarityID.LightRed;
 			Item.value = Item.sellPrice(0, 0, 10);
             Item.bait = 50;

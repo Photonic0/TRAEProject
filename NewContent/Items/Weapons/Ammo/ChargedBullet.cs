@@ -67,7 +67,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             Projectile.localAI[1]++;
             if (Projectile.localAI[1] > 4 && Projectile.localAI[1] % 2 == 0)
             {
-                int dust = Dust.NewDust(Projectile.position, 1, 1, DustID.Electric, Projectile.velocity.X, Projectile.velocity.Y, 0, default(Color), 1f);
+                int dust = Dust.NewDust(Projectile.position, 1, 1, DustID.Electric, Projectile.velocity.X, Projectile.velocity.Y, 0, default, 1f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0.2f;
                 Projectile.localAI[1] = 4;
@@ -93,7 +93,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                         shootToX *= distance2 * 10f;
                         shootToY *= distance2 * 10f;
                         Vector2 perturbedSpeed = new Vector2(shootToX, shootToY).RotatedByRandom(MathHelper.ToRadians(0));
-                        Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<ChargedBulletBolt>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<ChargedBulletBolt>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
                         
                         break;
                     }
@@ -136,7 +136,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
 
                 Vector2 ProjectilePosition = Projectile.position;
                 Projectile.alpha = 255;
-                int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.Electric, 0f, 0f, 0, default(Color), 1f);
+                int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.Electric, 0f, 0f, 0, default, 1f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].position = ProjectilePosition;
                 Main.dust[dust].velocity *= 0.2f;

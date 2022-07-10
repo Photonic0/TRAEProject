@@ -14,17 +14,20 @@ namespace TRAEProject.Changes.Accesory
         {
             if (item.type == ItemID.MagicQuiver)
             {
-                player.magicQuiver = false;
+                player.magicQuiver = false; 
+                player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
             }
             if (item.type == ItemID.MoltenQuiver)
             {
-                player.magicQuiver = false;
+                player.magicQuiver = false; 
+                player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
             }
             if (item.type == ItemID.StalkersQuiver)
             {
                 player.magicQuiver = false;
+                player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
                 player.GetDamage<RangedDamageClass>() += 0.05f;
                 player.GetCritChance<RangedDamageClass>() += 5;
@@ -34,6 +37,7 @@ namespace TRAEProject.Changes.Accesory
                 player.GetModPlayer<RangedStats>().rangedVelocity += 0.8f;
                 player.GetModPlayer<RangedStats>().Magicandgunquiver += 1;
                 player.GetDamage<RangedDamageClass>() -= 0.1f;
+
                 player.GetCritChance<RangedDamageClass>() -= 10;
             }
         }
@@ -149,7 +153,7 @@ namespace TRAEProject.Changes.Accesory
                     hasBounced = true;
                     for (int i = 0; i < 30; ++i)
                     {
-                        Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.UndergroundHallowedEnemies, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default(Color), 1.5f);
+                        Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.UndergroundHallowedEnemies, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default, 1.5f);
                         dust.noGravity = true;
                     }
                     return false;
@@ -193,7 +197,7 @@ namespace TRAEProject.Changes.Accesory
                 hasBounced = true;
                 for (int i = 0; i < 30; ++i)
                 {
-                    Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.UndergroundHallowedEnemies, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default(Color), 1.5f);
+                    Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.UndergroundHallowedEnemies, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default, 1.5f);
                     dust.noGravity = true;
                 }
             }

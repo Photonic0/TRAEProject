@@ -207,7 +207,7 @@ namespace TRAEProject.Changes.Items
             for (int i = 0; i < 50; ++i)
             {
                 Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
-                Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, 106, 0f, 0f, 100, default(Color), 2.5f);
+                Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, 106, 0f, 0f, 100, default, 2.5f);
                 dust.velocity *= 3f;
                 dust.noGravity = true;
             }

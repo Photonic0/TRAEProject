@@ -29,7 +29,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             for(int i =0; i < 5; i++)
             {
                 float rot = (float)Math.PI * (i / 4f) - (float)Math.PI / 2f + direction;
-                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), center, TRAEMethods.PolarVector(10, rot), ProjectileType<NorthStar>(), (int)(Projectile.damage * 0.25f), 0f, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), center, TRAEMethods.PolarVector(10, rot), ProjectileType<NorthStar>(), (int)(Projectile.damage * 0.25f), 0f, Projectile.owner);
             }
         }
     }
@@ -40,7 +40,8 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             spearLength = 164f;
             holdAt = 92f;
             floatTime = 24;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = -1; DustOnDeath = DustID.NorthPole;
+
         }
         float counter = 0;
         public override void ThrownUpdate()
@@ -49,7 +50,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             if (counter > 99f)
             {
                 counter -= 99f;
-                Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, Vector2.Zero, ProjectileID.NorthPoleSnowflake, (int)(Projectile.damage * 0.7f), 0f, Projectile.owner, 0f, Main.rand.Next(3));
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ProjectileID.NorthPoleSnowflake, (int)(Projectile.damage * 0.7f), 0f, Projectile.owner, 0f, Main.rand.Next(3));
             }
         }
     }
@@ -108,7 +109,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             {
                 float num428 = Projectile.oldVelocity.X * (30f / (float)num427);
                 float num429 = Projectile.oldVelocity.Y * (30f / (float)num427);
-                int num430 = Dust.NewDust(new Vector2(Projectile.oldPosition.X - num428, Projectile.oldPosition.Y - num429), 8, 8, 197, Projectile.oldVelocity.X, Projectile.oldVelocity.Y, 100, default(Color), 1.2f);
+                int num430 = Dust.NewDust(new Vector2(Projectile.oldPosition.X - num428, Projectile.oldPosition.Y - num429), 8, 8, 197, Projectile.oldVelocity.X, Projectile.oldVelocity.Y, 100, default, 1.2f);
                 Main.dust[num430].noGravity = true;
                 Dust dust = Main.dust[num430];
                 dust.velocity *= 0.5f;

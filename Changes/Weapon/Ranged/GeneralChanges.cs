@@ -143,9 +143,7 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.ChainGun:
                     item.damage = 41; // up from 31
                     return;
-                case ItemID.Phantasm:
-                    item.damage = 40; // down from 50
-                    return;
+   
                 case ItemID.VortexBeater:
                     item.damage = 42;
                     return;
@@ -195,7 +193,7 @@ namespace TRAEProject.Changes.Weapons
             }
             return true;
         }
-        public override bool CanConsumeAmmo(Item weapon, Player player)
+        public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
         {
             if (weapon.CountsAsClass(DamageClass.Ranged) && player.ammoPotion)
             {
@@ -211,7 +209,7 @@ namespace TRAEProject.Changes.Weapons
 
             return true;
         }
-        public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
+        public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
             if (weapon.type == ItemID.VortexBeater && (ammo.type == ItemID.MusketBall || ammo.type == ItemID.SilverBullet || ammo.type == ItemID.TungstenBullet || ammo.type == ItemID.EndlessMusketPouch))
             {
@@ -228,27 +226,27 @@ namespace TRAEProject.Changes.Weapons
 				case ItemID.Flamethrower:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += "\n33% chance to not consume ammo";
+                            line.Text += "\n33% chance to not consume ammo";
                         }
                     }
                     return;
                 case ItemID.ChainGun:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text = "66% chance to not consume ammo";
+                            line.Text = "66% chance to not consume ammo";
                         }
                     }
                     return;
                 case ItemID.VortexBeater:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.text += "\nConverts Musket Balls into homing rockets";
+                            line.Text += "\nConverts Musket Balls into homing rockets";
                         }
                     }
                     return;

@@ -99,7 +99,6 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 		}
 
         public const int chargeTime = 30;
-        int timer = 0;
 
         public override bool PreDraw(ref Color lightColor)
 
@@ -123,7 +122,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 		}
 
 		// The core function of drawing a laser
-		public void DrawLaser(Texture2D texture, Vector2 start, Vector2 unit, float step, int damage, float rotation = 0f, float scale = 1f, float maxDist = 2000f, Color color = default(Color), int transDist = 50)
+		public void DrawLaser(Texture2D texture, Vector2 start, Vector2 unit, float step, int damage, float rotation = 0f, float scale = 1f, float maxDist = 2000f, Color color = default, int transDist = 50)
 		{
 			float r = unit.ToRotation() + rotation;
 
@@ -170,7 +169,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 				num387 = num386 / num387;
 				num384 *= num387;
 				num385 *= num387;
-				int num388 = Dust.NewDust(new Vector2(dustPos.X, dustPos.Y), 50, 50, DustID.Blood, num384, num385, 100, default(Color), 1.88f);
+				int num388 = Dust.NewDust(new Vector2(dustPos.X, dustPos.Y), 50, 50, DustID.Blood, num384, num385, 100, default, 1.88f);
 				Main.dust[num388].noGravity = true;
 				Main.dust[num388].position.X += Main.rand.Next(10, 20) * Main.rand.Next(-1, 1);
 				Main.dust[num388].position.Y += Main.rand.Next(10, 20) * Main.rand.Next(-1, 1);

@@ -1,12 +1,9 @@
 
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.NewContent.Buffs;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
-using TRAEProject.Common;
 using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
 

@@ -64,7 +64,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SpaceBalloon
                     for (int i = 0; i < 30; ++i)
                     {
                         Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
-                        Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.BubbleBurst_Purple, 0f, 0f, 100, default(Color), 2f);
+                        Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.BubbleBurst_Purple, 0f, 0f, 100, default, 2f);
                         dust.velocity *= 1.2f;
                     }
                     SpaceBalloonTimer = 0;

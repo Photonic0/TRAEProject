@@ -369,12 +369,12 @@ namespace TRAEProject.Changes.NPCs.Boss
 								{
 									Vector2 value = (Vector2.Normalize(npc.velocity) * new Vector2((float)npc.width / 2f, npc.height) * 0.75f * 0.5f).RotatedBy((float)(i - (num20 / 2 - 1)) * ((float)Math.PI * 2f) / (float)num20) + npc.Center;
 									Vector2 value2 = value - npc.Center;
-									int num21 = Dust.NewDust(value + value2, 0, 0, 172, value2.X * 2f, value2.Y * 2f, 100, default(Color), 1.4f);
+									int num21 = Dust.NewDust(value + value2, 0, 0, DustID.DungeonWater, value2.X * 2f, value2.Y * 2f, 100, default, 1.4f);
 									Main.dust[num21].noGravity = true;
 									Main.dust[num21].noLight = true;
 									Main.dust[num21].velocity = Vector2.Normalize(value2) * 3f;
 								}
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 20);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
 							npc.ai[2] += 1f;
 							if (npc.ai[2] >= (float)num16)
@@ -514,7 +514,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 							{
 								Vector2 value3 = (Vector2.Normalize(npc.velocity) * new Vector2((float)(npc.width + 50) / 2f, npc.height) * 0.75f).RotatedBy((double)(j - (num24 / 2 - 1)) * Math.PI / (double)(float)num24) + center;
 								Vector2 value4 = ((float)(Main.rand.NextDouble() * 3.1415927410125732) - (float)Math.PI / 2f).ToRotationVector2() * Main.rand.Next(3, 8);
-								int num25 = Dust.NewDust(value3 + value4, 0, 0, 172, value4.X * 2f, value4.Y * 2f, 100, default(Color), 1.4f);
+								int num25 = Dust.NewDust(value3 + value4, 0, 0, DustID.DungeonWater, value4.X * 2f, value4.Y * 2f, 100, default, 1.4f);
 								Main.dust[num25].noGravity = true;
 								Main.dust[num25].noLight = true;
 								Main.dust[num25].velocity /= 4f;
@@ -572,15 +572,15 @@ namespace TRAEProject.Changes.NPCs.Boss
 							// SPAWNS DETONATING BUBBLES
 							if (npc.ai[2] == 0f)
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 20);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
 							if (npc.ai[2] % BubbleDelay == 0f)
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCKilled, (int)npc.Center.X, (int)npc.Center.Y, 19);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath1, npc.Center);
 								if (Main.netMode != NetmodeID.MultiplayerClient)
 								{
 									Vector2 vector3 = Vector2.Normalize(player.Center - center) * (npc.width + 20) / 2f + center;
-									NPC.NewNPC(NPC.GetSpawnSource_NPCRelease(npc.whoAmI), (int)vector3.X, (int)vector3.Y + 45, 371);
+									NPC.NewNPC(NPC.GetBossSpawnSource(npc.target), (int)vector3.X, (int)vector3.Y + 45, 371);
 								}
 							}
 							int num26 = Math.Sign(player.Center.X - center.X);
@@ -609,13 +609,13 @@ namespace TRAEProject.Changes.NPCs.Boss
 							npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, 0f, 0.02f);
 							if (npc.ai[2] == (num9 - 30))
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 9);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
 							if (Main.netMode != NetmodeID.MultiplayerClient && npc.ai[2] == (num9 - 30))
 							{
 								Vector2 vector4 = npc.rotation.ToRotationVector2() * (Vector2.UnitX * npc.direction) * (npc.width + 20) / 2f + center;
-								Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), vector4.X, vector4.Y, npc.direction * 2, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
-								Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), vector4.X, vector4.Y, -npc.direction * 2, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+								Projectile.NewProjectile(npc.GetSource_FromThis(), vector4.X, vector4.Y, npc.direction * 2, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
+								Projectile.NewProjectile(npc.GetSource_FromThis(), vector4.X, vector4.Y, -npc.direction * 2, 8f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer);
 							}
 							npc.ai[2] += 1f;
 							if (npc.ai[2] >= num9)
@@ -632,7 +632,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 							npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, 0f, 0.02f);
 							if (npc.ai[2] == (num10 - 60))
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 20);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
 							npc.ai[2] += 1f;
 							if (npc.ai[2] >= (float)num10)
@@ -781,7 +781,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 							{
 								Vector2 value5 = (Vector2.Normalize(npc.velocity) * new Vector2((float)(npc.width + 50) / 2f, npc.height) * 0.75f).RotatedBy((k - (num29 / 2 - 1)) * Math.PI / (float)num29) + center;
 								Vector2 value6 = ((float)(Main.rand.NextDouble() * 3.1415927410125732) - (float)Math.PI / 2f).ToRotationVector2() * Main.rand.Next(3, 8);
-								int num30 = Dust.NewDust(value5 + value6, 0, 0, 172, value6.X * 2f, value6.Y * 2f, 100, default(Color), 1.4f);
+								int num30 = Dust.NewDust(value5 + value6, 0, 0, DustID.DungeonWater, value6.X * 2f, value6.Y * 2f, 100, default, 1.4f);
 								Main.dust[num30].noGravity = true;
 								Main.dust[num30].noLight = true;
 								Main.dust[num30].velocity /= 4f;
@@ -802,15 +802,15 @@ namespace TRAEProject.Changes.NPCs.Boss
 						{
 							if (npc.ai[2] == 0f)
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 20);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
 							if (npc.ai[2] % bubbledelayPhase2 == 0f)
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCKilled, (int)npc.Center.X, (int)npc.Center.Y, 19);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.NPCDeath1, npc.Center);
 								if (Main.netMode != NetmodeID.MultiplayerClient)
 								{
 									Vector2 vector6 = Vector2.Normalize(npc.velocity) * (npc.width + 20) / 2f + center;
-									int num31 = NPC.NewNPC(NPC.GetSpawnSource_NPCRelease(npc.whoAmI), (int)vector6.X, (int)vector6.Y + 45, 371);
+									int num31 = NPC.NewNPC(NPC.GetBossSpawnSource(npc.target), (int)vector6.X, (int)vector6.Y + 45, 371);
 									Main.npc[num31].target = npc.target;
 									Main.npc[num31].velocity = Vector2.Normalize(npc.velocity).RotatedBy((float)Math.PI / 2f * (float)npc.direction) * scaleFactor3;
 									Main.npc[num31].netUpdate = true;
@@ -835,11 +835,11 @@ namespace TRAEProject.Changes.NPCs.Boss
 							npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, 0f, 0.02f);
 							if (npc.ai[2] == (float)(num9 - 30))
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 20);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
 							if (Main.netMode != NetmodeID.MultiplayerClient && npc.ai[2] == (float)(num9 - 30))
 							{
-								Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), center.X, center.Y, 0f, 0f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
+								Projectile.NewProjectile(npc.GetSource_FromThis(), center.X, center.Y, 0f, 0f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
 							}
 							npc.ai[2] += 1f;
 							if (npc.ai[2] >= (float)num9)
@@ -884,7 +884,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 							npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, 0f, 0.02f);
 							if (npc.ai[2] == (num11 - 30))
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 20);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
 							npc.ai[2] += 1f;
 							if (npc.ai[2] >= num11)
@@ -902,7 +902,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 								++phase3NadoTimer;
 							if (phase3NadoTimer >= phase3NadoDelay)
 							{
-								Projectile.NewProjectile(npc.GetSpawnSourceForProjectileNPC(), center.X, center.Y, 0f, 0f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
+								Projectile.NewProjectile(npc.GetSource_FromThis(), center.X, center.Y, 0f, 0f, ProjectileID.SharknadoBolt, 0, 0f, Main.myPlayer, 1f, npc.target + 1);
 								phase3NadoTimer = 0;
 							}
 							npc.dontTakeDamage = false;
@@ -1006,7 +1006,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 							{
 								Vector2 value7 = (Vector2.Normalize(npc.velocity) * new Vector2((float)(npc.width + 50) / 2f, npc.height) * 0.75f).RotatedBy((double)(m - (num34 / 2 - 1)) * Math.PI / (double)(float)num34) + center;
 								Vector2 value8 = ((float)(Main.rand.NextDouble() * 3.1415927410125732) - (float)Math.PI / 2f).ToRotationVector2() * Main.rand.Next(3, 8);
-								int num35 = Dust.NewDust(value7 + value8, 0, 0, 172, value8.X * 2f, value8.Y * 2f, 100, default(Color), 1.4f);
+								int num35 = Dust.NewDust(value7 + value8, 0, 0, DustID.DungeonWater, value8.X * 2f, value8.Y * 2f, 100, default, 1.4f);
 								Main.dust[num35].noGravity = true;
 								Main.dust[num35].noLight = true;
 								Main.dust[num35].velocity /= 4f;
@@ -1038,9 +1038,9 @@ namespace TRAEProject.Changes.NPCs.Boss
 							npc.velocity.Y = MathHelper.Lerp(npc.velocity.Y, 0f, 0.02f);
 							if (npc.ai[2] == (float)(num12 / 2))
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 20);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
-							if (Main.netMode != 1 && npc.ai[2] == (float)(num12 / 2))
+							if (Main.netMode != NetmodeID.MultiplayerClient && npc.ai[2] == (float)(num12 / 2))
 							{
 								if (npc.ai[1] == 0f)
 								{
@@ -1086,7 +1086,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 						{
 							if (npc.ai[2] == 0f)
 							{
-								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie, (int)center.X, (int)center.Y, 20);
+								Terraria.Audio.SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
 							}
 							npc.velocity = npc.velocity.RotatedBy((0f - num15) * (float)npc.direction);
 							npc.rotation -= num15 * (float)npc.direction;
