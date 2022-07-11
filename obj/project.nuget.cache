@@ -1,10 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "4fpJTqIt2ieXvhwsrmpiUVs0YYEKX5SDPAqav/oUrPXLo1My8T1ONHMIx0W/FhS0SwwbZykEJd8KcCkHFZr3WA==",
+  "dgSpecHash": "0VRep4i9a/qdjYYo5MK9hZzb5XBuvaazfEfBiWYExKyMpKhLUDgaG7w/thdLqiZGWIpHkmVW6RDn8G7P6TzdDQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lenovo\\Documents\\My Games\\Terraria\\tModLoader-preview\\ModSources\\TRAEProject\\TRAEProject.csproj",
+  "projectFilePath": "C:\\Users\\lenovo\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\TRAEProject\\TRAEProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lenovo\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\Users\\lenovo\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\TRAEProject\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

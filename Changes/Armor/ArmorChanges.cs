@@ -74,12 +74,13 @@ namespace ChangesArmor
                     player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
                 case ItemID.PirateShirt:
-                    player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) *= (1 / 1.12f);
+                    player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) += 0.12f;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
                 case ItemID.PiratePants:
                     player.moveSpeed += 0.1f;
-                    player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) *= (1 / 1.08f);
+
+                    player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) += 0.08f;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
                     return;
                 case ItemID.DjinnsCurse:
@@ -259,7 +260,7 @@ namespace ChangesArmor
             if (armorSet == "GoldSet") // Revisit
             { 
                 player.setBonus = "Reduce damage taken by 14%";
-            player.endurance += 0.08f;
+            player.endurance += 0.14f;
             player.statDefense -= 3;
         }
             if (armorSet == "PlatinumSet")
@@ -276,8 +277,8 @@ namespace ChangesArmor
             }
             if (armorSet == "WizardSetHM")
             {
-                player.setBonus = "Return dectuple damage taken to near enemies";
-                player.GetModPlayer<OnHitItems>().runethorns += 10f;
+                player.setBonus = "Return quintuple damage taken to near enemies";
+                player.GetModPlayer<OnHitItems>().runethorns += 5f;
             }
             if (armorSet == "ShadowSet")
             {

@@ -17,22 +17,22 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starflow");
+            DisplayName.SetDefault("Stardust Trail");
             Tooltip.SetDefault("Your summons will focus struck enemies\n22 summon tag damage\nSummon flow invaders while attacking");
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
         public override void SetDefaults()
         {
-            Item.autoReuse = false; 
-			Item.DamageType = DamageClass.SummonMeleeSpeed;
-			Item.useStyle = 1;
+            Item.autoReuse = false;
+            Item.useStyle = 1;
             Item.GetGlobalItem<SpearItems>().canGetMeleeModifiers = true;
             Item.width = 54;
             Item.height = 30;
             Item.shoot = ProjectileType<StarflowP>();
             Item.UseSound = SoundID.Item152;
             Item.noMelee = true;
-            Item.DamageType = DamageClass.Summon;
+
+            Item.DamageType = DamageClass.SummonMeleeSpeed;
             Item.noUseGraphic = true;
             Item.damage = 180;
             Item.useTime = Item.useAnimation = 40;
@@ -105,7 +105,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
 					Dust dust = Dust.NewDustDirect(proj.oldPosition, proj.width, proj.height, DustID.YellowStarDust, 1f);
 					dust.noGravity = true;
 				}
-				Projectile.NewProjectile(Player.GetSource_FromThis(), Player.position, new Vector2(0), ProjectileType<StarflowInvader>(), damage / 10, 1f, Player.whoAmI);
+				Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.position, new Vector2(0), ProjectileType<StarflowInvader>(), damage / 10, 1f, Player.whoAmI);
             }
 
         }

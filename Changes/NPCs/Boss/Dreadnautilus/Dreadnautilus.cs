@@ -986,7 +986,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 							time += extraSnipeTime;
 							Vector2 aimLoc = npc.Center + TRAEMethods.PolarVector(snipeVelocity, aim) * time;
 							float distance = snipeVelocity * time;
-							Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/BloodDraw").Value;
+							Texture2D drawBlood = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Dreadnautilus/BloodDraw").Value;
 							Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
 							spriteBatch.Draw(drawBlood, npc.Center - Main.screenPosition + TRAEMethods.PolarVector(distance / 2f, aim), null, color, aim, drawBlood.Size() * .5f, new Vector2(distance / 4f, 1f), SpriteEffects.None, 0f);
 							float subLength = 96;
@@ -1012,8 +1012,8 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 				Texture2D tentacles = TextureAssets.Extra[129].Value;
 				if (phase > 1)
 				{
-					dreadTexture = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/Phase2").Value;
-					tentacles = Request<Texture2D>("TRAEProject/Changes/Dreadnautilus/Phase2Tentacles").Value;
+					dreadTexture = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Dreadnautilus/Phase2").Value;
+					tentacles = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Dreadnautilus/Phase2Tentacles").Value;
 				}
 				Vector2 halfSize = new Vector2(TextureAssets.Npc[npc.type].Width() / 2, TextureAssets.Npc[npc.type].Height() / Main.npcFrameCount[npc.type] / 2);
 				Vector2 vector35 = npc.Center - screenPos;

@@ -83,6 +83,7 @@ Recipe Rocket1 = Recipe.Create(ItemID.RocketI, 50);
             HeavyRocket.AddTile(TileID.Autohammer);
             HeavyRocket.Register(); 
             Recipe StarWrath = Recipe.Create(ItemID.StarWrath, 1);
+
             StarWrath.AddIngredient(ItemID.FragmentSolar, 18);
             StarWrath.AddTile(TileID.LunarCraftingStation);
             StarWrath.Register();

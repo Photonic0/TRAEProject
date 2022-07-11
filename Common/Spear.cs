@@ -681,7 +681,7 @@ namespace TRAEProject.Common
             return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
         }
         public int DustOnDeath = 81;
-        public const int DustOnDeathCount = 20;
+        public int DustOnDeathCount = 20;
         public override void Kill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.Center); // Play a death sound

@@ -19,6 +19,7 @@ namespace TRAEProject.Changes.NPCs
                 spawnRate = 0;
                 maxSpawns = 0;
             }
+
             else if(player.GetModPlayer<PearlEffects>().spawnUp)
             {
                 spawnRate = (int)((double)spawnRate * 0.5);
@@ -30,6 +31,13 @@ namespace TRAEProject.Changes.NPCs
         {
             if (spawnInfo.Player.ZoneJungle)
                 pool.Add(NPCID.JungleCreeper, 0.2f);
+            if (spawnInfo.Player.ZoneCorrupt)
+            {
+                pool.Remove(NPCID.DevourerHead);
+                pool.Add(NPCID.DevourerHead, 0.20f);
+            }
+    
+
         }
     }
 }

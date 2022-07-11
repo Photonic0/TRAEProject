@@ -1,4 +1,5 @@
-/*using Microsoft.Xna.Framework;
+
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -6,39 +7,88 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.Common;
 using Terraria.Audio;
+using TRAEProject.Changes.Weapon.Ranged.Rockets;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.Items.Weapons.BAM
 {
-    class BAM : ModItem
+    public class BAM : ModItem
     {
         public override void SetStaticDefaults()
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("B.A.M.");
-            Tooltip.SetDefault("'Bombardment Alien Multitool'\nShoots rockets, gel and darts");
+            Tooltip.SetDefault("'Bombardment Assault Multitool'\nShoots gel, rockets and darts");
         }
         public override void SetDefaults()
         {
             Item.width = 68;
             Item.height = 22;
             Item.damage = 40;
-            Item.useAnimation = 40;
-            Item.useTime = 10;
+            Item.useAnimation = 64;
+            Item.useTime = 8;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Red;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 2f;
-            Item.shootSpeed = 8f;
+            Item.shootSpeed = 6f;
+            Item.scale = 1.2f;
             Item.noMelee = true;
             Item.useAmmo = AmmoID.Gel;
-            Item.shoot = ProjectileType<BAMP>();
+            Item.shoot = ProjectileType<BAMGel>();
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.Item5;
-            Item.noUseGraphic = true;
-            Item.channel = true;
+            Item.UseSound = SoundID.Item34;
+        }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-5f, 0f);
+        }
+        int shotCount = 0;
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            shotCount++;
+            if (shotCount == 4)
+            {
+                player.GetModPlayer<BAMAttacks>().ammoToUse = 2;
+                SoundEngine.PlaySound(SoundID.Item61, player.Center);
+            }
+            else if (shotCount == 7)
+            {
+                player.GetModPlayer<BAMAttacks>().ammoToUse = 3;
+                SoundEngine.PlaySound(SoundID.Item11, player.Center);
+                shotCount = 0;
+            }
+            else
+            {
+                player.GetModPlayer<BAMAttacks>().ammoToUse = 1;
+            }
+            if (Item.useAmmo == AmmoID.Rocket)
+            {
+                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
+                return false;
+
+            }
+            if (Item.useAmmo == AmmoID.Dart)
+            {
+                float numberProjectiles = 3;
+                float rotation = MathHelper.ToRadians(10);
+                position += Vector2.Normalize(new Vector2(velocity.X, velocity.Y)) * 10f;
+                for (int i = 0; i < numberProjectiles; i++)
+                {
+                    Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * 2f; // Watch out for dividing by 0 if there is only 1 projectile.
+                    Projectile.NewProjectile(source, position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, type, damage, knockback, player.whoAmI);
+                }
+                return false;
+            }
+            return true;
+        }
+        public override bool CanConsumeAmmo(Item ammo, Player player)
+        {
+            if (shotCount != 1 && shotCount != 4 && shotCount != 7)
+                return false;
+            return true;
         }
     }
     public class ShootSpecialGel : GlobalItem
@@ -49,7 +99,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         {
             return base.Clone(item, itemClone);
         }
-        public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref int damage, ref float knockback)
+        public override void PickAmmo(Item weapon, Item ammo, Player player, ref int type, ref float speed, ref StatModifier damage, ref float knockback)
         {
             if (weapon.type == ItemType<BAM>())
             {
@@ -58,6 +108,43 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
                     case ItemID.Gel:
                         type = ProjectileType<BAMGel>();
                         break;
+                    case ItemID.RocketI:
+                        type = ProjectileType<BAMRocket>();
+                        break;
+                    case ItemID.RocketII:
+                        type = ProjectileType<BAMRocketDestructive>();
+                        break;
+                    case ItemID.RocketIII:
+                        type = ProjectileType<BAMRocketSuper>();
+                        break;
+                    case ItemID.RocketIV:
+                        type = ProjectileType<BAMRocketDirect>();
+                        break;
+                    case ItemID.MiniNukeI:
+                        type = ProjectileType<BAMRocketMiniNuke>();
+                        break;
+                    case ItemID.MiniNukeII:
+                        type = ProjectileType<BAMRocketDMiniNuke>();
+                        break;
+                    case ItemID.ClusterRocketI:
+                        type = ProjectileType<BAMRocketCluster>();
+                        break;
+                    case ItemID.ClusterRocketII:
+                        type = ProjectileType<BAMRocketHeavy>();
+                        break;
+                    case ItemID.DryRocket:
+                        type = ProjectileType<BAMRocketDry>();
+                        break;
+                    case ItemID.WetRocket:
+                        type = ProjectileType<BAMRocketWet>();
+                        break;
+                    case ItemID.LavaRocket:
+                        type = ProjectileType<BAMRocketLava>();
+                        break;
+                    case ItemID.HoneyRocket:
+                        type = ProjectileType<BAMRocketHoney>();
+                        break;
+
                 }
             }
         }
@@ -97,22 +184,20 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             else if (Projectile.ai[0] == 2f)
                 dustScale = 0.75f;
 
-            if (Main.rand.Next(2) == 0)
+            if (Main.rand.NextBool(3))
             {
                 for (int i = 0; i < 2; ++i)
                 {
-                    Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.UltraBrightTorch, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100);
-
-                    // Some dust will be large, the others small and with gravity, to give visual variety.
+                    Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 229, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, Scale: 0.8f);
+                    dust.noGravity = true;
                     if (Main.rand.NextBool(4))
                     {
-                        dust.noGravity = true;
-                        dust.scale *= 3f;
+                        dust.scale *= 2f;
                         dust.velocity.X *= 2f;
                         dust.velocity.Y *= 2f;
                     }
 
-                    dust.scale *= 1.5f;
+                    dust.scale *= 1.25f;
                     dust.velocity *= 1.2f;
                     dust.scale *= dustScale;
                 }
@@ -128,117 +213,34 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             hitbox.Height += size * 2;
         }
     }
-
-    public class BAMP : ModProjectile
+    public class BAMAttacks : ModPlayer
     {
-        public override void SetStaticDefaults()
+        public int ammoToUse = 1;
+        public override void PostItemCheck()
         {
-            DisplayName.SetDefault("BAM");     //The English name of the Projectile
+            if (Player.HeldItem.type == ItemType<BAM>())
+            {
+                if (ammoToUse == 1)
+                {
+                    Player.HeldItem.useAmmo = AmmoID.Gel;
+                    Player.HeldItem.shoot = ProjectileType<BAMGel>();
+                }
+                if (ammoToUse == 2)
+                {
+                    Player.HeldItem.useAmmo = AmmoID.Rocket;
+                    Player.HeldItem.shoot = ProjectileID.RocketI;
+               
+                }
+                if (ammoToUse == 3)
+                {
+                    Player.HeldItem.useAmmo = AmmoID.Dart;
+                    Player.HeldItem.shoot = ProjectileID.PoisonDart;
+                 
 
-        }
-        public override void SetDefaults()
-        {
-            Projectile.width = 22;
-            Projectile.height = 22;
-            Projectile.friendly = true;
-            Projectile.penetrate = -1;
-            Projectile.tileCollide = false;
-            Projectile.hide = true;
-            Projectile.DamageType = DamageClass.Ranged;
-            Projectile.ignoreWater = true;
-        }
-        public override void AI()
-        {
-            Player player = Main.player[Projectile.owner];
-            float num = (float)Math.PI / 2f;
-            Vector2 vector = player.RotatedRelativePoint(player.MountedCenter);
-            int num2 = 2;
-            float num3 = 0f;
-            num = 0f;
-            if (Projectile.spriteDirection == -1)
-            {
-                num = (float)Math.PI;
-            }
-            Projectile.ai[0] += 1f;
-     
-            int UseTime = 40;
-            Projectile.ai[1] -= 1f;
-            bool flag13 = false;
-            if (Projectile.ai[1] <= 0f)
-            {
-                Projectile.ai[1] = UseTime;
-                flag13 = true;
-                _ = (int)Projectile.ai[0] / (UseTime );
-            }
-            bool canShoot3 = player.channel && player.HasAmmo(player.inventory[player.selectedItem], canUse: true) && !player.noItems && !player.CCed;
-            if (Projectile.localAI[0] > 0f)
-            {
-                Projectile.localAI[0] -= 1f;
-            }
-            if (Projectile.soundDelay <= 0 && canShoot3)
-            {
-                Projectile.soundDelay = UseTime;
-                if (Projectile.ai[0] != 1f)
-                {
-                    SoundEngine.PlaySound(SoundID.Item5, Projectile.position);
                 }
-                Projectile.localAI[0] = 12f;
+
+                return;
             }
-            player.phantasmTime = 2;
-            if (flag13 && Main.myPlayer == Projectile.owner)
-            {
-                int projToShoot3 = 14;
-                float speed3 = 14f;
-                int Damage3 = player.GetWeaponDamage(player.inventory[player.selectedItem]);
-                float KnockBack3 = player.inventory[player.selectedItem].knockBack;
-                if (canShoot3)
-                {
-                    player.PickAmmo(player.inventory[player.selectedItem], ref projToShoot3, ref speed3, ref canShoot3, ref Damage3, ref KnockBack3, out var usedAmmoItemId3);
-                    IEntitySource projectileSource_Item_WithPotentialAmmo3 = player.GetSource_ItemUse_WithPotentialAmmo(player.HeldItem, usedAmmoItemId3);
-                    KnockBack3 = player.GetWeaponKnockback(player.inventory[player.selectedItem], KnockBack3);
-                    float num70 = player.inventory[player.selectedItem].shootSpeed * Projectile.scale;
-                    Vector2 vector30 = vector;
-                    Vector2 value11 = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY) - vector30;
-                    if (player.gravDir == -1f)
-                    {
-                        value11.Y = (float)(Main.screenHeight - Main.mouseY) + Main.screenPosition.Y - vector30.Y;
-                    }
-                    Vector2 vector31 = Vector2.Normalize(value11);
-                    if (float.IsNaN(vector31.X) || float.IsNaN(vector31.Y))
-                    {
-                        vector31 = -Vector2.UnitY;
-                    }
-                    vector31 *= num70;
-                    if (vector31.X != Projectile.velocity.X || vector31.Y != Projectile.velocity.Y)
-                    {
-                        Projectile.netUpdate = true;
-                    }
-                    Projectile.velocity = vector31 * 0.55f;
-                    for (int num71 = 0; num71 < 4; num71++)
-                    {
-                        Vector2 vector32 = Vector2.Normalize(Projectile.velocity) * speed3 * (0.6f + Main.rand.NextFloat() * 0.8f);
-                        if (float.IsNaN(vector32.X) || float.IsNaN(vector32.Y))
-                        {
-                            vector32 = -Vector2.UnitY;
-                        }
-                        Vector2 vector33 = vector30 + Utils.RandomVector2(Main.rand, -15f, 15f);
-                        int num72 = Projectile.NewProjectile(projectileSource_Item_WithPotentialAmmo3, vector33.X, vector33.Y, vector32.X, vector32.Y, projToShoot3, Damage3, KnockBack3, Projectile.owner);
-                        Main.projectile[num72].noDropItem = true;
-                    }
-                }
-                else
-                {
-                    Projectile.Kill();
-                }
-            }
-            Projectile.position = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false) - Projectile.Size / 2f;
-            Projectile.rotation = Projectile.velocity.ToRotation() + num;
-            Projectile.spriteDirection = Projectile.direction;
-            Projectile.timeLeft = 2;
-            player.ChangeDir(Projectile.direction);
-            player.heldProj = Projectile.whoAmI;
-            player.SetDummyItemTime(num2);
-            player.itemRotation = MathHelper.WrapAngle((float)Math.Atan2(Projectile.velocity.Y * (float)Projectile.direction, Projectile.velocity.X * (float)Projectile.direction) + num3);
         }
     }
-}*/
+}

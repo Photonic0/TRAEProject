@@ -59,6 +59,7 @@ namespace TRAEProject.Changes.Recipes
             NebulaWings.AddIngredient(ItemType<LuminiteFeather>(), 1);
             NebulaWings.AddTile(TileID.LunarCraftingStation);
             NebulaWings.Register();
+
             Recipe VortexWings = Recipe.Create(ItemID.WingsVortex);
             VortexWings.AddIngredient(ItemID.FragmentVortex, 12);
             VortexWings.AddIngredient(ItemType<LuminiteFeather>(), 1);

@@ -45,6 +45,9 @@ namespace TRAEProject.Changes
                 case ItemID.ObsidianWaterWalkingBoots:
                     item.SetNameOverride("Heavy Rocket Boots");
                     return;
+                case ItemID.WormTooth:
+                    item.SetNameOverride("Rotten Tooth");
+                    return;
                 case ItemID.MoonShell:
                     item.SetNameOverride("Monster Shell");
                     return;

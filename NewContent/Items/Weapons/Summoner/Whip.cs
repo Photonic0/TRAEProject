@@ -193,7 +193,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 				Vector2 value2 = Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 2].DirectionTo(Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 1]).SafeNormalize(Vector2.Zero);
 				for (int j = 0; j < 4; j++)
 				{
-					Dust dust5 = Dust.NewDustDirect(r5.TopLeft(), r5.Width, r5.Height, DustID.DungeonSpirit, 0f, 0f, 0, default, 1.5f);
+
+					Dust dust5 = Dust.NewDustDirect(r5.TopLeft(), r5.Width, r5.Height, DustID.DungeonSpirit, 0f, 0f, 0, default(Color), 1.5f);
 					dust5.noGravity = true;
 					dust5.velocity += value2 * 2f;
 				}

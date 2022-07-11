@@ -251,8 +251,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
             Projectile.alpha = 255;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {            SoundEngine.PlaySound(SoundID.Item93, Projectile.position);
-
+        {            
+            SoundEngine.PlaySound(SoundID.Item93, Projectile.position);
+            Projectile.ai[0] = 2000;
             for (int n = 0; n < 10; n++)
             {
                 int Dust = Terraria.Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Electric, 0f, 0f, 200, default, 1f);
@@ -269,13 +270,16 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
         public override bool PreAI()
         {
             Projectile.localAI[0] += 1f;
+            if (Projectile.ai[0] > 0)
+                Projectile.ai[0] -= 1;
+                return false;
             if (Projectile.localAI[0] > 3f)
             {
                 Projectile.tileCollide = true;
                     Vector2 ProjectilePosition = Projectile.position;
                     ProjectilePosition -= Projectile.velocity;
                     Projectile.alpha = 255;
-                    int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.Electric, 0f, 0f, 0, default, 1f);
+                    int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.Electric, 0f, 0f, 0, default(Color), 1f);
                     Main.dust[dust].noGravity = true;
                     Main.dust[dust].noLight = true;
                     Main.dust[dust].position = ProjectilePosition;

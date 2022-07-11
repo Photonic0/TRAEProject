@@ -1,43 +1,56 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using System;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ID.ArmorIDs;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
-using TRAEProject.NewContent.Items.Materials;
-namespace TRAEProject.NewContent.Items.Armor.IceArmor
+
+namespace TRAEProject.NewContent.Items.Armor.LeatherArmor
 {
-    [AutoloadEquip(EquipType.Head)]
-    public class IceMajestyCrown : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Glacial Crown");
-           
-            Head.Sets.DrawHatHair[Item.headSlot] = true;
-            Tooltip.SetDefault("Increases your maximum number of minions by 1\n20% increased whip speed");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-        public override void SetDefaults()
-        {
-            Item.value = Item.sellPrice(0, 30, 0, 0);
-            Item.rare = ItemRarityID.Yellow;
-            Item.width = 22;
-            Item.height = 30;
-            Item.defense = 11;
-        }
-        public override void UpdateEquip(Player player)
-        {
-            ++player.maxMinions;
-            player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) *= 1 / 1.2f;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe(1).AddIngredient(ItemType<IceQueenJewel>(), 1)
-                .AddIngredient(ItemID.SpectreBar, 15)
-                .AddTile(TileID.Anvils)
-                .Register();
-        }
+	[AutoloadEquip(EquipType.Body)]
+    public class LeatherTunic : ModItem
+	{
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Leather Tunic");
+			Tooltip.SetDefault("Increases your maximum number of minions by 1");
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+		}
+		public override void SetDefaults()
+		{
+			Item.value = Item.sellPrice(0, 0, 50, 0);
+			Item.rare = ItemRarityID.Blue;
+			Item.width = 36;
+			Item.height = 20;
+			Item.defense = 4;
+		}
+		public override void AddRecipes()
+		{
+			CreateRecipe(1)
+				.AddIngredient(ItemID.Leather, 3)
+				.AddIngredient(ItemID.WormTooth, 8)
+				.AddTile(TileID.Anvils)
+				.Register();
+		}
+
+		public override void UpdateEquip(Player player)
+		{
+            player.maxMinions += 1;
+		}
+		public override bool IsArmorSet(Item head, Item body, Item legs)
+		{
+			return head.type == ItemType<LeatherHat>() && legs.type == ItemType<LeatherPants>();
+		}
+
+		public override void UpdateArmorSet(Player player)
+		{
+			player.setBonus = "25% increased whip range";
+            player.whipRangeMultiplier += 0.25f;
+		}
     }
 }
+
+
+
+

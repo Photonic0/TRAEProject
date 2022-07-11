@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.ID;
 using TRAEProject.Common;
 
 namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
@@ -23,6 +24,9 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
     {
         public override void SpearDefaults()
         {
+            DustOnDeath = DustID.Titanium;
+            DustOnDeathCount = 40;
+
             spearLength = 155.5f;
             holdAt = 93f;
             Projectile.ignoreWater = true;

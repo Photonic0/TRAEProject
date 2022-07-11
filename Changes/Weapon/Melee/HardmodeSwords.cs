@@ -191,7 +191,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.scale = 1.95f; // up from 1.05
                     return;
                 case 3065: // star wrath
-                    item.damage = 1100; // down from 110
+                    item.damage = 110; // down from 110
                     item.scale = 1.7f; // up from 1.05
                     return;
 

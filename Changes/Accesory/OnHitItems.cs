@@ -49,7 +49,7 @@ namespace TRAEProject.Changes.Items
         {
 
         }
-        public override void PostUpdate()
+        public override void PostUpdateEquips()
         {
           
             if (runeCooldown > 0)
@@ -125,10 +125,10 @@ namespace TRAEProject.Changes.Items
             {
                 Player.AddBuff(BuffID.Panic, 300 + damage * 4);
             }
-            if (Player.longInvince && damage > 100)
+            if (Player.longInvince)
             {
-                int invintime = (int)((damage - 100) * 0.6); // every point of damage past 100 adds 0.01 seconds of invincibility. 
-                Player.immuneTime += invintime;
+                int invintime = (int)(damage * 0.5); // every point of damage past 100 adds 0.0083 seconds of invincibility. 
+                Player.immuneTime += invintime - 40;
             }
         }
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
@@ -191,18 +191,18 @@ namespace TRAEProject.Changes.Items
                 {
                     Player.AddBuff(BuffID.Panic, 300 + damage * 4, false);
                 }
-                if (Player.longInvince && damage > 100)
+                if (Player.longInvince)
                 {
-                    int invintime = (int)(damage - 100 * 0.6); // every point of damage past 100 adds 0.01 seconds of invincibility. 
-                    Player.immuneTime += invintime;
-                }            
+                    int invintime = (int)(damage * 0.5); // every point of damage past 100 adds 0.0083 seconds of invincibility. 
+                    Player.immuneTime += invintime - 40;
+                }
 
             }
         }
 
         void RuneThorns(int damage) 
         {
-			runeCooldown = 300;
+			runeCooldown = 120;
             Terraria.Audio.SoundEngine.PlaySound(SoundID.Item8, Player.position);
             for (int i = 0; i < 50; ++i)
             {
@@ -213,7 +213,7 @@ namespace TRAEProject.Changes.Items
             }
             foreach (NPC enemy in Main.npc)
             {
-                float distance = 150f;
+                float distance = 300f;
                 Vector2 newMove = enemy.Center - Player.Center;
                 float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
                 int direction = -1;

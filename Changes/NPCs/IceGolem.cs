@@ -34,7 +34,7 @@ namespace TRAEProject.Changes.NPCs
 				if (distanceTo < 500f)
 				{
 					npc.ai[1] += 1f;
-					if (npc.ai[1] > 10)
+					if (npc.ai[1] > 15)
 					{
 						MakeSpikesForward(npc, 1, targetData);
 						npc.netUpdate = true;
