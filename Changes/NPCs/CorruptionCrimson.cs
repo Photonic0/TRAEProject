@@ -59,10 +59,6 @@ namespace TRAEProject.Changes.NPCs
 	public override bool InstancePerEntity => true;
         public override void SetDefaults(NPC npc)
         {
-            switch (npc.type)
-            {
-             
-            }
         }
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {

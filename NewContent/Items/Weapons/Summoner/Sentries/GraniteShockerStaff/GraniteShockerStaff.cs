@@ -271,8 +271,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
         {
             Projectile.localAI[0] += 1f;
             if (Projectile.ai[0] > 0)
+            {
                 Projectile.ai[0] -= 1;
                 return false;
+            }
             if (Projectile.localAI[0] > 3f)
             {
                 Projectile.tileCollide = true;

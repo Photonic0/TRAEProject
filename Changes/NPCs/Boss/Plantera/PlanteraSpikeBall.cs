@@ -32,53 +32,14 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                 }
                 else
                 {
-                    if (projectile.alpha > 0)
-                    {
-                        projectile.alpha -= 30;
-                        if (projectile.alpha < 0)
-                        {
-                            projectile.alpha = 0;
-                        }
-                    }
-                    if (Main.expertMode)
-                    {
-                        float num146 = 18f;
-                        int num147 = Player.FindClosest(projectile.Center, 1, 1);
-                        Vector2 vector12 = Main.player[num147].Center - projectile.Center;
-                        vector12.Normalize();
-                        vector12 *= num146;
-                        int num148 = 200;
-                        projectile.velocity.X = (projectile.velocity.X * (float)(num148 - 1) + vector12.X) / (float)num148;
-                        /*
-                        if (projectile.velocity.Length() > 16f)
-                        {
-                            projectile.velocity.Normalize();
-                            projectile.velocity *= 16f;
-                        }
-                        */
-                    }
-
-                    projectile.ai[0] += 1f;
-                    if (projectile.ai[0] > 15f)
-                    {
-                        projectile.ai[0] = 15f;
-                        if (projectile.velocity.Y == 0f && projectile.velocity.X != 0f)
-                        {
-                            projectile.velocity.X *= 0.97f;
-                            if ((double)projectile.velocity.X > -0.01 && (double)projectile.velocity.X < 0.01)
-                            {
-                                projectile.Kill();
-                            }
-                        }
-                        projectile.velocity.Y += 0.2f;
-                    }
-                    projectile.rotation += projectile.velocity.X * 0.05f;
+                    return true;
                 }
                 //Main.NewText(projectile.ai[0] + ", " + projectile.ai[1] + ", " + projectile.localAI[0] + ", " + projectile.localAI[1]);
                 return false;
             }
             return true;
         }
+        /*
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             
@@ -134,6 +95,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             }
             return true;
         }
+        */
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
             if (projectile.type == ProjectileID.ThornBall)

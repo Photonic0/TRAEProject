@@ -240,7 +240,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 		static void Movement(Projectile projectile, ref bool moveLeft, ref bool moveRight)
 		{
 			Player player = Main.player[projectile.owner];
-			bool playerBelow = false;
 			bool aboutToHitWall = false;
 
 			//don't move if attacking
@@ -311,10 +310,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 				{
 					aboutToHitWall = true;
 				}
-			}
-			if (player.position.Y + (float)player.height - 8f > projectile.position.Y + (float)projectile.height)
-			{
-				playerBelow = true;
 			}
 
 			Collision.StepUp(ref projectile.position, ref projectile.velocity, projectile.width, projectile.height, ref projectile.stepSpeed, ref projectile.gfxOffY);
@@ -822,7 +817,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 		static void LegacyMovement(Projectile projectile, ref bool moveLeft, ref bool moveRight)
 		{
 			Player player = Main.player[projectile.owner];
-			bool playerBelow = false;
 
 			bool aboutToHitWall = false;
 
@@ -894,10 +888,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
 				{
 					aboutToHitWall = true;
 				}
-			}
-			if (player.position.Y + (float)player.height - 8f > projectile.position.Y + (float)projectile.height)
-			{
-				playerBelow = true;
 			}
 
 			Collision.StepUp(ref projectile.position, ref projectile.velocity, projectile.width, projectile.height, ref projectile.stepSpeed, ref projectile.gfxOffY);

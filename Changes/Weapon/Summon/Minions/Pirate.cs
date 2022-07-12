@@ -105,14 +105,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     x9 = mountedCenter.X - vector26.X;
                     num130 = mountedCenter.Y - vector26.Y;
                     float rotation22 = (float)Math.Atan2(num130, x9) - 1.57f;
-                    if (projectile.alpha == 0)
-                    {
-                        int num132 = -1;
-                        if (projectile.position.X + (float)(projectile.width / 2) < mountedCenter.X)
-                        {
-                            num132 = 1;
-                        }
-                    }
                     bool flag24 = true;
                     while (flag24)
                     {

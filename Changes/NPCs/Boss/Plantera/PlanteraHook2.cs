@@ -34,6 +34,14 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             Gore.NewGore(Projectile.GetSource_FromThis(), new Vector2(Projectile.position.X + (float)Main.rand.Next(Projectile.width), Projectile.position.Y + (float)Main.rand.Next(Projectile.height)), Projectile.velocity, 390, Projectile.scale);
             Gore.NewGore(Projectile.GetSource_FromThis(), new Vector2(Projectile.position.X + (float)Main.rand.Next(Projectile.width), Projectile.position.Y + (float)Main.rand.Next(Projectile.height)), Projectile.velocity, 391, Projectile.scale);
         }
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        {
+            if(Projectile.frame == 0)
+            {
+                return false;
+            }
+            return base.Colliding(projHitbox, targetHitbox);
+        }
         public override void AI()
         {
             if(anchor == null)
