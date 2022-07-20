@@ -18,13 +18,24 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
 		{
             if (npc.type == NPCID.CultistBoss)
             {
-                npc.lifeMax = 108000;
+                npc.lifeMax = 67000; // up from 40000
+                npc.height = 60;
+                npc.width = 60;
             }
-		}
+            if (npc.type == NPCID.CultistDragonHead)
+            {
+                npc.lifeMax = 7500; // down from 10000
+            }
+        }
 
         static float AttackSpeed(NPC npc)
         {
-            return 3f - 2f * ((float)npc.life / (float)npc.lifeMax);
+            if ((float)npc.life / (float)npc.lifeMax <= 0.1f)
+                return 2.25f;
+            if (Main.expertMode || Main.masterMode)
+                return 2.25f - 1.3f * ((float)npc.life / (float)npc.lifeMax);
+            else
+                return 2.25f - 1.5f * ((float)npc.life / (float)npc.lifeMax);
         }
         int attackNumber = 0;
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -45,27 +56,34 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
             {
                 if (npc.ai[0] != -1f && Main.rand.Next(1000) == 0)
                 {
-                    SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
+                    int Sound = Main.rand.Next(4); 
+                    SoundStyle sound = SoundID.Zombie88;
+
+                    switch (Sound)
+                    {
+                        case 1:
+                            sound = SoundID.Zombie89;
+                            break;
+                        case 2:
+                            sound = SoundID.Zombie90;
+                            break;
+                        case 3:
+                            sound = SoundID.Zombie91;
+                            break;
+                    }
+                    SoundEngine.PlaySound(sound, npc.Center);
                 }
-                bool expert = Main.expertMode;
+                bool master = Main.masterMode;
                 bool belowHalf = npc.life <= npc.lifeMax / 2;
+        
 
-                npc.damage = 0;
-            
-
-
-
-            bool isCultist = npc.type == NPCID.CultistBoss;
+                bool isCultist = npc.type == NPCID.CultistBoss;
                 bool flag2 = false;
                 bool flag3 = false;
                 if (isCultist)
                 {
                     //Main.NewText(npc.ai[0] + ", " + npc.ai[1] + ", " + npc.ai[2] + ", " + npc.ai[3]);
                     //Main.NewText(attackNumber);
-                }
-                if (belowHalf)
-                {
-                    npc.defense = (int)((float)npc.defDefense * 0.65f);
                 }
                 if (!isCultist)
                 {
@@ -150,7 +168,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 float attackTally = npc.ai[3];
                 if (npc.localAI[0] == 0f)
                 {
-                    SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
+                    SoundEngine.PlaySound(SoundID.Zombie89, npc.Center);
                     npc.localAI[0] = 1f;
                     npc.alpha = 255;
                     npc.rotation = 0f;
@@ -180,7 +198,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                     if (npc.ai[1] >= 40f && isCultist)
                     {
                         attackNumber = 0;
-                        SelectAction(npc, expert, belowHalf, center, player);
+                        SelectAction(npc, master, belowHalf, center, player);
                     }
                 }
                 else if (npc.ai[0] == 1f)
@@ -244,21 +262,22 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
 
                     
                     int fireballAttackDelay = 10;
-                    int fireballCount = 6;
+                    int fireballCount = 5;
                     int fireballDamage = npc.GetAttackDamage_ForProjectiles(50f, 40f);
-                    if (expert)
+                    if (Main.expertMode)
                     {
-                        fireballAttackDelay = 5;
-                        fireballCount = 9;
+                        
+                        fireballCount = 7;
                     }
-
+                    if (master)
+                        fireballAttackDelay = 8;
                     npc.localAI[2] = 11f;
                     Vector2 vec2 = Vector2.Normalize(player.Center - center);
                     if (vec2.HasNaNs())
                     {
                         vec2 = new Vector2(npc.direction, 0f);
                     }
-                    if (npc.ai[1] >= 180f && isCultist && (int)(npc.ai[1] - 180f) >= fireballAttackDelay*(int)attackNumber)
+                    if (npc.ai[1] >= 90f && isCultist && (int)(npc.ai[1] - 90f) >= fireballAttackDelay*(int)attackNumber)
                     {
                         attackNumber++;
                         if ((int)(npc.ai[1] - 4f) / fireballAttackDelay == 2)
@@ -281,29 +300,27 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                             Vector2 vector5 = npc.Center + new Vector2(npc.direction * 30, 12f);
                             for (int num23 = 0; num23 < 1; num23++)
                             {
-                                Vector2 spinninpoint3 = vec2 * (6f + (float)Main.rand.NextDouble() * 4f);
+                                Vector2 spinninpoint3 = vec2 * (4.5f + (float)Main.rand.NextDouble() * 4f);
                                 spinninpoint3 = spinninpoint3.RotatedByRandom(0.52359879016876221);
                                 Projectile.NewProjectile(npc.GetSource_FromThis(), vector5.X, vector5.Y, spinninpoint3.X, spinninpoint3.Y, 467, fireballDamage, 0f, Main.myPlayer);
                             }
                         }
                     }
-                    if (npc.ai[1] < 180f)
+                    if (npc.ai[1] < 90f)
                     {
-                        npc.ai[1] += 1f;
-                        flag2 = true;
-                        for(int i =0; i < 2; i++)
+                        if (npc.ai[1] == 0f)
                         {
-                            Dust d = Main.dust[Dust.NewDust(npc.position, npc.width, npc.height, 6)];
-                            d.scale = 2f;
-                            d.noGravity = true;
+                            SoundEngine.PlaySound(SoundID.Item45, npc.Center);
                         }
+                        npc.ai[1] += 1f;
+                     
                     }
                     else
                     {
                         npc.ai[1] += AttackSpeed(npc);
                     }
                     
-                    if (npc.ai[1] >= (float)(186 + fireballAttackDelay * fireballCount))
+                    if (npc.ai[1] >= (float)(96 + fireballAttackDelay * fireballCount))
                     {
                         EndAttack(npc);
                     }
@@ -314,7 +331,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                     
                     int lightningAttackDelay = 80;
                     int lightningDamage = npc.GetAttackDamage_ForProjectiles(45f, 30f);
-                    if (expert)
+                    if (master)
                     {
                         lightningAttackDelay = 40;
                     }
@@ -568,7 +585,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                     
                     int ancientLightAttackDelay = 20;
                     int ancientLightSalvos = 2;
-                    if (expert)
+                    if (master)
                     {
                         ancientLightAttackDelay = 30;
                         ancientLightSalvos = 2;
@@ -955,7 +972,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 npc.velocity *= 0.95f;
                 if (npc.localAI[2] != 13f)
                 {
-                    SoundEngine.PlaySound(SoundID.Zombie1, npc.Center);
+                    SoundEngine.PlaySound(SoundID.Zombie105, npc.Center);
                 }
                 npc.localAI[2] = 13f;
             }

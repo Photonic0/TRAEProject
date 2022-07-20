@@ -11,6 +11,10 @@ using TRAEProject.NewContent.Items.Materials;
 using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 using TRAEProject.NewContent.Items.Accesories.MechanicalEye;
 using TRAEProject.NewContent.Items.Accesories.SpaceBalloon;
+using TRAEProject.NewContent.Items.Weapons.Ammo;
+using TRAEProject.NewContent.Items.Weapons.HeadHarvester;
+using TRAEProject.NewContent.Items.Weapons.SharpLament;
+
 namespace TRAEProject.Changes.NPCs
 {
     public class EnemyDrops: GlobalNPC
@@ -147,6 +151,9 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.CultistBoss:
                     npcLoot.Add(ItemDropRule.BossBag(ItemID.CultistBossBag));
                     return;
+                case NPCID.HeadlessHorseman:
+                    npcLoot.Add(ItemDropRule.Common(ItemID.TheHorsemansBlade, 8));
+                    return;
             }
         }
         public override bool PreKill(NPC npc)
@@ -155,6 +162,12 @@ namespace TRAEProject.Changes.NPCs
             NPCLoader.blockLoot.Add(ItemID.FastClock);
             switch (npc.type)
             {
+                case NPCID.EyeofCthulhu:
+                    if (WorldGen.crimson)
+                    {
+                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemType<BloodyArrow>(), Main.rand.Next(20, 50));
+                    }
+                    return true;
                 case NPCID.CultistBoss:
                     if (Main.expertMode)
                     {
@@ -172,40 +185,40 @@ namespace TRAEProject.Changes.NPCs
                     NPCLoader.blockLoot.Add(ItemID.PocketMirror);
                     return true;
                 case NPCID.Plantera:
-                    int[] PDrops = new int[] { ItemID.FlowerPow, ItemID.Seedler, ItemID.LeafBlower, ItemID.NettleBurst, ItemID.GrenadeLauncher, ItemID.VenusMagnum};
+                    int[] PDrops = new int[] { ItemID.FlowerPow, ItemID.Seedler, ItemID.LeafBlower, ItemID.NettleBurst, ItemID.GrenadeLauncher, ItemID.VenusMagnum };
                     int Drop1 = Main.rand.Next(4);
                     // there is 100% a cleaner way of doing this
-                      if (!Main.expertMode && !Main.masterMode)
+                    if (!Main.expertMode && !Main.masterMode)
                     {
-					if (Drop1 == 0)
-                    {
-                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.FlowerPow, 1); 
-                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.Seedler, 1);
+                        if (Drop1 == 0)
+                        {
+                            Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.FlowerPow, 1);
+                            Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.Seedler, 1);
+                        }
+                        if (Drop1 == 1)
+                        {
+                            Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.LeafBlower, 1);
+                            Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.NettleBurst, 1);
+                        }
+                        if (Drop1 == 2)
+                        {
+                            Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemType<Jungla>(), 1);
+                            Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.VenusMagnum, 1);
+                        }
+                        if (Drop1 == 3)
+                        {
+                            Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.PygmyStaff, 1);
+                            Item.NewItem(npc.GetSource_Loot(), npc.getRect(), Main.rand.Next(PDrops), 1);
+                        }
                     }
-                    if (Drop1 == 1)
-                    {
-                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.LeafBlower, 1);
-                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.NettleBurst, 1); 
-                    }
-                    if (Drop1 == 2)
-                    {
-              Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemType<Jungla>(), 1);			
-                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.VenusMagnum, 1);
-                    }
-                    if (Drop1 == 3)
-                    {
-                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.PygmyStaff, 1);
-                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), Main.rand.Next(PDrops), 1);
-                    }
-					}
                     NPCLoader.blockLoot.Add(ItemID.FlowerPow);
                     NPCLoader.blockLoot.Add(ItemID.Seedler);
-                    NPCLoader.blockLoot.Add(ItemID.LeafBlower);             
-					NPCLoader.blockLoot.Add(ItemID.WaspGun);
-                    NPCLoader.blockLoot.Add(ItemID.NettleBurst); 
-                    NPCLoader.blockLoot.Add(ItemID.GrenadeLauncher);                  
-					NPCLoader.blockLoot.Add(ItemID.RocketI); 
-                    NPCLoader.blockLoot.Add(ItemID.VenusMagnum); 
+                    NPCLoader.blockLoot.Add(ItemID.LeafBlower);
+                    NPCLoader.blockLoot.Add(ItemID.WaspGun);
+                    NPCLoader.blockLoot.Add(ItemID.NettleBurst);
+                    NPCLoader.blockLoot.Add(ItemID.GrenadeLauncher);
+                    NPCLoader.blockLoot.Add(ItemID.RocketI);
+                    NPCLoader.blockLoot.Add(ItemID.VenusMagnum);
                     NPCLoader.blockLoot.Add(ItemID.PygmyStaff);
                     return true;
                 case NPCID.MoonLordCore:
@@ -217,15 +230,15 @@ namespace TRAEProject.Changes.NPCs
                     NPCLoader.blockLoot.Add(ItemID.Meowmere);
                     NPCLoader.blockLoot.Add(ItemID.StarWrath);
                     NPCLoader.blockLoot.Add(ItemID.Terrarian);
-                    NPCLoader.blockLoot.Add(ItemID.SDMG); 
-                    NPCLoader.blockLoot.Add(ItemID.Celeb2); 
-                    NPCLoader.blockLoot.Add(ItemID.LunarFlareBook); 
-                    NPCLoader.blockLoot.Add(ItemID.LastPrism); 
-                    NPCLoader.blockLoot.Add(ItemID.RainbowCrystalStaff); 
+                    NPCLoader.blockLoot.Add(ItemID.SDMG);
+                    NPCLoader.blockLoot.Add(ItemID.Celeb2);
+                    NPCLoader.blockLoot.Add(ItemID.LunarFlareBook);
+                    NPCLoader.blockLoot.Add(ItemID.LastPrism);
+                    NPCLoader.blockLoot.Add(ItemID.RainbowCrystalStaff);
                     NPCLoader.blockLoot.Add(ItemID.MoonlordTurretStaff);
                     return true;
                 case NPCID.HallowBoss:
-                    int[] HallowDrops = new int[] { ItemID.PiercingStarlight, ItemID.FairyQueenMagicItem, ItemID.FairyQueenRangedItem, ItemID.RainbowCrystalStaff};
+                    int[] HallowDrops = new int[] { ItemID.PiercingStarlight, ItemID.FairyQueenMagicItem, ItemID.FairyQueenRangedItem, ItemID.RainbowCrystalStaff };
                     if (!Main.expertMode && !Main.masterMode)
                     {
                         Item.NewItem(npc.GetSource_Loot(), npc.getRect(), Main.rand.Next(HallowDrops), 1);
@@ -234,6 +247,37 @@ namespace TRAEProject.Changes.NPCs
                     NPCLoader.blockLoot.Add(ItemID.FairyQueenMagicItem);
                     NPCLoader.blockLoot.Add(ItemID.FairyQueenRangedItem);
                     NPCLoader.blockLoot.Add(ItemID.RainbowWhip);
+                    return true;
+                case NPCID.MourningWood:
+                    int[] WoodDrops = new int[] { ItemID.SpookyHook, ItemID.SpookyTwig, ItemID.NecromanticScroll, ItemType<SharpLament>(), ItemID.StakeLauncher};
+                    int todrop = Main.rand.Next(WoodDrops);
+                    if (todrop == ItemID.StakeLauncher)
+                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.Stake, Main.rand.Next(25, 50));
+                    Item.NewItem(npc.GetSource_Loot(), npc.getRect(), todrop, 1);
+                    NPCLoader.blockLoot.Add(ItemID.SpookyHook);
+                    NPCLoader.blockLoot.Add(ItemID.SpookyTwig);
+                    NPCLoader.blockLoot.Add(ItemID.NecromanticScroll);
+                    NPCLoader.blockLoot.Add(ItemID.StakeLauncher);
+                    NPCLoader.blockLoot.Add(ItemID.Stake);
+                    return true;
+                case NPCID.Pumpking:
+                    int[] PumpDrops = new int[] { ItemID.CandyCornRifle, ItemID.JackOLanternLauncher, ItemID.RavenStaff, ItemType<HeadHarvester>(), ItemID.BatScepter, ItemID.ScytheWhip, ItemID.BlackFairyDust, ItemID.SpiderEgg };
+                    int todrop2 = Main.rand.Next(PumpDrops);
+                    if (todrop2 == ItemID.CandyCornRifle)
+                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.CandyCorn, Main.rand.Next(25, 50));
+                    if (todrop2 == ItemID.JackOLanternLauncher)
+                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.JackOLantern, Main.rand.Next(25, 50));
+                    Item.NewItem(npc.GetSource_Loot(), npc.getRect(), todrop2, 1);
+                    NPCLoader.blockLoot.Add(ItemID.TheHorsemansBlade);
+                    NPCLoader.blockLoot.Add(ItemID.CandyCornRifle);
+                    NPCLoader.blockLoot.Add(ItemID.JackOLanternLauncher);
+                    NPCLoader.blockLoot.Add(ItemID.RavenStaff);
+                    NPCLoader.blockLoot.Add(ItemID.BatScepter);
+                    NPCLoader.blockLoot.Add(ItemID.BlackFairyDust);
+                    NPCLoader.blockLoot.Add(ItemID.ScytheWhip);
+                    NPCLoader.blockLoot.Add(ItemID.SpiderEgg);
+                    NPCLoader.blockLoot.Add(ItemID.CandyCorn);
+                    NPCLoader.blockLoot.Add(ItemID.JackOLantern);
                     return true;
                 case NPCID.IceQueen:
                     int[] IceQueenDrops = new int[] { ItemID.SnowmanCannon, ItemID.BlizzardStaff, ItemID.NorthPole, ItemType<AbsoluteZero>() };

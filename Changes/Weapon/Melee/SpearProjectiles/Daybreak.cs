@@ -64,6 +64,13 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
                 Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0f, 0f, 953, Projectile.damage, 10f, Projectile.owner, 0f, 0.85f + Main.rand.NextFloat() * 1.15f);
             }
         }
+        public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
+        {
+            if (atMaxCharge)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0f, 0f, 953, Projectile.damage, 10f, Projectile.owner, 0f, 0.85f + Main.rand.NextFloat() * 1.15f);
+            }
+        }
         public override void StuckEffects(NPC victim)
         {
             if( victim.type == NPCID.MoonLordHead)

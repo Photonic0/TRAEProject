@@ -215,7 +215,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 3; Projectile.extraUpdates = 1;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;

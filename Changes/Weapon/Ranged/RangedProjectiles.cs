@@ -7,10 +7,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
-
+using TRAEProject.Common.ModPlayers;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
-
+using TRAEProject.Changes.Accesory;
 namespace TRAEProject.Changes.Projectiles
 {
     public class RangedProjectile : GlobalProjectile
@@ -39,6 +39,9 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
                     return;
+                case ProjectileID.BoneArrowFromMerchant:
+                    projectile.penetrate = 1;
+                    return;
                 case ProjectileID.CursedDartFlame:
                     projectile.timeLeft = 75;
                     projectile.penetrate = 1;
@@ -47,6 +50,8 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.8f;
                     return;
                 case ProjectileID.CrystalDart:
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.2f;
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageLossOffATileBounce = 0.2f;
                     return;
@@ -63,7 +68,7 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.localNPCHitCooldown = 20;
                     return;
                 case ProjectileID.VortexBeaterRocket:
-                    projectile.penetrate = -1;
+                    projectile.penetrate = 5;
                     projectile.scale = 1.15f;
                     projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
                     projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
@@ -122,11 +127,28 @@ namespace TRAEProject.Changes.Projectiles
         readonly int bulletsPerRocket = 4; //making this 7 will make it just like vanilla
          int timer = 0; 
         readonly int fireRate = 7; //making this 5 will make it just like vanilla
-
+        bool dontDoThisAgain = false;
         public override bool PreAI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
-			if (projectile.type == ProjectileID.ChlorophyteArrow)
+            if (!dontDoThisAgain)
+            {
+                dontDoThisAgain = true;
+                if (projectile.arrow && !player.HeldItem.IsAir && (player.HeldItem.type == ItemID.Tsunami || player.HeldItem.type == ItemID.MythrilRepeater))
+                {
+                    projectile.extraUpdates += 1;
+                }
+                if (projectile.CountsAsClass(DamageClass.Ranged) && (player.GetModPlayer<RangedStats>().GunScope || player.GetModPlayer<RangedStats>().AlphaScope > 0 || player.GetModPlayer<RangedStats>().ReconScope > 0))
+                {
+                    if (projectile.owner == player.whoAmI && projectile.type != ProjectileID.Phantasm && projectile.type != ProjectileID.VortexBeater)
+                    {
+                        projectile.extraUpdates += 1;
+                    }
+                }
+            }
+
+     
+            if (projectile.type == ProjectileID.ChlorophyteArrow)
 			{
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
                 ++ChloroBulletTime;
@@ -298,7 +320,7 @@ namespace TRAEProject.Changes.Projectiles
                 player.itemRotation = MathHelper.WrapAngle((float)Math.Atan2(projectile.velocity.Y * (float)projectile.direction, projectile.velocity.X * (float)projectile.direction) + num3);
                 return false;
             }
-            if (projectile.type == 615)
+            /*if (projectile.type == 615)
             {
                 timer++;
                 //determine fire rate
@@ -329,7 +351,7 @@ namespace TRAEProject.Changes.Projectiles
                 {
                     projectile.ai[0] += 35;
                 }
-            }
+            } */
             return true;
         }
         
@@ -385,6 +407,25 @@ namespace TRAEProject.Changes.Projectiles
             Player player = Main.player[projectile.owner];
             switch (projectile.type)
             {
+       
+                case ProjectileID.UnholyArrow:
+                case ProjectileID.PoisonDartBlowgun:
+                    {
+                        int Duration = Main.rand.Next(200, 500);
+                        target.AddBuff(BuffID.Poisoned, Duration, false);
+                        if (Main.rand.NextBool(20))
+                        {
+                            for (int num840 = 0; num840 < 15; num840++)
+                            {
+                                Dust dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Venom, 0f, 0f);
+                                dust54.fadeIn = 0f;
+                                Dust dust = dust54;
+                                dust.velocity *= 0.5f;
+                            }
+                            target.AddBuff(BuffID.Venom, 60, false);
+                        }
+                        return;
+                    }
                 case ProjectileID.NanoBullet:
                     {
                         player.AddBuff(BuffType<NanoHealing>(), 60, false);
@@ -398,6 +439,16 @@ namespace TRAEProject.Changes.Projectiles
         { 
             switch (projectile.type)
             {
+                case ProjectileID.BoneArrowFromMerchant:
+                    {
+                        if (Main.myPlayer == Main.player[projectile.owner].whoAmI && Main.rand.NextBool(2))
+                        {
+                            float num602 = (0f - projectile.velocity.X) * (float)Main.rand.Next(40, 70) * 0.01f + (float)Main.rand.Next(-20, 21) * 0.4f;
+                            float num603 = (0f - projectile.velocity.Y) * (float)Main.rand.Next(40, 70) * 0.01f + (float)Main.rand.Next(-20, 21) * 0.4f;
+                            Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.position.X + num602, projectile.position.Y + num603, num602, num603, ProjectileID.Bone, (int)((double)projectile.damage * 0.5), 0f, projectile.owner);
+                        }
+                    }
+                    return true;
                 case ProjectileID.BeeArrow:
                     {
                         int beeCount = Main.rand.Next(2, 3);

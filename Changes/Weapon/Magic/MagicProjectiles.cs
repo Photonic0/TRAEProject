@@ -88,6 +88,8 @@ namespace TRAEProject.Changes.Projectiles
                     break;
                 case ProjectileID.Blizzard:
                     projectile.timeLeft = 150;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 500f;
                     break;
                 case ProjectileID.Meteor1:
                 case ProjectileID.Meteor2:
@@ -108,7 +110,7 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.localNPCHitCooldown = 10;
                     break;
 				case ProjectileID.NebulaArcanum:
-                    projectile.extraUpdates = 1;
+                    projectile.extraUpdates = 2;
                     break;            
                 case ProjectileID.GoldenShowerFriendly:
                     projectile.penetrate = 2; // down from 5
@@ -139,8 +141,7 @@ namespace TRAEProject.Changes.Projectiles
             switch (projectile.type)
             {
                 case ProjectileID.Blizzard:
-                    hitbox.Width = 50;
-                    hitbox.Height = 50;
+                    hitbox.Width = hitbox.Height = 50;
                     return;
             }
         }

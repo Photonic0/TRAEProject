@@ -281,7 +281,7 @@ namespace TRAEProject.Changes.NPCs.Miniboss.Santa
 		{
 			if (npc.type == NPCID.SantaNK1)
 			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Booster>(), 10, 1, 1));
+				//npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Booster>(), 10, 1, 1));
 			}
 			base.ModifyNPCLoot(npc, npcLoot);
 		}

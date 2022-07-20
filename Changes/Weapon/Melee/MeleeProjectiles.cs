@@ -100,6 +100,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     break;
                 case ProjectileID.TerraBeam:
                     projectile.extraUpdates = 1;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.67f;
                     break;
 
                 case ProjectileID.FrostBoltSword:
@@ -120,97 +121,96 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
         }
         int timer = 0;
-        
         public override bool PreAI(Projectile projectile)
         {
-            if (projectile.type == ProjectileID.SolarWhipSword)
-            {
-                Player player = Main.player[projectile.owner];
-                Vector2 vector = player.RotatedRelativePoint(player.MountedCenter);
-                float num = (float)(Math.PI / 2f);
-                if (Main.netMode != 2 && projectile.localAI[0] == 0f)
-                {
-                    projectile.ai[1] = (Main.rand.NextFloat() - 0.5f) * ((float)Math.PI / 3f);
-                    SoundEngine.PlaySound(SoundID.Item116, projectile.Center);
-                }
-                if (projectile.localAI[1] > 0f)
-                {
-                    projectile.localAI[1] -= 1f;
-                }
-                projectile.alpha -= 42;
-                if (projectile.alpha < 0)
-                {
-                    projectile.alpha = 0;
-                }
-                if (projectile.localAI[0] == 0f)
-                {
-                    projectile.localAI[0] = projectile.velocity.ToRotation();
-                }
-                float num50 = ((projectile.localAI[0].ToRotationVector2().X >= 0f) ? 1 : (-1));
-                if (projectile.ai[1] <= 0f)
-                {
-                    num50 *= -1f;
-                }
-                Vector2 spinningpoint5 = (num50 * (projectile.ai[0] / 30f * ((float)Math.PI * 2f) - (float)Math.PI / 2f)).ToRotationVector2();
-                spinningpoint5.Y *= (float)Math.Sin(projectile.ai[1]);
-                if (projectile.ai[1] <= 0f)
-                {
-                    spinningpoint5.Y *= -1f;
-                }
-                spinningpoint5 = spinningpoint5.RotatedBy(projectile.localAI[0]);
-                projectile.ai[0] += 1f;
-                if (projectile.ai[0] < 30f)
-                {
-                    projectile.velocity += 48f * player.GetModPlayer<MeleeStats>().weaponSize * spinningpoint5;
-                }
-                else
-                {
-                    projectile.Kill();
-                }
-                projectile.position = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false) - projectile.Size * 2f;
-                projectile.rotation = projectile.velocity.ToRotation() + num;
-                projectile.spriteDirection = projectile.direction;
-                projectile.timeLeft = 2; 
-                int num2 = 2;
-                float num3 = 0f;
-                player.ChangeDir(projectile.direction);
-                player.heldProj = projectile.whoAmI;
-                player.SetDummyItemTime(num2);
-                player.itemRotation = MathHelper.WrapAngle((float)Math.Atan2(projectile.velocity.Y * (float)projectile.direction, projectile.velocity.X * (float)projectile.direction) + num3);
-                Vector2 vector38 = Main.OffsetsPlayerOnhand[player.bodyFrame.Y / 56] * 2f;
-                if (player.direction != 1)
-                {
-                    vector38.X = (float)player.bodyFrame.Width - vector38.X;
-                }
-                if (player.gravDir != 1f)
-                {
-                    vector38.Y = (float)player.bodyFrame.Height - vector38.Y;
-                }
-                vector38 -= new Vector2(player.bodyFrame.Width - player.width, player.bodyFrame.Height - 42) / 2f;
-                projectile.Center = player.RotatedRelativePoint(player.MountedCenter - new Vector2(20f, 42f) / 2f + vector38, reverseRotation: false, addGfxOffY: false) - projectile.velocity;
-                for (int num78 = 0; num78 < 2; num78++)
-                {
-                    Dust obj = Main.dust[Dust.NewDust(projectile.position + projectile.velocity * 2f, projectile.width, projectile.height, 6, 0f, 0f, 100, Color.Transparent, 2f)];
-                    obj.noGravity = true;
-                    obj.velocity *= 2f;
-                    obj.velocity += projectile.localAI[0].ToRotationVector2();
-                    obj.fadeIn = 1.5f;
-                }
-                float num79 = 18f;
-                for (int num80 = 0; (float)num80 < num79; num80++)
-                {
-                    if (Main.rand.Next(4) == 0)
-                    {
-                        Vector2 vector39 = projectile.position + projectile.velocity + projectile.velocity * ((float)num80 / num79);
-                        Dust obj2 = Main.dust[Dust.NewDust(vector39, projectile.width, projectile.height, 6, 0f, 0f, 100, Color.Transparent)];
-                        obj2.noGravity = true;
-                        obj2.fadeIn = 0.5f;
-                        obj2.velocity += projectile.localAI[0].ToRotationVector2();
-                        obj2.noLight = true;
-                    }
-                }
-                return false;
-            }
+            //if (projectile.type == ProjectileID.SolarWhipSword)
+            //{
+            //    Player player = Main.player[projectile.owner];
+            //    Vector2 vector = player.RotatedRelativePoint(player.MountedCenter);
+            //    float num = (float)(Math.PI / 2f);
+            //    if (Main.netMode != 2 && projectile.localAI[0] == 0f)
+            //    {
+            //        projectile.ai[1] = (Main.rand.NextFloat() - 0.5f) * ((float)Math.PI / 3f);
+            //        SoundEngine.PlaySound(SoundID.Item116, projectile.Center);
+            //    }
+            //    if (projectile.localAI[1] > 0f)
+            //    {
+            //        projectile.localAI[1] -= 1f;
+            //    }
+            //    projectile.alpha -= 42;
+            //    if (projectile.alpha < 0)
+            //    {
+            //        projectile.alpha = 0;
+            //    }
+            //    if (projectile.localAI[0] == 0f)
+            //    {
+            //        projectile.localAI[0] = projectile.velocity.ToRotation();
+            //    }
+            //    float num50 = ((projectile.localAI[0].ToRotationVector2().X >= 0f) ? 1 : (-1));
+            //    if (projectile.ai[1] <= 0f)
+            //    {
+            //        num50 *= -1f;
+            //    }
+            //    Vector2 spinningpoint5 = (num50 * (projectile.ai[0] / 30f * ((float)Math.PI * 2f) - (float)Math.PI / 2f)).ToRotationVector2();
+            //    spinningpoint5.Y *= (float)Math.Sin(projectile.ai[1]);
+            //    if (projectile.ai[1] <= 0f)
+            //    {
+            //        spinningpoint5.Y *= -1f;
+            //    }
+            //    spinningpoint5 = spinningpoint5.RotatedBy(projectile.localAI[0]);
+            //    projectile.ai[0] += 1f;
+            //    if (projectile.ai[0] < 30f)
+            //    {
+            //        projectile.velocity += 48f * (player.GetModPlayer<MeleeStats>().weaponSize + player.GetAttackSpeed(DamageClass.Melee) * 0.25f) * spinningpoint5;
+            //    }
+            //    else
+            //    {
+            //        projectile.Kill();
+            //    }
+            //    projectile.position = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: false, addGfxOffY: false) - projectile.Size * 2f;
+            //    projectile.rotation = projectile.velocity.ToRotation() + num;
+            //    projectile.spriteDirection = projectile.direction;
+            //    projectile.timeLeft = 2; 
+            //    int num2 = 2;
+            //    float num3 = 0f;
+            //    player.ChangeDir(projectile.direction);
+            //    player.heldProj = projectile.whoAmI;
+            //    player.SetDummyItemTime(num2);
+            //    player.itemRotation = MathHelper.WrapAngle((float)Math.Atan2(projectile.velocity.Y * (float)projectile.direction, projectile.velocity.X * (float)projectile.direction) + num3);
+            //    Vector2 vector38 = Main.OffsetsPlayerOnhand[player.bodyFrame.Y / 56] * 2f;
+            //    if (player.direction != 1)
+            //    {
+            //        vector38.X = (float)player.bodyFrame.Width - vector38.X;
+            //    }
+            //    if (player.gravDir != 1f)
+            //    {
+            //        vector38.Y = (float)player.bodyFrame.Height - vector38.Y;
+            //    }
+            //    vector38 -= new Vector2(player.bodyFrame.Width - player.width, player.bodyFrame.Height - 42) / 2f;
+            //    projectile.Center = player.RotatedRelativePoint(player.MountedCenter - new Vector2(20f, 42f) / 2f + vector38, reverseRotation: false, addGfxOffY: false) - projectile.velocity;
+            //    for (int num78 = 0; num78 < 2; num78++)
+            //    {
+            //        Dust obj = Main.dust[Dust.NewDust(projectile.position + projectile.velocity * 2f, projectile.width, projectile.height, 6, 0f, 0f, 100, Color.Transparent, 2f)];
+            //        obj.noGravity = true;
+            //        obj.velocity *= 2f;
+            //        obj.velocity += projectile.localAI[0].ToRotationVector2();
+            //        obj.fadeIn = 1.5f;
+            //    }
+            //    float num79 = 18f;
+            //    for (int num80 = 0; (float)num80 < num79; num80++)
+            //    {
+            //        if (Main.rand.Next(4) == 0)
+            //        {
+            //            Vector2 vector39 = projectile.position + projectile.velocity + projectile.velocity * ((float)num80 / num79);
+            //            Dust obj2 = Main.dust[Dust.NewDust(vector39, projectile.width, projectile.height, 6, 0f, 0f, 100, Color.Transparent)];
+            //            obj2.noGravity = true;
+            //            obj2.fadeIn = 0.5f;
+            //            obj2.velocity += projectile.localAI[0].ToRotationVector2();
+            //            obj2.noLight = true;
+            //        }
+            //    }
+            //    return false;
+            //}
             return true;
         }
         public override void AI(Projectile projectile)
@@ -360,8 +360,7 @@ namespace TRAEProject.Changes.Weapon.Melee
         public int HitCount = 0;
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            Player player = Main.player[projectile.owner];
-
+            Player player = Main.player[projectile.owner];             
             if (projectile.type == ProjectileID.TinyEater)
             {
                 TRAEDebuff.Apply<Corrupted>(target, 181, 1);
@@ -374,6 +373,20 @@ namespace TRAEProject.Changes.Weapon.Melee
             if (player.HasBuff(BuffID.WeaponImbueNanites) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);
+            }
+            if (player.HasBuff(BuffID.WeaponImbuePoison) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
+            {
+                if (Main.rand.NextBool(20))
+                {
+                    for (int num840 = 0; num840 < 15; num840++)
+                    {
+                        Dust dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Venom, 0f, 0f);
+                        dust54.fadeIn = 0f;
+                        Dust dust = dust54;
+                        dust.velocity *= 0.5f;
+                    }
+                    target.AddBuff(BuffID.Venom, 60, false);
+                }
             }
             switch (projectile.type)
             {
@@ -463,31 +476,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                         TRAEMethods.DefaultExplosion(projectile);
                         return false;
                     }
-                case ProjectileID.ToxicFlask:
-                    {
-                        for (int num332 = 0; num332 < 1000; num332++)
-                        {
-                            if (Main.projectile[num332].active && Main.projectile[num332].owner == projectile.owner && Main.projectile[num332].type == ProjectileType<ToxicCloud>())
-                            {
-                                Main.projectile[num332].ai[1] = 600f;
-                            }
-                        }
-                        SoundEngine.PlaySound(SoundID.Item107, projectile.position);
-                        Gore.NewGore(projectile.GetSource_FromThis(), projectile.Center, -projectile.oldVelocity * 0.2f, 704);
-                        Gore.NewGore(projectile.GetSource_FromThis(), projectile.Center, -projectile.oldVelocity * 0.2f, 705);
-                        if (projectile.owner == Main.myPlayer)
-                        {
-                            int ToxicCloudsSpawned = Main.rand.Next(34, 37);
-                            for (int num375 = 0; num375 < ToxicCloudsSpawned; num375++)
-                            {
-                                Vector2 vector22 = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
-                                vector22.Normalize();
-                                vector22 *= Main.rand.Next(10, 101) * 0.02f;
-                                Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center.X, projectile.Center.Y, vector22.X, vector22.Y, ProjectileType<ToxicCloud>(), projectile.damage, 1f, projectile.owner);
-                            }
-                        }
-                    }
-                    return false;               
+                               
             }
             return true;
         }     

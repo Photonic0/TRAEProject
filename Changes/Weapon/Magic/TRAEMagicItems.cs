@@ -181,10 +181,6 @@ namespace TRAEProject.Changes.Items
                     item.shootSpeed = 12f;
                     item.autoReuse = true;
                     return;
-                case ItemID.SoulDrain:
-                    item.SetNameOverride("Soul Drain");
-                    item.damage = 53; // up from 53
-                    return;
                 case ItemID.MeteorStaff:
                     item.damage = 53; // up from 53
                     item.shootSpeed = 12.5f; // up from 10f
@@ -254,10 +250,12 @@ namespace TRAEProject.Changes.Items
                     item.mana = 6; // up from 5
                     return;
                 case ItemID.BlizzardStaff:
+				                 item.damage = 38; // down from 58
                     item.autoReuse = false;
                     item.useAnimation = 25; 
                     item.useTime = 25;
-                    item.mana = 250; // up form 9
+                    item.UseSound = SoundID.Item20;
+                    item.mana = 50; // up form 9
                     return;
                 case ItemID.BubbleGun:
 				    item.damage = 60; // down from 70
@@ -297,13 +295,18 @@ namespace TRAEProject.Changes.Items
                     item.mana = 10;
                     return;
                 case ItemID.NebulaBlaze:
+                    item.damage = 110;
+                    item.useTime = 15; // up from 12
+                    item.useAnimation = 15;
                     item.mana = 8; // down from 12
 					item.knockBack = 5f; // up from 0
+                    // 696 DPS, 33 mana/s
                     return;
 				case ItemID.NebulaArcanum:
-					item.useTime = 34; // up from 30
-					item.useAnimation = 34; // up from 30
-					item.mana = 60; // up from 30
+					item.useTime = 30; // up from 30
+					item.useAnimation = 30; // up from 30
+					item.mana = 53; // up from 30
+					item.shootSpeed = 3f;
 					return;
                 case ItemID.LesserManaPotion:
                     item.healMana = 100;

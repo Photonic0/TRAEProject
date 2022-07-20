@@ -134,7 +134,6 @@ namespace TRAEProject.Common
             //Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
             SpearPrefixScaleing(player.HeldItem, player, Projectile);
             player.itemTime = player.itemAnimation;
-            
             int switchStabTime = (int)(2f * (float)player.itemAnimationMax / 3f);
             int stabTime = player.itemAnimationMax - switchStabTime;
             int swivelDir = 1;
@@ -391,6 +390,7 @@ namespace TRAEProject.Common
             Projectile.friendly = false;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.width = Projectile.height = 10;
+            
             SpearDefaults();
             if(Projectile.penetrate != 1)
             {
@@ -518,11 +518,12 @@ namespace TRAEProject.Common
             {
                 floatTime = (int)(floatTime * chargeAmt);
             }
-            Projectile.velocity = PolarVector(player.HeldItem.shootSpeed * player.GetModPlayer<MeleeStats>().meleeVelocity * (1 / player.GetAttackSpeed(DamageClass.Melee)) * (chargeAmt == 1 ? 1 : 0.6f), dir);
+            Projectile.velocity = PolarVector(player.HeldItem.shootSpeed * player.GetModPlayer<MeleeStats>().meleeVelocity * (player.GetAttackSpeed(DamageClass.Melee)) * (chargeAmt == 1 ? 1 : 0.6f), dir);
             SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
             player.itemAnimationMax += chargeTime;
             player.itemAnimation = player.itemAnimationMax - 1;
             player.itemTime = player.itemAnimation + 1;
+            Projectile.timeLeft = 180;
             OnThrow(chargeAmt);
         }
 
@@ -689,7 +690,7 @@ namespace TRAEProject.Common
 
             // Please note the usage of MathHelper, please use this!
             // We subtract 90 degrees as radians to the rotation vector to offset the sprite as its default rotation in the sprite isn't aligned properly.
-            Vector2 rotVector = (Projectile.rotation + MathHelper.ToRadians(90f)).ToRotationVector2(); // rotation vector to use for dust velocity
+            Vector2 rotVector = (Projectile.rotation + MathHelper.ToRadians(135f * Projectile.direction)).ToRotationVector2(); // rotation vector to use for dust velocity
             usePos += rotVector * 16f;
 
             // Declaring a constant in-line is fine as it will be optimized by the compiler

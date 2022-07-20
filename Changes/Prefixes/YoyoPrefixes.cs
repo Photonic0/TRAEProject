@@ -215,7 +215,7 @@ namespace TRAEProject.Changes.Prefixes
 						projectile.localAI[0] += (float)Main.rand.Next(10, 31) * 0.1f;
 					}
 					float num = projectile.localAI[0] / 60f;
-					num /= (1f + Main.player[projectile.owner].GetAttackSpeed(DamageClass.Melee) / 2f);
+					num /= (1f + Main.player[projectile.owner].GetAttackSpeed(DamageClass.Melee) * 2f);
 					float num2 = ProjectileID.Sets.YoyosLifeTimeMultiplier[projectile.type];
 					if (num2 != -1f && num > num2)
 					{

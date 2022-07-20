@@ -74,20 +74,7 @@ namespace TRAEProject.Changes
         }
         public override void PostUpdate()
         {
-            Player.manaRegenCount = 0;
-            Player.manaRegen = 0;
-            Player.manaRegenDelay = 999;
-            Player.manaSickTimeMax = 9999;
-            int reachThisNumberAndThenIncreaseManaBy1 = 60;
-            if (Player.statMana < Player.statManaMax2)
-            {
-                newManaRegen += Player.statManaMax2 * 0.1f * manaRegenBoost;
-                if (newManaRegen >= reachThisNumberAndThenIncreaseManaBy1)
-                {
-                    newManaRegen -= 60;
-                    ++Player.statMana;
-                }
-            }
+      
             if (newManaFlower)
             {
                 ++manaFlowerTimer;
@@ -104,6 +91,20 @@ namespace TRAEProject.Changes
             if (overloadedMana > Player.statManaMax2 * 2)
             {
                 overloadedMana = Player.statManaMax2 * 2;
+            }
+            Player.manaRegenCount = 0;
+            Player.manaRegen = 0;
+            Player.manaRegenDelay = 999;
+            Player.manaSickTimeMax = 9999;
+            int reachThisNumberAndThenIncreaseManaBy1 = 60;
+            if (Player.statMana < Player.statManaMax2)
+            {
+                newManaRegen += Player.statManaMax2 * 0.1f * manaRegenBoost;
+                if (newManaRegen >= reachThisNumberAndThenIncreaseManaBy1)
+                {
+                    newManaRegen -= 60;
+                    ++Player.statMana;
+                }
             }
         }
         int counter = 0;

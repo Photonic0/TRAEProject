@@ -9,6 +9,7 @@ using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.Projectiles;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace TRAEProject.Changes.Weapon.Melee
 {
@@ -176,11 +177,11 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.useTime = 12;
                     item.useAnimation = 12;
                     break;
-                case ItemID.ChristmasTreeSword: // REVISIT
-                    item.useTime = 31;
-                    item.useAnimation = 31;
-                    item.damage = 76;
-                  
+                case ItemID.ChristmasTreeSword: 
+                    item.useTime = 29;
+                    item.useAnimation = 29;
+                    item.damage = 70;
+                    item.shootSpeed = 9f; 
                     item.knockBack = 4f;
                     item.autoReuse = true;
                     break;
@@ -208,7 +209,40 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
             return base.CanHitNPC(item, player, target);
         }
-
+        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
+            switch (item.type)
+            {
+                case ItemID.ChristmasTreeSword:
+                    {
+                        int number = 1 + Main.rand.Next(1, 2); // 1 to 3 shots
+                        for (int i = 0; i < number; i++)
+                        {
+                            Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(24));
+                            Projectile.NewProjectile(player.GetSource_ItemUse(item), position, perturbedSpeed * 0.95f, ProjectileType<LightsLong>(), damage, knockback, player.whoAmI);
+                        }                        
+						number = 2 + Main.rand.Next(1, 3); // 3 or 5 shots
+                        for (int i = 0; i < number; i++)
+                        {
+                            Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(30));
+                            perturbedSpeed.X *= Main.rand.NextFloat(0.5f, 1.5f);
+                            Projectile.NewProjectile(player.GetSource_ItemUse(item), position, perturbedSpeed * 1.2f, ProjectileID.OrnamentFriendly, damage, knockback, player.whoAmI);
+                        }
+                        for (int i = 0; i < 10; i++)
+                        {
+                            Dust dust = Dust.NewDustDirect(player.position, player.width, player.height, 57, 0f, 0f, 255, default, Main.rand.Next(20, 26) * 0.1f);
+                            dust.noLight = true;
+                            dust.noGravity = true;
+                            dust.velocity *= 0.5f;
+                        }
+                        Projectile.NewProjectile(player.GetSource_ItemUse(item), position, velocity * 1.8f, ProjectileType<Star1>(), damage, knockback, player.whoAmI);
+                        Terraria.Audio.SoundEngine.PlaySound(SoundID.Item25);
+                        return false;
+                    }
+            }
+            return true;
+        }
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
             if (FetidHeal && player.GetModPlayer<OnHitItems>().BaghnakhHeal <= player.GetModPlayer<OnHitItems>().LastHitDamage)

@@ -18,7 +18,8 @@ namespace TRAEProject.Changes.Weapon.Melee.Flairon
             if(item.type == ItemID.Flairon)
             {
                 item.channel = true;
-                item.useTime = item.useAnimation = 40;
+                item.useTime = 40;
+                item.useAnimation = 40;
                 item.damage = 150;
                 item.autoReuse = false;
                 item.noMelee = true;
@@ -68,7 +69,7 @@ namespace TRAEProject.Changes.Weapon.Melee.Flairon
         {
             if (projectile.type == ProjectileID.Flairon)
             {
-                HeavyFlail.AI(projectile, 20, 25, 30, 30, 15);
+                HeavyFlail.AI(projectile, 35, 25, 30, 30, 15);
                 Player player = Main.player[projectile.owner];
                 projectile.rotation = (player.Center - projectile.Center).ToRotation() - (float)Math.PI / 2;
 

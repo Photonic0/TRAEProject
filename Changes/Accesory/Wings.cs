@@ -11,8 +11,8 @@ namespace TRAEProject.Changes.Accesory
         {
             if ( item.type == ItemID.BetsyWings && player.TryingToHoverDown)
             {
-                speed *= 0.75f;
-                acceleration *= 0.75f;
+                speed *= 0.85f;
+                //acceleration *= 0.85f;
             }
             if (item.type == ItemID.WingsVortex && player.TryingToHoverDown)
             {

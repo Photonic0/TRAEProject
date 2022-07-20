@@ -181,14 +181,14 @@ namespace TRAEProject.Common
 
     public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
-            if (explodes && !dontExplodeOnTiles) // If you want a projectile that doesn't explode in contact with tiles, make the second variable.//
+            if (explodes && !dontExplodeOnTiles) // If you want a projectile that doesn't explode in contact with tiles, make the second variable true.//
             {
                 TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
                 if (UsesDefaultExplosion)
                 {
                     TRAEMethods.DefaultExplosion(projectile);
                 }
-                return false;
+                return true;
             }
             if (BouncesOffTiles)
             {
@@ -397,7 +397,7 @@ namespace TRAEProject.Common
                 int num8 = 20;
                 for (int j = 0; j < 200; j++)
                 {
-                    if (Main.npc[j].CanBeChasedBy(this, false) || Main.npc[j].type == NPCID.DetonatingBubble && projectile.localNPCImmunity[target.whoAmI] != -1/*see "dontHitTheSameEnemyMultipleTimes" above*/)
+                    if (Main.npc[j].CanBeChasedBy(this, false) || Main.npc[j].type == NPCID.DetonatingBubble && projectile.localNPCImmunity[Main.npc[j].whoAmI] != -1/*see "dontHitTheSameEnemyMultipleTimes" above*/)
                     {
                         float num9 = (projectile.Center - Main.npc[j].Center).Length();
                         if (num9 > num8 && num9 < num7 && Collision.CanHitLine(projectile.Center, 1, 1, Main.npc[j].Center, 1, 1))

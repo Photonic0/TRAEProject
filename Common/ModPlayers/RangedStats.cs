@@ -16,9 +16,10 @@ namespace TRAEProject.Common.ModPlayers
     class RangedStats : ModPlayer
     {
         public int RocketsStun = 0;
-        public int Magicquiver = 0; 
-        public int Magicandgunquiver = 0;
-        public int AlphaScope = 0;
+        public int Magicquiver = 0;
+        public bool GunScope = false;
+        public int ReconScope = 0;
+        public int AlphaScope = 0; 
         public float rangedVelocity = 1f; 
         public float gunVelocity = 1f;
         public int chanceNotToConsumeAmmo = 0;
@@ -28,7 +29,8 @@ namespace TRAEProject.Common.ModPlayers
             AlphaScope = 0;
             RocketsStun = 0;
             Magicquiver = 0; 
-            Magicandgunquiver = 0;
+            ReconScope = 0;
+            GunScope = false;
             rangedVelocity = 1f; 
             gunVelocity = 1f;
             chanceNotToConsumeAmmo = 0;

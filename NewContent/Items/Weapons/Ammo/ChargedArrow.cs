@@ -15,7 +15,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Charged arrow");
-            Tooltip.SetDefault("Goes through tiles and enemies\nLeaves up to 8 Charged arrows inside the enemy");
+            Tooltip.SetDefault("Creates a damaging ring around hit enemies\nStacks up to 5 times, increasing range");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()

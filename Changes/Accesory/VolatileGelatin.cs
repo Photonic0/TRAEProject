@@ -44,7 +44,7 @@ namespace TRAEProject.Changes.Accesory
         public bool VolatileGelatinNew = false;
         int gelTime = 0;
         int dustChance = 26;
-
+        int cooldown = 0;
         int TimeBeforeLosingStack = 30;
         int gelStored = 0;
 
@@ -61,6 +61,8 @@ namespace TRAEProject.Changes.Accesory
         }
         public override void PostUpdateEquips()
         {
+            if (cooldown > 0)
+                cooldown--;
             if (gelStored > 25)
             {
                 gelStored = 25;
@@ -89,8 +91,9 @@ namespace TRAEProject.Changes.Accesory
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (crit && VolatileGelatinNew)
+            if (crit && VolatileGelatinNew && cooldown == 0)
             {
+                cooldown = 15;
                 gelStored += 1 + damage / 100;
                 if (gelStored > 25)
                 {
@@ -100,8 +103,9 @@ namespace TRAEProject.Changes.Accesory
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (crit && VolatileGelatinNew)
+            if (crit && VolatileGelatinNew && cooldown == 0)
             {
+                cooldown = 15;
                 gelStored += 1 + damage / 100;
                 if (gelStored > 25)
                 {

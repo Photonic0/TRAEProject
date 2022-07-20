@@ -26,6 +26,25 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 projectile.light = 1f;
             }
         }
+        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        {
+            if (Main.expertMode)
+            {
+                if (projectile.type == ProjectileID.CultistBossFireBall)
+                {
+                    target.AddBuff(BuffID.OnFire, Main.rand.Next(200, 300));
+                }
+                if (projectile.type == ProjectileID.CultistBossIceMist)
+                {
+                    target.AddBuff(BuffID.Frozen, Main.rand.Next(30, 35));
+                    target.AddBuff(BuffID.Chilled, Main.rand.Next(60, 120));
+                }
+                if (projectile.type == ProjectileID.CultistBossLightningOrbArc)
+                {
+                    target.AddBuff(BuffID.Electrified, Main.rand.Next(120, 180));
+                }
+            }
+        }
         public override void AI(Projectile projectile)
         {
             if (projectile.type == ProjectileID.CultistBossIceMist)

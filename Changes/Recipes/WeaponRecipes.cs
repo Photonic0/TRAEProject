@@ -106,6 +106,12 @@ Recipe Rocket1 = Recipe.Create(ItemID.RocketI, 50);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.MusketBall, 100);
             }
+            if (recipe.HasResult(ItemID.ExplodingBullet))
+            {
+                recipe.TryGetIngredient(ItemID.EmptyBullet, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.MusketBall, 50);
+            }
             if (recipe.HasResult(ItemID.MeteorShot))
             {
                 recipe.ReplaceResult(ItemID.MeteorShot, 100);
@@ -135,6 +141,7 @@ Recipe Rocket1 = Recipe.Create(ItemID.RocketI, 50);
                 recipe.TryGetIngredient(ItemID.WormTooth, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.WoodenArrow, 50);
+                recipe.AddIngredient(ItemID.VilePowder, 2);
                 recipe.AddIngredient(ItemID.WormTooth, 1);
                 recipe.ReplaceResult(ItemID.UnholyArrow, 50);
             }

@@ -34,15 +34,15 @@ namespace TRAEProject.Changes.Accesory
             }
             if (item.type == ItemID.ReconScope)
             {
-                player.GetModPlayer<RangedStats>().rangedVelocity += 0.8f;
-                player.GetModPlayer<RangedStats>().Magicandgunquiver += 1;
+                player.GetModPlayer<RangedStats>().rangedVelocity += 0.5f;
+                player.GetModPlayer<RangedStats>().ReconScope += 1;
                 player.GetDamage<RangedDamageClass>() -= 0.1f;
 
                 player.GetCritChance<RangedDamageClass>() -= 10;
             }
         }
     }
-    public class MagicQuiverEffect : GlobalProjectile
+    public class ScopeAndQuiver : GlobalProjectile
     {
 
         public override bool InstancePerEntity => true;
@@ -50,6 +50,7 @@ namespace TRAEProject.Changes.Accesory
         public int smartbounces = 0;
         public bool hasBounced = false;
         public bool stunOnCrit = false;
+        public bool otherAmmo = false;
         public bool AffectedByAlphaScope = false;
         public bool AffectedByReconScope = false;
         public float timer = 0;
@@ -76,36 +77,39 @@ namespace TRAEProject.Changes.Accesory
                 case ProjectileID.ChlorophyteBullet:
                 case ProjectileID.NanoBullet:
                 case ProjectileID.MoonlordBullet:
-                case ProjectileID.HallowStar:
-                    AffectedByReconScope = true;
-                    AffectedByAlphaScope = true;
+                    AffectedByReconScope = true; 
+                    AffectedByAlphaScope = false;
                     break;
+            }
+            if (projectile.arrow)
+            {
+                AffectedByReconScope = true; 
+                AffectedByAlphaScope = true;
             }
             if (projectile.GetGlobalProjectile<NewRockets>().IsARocket)
             {
                 AffectedByAlphaScope = true;
             }
-            if (AffectedByAlphaScope)
+            if (AffectedByReconScope)
             {
-                stunOnCrit = true;
+                AffectedByAlphaScope = true;
             }
         }
         public override void AI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
-            if (projectile.arrow && smartbounces < player.GetModPlayer<RangedStats>().Magicquiver + player.GetModPlayer<RangedStats>().Magicandgunquiver && !hasBounced)
+            if (projectile.arrow && smartbounces < player.GetModPlayer<RangedStats>().Magicquiver + player.GetModPlayer<RangedStats>().ReconScope && !hasBounced)
             {
                 smartbounces += player.GetModPlayer<RangedStats>().Magicquiver;
-                smartbounces += player.GetModPlayer<RangedStats>().Magicandgunquiver;
+                smartbounces += player.GetModPlayer<RangedStats>().ReconScope;
             }
-            if (AffectedByReconScope && smartbounces < player.GetModPlayer<RangedStats>().Magicandgunquiver && !hasBounced)
+            if (projectile.CountsAsClass(DamageClass.Ranged) && AffectedByReconScope && smartbounces < player.GetModPlayer<RangedStats>().ReconScope && !hasBounced)
             {
-                smartbounces += player.GetModPlayer<RangedStats>().Magicandgunquiver;
+                smartbounces += player.GetModPlayer<RangedStats>().ReconScope;
             }
-            if (AffectedByAlphaScope && smartbounces < player.GetModPlayer<RangedStats>().AlphaScope && !hasBounced)
+            if (projectile.CountsAsClass(DamageClass.Ranged) && AffectedByAlphaScope && smartbounces < player.GetModPlayer<RangedStats>().AlphaScope && !hasBounced)
             {
                 smartbounces += player.GetModPlayer<RangedStats>().AlphaScope;
-                projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
             }
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
@@ -118,11 +122,11 @@ namespace TRAEProject.Changes.Accesory
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             Player player = Main.player[projectile.owner];
-            if (smartbounces > 0)
+            if (smartbounces > 0 && !projectile.GetGlobalProjectile<ProjectileStats>().explodes)
             {                
                 int[] array = new int[10];
                 int num6 = 0;
-                int Range = 700;
+                int Range = 500;
                 int num8 = 20;
                 for (int j = 0; j < 200; j++)
                 {
@@ -151,15 +155,16 @@ namespace TRAEProject.Changes.Accesory
                     projectile.damage = (int)(projectile.damage * 0.67);
                     --smartbounces;
                     hasBounced = true;
-                    for (int i = 0; i < 30; ++i)
+                    for (int i = 0; i < 20; ++i)
                     {
                         Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.UndergroundHallowedEnemies, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default, 1.5f);
                         dust.noGravity = true;
-                    }
-                    return false;
+                    }                
+					return false;
+
                 }
             }
-            return true;
+			return true;
         }
         void QuiverBounce(Projectile projectile)
         {

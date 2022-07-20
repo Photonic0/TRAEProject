@@ -146,6 +146,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         }
         public void ClusterRocketExplosion(Projectile projectile)
         {
+            SoundEngine.PlaySound(SoundID.Item14, projectile.position);
+
             Color transparent7 = Color.Transparent;
             for (int i = 0; i < 30; i++)
             {
@@ -439,7 +441,9 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.penetrate = 4;
             Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120; 
+            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
+
         }
         public override void AI()
         {

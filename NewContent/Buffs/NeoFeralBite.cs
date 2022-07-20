@@ -22,12 +22,13 @@ namespace TRAEProject.NewContent.Buffs
 			if (timer > 540)
             {
 				player.AddBuff(BuffID.Obstructed, 1);
-timer = 0;
+
 			}
-			if (timer == 600)
+			if (timer == 599) // not 600, that's when the buff runs out
 			{
-				float duration = Main.rand.Next(10, 25);
+				float duration = Main.rand.Next(20, 30);
 				player.AddBuff(BuffID.Confused, (int)duration);
+				timer = 0;
 			}
 		}
 	}

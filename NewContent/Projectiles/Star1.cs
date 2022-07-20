@@ -18,8 +18,8 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.scale = 1.1f;
             Projectile.friendly = true;         //Can the Projectile deal damage to enemies?
             Projectile.DamageType = DamageClass.Melee;           //Is the Projectile shoot by a Melee weapon?
-            Projectile.penetrate = -1;           //How many monsters the Projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
-            Projectile.timeLeft = 120;          //The live time for the Projectile (60 = 1 second, so 600 is 10 seconds)
+            Projectile.penetrate = 4;           //How many monsters the Projectile can penetrate. (OnTileCollide below also decrements penetrate for bounces as well)
+            Projectile.timeLeft = 90;          //The live time for the Projectile (60 = 1 second, so 600 is 10 seconds)
             Projectile.light = 1f;            //How much light emit around the Projectile
             Projectile.tileCollide = false;          //Can the Projectile collide with tiles?
             Projectile.extraUpdates = 0;            //Set to above 0 if you want the Projectile to update multiple time in a frame

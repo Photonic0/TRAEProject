@@ -17,7 +17,7 @@ namespace TRAEProject.Changes.Recipes
         {
             Recipe AncientShadowHead = Recipe.Create(ItemID.AncientShadowHelmet);
             AncientShadowHead.AddIngredient(ItemID.DemoniteBar, 15);
-            AncientShadowHead.AddIngredient(ItemID.ShadowScale, 105);
+            AncientShadowHead.AddIngredient(ItemID.ShadowScale, 10);
             AncientShadowHead.AddTile(TileID.DemonAltar);
             AncientShadowHead.Register();
             Recipe AncientShadowLegs = Recipe.Create(ItemID.AncientShadowGreaves);
@@ -25,9 +25,9 @@ namespace TRAEProject.Changes.Recipes
             AncientShadowLegs.AddIngredient(ItemID.ShadowScale, 15);
             AncientShadowLegs.AddTile(TileID.DemonAltar);
             AncientShadowLegs.Register();
-            Recipe AncientShadowChest = Recipe.Create(ItemID.AncientShadowHelmet);
-            AncientShadowLegs.AddIngredient(ItemID.DemoniteBar, 25);
-            AncientShadowLegs.AddIngredient(ItemID.ShadowScale, 20);
+            Recipe AncientShadowChest = Recipe.Create(ItemID.AncientShadowScalemail);
+            AncientShadowChest.AddIngredient(ItemID.DemoniteBar, 25);
+            AncientShadowChest.AddIngredient(ItemID.ShadowScale, 20);
             AncientShadowChest.AddTile(TileID.DemonAltar);
             AncientShadowChest.Register();
         }

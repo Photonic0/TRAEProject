@@ -243,12 +243,21 @@ namespace TRAEProject.Changes.Weapon
 					canGetMeleeModifiers = true;
 					item.shoot = ProjectileType<Daybreak>();
 					altShoot = ProjectileType<DaybreakThrow>();
+					item.shootSpeed = 12.5f; //only the throw uses this
+
 					item.damage = 94;
 					item.useTime = item.useAnimation = 20;
 					item.autoReuse = false;
 					break;
 
 			}
+        }
+
+        public override float UseAnimationMultiplier(Item item, Player player)
+        {
+			if (altShoot != -1)
+				return 1 / player.GetAttackSpeed(DamageClass.Melee);
+            return base.UseSpeedMultiplier(item, player);
         }
         public override bool AltFunctionUse(Item item, Player player)
         {

@@ -34,10 +34,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
 
             Item.DamageType = DamageClass.SummonMeleeSpeed;
             Item.noUseGraphic = true;
-            Item.damage = 180;
-            Item.useTime = Item.useAnimation = 40;
+            Item.damage = 162;
+            Item.useTime = Item.useAnimation = 30;
             Item.knockBack = 0.5f;
-            Item.shootSpeed = 4.5f;
+            Item.shootSpeed = 5.5f;
             Item.rare = ItemRarityID.Red;
             Item.value = Item.sellPrice(0, 10, 0, 0);
 		}
@@ -105,7 +105,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
 					Dust dust = Dust.NewDustDirect(proj.oldPosition, proj.width, proj.height, DustID.YellowStarDust, 1f);
 					dust.noGravity = true;
 				}
-				Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.position, new Vector2(0), ProjectileType<StarflowInvader>(), damage / 10, 1f, Player.whoAmI);
+				Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.position, new Vector2(0), ProjectileType<StarflowInvader>(), damage / 2, 1f, Player.whoAmI);
             }
 
         }

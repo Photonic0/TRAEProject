@@ -266,10 +266,12 @@ namespace TRAEProject.Changes.Accesory
                     player.dd2Accessory = false;
                     break;
                 case ItemID.RifleScope:
-                    player.GetModPlayer<RangedStats>().gunVelocity += 0.8f; 
+                    player.GetModPlayer<RangedStats>().GunScope = true;
+                    player.GetModPlayer<RangedStats>().gunVelocity += 0.5f; 
                     break;
                 case ItemID.SniperScope:
-                    player.GetModPlayer<RangedStats>().gunVelocity += 0.8f;
+                    player.GetModPlayer<RangedStats>().GunScope = true;
+                    player.GetModPlayer<RangedStats>().gunVelocity += 0.5f;
                     player.GetDamage<RangedDamageClass>() -= 0.1f;
                     break;
             }
@@ -278,12 +280,13 @@ namespace TRAEProject.Changes.Accesory
         {
             if (item.CountsAsClass(DamageClass.Ranged))
             {
-                velocity *= player.GetModPlayer<RangedStats>().rangedVelocity;
+                velocity *= player.GetModPlayer<RangedStats>().rangedVelocity; 
+                if (item.useAmmo == AmmoID.Bullet || item.useAmmo == AmmoID.CandyCorn)
+                {
+                    velocity *= player.GetModPlayer<RangedStats>().gunVelocity;
+                }
             }
-            if (item.CountsAsClass(DamageClass.Ranged) && (item.useAmmo == AmmoID.Bullet || item.useAmmo == AmmoID.CandyCorn))
-            {
-                velocity *= player.GetModPlayer<RangedStats>().gunVelocity;
-            }
+          
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
@@ -495,6 +498,14 @@ namespace TRAEProject.Changes.Accesory
                             line.Text = "12% increased melee damage and speed";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                           line.Text = "Enables autoswing for melee weapons";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip2")
+                        {
+                            line.Text = "";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip3")
                         {
                             line.Text = "";
                         }
@@ -856,7 +867,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increased gun velocity";
+                            line.Text = "Increases ranged velocity and tightens gun spread";
                         }
                     }
                     break;
@@ -865,7 +876,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increased gun velocity\n10% increased ranged critical strike chance";
+                            line.Text = "Increases ranged velocity and tightens gun spread\n10% increased ranged critical strike chance";
                         }
                     }
                     break;
@@ -878,7 +889,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increased ranged velocity";
+                            line.Text = "Increases ranged velocity and tightens gun spread";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {

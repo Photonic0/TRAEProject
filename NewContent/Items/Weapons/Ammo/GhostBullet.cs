@@ -6,6 +6,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
+using TRAEProject.Changes.Accesory;
 
 namespace TRAEProject.NewContent.Items.Weapons.Ammo
 {
@@ -14,12 +15,12 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ghost Bullet");
-            Tooltip.SetDefault("Goes through tiles and enemies\nLeaves up to 8 ghost bullets inside the enemy");
+            Tooltip.SetDefault("Goes through tiles and enemies\nLeaves up to 9 ghost bullets inside the enemy, releases them when killed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
         {
-            Item.damage = 9;
+            Item.damage = 11;
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 2;
             Item.value = Item.sellPrice(0, 0, 0, 20);
@@ -55,7 +56,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             Projectile.CloneDefaults(ProjectileID.Bullet);
             Projectile.timeLeft = 1200;
             Projectile.alpha = 100;
-            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.33f;
+            Projectile.GetGlobalProjectile<ScopeAndQuiver>().AffectedByReconScope = true;
+			Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.3f;
             Projectile.penetrate = 2;
             Projectile.extraUpdates = 2;
             Projectile.ignoreWater = true;
@@ -74,7 +78,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            GhostBulletStacks GB = TRAEDebuff.Apply<GhostBulletStacks>(target, 300, 8);
+            GhostBulletStacks GB = TRAEDebuff.Apply<GhostBulletStacks>(target, 300, 9);
             if (GB != null)
             {
                 GB.SetProjectile(Projectile);

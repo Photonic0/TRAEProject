@@ -61,7 +61,8 @@ namespace TRAEProject.Changes.Prefixes
 
         public override void ModifyValue(ref float valueMult)
         {
-            float multiplier = 1f * (1 + damage * 0.004f) 
+            float multiplier = 1f 
+                * (1 + damage * 0.004f) 
                 * (1 + crit * 0.004f) 
                 * (1 + AP * 0.003f) 
                 * (1 + velocity * 0.001f) 
@@ -247,7 +248,7 @@ namespace TRAEProject.Changes.Prefixes
                         }
                         if (pre == PrefixType<Dense>() || pre == PrefixType<Pathetic>())
                         {
-                            Player.GetAttackSpeed(DamageClass.Melee) /= 0.5f;
+                            Player.GetAttackSpeed(DamageClass.Melee) /= 0.65f;
                         }
                         break;
                 }

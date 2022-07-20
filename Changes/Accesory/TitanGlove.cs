@@ -42,7 +42,7 @@ namespace TRAEProject.Changes.Accesory
         {
             foreach (TooltipLine line in tooltips)
             {
-                if (item.type == ItemID.TitanGlove || item.type == ItemID.PowerGlove || item.type == ItemID.FireGauntlet)
+                if (item.type == ItemID.TitanGlove || item.type == ItemID.FireGauntlet)
                 {
 
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
@@ -62,6 +62,26 @@ namespace TRAEProject.Changes.Accesory
                         line.Text = "";
                     }
                 }
+				if (item.type == ItemID.PowerGlove )
+                {
+                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.Text = "12% increased melee speed";
+                    }  
+					if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                    {
+                        line.Text = "25% increased melee weapon size and 50% increased melee velocity";
+                    }
+                    if (line.Mod == "Terraria" && line.Name == "Tooltip2")
+                    {
+                        line.Text = "Enables autoswing for melee weapons";
+                    }
+                    if (line.Mod == "Terraria" && line.Name == "Tooltip3")
+                    {
+                        line.Text = "";
+                    }
+                }
+				
                 if (item.type == ItemID.FireGauntlet)
                 {
                     if (line.Mod == "Terraria" && line.Name == "Tooltip1")

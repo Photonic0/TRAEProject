@@ -137,6 +137,9 @@ namespace TRAEProject.Changes.Weapons
                     item.useTime = 40;
                     item.useAnimation = 40;
                     return;
+				case ItemID.Phantasm:
+                    item.damage = 60;
+                    return;
                 case ItemID.FairyQueenRangedItem:
                     item.damage = 40; // down from 50
                     return;
@@ -164,7 +167,8 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.FlamingArrow:
                     item.shootSpeed = 5f;
                     item.knockBack = 6f;
-                    return;
+                    return;                
+				case ItemID.UnholyArrow:
                 case ItemID.HolyArrow:
                     item.damage = 10;
                     return;

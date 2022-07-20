@@ -67,7 +67,7 @@ namespace TRAEProject.Changes.Prefixes
                 foreach (TooltipLine line in tooltips)
                 {
                     //find the tooltip line we want to change based on its name
-                    if (line.Name == "PrefixAccGetAttackSpeed(DamageClass.Melee)")
+                    if (line.Name == "PrefixAccMeleeSpeed")
                     {
                         //if the tooltip has a character equal to 'i' replace it with a number that twice as big as 'i'
                         for (int i = 1; i <= 4; i++)

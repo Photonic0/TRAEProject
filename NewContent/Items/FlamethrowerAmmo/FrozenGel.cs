@@ -62,6 +62,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.hostile = false;
             Projectile.friendly = true;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 10;
 			Projectile.tileCollide = false;
             Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.2f;
         }

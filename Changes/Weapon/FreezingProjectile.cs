@@ -6,6 +6,7 @@ using TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon;
 using TRAEProject.Common;
 using TRAEProject.NewContent.Items.FlamethrowerAmmo;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Changes.Weapon.Ranged.Rockets;
 
 namespace TRAEProject.Changes.Projectiles
 {
@@ -18,11 +19,13 @@ namespace TRAEProject.Changes.Projectiles
             if (projectile.GetGlobalProjectile<CryoRockets>().IceRocket)
             {
                 duration = Main.rand.Next(100, 120);
+                if (projectile.GetGlobalProjectile<NewRockets>().HeavyRocket)
+                    duration += 30;
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, duration);
             }
             if (projectile.type == ProjectileType<FrozenGelP>() && Main.rand.Next(10) == 0)
             {
-                target.GetGlobalNPC<Freeze>().FreezeMe(target, 30);
+                target.GetGlobalNPC<Freeze>().FreezeMe(target, 45);
             }
             if (projectile.type == ProjectileType<AbsoluteZeroP>() && Main.rand.Next(5) == 0)
             {

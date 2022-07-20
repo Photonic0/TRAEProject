@@ -16,7 +16,7 @@ namespace TRAEProject.Changes.Mounts
         {
             if (Player.mount.Type == MountID.QueenSlime)
             {
-                Vector2 instaVel = Vector2.UnitX * Player.velocity.X * -0.5f;
+                Vector2 instaVel = Vector2.UnitX * Player.velocity.X * -0.3f;
                 instaVel = Collision.TileCollision(Player.position, instaVel, Player.width, Player.height);
                 Player.position += instaVel;
             }

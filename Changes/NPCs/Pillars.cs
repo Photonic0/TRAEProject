@@ -19,7 +19,7 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.LunarTowerSolar:
                 case NPCID.LunarTowerVortex:
                 case NPCID.LunarTowerStardust:
-                    npc.lifeMax = 50000; // up from 20000
+                    npc.lifeMax = 100000; // up from 20000
                     break;
                 case NPCID.VortexSoldier:
                     npc.damage = 110; // up from 90
@@ -129,58 +129,61 @@ namespace TRAEProject.Changes.NPCs
             switch (npc.type)
             {
                 case NPCID.LunarTowerNebula:
-                    NPC.LunarShieldPowerNormal = 80;
-                    NPC.LunarShieldPowerExpert = 80;
+                    NPC.LunarShieldPowerNormal = 50;
+                    NPC.LunarShieldPowerExpert = 50;
                     npc.TargetClosest();
                     Player player = Main.player[npc.target];
                     if (player.dead || !player.ZoneTowerNebula )
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 60f && NPC.ShieldStrengthTowerNebula < NPC.LunarShieldPowerExpert)
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerNebula < NPC.LunarShieldPowerExpert)
                         {
-                            NPC.ShieldStrengthTowerNebula += 2;
+                            NPC.ShieldStrengthTowerNebula += 1;
                             shieldTimer = 0;
                         }
                     }
                     return;
                 case NPCID.LunarTowerVortex:
-                    NPC.LunarShieldPowerNormal = 80;
-                    NPC.LunarShieldPowerExpert = 80;
+                    NPC.LunarShieldPowerNormal = 50;
+                    NPC.LunarShieldPowerExpert = 50;
+                    npc.TargetClosest();
                     Player player1 = Main.player[npc.target];
                     if (player1.dead || !player1.ZoneTowerVortex)
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 60f && NPC.ShieldStrengthTowerVortex < NPC.LunarShieldPowerExpert)
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerVortex < NPC.LunarShieldPowerExpert)
                         {
-                            NPC.ShieldStrengthTowerVortex += 2;
+                            NPC.ShieldStrengthTowerVortex += 1;
                             shieldTimer = 0;
                         }
                     }
                     return;
                 case NPCID.LunarTowerStardust:
-                    NPC.LunarShieldPowerNormal = 80;
-                    NPC.LunarShieldPowerExpert = 80;
+                    NPC.LunarShieldPowerNormal = 50;
+                    NPC.LunarShieldPowerExpert = 50; 
+                    npc.TargetClosest();
                     Player player2 = Main.player[npc.target];
                     if (player2.dead || !player2.ZoneTowerStardust)
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 60f && NPC.ShieldStrengthTowerStardust < NPC.LunarShieldPowerExpert)
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerStardust < NPC.LunarShieldPowerExpert)
                         {
-                            NPC.ShieldStrengthTowerStardust += 2;
+                            NPC.ShieldStrengthTowerStardust += 1;
                             shieldTimer = 0;
                         }
                     }
                     return;
                 case NPCID.LunarTowerSolar:
-                    NPC.LunarShieldPowerNormal = 80;
-                    NPC.LunarShieldPowerExpert = 80;
+                    NPC.LunarShieldPowerNormal = 50;
+                    NPC.LunarShieldPowerExpert = 50;
+                    npc.TargetClosest();
                     Player player3 = Main.player[npc.target];
                     if (player3.dead || !player3.ZoneTowerSolar)
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 60f && NPC.ShieldStrengthTowerSolar < NPC.LunarShieldPowerExpert)
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerSolar < NPC.LunarShieldPowerExpert)
                         {
-                            NPC.ShieldStrengthTowerSolar += 2;
+                            NPC.ShieldStrengthTowerSolar += 1;
                             shieldTimer = 0;
                         }
                     }

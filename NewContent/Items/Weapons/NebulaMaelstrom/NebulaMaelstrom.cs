@@ -24,11 +24,11 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
         {
             Item.width = 30;
             Item.height = 32;
-            Item.damage = 100;
+            Item.damage = 85;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.mana = 5;
-            Item.rare = ItemRarityID.Lime;
+            Item.mana = 50;
+            Item.rare = ItemRarityID.Red;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
             Item.knockBack = 2f;
@@ -56,7 +56,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
         }
         public override void AddRecipes()
         {
-            CreateRecipe(1).AddIngredient(ItemID.FragmentNebula, 12)
+            CreateRecipe(1).AddIngredient(ItemID.FragmentNebula, 18)
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }
@@ -94,43 +94,40 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
             Player player = Main.player[Projectile.owner];
             Projectile.ai[0]++;
             float distance = 0;
-            int Range = 600;
-
-            NPC nPC = Projectile.FindTargetWithinRange(Range);
-            if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range)
+            int Range = 800;
+            for (int k = 0; k < 200; k++)
             {
-
-                if (Projectile.Distance(nPC.Center) <= (double)50)
+                NPC nPC = Main.npc[k];
+                if (nPC.active && !nPC.friendly && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range/* || (nPC.type == NPCID.MoonLordCore || nPC.type == NPCID.MoonLordHand || nPC.type == NPCID.MoonLordHead)*/)
                 {
+                    if (Projectile.Distance(nPC.Center) > (double)50)
+                    {
+                        Vector2 unitY = Projectile.DirectionTo(nPC.Center);
+                        if (unitY.HasNaNs())
+                            unitY = Vector2.UnitY;
+                        Projectile.velocity = Vector2.Multiply(unitY, 5f);
+                    }
+                    distance = Projectile.Distance(nPC.Center);
+                    zaptimer++;
+                    if (zaptimer >= 25 && Projectile.ai[0] >= BeforeItStartsAttacking)
+                    {
+                        zaptimer = 0;
+                        SoundEngine.PlaySound(SoundID.Item93, Projectile.position);
+
+                        float shootToX = nPC.position.X + nPC.width * 0.5f - Projectile.Center.X;
+                        float shootToY = nPC.position.Y + nPC.height * 0.5f - Projectile.Center.Y;
+                        float distance2 = (float)Math.Sqrt((shootToX * shootToX + shootToY * shootToY));//Dividing the factor of 2f which is the desired velocity by distance2
+                        distance2 = 1f / distance2;
+
+                        //Multiplying the shoot trajectory with distance2 times a multiplier if you so choose to
+                        shootToX *= distance2 * 10f;
+                        shootToY *= distance2 * 10f;
+                        Vector2 perturbedSpeed = new Vector2(shootToX, shootToY).RotatedByRandom(MathHelper.ToRadians(0));
+                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<MaelstromZap>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                    }
+
                 }
-                else
-                {
-                    Vector2 unitY = Projectile.DirectionTo(nPC.Center);
-                    unitY.HasNaNs();
-                    unitY = Vector2.UnitY;
-                    Projectile.velocity = Vector2.Multiply(unitY, 4f);
-                } 
-                distance = Projectile.Distance(nPC.Center);
-                zaptimer++;
-                if (zaptimer >= 25 && Projectile.ai[0] >= BeforeItStartsAttacking)
-                {
-                    zaptimer = 0;
-                    SoundEngine.PlaySound(SoundID.Item93, Projectile.position);
-
-                    float shootToX = nPC.position.X + nPC.width * 0.5f - Projectile.Center.X;
-                    float shootToY = nPC.position.Y + nPC.height * 0.5f - Projectile.Center.Y;
-                    float distance2 = (float)Math.Sqrt((shootToX * shootToX + shootToY * shootToY));//Dividing the factor of 2f which is the desired velocity by distance2
-                    distance2 = 1f / distance2;
-
-                    //Multiplying the shoot trajectory with distance2 times a multiplier if you so choose to
-                    shootToX *= distance2 * 10f;
-                    shootToY *= distance2 * 10f;
-                    Vector2 perturbedSpeed = new Vector2(shootToX, shootToY).RotatedByRandom(MathHelper.ToRadians(0));
-                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<MaelstromZap>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                }
-
             }
-
             Projectile.frameCounter++;
             if (Projectile.frameCounter >= 12)
             {
@@ -155,9 +152,8 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
                     lasertimer = 0;
                     for (int i = 0; i < 6; i++)
                     {
-                        Vector2 direction = Vector2.One.RotatedBy(360 - 45 * (i - 1)) * 9f;
+                        Vector2 direction = Projectile.velocity.RotatedBy(360 - 45 * (i - 1)) * 7f;
                         Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, direction, ProjectileType<MaelstromLaser>(), (int)(Projectile.damage * 1.5f), 1f, Projectile.owner);
-
                     }
                 }
                 if (Projectile.ai[0] >= BeforeItStartsAttacking + attacktimer)
@@ -210,7 +206,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
             Projectile.ignoreWater = false;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 120;
+            Projectile.timeLeft = 150;
             Projectile.scale = 1f;
             Projectile.tileCollide = false;
         }
@@ -226,7 +222,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
                 for (int k = 0; k < 200; k++)
                 {
                     NPC nPC = Main.npc[k];
-                    if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range)
+                    if (nPC.active && !nPC.friendly && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range)
                     {
                         Vector2 projPosition = new Vector2(Projectile.position.X + Projectile.width * 0.5f, Projectile.position.Y + Projectile.height * 0.5f);
                         float npcX = nPC.position.X + nPC.width / 2 - projPosition.X;

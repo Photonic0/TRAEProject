@@ -26,20 +26,26 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             Item.width = 68;
             Item.height = 22;
             Item.damage = 40;
-            Item.useAnimation = 64;
-            Item.useTime = 8;
+            Item.useAnimation = 72;
+            Item.useTime = 9;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Red;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 2f;
             Item.shootSpeed = 6f;
-            Item.scale = 1.2f;
+            Item.scale = 1.15f;
             Item.noMelee = true;
             Item.useAmmo = AmmoID.Gel;
             Item.shoot = ProjectileType<BAMGel>();
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item34;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe(1).AddIngredient(ItemID.FragmentVortex, 18)
+                .AddTile(TileID.LunarCraftingStation)
+                .Register();
         }
         public override Vector2? HoldoutOffset()
         {
@@ -66,7 +72,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             }
             if (Item.useAmmo == AmmoID.Rocket)
             {
-                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, damage, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, type, (int)(damage * 2f), knockback, player.whoAmI);
                 return false;
 
             }

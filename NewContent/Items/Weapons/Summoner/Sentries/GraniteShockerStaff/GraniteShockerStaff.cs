@@ -192,7 +192,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
 
                             Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Top.Y + 14), new Vector2(perturbedSpeed.X, perturbedSpeed.Y), ModContent.ProjectileType<GraniteShock>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
 
-                            SoundEngine.PlaySound(SoundID.Item, Projectile.Center);
+                            SoundEngine.PlaySound(SoundID.Item92, Projectile.Center);
                             shoottime = 0;
                         }
                     }
@@ -253,7 +253,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {            
             SoundEngine.PlaySound(SoundID.Item93, Projectile.position);
-            Projectile.ai[0] = 2000;
             for (int n = 0; n < 10; n++)
             {
                 int Dust = Terraria.Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Electric, 0f, 0f, 200, default, 1f);
@@ -270,11 +269,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
         public override bool PreAI()
         {
             Projectile.localAI[0] += 1f;
-            if (Projectile.ai[0] > 0)
-            {
-                Projectile.ai[0] -= 1;
-                return false;
-            }
             if (Projectile.localAI[0] > 3f)
             {
                 Projectile.tileCollide = true;

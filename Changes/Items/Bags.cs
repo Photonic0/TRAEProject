@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Materials;
 using TRAEProject.NewContent.Items.Weapons.Jungla;
+using TRAEProject.NewContent.Items.Weapons.Ammo;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Items
@@ -13,6 +14,45 @@ namespace TRAEProject.Changes.Items
 		
 		public override bool PreOpenVanillaBag(string context, Player player, int arg)
 		{
+			if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag)
+			{
+				if (Main.tenthAnniversaryWorld && !Main.getGoodWorld)
+				{
+					player.TryGettingDevArmor(player.GetSource_OpenItem(arg));
+				}
+				if (Main.rand.Next(7) == 0)
+				{
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), 2112);
+				}
+				if (Main.rand.Next(30) == 0)
+				{
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), 1299);
+				}
+				if (WorldGen.crimson)
+				{
+					int num9 = Main.rand.Next(20) + 10;
+					num9 += Main.rand.Next(20) + 10;
+					num9 += Main.rand.Next(20) + 10;
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), 880, num9);
+					num9 = Main.rand.Next(3) + 1;
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), 2171, num9);
+					num9 = Main.rand.Next(30) + 20;
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), ItemType<BloodyArrow>(), num9);
+				}
+				else
+				{
+					int num10 = Main.rand.Next(20) + 10;
+					num10 += Main.rand.Next(20) + 10;
+					num10 += Main.rand.Next(20) + 10;
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), 56, num10);
+					num10 = Main.rand.Next(3) + 1;
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), 59, num10);
+					num10 = Main.rand.Next(30) + 20;
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), 47, num10);
+				}
+				player.QuickSpawnItem(player.GetSource_OpenItem(arg), 3097);
+				return false;
+			}
 			if (context == "bossBag" && arg == ItemID.SkeletronBossBag)
 			{
 			player.QuickSpawnItem(player.GetSource_OpenItem(arg), ItemID.BoneGlove, 1);

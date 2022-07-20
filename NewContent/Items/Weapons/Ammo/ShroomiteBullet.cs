@@ -6,6 +6,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.Common;
 using TRAEProject.NewContent.TRAEDebuffs;
+using TRAEProject.Changes.Accesory;
 
 namespace TRAEProject.NewContent.Items.Weapons.Ammo
 {
@@ -14,12 +15,12 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Bullet");
-            Tooltip.SetDefault("Critical deal 35% more damage");
+            Tooltip.SetDefault("Critical deal 25% more damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
         {
-            Item.damage = 15;
+            Item.damage = 13;
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 3;
             Item.value = Item.sellPrice(0, 0, 0, 20);
@@ -53,6 +54,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         {
             AIType = ProjectileID.Bullet;
             Projectile.CloneDefaults(ProjectileID.Bullet);
+            Projectile.GetGlobalProjectile<ScopeAndQuiver>().AffectedByReconScope = true;
             Projectile.timeLeft = 1200;
             Projectile.penetrate = 1;
             Projectile.extraUpdates = 2;
@@ -64,7 +66,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if (crit)
-                damage = (int)(damage * 1.35f); 
+                damage = (int)(damage * 1.25f); 
         }
         public override void AI()
         {

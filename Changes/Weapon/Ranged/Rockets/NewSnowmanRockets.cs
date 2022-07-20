@@ -184,6 +184,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         {
             Projectile.CloneDefaults(ProjectileType<SnowmanRocket>());
             AIType = ProjectileType<SnowmanRocket>();
+            Projectile.extraUpdates = 1;
             Projectile.penetrate = 3;
             Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
@@ -265,7 +266,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             AIType = ProjectileType<SnowmanRocket>();
             Projectile.penetrate = 4;
             Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true; 
+            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()

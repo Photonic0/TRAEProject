@@ -13,7 +13,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MechanicalEye
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             DisplayName.SetDefault("Alpha Scope");
-            Tooltip.SetDefault("Increased ranged velocity\nRockets, guns and arrows smart bounce and stun enemies on critical hits\n'Prepare to be Terminated'");
+            Tooltip.SetDefault("Increases ranged velocity and tightens gun spread\nRockets, guns and arrows smart bounce and stun enemies on critical hits\n'Prepare to be Terminated'");
         }
         public override void SetDefaults()
         {
@@ -24,7 +24,8 @@ namespace TRAEProject.NewContent.Items.Accesories.MechanicalEye
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<RangedStats>().AlphaScope += 1;
-            player.GetModPlayer<RangedStats>().rangedVelocity += 0.8f;
+            player.scope = true;
+            player.GetModPlayer<RangedStats>().rangedVelocity += 0.5f;
         }
         public override void AddRecipes()
         {

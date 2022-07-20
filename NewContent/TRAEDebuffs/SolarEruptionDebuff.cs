@@ -1,26 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
+using Terraria.ID;
 using TRAEProject.Common;
 
 namespace TRAEProject.NewContent.TRAEDebuffs
 {
-    public class OmegaBurn : TRAEDebuff
+    public class SolarEruptionDebuff : TRAEDebuff
     {
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (npc.HasBuff(BuffID.Daybreak))
             if (npc.lifeRegen > 0)
             {
                 npc.lifeRegen = 0;
             }
-            npc.lifeRegen -= 4000;
-            if (damage < 1000)
+            npc.lifeRegen -= 600;
+            if (damage < 100)
             {
-                damage = 1000;
+                damage = 100;
             }
             npc.netUpdate = true;
         }

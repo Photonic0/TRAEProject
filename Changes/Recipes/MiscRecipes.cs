@@ -80,6 +80,12 @@ namespace TRAEProject.Changes.Recipes
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.CrimsonTigerfish, 1);
             }
+            if (recipe.HasResult(ItemID.TeleportationPotion))
+            {
+                recipe.TryGetIngredient(ItemID.ChaosFish, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.Deathweed, 1);
+            }
             if (recipe.HasResult(ItemID.SuperManaPotion))
             {
                 recipe.TryGetIngredient(ItemID.FallenStar, out ingredientToRemove);

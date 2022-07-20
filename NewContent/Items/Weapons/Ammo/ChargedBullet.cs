@@ -2,9 +2,12 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent.Creative;
 using TRAEProject.NewContent.Items.Materials;
+using TRAEProject.Common;
+using TRAEProject.Changes.Accesory;
 using System;
 
 namespace TRAEProject.NewContent.Items.Weapons.Ammo
@@ -14,7 +17,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Charged Bullet");
-            Tooltip.SetDefault("Shocks enemies around it, dealing 33% damage");
+            Tooltip.SetDefault("Jumps between hit enemies");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -42,7 +45,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         }
     }
 
-    public class ChargedBulletShot: ModProjectile
+    public class ChargedBulletShot : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -53,8 +56,14 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         {
             AIType = ProjectileID.Bullet;
             Projectile.CloneDefaults(ProjectileID.Bullet);
+            Projectile.GetGlobalProjectile<ScopeAndQuiver>().AffectedByReconScope = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.37f;
+
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 2;
+            Projectile.penetrate = 3;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = -1;
             Projectile.ignoreWater = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.hostile = false;
@@ -62,89 +71,65 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         }
         public override void AI()
         {
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);;
-            int Range = 125;
-            Projectile.localAI[1]++;
-            if (Projectile.localAI[1] > 4 && Projectile.localAI[1] % 2 == 0)
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f); ;
+            if (Projectile.ai[1] == 1)
             {
-                int dust = Dust.NewDust(Projectile.position, 1, 1, DustID.Electric, Projectile.velocity.X, Projectile.velocity.Y, 0, default, 1f);
-                Main.dust[dust].noGravity = true;
-                Main.dust[dust].velocity *= 0.2f;
-                Projectile.localAI[1] = 4;
-            }
-            if (Projectile.localAI[0] < 15)
-            {
-                Projectile.localAI[0]++;
-            }
-            if (Projectile.localAI[0] >= 15)
-            {
-                for (int k = 0; k < 200; k++)
-                {
-                    NPC nPC = Main.npc[k];
-                    if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range)
-                    {
-                        Projectile.localAI[0] = 0;
-                        float shootToX = nPC.position.X + nPC.width * 0.5f - Projectile.Center.X;
-                        float shootToY = nPC.position.Y + nPC.height * 0.5f - Projectile.Center.Y;
-                        float distance2 = (float)Math.Sqrt((shootToX * shootToX + shootToY * shootToY));//Dividing the factor of 2f which is the desired velocity by distance2
-                        distance2 = 1f / distance2;
-
-                        //Multiplying the shoot trajectory with distance2 times a multiplier if you so choose to
-                        shootToX *= distance2 * 10f;
-                        shootToY *= distance2 * 10f;
-                        Vector2 perturbedSpeed = new Vector2(shootToX, shootToY).RotatedByRandom(MathHelper.ToRadians(0));
-                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, perturbedSpeed.X, perturbedSpeed.Y, ProjectileType<ChargedBulletBolt>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
-                        
-                        break;
-                    }
-                }
-
-            }
-
-        }
-        public override void Kill(int timeLeft)
-        {
-            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-            for (int i = 0; i < 5; i++)
-            {
-                Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, DustID.Electric, 1f);
-                dust.noGravity = true;
-            }
-        }
-    }
-
-    public class ChargedBulletBolt : ModProjectile
-    {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Charged Bullet Bolt");
-        }
-        public override void SetDefaults()
-        {
-            Projectile.width = 10;
-            Projectile.height = 10;
-            Projectile.friendly = true;
-            Projectile.extraUpdates = 100;
-            Projectile.timeLeft = 50;
-            Projectile.penetrate = 1;
-            Projectile.DamageType = DamageClass.Ranged;
-            Projectile.alpha = 255;
-        }
-        public override void AI()
-        {
-            Projectile.tileCollide = true;
 
                 Vector2 ProjectilePosition = Projectile.position;
-                Projectile.alpha = 255;
                 int dust = Dust.NewDust(ProjectilePosition, 1, 1, DustID.Electric, 0f, 0f, 0, default, 1f);
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].position = ProjectilePosition;
                 Main.dust[dust].velocity *= 0.2f;
-            
+            }
+        }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Projectile.localNPCImmunity[target.whoAmI] = -1;
+            target.immune[Projectile.owner] = 0;
+            int[] array = new int[10];
+            int num6 = 0;
+            int num7 = 500;
+            int num8 = 20;
+            for (int j = 0; j < 200; j++)
+            {
+                if (Main.npc[j].CanBeChasedBy(this, false) && Projectile.localNPCImmunity[Main.npc[j].whoAmI] != -1)
+                {
+                    float num9 = (Projectile.Center - Main.npc[j].Center).Length();
+                    if (num9 > num8 && num9 < num7 && Collision.CanHitLine(Projectile.Center, 1, 1, Main.npc[j].Center, 1, 1))
+                    {
+                        array[num6] = j;
+                        num6++;
+                        if (num6 >= 9)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            if (num6 > 0)
+            {
+                num6 = Main.rand.Next(num6);
+                Vector2 value2 = Main.npc[array[num6]].Center - Projectile.Center;
+                float scaleFactor2 = Projectile.velocity.Length();
+                value2.Normalize();
+                Projectile.velocity = value2 * scaleFactor2;
+                Projectile.netUpdate = true;
+                if (Projectile.ai[1] != 1)
+                {
+                    Projectile.timeLeft = 25;
+                    Projectile.friendly = true;
+                    Projectile.extraUpdates = 100;
+                    Projectile.alpha = 255;
+                    Projectile.ai[1] = 1;
+					                    SoundEngine.PlaySound(SoundID.Item93, Projectile.position);            
 
+                }
+                return;
+            }         
+            Projectile.Kill();
+            return;
         }
     }
-
 }
 
 

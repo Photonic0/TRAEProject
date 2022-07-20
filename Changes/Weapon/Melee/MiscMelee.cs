@@ -119,6 +119,20 @@ namespace TRAEProject.Changes.Weapon.Melee
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);
             }
+            if (player.HasBuff(BuffID.WeaponImbuePoison) && (item.DamageType == DamageClass.Melee))
+            {
+                if (Main.rand.NextBool(20))
+                {
+                    for (int num840 = 0; num840 < 15; num840++)
+                    {
+                        Dust dust54 = Dust.NewDustDirect(item.position, item.width, item.height, DustID.Venom, 0f, 0f);
+                        dust54.fadeIn = 0f;
+                        Dust dust = dust54;
+                        dust.velocity *= 0.5f;
+                    }
+                    target.AddBuff(BuffID.Venom, 60, false);
+                }
+            }
             if (item.type == ItemID.Cutlass)
             {
                 if (target.active && !target.dontTakeDamage && !target.friendly && target.lifeMax > 5 && !target.immortal && !target.SpawnedFromStatue)
@@ -129,45 +143,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 }
             }
         }
-        /// SHOOT STUFF
-        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-            switch (item.type)
-            {
-                case ItemID.ChristmasTreeSword:
-                    {
-                        int chance = Main.rand.Next(5);
-                        int numberOrnaments = 3 + Main.rand.Next(3, 4); // 4 or 5 shots
-                        int numberLights = 1 + Main.rand.Next(1, 2); // 4 or 5 shots
-                        for (int i = 0; i < numberLights; i++)
-                        {
-                            Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(24));
-                            Projectile.NewProjectile(player.GetSource_ItemUse(item), position, perturbedSpeed * 0.95f, ProjectileType<LightsLong>(), damage, knockback * 1.5f, player.whoAmI);
-                        }
-                        for (int i = 0; i < numberOrnaments; i++)
-                        {
-                            Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(30));
-                            Projectile.NewProjectile(player.GetSource_ItemUse(item), position, perturbedSpeed * 1.2f, ProjectileID.OrnamentFriendly, (int)(damage * 0.9), knockback, player.whoAmI);
-                        }
-                        if (chance == 0)
-                        {
-                            for (int i = 0; i < 10; i++)
-                            {
-                                Dust dust = Dust.NewDustDirect(player.position, player.width, player.height, 57, 0f, 0f, 255, default, Main.rand.Next(20, 26) * 0.1f);
-                                dust.noLight = true;
-                                dust.noGravity = true;
-                                dust.velocity *= 0.5f;
-                            }
-                            Projectile.NewProjectile(player.GetSource_ItemUse(item), position, velocity * 1.8f, ProjectileType<Star1>(), (int)(damage * 1.8), knockback, player.whoAmI);
-                            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item25);
-                            return false;
-                        }
-                        return false;
-                    }
-            }
-            return true;       
-        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             switch (item.type)

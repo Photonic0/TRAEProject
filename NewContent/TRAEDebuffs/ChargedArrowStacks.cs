@@ -41,12 +41,12 @@ namespace TRAEProject.NewContent.TRAEDebuffs
             {
                 int dusts = 3 + 1 * howManyStacks;
                 int NPCLimit = 0;
-                int Range = 75 + 25 * howManyStacks;
+                int Range = 100 + 25 * howManyStacks;
                 
                 float dustScale = 0.9f;
 
                 attackDelay++;
-                if (attackDelay >= 15)
+                if (attackDelay >= 10)
                 {
                     attackDelay = 0;
 
@@ -58,25 +58,11 @@ namespace TRAEProject.NewContent.TRAEDebuffs
                             ++NPCLimit;
                             if (NPCLimit < 3)
                             {
-
-                                float finalDefense = nPC.defense - player.GetArmorPenetration(DamageClass.Generic);
-                                nPC.ichor = false;
-                                nPC.betsysCurse = false;
-                                if (finalDefense < 0)
-                                {
-                                    finalDefense = 0;
-                                }
-                                if (finalDefense > 100)
-                                {
-                                    finalDefense = 100;
-                                }
-                                damage += (int)finalDefense / 2;
-      
                                 player.ApplyDamageToNPC(nPC, damage, 0f, 0, crit: false);
-                                SoundEngine.PlaySound(SoundID.Item93, nPC.position);
                             }
                         }
                     }
+                    SoundEngine.PlaySound(SoundID.Item93, npc.position);            
 
                 }
                 for (int i = 0; i < dusts; i++)

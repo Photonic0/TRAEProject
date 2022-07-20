@@ -20,9 +20,45 @@ namespace TRAEProject.NewContent.TRAEDebuffs
         }
         public void GhostBoom(NPC npc)
         {
-            Vector2 velocity = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 0));
-            velocity.Normalize();
-            velocity *= Main.rand.Next(10, 101) * 0.5f;
+
+            int[] array = new int[10];
+            int num6 = 0;
+            int Range = 700;
+            int num8 = 20;
+            Vector2 velocity;
+            for (int j = 0; j < 200; j++)
+            {
+                if (Main.npc[j].CanBeChasedBy(this, false))
+                {
+                    float DistanceBetweenProjectileAndEnemy = (projectile.Center - Main.npc[j].Center).Length();
+                    if (DistanceBetweenProjectileAndEnemy > num8 && DistanceBetweenProjectileAndEnemy < Range && Collision.CanHitLine(projectile.Center, 1, 1, Main.npc[j].Center, 1, 1))
+                    {
+                        array[num6] = j;
+                        num6++;
+                        if (num6 >= 9)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            if (num6 > 0)
+            {
+                num6 = Main.rand.Next(num6);
+                Vector2 value2 = Main.npc[array[num6]].Center - projectile.Center;
+                float scaleFactor2 = projectile.velocity.Length();
+                value2.Normalize();
+                velocity = value2 * scaleFactor2;
+                projectile.netUpdate = true;
+            }
+            else
+            {
+                velocity = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 0));
+                velocity.Normalize();
+                velocity *= Main.rand.Next(10, 101) * 0.5f;
+            }
+
+
             Projectile.NewProjectile(projectile.GetSource_FromThis(), npc.position, velocity, ProjectileType<GhostShot>(), projectile.damage, 4f);
         }
         public override void CheckDead(NPC npc)

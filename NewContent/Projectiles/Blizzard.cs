@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.height = 1;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 3600;
             Projectile.alpha = 255;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
@@ -26,20 +26,27 @@ namespace TRAEProject.NewContent.Projectiles
         }
         // Note, this Texture is actually just a blank texture, FYI.
 
-        readonly int fireRate = 15;
-        readonly int[] offSetCenter = {3, 4, 5};
+        readonly int fireRate = 12;
+        readonly int[] offSetCenter = {5, 6, 7};
         readonly int projectilesPerShot = 4;
         readonly int projectileType = ProjectileID.Blizzard;
-        readonly float velocity = 10;
-        readonly int SpreadX = 500;
+        readonly float velocity = 12;
+        readonly int SpreadX = 400;
         readonly int SpreadY = 800;
         public override void AI()
         {
             Projectile.localAI[0] += 1f;
-            if (Projectile.localAI[0] > fireRate)
+           
+			
+			if (Projectile.localAI[0] > fireRate)
             {
+				Main.player[Projectile.owner].statMana -= (int)(12 * Main.player[Projectile.owner].manaCost);
                 Projectile.localAI[0] -= fireRate;
                 TRAEMethods.SpawnProjectilesFromAbove(Main.player[Projectile.owner], Projectile.position, projectilesPerShot, SpreadX, SpreadY, offSetCenter, velocity, projectileType, Projectile.damage, Projectile.knockBack, Projectile.owner);
+            }
+            if (Main.player[Projectile.owner].statMana <= 0)
+            {
+                Projectile.Kill();
             }
         }
     }
