@@ -1,13 +1,12 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Common;
 using TRAEProject.NewContent.Items.Materials;
-using System;
 using static Terraria.ModLoader.ModContent;
-using Terraria.Audio;
 
 namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
 {
@@ -18,20 +17,20 @@ namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Electro Shield");
-            Tooltip.SetDefault("Summons an electric ring around you\nDrains 30 mana per second, affected by gear");
+            Tooltip.SetDefault("Summons an electric ring around you\nDrains 40 mana per second, affected by gear");
         }
         public override void SetDefaults()
         {
             Item.width = 30;
             Item.height = 32;
-            Item.damage = 50;
+            Item.damage = 45;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.mana = 30;
+            Item.mana = 40;
             Item.rare = ItemRarityID.Lime;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
-            Item.knockBack = 2f;
+            Item.knockBack = 1f;
             Item.shootSpeed = 8f;
             Item.noMelee = true;
             Item.shoot = ProjectileType<ElectricRIng>();
@@ -83,24 +82,24 @@ namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
         }
        public float angletimer = 0;
         public int manaDrain = 0;
-        public int attackDelay = 15;
+        public int attackDelay = 12;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
             Projectile.Center = player.Center;
-            manaDrain += (int)(50 * player.manaCost);
-            if (manaDrain >= 75)
+            manaDrain += (int)(60 * player.manaCost);
+            if (manaDrain >= 60)
             {
-                manaDrain -= 75;
+                manaDrain -= 60;
                 player.statMana--;
             }
             if (player.statMana <= 0)
             {
                 Projectile.Kill();
             }
-            int dusts = 10;
+            int dusts = 8;
             int NPCLimit = 0;
-            int Range = 200;
+            int Range = 250;
             int damage = Projectile.damage;
             float dustScale = 1.25f;
 
@@ -115,9 +114,9 @@ namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
                     if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range)
                     {
                         ++NPCLimit;
-                        if (NPCLimit < 5)
+                        if (NPCLimit < 3)
                         {
-                            player.ApplyDamageToNPC(nPC, damage, 0f, 0, crit: false);
+                            player.ApplyDamageToNPC(nPC, damage, Projectile.knockBack, nPC.direction * -1, crit: false);
                             SoundEngine.PlaySound(SoundID.Item93, nPC.position);
                         }
                     }

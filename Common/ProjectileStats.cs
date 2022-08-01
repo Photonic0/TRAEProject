@@ -25,8 +25,8 @@ namespace TRAEProject.Common
         public int armorPenetration = 0; //how much defense the projectile ignores
         public bool cantCrit = false; // self-explanatory
         public bool dontHitTheSameEnemyMultipleTimes = false;// self-explanatory
-        // Bouncing
-		public bool onlyBounceOnce = false;
+                                                             // Bouncing
+        public bool onlyBounceOnce = false;
         public bool BouncesOffTiles = false;
         public bool BouncesBackOffTiles = false;
         public float DamageLossOffATileBounce = 0f;
@@ -36,7 +36,7 @@ namespace TRAEProject.Common
         // AI
         public bool homesIn = false;
         public float homingRange = 300f;
-        public bool goThroughWallsUntilReachingThePlayer = false; 
+        public bool goThroughWallsUntilReachingThePlayer = false;
         // Adding Buffs
         public int AddsBuff = 0; // Adds a buff when hitting a target
         public int AddsBuffChance = 1; // 1 in [variable] chance of that buff being applied to the target
@@ -49,8 +49,8 @@ namespace TRAEProject.Common
         public bool DontRunThisAgain = false;
         public bool dontExplodeOnTiles = false;
         public bool UsesDefaultExplosion = false; // Regular rocket Explosions. Helpful if you are too lazy/don't need to create a special explosion effect.
-        //
-		 public override void SetStaticDefaults()
+                                                  //
+        public override void SetStaticDefaults()
         {
             IL.Terraria.Projectile.Damage += DamageHook;
         }
@@ -69,7 +69,7 @@ namespace TRAEProject.Common
                 }
             });
         }
-        
+
         public float timer = 0;
         public override void AI(Projectile projectile)
         {
@@ -94,7 +94,7 @@ namespace TRAEProject.Common
             if (homesIn)
             {
                 NPC target = null;
-                if(TRAEMethods.ClosestNPC(ref target, homingRange, projectile.Center))
+                if (TRAEMethods.ClosestNPC(ref target, homingRange, projectile.Center))
                 {
                     float scaleFactor2 = projectile.velocity.Length();
                     Vector2 diff = target.Center - projectile.Center;
@@ -159,9 +159,9 @@ namespace TRAEProject.Common
                         projectile.damage = 0;
                     }
                     else
-					{
-                        projectile.damage = 70;         
-					    projectile.position.X += projectile.width / 2;
+                    {
+                        projectile.damage = 70;
+                        projectile.position.X += projectile.width / 2;
                         projectile.position.Y += projectile.height / 2;
                         projectile.width = projectile.height = 70;
                         projectile.position.X -= projectile.width / 2;
@@ -171,15 +171,15 @@ namespace TRAEProject.Common
                         projectile.width = projectile.height = 70;
                         projectile.position.X -= (projectile.width / 2);
                         projectile.position.Y -= (projectile.height / 2);
-					}
-					return;
-				}
-             
+                    }
+                    return;
+            }
+
 
         }
-    
 
-    public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
+
+        public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             if (explodes && !dontExplodeOnTiles) // If you want a projectile that doesn't explode in contact with tiles, make the second variable true.//
             {
@@ -192,15 +192,15 @@ namespace TRAEProject.Common
             }
             if (BouncesOffTiles)
             {
-				if (onlyBounceOnce)
-				{
-					BouncesOffTiles = false;
-				}
+                if (onlyBounceOnce)
+                {
+                    BouncesOffTiles = false;
+                }
                 projectile.velocity.Y = -projectile.oldVelocity.Y;
-				return false;
+                return false;
             }
             if (BouncesBackOffTiles)
-            { 
+            {
                 projectile.velocity.X = -projectile.oldVelocity.X;
                 projectile.velocity.Y = -projectile.oldVelocity.Y;
             }
@@ -241,7 +241,6 @@ namespace TRAEProject.Common
             }
             return true;
         }
-
         public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit) // SIMPLIFY THIS
         {
             switch (projectile.type)
@@ -294,6 +293,8 @@ namespace TRAEProject.Common
                     return;
             }
         }
+
+
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit,ref int hitDirection)
         {
@@ -370,7 +371,8 @@ namespace TRAEProject.Common
                 Main.player[projectile.owner].GetArmorPenetration(DamageClass.Generic) -= extraAP;
                 extraAP = 0;
             }
-
+            if (AddsBuff != 0 && Main.rand.NextBool(AddsBuffChance))
+                target.AddBuff(AddsBuff, AddsBuffDuration);
 
             if (dontHitTheSameEnemyMultipleTimes)
                 projectile.localNPCImmunity[target.whoAmI] = -1; // this makes the enemy invincible to the projectile.

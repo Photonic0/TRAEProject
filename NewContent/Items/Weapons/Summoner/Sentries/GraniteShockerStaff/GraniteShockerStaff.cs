@@ -37,7 +37,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
             Item.mana = 25;
             Item.UseSound = SoundID.Item78;
 
-            Item.damage = 50;
+            Item.damage = 40;
             Item.DamageType = DamageClass.Summon;
             Item.knockBack = 1f;
 
@@ -133,7 +133,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
             shoottime++;
             Projectile.frame = shoottime > 50 ? 0 : 1;
             //Getting the npc to fire at
-            if (Main.rand.Next(4) == 0)
+            if (Main.rand.NextBool(6))
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Electric, 0, Projectile.velocity.Y * 0.33f, 0, default, 0.7f);
 
@@ -170,7 +170,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
                         target.TargetClosest(true);
 
 
-                        if (shoottime > 75)
+                        if (shoottime > 90)
                         {
 
                             //Dividing the factor of 2f which is the desired velocity by distance
@@ -246,14 +246,15 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
             ProjectileID.Sets.SentryShot[Projectile.type] = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
-            Projectile.timeLeft = 180;
-            Projectile.penetrate = 5;
+            Projectile.timeLeft = 120;
+            Projectile.penetrate = 3;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.22f;
             Projectile.alpha = 255;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {            
             SoundEngine.PlaySound(SoundID.Item93, Projectile.position);
-            for (int n = 0; n < 10; n++)
+            for (int n = 0; n < 8; n++)
             {
                 int Dust = Terraria.Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.Electric, 0f, 0f, 200, default, 1f);
                 Main.dust[Dust].noGravity = true;
@@ -264,12 +265,56 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
                 dust.velocity *= 1.2f;
                 Main.dust[Dust].noGravity = true;
             }
-            base.OnHitNPC(target, damage, knockback, crit);
+            Projectile.localNPCImmunity[target.whoAmI] = -1;
+            target.immune[Projectile.owner] = 0;
+            int[] array = new int[10];
+            int num6 = 0;
+            int num7 = 500;
+            int num8 = 20;
+            for (int j = 0; j < 200; j++)
+            {
+                if (Main.npc[j].CanBeChasedBy(this, false) && Projectile.localNPCImmunity[Main.npc[j].whoAmI] != -1)
+                {
+                    float num9 = (Projectile.Center - Main.npc[j].Center).Length();
+                    if (num9 > num8 && num9 < num7 && Collision.CanHitLine(Projectile.Center, 1, 1, Main.npc[j].Center, 1, 1))
+                    {
+                        array[num6] = j;
+                        num6++;
+                        if (num6 >= 9)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            if (num6 > 0)
+            {
+                num6 = Main.rand.Next(num6);
+                Vector2 value2 = Main.npc[array[num6]].Center - Projectile.Center;
+                float scaleFactor2 = Projectile.velocity.Length();
+                value2.Normalize();
+                Projectile.velocity = value2 * scaleFactor2;
+                Projectile.netUpdate = true;
+                if (Projectile.ai[1] != 1)
+                {
+                    Projectile.timeLeft = 25;
+                    Projectile.friendly = true;
+                    Projectile.extraUpdates = 100;
+                    Projectile.alpha = 255;
+                    Projectile.ai[1] = 1;
+                    SoundEngine.PlaySound(SoundID.Item93, Projectile.position);
+
+                }
+                return;
+            }
+            Projectile.Kill();
+            return;
         }
-        public override bool PreAI()
+    
+        public override void AI()
         {
             Projectile.localAI[0] += 1f;
-            if (Projectile.localAI[0] > 3f)
+            if (Projectile.localAI[0] > 4f)
             {
                 Projectile.tileCollide = true;
                     Vector2 ProjectilePosition = Projectile.position;
@@ -282,7 +327,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
                     Main.dust[dust].velocity *= 0.2f;
                 
             }
-            return true;
         }
     }
 }

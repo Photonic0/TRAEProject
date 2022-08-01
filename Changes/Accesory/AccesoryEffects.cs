@@ -15,7 +15,7 @@ namespace TRAEProject
     public class AccesoryEffects : ModPlayer
     {
 
-
+        public float meleeCritDamage = 0f;
         public bool wErewolf = false;
         public bool icceleration = false;
         public bool waterRunning = false;
@@ -25,6 +25,7 @@ namespace TRAEProject
         public bool LavaShield = false;
         public override void ResetEffects()
         {
+            meleeCritDamage = 0f;
             wErewolf = false;
             icceleration = false;
             waterRunning = false;
@@ -35,6 +36,7 @@ namespace TRAEProject
         }
         public override void UpdateDead()
         {
+            meleeCritDamage = 0f;
             wErewolf = false;
             icceleration = false;
             waterRunning = false;
@@ -204,8 +206,17 @@ namespace TRAEProject
             }
             
         }
-      
-        
+
+        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        {
+            if (crit)
+                damage += (int)(damage * meleeCritDamage);
+        }
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (crit && proj.CountsAsClass(DamageClass.Melee))
+                damage += (int)(damage * meleeCritDamage);
+        }
         void Block()
         {
             Player.immune = true;

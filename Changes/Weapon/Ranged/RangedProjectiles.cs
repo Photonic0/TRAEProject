@@ -63,7 +63,8 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.CursedArrow:
                     projectile.extraUpdates = 1;
                     return;
-                case ProjectileID.UnholyArrow:     
+                case ProjectileID.UnholyArrow:   
+					projectile.penetrate = 3;   				
 					projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 20;
                     return;
@@ -413,7 +414,7 @@ namespace TRAEProject.Changes.Projectiles
                     {
                         int Duration = Main.rand.Next(200, 500);
                         target.AddBuff(BuffID.Poisoned, Duration, false);
-                        if (Main.rand.NextBool(20))
+                        if (Main.rand.NextBool(16))
                         {
                             for (int num840 = 0; num840 < 15; num840++)
                             {

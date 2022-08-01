@@ -95,7 +95,7 @@ namespace TRAEProject.Changes.Weapon.Summon
         {
             if (projectile.type == ProjectileID.CoolWhip)
             { 
-            TRAEDebuff.Apply<CoolWhipTag>(target, 240, 1);
+                TRAEDebuff.Apply<CoolWhipTag>(target, 240, 1);
             }
         }
     }

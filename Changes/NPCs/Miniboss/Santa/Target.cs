@@ -21,7 +21,7 @@ namespace TRAEProject.Changes.NPCs.Miniboss.Santa
             Projectile.penetrate = -1;
             Projectile.friendly = false;
             Projectile.hostile = false;
-            Projectile.timeLeft = 120;
+            Projectile.timeLeft = 2;
             
         }
         public override bool ShouldUpdatePosition()

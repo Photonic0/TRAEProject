@@ -52,7 +52,7 @@ namespace TRAEProject.Changes.Recipes
             Rocket.AddIngredient(ItemID.ExplosivePowder, 2);
             Rocket.AddTile(TileID.Anvils);
             Rocket.Register();
-Recipe Rocket1 = Recipe.Create(ItemID.RocketI, 50);
+			Recipe Rocket1 = Recipe.Create(ItemID.RocketI, 50);
             Rocket1.AddIngredient(ItemID.LeadBar, 1);
             Rocket1.AddIngredient(ItemID.ExplosivePowder, 2);
             Rocket1.AddTile(TileID.Anvils);
@@ -179,7 +179,7 @@ Recipe Rocket1 = Recipe.Create(ItemID.RocketI, 50);
             {
                 recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.SoulofFright, 20);
+                recipe.AddIngredient(ItemID.SoulofMight, 20);
             }
             if (recipe.HasResult(ItemID.TrueNightsEdge))
             {

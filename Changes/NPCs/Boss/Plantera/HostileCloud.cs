@@ -26,5 +26,14 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
 			Projectile.penetrate = -1;
             Projectile.timeLeft = 300;
 		}
+        public override void AI()
+        {
+            Projectile.alpha += 2;
+            Projectile.scale = 0.97f;
+            if (Projectile.alpha >= 240)
+            {
+                Projectile.Kill();
+            }
+        }
     }
 }

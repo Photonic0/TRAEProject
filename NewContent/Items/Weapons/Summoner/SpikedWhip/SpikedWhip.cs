@@ -32,7 +32,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.SpikedWhip
             Item.shoot = ProjectileType<SpikedWhipP>();
             Item.UseSound = SoundID.Item152;
             Item.noMelee = true;
-            Item.DamageType = DamageClass.Summon;
             Item.noUseGraphic = true;
             Item.damage = 16;
             Item.useTime = Item.useAnimation = 30;
@@ -44,7 +43,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.SpikedWhip
 		public override void AddRecipes()
 		{
 			CreateRecipe(1)
-				.AddIngredient(ItemID.WormTooth, 12)
+				.AddIngredient(ItemID.WormTooth, 18)
 				.AddIngredient(ItemID.Leather, 2)
 				.AddTile(TileID.Anvils)
 				.Register();
@@ -63,7 +62,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.SpikedWhip
             whipRangeMultiplier = 1f;
             fallOff = 0.35f;
             tag = BuffType<SpikedTag>();
-            whipSegments = 10;
+            whipSegments = 12;
             tipScale = 1.33f;
         }
     }

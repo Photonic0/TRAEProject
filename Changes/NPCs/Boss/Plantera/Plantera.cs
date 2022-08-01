@@ -22,7 +22,9 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         {
             if (npc.type == NPCID.Plantera)
             {
-                npc.lifeMax = 54000;
+                npc.lifeMax = 37000;
+				
+				
                 npc.behindTiles = true;
             }
         }
@@ -251,7 +253,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             if (npc.ai[1] > 90)
             {
 
-                if (npc.ai[1] > 90 + attackCounter * 20 && Main.netMode != NetmodeID.MultiplayerClient)
+                if (npc.ai[1] > 90 + attackCounter * 24 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     attackCounter++;
                     float rot = (player.Center - npc.Center).ToRotation();
@@ -613,6 +615,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                 if ((float)npc.life / (float)npc.lifeMax < 0.5f)
                 {
                     npc.defense = 18;
+					npc.defDamage = 81;
                 }
                 float rot = (player.Center - npc.Center).ToRotation();
                 if (!Collision.CanHit(npc.Center + TRAEMethods.PolarVector(-20, rot), 1, 1, player.Center, 1, 1))
@@ -639,18 +642,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                         spriteBatch.Draw(vine, pos - screenPos, null, Lighting.GetColor((int)pos.X / 16, (int)pos.Y / 16), rot + (float)Math.PI / 2f, new Vector2(vine.Width / 2, vine.Height), 1f, SpriteEffects.None, 0);
                     }
                 }
-                if (currentAtk == 0 && npc.ai[1] > 0 && npc.ai[1] < 90)
-                {
-                    Texture2D pinkDraw = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Plantera/PinkDraw").Value;
-                    Player player = Main.player[npc.target];
-                    float rot = (player.Center - npc.Center).ToRotation();
-                    Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
-                    float distance = (player.Center - npc.Center).Length() * 1f;
-                    if (distance > 500)
-                    {
-                        spriteBatch.Draw(pinkDraw, npc.Center - Main.screenPosition + TRAEMethods.PolarVector(distance / 2f, rot), null, color, rot, pinkDraw.Size() * .5f, new Vector2(distance / 4f, 1f), SpriteEffects.None, 0f);
-                    }
-                }
+
                 if (currentAtk == 8)
                 {
 

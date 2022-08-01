@@ -56,7 +56,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             AIType = ProjectileID.WoodenArrowFriendly;
             Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
             Projectile.timeLeft = 1200;
-            Projectile.extraUpdates = 1;
+            Projectile.penetrate = 2;
             Projectile.ignoreWater = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.hostile = false;
@@ -72,23 +72,13 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0.2f;
             }
-            if (Projectile.localAI[0] % 30 == 0)
+            if (Projectile.localAI[0] % 20 == 0)
             {
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0, 0, ProjectileType<BloodyArrowDrop>(), (int)((double)Projectile.damage * 0.8), Projectile.knockBack * 0.5f, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0, 0, ProjectileType<BloodyArrowDrop>(), (int)(Projectile.damage * 0.67f), Projectile.knockBack * 0.5f, Projectile.owner);
 
                 Projectile.localAI[0] = 0;
 
             }
-        }
-        public override void Kill(int timeLeft)
-        {
-            Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-            for (int i = 0; i < 10; i++)
-            {
-                Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, DustID.Blood, 1f);
-                dust.noGravity = true;
-            }
-            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0, 0, ProjectileType<BloodyArrowDrop>(), (int)((double)Projectile.damage * 0.8), Projectile.knockBack * 0.5f, Projectile.owner);
         }
     }
     public class BloodyArrowDrop : ModProjectile

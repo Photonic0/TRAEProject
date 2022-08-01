@@ -39,8 +39,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Boomxie Banner");
-            Tooltip.SetDefault("Nearby players get a bonus against: Boomxie");
+            DisplayName.SetDefault("Boom Pixie Banner");
+            Tooltip.SetDefault("Nearby players get a bonus against: Boom Pixie");
         }
         public override void SetDefaults()
         {

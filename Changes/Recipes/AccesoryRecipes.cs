@@ -92,7 +92,6 @@ namespace TRAEProject.Changes.Recipes
                 recipe.TryGetIngredient(ItemID.MechanicalGlove, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.TitanGlove, 1);
-                recipe.AddIngredient(ItemID.SoulofFright, 10);
             }
 
             if (recipe.HasResult(ItemID.FrostsparkBoots))

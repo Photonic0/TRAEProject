@@ -374,20 +374,20 @@ namespace TRAEProject.Changes.Weapon.Melee
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);
             }
-            if (player.HasBuff(BuffID.WeaponImbuePoison) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
-            {
-                if (Main.rand.NextBool(20))
-                {
-                    for (int num840 = 0; num840 < 15; num840++)
-                    {
-                        Dust dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Venom, 0f, 0f);
-                        dust54.fadeIn = 0f;
-                        Dust dust = dust54;
-                        dust.velocity *= 0.5f;
-                    }
-                    target.AddBuff(BuffID.Venom, 60, false);
-                }
-            }
+            //if (player.HasBuff(BuffID.WeaponImbuePoison) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
+            //{
+            //    if (Main.rand.NextBool(20))
+            //    {
+            //        for (int num840 = 0; num840 < 15; num840++)
+            //        {
+            //            Dust dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Venom, 0f, 0f);
+            //            dust54.fadeIn = 0f;
+            //            Dust dust = dust54;
+            //            dust.velocity *= 0.5f;
+            //        }
+            //        target.AddBuff(BuffID.Venom, 60, false);
+            //    }
+            //}
             switch (projectile.type)
             {
                 // melee

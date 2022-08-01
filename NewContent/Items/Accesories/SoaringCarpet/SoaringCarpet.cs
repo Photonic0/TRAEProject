@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 {
@@ -72,12 +73,20 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 						Player.velocity.Y -= 0.7f;
 					}
 					++soaringCarpetTime;
+					for (int i = 0; i < 3; i++)
+					{
+						int dustID = Main.rand.NextFromList(DustID.GreenTorch, DustID.WhiteTorch, DustID.PinkTorch);
+						Vector2 vector = new(Player.Bottom.X + Main.rand.Next(-Player.width, Player.width), Player.Bottom.Y);
+						Dust dust = Dust.NewDustDirect(vector,  1, 1, dustID);
+						dust.noGravity = true;
+					}
+					
 				}
 				if (Player.velocity.Y == 0)
                 {
 					soaringCarpetTime = 0;
-                }		
-
+                }
+			
 			}
 		}
     }

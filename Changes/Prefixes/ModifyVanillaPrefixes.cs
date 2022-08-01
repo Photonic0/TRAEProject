@@ -22,7 +22,7 @@ namespace TRAEProject.Changes.Prefixes
         public const float T6Damage = 1.2f;
         public const float T7Damage = 1.25f;
 
-        void ModifyDamage(Item item, ref int damageBonus, float current, float wanted)
+        void ModifyDamage(Item item, ref float damageBonus, float current, float wanted)
         {
             int origonalDamage = (int)Math.Round(item.damage / current);
             //Main.NewText("Origonal Damage:" + origonalDamage);
@@ -37,29 +37,28 @@ namespace TRAEProject.Changes.Prefixes
             switch (item.prefix)
             {
                 case PrefixID.Sighted:
-                    ModifyDamage(item, ref item.damage, 1.1f, T3Damage);
+                    damage *= 1.12f / 1.1f;
                     break;
                 case PrefixID.Staunch:
-                    ModifyDamage(item, ref item.damage, 1.1f, T4Damage);
+                    damage *= 1.15f / 1.1f;
                     break;
                 case PrefixID.Powerful:
-                    ModifyDamage(item, ref item.damage, 1.1f, T5Damage);
+                    damage *= 1.18f / 1.1f;
                     break;
                 case PrefixID.Bulky:
-                    ModifyDamage(item, ref item.damage, 1.05f, T7Damage);
+                    damage *= 1.25f / 1.05f;
                     break;
                 case PrefixID.Intense:
-                    ModifyDamage(item, ref item.damage, 1.1f, T6Damage);
+                    damage *= 1.2f / 1.1f;
                     break;
                 case PrefixID.Furious:
-                    ModifyDamage(item, ref item.damage, 1.15f, T6Damage);
+                    damage *= 1.2f / 1.15f;
                     break;
-
                 case PrefixID.Frenzying:
-                    ModifyDamage(item, ref item.damage, 0.85f, 0.95f);
+                    damage *= 0.95f / 0.85f;
                     break;
                 case PrefixID.Manic:
-                    ModifyDamage(item, ref item.damage, 0.9f, 1f);
+                    damage *= 1 / 0.9f;
                     break;
 
 

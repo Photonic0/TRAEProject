@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Materials;
 using TRAEProject.NewContent.Items.Weapons.Jungla;
 using TRAEProject.NewContent.Items.Weapons.Ammo;
+using TRAEProject.NewContent.Items.Armor.Joter;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Items
@@ -14,6 +15,15 @@ namespace TRAEProject.Changes.Items
 		
 		public override bool PreOpenVanillaBag(string context, Player player, int arg)
 		{
+			if (context == "bossBag" && arg != ItemID.EyeOfCthulhuBossBag && arg != ItemID.EyeOfCthulhuBossBag && arg != ItemID.SkeletronBossBag && arg != ItemID.EaterOfWorldsBossBag && arg != ItemID.BrainOfCthulhuBossBag && arg != ItemID.KingSlimeBossBag && arg != ItemID.QueenBeeBossBag && arg != ItemID.DeerclopsBossBag && arg != ItemID.WallOfFleshBossBag)
+			{
+				if (Main.rand.NextBool(100))
+				{
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), ItemType<JoterTrident>());
+					player.QuickSpawnItem(player.GetSource_OpenItem(arg), ItemType<JoterMask>());
+
+				}
+			}
 			if (context == "bossBag" && arg == ItemID.EyeOfCthulhuBossBag)
 			{
 				if (Main.tenthAnniversaryWorld && !Main.getGoodWorld)

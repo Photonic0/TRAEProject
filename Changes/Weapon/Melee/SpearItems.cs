@@ -9,6 +9,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using TRAEProject.NewContent.Items.Armor.Joter;
 using TRAEProject.Changes.Weapon.Melee.SpearProjectiles;
 using static Terraria.ModLoader.ModContent;
 
@@ -249,7 +250,22 @@ namespace TRAEProject.Changes.Weapon
 					item.useTime = item.useAnimation = 20;
 					item.autoReuse = false;
 					break;
-
+			}
+			if (item.type == ItemType<JoterTrident>())
+            {
+				item.damage = 100;
+				item.shootSpeed = 12; //only the throw uses this
+				item.useTime = item.useAnimation = 24;
+				item.shoot = ProjectileType<JoterTridentSpear>();
+				altShoot = ProjectileType<JoterTridentThrow>();
+				item.useStyle = 1;
+				item.DamageType = DamageClass.Melee;
+				item.autoReuse = false;
+				item.rare = ItemRarityID.Cyan;
+				item.maxStack = 1;
+				item.noMelee = true;
+				item.noUseGraphic = true;
+				item.value = Item.sellPrice(silver: 30);
 			}
         }
 

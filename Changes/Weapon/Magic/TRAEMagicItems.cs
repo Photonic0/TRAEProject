@@ -209,7 +209,7 @@ namespace TRAEProject.Changes.Items
                     return;
                 case ItemID.VenomStaff:
                     item.damage = 38; // down from 45
-                    item.mana = 33; // up from 18
+                    item.mana = 36; // up from 18
                     return;
                 case ItemID.UnholyTrident:
                     item.damage = 111; // up from 88

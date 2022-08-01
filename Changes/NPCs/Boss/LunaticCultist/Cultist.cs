@@ -18,7 +18,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
 		{
             if (npc.type == NPCID.CultistBoss)
             {
-                npc.lifeMax = 67000; // up from 40000
+                npc.lifeMax = 72000; // up from 40000
                 npc.height = 60;
                 npc.width = 60;
             }
@@ -27,6 +27,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 npc.lifeMax = 7500; // down from 10000
             }
         }
+
 
         static float AttackSpeed(NPC npc)
         {

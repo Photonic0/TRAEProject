@@ -18,7 +18,7 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Boomxie"); // Automatic from .lang files
+            DisplayName.SetDefault("Boom Pixie"); // Automatic from .lang files
             Main.npcFrameCount[NPC.type] = 4; // make sure to set this for your modnpcs.
         }
         public override void SetDefaults()
@@ -43,20 +43,28 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
         int spamTimer = 0;
         public override void AI()
         {
-          
-            attackCycleTimer++;
-            if (attackCycleTimer > 150)
+            NPC.TargetClosest(false);
+
+            Player player = Main.player[NPC.target];
+            float shootToX = player.position.X + player.width * 0.5f - NPC.Center.X;
+            float shootToY = player.position.Y + player.height * 0.5f - NPC.Center.Y;
+            float distance2 = (float)Math.Sqrt((shootToX * shootToX + shootToY * shootToY));
+            if (distance2 < 125)
             {
-                spamTimer++;
-                if (spamTimer >= 75)
+                attackCycleTimer++;
+                if (attackCycleTimer > 150)
                 {
-                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
-                    spamTimer = 0;
+                    spamTimer++;
+                    if (spamTimer >= 90)
+                    {
+                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
+                        spamTimer = 0;
+                    }
                 }
-            }
-            if (attackCycleTimer > 750)
-            {
-                attackCycleTimer = 0;
+                if (attackCycleTimer > 1500)
+                {
+                    attackCycleTimer = 0;
+                }
             }
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -65,7 +73,7 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
             {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-                new FlavorTextBestiaryInfoElement("The adult stage of Lavaflies. They defend themselves by leaving some of their volatile dust behind. ")
+                new FlavorTextBestiaryInfoElement("The adult stage of Lavaflies. They defend themselves by leaving volatile dust behind. ")
             }); 
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
@@ -152,7 +160,7 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             if (!runonce)
             {
                 runonce = true;
-                TRAEMethods.Explode(Projectile, 180, 1);
+                TRAEMethods.Explode(Projectile, 172, 1);
                 TRAEMethods.DefaultExplosion(Projectile);
             }
         }

@@ -43,7 +43,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                 case NPCID.TheDestroyer:
                    
                         npc.damage = 125;
-                        npc.lifeMax = 80000;
+                        npc.lifeMax = 70000;
                     
                     break;
                 case NPCID.Probe:
@@ -71,7 +71,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                     case NPCID.TheDestroyer:
                         
                             npc.damage = 220;
-                            npc.lifeMax = (int)(npc.lifeMax * 0.95);
+                            npc.lifeMax = (int)(npc.lifeMax * 0.75);
                         
                         break;
                     case NPCID.Probe:
@@ -287,15 +287,7 @@ namespace TRAEProject.Changes.NPCs.Boss
            
                         if (npc.type == NPCID.TheDestroyerTail)
                         {
-                            npc.takenDamageMultiplier = 4f;
-                        }
-                        for (int i = 0; i < Main.player.Length; i++)
-                        {
-                            Player player = Main.player[i];
-                            if (npc.Distance(player.Center) < 100 * 16)
-                            {  //50 tiles or closer
-                                player.AddBuff(BuffID.Heartreach, 1, false);
-                            }
+                            npc.takenDamageMultiplier = 2f;
                         }
                     
                     return;

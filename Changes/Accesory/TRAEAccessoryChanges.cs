@@ -274,6 +274,12 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<RangedStats>().gunVelocity += 0.5f;
                     player.GetDamage<RangedDamageClass>() -= 0.1f;
                     break;
+                case ItemID.MagmaStone:
+                case ItemID.FireGauntlet:
+                case ItemID.MoltenSkullRose:
+                case 3999: // Magma Skull
+                    player.GetModPlayer<AccesoryEffects>().meleeCritDamage += 0.2f;
+                    break;
             }
         }
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
@@ -402,7 +408,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                     }
                     break;
-
+          
                 case ItemID.BeeCloak:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -511,6 +517,15 @@ namespace TRAEProject.Changes.Accesory
                         }
                     }
                     break;
+                case ItemID.MagmaStone:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nMelee critical hits deal 20% more damage";
+                        }
+                    }
+                    break;
                 case ItemID.MoltenSkullRose:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -520,7 +535,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.Text = "Enemies near the player take 10% more damage";
+                            line.Text = "Enemies near the player take 10% more damage\nMelee critical hits deal 20% more damage";
                         }
                     }
                     break;
@@ -542,7 +557,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Enemies near the player take 10% more damage";
+                            line.Text = "Enemies near the player take 10% more damage\nMelee critical hits deal 20% more damage";
                         }
                     }
                     break;

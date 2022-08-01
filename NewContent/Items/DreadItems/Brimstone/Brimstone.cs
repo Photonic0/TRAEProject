@@ -25,12 +25,12 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
         }
         public override void SetDefaults()
 		{
-			Item.damage = 100;
+			Item.damage = 90;
 			Item.autoReuse = true;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true; //Channel so that you can hold the weapon [Important]
-			Item.mana = 10;
+			Item.mana = 20;
 			Item.rare = ItemRarityID.LightPurple;
 			Item.width = 28;
 			Item.height = 30;

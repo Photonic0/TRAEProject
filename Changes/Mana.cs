@@ -78,7 +78,7 @@ namespace TRAEProject.Changes
             if (newManaFlower)
             {
                 ++manaFlowerTimer;
-                if (manaFlowerTimer >= 60)
+                if (manaFlowerTimer >= 72)
                 {
                     manaFlowerTimer = 0;
                     manaFlowerLimit = 0;

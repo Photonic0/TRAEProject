@@ -20,6 +20,10 @@ namespace TRAEProject.Changes.Resprites
             TextureAssets.Projectile[ProjectileID.StarWrath] = Request<Texture2D>(path + "StarWrathProjectile");
 
             TextureAssets.Item[ItemID.StardustDragonStaff] = Request<Texture2D>(path + "LunarDragonStaff");
+            TextureAssets.Item[ItemID.FireGauntlet] = Request<Texture2D>(path + "FireGauntlet");
+
+            TextureAssets.AccHandsOff[1] = Request<Texture2D>(path + "Acc_HandsOff_1");
+            TextureAssets.AccHandsOn[6] = Request<Texture2D>(path + "Acc_HandsOn_6");
 
             TextureAssets.Projectile[ProjectileID.StardustDragon1] = Request<Texture2D>(path + "LunarDragonHead");
             TextureAssets.Projectile[ProjectileID.StardustDragon2] = Request<Texture2D>(path + "LunarDragonSpike");
