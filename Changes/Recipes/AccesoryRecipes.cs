@@ -172,10 +172,11 @@ namespace TRAEProject.Changes.Recipes
             {
                 recipe.DisableRecipe();
             }
-            //if (recipe.HasResult(ItemID.CountercurseMantra))
-            //{
-            //    recipe.DisableRecipe();
-            //}
+            if (recipe.HasResult(ItemID.BundleofBalloons))
+            {
+                recipe.DisableRecipe();
+            }
+
             if (recipe.HasResult(ItemID.SniperScope))
             {
                 recipe.TryGetIngredient(ItemID.DestroyerEmblem, out ingredientToRemove);

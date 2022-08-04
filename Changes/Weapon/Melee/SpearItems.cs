@@ -124,10 +124,10 @@ namespace TRAEProject.Changes.Weapon
 					item.shoot = ProjectileType<CobaltNaginata>();
 					altShoot = ProjectileType<CobaltNaginataThrow>();
 
-					item.damage = 30;
+					item.damage = 34;
 					item.useTime = item.useAnimation = 24;
 					item.shootSpeed = 13; //only the throw uses this
-					item.crit = 40;
+					item.crit = 24;
 					break;
 				case ItemID.PalladiumPike:
 					item.useStyle = 1;

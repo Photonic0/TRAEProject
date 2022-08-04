@@ -19,7 +19,7 @@ namespace TRAEProject.NewContent.Buffs
 		{
 
 			timer++;
-			if (timer > 540)
+			if (timer > 480)
             {
 				player.AddBuff(BuffID.Obstructed, 1);
 

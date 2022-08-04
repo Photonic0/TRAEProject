@@ -20,7 +20,7 @@ namespace TRAEProject
                     item.vanity = false;
                     return;
                 case ItemID.PharaohsRobe:
-                    item.defense = 3;
+                    item.defense = 2;
                     item.vanity = false;
                     return;
                 case ItemID.RuneHat:

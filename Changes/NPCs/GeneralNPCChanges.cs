@@ -24,9 +24,9 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.JungleCreeper:
                 case NPCID.JungleCreeperWall:
                     {
-                        npc.lifeMax = 120;
-                        npc.damage = 35;
-                        npc.defense = 14;
+                        npc.lifeMax = 110; // from 400
+                        npc.damage = 25; // from 100
+                        npc.defense = 12; // from 40
                     }
                     break;
                 case NPCID.GigaZapper:

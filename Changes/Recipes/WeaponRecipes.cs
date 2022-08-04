@@ -22,7 +22,7 @@ namespace TRAEProject.Changes.Recipes
             DarkLance.Register();
             Recipe WaspGun = Recipe.Create(ItemID.WaspGun);
             WaspGun.AddIngredient(ItemID.BeeGun, 1);
-            WaspGun.AddIngredient(ItemID.SoulofFright, 20);
+            WaspGun.AddIngredient(ItemID.SoulofSight, 15);
             WaspGun.AddTile(TileID.MythrilAnvil);
             WaspGun.Register(); 
             Recipe MagicDagger = Recipe.Create(ItemID.MagicDagger);

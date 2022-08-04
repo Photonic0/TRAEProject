@@ -26,12 +26,12 @@ namespace TRAEProject.Changes.Weapon.Melee
             switch (item.type)
             {
                 case ItemID.CobaltSword:
-                    item.damage = 42; // up from 39
+                    item.damage = 47; // up from 39
                     item.useTime = 16; // down from 22
                     item.useAnimation = 16;  // down from 22
                     item.scale = 1.59f;
                     item.useTurn = false;
-                    item.crit = 40;
+                    item.crit = 24;
                     item.SetNameOverride("Cobalt Katana");
                     break;
                 case ItemID.PalladiumSword:

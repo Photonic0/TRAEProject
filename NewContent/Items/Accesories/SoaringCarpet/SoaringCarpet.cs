@@ -77,7 +77,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 					{
 						int dustID = Main.rand.NextFromList(DustID.GreenTorch, DustID.WhiteTorch, DustID.PinkTorch);
 						Vector2 vector = new(Player.Bottom.X + Main.rand.Next(-Player.width, Player.width), Player.Bottom.Y);
-						Dust dust = Dust.NewDustDirect(vector,  1, 1, dustID);
+						Dust dust = Dust.NewDustDirect(vector,  1, 1, dustID, Scale: 1.15f * Main.rand.NextFloat(1, 1.3f));
 						dust.noGravity = true;
 					}
 					

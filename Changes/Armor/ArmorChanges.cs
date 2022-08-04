@@ -19,6 +19,7 @@ namespace ChangesArmor
     {
             switch (item.type)
             {
+               
                 case ItemID.AncientArmorHat:
                     player.GetDamage<SummonDamageClass>() += 0.17f;
                     player.maxTurrets += 1;
@@ -33,10 +34,10 @@ namespace ChangesArmor
                     player.GetDamage<SummonDamageClass>() += 0.03f;
                     return;
                 case ItemID.PharaohsMask:
-                    player.moveSpeed += 0.10f;
+                    player.moveSpeed += 0.05f;
                     return;
                 case ItemID.PharaohsRobe:
-                    player.moveSpeed += 0.15f;
+                    player.moveSpeed += 0.10f;
                     return;
                 case ItemID.CrimsonScalemail:
                     player.lifeRegen += 1;
@@ -53,6 +54,12 @@ namespace ChangesArmor
                     player.GetAttackSpeed(DamageClass.Melee) -= 0.07f;
                     player.GetCritChance<GenericDamageClass>() += 2;
                     player.moveSpeed += 0.1f;
+                    return;
+
+                case ItemID.MeteorHelmet:
+                case ItemID.MeteorSuit:
+                case ItemID.MeteorLeggings:
+                    player.GetDamage<MagicDamageClass>() += 0.02f;
                     return;
                 case ItemID.ObsidianShirt:
                     player.GetDamage<SummonDamageClass>() += 0.08f;
@@ -93,6 +100,8 @@ namespace ChangesArmor
                     player.GetCritChance<GenericDamageClass>() += 2;
                     player.moveSpeed += 0.5f;
                     return;
+//////////////////////// OOA
+/// T1: SQUIRE, MONK, HUNTRESS, APPRENTICE
                 case ItemID.SquireGreatHelm:
                     player.lifeRegen -= 2;
                     return;
@@ -104,13 +113,23 @@ namespace ChangesArmor
                 case ItemID.SquireGreaves:
                     player.GetCritChance<MeleeDamageClass>() -= 10;
                     player.GetDamage<SummonDamageClass>() += 0.05f;
+                    player.moveSpeed -= 0.15f;
                     return;
+                case ItemID.MonkPants:
+                case ItemID.HuntressPants:
+                case ItemID.ApprenticeTrousers:
+                    player.moveSpeed -= 0.1f;
+                    return;
+////////// T2: VK, SHINOBI, RED RIDING, DARK ARTIST
                 case ItemID.SquireAltHead:
                     player.lifeRegen += 4;
                     ++player.maxMinions;
                     return;
                 case ItemID.SquireAltShirt:
                     player.lifeRegen -= 4;
+                    return;
+                case ItemID.SquireAltPants:
+                    player.moveSpeed -= 0.2f;
                     return;
                 case ItemID.MonkAltShirt:
                     player.GetAttackSpeed(DamageClass.Melee) -= 0.2f;
@@ -121,8 +140,24 @@ namespace ChangesArmor
                     player.GetDamage<SummonDamageClass>()  += 0.1f;
                     player.GetDamage<MeleeDamageClass>()  -= 0.2f;
                     return;
-
-
+                case ItemID.MonkAltPants:
+                case ItemID.HuntressAltPants:
+                case ItemID.ApprenticeAltPants:
+                    player.moveSpeed -= 0.1f;
+                    return;
+///////////////// end of OOA
+                case ItemID.NinjaHood:
+                case ItemID.NinjaShirt:
+                case ItemID.NinjaPants:
+                    player.GetCritChance<GenericDamageClass>() += 3;
+                    return;
+                case ItemID.CrystalNinjaLeggings:
+                    player.moveSpeed -= 0.05f;
+                    player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
+                    break;
+                case ItemID.CrystalNinjaHelmet:
+                    player.manaCost -= 0.10f;
+                    break;
                 case ItemID.TikiMask:
                     player.whipRangeMultiplier += 0.3f;
                     return;
@@ -130,7 +165,6 @@ namespace ChangesArmor
                     player.manaCost += 0.13f;
                     return;
                 case ItemID.SpectreHood:
-
                     player.statManaMax2 += 100;
                     player.manaCost -= 0.20f;
                     return;
@@ -178,12 +212,7 @@ namespace ChangesArmor
                 return "AncientSet";
             if (head.type == ItemID.TurtleHelmet && body.type == ItemID.TurtleScaleMail && legs.type == ItemID.TurtleLeggings)
                 return "TurtleSet";
-            if (head.type == ItemID.MythrilHood && body.type == ItemID.MythrilChainmail && legs.type == ItemID.MythrilGreaves)
-                return "MythrilHood";
-            if (head.type == ItemID.MythrilHat && body.type == ItemID.MythrilChainmail && legs.type == ItemID.MythrilGreaves)
-                return "MythrilHat";
-            if (head.type == ItemID.MythrilHelmet && body.type == ItemID.MythrilChainmail && legs.type == ItemID.MythrilGreaves)
-                return "MythrilHelmet";
+         
             if (head.type == ItemID.AdamantiteMask && body.type == ItemID.AdamantiteBreastplate && legs.type == ItemID.AdamantiteLeggings)
                 return "AdamantiteSet";
             if ((head.type == ItemID.TitaniumHeadgear || head.type == ItemID.TitaniumHelmet || head.type == ItemID.TitaniumMask) && body.type == ItemID.TitaniumBreastplate && legs.type == ItemID.TitaniumLeggings)
@@ -212,6 +241,8 @@ namespace ChangesArmor
                 return "FossilSet"; 
             if (head.type == ItemID.FrostHelmet && body.type == ItemID.FrostBreastplate && legs.type == ItemID.FrostLeggings)
                 return "FrostSet";
+            if (head.type == ItemID.CrystalNinjaHelmet && body.type == ItemID.CrystalNinjaChestplate && legs.type == ItemID.CrystalNinjaLeggings)
+                return "CrystalAssassinSet";
             return base.IsArmorSet(head, body, legs);
         }
         public override void UpdateArmorSet(Player player, string armorSet)
@@ -299,18 +330,6 @@ namespace ChangesArmor
                 player.thorns -= 2f;
                 player.turtleThorns = false;
             }
-            if (armorSet == "MythrilHood")
-            {
-                player.setBonus = "15% increased magic critical strike chance";
-                player.GetCritChance<MagicDamageClass>()  += 15;
-                player.manaCost += 0.17f;
-            }
-            if (armorSet == "MythrilHat")
-            {
-                player.setBonus = "12% increased ranged critical strike chance";
-                player.GetCritChance<RangedDamageClass>() += 12;
-                player.ammoCost80 = false;
-            }
             if (armorSet == "ChloroMeleeSet")
             {
                 player.setBonus = "Summons a powerful leaf crystal to shoot at nearby enemies";
@@ -364,6 +383,11 @@ namespace ChangesArmor
                     player.GetArmorPenetration(DamageClass.Generic) += 3;
                 }
             }
+            if (armorSet == "CrystalAssassinSet")
+            {
+                player.setBonus += "10% increased damage, critical strike chance and movement speed";
+                player.moveSpeed += 0.1f;
+            }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
@@ -401,7 +425,7 @@ namespace ChangesArmor
                     {
                         if (line.Mod == "Terraria" && line.Name == "Defense")
                         {
-                            line.Text += "\nIncreases movement speed by 15%";
+                            line.Text += "\nIncreases movement speed by 10%";
                         }
                     }
                     return;
@@ -410,7 +434,7 @@ namespace ChangesArmor
                     {
                         if (line.Mod == "Terraria" && line.Name == "Defense")
                         {
-                            line.Text += "\nIncreases movement speed by 10%";
+                            line.Text += "\nIncreases movement speed by 5%";
                         }
                     }
                     return;
@@ -570,6 +594,82 @@ namespace ChangesArmor
                         }
                     }
                     return;              
+
+//////////////////////// OOA, ORDERED BY SQUIRE-MONK-APPRENTICE-HUNTRESS
+                case ItemID.SquireGreaves:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "20% increased summon damage\n5% increased melee critical strike chance";
+                        }
+
+                    }
+                    return;
+                case ItemID.SquirePlating:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "10% increased melee and minion damage\nIncreases life regeneration";
+                        }
+                    }
+                    return;
+                case ItemID.MonkPants:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "15% increased melee critical strike chance\n10% increased summon damage and movement speed";
+                        }
+
+                    }
+                    return;
+                case ItemID.ApprenticeTrousers:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "20% increased magic critical strike chance\n10% increased move speed";
+                        }
+                    }
+                    return;
+                case ItemID.HuntressPants:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "10% increased minion damage and movement speed";
+                        }
+                    }
+                    return;
+                case ItemID.SquireAltHead:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nGreatly increased life regeneration";
+                        }
+                    }
+                    return;
+                case ItemID.SquireAltShirt:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "30% increased minion damage and greatly increased life regeneration";
+                        }
+                    }
+                    return;
+                case ItemID.SquireAltPants:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "20% increased minion damage and melee critical strike chance\n10% increased movement speed";
+                        }
+                    }
+                    return;
                 case ItemID.MonkAltHead:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -588,42 +688,76 @@ namespace ChangesArmor
                         }
                     }
                     return;
-                case ItemID.SquireGreaves:
+                case ItemID.MonkAltPants:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "20% increased summon damage\n5% increased melee critical strike chance";
+                            line.Text = "20% increased minion damage, melee critical strike chance and movement speed";
                         }
                     }
                     return;
-                case ItemID.SquirePlating:
+                case ItemID.HuntressAltPants:
+                case ItemID.ApprenticeAltPants:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "10% increased melee and minion damage\nIncreases life regeneration";
-                        }
-                    }
-                    return;      
-                case ItemID.SquireAltHead:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text += "\nGreatly increased life regeneration";
+                            line.Text = "10% increased movement speed";
                         }
                     }
                     return;
-                case ItemID.SquireAltShirt:
+
+//////////////////// END OF OOA
+                
+                case ItemID.CrystalNinjaHelmet:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "30% increased minion damage and greatly increased life regeneration";
+                            line.Text = "5% increased critical strike chance";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "Reduces mana usage by 20%";
                         }
                     }
-                    return;     
+                    return;
+                case ItemID.CrystalNinjaLeggings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "15% increased movement and melee speed";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "";
+                        }
+                    }
+                    return;
+                case ItemID.NinjaHood:
+                case ItemID.NinjaShirt:
+                case ItemID.NinjaPants:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "6% increased critical strike chance";
+                        }
+                    }
+                    return;
+				case ItemID.MeteorHelmet:
+                case ItemID.MeteorSuit:
+                case ItemID.MeteorLeggings:
+				     foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "11% increased magic damage";
+                        }
+                    }
+                    return;
             }
         }
     }

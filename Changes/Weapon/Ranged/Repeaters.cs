@@ -19,9 +19,9 @@ namespace TRAEProject.Changes.Weapon.Ranged
             switch (item.type)
             {
                 case ItemID.CobaltRepeater:
-                    item.damage = 23;
+                    item.damage = 26;
                     item.useTime = item.useAnimation = 19;
-                    item.crit = 40;
+                    item.crit = 24;
                     item.SetNameOverride("Cobalt Yumi");
                     break;
                 case ItemID.PalladiumRepeater:

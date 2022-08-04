@@ -140,7 +140,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.BoneSword:
                     item.damage = 24;
                     item.scale = 1.33f;
-                    item.value = 500000;
+                    item.value = 50000;
                     break;
                 //phaseblades
                 case ItemID.PurplePhaseblade:
