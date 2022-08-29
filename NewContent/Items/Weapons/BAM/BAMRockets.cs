@@ -180,7 +180,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
        public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
+            Projectile.CloneDefaults(ProjectileType<BAMRocket>()); Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
         }
         public override void AI()
         {
@@ -196,7 +197,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
+            Projectile.CloneDefaults(ProjectileType<BAMRocket>()); Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.penetrate = 4;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
@@ -216,6 +218,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
             Projectile.penetrate = 3; Projectile.extraUpdates = 1;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
@@ -236,7 +239,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 5;
+            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
         }
@@ -254,7 +258,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 5;
+            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
         }
@@ -295,7 +300,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
                     float f2 = num852 + c * ((float)Math.PI * 2f);
                     Vector2 velocity = f2.ToRotationVector2() * (4f + Main.rand.NextFloat() * 2f);
                     velocity += Vector2.UnitY * -1f;
-                    int num854 = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity, Cluster, Projectile.damage / 2, 0f, Projectile.owner); Projectile pRojectile = Main.projectile[num854];
+                    int num854 = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity, Cluster, Projectile.damage / 4, 0f, Projectile.owner); Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
                     projectile2.timeLeft = 40;
                 }
@@ -307,7 +312,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
@@ -326,7 +332,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<NewRockets>().DryRocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
@@ -345,7 +352,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<NewRockets>().WetRocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
@@ -365,7 +373,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
 
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<NewRockets>().LavaRocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
@@ -384,7 +393,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<NewRockets>().HoneyRocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;

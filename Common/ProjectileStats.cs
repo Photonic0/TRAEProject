@@ -35,7 +35,7 @@ namespace TRAEProject.Common
         public bool SmartBouncesOffEnemies = false;
         // AI
         public bool homesIn = false;
-        public float homingRange = 300f;
+        public float homingRange = 400f;
         public bool goThroughWallsUntilReachingThePlayer = false;
         // Adding Buffs
         public int AddsBuff = 0; // Adds a buff when hitting a target

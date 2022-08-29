@@ -153,7 +153,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<CryoRocket>());
+            Projectile.CloneDefaults(ProjectileType<CryoRocket>()); Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
         }
         public override void AI()
         {
@@ -171,7 +172,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
         {
             Projectile.CloneDefaults(ProjectileType<CryoRocket>());
             AIType = ProjectileType<CryoRocket>();
-            Projectile.penetrate = 6;
+            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<CryoRockets>().CryoExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
@@ -188,7 +190,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
             Projectile.CloneDefaults(ProjectileType<CryoRocket>());
             AIType = ProjectileType<CryoRocket>();
             Projectile.extraUpdates = 1;
-            Projectile.penetrate = 3;
+            Projectile.penetrate = 3; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
@@ -206,7 +209,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
         {
             Projectile.CloneDefaults(ProjectileType<CryoRocket>());
             AIType = ProjectileType<CryoRocket>();
-            Projectile.penetrate = 8;
+            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<CryoRockets>().CryoExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
@@ -222,7 +226,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
         {
             Projectile.CloneDefaults(ProjectileType<CryoRocket>());
             AIType = ProjectileType<CryoRocket>();
-            Projectile.penetrate = 8;
+            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<CryoRockets>().CryoExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
@@ -244,7 +249,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
         {
             Projectile.CloneDefaults(ProjectileType<CryoRocket>());
             AIType = ProjectileType<CryoRocket>();
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 3; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<CryoRockets>().CryoExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
@@ -278,7 +284,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
         {
             Projectile.CloneDefaults(ProjectileType<CryoRocket>());
             AIType = ProjectileType<CryoRocket>();
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<CryoRockets>().CryoExplosion = true;

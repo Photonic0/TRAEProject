@@ -241,7 +241,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
             }
             if (!isPlayernottargetable && Main.netMode != 1)
             {
-                if (NPC.ai[1] % 75 == 0 && NPC.ai[1] < 900)
+                if (NPC.ai[1] % 150 == 0 && NPC.ai[1] < 900)
                 {
                     int healAmount = NPC.lifeMax - NPC.life;
                     if (healAmount > 1000)
@@ -253,7 +253,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                     }
                     
                 }
-                if (NPC.ai[1] % 225 == 0 && NPC.ai[1] < 900)
+                if (NPC.ai[1] % 300 == 0 && NPC.ai[1] < 900)
                 {
                     int i = (int)NPC.Center.X * 1;
                     int y = (int)NPC.Center.Y * 1;
@@ -263,9 +263,9 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 {
                     SoundEngine.PlaySound(SoundID.Item93);
                 }
-                if (NPC.ai[1] > 1000 && NPC.ai[1] < 1250)
+                if (NPC.ai[1] > 1000 && NPC.ai[1] < 1500)
                 {
-                    RingRange += 2;
+                    RingRange += 1;
 
                     Dust dust3 = Dust.NewDustDirect(new Vector2(NPC.position.X - 2f, NPC.position.Y - 2f), NPC.width + 4, NPC.height + 4, DustID.Electric, NPC.velocity.X * 0.4f, NPC.velocity.Y * 0.4f, 180, default, 1.5f);
                     dust3.noGravity = true;
@@ -278,7 +278,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                         dust3.scale *= 1.5f;
                     }
                 }
-                if (NPC.ai[1] > 1250)
+                if (NPC.ai[1] > 1500)
                 {
                     SoundEngine.PlaySound(SoundID.Item14, NPC.position);
                     NPC.ai[1] = 0;
@@ -343,7 +343,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
             NPC.height = 42;
             NPC.damage = 25;
             NPC.defense = 30;
-            NPC.lifeMax = 500;
+            NPC.lifeMax = 650;
             NPC.HitSound = SoundID.NPCHit42;
             NPC.DeathSound = SoundID.NPCDeath44;
             NPC.knockBackResist = 1f;
@@ -366,15 +366,17 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 vector22 *= Main.rand.Next(10, 101) * 0.02f;
                 Gore.NewGore(NPC.GetSource_Death(), NPC.Center, vector22, GoreID.GraniteGolemBody);
             }
-            int bolt = ProjectileType<GraniteBolt>();
+            int bolt = ProjectileType<GraniteBolt>(); 
             float num852 = ((float)Math.PI * 2f);
-            for (float c = 0f; c < 1f; c += 355f / (678f * (float)Math.PI))
+            float boltCount = 59.167f * 6;
+            for (float c = 0f; c < 1f; c += boltCount / (678f * (float)Math.PI))
             {
                 float f2 = num852 + c * ((float)Math.PI * 2f);
                 Vector2 velocity = f2.ToRotationVector2() * (4f + Main.rand.NextFloat() * 2f);
                 velocity += Vector2.UnitY * -1f;
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity, bolt, 25, 0f);
             }
+
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -397,7 +399,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                     Vector2 unitY = NPC.DirectionTo(Main.player[index1].Center);
                     if (unitY.HasNaNs())
                         unitY = Vector2.UnitY;
-                    NPC.velocity = Vector2.Multiply(unitY, 6f);
+                    NPC.velocity = Vector2.Multiply(unitY, 4f);
                 }
             }
         }

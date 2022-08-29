@@ -75,7 +75,7 @@ namespace TRAEProject.Changes.NPCs
                     return;
                 case NPCID.JungleCreeper:
                 case NPCID.JungleCreeperWall:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.PoisonStaff, 50));
+                    npcLoot.Add(ItemDropRule.Common(ItemID.PoisonStaff, 33));
                     return;
                 case NPCID.BlackRecluse:
                 case NPCID.BlackRecluseWall:
@@ -266,7 +266,7 @@ namespace TRAEProject.Changes.NPCs
                     if (todrop2 == ItemID.CandyCornRifle)
                         Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.CandyCorn, Main.rand.Next(25, 50));
                     if (todrop2 == ItemID.JackOLanternLauncher)
-                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.JackOLantern, Main.rand.Next(25, 50));
+                        Item.NewItem(npc.GetSource_Loot(), npc.getRect(), ItemID.ExplosiveJackOLantern, Main.rand.Next(25, 50));
                     Item.NewItem(npc.GetSource_Loot(), npc.getRect(), todrop2, 1);
                     NPCLoader.blockLoot.Add(ItemID.TheHorsemansBlade);
                     NPCLoader.blockLoot.Add(ItemID.CandyCornRifle);
@@ -296,6 +296,7 @@ namespace TRAEProject.Changes.NPCs
                     NPCLoader.blockLoot.Add(ItemID.StarCloak);
                     NPCLoader.blockLoot.Add(ItemID.DualHook);
                     NPCLoader.blockLoot.Add(ItemID.TitanGlove);
+                    NPCLoader.blockLoot.Add(ItemID.MagicDagger);
                     return true;
                 case NPCID.BigMimicHallow:
                     int[] HDrops = new int[] { ItemID.FlyingKnife, ItemID.DaedalusStormbow, ItemID.CrystalVileShard, ItemID.Smolstar };

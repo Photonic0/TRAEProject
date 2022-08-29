@@ -15,7 +15,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Beetle Dart");
-            Tooltip.SetDefault("33% chance to stun enemies and deal double damage");
+            Tooltip.SetDefault("33% chance to stun enemies and deal triple damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -74,7 +74,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             {
                 Terraria.Audio.SoundEngine.PlaySound(SoundID.Item89, Projectile.position);
 
-                damage *= 2;
+                damage *= 3;
                 target.GetGlobalNPC<Stun>().StunMe(target, 45);
                 for (int i = 0; i < 20; i++)
                 {

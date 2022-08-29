@@ -39,32 +39,19 @@ namespace TRAEProject.NewContent.NPCs.Boomxie
             Banner = NPC.type;
             BannerItem = ItemType<BoomxieBanner>();
         }
-        int attackCycleTimer = 0;
         int spamTimer = 0;
         public override void AI()
         {
             NPC.TargetClosest(false);
-
-            Player player = Main.player[NPC.target];
-            float shootToX = player.position.X + player.width * 0.5f - NPC.Center.X;
-            float shootToY = player.position.Y + player.height * 0.5f - NPC.Center.Y;
-            float distance2 = (float)Math.Sqrt((shootToX * shootToX + shootToY * shootToY));
-            if (distance2 < 125)
+            spamTimer++;
+            if (spamTimer > 360)
             {
-                attackCycleTimer++;
-                if (attackCycleTimer > 150)
-                {
-                    spamTimer++;
-                    if (spamTimer >= 90)
-                    {
-                        NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
-                        spamTimer = 0;
-                    }
-                }
-                if (attackCycleTimer > 1500)
-                {
-                    attackCycleTimer = 0;
-                }
+                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LittleBoomxie>());
+                spamTimer = 0;
+            }
+            if (NPC.life < NPC.lifeMax * 0.5f)
+            {
+                spamTimer += 3;
             }
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

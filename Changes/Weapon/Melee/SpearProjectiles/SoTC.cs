@@ -72,16 +72,10 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
         */
         public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
         {
-            int num701 = 2;
-            if (Main.rand.Next(3) == 0)
-            {
-                num701++;
-            }
-            if (Main.rand.Next(3) == 0)
-            {
-                num701++;
-            }
-            for (int num702 = 0; num702 < num701; num702++)
+            int amount = 2 + Main.rand.Next(3);
+            if (Main.rand.NextBool(100))
+                amount = 10;
+            for (int num702 = 0; num702 < amount; num702++)
             {
                 float num703 = (float)Main.rand.Next(-35, 36) * 0.02f;
                 float num704 = (float)Main.rand.Next(-35, 36) * 0.02f;

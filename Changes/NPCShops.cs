@@ -51,16 +51,33 @@ namespace TRAEProject.Changes
             switch (type)
             {
                 case NPCID.ArmsDealer:
+                    if (NPC.downedBoss3)
+                    {
+                        bool foundBeetle = false;
+                        for (int i = 0; i < shop.item.Length; i++)
+                        {
+                            if (shop.item[i].type == ItemID.EmptyBullet)
+                            {
+                                foundBeetle = true;
+                            }
+                        }
+                        if (!foundBeetle)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.EmptyBullet);
+                            nextSlot++;
+                        }
+                    }
                     if (Main.hardMode) // when will this code run?
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.Gatligator);
-                        nextSlot++;
-                    }
-                    if (NPC.downedPlantBoss) // when will this code run?
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.Uzi);
-                        nextSlot++;
-                    }
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.Gatligator);
+                            nextSlot++;
+                        }
+                        if (NPC.downedPlantBoss) // when will this code run?
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.Uzi);
+                            nextSlot++;
+                        }
+                    
                     break;
                 case NPCID.Wizard:
                     shop.item[nextSlot].SetDefaults(ItemID.FastClock);

@@ -26,7 +26,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.ChainKnife:
                     item.crit = 12;
                     item.autoReuse = true;
-                    item.value = 50000;
+                    item.value = Item.buyPrice(gold: 5);
                     return;
                 case ItemID.ChainGuillotines:
                     item.crit = 20;
@@ -37,16 +37,6 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.IceBoomerang:
                     item.damage = 22; // up from 16
                     item.crit = 12; // up from 6%
-                    return;
-                case ItemID.ThornChakram:
-                    item.damage = 30; // up from 25
-                    item.useTime = 19; // up from 15
-                    item.useAnimation = 19;
-                    return;
-                case ItemID.Flamarang:
-                    item.damage = 60; // up from 32
-                    item.useTime = 20; // up from 15
-                    item.useAnimation = 20;
                     return;
                 case ItemID.LightDisc:
                     item.damage = 100; // up from 57
@@ -67,7 +57,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     return;
                     // yoyo
                 case ItemID.Rally:
-                    item.value = 50000;
+                    item.value = Item.buyPrice(gold: 5);
                     return;
                 case ItemID.HelFire:
                     item.damage = 39;

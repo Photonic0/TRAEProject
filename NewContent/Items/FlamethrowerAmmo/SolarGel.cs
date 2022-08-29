@@ -13,7 +13,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Solar Gel");
+            DisplayName.SetDefault("Sun Gel");
             Tooltip.SetDefault("Shoots a concentrated Solar Flare");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
@@ -31,7 +31,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Item.consumable = true;
             Item.shoot = ProjectileType<SolarGelP>();
             Item.ammo = AmmoID.Gel;
-            Item.maxStack = 3000;
+            Item.maxStack = 9999;
         }
 
         public override void AddRecipes()

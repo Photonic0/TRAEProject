@@ -78,18 +78,18 @@ namespace TRAEProject.Changes.NPCs.Miniboss.Santa
 						Projectile.NewProjectile(npc.GetSource_FromAI(), savedShootSpot, Vector2.UnitX.RotatedBy((savedShootSpot - (new Vector2(npc.Center.X + (float)(npc.direction * 50), npc.Center.Y + 25))).ToRotation()), ModContent.ProjectileType<Target>(), 0, 0);
 					}
 					
-					if (npc.ai[1] > delay && npc.ai[1] % (float)num958 == 0f && Main.netMode != NetmodeID.MultiplayerClient)
+					if (npc.ai[1] > delay && npc.ai[1] % num958 == 0f && Main.netMode != NetmodeID.MultiplayerClient)
 					{
 						int shoot = ProjectileID.BulletDeadeye;
 						if(npc.ai[1] <= delay)
                         {
 							shoot = ModContent.ProjectileType<Scanline>();
                         }
-						Vector2 vector116 = new Vector2(npc.Center.X + (float)(npc.direction * 50), npc.Center.Y + (float)Main.rand.Next(20, 60));
-						float num959 = savedShootSpot.X - vector116.X + (float)Main.rand.Next(-40, 41);
-						float num960 = savedShootSpot.Y - vector116.Y + (float)Main.rand.Next(-40, 41);
-						num959 += (float)Main.rand.Next(-40, 41);
-						num960 += (float)Main.rand.Next(-40, 41);
+						Vector2 vector116 = new Vector2(npc.Center.X + (npc.direction * 50), npc.Center.Y + Main.rand.Next(35, 90));
+						float num959 = savedShootSpot.X - vector116.X + Main.rand.Next(-40, 41);
+						float num960 = savedShootSpot.Y - vector116.Y + Main.rand.Next(-40, 41);
+						num959 += Main.rand.Next(-40, 41);
+						num960 += Main.rand.Next(-40, 41);
 						float num961 = (float)Math.Sqrt(num959 * num959 + num960 * num960);
 						float num962 = 15f;
 						num961 = num962 / num961;

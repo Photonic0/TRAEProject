@@ -31,7 +31,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.DreadTrophy
             Item.useAnimation = 15;
             Item.useTime = 10;
             Item.useStyle = 1;
-            Item.rare = 2;
+            Item.rare = 1;
             Item.consumable = true;
             Item.value = 50000;
             Item.createTile = TileType<DreadTrophyTile>();

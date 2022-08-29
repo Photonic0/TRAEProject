@@ -14,6 +14,9 @@ namespace TRAEProject.Changes.Weapon.Summon
         {
             switch (item.type)
             {
+                case ItemID.BlandWhip:
+                    item.knockBack = 1.5f; // up from 0.5
+                    break;
                 case ItemID.ThornWhip:
                     item.damage = 19; // up from 18
                     break;

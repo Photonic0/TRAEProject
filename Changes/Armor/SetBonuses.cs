@@ -51,15 +51,17 @@ namespace TRAEProject.Changes.Armor
                 Shadowdodge();
             }
         }
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
         {
-
-            if (Main.rand.Next(shadowArmorDodgeChance) == 1)//if set to 0, it will give 100% dodge chance without the set bonus
+            if (shadowArmorDodgeChance != 0)
             {
-                DarkDodge();
-                return false;
+                if (Main.rand.NextBool(shadowArmorDodgeChance))//if set to 0, it will give 100% dodge chance without the set bonus
+                {
+                    DarkDodge();
+                    return false;
+                }
             }
-            return true;
+            return true; 
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {

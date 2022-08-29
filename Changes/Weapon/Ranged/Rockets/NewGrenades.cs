@@ -67,6 +67,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.CloneDefaults(ProjectileType<Grenade>());
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             Projectile.penetrate = 4;
             Projectile.timeLeft = 120;
@@ -86,12 +87,13 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileType<Grenade>()); 
-            Projectile.penetrate = 6;
+            Projectile.penetrate = 5;
             Projectile.timeLeft = 120;
             AIType = ProjectileType<Grenade>();
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
@@ -105,6 +107,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.CloneDefaults(ProjectileType<Grenade>());
             AIType = ProjectileType<Grenade>(); 
             Projectile.penetrate = 3; Projectile.extraUpdates = 1;
@@ -127,9 +131,11 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.CloneDefaults(ProjectileType<Grenade>());
             AIType = ProjectileType<Grenade>();
-            Projectile.penetrate = 8;
+            Projectile.penetrate = 5;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
@@ -147,9 +153,11 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.CloneDefaults(ProjectileType<Grenade>());
             AIType = ProjectileType<Grenade>();
-            Projectile.penetrate = 8; Projectile.timeLeft = 120;
+            Projectile.penetrate = 5; Projectile.timeLeft = 120;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
@@ -171,9 +179,11 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.CloneDefaults(ProjectileType<Grenade>());
             AIType = ProjectileType<Grenade>();
-            Projectile.penetrate = 5; Projectile.timeLeft = 120;
+            Projectile.penetrate = 3; Projectile.timeLeft = 120;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
@@ -194,6 +204,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.CloneDefaults(ProjectileType<Grenade>());
             AIType = ProjectileType<Grenade>();
             Projectile.penetrate = 5;

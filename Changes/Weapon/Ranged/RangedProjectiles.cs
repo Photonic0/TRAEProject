@@ -31,6 +31,11 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.CursedBullet:
                     projectile.extraUpdates = 1;
                     return;
+                case ProjectileID.ClusterSnowmanFragmentsI:
+                    projectile.penetrate = 2;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 10;
+                    return;
                 case ProjectileID.CrystalShard:
                     projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.5f;
                     projectile.GetGlobalProjectile<ProjectileStats>().IgnoresDefense = true;
@@ -56,7 +61,7 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageLossOffATileBounce = 0.2f;
                     return;
                 case ProjectileID.JestersArrow:
-                    projectile.penetrate = 7;      
+                    projectile.penetrate = 5;      
 					projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 20;
                     return;
@@ -147,9 +152,11 @@ namespace TRAEProject.Changes.Projectiles
                     }
                 }
             }
-
-     
-            if (projectile.type == ProjectileID.ChlorophyteArrow)
+            if (projectile.type == ProjectileID.ClusterSnowmanFragmentsI)
+            {
+                timer++;
+            }
+                if (projectile.type == ProjectileID.ChlorophyteArrow)
 			{
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
                 ++ChloroBulletTime;
@@ -355,7 +362,14 @@ namespace TRAEProject.Changes.Projectiles
             } */
             return true;
         }
-        
+        public override bool? CanHitNPC(Projectile projectile, NPC target)
+        {
+            if (projectile.type == ProjectileID.ClusterSnowmanFragmentsI && timer < 15)
+            {
+                return false;
+            }
+            return null;
+        }
         public override void AI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];

@@ -62,7 +62,7 @@ namespace TRAEProject.Changes.Items
                 case ItemID.BookofSkulls:
                     item.mana = 50; // up from 
                     item.damage = 19; // down from 29
-                    item.value = 100000;
+                    item.value = Item.buyPrice(gold: 10);
                     return;
                 case ItemID.ThunderStaff:
                     item.damage = 24; // up from 12

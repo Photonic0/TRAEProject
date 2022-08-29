@@ -35,7 +35,7 @@ namespace TRAEProject.NewContent.Items.Armor.LeatherArmor
         {
             CreateRecipe(1)
                 .AddIngredient(ItemID.WormTooth, 9)
-                .AddIngredient(ItemID.Leather, 2)
+                .AddIngredient(ItemID.Leather, 1)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

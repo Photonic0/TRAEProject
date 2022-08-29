@@ -26,24 +26,19 @@ namespace TRAEProject.Changes.Recipes
             Mantra.Register();
             Recipe Magnet = Recipe.Create(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
             Magnet.Register();
-            Recipe AvengerEmblem = Recipe.Create(ItemID.AvengerEmblem).AddRecipeGroup("Emblem").AddIngredient(ItemID.SoulofMight, 15).AddTile(TileID.TinkerersWorkbench);
-            AvengerEmblem.Register();
             Recipe BoBrecipe = Recipe.Create(ItemID.BundleofBalloons);
-            BoBrecipe.AddIngredient(ItemID.SoulofFlight, 20);
             BoBrecipe.AddRecipeGroup("CloudBalloon");
             BoBrecipe.AddRecipeGroup("BlizzardJump");
             BoBrecipe.AddRecipeGroup("SandstormJump");
             BoBrecipe.AddTile(TileID.TinkerersWorkbench);
             BoBrecipe.Register();
             Recipe BoBrecipe1 = Recipe.Create(ItemID.BundleofBalloons);
-            BoBrecipe1.AddIngredient(ItemID.SoulofFlight, 20);
             BoBrecipe1.AddRecipeGroup("BlizzardBalloon");
             BoBrecipe1.AddRecipeGroup("CloudJump");
             BoBrecipe1.AddRecipeGroup("SandstormJump");
             BoBrecipe1.AddTile(TileID.TinkerersWorkbench);
             BoBrecipe1.Register();
             Recipe BoBrecipe2 = Recipe.Create(ItemID.BundleofBalloons);
-            BoBrecipe2.AddIngredient(ItemID.SoulofFlight, 20);
             BoBrecipe2.AddRecipeGroup("SandstormBalloon");
             BoBrecipe2.AddRecipeGroup("CloudJump");
             BoBrecipe2.AddRecipeGroup("BlizzardJump");
@@ -174,7 +169,7 @@ namespace TRAEProject.Changes.Recipes
             }
             if (recipe.HasResult(ItemID.BundleofBalloons))
             {
-                recipe.DisableRecipe();
+                recipe.AddIngredient(ItemID.SoulofFlight, 20);
             }
 
             if (recipe.HasResult(ItemID.SniperScope))
@@ -232,6 +227,17 @@ namespace TRAEProject.Changes.Recipes
                 recipe.TryGetIngredient(ItemID.CloudinaBottle, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.Bottle);
+            }
+            if (recipe.HasResult(ItemID.AvengerEmblem))
+            {
+                recipe.TryGetIngredient(ItemID.SoulofFright, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.TryGetIngredient(ItemID.SoulofSight, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.SoulofMight, 15);
+
             }
         }
     }

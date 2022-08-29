@@ -23,7 +23,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(70, 5f, 1f, hasHoldDownHoverFeatures: true, 6.5f, 6.5f);
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(70, 5f, 1f, hasHoldDownHoverFeatures: true, 8f, 6.5f);
 			
 		}
 
@@ -66,8 +66,8 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
             if (player.controlDown && player.controlJump && player.wingTime > 0f)
             {
                 player.wingTime += 0.75f;
-                speed = 7f;
-                acceleration = 3f;
+                speed = 8f;
+                acceleration = 6f;
             }
             else
             {

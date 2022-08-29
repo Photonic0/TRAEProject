@@ -16,7 +16,7 @@ using TRAEProject.Changes.Weapon;
 using TRAEProject.NewContent.Buffs;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Weapon.Melee.SpearProjectiles;
-
+using TRAEProject.NewContent.Projectiles;
 namespace TRAEProject.Common
 {
     public abstract class Spear : ModProjectile
@@ -716,11 +716,6 @@ namespace TRAEProject.Common
         public override bool PreItemCheck()
         {
             if(!Player.HeldItem.IsAir && Player.HeldItem.GetGlobalItem<SpearItems>().altShoot != -1 && Main.mouseRight && Player.autoReuseGlove && Player.itemAnimation ==1)
-            {
-                Player.altFunctionUse = 2;
-                Player.itemAnimationMax = Player.itemAnimation = Player.HeldItem.useAnimation;
-            }
-            if (Player.HeldItem.type == ItemID.LucyTheAxe && Main.mouseRight && Player.autoReuseGlove && Player.itemAnimation == 1)
             {
                 Player.altFunctionUse = 2;
                 Player.itemAnimationMax = Player.itemAnimation = Player.HeldItem.useAnimation;

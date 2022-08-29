@@ -12,7 +12,14 @@ namespace TRAEProject.Changes.NPCs.Miniboss.IceQueen
 {
 	public class IceQueen : GlobalNPC
 	{
-		public override bool PreAI(NPC npc)
+        public override void SetDefaults(NPC npc)
+        {
+            if (npc.type == NPCID.IceQueen)
+            {
+				npc.lifeMax = 30000; // down from 34k
+            }				
+        }
+        public override bool PreAI(NPC npc)
 		{
 			if (npc.type == NPCID.IceQueen)
 			{

@@ -48,8 +48,34 @@ namespace TRAEProject.Changes.NPCs.Miniboss.Everscream
         {
                 Projectile.CloneDefaults(ProjectileID.OrnamentFriendly);
                 AIType = ProjectileID.OrnamentFriendly;
+                Projectile.timeLeft = 120;
                 Projectile.hostile = true;
                 Projectile.friendly = false;
         }
+        public override void Kill(int timeLeft)
+        {
+            int Cluster = ProjectileID.OrnamentHostileShrapnel; // snowman cannon's projectile, doesn't damage the player
+            float num852 = ((float)Math.PI * 2f);
+            float fragmentCount = 59.167f * 4/*Main.rand.Next(2, 3)*/;
+            for (float c = 0f; c < 1f; c += fragmentCount / (678f * (float)Math.PI))
+            {
+
+                float f2 = num852 + c * ((float)Math.PI * 2f);
+                Vector2 velocity = f2.ToRotationVector2() * (8f + Main.rand.NextFloat() * 2f);
+                velocity += Vector2.UnitY * -1f;
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity, Cluster, Projectile.damage, 0f,Projectile.owner);
+            }
+        }
     }
+    class ShardChange : GlobalProjectile
+    {
+        public override void SetDefaults(Projectile projectile)
+        {
+            if (projectile.type == ProjectileID.OrnamentHostileShrapnel)
+            {
+                projectile.timeLeft = 60;
+            }
+        }
+    }
+
 }

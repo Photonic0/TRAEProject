@@ -45,13 +45,8 @@ namespace TRAEProject.Changes.Items
             beedamage = 0; 
             frozenHitCount = 0;
         }
-        public override void PreUpdate()
-        {
-
-        }
         public override void PostUpdateEquips()
-        {
-          
+        { 
             if (runeCooldown > 0)
             {
                 --runeCooldown;
@@ -127,8 +122,8 @@ namespace TRAEProject.Changes.Items
             }
             if (Player.longInvince)
             {
-                int invintime = (int)(damage * 0.5); // every point of damage past 100 adds 0.0083 seconds of invincibility. 
-                Player.immuneTime += invintime - 40;
+                int invintime = (int)(damage * 3 / 5); // every point of damage adds 0.01 seconds 
+                Player.immuneTime += invintime - 40; // cross necklace adds .67 seconds so we need to substract that from the total.
             }
         }
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
@@ -136,12 +131,8 @@ namespace TRAEProject.Changes.Items
             int findbuffIndex = Player.FindBuffIndex(BuffID.Frozen);
             if (findbuffIndex != -1)
             {
-                frozenHitCount++;
-                if (frozenHitCount > 1)
-                {
-                    frozenHitCount = 0;
                     Player.DelBuff(findbuffIndex);
-                }
+                
             }
             LastHitDamage = damage;
             BaghnakhHeal = 0;
@@ -193,8 +184,8 @@ namespace TRAEProject.Changes.Items
                 }
                 if (Player.longInvince)
                 {
-                    int invintime = (int)(damage * 0.5); // every point of damage past 100 adds 0.0083 seconds of invincibility. 
-                    Player.immuneTime += invintime - 40;
+                    int invintime = (int)(damage * 3 / 5); // every point of damage adds 0.01 seconds 
+                    Player.immuneTime += invintime - 40; // cross necklace adds .67 seconds so we need to substract that from the total.
                 }
 
             }

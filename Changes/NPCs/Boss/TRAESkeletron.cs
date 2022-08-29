@@ -80,7 +80,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 					}
 					if (Hands > 0)
 					{
-						npc.defense += Hands * 40;
+						npc.defense += Hands * 50;
 						if (Main.rand.Next(10) < 3 * Hands)
 						{
 							Rectangle r3 = Utils.CenteredRectangle(npc.Center, Vector2.One * npc.width);
@@ -161,20 +161,20 @@ namespace TRAEProject.Changes.NPCs.Boss
 					float num169 = 0.02f;
 					float num170 = 2f;
 					float num171 = 0.05f;
-					float num172 = 8f;
+					float distanceAboveThePlayer = 8f;
 					if (Main.expertMode)
 					{
 						num169 = 0.03f;
 						num170 = 4f;
 						num171 = 0.07f;
-						num172 = 9.5f;
+						distanceAboveThePlayer = 9.5f;
 					}
 					if (Main.getGoodWorld)
 					{
 						num169 += 0.01f;
 						num170 += 1f;
 						num171 += 0.05f;
-						num172 += 2f;
+						distanceAboveThePlayer += 2f;
 					}
 					if (npc.position.Y > Main.player[npc.target].position.Y - 250f)
 					{
@@ -207,9 +207,9 @@ namespace TRAEProject.Changes.NPCs.Boss
 							npc.velocity.X *= 0.98f;
 						}
 						npc.velocity.X -= num171;
-						if (npc.velocity.X > num172)
+						if (npc.velocity.X > distanceAboveThePlayer)
 						{
-							npc.velocity.X = num172;
+							npc.velocity.X = distanceAboveThePlayer;
 						}
 					}
 					if (npc.position.X + (npc.width / 2) < Main.player[npc.target].position.X + (Main.player[npc.target].width / 2))
@@ -219,9 +219,9 @@ namespace TRAEProject.Changes.NPCs.Boss
 							npc.velocity.X *= 0.98f;
 						}
 						npc.velocity.X += num171;
-						if (npc.velocity.X < 0f - num172)
+						if (npc.velocity.X < 0f - distanceAboveThePlayer)
 						{
-							npc.velocity.X = 0f - num172;
+							npc.velocity.X = 0f - distanceAboveThePlayer;
 						}
 					}
 				}
@@ -244,12 +244,14 @@ namespace TRAEProject.Changes.NPCs.Boss
 					float playerY3 = Main.player[npc.target].position.Y + (Main.player[npc.target].height / 2) - skeletronPosition.Y;
 					float distance3 = (float)Math.Sqrt(playerX3 * playerX3 + playerY3 * playerY3);
 					float spinVelocity = 3.5f;
+
 					npc.damage = npc.GetAttackDamage_LerpBetweenFinalValues(npc.defDamage, npc.defDamage * 1.3f);
 					if (Main.expertMode)
 					{
-						if (distance3 > 200f)
+						if (distance3 > 150f)
 						{
-							spinVelocity *= 1.2f;
+							double extraSpeed = Math.Pow(1.1, ((double)distance3 - 100) / 50);
+							spinVelocity *= (float)extraSpeed; 
 						}
 
 						switch (Hands)
@@ -263,12 +265,12 @@ namespace TRAEProject.Changes.NPCs.Boss
 						}
 						if (Main.masterMode && Hands == 0)
 						{
-							//spinVelocity *= 1.2f - 0.1f * Hands; // NEW
-							if (npc.life <= (int)(npc.lifeMax * 0.67f))
+
+							if (npc.life <= (int)(npc.lifeMax * 0.60f))
 							{
-								if (npc.ai[2] == 250f)
+								if (npc.ai[2] == 150f)
 								{
-									SoundEngine.PlaySound(SoundID.ForceRoar, npc.Center);
+									SoundEngine.PlaySound(SoundID.ForceRoarPitched, npc.Center);
 									Vector2 spinningpoint1 = ((float)Main.rand.NextDouble() * 6.283185f).ToRotationVector2();
 									Vector2 spinningpoint2 = spinningpoint1;
 									float fourToSix = Main.rand.Next(2, 3) * 2;
@@ -300,16 +302,16 @@ namespace TRAEProject.Changes.NPCs.Boss
 									}
 
 								}
-								if (npc.ai[2] >= 250f)
+								if (npc.ai[2] >= 150f)
 								{
-									spinVelocity *= 1.7f;
+									spinVelocity *= 1.70f;
 								}
 							}
 						}
 					}
 					if (Main.getGoodWorld)
 					{
-						spinVelocity *= 1.1f;
+						spinVelocity *= 1.3f;
 					}
 					distance3 = spinVelocity / distance3;
 					npc.velocity.X = playerX3 * distance3;
@@ -581,7 +583,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                         }
 						if (Main.masterMode)
                         {
-							factor = 40f;
+							factor = 36f;
 						}
 						num187 = factor / num187;
                         npc.velocity.X = num185 * num187;

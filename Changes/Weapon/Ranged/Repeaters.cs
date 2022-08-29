@@ -47,15 +47,11 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     item.useTime = item.useAnimation = 19;
                     break;
                 case ItemID.TitaniumRepeater:
-                    item.damage = 36;
-                    item.useTime = item.useAnimation = 33;
+                    item.damage = 30;
+                    item.useTime = item.useAnimation = 25;
                     item.SetNameOverride("Titanium Obliterator");
                     break;
-                case ItemID.HallowedRepeater:
-                    item.damage = 53;
-                    item.useTime = item.useAnimation = 16;
-                    item.SetNameOverride("Sharanga");
-                    break;
+   
                 case ItemID.ChlorophyteShotbow:
                     item.useTime = item.useAnimation = 24;
                     break;
@@ -69,10 +65,10 @@ namespace TRAEProject.Changes.Weapon.Ranged
         {
             if(item.type == ItemID.TitaniumRepeater)
             {
-                int count = Main.rand.Next(2) + 2;
+                int count = Main.rand.Next(3) + 3;
                 for(int i =0; i < count; i++)
                 {
-                    Projectile.NewProjectile(player.GetSource_ItemUse(item), position, (velocity * 0.5f).RotatedByRandom((float)Math.PI / 10), ProjectileType<TitaniumShrapnel>(), damage / 3, 0, player.whoAmI);
+                    Projectile.NewProjectile(player.GetSource_ItemUse(item), position, (velocity * 1f).RotatedByRandom((float)Math.PI / 10), ProjectileType<TitaniumShrapnel>(), damage / 4, 0, player.whoAmI);
                 }
             }
             if(item.type == ItemID.MythrilRepeater)
@@ -129,8 +125,18 @@ namespace TRAEProject.Changes.Weapon.Ranged
             Projectile.aiStyle = 1;
             AIType = ProjectileID.Bullet;
             Projectile.timeLeft = 30;
-            Projectile.extraUpdates = 2;
+            Projectile.ArmorPenetration = 15;
+            Projectile.extraUpdates = 1;
+            Projectile.scale = 1.35f;
             Projectile.DamageType = DamageClass.Ranged;
+        }
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                Dust dust = Dust.NewDustDirect(Projectile.oldPosition, Projectile.width, Projectile.height, DustID.Titanium, 0.75f);
+                dust.noGravity = true;
+            }
         }
     }
 }

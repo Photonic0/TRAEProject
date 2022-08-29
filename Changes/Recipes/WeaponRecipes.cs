@@ -22,7 +22,7 @@ namespace TRAEProject.Changes.Recipes
             DarkLance.Register();
             Recipe WaspGun = Recipe.Create(ItemID.WaspGun);
             WaspGun.AddIngredient(ItemID.BeeGun, 1);
-            WaspGun.AddIngredient(ItemID.SoulofSight, 15);
+            WaspGun.AddIngredient(ItemID.SoulofMight, 15);
             WaspGun.AddTile(TileID.MythrilAnvil);
             WaspGun.Register(); 
             Recipe MagicDagger = Recipe.Create(ItemID.MagicDagger);
@@ -87,7 +87,11 @@ namespace TRAEProject.Changes.Recipes
             StarWrath.AddIngredient(ItemID.FragmentSolar, 18);
             StarWrath.AddTile(TileID.LunarCraftingStation);
             StarWrath.Register();
+            Recipe TentacleSpike = Recipe.Create(ItemID.WormTooth, 12);
 
+            TentacleSpike.AddIngredient(ItemID.Leather, 2);
+            TentacleSpike.AddTile(TileID.Anvils);
+            TentacleSpike.Register();
         }
         public static void Modify(Recipe recipe)
         {
@@ -106,12 +110,7 @@ namespace TRAEProject.Changes.Recipes
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.MusketBall, 100);
             }
-            if (recipe.HasResult(ItemID.ExplodingBullet))
-            {
-                recipe.TryGetIngredient(ItemID.EmptyBullet, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.MusketBall, 50);
-            }
+
             if (recipe.HasResult(ItemID.MeteorShot))
             {
                 recipe.ReplaceResult(ItemID.MeteorShot, 100);
@@ -140,10 +139,10 @@ namespace TRAEProject.Changes.Recipes
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.TryGetIngredient(ItemID.WormTooth, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.WoodenArrow, 50);
-                recipe.AddIngredient(ItemID.VilePowder, 2);
-                recipe.AddIngredient(ItemID.WormTooth, 1);
-                recipe.ReplaceResult(ItemID.UnholyArrow, 50);
+                recipe.AddIngredient(ItemID.WoodenArrow, 33);
+                recipe.AddIngredient(ItemID.WormTooth, 1); 
+                recipe.AddIngredient(ItemID.VilePowder, 1);
+                recipe.ReplaceResult(ItemID.UnholyArrow, 33);
             }
             if (recipe.HasResult(ItemID.JestersArrow))
             {

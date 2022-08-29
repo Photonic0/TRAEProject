@@ -2,6 +2,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Collections.Generic;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
+using Terraria.Graphics.Shaders;
 
 namespace TRAEProject.Changes.Accesory
 {
@@ -18,18 +22,128 @@ namespace TRAEProject.Changes.Accesory
             Player.rocketTimeMax = 7; // without this Obsidian Hover Shoes permanently set it to 14          
    
         }
-		public override void PostUpdateEquips()
+        void SpawnFastRunParticles()
+        {
+            int num = 0;
+            if (Player.gravDir == -1f)
+            {
+                num -= Player.height;
+            }
+            if (Player.runSoundDelay == 0 && Player.velocity.Y == 0f)
+            {
+                SoundEngine.PlaySound(Player.hermesStepSound.Style, Player.position);
+                Player.runSoundDelay = Player.hermesStepSound.IntendedCooldown;
+            }
+            if (Player.wings == 3)
+            {
+                int num2 = Dust.NewDust(new Vector2(Player.position.X - 4f, Player.position.Y + Player.height + num), Player.width + 8, 4, 186, (0f - Player.velocity.X) * 0.5f, Player.velocity.Y * 0.5f, 50, default(Color), 1.5f);
+                Main.dust[num2].velocity *= 0.025f;
+                Main.dust[num2].shader = GameShaders.Armor.GetSecondaryShader(Player.cWings, Player);
+                num2 = Dust.NewDust(new Vector2(Player.position.X - 4f, Player.position.Y + Player.height + num), Player.width + 8, 4, 186, (0f - Player.velocity.X) * 0.5f, Player.velocity.Y * 0.5f, 50, default(Color), 1.5f);
+                Main.dust[num2].velocity *= 0.2f;
+                Main.dust[num2].shader = GameShaders.Armor.GetSecondaryShader(Player.cWings, Player);
+            }
+            else if (Player.sailDash)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    int num3 = Dust.NewDust(new Vector2(Player.position.X - 4f, Player.position.Y), Player.width + 8, Player.height, 253, (0f - Player.velocity.X) * 0.5f, Player.velocity.Y * 0.5f, 100, default(Color), 1.5f);
+                    Main.dust[num3].noGravity = true;
+                    Main.dust[num3].velocity.X = Main.dust[num3].velocity.X * 0.2f;
+                    Main.dust[num3].velocity.Y = Main.dust[num3].velocity.Y * 0.2f;
+                    Main.dust[num3].shader = GameShaders.Armor.GetSecondaryShader(Player.cShoe, Player);
+                    Main.dust[num3].scale += (float)Main.rand.Next(-5, 3) * 0.1f;
+                    Vector2 vector = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
+                    vector.Normalize();
+                    vector *= (float)Main.rand.Next(81) * 0.1f;
+                }
+            }
+            else if (Player.desertDash)
+            {
+                Dust dust = Dust.NewDustDirect(new Vector2(Player.position.X - 4f, Player.position.Y + Player.height + num), Player.width + 8, 4, 32, (0f - Player.velocity.X) * 0.5f, Player.velocity.Y * 0.5f);
+                dust.velocity *= 0.2f;
+                dust.velocity.Y -= Player.gravDir * 2f;
+                dust.shader = GameShaders.Armor.GetSecondaryShader(Player.cShoe, Player);
+            }
+            else if (Player.coldDash)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    int num4 = ((j != 0) ? Dust.NewDust(new Vector2(Player.position.X + (Player.width / 2), Player.position.Y + Player.height + Player.gfxOffY), Player.width / 2, 6, 76, 0f, 0f, 0, default(Color), 1.35f) : Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + (float)Player.height + Player.gfxOffY), Player.width / 2, 6, 76, 0f, 0f, 0, default(Color), 1.35f));
+                    Main.dust[num4].scale *= 1f + (float)Main.rand.Next(20, 40) * 0.01f;
+                    Main.dust[num4].noGravity = true;
+                    Main.dust[num4].noLight = true;
+                    Main.dust[num4].velocity *= 0.001f;
+                    Main.dust[num4].velocity.Y -= 0.003f;
+                    Main.dust[num4].shader = GameShaders.Armor.GetSecondaryShader(Player.cShoe, Player);
+                }
+            }
+            else if (Player.fairyBoots)
+            {
+                int type = Main.rand.NextFromList(new short[6] { 61, 61, 61, 242, 64, 63 });
+                int alpha = 0;
+                for (int k = 1; k < 3; k++)
+                {
+                    float scale = 1.5f;
+                    if (k == 2)
+                    {
+                        scale = 1f;
+                    }
+                    int num5 = Dust.NewDust(new Vector2(Player.position.X - 4f, Player.position.Y + (float)Player.height + (float)num), Player.width + 8, 4, type, (0f - Player.velocity.X) * 0.5f, Player.velocity.Y * 0.5f, alpha, default(Color), scale);
+                    Main.dust[num5].velocity *= 1.5f;
+                    if (k == 2)
+                    {
+                        Main.dust[num5].position += Main.dust[num5].velocity;
+                    }
+                    Main.dust[num5].noGravity = true;
+                    Main.dust[num5].noLightEmittence = true;
+                    Main.dust[num5].shader = GameShaders.Armor.GetSecondaryShader(Player.cShoe, Player);
+                }
+            }
+            else
+            {
+                int num7 = Dust.NewDust(new Vector2(Player.position.X - 4f, Player.position.Y + (float)Player.height + (float)num), Player.width + 8, 4, 16, (0f - Player.velocity.X) * 0.5f, Player.velocity.Y * 0.5f, 50, default(Color), 1.5f);
+                Main.dust[num7].velocity.X = Main.dust[num7].velocity.X * 0.2f;
+                Main.dust[num7].velocity.Y = Main.dust[num7].velocity.Y * 0.2f;
+                Main.dust[num7].shader = GameShaders.Armor.GetSecondaryShader(Player.cShoe, Player);
+            }
+        }
+        public override void PostUpdateEquips()
         {    
             if (TRAEwaterwalk)
             {
                 Player.waterWalk = true;
                 Player.waterWalk2 = true;
-            }       
-        Player.jumpSpeedBoost += 1f;
+            }
+            Player.jumpSpeedBoost += 1f;
             Player.moveSpeed *= 1.33f;
             if (Player.isPerformingJump_Sandstorm)
             {
                 Player.moveSpeed *= 0.75f;
+            }
+            if (Player.accRunSpeed >= 4.8f)
+            {
+                if (Player.controlLeft && Player.velocity.X <= 0f - Player.accRunSpeed && Player.dashDelay >= 0)
+                {
+                    if (Player.velocity.X < 0 - Player.accRunSpeed && Player.velocity.Y == 0f && !Player.mount.Active)
+                    {
+                        SpawnFastRunParticles();
+                    }
+                }
+                else if (Player.controlRight && Player.velocity.X >= Player.accRunSpeed && Player.dashDelay >= 0)
+                {
+                    if (Player.mount.Active && Player.mount.Cart)
+                    {
+                        if (Player.velocity.X > 0f)
+                        {
+                            Player.direction = -1;
+                        }
+                    }
+                    if (Player.velocity.X > Player.accRunSpeed && Player.velocity.Y == 0f && !Player.mount.Active)
+                    {
+                        SpawnFastRunParticles();
+                    }
+                }
             }
         }
     }
@@ -74,6 +188,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.AmphibianBoots:
                     player.frogLegJumpBoost = false;
                     player.extraFall += 15;
+                    
                     player.jumpSpeedBoost += 1.4f;
                     if (player.velocity.Y == 0)
                     {

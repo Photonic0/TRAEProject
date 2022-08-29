@@ -29,7 +29,10 @@ namespace TRAEProject.NewContent.Items.Accesories.SandstormBoots
         {
             player.accRunSpeed = 4.8f;
 			player.moveSpeed += 0.25f; 
-            player.desertBoots = false; 
+            player.desertBoots = false;
+            player.sailDash = false;
+            player.coldDash = false;
+            player.desertDash = true;
             player.GetModPlayer<AccesoryEffects>().sandRunning = true;
             player.hasJumpOption_Sandstorm = true;
         }

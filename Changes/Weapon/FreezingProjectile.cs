@@ -23,11 +23,11 @@ namespace TRAEProject.Changes.Projectiles
                     duration += 30;
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, duration);
             }
-            if (projectile.type == ProjectileType<FrozenGelP>() && Main.rand.Next(10) == 0)
+            if (projectile.type == ProjectileType<FrozenGelP>() && Main.rand.NextBool(10))
             {
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, 45);
             }
-            if (projectile.type == ProjectileType<AbsoluteZeroP>() && Main.rand.Next(5) == 0)
+            if (projectile.type == ProjectileType<AbsoluteZeroP>() && Main.rand.NextBool(5))
             {
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, 45);
             }
@@ -35,7 +35,6 @@ namespace TRAEProject.Changes.Projectiles
             {
 
                 case ProjectileID.FrostBoltSword:
-                    target.GetGlobalNPC<Freeze>().FreezeMe(target, 120);
                     duration = Main.rand.Next(80, 120);
                     target.GetGlobalNPC<Freeze>().FreezeMe(target, duration); 
                     break;
@@ -48,13 +47,13 @@ namespace TRAEProject.Changes.Projectiles
                     target.GetGlobalNPC<Freeze>().FreezeMe(target, duration);
                     break;
                 case ProjectileID.IceBoomerang:
-                    if (Main.rand.Next(3) == 0)
+                    if (Main.rand.NextBool(3))
                     {
                         target.GetGlobalNPC<Freeze>().FreezeMe(target, 75);
                     }
                     break;
                 case ProjectileID.FrostBoltStaff:
-                    if (Main.rand.Next(3) == 0)
+                    if (Main.rand.NextBool(3))
                     {
                         target.GetGlobalNPC<Freeze>().FreezeMe(target, 90);
                     }

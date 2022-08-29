@@ -167,15 +167,16 @@ namespace TRAEProject.Changes.Weapon.Melee
                     FetidHeal = true;
                     item.useTurn = false;
                     item.shoot = ProjectileType<Blank>();
-                    item.damage = 60;
-                    item.useTime = 12;
-                    item.useAnimation = 12;
+                    item.damage = 45;
+                    item.useTime = 8;
+                    item.useAnimation = 8;
                     break;
                 case ItemID.PsychoKnife:
                     FetidHeal = true;
+                    item.damage = 80; // down from 85
                     item.shoot = ProjectileType<Blank>();
-                    item.useTime = 12;
-                    item.useAnimation = 12;
+                    item.useTime = 8;
+                    item.useAnimation = 8;
                     break;
                 case ItemID.ChristmasTreeSword: 
                     item.useTime = 29;
@@ -245,9 +246,9 @@ namespace TRAEProject.Changes.Weapon.Melee
         }
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            if (FetidHeal && player.GetModPlayer<OnHitItems>().BaghnakhHeal <= player.GetModPlayer<OnHitItems>().LastHitDamage)
+            if (FetidHeal && player.GetModPlayer<OnHitItems>().BaghnakhHeal <= (int)(player.GetModPlayer<OnHitItems>().LastHitDamage * 0.5))
             {
-                float healAmount = (float)(damage * 0.1f);
+                float healAmount = (float)(damage * 0.05f);
                 player.GetModPlayer<OnHitItems>().BaghnakhHeal += (int)healAmount;
                 player.HealEffect((int)healAmount, true);
                 player.statLife += (int)healAmount;

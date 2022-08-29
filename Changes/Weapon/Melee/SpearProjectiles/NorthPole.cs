@@ -29,7 +29,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             for(int i =0; i < 5; i++)
             {
                 float rot = (float)Math.PI * (i / 4f) - (float)Math.PI / 2f + direction;
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), center, TRAEMethods.PolarVector(10, rot), ProjectileType<NorthStar>(), (int)(Projectile.damage * 0.25f), 0f, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), center, TRAEMethods.PolarVector(10, rot), ProjectileType<NorthStar>(), (int)(Projectile.damage * 0.2f), 0f, Projectile.owner);
             }
         }
     }
@@ -40,7 +40,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             spearLength = 164f;
             holdAt = 92f;
             floatTime = 24;
-            Projectile.penetrate = -1; DustOnDeath = DustID.NorthPole;
+            Projectile.penetrate = 5; DustOnDeath = DustID.NorthPole;
 
         }
         float counter = 0;

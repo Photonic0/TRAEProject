@@ -69,22 +69,22 @@ namespace TRAEProject.Changes
                     item.value = 100000;
                     return;
                 case ItemID.Amethyst:
-                    item.value = Item.sellPrice(silver: 40);
+                    item.value = Item.sellPrice(silver: 20);
                     return;
                 case ItemID.Topaz:
-                    item.value = Item.sellPrice(silver: 50);
+                    item.value = Item.sellPrice(silver: 30);
                     return;
                 case ItemID.Sapphire:
-                    item.value = Item.sellPrice(silver: 60);
+                    item.value = Item.sellPrice(silver: 40);
                     return;
                 case ItemID.Emerald:
-                    item.value = Item.sellPrice(silver: 70);
+                    item.value = Item.sellPrice(silver: 50);
                     return;
                 case ItemID.Ruby:
-                    item.value = Item.sellPrice(silver: 80);
+                    item.value = Item.sellPrice(silver: 60);
                     return;
                 case ItemID.Amber:
-                    item.value = Item.sellPrice(silver: 90);
+                    item.value = Item.sellPrice(silver: 70);
                     return;
                 case ItemID.Diamond:
                     item.value = Item.sellPrice(gold: 1);
@@ -133,73 +133,63 @@ namespace TRAEProject.Changes
             }
             return base.CanUseItem(item, player);
         }
-        
+
         public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
         {
             if (player.inferno)
             {
-                Lighting.AddLight((int)(target.Center.X / 16f), (int)(target.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
-                int OnFireID = 24;
-                float range = 100f;
-                int RingDamage = damage / 10;
-                if (RingDamage < 1)
+                if (player.inferno)
                 {
-                    RingDamage = 1;
-                }
-                Vector2 spinningpoint1 = ((float)Main.rand.NextDouble() * 6.283185f).ToRotationVector2();
-                Vector2 spinningpoint2 = spinningpoint1;
-                float RandomNumberBetweenSixAndTen = Main.rand.Next(3, 5) * 2;
-                int Twenty = 20;
-                float OneOrMinusOne = Main.rand.Next(2) == 0 ? 1f : -1f; // one in three chance of it being 1
-                bool flag = true;
-                for (int i = 0; i < Twenty * RandomNumberBetweenSixAndTen; ++i) // makes 120 or 240 dusts total
-                {
-                    if (i % Twenty == 0)
+                    Lighting.AddLight((int)(target.Center.X / 16f), (int)(target.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
+                    int OnFireID = 24;
+                    float range = 100f;
+                    int RingDamage = damage / 10;
+                    if (RingDamage < 1)
                     {
-                        spinningpoint2 = spinningpoint2.RotatedBy(OneOrMinusOne * (6.28318548202515 / RandomNumberBetweenSixAndTen), default);
-                        spinningpoint1 = spinningpoint2;
-                        flag = !flag;
+                        RingDamage = 1;
                     }
-                    else
+                    int dustsToMake = 10 + damage / 10;
+                    for (int i = 0; i < dustsToMake; i++)
                     {
-                        float num4 = 6.283185f / (Twenty * RandomNumberBetweenSixAndTen);
-                        spinningpoint1 = spinningpoint1.RotatedBy(num4 * OneOrMinusOne * 3.0, default);
-                    }
-                    float num5 = MathHelper.Lerp(7.5f, 60f, i % Twenty / Twenty);
-                    int index2 = Dust.NewDust(new Vector2(target.Center.X, target.Center.Y), 6, 6, 127, 0.0f, 0.0f, 100, default, 3f);
-                    Dust dust1 = Main.dust[index2];
-                    dust1.velocity = Vector2.Multiply(dust1.velocity, 0.1f);
-                    Dust dust2 = Main.dust[index2];
-                    dust2.velocity = Vector2.Add(dust2.velocity, Vector2.Multiply(spinningpoint1, num5));
-                    if (flag)
-                        Main.dust[index2].scale = 0.9f;
-                    Main.dust[index2].noGravity = true;
-                }
-                int NPCLimit = 0;
-                for (int k = 0; k < 200; k++)
-                {
-                    NPC nPC = Main.npc[k];
-                    if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(target.Center, nPC.Center) <= range)
-                    {
-                        ++NPCLimit;
-                        if (NPCLimit < 5)
+                        float radius = range / 62.5f;
+                        // Why 62.5f and not 41.67?
+                        // This is 150% of 41.67, because below the extra dusts get increased distance, with a max of 50% more.
+                        // Therefore, the circle of flames more or less accurately represents the radius of the fire ring.
+                        Vector2 speed = Main.rand.NextVector2CircularEdge(radius, radius);
+                        Dust d = Dust.NewDustPerfect(target.Center, DustID.Torch, speed * 5, Scale: 3f);
+                        if (Main.rand.NextBool(3))
                         {
-                            float finalDefense = nPC.defense - player.GetArmorPenetration(DamageClass.Generic);
-                            nPC.ichor = false;
-                            nPC.betsysCurse = false;
-                            if (finalDefense < 0)
+                            d.scale *= Main.rand.NextFloat(1.25f, 1.5f);
+                            d.velocity *= Main.rand.NextFloat(1.25f, 1.5f);
+                        }
+                        d.noGravity = true;
+                    }
+                    int NPCLimit = 0;
+                    for (int k = 0; k < 200; k++)
+                    {
+                        NPC nPC = Main.npc[k];
+                        if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(target.Center, nPC.Center) <= range)
+                        {
+                            ++NPCLimit;
+                            if (NPCLimit < 3)
                             {
-                                finalDefense = 0;
-                            }
-                            if (finalDefense > 100)
-                            {
-                                finalDefense = 100;
-                            }
-                            RingDamage += (int)finalDefense / 2;
-                            player.ApplyDamageToNPC(nPC, RingDamage, 0f, 0, crit: false);
-                            if (nPC.FindBuffIndex(OnFireID) == -1)
-                            {
-                                nPC.AddBuff(OnFireID, 120);
+                                float finalDefense = nPC.defense - player.GetArmorPenetration(DamageClass.Generic);
+                                nPC.ichor = false;
+                                nPC.betsysCurse = false;
+                                if (finalDefense < 0)
+                                {
+                                    finalDefense = 0;
+                                }
+                                if (finalDefense > 100)
+                                {
+                                    finalDefense = 100;
+                                }
+                                RingDamage += (int)finalDefense / 2;
+                                player.ApplyDamageToNPC(nPC, RingDamage, 0f, 0, crit: false);
+                                if (nPC.FindBuffIndex(OnFireID) == -1)
+                                {
+                                    nPC.AddBuff(OnFireID, 120);
+                                }
                             }
                         }
                     }
@@ -300,7 +290,16 @@ namespace TRAEProject.Changes
                             line.Text = "Melee attacks confuse enemies and increase health regeneration";
                         }
                     }
-                    break;              
+                    break;
+                case ItemID.StarinaBottle:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "Increases maximum mana by 20 when near it";
+                        }
+                    }
+                    break;
             }
         }
     }

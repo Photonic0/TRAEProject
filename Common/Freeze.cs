@@ -43,6 +43,8 @@ case NPCID.ScutlixRider:
                 case NPCID.MartianSaucerTurret:
                 case NPCID.MartianSaucerCore:
                 case NPCID.MartianSaucer:
+                case NPCID.SolarSroller:
+
                     freezeImmune = true;
                     return;
 

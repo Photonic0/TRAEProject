@@ -15,8 +15,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Solar Arrow");
-            Tooltip.SetDefault("5% chance to incinerate the enemy");
+            DisplayName.SetDefault("Sun Arrow");
+            Tooltip.SetDefault("5% chance to deal greatly increased damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -90,7 +90,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                     dust.noGravity = true;
                 }
                 SoundEngine.PlaySound(SoundID.Item45, Projectile.Center);
-                target.AddBuff(BuffID.Daybreak, 240);
+                TRAEDebuff.Apply<HeavyBurn>(target, 240, 1);
             }
         }
 

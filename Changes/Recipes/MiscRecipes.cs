@@ -19,6 +19,8 @@ namespace TRAEProject.Changes.Recipes
             BloodyTear2.Register(); 
             Recipe Sashimi = Recipe.Create(ItemID.Sashimi).AddIngredient(ItemID.NeonTetra, 1).AddTile(TileID.CookingPots);
             Sashimi.Register();
+            Recipe Leather = Recipe.Create(ItemID.Leather).AddIngredient(ItemID.Vertebrae, 5).AddTile(TileID.Tables);
+            Leather.Register();
         }
         public static void Modify(Recipe recipe)
         {
@@ -31,6 +33,26 @@ namespace TRAEProject.Changes.Recipes
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.Waterleaf, 1);
                 recipe.AddIngredient(ItemID.PrincessFish, 1);
+            }
+            if (recipe.HasResult(ItemID.WormFood))
+            {
+                recipe.TryGetIngredient(ItemID.RottenChunk, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.TryGetIngredient(ItemID.VilePowder, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.RottenChunk, 10);
+                recipe.AddIngredient(ItemID.WormTooth, 10);
+                recipe.AddIngredient(ItemID.VilePowder, 20);
+            }
+            if (recipe.HasResult(ItemID.BloodySpine))
+            {
+                recipe.TryGetIngredient(ItemID.Vertebrae, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.TryGetIngredient(ItemID.ViciousPowder, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.Vertebrae, 10);
+                recipe.AddIngredient(ItemID.WormTooth, 10);
+                recipe.AddIngredient(ItemID.ViciousPowder, 20);
             }
             if (recipe.HasResult(ItemID.SeafoodDinner))
             {

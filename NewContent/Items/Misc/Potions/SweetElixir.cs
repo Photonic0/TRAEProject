@@ -47,7 +47,7 @@ namespace TRAEProject.NewContent.Items.Misc.Potions
         }
         public override void AddRecipes()
         {
-            CreateRecipe()
+            CreateRecipe(2)
                 .AddIngredient(ItemID.GreaterHealingPotion, 1)
                 .AddIngredient(ItemID.Honeyfin, 1)
                 .AddTile(TileID.AlchemyTable)

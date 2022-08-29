@@ -85,7 +85,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
-            Projectile.penetrate = 40;
+            Projectile.penetrate = -1;
             Projectile.timeLeft = 1800;
             Projectile.tileCollide = false;
         }
@@ -153,7 +153,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             Projectile.idStaticNPCHitCooldown = 10; 
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.ShadowFlame;
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
-            Projectile.penetrate = 40;
+            Projectile.penetrate = -1;
             Projectile.timeLeft = 1800;
             Projectile.tileCollide = false;
         }
@@ -204,7 +204,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             Projectile.idStaticNPCHitCooldown = 10;
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.WitheredArmor;
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
-                Projectile.penetrate = 40;
+                Projectile.penetrate = -1;
             Projectile.timeLeft = 1800;
             Projectile.tileCollide = false;
         }

@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Crystal Gel");
-            Tooltip.SetDefault("Splits 8 times and ignores 25 defense");
+            Tooltip.SetDefault("Splits and ignores 25 defense");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -30,7 +30,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Item.consumable = true;
             Item.shoot = ProjectileType<CrystalGelP>();
             Item.ammo = AmmoID.Gel;
-            Item.maxStack = 3000;
+            Item.maxStack = 9999;
         }
 
         public override void AddRecipes()

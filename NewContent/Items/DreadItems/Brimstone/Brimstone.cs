@@ -25,12 +25,12 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
         }
         public override void SetDefaults()
 		{
-			Item.damage = 90;
+			Item.damage = 100;
 			Item.autoReuse = true;
 			Item.noMelee = true;
 			Item.DamageType = DamageClass.Magic;
 			Item.channel = true; //Channel so that you can hold the weapon [Important]
-			Item.mana = 20;
+			Item.mana = 17;
 			Item.rare = ItemRarityID.LightPurple;
 			Item.width = 28;
 			Item.height = 30;
@@ -91,7 +91,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 			Projectile.width = 10;
 			Projectile.height = 10;
 			Projectile.friendly = true;
-			Projectile.penetrate = 20;
+			Projectile.penetrate = -1;
 			Projectile.tileCollide = false;
 			Projectile.DamageType = DamageClass.Magic;
 			Projectile.hide = true;
@@ -99,7 +99,10 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 		}
 
         public const int chargeTime = 30;
-
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+			time += 2;
+        }
         public override bool PreDraw(ref Color lightColor)
 
 		{
@@ -209,7 +212,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 				if (Charge >= MAX_CHARGE)
             {
 				time++;
-				if (time == 90)
+				if (time >= 90)
                 {
 					Projectile.Kill();
                 }
@@ -272,48 +275,48 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 			}
 
 		bool dontDoItAgain = false;
-			private void ChargeLaser(Player player)
+		private void ChargeLaser(Player player)
+		{
+			// Kill the projectile if the player stops channeling
+			if (!player.channel)
 			{
-				// Kill the projectile if the player stops channeling
-				if (!player.channel)
+				Projectile.Kill();
+			}
+			else
+			{
+				// Do we still have enough mana? If not, we kill the projectile because we cannot use it anymore
+				if (Main.time % 10 < 1 && !player.CheckMana(player.inventory[player.selectedItem].mana, true))
 				{
-					Projectile.Kill();
+					time += 5;
 				}
-				else
+				Vector2 offset = Projectile.velocity;
+				offset *= MOVE_DISTANCE - 20;
+				Vector2 pos = player.Center + offset - new Vector2(10, 10);
+				if (Charge < MAX_CHARGE)
 				{
-					// Do we still have enough mana? If not, we kill the projectile because we cannot use it anymore
-					if (Main.time % 10 < 1 && !player.CheckMana(player.inventory[player.selectedItem].mana, true))
-					{
-						Projectile.Kill();
-					}
-					Vector2 offset = Projectile.velocity;
-					offset *= MOVE_DISTANCE - 20;
-					Vector2 pos = player.Center + offset - new Vector2(10, 10);
-					if (Charge < MAX_CHARGE)
-					{
-						Charge++;
-					}
-				    if (Charge == MAX_CHARGE && !dontDoItAgain)
+					Charge++;
+				}
+				if (Charge == MAX_CHARGE && !dontDoItAgain)
 				{
 					dontDoItAgain = true;
 					SoundEngine.PlaySound(SoundID.NPCDeath13, Projectile.Center);
 				}
 				int chargeFact = (int)(Charge / 20f);
-					Vector2 dustVelocity = Vector2.UnitX * 18f;
-					dustVelocity = dustVelocity.RotatedBy(Projectile.rotation - 1.57f);
-					Vector2 spawnPos = Projectile.Center + dustVelocity;
-					for (int k = 0; k < chargeFact + 1; k++)
-					{
-						Vector2 spawn = spawnPos + ((float)Main.rand.NextDouble() * 6.28f).ToRotationVector2() * (12f - chargeFact * 2);
-						Dust dust = Main.dust[Dust.NewDust(pos, 20, 20, DustID.Blood, Projectile.velocity.X / 2f, Projectile.velocity.Y / 2f)];
-						dust.velocity = Vector2.Normalize(spawnPos - spawn) * 1.5f * (10f - chargeFact * 2f) / 10f;
-						dust.noGravity = true;
-						dust.scale = Main.rand.Next(10, 20) * 0.05f;
-					}
+				Vector2 dustVelocity = Vector2.UnitX * 18f;
+				dustVelocity = dustVelocity.RotatedBy(Projectile.rotation - 1.57f);
+				Vector2 spawnPos = Projectile.Center + dustVelocity;
+				for (int k = 0; k < chargeFact + 1; k++)
+				{
+					Vector2 spawn = spawnPos + ((float)Main.rand.NextDouble() * 6.28f).ToRotationVector2() * (12f - chargeFact * 2);
+					Dust dust = Main.dust[Dust.NewDust(pos, 20, 20, DustID.Blood, Projectile.velocity.X / 2f, Projectile.velocity.Y / 2f)];
+					dust.velocity = Vector2.Normalize(spawnPos - spawn) * 1.5f * (10f - chargeFact * 2f) / 10f;
+					dust.noGravity = true;
+					dust.scale = Main.rand.Next(10, 20) * 0.05f;
 				}
 			}
+		}
 
-			private void UpdatePlayer(Player player)
+		private void UpdatePlayer(Player player)
 			{
 				// Multiplayer support here, only run this code if the client running it is the owner of the projectile
 				if (Projectile.owner == Main.myPlayer)

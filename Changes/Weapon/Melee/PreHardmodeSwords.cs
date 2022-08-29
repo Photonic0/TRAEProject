@@ -1,15 +1,13 @@
-
-using TRAEProject.NewContent.Buffs;
-using TRAEProject.NewContent.Projectiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
-using Terraria.DataStructures;
 using TRAEProject.Common;
+using TRAEProject.NewContent.Projectiles;
 using TRAEProject.NewContent.TRAEDebuffs;
+using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.Weapon.Melee
 {
@@ -140,7 +138,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.BoneSword:
                     item.damage = 24;
                     item.scale = 1.33f;
-                    item.value = 50000;
+                    item.value = Item.buyPrice(gold: 5);
                     break;
                 //phaseblades
                 case ItemID.PurplePhaseblade:
@@ -289,16 +287,6 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
         }
         /// SHOOT STUFF
-        int swingcount = 0;
-        public override void UseAnimation(Item item, Player player)
-        {
-            if (item.type == ItemID.LucyTheAxe && player.altFunctionUse != 2)
-            {
-                swingcount++;
-            }
-            return;
-
-        }
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
@@ -362,37 +350,39 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
             return base.AltFunctionUse(item, player);
         }
+        int hitcount = 0;
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.LucyTheAxe)
             {
-                if (player.ownedProjectileCounts[item.shoot] > 0)
+
+                if (player.ownedProjectileCounts[ProjectileType<ThrownLucy>()] > 0)
+                {
+                    item.noMelee = false;
+                    item.noUseGraphic = false;
                     return false;
+                }
                 if (player.altFunctionUse == 2)
                 {
                     item.shoot = ProjectileType<ThrownLucy>();
                     item.noMelee = true;
+                    item.DamageType = DamageClass.MeleeNoSpeed;
+                    item.noMelee = true;
                     item.noUseGraphic = true; 
-                    item.autoReuse = true; 
-                    item.useTime = 24; // up from 17, slows down axe speed tho
-                    item.useAnimation = 24;
-                    swingcount = 0;
+                    hitcount = 0;
                 }
                 if (player.altFunctionUse != 2)
                 {
                     item.shoot = ProjectileType<Blank>(); 
-                    if (swingcount > 0)
-                    {
-                        item.shoot = 0;
-                        item.useTime = 17; // give her axe speed back
-                    }
+                    item.DamageType = DamageClass.Melee;
                     item.noMelee = false;
                     item.noUseGraphic = false; 
-                    item.autoReuse = true;
 
                 }
             }
             return base.CanUseItem(item, player);
         }
+      
     }
+    
 }

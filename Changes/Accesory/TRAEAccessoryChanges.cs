@@ -30,15 +30,6 @@ namespace TRAEProject.Changes.Accesory
         {
             switch (item.type)
             {
-                case ItemID.FeralClaws:
-                case ItemID.PowerGlove:
-                case ItemID.MechanicalGlove:
-                case ItemID.BerserkerGlove:
-                    player.GetModPlayer<MeleeStats>().TRAEAutoswing = true;
-                    break;
-            }
-            switch (item.type)
-            {
                 case ItemID.FastClock:
                     Main.time += 4;
                     player.buffImmune[BuffID.Slow] = false;
@@ -865,11 +856,11 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.Text = "Quiver in fear!";
+                            line.Text = "20% increased arrow critical strike damage";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip3")
                         {
-                            line.Text = "";
+                            line.Text = "Quiver in fear!";
                         }
                     }
                     break;

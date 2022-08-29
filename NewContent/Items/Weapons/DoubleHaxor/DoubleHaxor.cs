@@ -30,14 +30,14 @@ namespace TRAEProject.NewContent.Items.Weapons.DoubleHaxor
             Item.width = 64;
             Item.height = 42;
             Item.damage = 80;
-            Item.useTime = Item.useAnimation = 14;
+            Item.useTime = Item.useAnimation = 17;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 17);
             Item.DamageType = DamageClass.MeleeNoSpeed;
             Item.shoot = ProjectileType<HaxorSmall>();
             Item.knockBack = 4f;
-            Item.shootSpeed = 8;
+            Item.shootSpeed = 9f;
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.useStyle = 1;
@@ -216,7 +216,7 @@ namespace TRAEProject.NewContent.Items.Weapons.DoubleHaxor
 			}
 			else
 			{
-				Projectile.rotation += 0.4f * (float)Projectile.direction;
+				Projectile.rotation += 0.1f * (float)Projectile.direction;
 			}		
 		}
     }

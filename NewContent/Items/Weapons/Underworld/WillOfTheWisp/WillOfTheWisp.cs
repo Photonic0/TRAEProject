@@ -21,7 +21,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
         {
             Item.width = 42;
             Item.height = 42;
-            Item.damage = 24;
+            Item.damage = 25;
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.mana = 150;
@@ -83,7 +83,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
                 Projectile.ai[0] = 0;
                 int[] array = new int[10];
                 int num6 = 0;
-                int Range = 200;
+                int Range = 250;
                 int num8 = 20;
                 for (int j = 0; j < 200; ++j)
                 {

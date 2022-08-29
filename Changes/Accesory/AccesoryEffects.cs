@@ -16,6 +16,7 @@ namespace TRAEProject
     {
 
         public float meleeCritDamage = 0f;
+        public float arrowCrit = 0f;
         public bool wErewolf = false;
         public bool icceleration = false;
         public bool waterRunning = false;
@@ -26,6 +27,7 @@ namespace TRAEProject
         public override void ResetEffects()
         {
             meleeCritDamage = 0f;
+            arrowCrit = 0f;
             wErewolf = false;
             icceleration = false;
             waterRunning = false;
@@ -37,6 +39,7 @@ namespace TRAEProject
         public override void UpdateDead()
         {
             meleeCritDamage = 0f;
+            arrowCrit = 0f;
             wErewolf = false;
             icceleration = false;
             waterRunning = false;
@@ -216,6 +219,11 @@ namespace TRAEProject
         {
             if (crit && proj.CountsAsClass(DamageClass.Melee))
                 damage += (int)(damage * meleeCritDamage);
+            if (crit && proj.CountsAsClass(DamageClass.Ranged))
+            {
+                if (proj.arrow)
+                    damage += (int)(damage * arrowCrit);
+            }
         }
         void Block()
         {

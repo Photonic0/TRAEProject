@@ -31,7 +31,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Item.consumable = true;
             Item.shoot = ProjectileType<BloodyGelP>();
             Item.ammo = AmmoID.Gel;
-            Item.maxStack = 3000;
+            Item.maxStack = 9999;
         }
 
         public override void AddRecipes()
@@ -53,6 +53,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         public override void SetDefaults()
         {
             Projectile.aiStyle = 1;
+            Projectile.width = Projectile.height = 10;
             Projectile.timeLeft = 60;
             Projectile.penetrate = 3;
             Projectile.extraUpdates = 2;

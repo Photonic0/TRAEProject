@@ -15,11 +15,21 @@ namespace TRAEProject.Changes.Accesory
     {
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            if(item.type == ItemID.TitanGlove || item.type == ItemID.PowerGlove || item.type == ItemID.FireGauntlet)
+            switch (item.type)
+            {
+                case ItemID.FeralClaws:
+                case ItemID.PowerGlove:
+                case ItemID.MechanicalGlove:
+                case ItemID.BerserkerGlove:
+                case ItemID.TitanGlove:
+                case ItemID.FireGauntlet:
+                    player.GetModPlayer<MeleeStats>().TRAEAutoswing = true; // is this even needed anymore
+                    break;
+            }
+            if (item.type == ItemID.TitanGlove || item.type == ItemID.PowerGlove || item.type == ItemID.FireGauntlet)
             {
                 player.kbGlove = false;
                 player.meleeScaleGlove = false;
-                player.autoReuseGlove = true;
                 player.GetModPlayer<MeleeStats>().weaponSize += 0.25f;
                 player.GetModPlayer<MeleeStats>().meleeVelocity += 0.5f;
             }
@@ -27,7 +37,6 @@ namespace TRAEProject.Changes.Accesory
             {
                 player.GetDamage<MeleeDamageClass>() -= 0.12f;
                 player.GetAttackSpeed(DamageClass.Melee) -= 0.12f;           
-				player.autoReuseGlove = true;
             }
         }
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

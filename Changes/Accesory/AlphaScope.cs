@@ -23,6 +23,7 @@ namespace TRAEProject.Changes.Accesory
                 player.magicQuiver = false; 
                 player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
+                player.GetModPlayer<AccesoryEffects>().arrowCrit += 0.2f;
             }
             if (item.type == ItemID.StalkersQuiver)
             {
@@ -98,23 +99,26 @@ namespace TRAEProject.Changes.Accesory
         public override void AI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
-            if (projectile.arrow && smartbounces < player.GetModPlayer<RangedStats>().Magicquiver + player.GetModPlayer<RangedStats>().ReconScope && !hasBounced)
+            if (!projectile.GetGlobalProjectile<NewRockets>().IsARocket)
             {
-                smartbounces += player.GetModPlayer<RangedStats>().Magicquiver;
-                smartbounces += player.GetModPlayer<RangedStats>().ReconScope;
-            }
-            if (projectile.CountsAsClass(DamageClass.Ranged) && AffectedByReconScope && smartbounces < player.GetModPlayer<RangedStats>().ReconScope && !hasBounced)
-            {
-                smartbounces += player.GetModPlayer<RangedStats>().ReconScope;
-            }
-            if (projectile.CountsAsClass(DamageClass.Ranged) && AffectedByAlphaScope && smartbounces < player.GetModPlayer<RangedStats>().AlphaScope && !hasBounced)
-            {
-                smartbounces += player.GetModPlayer<RangedStats>().AlphaScope;
+                if (projectile.arrow && smartbounces < player.GetModPlayer<RangedStats>().Magicquiver + player.GetModPlayer<RangedStats>().ReconScope && !hasBounced)
+                {
+                    smartbounces += player.GetModPlayer<RangedStats>().Magicquiver;
+                    smartbounces += player.GetModPlayer<RangedStats>().ReconScope;
+                }
+                if (projectile.CountsAsClass(DamageClass.Ranged) && AffectedByReconScope && smartbounces < player.GetModPlayer<RangedStats>().ReconScope && !hasBounced)
+                {
+                    smartbounces += player.GetModPlayer<RangedStats>().ReconScope;
+                }
+                if (projectile.CountsAsClass(DamageClass.Ranged) && AffectedByAlphaScope && smartbounces < player.GetModPlayer<RangedStats>().AlphaScope && !hasBounced)
+                {
+                    smartbounces += player.GetModPlayer<RangedStats>().AlphaScope;
+                }
             }
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            if (smartbounces > 0 && projectile.penetrate > 1 && !projectile.GetGlobalProjectile<ProjectileStats>().explodes)
+            if (smartbounces > 0 && projectile.penetrate > 1)
             {
                 QuiverBounce(projectile);
             }
@@ -122,7 +126,7 @@ namespace TRAEProject.Changes.Accesory
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             Player player = Main.player[projectile.owner];
-            if (smartbounces > 0 && !projectile.GetGlobalProjectile<ProjectileStats>().explodes)
+            if (smartbounces > 0)
             {                
                 int[] array = new int[10];
                 int num6 = 0;

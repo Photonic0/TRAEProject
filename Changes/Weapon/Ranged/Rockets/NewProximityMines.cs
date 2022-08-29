@@ -62,8 +62,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 4;
             Projectile.timeLeft = 3600; 
-            Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 10;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown= 10;
             Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
@@ -89,6 +89,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         {
             Projectile.CloneDefaults(ProjectileType<Mine>());
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
         }
@@ -117,9 +118,10 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         {
             Projectile.CloneDefaults(ProjectileType<Mine>());
             AIType = ProjectileType<Mine>();
-            Projectile.penetrate = 6;
+            Projectile.penetrate = 5;
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
@@ -143,7 +145,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.CloneDefaults(ProjectileType<Mine>());
             AIType = ProjectileType<Mine>();
             Projectile.penetrate = 3;
-            Projectile.extraUpdates = 1;
+            Projectile.extraUpdates = 1; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
@@ -170,8 +173,9 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.CloneDefaults(ProjectileType<Mine>());
             AIType = ProjectileType<Mine>();
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
-            Projectile.penetrate = 8;
+            Projectile.penetrate = 5;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true; Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
@@ -195,7 +199,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.CloneDefaults(ProjectileType<Mine>());
             AIType = ProjectileType<Mine>();
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
-            Projectile.penetrate = 8; Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
+            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
@@ -223,8 +228,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         {
             Projectile.CloneDefaults(ProjectileType<Mine>());
             AIType = ProjectileType<Mine>();
-            Projectile.penetrate = 5; Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 10; Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
+            Projectile.penetrate = 3; Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
 
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
@@ -251,7 +256,8 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
         {
             Projectile.CloneDefaults(ProjectileType<Mine>());
             AIType = ProjectileType<Mine>();
-            Projectile.penetrate = 5;
+            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+
             Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;

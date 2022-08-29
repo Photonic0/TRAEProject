@@ -268,7 +268,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                                         }
                                         if (npc.soundDelay <= 0)
                                         {
-                                            Terraria.Audio.SoundEngine.PlaySound(SoundID.ForceRoar, npc.Center);
+                                            Terraria.Audio.SoundEngine.PlaySound(SoundID.ForceRoarPitched, npc.Center);
                                             npc.soundDelay = 240;
                                         }
                                         if (npc.localAI[1] > 8f)

@@ -55,7 +55,6 @@ namespace TRAEProject.Changes.Prefixes
 				case ItemID.Flamarang:
 				case ItemID.CombatWrench:
 				case ItemID.BouncingShield:
-				case ItemID.Bananarang:
 				case ItemID.FlyingKnife:
 				case ItemID.LightDisc:
 				case ItemID.PaladinsHammer:

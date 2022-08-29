@@ -19,7 +19,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
         }
         public override void Update(NPC npc)
         {
-            npc.GetGlobalNPC<EnemyRing>().damage = projectile.damage;
+            npc.GetGlobalNPC<EnemyRing>().damage = (int)(projectile.damage * 0.75);
             npc.GetGlobalNPC<EnemyRing>().player = player;
             npc.GetGlobalNPC<EnemyRing>().howManyStacks += 1;
         }

@@ -116,21 +116,21 @@ namespace TRAEProject.Changes.Prefixes
     {
         public override void SetStaticDefaults()
         {
-            SetPrefix( 15, 5, 5, 20, 35);
+            SetPrefix( 15, 5, 5, 20, 20);
         }
     }
     public class Brutal : BoomerangFlailPrefix
     {
         public override void SetStaticDefaults()
         {
-            SetPrefix( 10, 3, 3, 10, 20);
+            SetPrefix( 10, 3, 3, 10, 10);
         }
     }
     public class Kinetic : BoomerangFlailPrefix
     {
         public override void SetStaticDefaults()
         {
-            SetPrefix(5, 0, 0, 50, 50);
+            SetPrefix(5, 0, 0, 35, 35);
         }
     }
     public class Enchanted : BoomerangFlailPrefix
@@ -144,7 +144,7 @@ namespace TRAEProject.Changes.Prefixes
     {
         public override void SetStaticDefaults()
         {
-            SetPrefix(-20, 0, 0, -50, -50);
+            SetPrefix(-20, 0, 0, -25, -25);
         }
     }
     public class Piercing : BoomerangFlailPrefix
@@ -172,7 +172,7 @@ namespace TRAEProject.Changes.Prefixes
     {
         public override void SetStaticDefaults()
         {
-            SetPrefix(0, 0, 0, 50, 0);
+            SetPrefix(0, 0, 0, 35, 0);
         }
     }
 
@@ -236,19 +236,19 @@ namespace TRAEProject.Changes.Prefixes
                         int pre = Player.HeldItem.prefix;
                         if (pre == PrefixType<Kinetic>() || pre == PrefixType<Aerodynamic>())
                         {
-                            Player.GetAttackSpeed(DamageClass.Melee) /= 1.5f;
+                            Player.GetAttackSpeed(DamageClass.Melee) *= 1.35f;
                         }
                         if (pre == PrefixType<Devastating>() || pre == PrefixType<Enchanted>())
                         {
-                            Player.GetAttackSpeed(DamageClass.Melee) /= 1.35f;
+                            Player.GetAttackSpeed(DamageClass.Melee) *= 1.2f;
                         }
                         if (pre == PrefixType<Brutal>())
                         {
-                            Player.GetAttackSpeed(DamageClass.Melee) /= 1.2f;
+                            Player.GetAttackSpeed(DamageClass.Melee) *= 1.1f;
                         }
                         if (pre == PrefixType<Dense>() || pre == PrefixType<Pathetic>())
                         {
-                            Player.GetAttackSpeed(DamageClass.Melee) /= 0.65f;
+                            Player.GetAttackSpeed(DamageClass.Melee) *= 0.65f;
                         }
                         break;
                 }

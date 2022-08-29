@@ -57,7 +57,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             AIType = ProjectileID.Bullet;
             Projectile.CloneDefaults(ProjectileID.Bullet);
             Projectile.GetGlobalProjectile<ScopeAndQuiver>().AffectedByReconScope = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.37f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.33f;
 
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 2;

@@ -43,7 +43,7 @@ namespace TRAEProject.Common
                 case NPCID.MartianSaucerTurret:
                 case NPCID.MartianSaucerCore:
                 case NPCID.MartianSaucer:
-
+                case NPCID.SolarSroller:
                     stunImmune = true;
                     return;
             }

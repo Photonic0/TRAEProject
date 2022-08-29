@@ -74,9 +74,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
             if (Main.myPlayer == Main.player[Projectile.owner].whoAmI && Main.rand.NextBool(2))
             {
-                float num602 = (0f - Projectile.velocity.X) * (float)Main.rand.Next(40, 70) * 0.01f + (float)Main.rand.Next(-20, 21) * 0.4f;
-                float num603 = (0f - Projectile.velocity.Y) * (float)Main.rand.Next(40, 70) * 0.01f + (float)Main.rand.Next(-20, 21) * 0.4f;
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X + num602, Projectile.position.Y + num603, num602, num603, ProjectileID.Bone, (int)((double)Projectile.damage * 0.75), 0f, Projectile.owner);
+                float num602 = (0f - Projectile.velocity.X) * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                float num603 = (0f - Projectile.velocity.Y) * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.4f;
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X + num602, Projectile.position.Y + num603, num602, num603, ProjectileID.Bone, (int)(Projectile.damage * 0.5), 0f, Projectile.owner);
             }
         }
     }

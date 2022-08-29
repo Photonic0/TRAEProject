@@ -74,7 +74,7 @@ Item.maxStack = 30;
                     player.DelBuff(findbuffIndex);
                 
             }
-            player.AddBuff(BuffID.PotionSickness, potionSickness * 6);
+            player.AddBuff(BuffID.PotionSickness, potionSickness * 60);
         }
         public override void AddRecipes()
         {

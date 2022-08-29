@@ -23,6 +23,7 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
             Item.value = Item.sellPrice(0, 0, 0, 0);
             Item.rare = ItemRarityID.Cyan;
             Item.width = 26;
+            Item.vanity = true;
             Item.height = 32;
         }
     }

@@ -21,7 +21,8 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
         {
             Item.value = Item.sellPrice(0, 0, 0, 0);
             Item.rare = ItemRarityID.Red;
-            Item.width = 32;
+            Item.width = 32; 
+            Item.vanity = true;
             Item.height = 32;
         }
     }

@@ -76,7 +76,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 }
                 bool master = Main.masterMode;
                 bool belowHalf = npc.life <= npc.lifeMax / 2;
-        
+				npc.damage = 0;
 
                 bool isCultist = npc.type == NPCID.CultistBoss;
                 bool flag2 = false;

@@ -29,12 +29,12 @@ namespace TRAEProject.Changes.NPCs
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.Player.ZoneJungle)
+            if (spawnInfo.Player.ZoneJungle && spawnInfo.SpawnTileY <= Main.maxTilesY - 200 && spawnInfo.SpawnTileY > Main.rockLayer)
                 pool.Add(NPCID.JungleCreeper, 0.2f);
             if (spawnInfo.Player.ZoneCorrupt)
             {
                 pool.Remove(NPCID.DevourerHead);
-                pool.Add(NPCID.DevourerHead, 0.20f);
+                pool.Add(NPCID.DevourerHead, 0.15f);
             }
     
 

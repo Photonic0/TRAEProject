@@ -27,7 +27,7 @@ namespace TRAEProject.NewContent.Items.Armor.LeatherArmor
         public override void AddRecipes()
         {
             CreateRecipe(1)
-                .AddIngredient(ItemID.Leather, 2)
+                .AddIngredient(ItemID.Leather, 1)
                 .AddIngredient(ItemID.WormTooth, 11)
                 .AddTile(TileID.Anvils)
                 .Register();

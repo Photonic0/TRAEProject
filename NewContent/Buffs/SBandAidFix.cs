@@ -21,9 +21,13 @@ namespace TRAEProject.NewContent.Buffs
         {
             if (npc.HasBuff(BuffType<SBandAidFix>()))
 			{
-			if (npc.lifeRegen < 0)
-            npc.lifeRegen = (int)(npc.lifeRegen * 1.5);
-			}
+                if (npc.lifeRegen < 0)
+                {
+                    npc.lifeRegen = (int)(npc.lifeRegen * 1.5);
+                    damage *= 3;
+                    damage /= 2;
+                }
+            }
         }
     }
     public class BandAid : ModPlayer

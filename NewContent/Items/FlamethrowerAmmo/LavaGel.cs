@@ -30,7 +30,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Item.consumable = true;
             Item.shoot = ProjectileType<LavaGelP>();
             Item.ammo = AmmoID.Gel;
-            Item.maxStack = 3000;
+            Item.maxStack = 9999;
         }
         public override void AddRecipes()
         {

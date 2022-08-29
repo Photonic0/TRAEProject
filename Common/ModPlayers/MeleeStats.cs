@@ -31,7 +31,7 @@ namespace TRAEProject.Common.ModPlayers
         public override void PostUpdateEquips()
         {
             if(TRAEAutoswing)
-            {
+            {            
                 Player.autoReuseGlove = true;
             }
         }

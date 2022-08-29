@@ -45,7 +45,7 @@ namespace TRAEProject.Changes.Accesory
         int gelTime = 0;
         int dustChance = 26;
         int cooldown = 0;
-        int TimeBeforeLosingStack = 30;
+        int TimeBeforeLosingStack = 120;
         int gelStored = 0;
 
         public override void ResetEffects()
@@ -94,7 +94,7 @@ namespace TRAEProject.Changes.Accesory
             if (crit && VolatileGelatinNew && cooldown == 0)
             {
                 cooldown = 15;
-                gelStored += 1 + damage / 100;
+                gelStored += damage / 50;
                 if (gelStored > 25)
                 {
                     gelStored = 25;
@@ -106,7 +106,7 @@ namespace TRAEProject.Changes.Accesory
             if (crit && VolatileGelatinNew && cooldown == 0)
             {
                 cooldown = 15;
-                gelStored += 1 + damage / 100;
+                gelStored += damage / 50;
                 if (gelStored > 25)
                 {
                     gelStored = 25;
@@ -150,7 +150,7 @@ namespace TRAEProject.Changes.Accesory
                     int num854 = Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, velocity, GelID, 50, 0f, Player.whoAmI);
                     Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
-     
+                    projectile2.timeLeft = 40;
                 }
                 gelStored = 0;
             }

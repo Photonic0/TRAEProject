@@ -36,9 +36,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
 
         public override void AddRecipes()
         {
-            CreateRecipe(50).AddIngredient(ItemID.WoodenArrow, 50)
-                .AddIngredient(ItemID.ViciousPowder, 2)
+            CreateRecipe(33).AddIngredient(ItemID.WoodenArrow, 33)
                 .AddIngredient(ItemID.WormTooth, 1)
+                .AddIngredient(ItemID.ViciousPowder, 1)
+
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -72,7 +73,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                 Main.dust[dust].noGravity = true;
                 Main.dust[dust].velocity *= 0.2f;
             }
-            if (Projectile.localAI[0] % 20 == 0)
+            if (Projectile.localAI[0] % 30 == 0)
             {
                 Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0, 0, ProjectileType<BloodyArrowDrop>(), (int)(Projectile.damage * 0.67f), Projectile.knockBack * 0.5f, Projectile.owner);
 

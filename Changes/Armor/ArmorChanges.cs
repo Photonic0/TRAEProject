@@ -33,14 +33,19 @@ namespace ChangesArmor
                     player.moveSpeed += 0.1f;
                     player.GetDamage<SummonDamageClass>() += 0.03f;
                     return;
+                case ItemID.GladiatorHelmet:
+                case ItemID.GladiatorBreastplate:
+                case ItemID.GladiatorLeggings:
+                    player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
+                    return;
+                case ItemID.CrimsonScalemail:
+                    player.lifeRegen += 1;
+                    return;
                 case ItemID.PharaohsMask:
                     player.moveSpeed += 0.05f;
                     return;
                 case ItemID.PharaohsRobe:
-                    player.moveSpeed += 0.10f;
-                    return;
-                case ItemID.CrimsonScalemail:
-                    player.lifeRegen += 1;
+                    player.moveSpeed += 0.05f;
                     return;
                 case ItemID.ShadowHelmet:
                 case ItemID.ShadowScalemail:
@@ -249,54 +254,54 @@ namespace ChangesArmor
         {
             if (armorSet == "WoodSet")
             {
-                player.setBonus = "Reduce damage taken by 5%";
+                player.setBonus = "Reduces damage taken by 5%";
                 player.statDefense -= 1;
             }
             if (armorSet == "CopperSet") 
             {
-                player.setBonus = "Reduce damage taken by 8%";
+                player.setBonus = "Reduces damage taken by 8%";
                 player.endurance += 0.08f;
                 player.statDefense -= 2;
             }
             if (armorSet == "TinSet")
             {
-                player.setBonus = "Reduce damage taken by 9%";
+                player.setBonus = "Reduces damage taken by 9%";
                 player.endurance += 0.09f;
                 player.statDefense -= 2;
             }
             if (armorSet == "IronSet") // Revisit
             {
-                player.setBonus = "Reduce damage taken by 10%";
+                player.setBonus = "Reduces damage taken by 10%";
                 player.endurance += 0.1f;
                 player.statDefense -= 2;
             }
             if (armorSet == "LeadSet")
             {
-                player.setBonus = "Reduce damage taken by 11%";
+                player.setBonus = "Reduces damage taken by 11%";
                 player.endurance += 0.11f;
                 player.statDefense -= 3;
             }
             if (armorSet == "SilverSet") // Revisit
             {
-                player.setBonus = "Reduce damage taken by 12%";
+                player.setBonus = "Reduces damage taken by 12%";
                 player.endurance += 0.12f;
                 player.statDefense -= 3;
             }
             if (armorSet == "TungstenSet")
             {
-                player.setBonus = "Reduce damage taken by 13%";
+                player.setBonus = "Reduces damage taken by 13%";
                 player.endurance += 0.13f;
                 player.statDefense -= 3;
             }
             if (armorSet == "GoldSet") // Revisit
             { 
-                player.setBonus = "Reduce damage taken by 14%";
+                player.setBonus = "Reduces damage taken by 14%";
             player.endurance += 0.14f;
             player.statDefense -= 3;
         }
             if (armorSet == "PlatinumSet")
             {
-                player.setBonus = "Reduce damage taken by 15%";
+                player.setBonus = "Reduces damage taken by 15%";
                 player.endurance += 0.15f;
                 player.statDefense -= 4;
             }
@@ -370,22 +375,22 @@ namespace ChangesArmor
             }
             if (armorSet == "FrostSet")
             {
-                player.setBonus = "Melee and ranged attacks inflict frostburn\nDouble tap down to freeze all enemies around you, 5 second cooldown";
+                player.setBonus = "Melee and ranged attacks inflict frostburn\nDouble tap down to freeze all enemies around you, 10 second cooldown";
                 player.GetModPlayer<FrostArmor>().frostArmor = true;
                 player.GetDamage<RangedDamageClass>() -= 0.1f;
                 player.GetDamage<MeleeDamageClass>() -= 0.1f;
             }
             if (armorSet == "FossilSet")
             {
-                player.setBonus += "\nRanged weapons have 3 armor penetration";
+                player.setBonus += "\nRanged weapons have 4 armor penetration";
                 if (player.HeldItem.CountsAsClass(DamageClass.Ranged))
                 {
-                    player.GetArmorPenetration(DamageClass.Generic) += 3;
+                    player.GetArmorPenetration(DamageClass.Generic) += 4;
                 }
             }
             if (armorSet == "CrystalAssassinSet")
             {
-                player.setBonus += "10% increased damage, critical strike chance and movement speed";
+                player.setBonus = "10% increased damage, critical strike chance and movement speed";
                 player.moveSpeed += 0.1f;
             }
         }
@@ -393,6 +398,17 @@ namespace ChangesArmor
         {
             switch (item.type)
             {
+                case ItemID.GladiatorHelmet:
+                case ItemID.GladiatorBreastplate:
+                case ItemID.GladiatorLeggings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.Text += "\n5% increased melee speed";
+                        }
+                    }
+                    return;
                 case ItemID.SpectreHood:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -421,14 +437,6 @@ namespace ChangesArmor
                     }
                     return;
                 case ItemID.PharaohsRobe:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Defense")
-                        {
-                            line.Text += "\nIncreases movement speed by 10%";
-                        }
-                    }
-                    return;
                 case ItemID.PharaohsMask:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -738,6 +746,7 @@ namespace ChangesArmor
                     return;
                 case ItemID.NinjaHood:
                 case ItemID.NinjaShirt:
+  
                 case ItemID.NinjaPants:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -747,7 +756,8 @@ namespace ChangesArmor
                         }
                     }
                     return;
-				case ItemID.MeteorHelmet:
+       
+                case ItemID.MeteorHelmet:
                 case ItemID.MeteorSuit:
                 case ItemID.MeteorLeggings:
 				     foreach (TooltipLine line in tooltips)
