@@ -196,6 +196,9 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                 case ProjectileID.MiniRetinaLaser:
                     projectile.Kill();
                     break;
+                case ProjectileID.VampireFrog:
+                    projectile.localNPCImmunity[target.whoAmI] = (int)projectile.ai[1];
+                    break;
             }
         }
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -237,6 +240,31 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                 case ProjectileID.Tempest:
                     Tempest.AI(projectile);
                     return false;
+                case ProjectileID.VampireFrog:
+                    //Main.NewText(projectile.ai[0] + ", " + projectile.ai[1] + ", " + projectile.localAI[0] + ", " + projectile.localAI[1]);
+                    if(projectile.ai[1] == 20)
+                    {
+                        projectile.localAI[0] = 45;
+                    }
+                    if(projectile.localAI[0] > 0)
+                    {
+                        projectile.localAI[0]--;
+                        if(projectile.ai[1] == 0)
+                        {
+                            projectile.ai[0] = 4;
+                            projectile.velocity.X = 0;
+                            projectile.velocity.Y += 0.4f;
+                            if (projectile.velocity.Y > 10f)
+                            {
+                                projectile.velocity.Y = 10f;
+                            }
+                        }
+                    }
+                    else if(projectile.ai[0] == 4)
+                    {
+                        projectile.ai[0] = 0;
+                    }
+                    break;
             }
             if(projectile.type == ProjectileID.PygmySpear)
             {
@@ -248,6 +276,21 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                 projectile.ai[0] = projectile.timeLeft < (3600 - (16 * 5000) / 10) ? 45 : 0;
             }
             return true;
+        }
+        public override void PostAI(Projectile projectile)
+        {
+            base.PostAI(projectile);
+        }
+        public override bool? CanHitNPC(Projectile projectile, NPC target)
+        {
+            if(projectile.type == ProjectileID.VampireFrog)
+            {
+                if(projectile.ai[0] != 2 || projectile.ai[1] <= 0)
+                {
+                    return false;
+                }
+            }
+            return base.CanHitNPC(projectile, target);
         }
         public override bool TileCollideStyle(Projectile projectile, ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {

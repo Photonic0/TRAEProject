@@ -198,11 +198,12 @@ namespace TRAEProject.Changes
         public static IPlayerResourcesDisplaySet ActivePlayerResourcesSet;
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
-
             int index = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Resource Bars"));
             LegacyGameInterfaceLayer overloadManaDraw = new LegacyGameInterfaceLayer("OverloadedMana",
                     delegate
                     {
+                        DrawFancyClassicMana();
+                        /*
                         if (ActivePlayerResourcesSet is ClassicPlayerResourcesDisplaySet)
                         {
                             DrawClassicMana();
@@ -215,6 +216,7 @@ namespace TRAEProject.Changes
                         {
                             DrawManaBar();
                         }
+                        */
                         return true;
                     },
                     InterfaceScaleType.UI);
@@ -275,7 +277,6 @@ namespace TRAEProject.Changes
             Player localPlayer = Main.LocalPlayer;
             int manaPerStar = OManaPerStar;
             int _starCount = (int)((float)(localPlayer.statManaMax2 * 2) / manaPerStar);
-
 
             SpriteBatch spriteBatch = Main.spriteBatch;
             Vector2 vector = new Vector2(Main.screenWidth - 40, 22f);

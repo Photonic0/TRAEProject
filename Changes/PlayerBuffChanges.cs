@@ -218,13 +218,12 @@ namespace ChangesBuffs
         {
             Celled = false;
         }
-        public override void PreUpdate()
+        public override void PostUpdateBuffs()
         {
-            if (Player.slowFall && !Player.TryingToHoverDown)
+            if (Player.slowFall && Player.velocity.Y < 0)
             {
-                Player.maxFallSpeed *= 1.15f;
+                Player.slowFall = false;
             }
-               
         }
         public override void UpdateBadLifeRegen()
         {

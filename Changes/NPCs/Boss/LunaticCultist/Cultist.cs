@@ -18,7 +18,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
 		{
             if (npc.type == NPCID.CultistBoss)
             {
-                npc.lifeMax = 72000; // up from 40000
+                npc.lifeMax = 80000; // up from 40000
                 npc.height = 60;
                 npc.width = 60;
             }
@@ -74,7 +74,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                     }
                     SoundEngine.PlaySound(sound, npc.Center);
                 }
-                bool master = Main.masterMode;
+                bool master = Main.expertMode;
                 bool belowHalf = npc.life <= npc.lifeMax / 2;
 				npc.damage = 0;
 
@@ -267,7 +267,6 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                     int fireballDamage = npc.GetAttackDamage_ForProjectiles(50f, 40f);
                     if (Main.expertMode)
                     {
-                        
                         fireballCount = 7;
                     }
                     if (master)

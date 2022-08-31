@@ -39,63 +39,29 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             }
             return true;
         }
-        /*
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             
             if (projectile.type == ProjectileID.ThornBall)
             {
+                projectile.localAI[0] = 1;
+                if(projectile.ai[1] != 0)
+                {
+                    return true;
+                }
                 if (projectile.velocity.X != oldVelocity.X)
                 {
                     projectile.velocity.X = -oldVelocity.X;
                 }
-                if (projectile.ai[1] == 0)
+                if (projectile.velocity.Y != oldVelocity.Y)
                 {
-                    if (projectile.velocity.Y != oldVelocity.Y)
-                    {
-                        projectile.velocity.Y = -oldVelocity.Y;
-                    }
+                    projectile.velocity.Y = -oldVelocity.Y;
                 }
-                else
-                {
-                    if (projectile.velocity.Y != oldVelocity.Y)
-                    {
-                        
-                        Player target = null;
-                        float maxDist = 1000;
-                        for (int i = 0; i < 255; i++)
-                        {
-                            if (Main.player[i].active)
-                            {
-                                if (Math.Abs(Main.player[i].Center.X - projectile.Center.X) < maxDist && Main.player[i].Center.Y < projectile.Center.Y)
-                                {
-                                    maxDist = Math.Abs(Main.player[i].Center.X - projectile.Center.X);
-                                    target = Main.player[i];
-                                }
-                            }
-                        }
-                        if(target != null)
-                        {
-                            projectile.velocity.Y = (projectile.Center.Y - target.Center.Y) * -1 * (1f / 140f) - 0.6f;
-                            projectile.ai[0] = -140 + 15;
-                            //Main.NewText(projectile.velocity.Y);
-                        }
-                        else
-                        {
-                            if (projectile.velocity.Y != oldVelocity.Y)
-                            {
-                                projectile.velocity.Y = -oldVelocity.Y;
-                            }
-                        }
-                        
-                    }
-                }
-                projectile.localAI[0] = 1;
                 return false;
             }
             return true;
         }
-        */
+        
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
             if (projectile.type == ProjectileID.ThornBall)

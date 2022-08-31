@@ -99,6 +99,10 @@ namespace TRAEProject.Changes.NPCs
                     npc.width = 51;
                     npc.height = 81;
                     break;
+                case NPCID.DuneSplicerHead:
+                    npc.lifeMax = 4000;
+                    npc.noGravity = true;
+                    break;
             }
         }
         public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
@@ -181,6 +185,12 @@ namespace TRAEProject.Changes.NPCs
                             }
                             braintimer = 0f;
                         }
+                    }
+                    return;
+                case NPCID.DuneSplicerHead:
+                    if(npc.velocity.Length() > 1.4f)
+                    {
+                        npc.velocity = npc.velocity.SafeNormalize(Vector2.UnitY) * 1.4f;
                     }
                     return;
             }

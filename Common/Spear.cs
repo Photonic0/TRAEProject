@@ -421,7 +421,7 @@ namespace TRAEProject.Common
                         Projectile.velocity.X = Projectile.velocity.X * 0.98f;
                         Projectile.velocity.Y = Projectile.velocity.Y + 0.35f;
                     }
-                    aimDirection = Projectile.velocity.ToRotation();
+                    Projectile.ai[0] = Projectile.velocity.ToRotation();
                     if (effects == SpriteEffects.FlipVertically)
                     {
                         Projectile.rotation = Projectile.velocity.ToRotation() + 5f * (float)Math.PI / 4f;
@@ -432,14 +432,18 @@ namespace TRAEProject.Common
                     }
                     ThrownUpdate();
                 }
+                else if(Projectile.ai[1] == 1)
+                {
+                    ThrowSpear(Projectile.ai[0]);
+                }
                 else
                 {
-                    //Projectile.scale = player.HeldItem.scale * (player.meleeScaleGlove ? 1.1f : 1f) * player.GetModPlayer<MeleeStats>().weaponSize;
                     Spear.SpearPrefixScaleing(player.HeldItem, player, Projectile);                    
 					if (player.itemTime > player.itemTimeMax - 1)
                     {
                         chargeTime = player.itemTime;
                         chargeTimeMax = player.itemTimeMax;
+                        player.itemAnimation = player.itemAnimationMax = player.itemTimeMax / 3;
                     }
                     player.itemTime = player.itemAnimation + 1;
                     player.heldProj = Projectile.whoAmI;
@@ -447,58 +451,64 @@ namespace TRAEProject.Common
                     if (Projectile.owner == Main.myPlayer)
                     {
                         player.direction = Math.Sign(Main.MouseWorld.X - player.MountedCenter.X);
-                        Vector2 vector24 = Main.OffsetsPlayerOnhand[player.bodyFrame.Y / 56] * 2f;
-                        if (player.direction != 1)
-                        {
-                            vector24.X = player.bodyFrame.Width - vector24.X;
-                        }
-                        if (player.gravDir != 1f)
-                        {
-                            vector24.Y = player.bodyFrame.Height - vector24.Y;
-                        }
-                        vector24 -= new Vector2(player.bodyFrame.Width - player.width, player.bodyFrame.Height - 42) / 2f;
-                        Vector2 holdPos = player.RotatedRelativePoint(player.MountedCenter - new Vector2(20f, 42f) / 2f + vector24, reverseRotation: false, addGfxOffY: false);
-                        aimDirection = holdPos.DirectionTo(Main.MouseWorld).ToRotation();
-                        Projectile.Center = holdPos + PolarVector((spearLength - holdAt) * Projectile.scale, aimDirection);
-                        Projectile.rotation = aimDirection + 3f * (float)Math.PI / 4f;
+                    }
+                    Vector2 vector24 = Main.OffsetsPlayerOnhand[player.bodyFrame.Y / 56] * 2f;
+                    if (player.direction != 1)
+                    {
+                        vector24.X = player.bodyFrame.Width - vector24.X;
+                    }
+                    if (player.gravDir != 1f)
+                    {
+                        vector24.Y = player.bodyFrame.Height - vector24.Y;
+                    }
+                    vector24 -= new Vector2(player.bodyFrame.Width - player.width, player.bodyFrame.Height - 42) / 2f;
+                    Vector2 holdPos = player.RotatedRelativePoint(player.MountedCenter - new Vector2(20f, 42f) / 2f + vector24, reverseRotation: false, addGfxOffY: false);
 
-                        if (chargeAmt >= 1)
+                    if (Projectile.owner == Main.myPlayer)
+                    {
+                        Projectile.ai[0] = holdPos.DirectionTo(Main.MouseWorld).ToRotation();
+                        Projectile.netUpdate = true;
+                    }
+                    Projectile.Center = holdPos + PolarVector((spearLength - holdAt) * Projectile.scale, Projectile.ai[0]);
+                    Projectile.rotation = Projectile.ai[0] + 3f * (float)Math.PI / 4f;
+                    if (chargeAmt >= 1)
+                    {
+                        chargeAmt = 1f;
+                        if (!justCharged)
                         {
-                            chargeAmt = 1f;
-                            if (!justCharged)
+                            OnCharge();
+                            if (player.autoReuseGlove)
                             {
-                                OnCharge();
-                                if (player.autoReuseGlove)
-                                {
-                                    ThrowSpear(aimDirection);
-                                }
-                                else
-                                {
-                                    SoundEngine.PlaySound(SoundID.MaxMana, player.Center);
-                                }
-
-                                justCharged = true;
+                                Projectile.ai[1] = 1;
+                                Projectile.netUpdate = true;
                             }
+                            else
+                            {
+                                SoundEngine.PlaySound(SoundID.MaxMana, player.Center);
+                            }
+
+                            justCharged = true;
                         }
-                        else
-                        {
-                            chargeAmt = 1f - ((float)chargeTime / (float)chargeTimeMax);
-                        }
-                        player.itemAnimation = player.itemAnimationMax - 1;
-                        if (player.direction == 1)
-                        {
-                            effects = SpriteEffects.FlipVertically;
-                            Projectile.rotation = aimDirection + 5f * (float)Math.PI / 4f;
-                        }
-                        else
-                        {
-                            effects = SpriteEffects.None;
-                            Projectile.rotation = aimDirection + 3f * (float)Math.PI / 4f;
-                        }
-                        if (!Main.mouseRight)
-                        {
-                            ThrowSpear(aimDirection);
-                        }
+                    }
+                    else
+                    {
+                        chargeAmt = 1f - ((float)chargeTime / (float)chargeTimeMax);
+                    }
+                    player.itemAnimation = player.itemAnimationMax - 1;
+                    if (player.direction == 1)
+                    {
+                        effects = SpriteEffects.FlipVertically;
+                        Projectile.rotation = Projectile.ai[0] + 5f * (float)Math.PI / 4f;
+                    }
+                    else
+                    {
+                        effects = SpriteEffects.None;
+                        Projectile.rotation = Projectile.ai[0] + 3f * (float)Math.PI / 4f;
+                    }
+                    if (!Main.mouseRight && Projectile.owner == Main.myPlayer)
+                    {
+                        Projectile.ai[1] = 1;
+                        Projectile.netUpdate = true;
                     }
                     HeldUpdate();
                 }
@@ -673,7 +683,7 @@ namespace TRAEProject.Common
             if (Projectile.velocity.Length() > 4f)
             {
                 float point = 0;
-                return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + PolarVector((6) * Projectile.scale + Projectile.velocity.Length() + 2f, aimDirection + (float)Math.PI), Projectile.Center + PolarVector((6) * Projectile.scale, aimDirection + (float)Math.PI), 18 * Projectile.scale, ref point);
+                return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + PolarVector((6) * Projectile.scale + Projectile.velocity.Length() + 2f, Projectile.ai[0] + (float)Math.PI), Projectile.Center + PolarVector((6) * Projectile.scale, Projectile.ai[0] + (float)Math.PI), 18 * Projectile.scale, ref point);
             }
             return null;
         }
