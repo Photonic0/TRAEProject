@@ -74,10 +74,6 @@ namespace TRAEProject
                 Player.runSlowdown *= 2;
                 Player.moveSpeed += 1.25f;
             }
-            if(Player.moveSpeed > 2.5f)
-            {
-                Player.moveSpeed = 2.5f;
-            }
         }
         public override void PostUpdate()
         {
