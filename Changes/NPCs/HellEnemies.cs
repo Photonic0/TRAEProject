@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.NewContent.NPCs.Boomxie;
+using TRAEProject.NewContent.NPCs.Underworld.Boomxie;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.NPCs

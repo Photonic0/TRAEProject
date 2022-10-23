@@ -1,8 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,11 +17,12 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override bool InstancePerEntity => true;
         public bool IsARocket = false;
-        public bool HeavyRocket = false; 
+        public bool HeavyRocket = false;
         public bool DryRocket = false;
         public bool WetRocket = false;
         public bool LavaRocket = false;
         public bool HoneyRocket = false;
+        public bool LuminiteRocket = false;
 
         public void RocketAI(Projectile projectile)
         {
@@ -201,7 +204,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                     velocity += Vector2.UnitY * -1f;
                     int num854 = Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, velocity, Cluster, projectile.damage / 4, 0f, projectile.owner); Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
-                    projectile2.timeLeft = 40;
+                    projectile2.timeLeft = 30;
                 }
             }
         }
@@ -300,25 +303,168 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             {
                 LiquidRocket(projectile);
             }
+            if (LuminiteRocket)
+            {
+                Projectile.NewProjectile(projectile.GetSource_OnHit(target), projectile.Center, projectile.velocity, ProjectileType<LuminiteBoom>(), projectile.damage, projectile.knockBack);
+                SoundEngine.PlaySound(SoundID.Item14, projectile.position);                   
+       
+            }
         }
 
+        public void RocketStats(Projectile projectile, bool defaultExplosion)
+        {
+            projectile.friendly = true;
+            projectile.DamageType = DamageClass.Ranged;
+            projectile.penetrate = 4;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 10;
+            projectile.timeLeft = 600;
+            IsARocket = true;
+            projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            if (defaultExplosion)
+            {
+                projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
+            }
+            projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+        }
+        public void DestructiveRocketStats(Projectile projectile)
+        {
+            projectile.friendly = true;
+            projectile.DamageType = DamageClass.Ranged;
+            projectile.penetrate = 4;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 10;
+            projectile.timeLeft = 600;
+            IsARocket = true;
+
+        }
+        public void SuperRocketStats(Projectile projectile, bool defaultExplosion)
+        {
+            projectile.friendly = true;
+            projectile.DamageType = DamageClass.Ranged;
+            projectile.penetrate = 5;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 10;
+            projectile.timeLeft = 600;
+            IsARocket = true;
+            projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            if (defaultExplosion)
+            {
+                projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
+            }
+            projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
+        }
+        public void DirectRocketStats(Projectile projectile, bool defaultExplosion)
+        {
+            projectile.friendly = true;
+            projectile.DamageType = DamageClass.Ranged;
+            projectile.extraUpdates = 1;
+            projectile.penetrate = 3; projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 10;
+            IsARocket = true;
+            projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
+            projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
+            projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage = 0.67f;
+            if (defaultExplosion)
+            {
+                projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
+            }
+        }
+        public void MiniNukeStats(Projectile projectile, bool defaultExplosion)
+        {
+            projectile.friendly = true;
+            projectile.DamageType = DamageClass.Ranged;
+            projectile.penetrate = 5; projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 10;
+            IsARocket = true;
+            projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            if (defaultExplosion)
+            {
+                projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
+            }
+            projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
+        }
+
+        public void LuminiteStats(Projectile projectile)
+        {
+            projectile.friendly = true;
+            projectile.DamageType = DamageClass.Ranged;
+            projectile.penetrate = 5;
+            projectile.usesLocalNPCImmunity = true;
+            projectile.localNPCHitCooldown = 10;
+            LuminiteRocket = true; 
+            IsARocket = true;
+
+        }
+        public void LuminiteRocketAI(Projectile projectile)
+        {
+            projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+            if (projectile.alpha < 170)
+            {
+                float num222 = 3f;
+                for (int num223 = 0; num223 < num222; num223++)
+                {
+                    int num224 = Dust.NewDust(projectile.position, 1, 1, 229);
+                    Main.dust[num224].position = projectile.Center - projectile.velocity / num222 * num223;
+                    Dust dust3 = Main.dust[num224];
+                    dust3.velocity *= 0f;
+                    Main.dust[num224].noGravity = true;
+                    Main.dust[num224].alpha = 200;
+                    Main.dust[num224].scale = 0.5f;
+                }
+            }
+            float num225 = (float)Math.Sqrt(projectile.velocity.X * projectile.velocity.X + projectile.velocity.Y * projectile.velocity.Y);
+            float num226 = projectile.localAI[0];
+            if (num226 == 0f)
+            {
+                projectile.localAI[0] = num225;
+                num226 = num225;
+            }
+            if (projectile.alpha > 0)
+            {
+                projectile.alpha -= 25;
+            }
+            if (projectile.alpha < 0)
+            {
+                projectile.alpha = 0;
+            }
+        }
+        public override void Kill(Projectile projectile, int timeLeft)
+        {
+            if (LuminiteRocket)
+            {
+                SoundEngine.PlaySound(SoundID.Item14, projectile.position);
+                projectile.position = projectile.Center;
+                projectile.width = (projectile.height = 144);
+                projectile.position.X -= projectile.width / 2;
+                projectile.position.Y -= projectile.height / 2;
+                for (int num276 = 0; num276 < 4; num276++)
+                {
+                    Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 1.5f);
+                }
+                for (int num278 = 0; num278 < 40; num278++)
+                {
+                    int num279 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 229, 0f, 0f, 0, default(Color), 2.5f);
+                    Main.dust[num279].noGravity = true;
+                    Dust dust2 = Main.dust[num279];
+                    dust2.velocity *= 3f;
+                    num279 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 229, 0f, 0f, 100, default(Color), 1.5f);
+                    dust2 = Main.dust[num279];
+                    dust2.velocity *= 2f;
+                    Main.dust[num279].noGravity = true;
+                }
+            }
+        }
     }
     public class Rocket : ModProjectile
     {
         public override void SetDefaults()
         {
             Projectile.height = 14;
-            Projectile.width = 14;
-            Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Ranged;
-            Projectile.penetrate = 4;
-            Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 10;
-            Projectile.timeLeft = 600;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+            Projectile.width = 14; AIType = ProjectileType<Rocket>();
+
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, true);
         }
         public override void AI()
         {
@@ -329,9 +475,11 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Rocket>());
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+            Projectile.height = 14;
+            Projectile.width = 14;
+            AIType = ProjectileType<Rocket>();
 
+            Projectile.GetGlobalProjectile<NewRockets>().DestructiveRocketStats(Projectile);
         }
         public override void AI()
         {
@@ -347,14 +495,10 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Rocket>());
+            Projectile.height = 14;
+            Projectile.width = 14;
             AIType = ProjectileType<Rocket>();
-            Projectile.penetrate = 5;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
+            Projectile.GetGlobalProjectile<NewRockets>().SuperRocketStats(Projectile, true);
         }
         public override void AI()
         {
@@ -365,17 +509,10 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Rocket>());
+            Projectile.height = 14;
+            Projectile.width = 14;
             AIType = ProjectileType<Rocket>();
-            Projectile.extraUpdates = 1;
-            Projectile.penetrate = 3;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage = 0.67f;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
+            Projectile.GetGlobalProjectile<NewRockets>().DirectRocketStats(Projectile, true);
         }
         public override void AI()
         {
@@ -386,14 +523,10 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Rocket>());
+            Projectile.height = 14;
+            Projectile.width = 14;
             AIType = ProjectileType<Rocket>();
-            Projectile.penetrate = 5;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
+            Projectile.GetGlobalProjectile<NewRockets>().MiniNukeStats(Projectile, true);
         }
         public override void AI()
         {
@@ -404,14 +537,10 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Rocket>());
+            Projectile.height = 14;
+            Projectile.width = 14;
             AIType = ProjectileType<Rocket>();
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.penetrate = 5;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
+            Projectile.GetGlobalProjectile<NewRockets>().MiniNukeStats(Projectile, true);
         }
         public override void AI()
         {
@@ -427,13 +556,10 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Rocket>());
+            Projectile.height = 14;
+            Projectile.width = 14;
             AIType = ProjectileType<Rocket>();
-            Projectile.penetrate = 3;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, true);
         }
         public override void AI()
         {
@@ -448,14 +574,11 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Rocket>());
+            Projectile.height = 14;
+            Projectile.width = 14;
             AIType = ProjectileType<Rocket>();
-            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, true);
             Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120; 
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
 
         }
         public override void AI()
@@ -463,4 +586,56 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             Projectile.GetGlobalProjectile<NewRockets>().RocketAI(Projectile);
         }
     }
+    public class LuminiteRocketP : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().LuminiteStats(Projectile);
+        }
+        public override void AI()
+        {
+            Projectile.GetGlobalProjectile<NewRockets>().LuminiteRocketAI(Projectile);
+        }
+    }
+    public class LuminiteBoom : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.width = Projectile.height = 250;
+            Projectile.timeLeft = 3;
+            Projectile.friendly = true;
+            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.penetrate = 5;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
+			Projectile.alpha = 255;
+            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
+        }
+        bool onlyOnce = true;
+        public override void AI()
+        {
+            if (onlyOnce)
+            {
+                onlyOnce = false;
+                for (int num276 = 0; num276 < 4; num276++)
+                {
+                    Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 31, 0f, 0f, 100, default(Color), 1.5f);
+                }
+                for (int num278 = 0; num278 < 40; num278++)
+                {
+                    int num279 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 229, 0f, 0f, 0, default(Color), 2.5f);
+                    Main.dust[num279].noGravity = true;
+                    Dust dust2 = Main.dust[num279];
+                    dust2.velocity *= 3f;
+                    num279 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 229, 0f, 0f, 100, default(Color), 1.5f);
+                    dust2 = Main.dust[num279];
+                    dust2.velocity *= 2f;
+                    Main.dust[num279].noGravity = true;
+                }
+            }
+        }
+    }
 }
+

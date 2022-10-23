@@ -5,7 +5,9 @@ using TRAEProject;
 using System.Collections.Generic;
 using TRAEProject.Changes.Items;
 using TRAEProject.Changes.Armor;
-using TRAEProject.Common.ModPlayers;
+using ChangesBuffs;
+using Microsoft.Xna.Framework;
+
 namespace ChangesArmor
 {
     public class ChangesArmor : GlobalItem
@@ -29,7 +31,6 @@ namespace ChangesArmor
                     player.maxTurrets += 1;
                     return;
                 case ItemID.AncientArmorPants:
-                    player.canJumpAgain_Sandstorm = true;
                     player.moveSpeed += 0.1f;
                     player.GetDamage<SummonDamageClass>() += 0.03f;
                     return;
@@ -38,29 +39,16 @@ namespace ChangesArmor
                 case ItemID.GladiatorLeggings:
                     player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
                     return;
-                case ItemID.CrimsonScalemail:
-                    player.lifeRegen += 1;
-                    return;
                 case ItemID.PharaohsMask:
                     player.moveSpeed += 0.05f;
                     return;
                 case ItemID.PharaohsRobe:
                     player.moveSpeed += 0.05f;
                     return;
-                case ItemID.ShadowHelmet:
-                case ItemID.ShadowScalemail:
-                case ItemID.AncientShadowHelmet:
-                case ItemID.AncientShadowScalemail:
-                    player.GetAttackSpeed(DamageClass.Melee) -= 0.07f;
-                    player.GetCritChance<GenericDamageClass>() += 2;
+                case ItemID.CrimsonHelmet:
+                case ItemID.CrimsonGreaves:
+                    player.GetDamage<GenericDamageClass>() -= 0.01f;
                     return;
-                case ItemID.ShadowGreaves:
-                case ItemID.AncientShadowGreaves:
-                    player.GetAttackSpeed(DamageClass.Melee) -= 0.07f;
-                    player.GetCritChance<GenericDamageClass>() += 2;
-                    player.moveSpeed += 0.1f;
-                    return;
-
                 case ItemID.MeteorHelmet:
                 case ItemID.MeteorSuit:
                 case ItemID.MeteorLeggings:
@@ -211,8 +199,6 @@ namespace ChangesArmor
                 return "PharaohSet";
             if (head.type == ItemID.RuneHat && body.type == ItemID.RuneRobe)
                 return "WizardSetHM";
-            if ((head.type == ItemID.ShadowHelmet || head.type == ItemID.AncientShadowHelmet) && (body.type == ItemID.ShadowScalemail || body.type == ItemID.AncientShadowScalemail) && (legs.type == ItemID.ShadowGreaves || legs.type == ItemID.AncientShadowGreaves))
-                return "ShadowSet";
             if (head.type == ItemID.AncientArmorHat && body.type == ItemID.AncientArmorShirt && legs.type == ItemID.AncientArmorPants)
                 return "AncientSet";
             if (head.type == ItemID.TurtleHelmet && body.type == ItemID.TurtleScaleMail && legs.type == ItemID.TurtleLeggings)
@@ -243,7 +229,9 @@ namespace ChangesArmor
             if (head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
                 return "GladiatorSet"; 
             if (head.type == ItemID.FossilHelm && body.type == ItemID.FossilShirt && legs.type == ItemID.FossilPants)
-                return "FossilSet"; 
+                return "FossilSet";
+            if (head.type == ItemID.CrimsonHelmet&& body.type == ItemID.CrimsonScalemail && legs.type == ItemID.CrimsonGreaves)
+                return "CrimsonSet";
             if (head.type == ItemID.FrostHelmet && body.type == ItemID.FrostBreastplate && legs.type == ItemID.FrostLeggings)
                 return "FrostSet";
             if (head.type == ItemID.CrystalNinjaHelmet && body.type == ItemID.CrystalNinjaChestplate && legs.type == ItemID.CrystalNinjaLeggings)
@@ -316,11 +304,11 @@ namespace ChangesArmor
                 player.setBonus = "Return quintuple damage taken to near enemies";
                 player.GetModPlayer<OnHitItems>().runethorns += 5f;
             }
-            if (armorSet == "ShadowSet")
+
+            if (armorSet == "CrimsonSet")
             {
-                player.moveSpeed -= 0.15f;
-                player.setBonus = "Gives a chance to dodge attacks";
-                player.GetModPlayer<SetBonuses>().shadowArmorDodgeChance = 6;
+                player.lifeRegenTime += 4; // beats a band of regen in 6 seconds instead of 1
+                player.setBonus = "Dramatically increases natural healing rate";
             }
             if (armorSet == "AncientSet")
             {
@@ -497,37 +485,6 @@ namespace ChangesArmor
                         if (line.Mod == "Terraria" && line.Name == "Defense")
                         {
                             line.Text += "\nIncreases movement speed by 10%\n3% increased summon damage";
-                        }
-                    }
-                    return;
-                case ItemID.CrimsonScalemail:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text += "\nSlightly increased life regeneration";
-                        }
-                    }
-                    return;
-                case ItemID.ShadowHelmet:
-                case ItemID.ShadowScalemail:
-                case ItemID.AncientShadowHelmet:
-                case ItemID.AncientShadowScalemail:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "2% increased critical strike chance";
-                        }
-                    }
-                    return;
-                case ItemID.ShadowGreaves:
-                case ItemID.AncientShadowGreaves:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "2% increased critical strike chance\n10% increased movement speed";
                         }
                     }
                     return;
@@ -756,7 +713,16 @@ namespace ChangesArmor
                         }
                     }
                     return;
-       
+                case ItemID.CrimsonHelmet:
+                case ItemID.CrimsonGreaves:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "2% increased damage";
+                        }
+                    }
+                    return;
                 case ItemID.MeteorHelmet:
                 case ItemID.MeteorSuit:
                 case ItemID.MeteorLeggings:

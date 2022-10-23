@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 using TRAEProject.Common;
 using TRAEProject.Changes.Weapon.Ranged.Rockets;
 using static Terraria.ModLoader.ModContent;
+using Terraria.Audio;
 
 namespace TRAEProject.Changes.Weapon.Ranged.Rockets
 { 
@@ -53,23 +54,12 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, true);
             Projectile.height = 10;
             Projectile.width = 10;
-            Projectile.friendly = true; 
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
-            Projectile.DamageType = DamageClass.Ranged;
-            Projectile.penetrate = 4;
             Projectile.timeLeft = 3600; 
-            Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown= 10;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -87,11 +77,12 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Mine>());
-            Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.GetGlobalProjectile<NewRockets>().DestructiveRocketStats(Projectile);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.timeLeft = 3600;
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
         }
         public override void AI()
         {
@@ -116,16 +107,12 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Mine>());
-            AIType = ProjectileType<Mine>();
-            Projectile.penetrate = 5;
+            Projectile.GetGlobalProjectile<NewRockets>().SuperRocketStats(Projectile, true);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.timeLeft = 3600;
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
         }
         public override void AI()
         {
@@ -142,18 +129,12 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Mine>());
-            AIType = ProjectileType<Mine>();
-            Projectile.penetrate = 3;
-            Projectile.extraUpdates = 1; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.GetGlobalProjectile<NewRockets>().DirectRocketStats(Projectile, true);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.timeLeft = 3600;
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
-           Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage = 0.67f;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
         }
         public override void AI()
         {
@@ -170,15 +151,12 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Mine>());
-            AIType = ProjectileType<Mine>();
+            Projectile.GetGlobalProjectile<NewRockets>().MiniNukeStats(Projectile, true);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.timeLeft = 3600;
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
-            Projectile.penetrate = 5;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true; Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
+            Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
         }
       
         public override void AI()
@@ -196,14 +174,12 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Mine>());
-            AIType = ProjectileType<Mine>();
+            Projectile.GetGlobalProjectile<NewRockets>().MiniNukeStats(Projectile, true);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.timeLeft = 3600;
             ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
-            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
+            Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
         }
  
         public override void AI()
@@ -226,13 +202,12 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Mine>());
-            AIType = ProjectileType<Mine>();
-            Projectile.penetrate = 3; Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, true);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.timeLeft = 3600;
+            ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
         }
         public override void AI()
         {
@@ -254,22 +229,40 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<Mine>());
-            AIType = ProjectileType<Mine>();
-            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, true);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.timeLeft = 3600;
+            ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true; Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
         }
         public override void AI()
         {
             Projectile.GetGlobalProjectile<NewMines>().MineAI(Projectile);
         }   
 		public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            Projectile.velocity.X = 0f;
+            Projectile.velocity.Y = 0f;
+            return false;
+        }
+    }
+    public class LuminiteMine : ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.GetGlobalProjectile<NewRockets>().LuminiteStats(Projectile);
+            Projectile.height = 10;
+            Projectile.width = 10;
+            Projectile.timeLeft = 3600;
+            ProjectileID.Sets.IsAMineThatDealsTripleDamageWhenStationary[Projectile.type] = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().dontExplodeOnTiles = true; 
+        }
+        public override void AI()
+        {
+            Projectile.GetGlobalProjectile<NewMines>().MineAI(Projectile);
+        }
+        public override bool OnTileCollide(Vector2 oldVelocity)
         {
             Projectile.velocity.X = 0f;
             Projectile.velocity.Y = 0f;

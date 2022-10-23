@@ -89,7 +89,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
         public int attacktimer = 8;
         public int lasertimer = 0;
         public int zaptimer = 0;
-        public override void AI()
+        public override void AI()     
         {
             Player player = Main.player[Projectile.owner];
             Projectile.ai[0]++;
@@ -98,7 +98,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
             for (int k = 0; k < 200; k++)
             {
                 NPC nPC = Main.npc[k];
-                if (nPC.active && !nPC.friendly && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range/* || (nPC.type == NPCID.MoonLordCore || nPC.type == NPCID.MoonLordHand || nPC.type == NPCID.MoonLordHead)*/)
+                if (!nPC.immortal && nPC.active && !nPC.friendly && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range/* || (nPC.type == NPCID.MoonLordCore || nPC.type == NPCID.MoonLordHand || nPC.type == NPCID.MoonLordHead)*/)
                 {
                     if (Projectile.Distance(nPC.Center) > (double)50)
                     {

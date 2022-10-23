@@ -85,7 +85,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff
             Projectile.height = 40;
             Projectile.friendly = true;
             Projectile.ignoreWater = false;
-            Projectile.sentry = true;
+            Projectile.sentry = true; Projectile.DamageType = DamageClass.Summon;
+
             Projectile.penetrate = 1;
             Projectile.timeLeft = Projectile.SentryLifeTime;
             Projectile.tileCollide = true;

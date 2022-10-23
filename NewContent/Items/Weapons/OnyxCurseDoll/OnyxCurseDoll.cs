@@ -60,9 +60,8 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         public override void AddRecipes()
         {
             CreateRecipe(1).AddIngredient(ItemID.AncientCloth, 3)
-                .AddIngredient(3783, 1)
-                .AddIngredient(ItemID.SoulofNight, 8)
-                .AddIngredient(ItemID.SoulofLight, 8)
+                .AddIngredient(527, 2)
+                .AddIngredient(ItemID.SoulofNight, 16)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

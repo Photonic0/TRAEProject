@@ -50,7 +50,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Titanium Bazooka");
-            Tooltip.SetDefault("Shoots two to four Rockets in one shot"); CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("Shoots two to three Rockets in one shot"); CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
         }
         public override void SetDefaults()

@@ -72,7 +72,7 @@ namespace ChangesBuffs
                     return;
                 case BuffID.Panic:
                     player.moveSpeed -= 0.6f;
-                    return; 
+                    return;
             }
         }
 
@@ -121,6 +121,9 @@ namespace ChangesBuffs
                     return;
                 case BuffID.StarInBottle:
                     tip = "Increased max mana by 20";
+                    return;
+                case BuffID.SugarRush:
+                    tip = "10% increased movement speed and 20% increased mining speed";
                     return;
             }
         }
@@ -220,9 +223,9 @@ namespace ChangesBuffs
         }
         public override void PostUpdateBuffs()
         {
-            if (Player.slowFall && Player.velocity.Y < 0)
-            {
-                Player.slowFall = false;
+            if (Player.slowFall && !Player.TryingToHoverDown && Player.armor[2].type != ItemID.DjinnsCurse)
+            {    
+                    Player.maxFallSpeed *= 1.15f;               
             }
         }
         public override void UpdateBadLifeRegen()

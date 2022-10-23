@@ -11,7 +11,7 @@ using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp;
 using static Terraria.ModLoader.ModContent;
 
-namespace TRAEProject.NewContent.NPCs.Boomxie
+namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
 
 {
     public class Boomxie : ModNPC

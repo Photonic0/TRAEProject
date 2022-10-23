@@ -44,7 +44,7 @@ namespace TRAEProject.Changes.Weapon
                     && crit 
                     && damage >= 20)
                 {
-                    int chance = 100 / ((damage / 10) * (player.GetModPlayer<RangedStats>().AlphaScope + player.GetModPlayer<RangedStats>().RocketsStun));
+                    int chance = 100 / (damage / 10 * (player.GetModPlayer<RangedStats>().AlphaScope + player.GetModPlayer<RangedStats>().RocketsStun));
                     if (Main.rand.NextBool(chance))
                     {
                         int duration = 60;

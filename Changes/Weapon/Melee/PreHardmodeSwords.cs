@@ -350,16 +350,20 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
             return base.AltFunctionUse(item, player);
         }
-        int hitcount = 0;
+        bool swung = false;
+        public override void UseAnimation(Item item, Player player)
+        {
+            if (item.type == ItemID.LucyTheAxe && swung == false && player.altFunctionUse != 2)
+            {
+                swung = true;
+            }
+        }
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.type == ItemID.LucyTheAxe)
             {
-
                 if (player.ownedProjectileCounts[ProjectileType<ThrownLucy>()] > 0)
                 {
-                    item.noMelee = false;
-                    item.noUseGraphic = false;
                     return false;
                 }
                 if (player.altFunctionUse == 2)
@@ -367,9 +371,8 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.shoot = ProjectileType<ThrownLucy>();
                     item.noMelee = true;
                     item.DamageType = DamageClass.MeleeNoSpeed;
-                    item.noMelee = true;
-                    item.noUseGraphic = true; 
-                    hitcount = 0;
+                    item.noUseGraphic = true;
+                    swung = false;
                 }
                 if (player.altFunctionUse != 2)
                 {
@@ -377,8 +380,12 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.DamageType = DamageClass.Melee;
                     item.noMelee = false;
                     item.noUseGraphic = false; 
-
+                    if (swung)
+                    {
+                        item.shoot = ProjectileID.None;
+                    }
                 }
+
             }
             return base.CanUseItem(item, player);
         }

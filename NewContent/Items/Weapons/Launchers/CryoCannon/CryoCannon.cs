@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH;
+using TRAEProject.NewContent.Items.Weapons.Ammo;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -99,6 +99,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
                     case ItemID.HoneyRocket:
                         type = ProjectileType<HoneyCryo>();
                         break;
+                }
+                if (ammo.type == ItemType<LuminiteRocket>())
+                {
+                    type = ProjectileType<LuminiteCryo>();
                 }
             }
             

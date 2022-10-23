@@ -47,7 +47,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodWings
         {
 			hasWings = false;
         }
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
         {
 			if (hasWings)
 			{

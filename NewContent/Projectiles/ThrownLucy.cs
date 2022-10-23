@@ -15,10 +15,22 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.extraUpdates = 1;
-            Projectile.scale = 1.2f;
+            Projectile.scale = 1.1f;
             //Projectile.usesLocalNPCImmunity = true;
             //Projectile.localNPCHitCooldown = 10;
             Projectile.penetrate = 2;
+        }
+    }
+    public class LucyJank : ModPlayer
+    {
+        public override void PostItemCheck()  
+        {
+            if (Player.HeldItem.type == ItemID.LucyTheAxe && Player.ownedProjectileCounts[ProjectileType<ThrownLucy>()] > 0)
+            {
+                Player.HeldItem.noMelee = false;
+                Player.HeldItem.noUseGraphic = false;
+                Player.HeldItem.shoot = ProjectileType<Blank>();
+            }
         }
     }
   

@@ -156,39 +156,49 @@ namespace TRAEProject.Changes.Projectiles
             {
                 timer++;
             }
-                if (projectile.type == ProjectileID.ChlorophyteArrow)
+               if (projectile.type == ProjectileID.ChlorophyteArrow)
 			{
                 projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
                 ++ChloroBulletTime;
-                if (ChloroBulletTime <= 24)
+                if (ChloroBulletTime <= 30)
                 {
-                    Vector2 move = Vector2.Zero;
-                    bool target = false;
-                    float distance = 300f;
-                    for (int k = 0; k < 200; k++)
+                    float num18 = projectile.position.X;
+                    float num19 = projectile.position.Y;
+                    float homingRange = 450f; // down from 600
+                    bool flag3 = false;
+                    for (int m = 0; m < 200; m++)
                     {
-                        if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5 && !Main.npc[k].immortal && projectile.localNPCImmunity[k] != 1)
+                        NPC npc = Main.npc[m];
+                        if (npc.CanBeChasedBy(this))
                         {
-                            Vector2 newMove = Main.npc[k].Center - projectile.Center;
-                            float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                            if (distanceTo < distance)
+                            float num21 = npc.Center.X;
+                            float num22 = npc.Center.Y;
+                            float num23 = Math.Abs(projectile.Center.X - num21) + Math.Abs(projectile.Center.Y - num22);
+                            if (num23 < homingRange && Collision.CanHit(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
                             {
-                                move = newMove;
-                                target = true;
-                                distance = distanceTo;
-                            }
-                            if (target)
-                            {
-                                float scaleFactor2 = projectile.velocity.Length();
-                                move.Normalize();
-                                move *= scaleFactor2;
-                                projectile.velocity = (projectile.velocity * 24f + move) / 25f;
-                                projectile.velocity.Normalize();
-                                projectile.velocity *= scaleFactor2;
+                                homingRange = num23;
+                                num18 = num21;
+                                num19 = num22;
+                                flag3 = true;
                             }
                         }
-
                     }
+
+                    if (!flag3)
+                    {
+                        num18 = projectile.Center.X + projectile.velocity.X * 100f;
+                        num19 = projectile.Center.Y + projectile.velocity.Y * 100f;
+                    }
+                    float num24 = 16f;
+                    Vector2 vector = new(projectile.Center.X, projectile.Center.Y);
+                    float num25 = num18 - vector.X;
+                    float num26 = num19 - vector.Y;
+                    float num27 = (float)Math.Sqrt(num25 * num25 + num26 * num26);
+                    num27 = num24 / num27;
+                    num25 *= num27;
+                    num26 *= num27;
+                    projectile.velocity.X = (projectile.velocity.X * 11f + num25) / 12f;
+                    projectile.velocity.Y = (projectile.velocity.Y * 11f + num26) / 12f;
                     return false;
                 }
                 return true;
@@ -196,8 +206,62 @@ namespace TRAEProject.Changes.Projectiles
 
             if (projectile.type == ProjectileID.ChlorophyteBullet)
             {
-                ++ChloroBulletTime; // once this reaches 24, the bullet loses its homing
-                if (ChloroBulletTime >= 24) // Due to the bullet having 2 extraUpdates, this happens after 8 frames.
+                projectile.rotation = projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
+
+                ++ChloroBulletTime; // once this reaches 30, the bullet loses its homing
+                if (ChloroBulletTime > 4 && ChloroBulletTime <= 30)
+                {
+                    for (int i = 0; i < 9; i++) // vanilla value is 10, once the homing disappears the trail loses intensity
+                    {
+                        float x2 = projectile.position.X - projectile.velocity.X / 10f * i;
+                        float y2 = projectile.position.Y - projectile.velocity.Y / 10f * i;
+                        int Dust = Terraria.Dust.NewDust(new Vector2(x2, y2), 1, 1, 75);
+                        Main.dust[Dust].alpha = projectile.alpha;
+                        Main.dust[Dust].position.X = x2;
+                        Main.dust[Dust].position.Y = y2;
+                        Main.dust[Dust].velocity *= 0f;
+                        Main.dust[Dust].noGravity = true;
+                    }
+                    float num18 = projectile.position.X;
+                    float num19 = projectile.position.Y;
+                    float homingRange = 450f; // down from 600
+                    bool flag3 = false;
+                    for (int m = 0; m < 200; m++)
+                    {
+                        NPC npc = Main.npc[m];
+                        if (npc.CanBeChasedBy(this))
+                        {
+                            float num21 = npc.Center.X;
+                            float num22 = npc.Center.Y;
+                            float num23 = Math.Abs(projectile.Center.X - num21) + Math.Abs(projectile.Center.Y - num22);
+                            if (num23 < homingRange && Collision.CanHit(projectile.position, projectile.width, projectile.height, npc.position, npc.width, npc.height))
+                            {
+                                homingRange = num23;
+                                num18 = num21;
+                                num19 = num22;
+                                flag3 = true;
+                            }
+                        }
+                    }
+
+                    if (!flag3)
+                    {
+                        num18 = projectile.Center.X + projectile.velocity.X * 100f;
+                        num19 = projectile.Center.Y + projectile.velocity.Y * 100f;
+                    }
+                    float num24 = 16f;
+                    Vector2 vector = new(projectile.Center.X, projectile.Center.Y);
+                    float num25 = num18 - vector.X;
+                    float num26 = num19 - vector.Y;
+                    float num27 = (float)Math.Sqrt(num25 * num25 + num26 * num26);
+                    num27 = num24 / num27;
+                    num25 *= num27;
+                    num26 *= num27;
+                    projectile.velocity.X = (projectile.velocity.X * 11f + num25) / 12f;
+                    projectile.velocity.Y = (projectile.velocity.Y * 11f + num26) / 12f;
+                    return false;
+                }
+                if (ChloroBulletTime >= 30) // Due to the bullet having 2 extraUpdates, this happens after 8 frames.
                 {
                     // the code for aiStyle 1
 					while (projectile.velocity.X >= 16f || projectile.velocity.X <= -16f || projectile.velocity.Y >= 16f || projectile.velocity.Y < -16f)
@@ -406,8 +470,12 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.NanoBullet:
                 case ProjectileID.ChlorophyteArrow:
                     {
-                        projectile.Kill();
-						return false;
+                        if (projectile.GetGlobalProjectile<ScopeAndQuiver>().smartbounces == 0)
+                        {
+                            projectile.Kill();
+                            return false;
+                        }
+                        return true;
                     }
             }
             return true;

@@ -15,8 +15,6 @@ namespace TRAEProject
     public class AccesoryEffects : ModPlayer
     {
 
-        public float meleeCritDamage = 0f;
-        public float arrowCrit = 0f;
         public bool wErewolf = false;
         public bool icceleration = false;
         public bool waterRunning = false;
@@ -26,8 +24,6 @@ namespace TRAEProject
         public bool LavaShield = false;
         public override void ResetEffects()
         {
-            meleeCritDamage = 0f;
-            arrowCrit = 0f;
             wErewolf = false;
             icceleration = false;
             waterRunning = false;
@@ -38,8 +34,6 @@ namespace TRAEProject
         }
         public override void UpdateDead()
         {
-            meleeCritDamage = 0f;
-            arrowCrit = 0f;
             wErewolf = false;
             icceleration = false;
             waterRunning = false;
@@ -129,7 +123,7 @@ namespace TRAEProject
             Player.statLife = Player.statLifeMax;
             return;
         }
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
         {
             if (Player.hasRaisableShield && Player.HeldItem.type == ItemID.DD2SquireDemonSword && Main.rand.Next(5) == 0)
             {
@@ -210,21 +204,7 @@ namespace TRAEProject
             
         }
 
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
-        {
-            if (crit)
-                damage += (int)(damage * meleeCritDamage);
-        }
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            if (crit && proj.CountsAsClass(DamageClass.Melee))
-                damage += (int)(damage * meleeCritDamage);
-            if (crit && proj.CountsAsClass(DamageClass.Ranged))
-            {
-                if (proj.arrow)
-                    damage += (int)(damage * arrowCrit);
-            }
-        }
+
         void Block()
         {
             Player.immune = true;

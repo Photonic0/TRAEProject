@@ -19,7 +19,7 @@ namespace TRAEProject.Changes.Weapon.Melee
 	public override bool InstancePerEntity => true;
         public override void SetDefaults(Projectile projectile)
         {
-            // Yoyo Defaults
+            // Yoyo Defaults (1f = 1 second;  16f = 1 tile)
             // Default: -1f lifetime, 200f Range, 10f Top Speed
             // Wooden Yoyo: 3f lifetime, 130f Range, 9f Top Speed
             // Rally: 5f lifetime, 170f Range, 11f Top Speed
@@ -41,8 +41,8 @@ namespace TRAEProject.Changes.Weapon.Melee
             // Valkyrie Yoyo: -1f lifetime, 370f range, 16f Top Speed
             // Eye Of Cthulhu: -1f lifetime, 360f range, 16.5f Top Speed
             // Terrarian: -4f lifetime, 400f range, 17.5f top speed
-            // 1f = 1 second
-            // 16f = 1 tile
+            // 
+            //
             ProjectileID.Sets.YoyosMaximumRange[ProjectileID.Kraken] = 175f; // 
             ProjectileID.Sets.YoyosLifeTimeMultiplier[ProjectileID.Kraken] = 6f;
             ProjectileID.Sets.YoyosTopSpeed[ProjectileID.Kraken] = 6f;

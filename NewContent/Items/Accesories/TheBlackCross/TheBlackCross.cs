@@ -50,7 +50,7 @@ namespace TRAEProject.NewContent.Items.Accesories.TheBlackCross
         {
             BlackCrossBelt = false;
         }
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
         {
             if (BlackCrossBelt && Main.rand.Next(10) == 0)
             {

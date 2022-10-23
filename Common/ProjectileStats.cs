@@ -188,7 +188,7 @@ namespace TRAEProject.Common
                 {
                     TRAEMethods.DefaultExplosion(projectile);
                 }
-                return true;
+                return false;
             }
             if (BouncesOffTiles)
             {

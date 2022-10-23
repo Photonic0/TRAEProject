@@ -9,6 +9,7 @@ using TRAEProject.Common;
 using Terraria.Audio;
 using TRAEProject.Changes.Weapon.Ranged.Rockets;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.Items.Weapons.Ammo;
 
 namespace TRAEProject.NewContent.Items.Weapons.BAM
 {
@@ -64,7 +65,6 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             {
                 player.GetModPlayer<BAMAttacks>().ammoToUse = 3;
                 SoundEngine.PlaySound(SoundID.Item11, player.Center);
-                shotCount = 0;
             }
             else
             {
@@ -94,6 +94,10 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         {
             if (shotCount != 1 && shotCount != 4 && shotCount != 7)
                 return false;
+            if (shotCount == 7)
+            {
+                shotCount = 0; 
+            }
             return true;
         }
     }
@@ -151,6 +155,10 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
                         type = ProjectileType<BAMRocketHoney>();
                         break;
 
+                }
+                if (ammo.type == ItemType<LuminiteRocket>())
+                {
+                    type = ProjectileType<BAMRocketLuminite>();
                 }
             }
         }

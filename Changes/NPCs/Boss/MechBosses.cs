@@ -43,7 +43,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                 case NPCID.TheDestroyer:
                    
                         npc.damage = 125;
-                        npc.lifeMax = 70000;
+                        npc.lifeMax = 55000;
                     
                     break;
                 case NPCID.Probe:

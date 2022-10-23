@@ -269,7 +269,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.FireGauntlet:
                 case ItemID.MoltenSkullRose:
                 case 3999: // Magma Skull
-                    player.GetModPlayer<AccesoryEffects>().meleeCritDamage += 0.2f;
+                    player.GetModPlayer<CritDamage>().meleeCritDamage += 0.17f;
                     break;
             }
         }
@@ -513,7 +513,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\nMelee critical hits deal 20% more damage";
+                            line.Text += "\nMelee critical hits deal 17% more damage";
                         }
                     }
                     break;
@@ -526,7 +526,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.Text = "Enemies near the player take 10% more damage\nMelee critical hits deal 20% more damage";
+                            line.Text = "Enemies near the player take 10% more damage\nMelee critical hits deal 17% more damage";
                         }
                     }
                     break;
@@ -548,7 +548,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Enemies near the player take 10% more damage\nMelee critical hits deal 20% more damage";
+                            line.Text = "Enemies near the player take 10% more damage\nMelee critical hits deal 17% more damage";
                         }
                     }
                     break;
@@ -852,11 +852,11 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Lights wooden arrows ablaze";
+                            line.Text = "20% increased arrow critical strike damage";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.Text = "20% increased arrow critical strike damage";
+                            line.Text = "Lights wooden arrows ablaze";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip3")
                         {

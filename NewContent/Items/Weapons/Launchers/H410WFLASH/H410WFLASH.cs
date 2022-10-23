@@ -5,6 +5,7 @@ using Terraria.ID;
 using TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.Items.Weapons.Ammo;
 
 namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
 {
@@ -100,8 +101,13 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
                         type = ProjectileType<HoneyPixie>();
                         break;
                 }
+                if (ammo.type == ItemType<LuminiteRocket>())
+                {
+                    type = ProjectileType<LuminitePixie>();
+                }
             }
-            
+          
+
         }
     }
 }

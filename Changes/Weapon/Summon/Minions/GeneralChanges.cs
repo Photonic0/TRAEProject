@@ -137,7 +137,7 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                 case ProjectileID.VampireFrog:
                     projectile.usesIDStaticNPCImmunity = false;
                     projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 60; // up from 10, static 
+                    projectile.localNPCHitCooldown = 50; // up from 10, static 
                     break;
                 case ProjectileID.RainbowCrystalExplosion:
                     projectile.usesIDStaticNPCImmunity = false;

@@ -20,7 +20,13 @@ namespace TRAEProject.Changes.Projectiles
             {
                 duration = Main.rand.Next(100, 120);
                 if (projectile.GetGlobalProjectile<NewRockets>().HeavyRocket)
+                {
                     duration += 30;
+                }
+                if (projectile.GetGlobalProjectile<NewRockets>().LuminiteRocket)
+                {
+                    duration *= 2;
+                }
                 target.GetGlobalNPC<Freeze>().FreezeMe(target, duration);
             }
             if (projectile.type == ProjectileType<FrozenGelP>() && Main.rand.NextBool(10))

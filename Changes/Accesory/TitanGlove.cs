@@ -102,7 +102,7 @@ namespace TRAEProject.Changes.Accesory
                     }
                     if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                     {
-                        line.Text = "Melee weapons deal 20% more damage on critical hits";
+                        line.Text = "Melee weapons deal 17% more damage on critical hits";
                     }
                     if (line.Mod == "Terraria" && line.Name == "Tooltip3")
                     {
