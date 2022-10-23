@@ -8,7 +8,7 @@ using TRAEProject.Changes;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 
-namespace ChangesBuffs
+namespace TRAEProject
 {
     public class PlayerBuffChanges : GlobalBuff
     {
@@ -117,7 +117,14 @@ namespace ChangesBuffs
                     tip = "Can't drink another mana potion";
                     return;
                 case BuffID.Swiftness:
-                    tip = "15% increased movement speed";
+                    if(QwertysMovementRemix.active)
+                    {
+                        tip = "Increases horizontal speed by 3mph";
+                    }
+                    else
+                    {
+                        tip = "15% increased movement speed";
+                    }
                     return;
                 case BuffID.StarInBottle:
                     tip = "Increased max mana by 20";
@@ -217,13 +224,6 @@ namespace ChangesBuffs
         public override void UpdateDead()
         {
             Celled = false;
-        }
-        public override void PostUpdateBuffs()
-        {
-            if (Player.slowFall && Player.velocity.Y < 0)
-            {
-                Player.slowFall = false;
-            }
         }
         public override void UpdateBadLifeRegen()
         {

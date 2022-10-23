@@ -1,0 +1,487 @@
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.DataStructures;
+using Terraria.Audio;
+
+namespace TRAEProject.Changes.NPCs.Boss 
+{
+    public class Twins : GlobalNPC
+    {
+        public override void SetDefaults(NPC npc)
+        {
+            if(npc.type == NPCID.Retinazer)
+            {
+				npc.lifeMax = (int)(npc.lifeMax  * ((float)30000 / 20000));
+            }
+            if(npc.type == NPCID.Spazmatism)
+            {
+                npc.lifeMax = (int)(npc.lifeMax  * ((float)30000 / 23000));
+            }
+        }
+        public static void FlyTo(NPC npc, Vector2 goHere, bool phase2 = false)
+        {
+            float topSpeed = 7f;
+            float acceleration = 0.1f;
+            if (Main.expertMode)
+            {
+                topSpeed = 8.25f;
+                acceleration = 0.115f;
+            }
+            if (Main.getGoodWorld)
+            {
+                topSpeed *= 1.15f;
+                acceleration *= 1.15f;
+            }
+            topSpeed *= 2f;
+            acceleration *= 2f;
+			if(phase2)
+			{
+				topSpeed *= 2;
+				acceleration *= 40;
+				npc.damage = 0;
+				if((goHere - npc.Center).Length() < acceleration)
+				{
+					npc.Center = goHere;
+					npc.velocity = Main.player[npc.target].velocity;
+					return;
+				}
+			}
+            Vector2 targetVel = (goHere - npc.Center).SafeNormalize(Vector2.UnitY) * topSpeed;
+            float velX = targetVel.X;
+            float velY = targetVel.Y;
+            if (npc.velocity.X < velX)
+            {
+                npc.velocity.X += acceleration;
+                if (npc.velocity.X < 0f && velX > 0f)
+                {
+                    npc.velocity.X += acceleration;
+                }
+            }
+            else if (npc.velocity.X > velX)
+            {
+                npc.velocity.X -= acceleration;
+                if (npc.velocity.X > 0f && velX < 0f)
+                {
+                    npc.velocity.X -= acceleration;
+                }
+            }
+            if (npc.velocity.Y < velY)
+            {
+                npc.velocity.Y += acceleration;
+                if (npc.velocity.Y < 0f && velY > 0f)
+                {
+                    npc.velocity.Y += acceleration;
+                }
+            }
+            else if (npc.velocity.Y > velY)
+            {
+                npc.velocity.Y -= acceleration;
+                if (npc.velocity.Y > 0f && velY < 0f)
+                {
+                    npc.velocity.Y -= acceleration;
+                }
+            }
+        }
+        public override bool PreAI(NPC npc)
+        {
+            if(npc.type == NPCID.Retinazer)
+            {
+                if(npc.realLife == -1)
+                {
+                    for(int i = 0; i < Main.npc.Length; i++)
+                    {
+                        if(Main.npc[i].type == NPCID.Spazmatism)
+                        {
+                            npc.realLife = i;
+                        }
+                    }
+                }
+                if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
+				{
+					npc.TargetClosest();
+				}
+				bool dead2 = Main.player[npc.target].dead;
+
+				float shootSpeed = 12f;
+                float rotateTowards = TRAEMethods.PredictiveAimWithOffset(npc.Center, shootSpeed * 3, Main.player[npc.target].Center, Main.player[npc.target].velocity, npc.ai[1] == 0 ? 25 * 9 : 15 * 9) - (float)Math.PI / 2;
+				float rotSpeed = 0.1f;
+				if(npc.ai[1] == 0)
+				{
+					rotSpeed *= 3;
+				}
+				if(npc.ai[0] ==  0 && npc.ai[1] == 1)
+				{
+					npc.rotation += rotSpeed;
+				}
+				else if(!float.IsNaN(rotateTowards))
+				{
+                	npc.rotation.SlowRotation(rotateTowards, rotSpeed);
+				}
+
+				if (Main.rand.Next(5) == 0)
+				{
+					int num402 = Dust.NewDust(new Vector2(npc.position.X, npc.position.Y + (float)npc.height * 0.25f), npc.width, (int)((float)npc.height * 0.5f), 5, npc.velocity.X, 2f);
+					Main.dust[num402].velocity.X *= 0.5f;
+					Main.dust[num402].velocity.Y *= 0.1f;
+				}
+				if (Main.netMode != 1 && !Main.dayTime && !dead2 && npc.timeLeft < 10)
+				{
+					for (int num403 = 0; num403 < 200; num403++)
+					{
+						if (num403 != npc.whoAmI && Main.npc[num403].active && (Main.npc[num403].type == 125 || Main.npc[num403].type == 126))
+						{
+							npc.DiscourageDespawn(Main.npc[num403].timeLeft - 1);
+						}
+					}
+				}
+				if (Main.dayTime || dead2)
+				{
+					npc.velocity.Y -= 0.04f;
+					npc.EncourageDespawn(10);
+					return false;
+				}
+				if (npc.ai[0] == 0f)
+				{
+					if (npc.ai[1] == 0f)
+					{
+                        int side = 1;
+                        if (npc.Center.X < Main.player[npc.target].Center.X)
+                        {
+                            side = -1;
+                        }
+                        Vector2 goHere = Main.player[npc.target].Center + new Vector2(side * 450, -300);
+                        FlyTo(npc, goHere, false);
+						npc.ai[2] += 1f;
+						if (npc.ai[2] >= 600f)
+						{
+							npc.ai[1] = 1f;
+							npc.ai[2] = 0f;
+							npc.ai[3] = 0f;
+							npc.target = 255;
+							npc.netUpdate = true;
+						}
+						else
+						{
+							if (!Main.player[npc.target].dead)
+							{
+								npc.ai[3] += 1f;
+							}
+							if (npc.ai[3] >= 180f)
+							{
+								npc.ai[3] = 0f;
+								if (Main.netMode != 1)
+								{
+									int attackDamage_ForProjectiles3 = npc.GetAttackDamage_ForProjectiles(20f, 19f);
+									int num413 = Projectile.NewProjectile(npc.GetSource_ReleaseEntity(), npc.Center + TRAEMethods.PolarVector(15 * 9, npc.rotation + (float)Math.PI /2), TRAEMethods.PolarVector(shootSpeed, npc.rotation + (float)Math.PI/2), ProjectileID.EyeLaser, attackDamage_ForProjectiles3, 0f, Main.myPlayer);
+								}
+							}
+						}
+					}
+					else if (npc.ai[1] == 1f)
+					{
+						npc.velocity = Vector2.Zero;
+						npc.ai[2] += 1f;
+						if(npc.ai[2] >= 240f)
+						{
+							npc.ai[2] = 0;
+							npc.ai[1] = 0;
+						}
+						if(npc.ai[2] % 3 == 0)
+						{
+							if (Main.netMode != 1)
+							{
+								int attackDamage_ForProjectiles3 = npc.GetAttackDamage_ForProjectiles(20f, 19f);
+								int num413 = Projectile.NewProjectile(npc.GetSource_ReleaseEntity(), npc.Center + TRAEMethods.PolarVector(15 * 9, npc.rotation + (float)Math.PI /2), TRAEMethods.PolarVector(shootSpeed, npc.rotation + (float)Math.PI/2), ProjectileID.EyeLaser, attackDamage_ForProjectiles3, 0f, Main.myPlayer);
+							}
+						}
+					}
+					if ((double)npc.life < (double)npc.lifeMax * 0.4)
+					{
+						npc.ai[0] = 1f;
+						npc.ai[1] = 0f;
+						npc.ai[2] = 0f;
+						npc.ai[3] = 0f;
+						npc.netUpdate = true;
+					}
+					return false;
+				}
+				if (npc.ai[0] == 1f || npc.ai[0] == 2f)
+				{
+					if (npc.ai[0] == 1f)
+					{
+						npc.ai[2] += 0.005f;
+						if ((double)npc.ai[2] > 0.5)
+						{
+							npc.ai[2] = 0.5f;
+						}
+					}
+					else
+					{
+						npc.ai[2] -= 0.005f;
+						if (npc.ai[2] < 0f)
+						{
+							npc.ai[2] = 0f;
+						}
+					}
+					npc.rotation += npc.ai[2];
+					npc.ai[1] += 1f;
+					if (npc.ai[1] >= 100f)
+					{
+						npc.ai[0] += 1f;
+						npc.ai[1] = 0f;
+						if (npc.ai[0] == 3f)
+						{
+							npc.ai[2] = 0f;
+						}
+						else
+						{
+							//SoundEngine.PlaySound(SoundID.NPCHit, npc.Center);
+							for (int num418 = 0; num418 < 2; num418++)
+							{
+								Gore.NewGore(npc.GetSource_ReleaseEntity(), npc.position, new Vector2((float)Main.rand.Next(-30, 31) * 0.2f, (float)Main.rand.Next(-30, 31) * 0.2f), 143);
+								Gore.NewGore(npc.GetSource_ReleaseEntity(), npc.position, new Vector2((float)Main.rand.Next(-30, 31) * 0.2f, (float)Main.rand.Next(-30, 31) * 0.2f), 7);
+								Gore.NewGore(npc.GetSource_ReleaseEntity(), npc.position, new Vector2((float)Main.rand.Next(-30, 31) * 0.2f, (float)Main.rand.Next(-30, 31) * 0.2f), 6);
+							}
+							for (int num419 = 0; num419 < 20; num419++)
+							{
+								Dust.NewDust(npc.position, npc.width, npc.height, 5, (float)Main.rand.Next(-30, 31) * 0.2f, (float)Main.rand.Next(-30, 31) * 0.2f);
+							}
+							npc.localAI[2] = 450;
+							npc.localAI[3] = -300;
+							//SoundEngine.PlaySound(15, npc.Center);
+						}
+					}
+					Dust.NewDust(npc.position, npc.width, npc.height, 5, (float)Main.rand.Next(-30, 31) * 0.2f, (float)Main.rand.Next(-30, 31) * 0.2f);
+					npc.velocity.X *= 0.98f;
+					npc.velocity.Y *= 0.98f;
+					if ((double)npc.velocity.X > -0.1 && (double)npc.velocity.X < 0.1)
+					{
+						npc.velocity.X = 0f;
+					}
+					if ((double)npc.velocity.Y > -0.1 && (double)npc.velocity.Y < 0.1)
+					{
+						npc.velocity.Y = 0f;
+					}
+					return false;
+				}
+				npc.damage = (int)((double)npc.defDamage * 1.5);
+				npc.defense = npc.defDefense + 10;
+				npc.HitSound = SoundID.NPCHit4;
+				if (npc.ai[1] == 0f)
+				{
+					npc.ai[2] += 1f;
+					if(npc.ai[2] > 600)
+					{
+						npc.velocity = Vector2.Zero;
+						if(npc.ai[2] >= 660 && npc.ai[2] % 15 == 0)
+						{
+							if (Main.netMode != 1)
+							{
+								int attackDamage_ForProjectiles3 = npc.GetAttackDamage_ForProjectiles(25f, 23f);
+								int num413 = Projectile.NewProjectile(npc.GetSource_ReleaseEntity(), npc.Center + TRAEMethods.PolarVector(25 * 9, npc.rotation + (float)Math.PI /2), TRAEMethods.PolarVector(shootSpeed, npc.rotation + (float)Math.PI/2), ProjectileID.DeathLaser, attackDamage_ForProjectiles3, 0f, Main.myPlayer);
+							}
+						}
+						if(npc.ai[2] >= 660 + 120)
+						{
+							npc.ai[2] = 0;
+							npc.localAI[1] = 0;
+						}
+					}
+					else
+					{
+						Vector2 goHere = Main.player[npc.target].Center + new Vector2(npc.localAI[2], npc.localAI[3]);
+						FlyTo(npc, goHere, true);
+						if(npc.localAI[1] == 60)
+						{
+							if(Main.rand.Next(2) == 0)
+							{
+								npc.localAI[2] *= -1;
+							}
+							else
+							{
+								npc.localAI[3] *= -1;
+							}
+						}
+						npc.localAI[1] += 1f;
+						if (npc.localAI[1] > 120f)
+						{
+							npc.localAI[1] = 0f;
+							if (Main.netMode != 1)
+							{
+								int attackDamage_ForProjectiles3 = npc.GetAttackDamage_ForProjectiles(25f, 23f);
+								int num413 = Projectile.NewProjectile(npc.GetSource_ReleaseEntity(), npc.Center + TRAEMethods.PolarVector(25 * 9, npc.rotation + (float)Math.PI /2), TRAEMethods.PolarVector(shootSpeed, npc.rotation + (float)Math.PI/2), ProjectileID.DeathLaser, attackDamage_ForProjectiles3, 0f, Main.myPlayer);
+							}
+						}
+					}
+					return false;
+				}
+				
+                return false;
+            }
+            return base.PreAI(npc);
+        }
+        public override void AI(NPC npc)
+        {
+            
+            if(npc.type == NPCID.Spazmatism)
+            {
+                if (Main.expertMode)
+                {
+                    if (npc.ai[1] == 0f && npc.ai[0] != 1f && npc.ai[0] != 2f && npc.ai[0] != 0f)
+                    {
+						npc.defense = 40;
+                        if (npc.ai[1] == 0f)
+                        {
+                            float speed = 2.7f;
+                            float tenpercent = 0.2f;
+                            int num425 = 1;
+                            if (npc.position.X + (float)(npc.width / 2) < Main.player[npc.target].position.X + (float)Main.player[npc.target].width)
+                            {
+                                num425 = -1;
+                            }
+                            Vector2 spazposition = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
+                            float playerpositionX = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) + (float)(num425 * 180) - spazposition.X;
+                            float playerpositionY = Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2) - spazposition.Y;
+                            float playerpositiontospaz = (float)Math.Sqrt((double)(playerpositionX * playerpositionX + playerpositionY * playerpositionY));
+                            if (Main.expertMode)
+                            {
+                                if (playerpositiontospaz > 300f)
+                                {
+                                    speed += 0.5f;
+                                }
+                                if (playerpositiontospaz > 400f)
+                                {
+                                    speed += 0.5f;
+                                }
+                                if (playerpositiontospaz > 500f)
+                                {
+                                    speed += 0.75f;
+                                }
+                                if (playerpositiontospaz > 600f)
+                                {
+                                    speed += 0.75f;
+                                }
+                                if (playerpositiontospaz > 700f)
+                                {
+                                    speed += 0.9f;
+                                }
+                                if (playerpositiontospaz > 800f)
+                                {
+                                    speed += 0.9f;
+                                }
+                            }
+							speed *= 0.8f;
+                            playerpositiontospaz /= speed;
+                            playerpositionX *= playerpositiontospaz;
+                            playerpositionY *= playerpositiontospaz;
+                            if (npc.velocity.X < playerpositionX)
+                            {
+                                ref float x1 = ref npc.velocity.X; // could maybe be simplified to npc.velocity.X += tenpercent 
+                                x1 += tenpercent;
+                                if (npc.velocity.X < 0f && playerpositionX > 0f)
+                                {
+                                    ref float x2 = ref npc.velocity.X;
+                                    x2 += tenpercent;
+                                }
+                            }
+                            else if (npc.velocity.X > playerpositionX)
+                            {
+                                ref float x3 = ref npc.velocity.X;
+                                x3 -= tenpercent;
+                                if (npc.velocity.X > 0f && playerpositionX < 0f)
+                                {
+                                    ref float x4 = ref npc.velocity.X;
+                                    x4 -= tenpercent;
+                                }
+                            }
+                            if (npc.velocity.Y < playerpositionY)
+                            {
+                                ref float x5 = ref npc.velocity.Y;
+                                x5 += tenpercent;
+                                if (npc.velocity.Y < 0f && playerpositionY > 0f)
+                                {
+                                    ref float x6 = ref npc.velocity.Y;
+                                    x6 += tenpercent;
+                                }
+                            }
+                            else if (npc.velocity.Y > playerpositionY)
+                            {
+                                ref float x7 = ref npc.velocity.Y;
+                                x7 -= tenpercent;
+                                if (npc.velocity.Y > 0f && playerpositionY < 0f)
+                                {
+                                    ref float x8 = ref npc.velocity.Y;
+                                    x8 -= tenpercent;
+                                }
+                            }
+                            ref float x = ref npc.ai[2];
+                            x += 1f;
+                            if (npc.ai[2] >= 400f)
+                            {
+                                npc.ai[1] = 1f;
+                                npc.ai[2] = 0f;
+                                npc.ai[3] = 0f;
+                                npc.target = 255;
+                                npc.netUpdate = true;
+                            }
+                            if (Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
+                            {
+                                ref float y = ref npc.localAI[2];
+                                y += 2f;
+
+                                if (npc.localAI[2] > 22f)
+                                {
+                                    npc.localAI[2] = 0f;
+                                    Terraria.Audio.SoundEngine.PlaySound(SoundID.Item34, npc.position);
+                                }
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                {
+                                    ref float x9 = ref npc.localAI[1];
+                                    x9 += 2f;
+                                    if ((double)npc.life < (double)npc.lifeMax * 0.75)
+                                    {
+                                        ref float x10 = ref npc.localAI[1];
+                                        x10 += 1f;
+                                    }
+                                    if ((double)npc.life < (double)npc.lifeMax * 0.5)
+                                    {
+                                        ref float y1 = ref npc.localAI[1];
+                                        y1 += 1f;
+                                    }
+                                    if ((double)npc.life < (double)npc.lifeMax * 0.25)
+                                    {
+                                        ref float y2 = ref npc.localAI[1];
+                                        y2 += 1f;
+                                    }
+                                    if ((double)npc.life < (double)npc.lifeMax * 0.1)
+                                    {
+                                        ref float y3 = ref npc.localAI[1];
+                                        y3 += 2f;
+                                    }
+                                    if (npc.soundDelay <= 0)
+                                    {
+                                        Terraria.Audio.SoundEngine.PlaySound(SoundID.ForceRoarPitched, npc.Center);
+                                        npc.soundDelay = 240;
+                                    }
+                                    if (npc.localAI[1] > 8f)
+                                    {
+
+                                        
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

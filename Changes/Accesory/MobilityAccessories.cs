@@ -145,6 +145,10 @@ namespace TRAEProject.Changes.Accesory
                     }
                 }
             }
+            if(Player.wingsLogic == 26)
+            {
+                Player.GetModPlayer<AccesoryEffects>().FastFall = true;
+            }
         }
     }
     public class MobilityAccessories : GlobalItem
@@ -156,14 +160,24 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.HermesBoots:
                 case ItemID.FlurryBoots:
                 case ItemID.SailfishBoots:
-                    if (player.velocity.Y == 0)
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.3f;
+
+                    }
+                    else if (player.velocity.Y == 0)
                     {
                         player.moveSpeed += 0.25f;
                     }
 					player.accRunSpeed = 4.8f;
                     return;
                 case ItemID.SandBoots:
-                    if (player.velocity.Y == 0)
+                    
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.3f;
+                    }
+                    else if (player.velocity.Y == 0)
                     {
                         player.moveSpeed += 0.25f;
                     }
@@ -200,7 +214,15 @@ namespace TRAEProject.Changes.Accesory
                     player.moveSpeed += 0.05f;
                     return;
                 case ItemID.AnkletoftheWind:
-                    player.moveSpeed += 0.15f;
+
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.35f;
+                    }
+                    else 
+                    {
+                        player.moveSpeed += 0.15f;
+                    }
                     
                     return;
                 case ItemID.IceSkates:
@@ -212,7 +234,11 @@ namespace TRAEProject.Changes.Accesory
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
 
                     player.GetModPlayer<AccesoryEffects>().icceleration = true;
-                    if (player.velocity.Y == 0)
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.3f;
+                    }
+                    else if (player.velocity.Y == 0)
                     {
                         player.moveSpeed += 0.25f;
                     }
@@ -227,8 +253,19 @@ namespace TRAEProject.Changes.Accesory
                     player.waterWalk = false;
                     player.accRunSpeed = 6f; 
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
-                    player.moveSpeed += 0.25f;
-                    if (player.velocity.Y == 0)
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.45f;
+                    }
+                    else 
+                    {
+                        player.moveSpeed += 0.25f;
+                    }
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.3f;
+                    }
+                    else if (player.velocity.Y == 0)
                     {
                         player.moveSpeed += 0.25f;
                     }
@@ -237,9 +274,20 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.LightningBoots:
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
                     player.rocketTimeMax = 7;
-                    player.accRunSpeed = 6f; 
-                    player.moveSpeed += 0.25f;
-                    if (player.velocity.Y == 0)
+                    player.accRunSpeed = 6f;
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.45f;
+                    }
+                    else 
+                    {
+                        player.moveSpeed += 0.25f;
+                    }
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.3f;
+                    }
+                    else if (player.velocity.Y == 0)
                     {
                         player.moveSpeed += 0.25f;
                     }
@@ -251,15 +299,40 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.SpectreBoots:
                     player.rocketTimeMax = 7; 
                     player.accRunSpeed = 4.8f;
-                    if (player.velocity.Y == 0)
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.moveSpeed += 0.3f;
+                    }
+                    else if (player.velocity.Y == 0)
                     {
                         player.moveSpeed += 0.25f;
                     }
                     return;
+                case ItemID.LuckyHorseshoe:
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.GetModPlayer<AccesoryEffects>().FastFall = true;
+                    }
+                    break;
                 case ItemID.ObsidianHorseshoe:
                     player.fireWalk = false;
                     player.GetModPlayer<AccesoryEffects>().FastFall = true;
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.gravControl = true;
+                    }
                     return;
+                    case ItemID.BlueHorseshoeBalloon:
+                    case ItemID.WhiteHorseshoeBalloon:
+                    case ItemID.YellowHorseshoeBalloon:
+                    case ItemID.BalloonHorseshoeFart:
+                    case ItemID.BalloonHorseshoeSharkron:
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.GetModPlayer<AccesoryEffects>().FastFall = true;
+                        player.gravControl = true;
+                    }
+                    break;
                 case ItemID.ObsidianWaterWalkingBoots:
                     player.waterWalk2 = false;
                     player.rocketBoots = 1;
@@ -270,6 +343,13 @@ namespace TRAEProject.Changes.Accesory
                     player.buffImmune[BuffID.Burning] = false;
                     return;
                 case ItemID.BalloonHorseshoeHoney:
+                    player.lifeRegen += 2;
+                    if(QwertysMovementRemix.active)
+                    {
+                        player.GetModPlayer<AccesoryEffects>().FastFall = true;
+                        player.gravControl = true;
+                    }
+                    break;
                 case ItemID.HoneyBalloon:
                     player.lifeRegen += 2;
                     return;
@@ -317,7 +397,8 @@ namespace TRAEProject.Changes.Accesory
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             switch (item.type)
-            {           case ItemID.EmpressFlightBooster:
+            {           
+                case ItemID.EmpressFlightBooster:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
@@ -331,9 +412,17 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.FlurryBoots:
                     foreach (TooltipLine line in tooltips)
                     {
+                        
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "25% increased running speed";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 6mph";
+                            }
+                            else
+                            {
+                                line.Text = "25% increased running speed";
+                            }
                         }
                     }
                     return;
@@ -342,16 +431,31 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "25% increased running speed\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 6mph\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
+                            }
+                            else
+                            {
+                                line.Text = "25% increased running speed\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
+                            }
                         }
                     }
                     return;
                 case ItemID.Aglet:
                     foreach (TooltipLine line in tooltips)
                     {
+                        
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "10% increased movement speed";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 2mph";
+                            }
+                            else
+                            {
+                                line.Text = "10% increased movement speed";
+                            }
                         }
                     }
                     return;
@@ -360,7 +464,14 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "25% increased movement speed";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 9mph";
+                            }
+                            else
+                            {
+                                line.Text = "25% increased movement speed";
+                            }
                         }
                     }
                     return;
@@ -370,7 +481,14 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "25% increased running speed";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 6mph";
+                            }
+                            else
+                            {
+                                line.Text = "25% increased running speed";
+                            }
                         }
                     }
                     return;
@@ -379,7 +497,14 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "25% increased running speed";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 6mph";
+                            }
+                            else
+                            {
+                                line.Text = "25% increased running speed";
+                            }
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -392,7 +517,14 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "25% increased running speed";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 6mph";
+                            }
+                            else
+                            {
+                                line.Text = "25% increased running speed";
+                            }
                         }
                     }
                     return;
@@ -405,7 +537,15 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "50% increased running speed, 25% movement speed while in the air";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 15mph";
+                            }
+                            else
+                            {
+                                line.Text = "50% increased running speed, 25% movement speed while in the air";
+                            }
+                            
                         }
                     }
                     return;
@@ -414,7 +554,14 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "50% increased running speed, 25% movement speed while in the air";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text = "Increases horizontal speed by 15mph";
+                            }
+                            else
+                            {
+                                line.Text = "50% increased running speed, 25% movement speed while in the air";
+                            }
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -446,14 +593,29 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.ObsidianHorseshoe:
                     foreach (TooltipLine line in tooltips)
                     {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        if(QwertysMovementRemix.active)
                         {
-                            line.Text = "Negates fall damage";
+                            if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                            {
+                                line.Text = "Hold DOWN to increase falling speed";
+                            }
+                            if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                            {
+                                line.Text = "Allows control over gravity";
+                            }
                         }
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        else
                         {
-                            line.Text = "Hold DOWN to increase falling speed";
+                            if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                            {
+                                line.Text = "Negates fall damage";
+                            }
+                            if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                            {
+                                line.Text = "Hold DOWN to increase falling speed";
+                            }
                         }
+                        
                     }
                     return;
                 case ItemID.ObsidianWaterWalkingBoots:
@@ -527,6 +689,10 @@ namespace TRAEProject.Changes.Accesory
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
                             line.Text = "Increases jump height and life regeneration";
+                            if(QwertysMovementRemix.active)
+                            {
+                                line.Text += "/nAllows fast fall and gravity control";
+                            }
                         }
                     }
                     return;

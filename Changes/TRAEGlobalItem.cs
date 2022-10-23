@@ -40,7 +40,12 @@ namespace TRAEProject.Changes
 			       item.useTime = 7; // down from 8
 				   return;				
                 case ItemID.ObsidianHorseshoe:
+
                     item.SetNameOverride("Heavy Horseshoe");
+                    if(QwertysMovementRemix.active)
+                    {
+                        item.SetNameOverride("Gravity Horseshoe");
+                    }
                     return;
                 case ItemID.ObsidianWaterWalkingBoots:
                     item.SetNameOverride("Heavy Rocket Boots");

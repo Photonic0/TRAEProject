@@ -19,31 +19,32 @@ namespace TRAEProject.Changes.NPCs.Boss
                 
                 case NPCID.SkeletronPrime:
           
-                        npc.lifeMax = 24000;
+
+				        npc.lifeMax = (int)(npc.lifeMax  * ((float)24000 / 28000));
                         npc.defense = 20;
                    
                     break;
                 case NPCID.PrimeVice:
                    
-                        npc.lifeMax = 12000;
+				        npc.lifeMax = (int)(npc.lifeMax  * (float)(12000 / 9000));
                     
                     break;
                 case NPCID.PrimeLaser:
                     
                         npc.lifeMax = 6000;
+				        npc.lifeMax = (int)(npc.lifeMax  * ((float)6000 / 6000));
                         npc.damage = 90;
                     
                     break;
                 case NPCID.PrimeSaw:
-                 
-                        npc.lifeMax = 6000;
+				        npc.lifeMax = (int)(npc.lifeMax  * ((float)6000 / 9000));
                         npc.damage = 90;
                     
                     break;
                 case NPCID.TheDestroyer:
                    
                         npc.damage = 125;
-                        npc.lifeMax = 70000;
+				        npc.lifeMax = (int)(npc.lifeMax  * ((float)55000 / 80000));
                     
                     break;
                 case NPCID.Probe:
@@ -59,15 +60,6 @@ namespace TRAEProject.Changes.NPCs.Boss
          
                 switch (npc.type)
                 {
-                    case NPCID.Retinazer:
-                       
-                            npc.lifeMax -= (int)(npc.lifeMax * 0.04);
-                        return;
-                    case NPCID.Spazmatism:
-                        
-                            npc.lifeMax -= (int)(npc.lifeMax * 0.05);
-                        
-                        return;
                     case NPCID.TheDestroyer:
                         
                             npc.damage = 220;
@@ -134,155 +126,6 @@ namespace TRAEProject.Changes.NPCs.Boss
         {
             switch(npc.aiStyle)
             {
-                case 31://Spazmatism
-                    if (Main.expertMode)
-                    {
-                        if (npc.ai[1] == 0f && npc.ai[0] != 1f && npc.ai[0] != 2f && npc.ai[0] != 0f)
-                        {
-                            if (npc.ai[1] == 0f)
-                            {
-                                float speed = 2.7f;
-                                float tenpercent = 0.2f;
-                                int num425 = 1;
-                                if (npc.position.X + (float)(npc.width / 2) < Main.player[npc.target].position.X + (float)Main.player[npc.target].width)
-                                {
-                                    num425 = -1;
-                                }
-                                Vector2 spazposition = new Vector2(npc.position.X + (float)npc.width * 0.5f, npc.position.Y + (float)npc.height * 0.5f);
-                                float playerpositionX = Main.player[npc.target].position.X + (float)(Main.player[npc.target].width / 2) + (float)(num425 * 180) - spazposition.X;
-                                float playerpositionY = Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2) - spazposition.Y;
-                                float playerpositiontospaz = (float)Math.Sqrt((double)(playerpositionX * playerpositionX + playerpositionY * playerpositionY));
-                                if (Main.expertMode)
-                                {
-                                    if (playerpositiontospaz > 300f)
-                                    {
-                                        speed += 0.5f;
-                                    }
-                                    if (playerpositiontospaz > 400f)
-                                    {
-                                        speed += 0.5f;
-                                    }
-                                    if (playerpositiontospaz > 500f)
-                                    {
-                                        speed += 0.75f;
-                                    }
-                                    if (playerpositiontospaz > 600f)
-                                    {
-                                        speed += 0.75f;
-                                    }
-                                    if (playerpositiontospaz > 700f)
-                                    {
-                                        speed += 0.9f;
-                                    }
-                                    if (playerpositiontospaz > 800f)
-                                    {
-                                        speed += 0.9f;
-                                    }
-                                }
-                                playerpositiontospaz /= speed;
-                                playerpositionX *= playerpositiontospaz;
-                                playerpositionY *= playerpositiontospaz;
-                                if (npc.velocity.X < playerpositionX)
-                                {
-                                    ref float x1 = ref npc.velocity.X; // could maybe be simplified to npc.velocity.X += tenpercent 
-                                    x1 += tenpercent;
-                                    if (npc.velocity.X < 0f && playerpositionX > 0f)
-                                    {
-                                        ref float x2 = ref npc.velocity.X;
-                                        x2 += tenpercent;
-                                    }
-                                }
-                                else if (npc.velocity.X > playerpositionX)
-                                {
-                                    ref float x3 = ref npc.velocity.X;
-                                    x3 -= tenpercent;
-                                    if (npc.velocity.X > 0f && playerpositionX < 0f)
-                                    {
-                                        ref float x4 = ref npc.velocity.X;
-                                        x4 -= tenpercent;
-                                    }
-                                }
-                                if (npc.velocity.Y < playerpositionY)
-                                {
-                                    ref float x5 = ref npc.velocity.Y;
-                                    x5 += tenpercent;
-                                    if (npc.velocity.Y < 0f && playerpositionY > 0f)
-                                    {
-                                        ref float x6 = ref npc.velocity.Y;
-                                        x6 += tenpercent;
-                                    }
-                                }
-                                else if (npc.velocity.Y > playerpositionY)
-                                {
-                                    ref float x7 = ref npc.velocity.Y;
-                                    x7 -= tenpercent;
-                                    if (npc.velocity.Y > 0f && playerpositionY < 0f)
-                                    {
-                                        ref float x8 = ref npc.velocity.Y;
-                                        x8 -= tenpercent;
-                                    }
-                                }
-                                ref float x = ref npc.ai[2];
-                                x += 1f;
-                                if (npc.ai[2] >= 400f)
-                                {
-                                    npc.ai[1] = 1f;
-                                    npc.ai[2] = 0f;
-                                    npc.ai[3] = 0f;
-                                    npc.target = 255;
-                                    npc.netUpdate = true;
-                                }
-                                if (Collision.CanHit(npc.position, npc.width, npc.height, Main.player[npc.target].position, Main.player[npc.target].width, Main.player[npc.target].height))
-                                {
-                                    ref float y = ref npc.localAI[2];
-                                    y += 2f;
-
-                                    if (npc.localAI[2] > 22f)
-                                    {
-                                        npc.localAI[2] = 0f;
-                                        Terraria.Audio.SoundEngine.PlaySound(SoundID.Item34, npc.position);
-                                    }
-                                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                                    {
-                                        ref float x9 = ref npc.localAI[1];
-                                        x9 += 2f;
-                                        if ((double)npc.life < (double)npc.lifeMax * 0.75)
-                                        {
-                                            ref float x10 = ref npc.localAI[1];
-                                            x10 += 1f;
-                                        }
-                                        if ((double)npc.life < (double)npc.lifeMax * 0.5)
-                                        {
-                                            ref float y1 = ref npc.localAI[1];
-                                            y1 += 1f;
-                                        }
-                                        if ((double)npc.life < (double)npc.lifeMax * 0.25)
-                                        {
-                                            ref float y2 = ref npc.localAI[1];
-                                            y2 += 1f;
-                                        }
-                                        if ((double)npc.life < (double)npc.lifeMax * 0.1)
-                                        {
-                                            ref float y3 = ref npc.localAI[1];
-                                            y3 += 2f;
-                                        }
-                                        if (npc.soundDelay <= 0)
-                                        {
-                                            Terraria.Audio.SoundEngine.PlaySound(SoundID.ForceRoarPitched, npc.Center);
-                                            npc.soundDelay = 240;
-                                        }
-                                        if (npc.localAI[1] > 8f)
-                                        {
-
-                                            
-
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    return;
                 case 37://Destroyer
            
                         if (npc.type == NPCID.TheDestroyerTail)

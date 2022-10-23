@@ -198,13 +198,20 @@ namespace TRAEProject
                     }
                 }
             }
-            if (FastFall && Player.controlDown && Player.gravDir != -1)
+            if(QwertysMovementRemix.active)
+            {
+                if (FastFall && Player.controlDown)
+                {
+                    Player.velocity.Y += 2f * Player.gravDir;
+                }
+            }
+            else if (FastFall && Player.controlDown && Player.gravDir != -1)
             {
                 Player.maxFallSpeed *= 2f;
                 if (Player.velocity.Y < 0)
                 { 
                     Player.velocity.Y += 0.7f;
-                Player.velocity.Y += 0.2f;
+                    Player.velocity.Y += 0.2f;
                 }
             }
             

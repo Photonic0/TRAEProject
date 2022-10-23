@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace TRAEProject
 {
-    public class TRAEMethods
+    public static class TRAEMethods
     {
         public static void SpawnProjectilesFromAbove(Player Player, Vector2 Base, int projectileCount, int spreadX, int spreadY, int[] offsetCenter, float velocity, int type, int damage, float knockback, int player)
         {
@@ -156,6 +156,68 @@ namespace TRAEProject
                 return (float)Math.PI * 2 - Math.Abs(angle1 - angle2);
             }
             return Math.Abs(angle1 - angle2);
+        }
+        public static void SlowRotation(this ref float currentRotation, float targetAngle, float speed)
+        {
+            int f = 1; //this is used to switch rotation direction
+            float actDirection = new Vector2((float)Math.Cos(currentRotation), (float)Math.Sin(currentRotation)).ToRotation();
+            targetAngle = new Vector2((float)Math.Cos(targetAngle), (float)Math.Sin(targetAngle)).ToRotation();
+
+            //this makes f 1 or -1 to rotate the shorter distance
+            if (Math.Abs(actDirection - targetAngle) > Math.PI)
+            {
+                f = -1;
+            }
+            else
+            {
+                f = 1;
+            }
+
+            if (actDirection <= targetAngle + speed * 2 && actDirection >= targetAngle - speed * 2)
+            {
+                actDirection = targetAngle;
+            }
+            else if (actDirection <= targetAngle)
+            {
+                actDirection += speed * f;
+            }
+            else if (actDirection >= targetAngle)
+            {
+                actDirection -= speed * f;
+            }
+            actDirection = new Vector2((float)Math.Cos(actDirection), (float)Math.Sin(actDirection)).ToRotation();
+            currentRotation = actDirection;
+        }
+        public static float PredictiveAimWithOffset(Vector2 shootFrom, float shootSpeed, Vector2 targetPos, Vector2 targetVelocity, float shootOffset)
+        {
+            float angleToTarget = (targetPos - shootFrom).ToRotation();
+            float targetTraj = targetVelocity.ToRotation();
+            float targetSpeed = targetVelocity.Length();
+            float dist = (targetPos - shootFrom).Length();
+            if (dist < shootOffset)
+            {
+                shootOffset = 0;
+            }
+
+            //imagine a tirangle between the shooter, its target and where it think the target will be in the future
+            // we need to find an angle in the triangle z this is the angle located at the target's corner
+            float z = (float)Math.PI + (targetTraj - angleToTarget);
+
+            //with this angle z we can now use the law of cosines to find time
+            //the side opposite of z is equal to shootSpeed * time
+            //the other sides are dist and targetSpeed * time
+            //putting these values into law of cosines gets (shootSpeed * time + shootOffset)^2 = (targetSpeed * time)^2 + dist^2 -2*targetSpeed*time*cos(z)
+            //we can rearange it to (shootSpeed^2 - targetSpeed^2)time^2 + (2*targetSpeed*dist*cos(z) + 2*shootOffest*shootSpeed)*time + shootOffset^2 - dist^2 = 0, this is a quadratic!
+
+            //here we use the quadratic formula to find time
+            float a = shootSpeed * shootSpeed - targetSpeed * targetSpeed;
+            float b = 2 * targetSpeed * dist * (float)Math.Cos(z) + 2 * shootOffset * shootSpeed;
+            float c = (shootOffset * shootOffset) - (dist * dist);
+            float time = (-b + (float)Math.Sqrt(b * b - 4 * a * c)) / (2 * a);
+
+            //we now know the time allowing use to find all sides of the tirangle, now we use law of Sines to calculate the angle to shoot at.
+            float calculatedShootAngle = angleToTarget - (float)Math.Asin((targetSpeed * time * (float)Math.Sin(z)) / (shootSpeed * time));
+            return calculatedShootAngle;
         }
     }
 }

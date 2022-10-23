@@ -22,7 +22,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         {
             if (npc.type == NPCID.Plantera)
             {
-                npc.lifeMax = 37000;
+				npc.lifeMax = (int)(npc.lifeMax  * ((float)37000 / 30000));
 				
 				
                 npc.behindTiles = true;

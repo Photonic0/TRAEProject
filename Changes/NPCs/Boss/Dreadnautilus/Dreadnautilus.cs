@@ -33,7 +33,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 			if (npc.type == NPCID.BloodNautilus)
 			{
 				npc.boss = true;
-				npc.lifeMax = 30000;
+				npc.lifeMax = (int)(npc.lifeMax  * ((float)30000 / 7000));
 				npc.defense = 32;
 				npc.catchItem = (short)ItemType<DreadSummon>();
 			}

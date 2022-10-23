@@ -16,11 +16,11 @@ namespace TRAEProject.Changes.NPCs.Boss
 		{
 			if (npc.type == NPCID.SkeletronHead)
             {
-				npc.lifeMax = 3500; // down from 4400
+				npc.lifeMax = (int)(npc.lifeMax  * ((float)3500 / 4400));
             }
 			if (npc.type == NPCID.SkeletronHand)
             {
-				npc.lifeMax = 800; // up from 600
+				npc.lifeMax = (int)(npc.lifeMax  * ((float)800 / 600));
 				// basically we take HP off of the head but add it back to the hands
             }
 		}
