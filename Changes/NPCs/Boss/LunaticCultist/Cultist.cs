@@ -19,24 +19,28 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
             if (npc.type == NPCID.CultistBoss)
             {
 				npc.lifeMax = (int)(npc.lifeMax  * ((float)80000 / 32000));
-                npc.height = 60;
-                npc.width = 60;
+
+                npc.height = 84;
+                npc.width = 84;
+            }
+            if (npc.type == NPCID.CultistBossClone)
+            {
+                npc.height = 84;
+                npc.width = 84;
             }
             if (npc.type == NPCID.CultistDragonHead)
-            {
-                npc.lifeMax = 7500; // down from 10000
+            {            
             }
         }
-
-
+      
         static float AttackSpeed(NPC npc)
         {
-            if ((float)npc.life / (float)npc.lifeMax <= 0.1f)
+            if ((npc.life / npc.lifeMax) <= 0.1f)
                 return 2.25f;
             if (Main.expertMode || Main.masterMode)
-                return 2.25f - 1.3f * ((float)npc.life / (float)npc.lifeMax);
+                return 2.25f - 1f * (npc.life / npc.lifeMax);
             else
-                return 2.25f - 1.5f * ((float)npc.life / (float)npc.lifeMax);
+                return 2.25f - 1.25f * (npc.life / npc.lifeMax);
         }
         int attackNumber = 0;
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -74,7 +78,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                     }
                     SoundEngine.PlaySound(sound, npc.Center);
                 }
-                bool master = Main.expertMode;
+                bool master = Main.masterMode;
                 bool belowHalf = npc.life <= npc.lifeMax / 2;
 				npc.damage = 0;
 

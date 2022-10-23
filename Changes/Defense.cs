@@ -63,9 +63,9 @@ namespace TRAEProject
         {
             Player.endurance = 0;
         }
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
         {
-            if (newBrain && Main.rand.Next(7) == 0 && Player.FindBuffIndex(321) == -1)
+            if (newBrain && Main.rand.NextBool(6) && Player.FindBuffIndex(321) == -1)
             {
                 Player.BrainOfConfusionDodge();
                 for (int i = 0; i < 200; i++)
@@ -120,15 +120,15 @@ namespace TRAEProject
             }
             if (WormScarf)
             {
-                damage = (int)(damage * 0.86);
+                damage = (int)(damage * 0.83);
             }
             if (IceBarrier)
             {
-                damage = (int)(damage * 0.80);
+                damage = (int)(damage * 0.75);
             }
             if (pocketMirror)
             {
-                damage = (int)(damage * 0.85);
+                damage = (int)(damage * 0.88);
             }
             if (Player.beetleDefense)
             {
@@ -160,11 +160,11 @@ namespace TRAEProject
             }
             if (WormScarf)
             {
-                damage = (int)(damage * 0.86);
+                damage = (int)(damage * 0.83);
             }
             if (IceBarrier)
             {
-                damage = (int)(damage * 0.80);
+                damage = (int)(damage * 0.75);
             }
             if (Player.beetleDefense)
             {
@@ -208,7 +208,7 @@ namespace TRAEProject
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Reduces damage taken by 14%";
+                            line.Text = "Reduces damage taken by 17%";
                         }
                     }
                     return;
@@ -217,7 +217,7 @@ namespace TRAEProject
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Puts a shell around the owner when below 50% life that reduces damage by 20%";
+                            line.Text = "Puts a shell around the owner when below 50% life that reduces damage by 25%";
                         }
                     }
                     return;
@@ -226,7 +226,7 @@ namespace TRAEProject
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Puts a shell around the owner when below 50% life that reduces damage by 20%";
+                            line.Text = "Puts a shell around the owner when below 50% life that reduces damage by 25%";
                         }
                     }
                     return;
@@ -235,7 +235,7 @@ namespace TRAEProject
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "15% reduced damage from projectiles\nGrants immunity to Petrified";
+                            line.Text = "12% reduced damage from projectiles\nGrants immunity to Petrified";
                         }
                     }
                     return;

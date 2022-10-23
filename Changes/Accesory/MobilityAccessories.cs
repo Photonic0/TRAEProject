@@ -167,9 +167,9 @@ namespace TRAEProject.Changes.Accesory
                     }
                     else if (player.velocity.Y == 0)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += 0.25f; // increases from 20 mph to 25
                     }
-					player.accRunSpeed = 4.8f;
+					player.accRunSpeed = 4.8f; // makes your movement speed 25 mph if it isn't already
                     return;
                 case ItemID.SandBoots:
                     
@@ -183,6 +183,7 @@ namespace TRAEProject.Changes.Accesory
                     }
                     player.desertBoots = false;
                     player.GetModPlayer<AccesoryEffects>().sandRunning = true;
+					player.accRunSpeed = 4.8f;
                     return;
                 case ItemID.FrogLeg:
                 case ItemID.FrogWebbing:
@@ -365,6 +366,7 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<AccesoryEffects>().LavaShield = true;
                     return;
                 case ItemID.LavaWaders:
+                case ItemID.HellfireTreads:
                     player.GetModPlayer<AccesoryEffects>().waterRunning = true;
                     player.GetModPlayer<AccesoryEffects>().LavaShield = true;
                     player.GetModPlayer<MoveSpeed>().TRAEwaterwalk = true;
@@ -647,6 +649,7 @@ namespace TRAEProject.Changes.Accesory
                     }
                     return;
                 case ItemID.LavaWaders:
+                case ItemID.HellfireTreads:
                     foreach (TooltipLine line in tooltips)
                     {
                         {

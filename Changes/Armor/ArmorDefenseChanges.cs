@@ -100,7 +100,6 @@ namespace TRAEProject
                 case ItemID.PlatinumChainmail:
                 case ItemID.PlatinumHelmet:
                 case ItemID.ShadowHelmet:
-                case ItemID.CrimsonHelmet:
                 case ItemID.AncientShadowHelmet:
                 case ItemID.ShadowGreaves:
                 case ItemID.CrimsonGreaves:

@@ -353,7 +353,7 @@ namespace TRAEProject.Changes.Items
         {
             switch (item.type)
             {
-                case ItemID.LaserRifle: // NOT IN CHANGELOG
+                case ItemID.LaserRifle:
                     if (player.spaceGun)
                         mult = 0;
                     return;

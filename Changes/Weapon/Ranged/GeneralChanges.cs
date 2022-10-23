@@ -14,14 +14,14 @@ namespace TRAEProject.Changes.Weapons
     public class RangedItems : GlobalItem
     {
         public override bool InstancePerEntity => true;
-  
+
         public override GlobalItem Clone(Item item, Item itemClone)
         {
             return base.Clone(item, itemClone);
         }
         public override void SetDefaults(Item item)
         {
-			if (item.ammo > 0 && item.type != ItemID.SilverCoin && item.type != ItemID.GoldCoin && item.type != ItemID.CopperCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.Ale && item.type != ItemID.SandBlock)
+            if (item.ammo > 0 && item.type != ItemID.SilverCoin && item.type != ItemID.GoldCoin && item.type != ItemID.CopperCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.Ale && item.type != ItemID.SandBlock)
             {
                 item.maxStack = 9999;
             }
@@ -31,13 +31,13 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.Boomstick:
                     item.damage = 11; // down from 14
                     return;
-			    case ItemID.Beenade: 
+                case ItemID.Beenade:
                     item.damage = 8; // down from 12				
-					item.useAnimation = 45; // up from 15
+                    item.useAnimation = 45; // up from 15
                     item.useTime = 45; // up from 15    
-					item.shootSpeed = 12f; // up from 6
+                    item.shootSpeed = 12f; // up from 6
                     item.autoReuse = true;
-					return;
+                    return;
                 case ItemID.Revolver:
                     item.damage = 30; // up from 20
                     item.value = 250000; // 25 gold
@@ -63,9 +63,9 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.FlintlockPistol:
                     item.shootSpeed = 7f;
                     item.autoReuse = true;
-                    return;     
+                    return;
                 case ItemID.BeesKnees:
-                    item.damage = 16;
+                    item.damage = 19;
                     return;
                 case ItemID.Minishark:
                     item.value = Item.buyPrice(gold: 50);
@@ -79,12 +79,17 @@ namespace TRAEProject.Changes.Weapons
                     return;
                 case ItemID.Uzi:
                     item.value = Item.buyPrice(platinum: 1);
-					   item.shootSpeed = 5f;
+                    item.shootSpeed = 5f;
                     item.useTime = 7;
                     item.useAnimation = 7;
                     return;
                 case ItemID.Handgun:
-                    item.damage = 20; // up from 17
+                    item.damage = 33; // up from 17
+                    item.useTime = 17;
+                    item.useAnimation = 17;
+                    return;
+                case ItemID.PhoenixBlaster:
+                    item.shootSpeed = 19f;
                     return;
                 case ItemID.Toxikarp:
                     item.useTime = 14;
@@ -123,7 +128,7 @@ namespace TRAEProject.Changes.Weapons
                     item.damage = 100; // up from 50
                     item.useTime = 21; // up from 8
                     item.useAnimation = 21; // up from 8
-                    item.autoReuse = true; 
+                    item.autoReuse = true;
                     return;
                 case ItemID.StakeLauncher:
                     item.useTime = 15;
@@ -137,7 +142,7 @@ namespace TRAEProject.Changes.Weapons
                     item.useTime = 40;
                     item.useAnimation = 40;
                     return;
-				case ItemID.Phantasm:
+                case ItemID.Phantasm:
                     item.damage = 60;
                     return;
                 case ItemID.FairyQueenRangedItem:
@@ -146,7 +151,7 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.ChainGun:
                     item.damage = 41; // up from 31
                     return;
-   
+
                 case ItemID.VortexBeater:
                     item.damage = 42;
                     return;
@@ -167,8 +172,8 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.FlamingArrow:
                     item.shootSpeed = 5f;
                     item.knockBack = 6f;
-                    return;                
-				case ItemID.UnholyArrow:
+                    return;
+                case ItemID.UnholyArrow:
                 case ItemID.HolyArrow:
                     item.damage = 10;
                     return;
@@ -182,21 +187,6 @@ namespace TRAEProject.Changes.Weapons
                     return;
             }
         }
-        public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
-            Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
-            switch (item.type)
-            {
-                case ItemID.Uzi:
-                    {
-                        Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(40));
-                        velocity.X = perturbedSpeed.X;
-                        velocity.Y = perturbedSpeed.Y;
-                        return true;
-                    }                 
-            }
-            return true;
-        }
         public override bool CanConsumeAmmo(Item weapon, Item ammo, Player player)
         {
             if (weapon.CountsAsClass(DamageClass.Ranged) && player.ammoPotion)
@@ -208,7 +198,7 @@ namespace TRAEProject.Changes.Weapons
             }
             if ((weapon.type == ItemID.Flamethrower || weapon.type == ItemID.EldMelter))
             {
-                return player.itemAnimation >= player.itemAnimationMax - 4; 
+                return player.itemAnimation >= player.itemAnimationMax - 4;
             }
 
             return true;
@@ -220,14 +210,47 @@ namespace TRAEProject.Changes.Weapons
                 type = ProjectileType<LilRocket>();
             }
         }
-      
+        public override bool AltFunctionUse(Item item, Player player)
+        {
+            if (item.type == ItemID.PhoenixBlaster)
+            {
+                return true;
+            }
+            return base.AltFunctionUse(item, player);
+        }
+        public override bool CanUseItem(Item item, Player player)
+        {
+            if (item.type == ItemID.PhoenixBlaster)
+            {
+                if (player.altFunctionUse == 2)
+                {
+                    item.useAmmo = AmmoID.Flare;
+                }
+                if (player.altFunctionUse != 2)
+                {
+                    item.useAmmo = AmmoID.Bullet;
+                }
+            }
+            return base.CanUseItem(item, player);
+        }
+
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             switch (item.type)
-            {                
-                case ItemID.VenusMagnum:       
-				case ItemID.EldMelter:
-				case ItemID.Flamethrower:
+            {
+                case ItemID.PhoenixBlaster:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Knockback")
+                        {
+                            line.Text += "\nRight Click to shoot flares";
+                        }
+                    }
+                    return;
+                case ItemID.VenusMagnum:
+                case ItemID.EldMelter:
+                case ItemID.Flamethrower:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")

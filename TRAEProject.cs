@@ -25,7 +25,7 @@ namespace TRAEProject
         public const string DreadHead1 = "TRAEProject/Changes/NPCs/Boss/Dreadnautilus/MapIcon";
         public const string DreadHead2 = "TRAEProject/Changes/NPCs/Boss/Dreadnautilus/MapIcon2";
         public static int IceMajestyCape;
-        public override void AddRecipeGroups()
+        public override void AddRecipeGroups()/* tModPorter Note: Removed. Use ModSystem.AddRecipeGroups */
         {
             RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Emblem", new int[]
             {
@@ -159,14 +159,14 @@ namespace TRAEProject
             //ArmorIDs.Wing.Sets.Stats = array;
 
         }
-        public override void AddRecipes()
+        public override void AddRecipes()/* tModPorter Note: Removed. Use ModSystem.AddRecipes */
         {
             WeaponRecipes.Load(this);
             AccesoryRecipes.Load(this);
             MiscRecipes.Load(this);
             ArmorRecipes.Load(this);
         }
-        public override void PostAddRecipes()
+        public override void PostAddRecipes()/* tModPorter Note: Removed. Use ModSystem.PostAddRecipes */
         {
             foreach (Recipe recipe in Main.recipe)
             {

@@ -158,14 +158,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         {
             Projectile.height = 14;
             Projectile.width = 14;
-            Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Ranged;
-            Projectile.penetrate = 2;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, false);
             Projectile.scale = 1.33f;
-            Projectile.timeLeft = 600; 
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -180,8 +174,10 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
        public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>()); Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().DestructiveRocketStats(Projectile);
+            Projectile.scale = 1.33f;
         }
         public override void AI()
         {
@@ -197,11 +193,10 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>()); Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.penetrate = 4;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 180;
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().SuperRocketStats(Projectile, false);
+            Projectile.scale = 1.33f;
         }
         public override void AI()
         {
@@ -216,14 +211,10 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 3; Projectile.extraUpdates = 1;
-            Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage = 0.67f;
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().DirectRocketStats(Projectile, false);
+            Projectile.scale = 1.33f;
         }
         public override void AI()
         {
@@ -238,11 +229,10 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().MiniNukeStats(Projectile, false);
+            Projectile.scale = 1.33f;
         }
         public override void AI()
         {
@@ -257,11 +247,10 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 5; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 250;
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().MiniNukeStats(Projectile, false);
+            Projectile.scale = 1.33f;
         }
         public override void AI()
         {
@@ -277,10 +266,10 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 3;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, false);
+            Projectile.scale = 1.33f;
         }
         public override void AI()
         {
@@ -302,7 +291,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
                     velocity += Vector2.UnitY * -1f;
                     int num854 = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity, Cluster, Projectile.damage / 4, 0f, Projectile.owner); Projectile pRojectile = Main.projectile[num854];
                     Projectile projectile2 = pRojectile;
-                    projectile2.timeLeft = 40;
+                    projectile2.timeLeft = 30;
                 }
             }
         }
@@ -311,12 +300,11 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, false);
+            Projectile.scale = 1.33f;
             Projectile.GetGlobalProjectile<NewRockets>().HeavyRocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -331,12 +319,12 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, false);
+            Projectile.scale = 1.33f;
             Projectile.GetGlobalProjectile<NewRockets>().DryRocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+
         }
         public override void AI()
         {
@@ -351,12 +339,12 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, false);
+            Projectile.scale = 1.33f;
             Projectile.GetGlobalProjectile<NewRockets>().WetRocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
+       
         }
         public override void AI()
         {
@@ -371,13 +359,11 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-
-            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, false);
+            Projectile.scale = 1.33f;
             Projectile.GetGlobalProjectile<NewRockets>().LavaRocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -392,12 +378,11 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileType<BAMRocket>());
-            Projectile.penetrate = 4; Projectile.GetGlobalProjectile<NewRockets>().IsARocket = true;
-
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.GetGlobalProjectile<NewRockets>().RocketStats(Projectile, false);
+            Projectile.scale = 1.33f;
             Projectile.GetGlobalProjectile<NewRockets>().HoneyRocket = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 120;
         }
         public override void AI()
         {
@@ -406,6 +391,20 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         public override void Kill(int timeLeft)
         {
             Projectile.GetGlobalProjectile<BAMRockets>().BAMExplosion(Projectile);
+        }
+    }
+    public class BAMRocketLuminite: ModProjectile
+    {
+        public override void SetDefaults()
+        {
+            Projectile.height = 14;
+            Projectile.width = 14;
+            Projectile.scale = 1.33f; 
+            Projectile.GetGlobalProjectile<NewRockets>().LuminiteStats(Projectile);
+        }
+        public override void AI()
+        {
+            Projectile.GetGlobalProjectile<BAMRockets>().BAMRocketAI(Projectile);
         }
     }
 }

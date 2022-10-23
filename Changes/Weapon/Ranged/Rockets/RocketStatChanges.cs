@@ -36,7 +36,7 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     item.SetNameOverride("Destructive Rocket");
                     break;
                 case ItemID.RocketIV:
-                    item.damage = 33; // down from 65
+                    item.damage = 25; // down from 65
                     item.SetNameOverride("Direct Rocket");
                     break;
                 case ItemID.RocketIII:

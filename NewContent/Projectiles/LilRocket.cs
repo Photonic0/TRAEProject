@@ -13,7 +13,7 @@ namespace TRAEProject.NewContent.Projectiles
         }
         public override void SetDefaults()
         {
-            Projectile.CloneDefaults(ProjectileID.VortexBeaterRocket);           //The width of Projectile hitbox
+            Projectile.CloneDefaults(ProjectileID.VortexBeaterRocket);        
             AIType = ProjectileID.VortexBeaterRocket;
             Projectile.scale = 0.8f;         
           Projectile.usesLocalNPCImmunity = true;

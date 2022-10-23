@@ -45,6 +45,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                    
                         npc.damage = 125;
 				        npc.lifeMax = (int)(npc.lifeMax  * ((float)55000 / 80000));
+
                     
                     break;
                 case NPCID.Probe:

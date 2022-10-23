@@ -100,7 +100,7 @@ namespace TRAEProject.Changes.NPCs
                     npc.height = 81;
                     break;
                 case NPCID.DuneSplicerHead:
-                    npc.lifeMax = 4000;
+                    npc.lifeMax = 3500;
                     npc.noGravity = true;
                     break;
             }
@@ -190,7 +190,7 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.DuneSplicerHead:
                     if(npc.velocity.Length() > 1.4f)
                     {
-                        npc.velocity = npc.velocity.SafeNormalize(Vector2.UnitY) * 1.4f;
+                        npc.velocity = npc.velocity.SafeNormalize(Vector2.UnitY) * 4f;
                     }
                     return;
             }

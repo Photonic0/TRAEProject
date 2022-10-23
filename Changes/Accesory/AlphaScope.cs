@@ -23,7 +23,7 @@ namespace TRAEProject.Changes.Accesory
                 player.magicQuiver = false; 
                 player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
-                player.GetModPlayer<AccesoryEffects>().arrowCrit += 0.2f;
+                player.GetModPlayer<CritDamage>().arrowCritDamage += 0.2f;
             }
             if (item.type == ItemID.StalkersQuiver)
             {
@@ -156,7 +156,7 @@ namespace TRAEProject.Changes.Accesory
                     value2.Normalize();
                     projectile.velocity = value2 * scaleFactor2;
                     projectile.netUpdate = true;
-                    projectile.damage = (int)(projectile.damage * 0.67);
+                    projectile.damage = (int)(projectile.damage * 0.5);
                     --smartbounces;
                     hasBounced = true;
                     for (int i = 0; i < 20; ++i)
@@ -201,7 +201,7 @@ namespace TRAEProject.Changes.Accesory
                 value2.Normalize();
                 projectile.velocity = value2 * scaleFactor2;
                 projectile.netUpdate = true;
-                projectile.damage = (int)(projectile.damage * 0.67);
+                projectile.damage = (int)(projectile.damage * 0.5);
                 --smartbounces;
                 hasBounced = true;
                 for (int i = 0; i < 30; ++i)

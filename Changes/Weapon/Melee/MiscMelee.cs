@@ -32,7 +32,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.crit = 20;
                     return;
                 case ItemID.VampireKnives:
-                    item.damage = 41; // up from 29
+                    item.damage = 32; // up from 29
                     return;
                 case ItemID.IceBoomerang:
                     item.damage = 22; // up from 16

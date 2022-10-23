@@ -44,6 +44,7 @@ namespace TRAEProject.Changes.Armor
                 Shadowdodge();
             }
         }
+
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
             if (damage > 1)
@@ -63,6 +64,7 @@ namespace TRAEProject.Changes.Armor
             }
             return true; 
         }
+
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             if (PirateSet && (ProjectileID.Sets.IsAWhip[proj.type]))
@@ -70,6 +72,7 @@ namespace TRAEProject.Changes.Armor
                 TRAEDebuff.Apply<PirateTag>(target, 240, -1);
             }
         }
+
         void DarkDodge()
         {
             Player.immune = true;

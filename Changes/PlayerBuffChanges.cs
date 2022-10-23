@@ -72,7 +72,7 @@ namespace TRAEProject
                     return;
                 case BuffID.Panic:
                     player.moveSpeed -= 0.6f;
-                    return; 
+                    return;
             }
         }
 
@@ -128,6 +128,9 @@ namespace TRAEProject
                     return;
                 case BuffID.StarInBottle:
                     tip = "Increased max mana by 20";
+                    return;
+                case BuffID.SugarRush:
+                    tip = "10% increased movement speed and 20% increased mining speed";
                     return;
             }
         }
@@ -224,6 +227,13 @@ namespace TRAEProject
         public override void UpdateDead()
         {
             Celled = false;
+        }
+        public override void PostUpdateBuffs()
+        {
+            if (!QwertysMovementRemix.active && Player.slowFall && !Player.TryingToHoverDown && Player.armor[2].type != ItemID.DjinnsCurse)
+            {    
+                    Player.maxFallSpeed *= 1.15f;               
+            }
         }
         public override void UpdateBadLifeRegen()
         {

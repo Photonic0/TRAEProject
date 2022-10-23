@@ -7,6 +7,7 @@ using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Weapon.Ranged.Rockets;
 using TRAEProject.NewContent.Items.Weapons.Launchers.SkullCannon;
 using TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher;
+using TRAEProject.NewContent.Items.Weapons.Ammo;
 namespace TRAEProject.Changes.Weapons.Rockets
 {
     public class ShootNewRockets : GlobalItem
@@ -48,6 +49,10 @@ namespace TRAEProject.Changes.Weapons.Rockets
                         type = ProjectileType<HeavyRocket>();
                         break;
                 }
+                if (ammo.type == ItemType<LuminiteRocket>())
+                {
+                    type = ProjectileType<LuminiteRocketP>();
+                }
             }
             if (weapon.type == ItemID.GrenadeLauncher)
             {
@@ -77,6 +82,10 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     case ItemID.ClusterRocketII:
                         type = ProjectileType<HeavyGrenade>();
                         break;
+                }
+                if (ammo.type == ItemType<LuminiteRocket>())
+                {
+                    type = ProjectileType<LuminiteGrenade>();
                 }
             }
             if (weapon.type == ItemID.SnowmanCannon)
@@ -108,6 +117,10 @@ namespace TRAEProject.Changes.Weapons.Rockets
                         type = ProjectileType<HeavySnowmanRocket>();
                         break;
                 }
+                if (ammo.type == ItemType<LuminiteRocket>())
+                {
+                    type = ProjectileType<LuminiteSnowmanRocket>();
+                }
             }
             if (weapon.type == ItemID.ProximityMineLauncher)
             {
@@ -137,6 +150,10 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     case ItemID.ClusterRocketII:
                         type = ProjectileType<HeavyMine>();
                         break;
+                }
+                if (ammo.type == ItemType<LuminiteRocket>())
+                {
+                    type = ProjectileType<LuminiteMine>();
                 }
             }
         }

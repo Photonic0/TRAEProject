@@ -8,18 +8,17 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Common.ModPlayers;
 
 namespace TRAEProject.Changes.Armor
 {
     public class CobaltArmorEffect : ModPlayer
     {
         public bool CobaltCritical = false; 
-        public bool MythrilCritical = false;
         public float CobaltSpeed = 0;
         public override void ResetEffects()
         {
             CobaltCritical = false;
-            MythrilCritical = false;
         }
         public override void PostUpdateEquips()
         {
@@ -63,20 +62,6 @@ namespace TRAEProject.Changes.Armor
             if (CobaltCritical && crit)
             {
                 CobaltSpeed += damage;
-            }
-        }
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
-        {
-            if(crit && MythrilCritical)
-            {
-                damage = (int)(damage * 1.25f);
-            }
-        }
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            if (crit && MythrilCritical)
-            {
-                damage = (int)(damage * 1.25f);
             }
         }
     }
@@ -161,7 +146,7 @@ namespace TRAEProject.Changes.Armor
                         break;
                 }
                 player.setBonus = "Critical Strikes deal 25% more damage";
-                player.GetModPlayer<CobaltArmorEffect>().MythrilCritical = true;
+                player.GetModPlayer<CritDamage>().critDamage += 0.25f;
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

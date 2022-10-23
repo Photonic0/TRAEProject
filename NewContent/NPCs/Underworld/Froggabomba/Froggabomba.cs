@@ -8,11 +8,11 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.NPCs.Banners;
-using TRAEProject.NewContent.NPCs.Boomxie;
+using TRAEProject.NewContent.NPCs.Underworld.Boomxie;
 using TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff;
 using static Terraria.ModLoader.ModContent;
 
-namespace TRAEProject.NewContent.NPCs.Froggabomba
+namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
 
 {
     public class Froggabomba : ModNPC

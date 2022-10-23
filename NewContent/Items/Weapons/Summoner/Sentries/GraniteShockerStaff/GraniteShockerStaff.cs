@@ -98,6 +98,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
             Projectile.friendly = true;
             Projectile.ignoreWater = false;
             Projectile.sentry = true;
+            Projectile.DamageType = DamageClass.Summon;
             Projectile.penetrate = 1;
             Projectile.timeLeft = Projectile.SentryLifeTime;
             Projectile.tileCollide = true;
@@ -122,7 +123,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
 
         public override void AI()
         {
-            //Projectile.velocity.Y = 10;
+
+                    //Projectile.velocity.Y = 10;
             Projectile.velocity.Y = 5;
 
             Projectile.rotation = 0;
@@ -244,6 +246,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
             Projectile.tileCollide = false;
             Projectile.extraUpdates = 100; Projectile.usesLocalNPCImmunity = true;
             ProjectileID.Sets.SentryShot[Projectile.type] = true;
+            Projectile.DamageType = DamageClass.Summon;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
             Projectile.timeLeft = 120;

@@ -49,7 +49,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MasochistChains
         {
             cuffs = 0;
         }
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
         {
             if (cuffs > 0)
             {

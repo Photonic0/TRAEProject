@@ -60,7 +60,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.SpikedWhip
         {
             originalColor = new Color(152, 118, 84);
             whipRangeMultiplier = 1f;
-            fallOff = 0.22f;
+            fallOff = 0.18f;
             tag = BuffType<SpikedTag>();
             whipSegments = 13;
             tipScale = 1.33f;
