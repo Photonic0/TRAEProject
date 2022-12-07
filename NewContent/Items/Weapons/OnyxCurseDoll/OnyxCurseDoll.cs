@@ -6,7 +6,9 @@ using Terraria.ModLoader;
 using TRAEProject.Common;
 using TRAEProject.Changes;
 using System;
+using TRAEProject.Changes.Projectiles;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Changes.Items;
 
 namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
 {
@@ -27,6 +29,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.mana = 30;
+
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
@@ -40,6 +43,17 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(-2f, 0f);
+        }
+        public override bool AltFunctionUse(Player player)
+        {
+            for (int i = 0; i < 1000; i++)
+            {
+                if ((Main.projectile[i].type == ProjectileType<CurseDollWeaponflame>() || Main.projectile[i].type == ProjectileType<CurseDollArmorflame>() || Main.projectile[i].type == ProjectileType<CurseDollShadowflame>()) && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
+                {
+                    Main.projectile[i].Kill();
+                }
+            }
+            return false;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
@@ -79,7 +93,9 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             Projectile.scale = 1.25f;
             Projectile.friendly = true;
             Projectile.ignoreWater = false;
-            Projectile.DamageType = DamageClass.Magic;
+            Projectile.DamageType = DamageClass.Magic; 
+            Projectile.GetGlobalProjectile<MagicProjectile>().DrainManaPassively = 50;
+            Projectile.GetGlobalProjectile<MagicProjectile>().DrainManaOnHit = 3;
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.WitheredWeapon;
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
             Projectile.usesIDStaticNPCImmunity = true;
@@ -93,12 +109,6 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            manaDrain += (int)(50 * player.manaCost);
-            if (manaDrain >= 60)
-            {
-                manaDrain -= 60;
-                player.statMana--;
-            }
             if (player.statMana <= 0)
             {
                 for (int i = 0; i < 1000; i++)
@@ -149,7 +159,8 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             Projectile.ignoreWater = false;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 10; 
+            Projectile.idStaticNPCHitCooldown = 10; Projectile.GetGlobalProjectile<MagicProjectile>().DrainManaOnHit = 3;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.ShadowFlame;
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
             Projectile.penetrate = -1;
@@ -200,7 +211,8 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
             Projectile.ignoreWater = false;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 10;
+            Projectile.idStaticNPCHitCooldown = 10; Projectile.GetGlobalProjectile<MagicProjectile>().DrainManaOnHit = 3;
+
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.WitheredArmor;
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
                 Projectile.penetrate = -1;

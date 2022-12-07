@@ -10,6 +10,7 @@ using Terraria.ModLoader;
 using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp;
 using static Terraria.ModLoader.ModContent;
+using Terraria.DataStructures;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
 
@@ -18,6 +19,15 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
     {
         public override void SetStaticDefaults()
         {
+            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+            {
+                SpecificallyImmuneTo = new int[] {
+                    BuffID.OnFire,
+                    BuffID.OnFire3,
+                    BuffID.Confused // Most NPCs have this
+				}
+            };
+            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
             DisplayName.SetDefault("Boom Pixie"); // Automatic from .lang files
             Main.npcFrameCount[NPC.type] = 4; // make sure to set this for your modnpcs.
         }
@@ -35,7 +45,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
             NPC.noGravity = true;
             NPC.HitSound = SoundID.NPCHit5;
             NPC.knockBackResist = 0.5f;
-
+            NPC.buffImmune[BuffID.OnFire] = true;
+            NPC.buffImmune[BuffID.OnFire3] = true;
             Banner = NPC.type;
             BannerItem = ItemType<BoomxieBanner>();
         }
@@ -115,6 +126,40 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
                 damage = 5;
             }
             return;
+        }
+        public override void AI()
+        {
+            if (NPC.wet)
+            {
+                if (NPC.collideY)
+                {
+                    NPC.velocity.Y = -2f;
+                }
+                if (NPC.velocity.Y < 0f && NPC.ai[3] == NPC.position.X)
+                {
+                    NPC.direction *= -1;
+                    NPC.ai[2] = 200f;
+                }
+                if (NPC.velocity.Y > 0f)
+                {
+                    NPC.ai[3] = NPC.position.X;
+                }
+
+                if (NPC.velocity.Y > 2f)
+                {
+                    NPC.velocity.Y *= 0.9f;
+                }
+                else if (NPC.directionY < 0)
+                {
+                    NPC.velocity.Y -= 0.8f;
+                }
+                NPC.velocity.Y -= 0.5f;
+                if (NPC.velocity.Y < -1f)
+                {
+                    NPC.velocity.Y = -1f;
+                }
+
+            }
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {

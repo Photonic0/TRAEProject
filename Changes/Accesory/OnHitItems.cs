@@ -24,7 +24,6 @@ namespace TRAEProject.Changes.Items
         public float runethorns = 0f;
         public int beedamage = 1;
         public bool Frozen = false;
-        int frozenHitCount = 0;
 
         public override void ResetEffects()
         {
@@ -43,8 +42,8 @@ namespace TRAEProject.Changes.Items
             newthorns = 0f;
             NewstarsOnHit = false;
             beedamage = 0; 
-            frozenHitCount = 0;
         }
+  
         public override void PostUpdateEquips()
         { 
             if (runeCooldown > 0)
@@ -67,16 +66,7 @@ namespace TRAEProject.Changes.Items
         }
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {
-            int findbuffIndex = Player.FindBuffIndex(BuffID.Frozen);
-            if (findbuffIndex != -1)
-            {
-                frozenHitCount++;
-                if (frozenHitCount > 1)
-                {
-                    frozenHitCount = 0;
-                    Player.DelBuff(findbuffIndex);
-                }
-            }
+ 
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)
@@ -128,12 +118,7 @@ namespace TRAEProject.Changes.Items
         }
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
-            int findbuffIndex = Player.FindBuffIndex(BuffID.Frozen);
-            if (findbuffIndex != -1)
-            {
-                    Player.DelBuff(findbuffIndex);
-                
-            }
+
             LastHitDamage = damage;
             BaghnakhHeal = 0;
             if (damage > 1)

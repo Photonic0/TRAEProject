@@ -265,12 +265,7 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<RangedStats>().gunVelocity += 0.5f;
                     player.GetDamage<RangedDamageClass>() -= 0.1f;
                     break;
-                case ItemID.MagmaStone:
-                case ItemID.FireGauntlet:
-                case ItemID.MoltenSkullRose:
-                case 3999: // Magma Skull
-                    player.GetModPlayer<CritDamage>().meleeCritDamage += 0.17f;
-                    break;
+    
             }
         }
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
@@ -289,6 +284,7 @@ namespace TRAEProject.Changes.Accesory
         {
             switch (item.type)
             {
+                
                 case ItemID.SquireShield:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -508,77 +504,6 @@ namespace TRAEProject.Changes.Accesory
                         }
                     }
                     break;
-                case ItemID.MagmaStone:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text += "\nMelee critical hits deal 17% more damage";
-                        }
-                    }
-                    break;
-                case ItemID.MoltenSkullRose:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text = "Magic attacks lower enemy contact damage by 15%";
-                        }
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip2")
-                        {
-                            line.Text = "Enemies near the player take 10% more damage\nMelee critical hits deal 17% more damage";
-                        }
-                    }
-                    break;
-                case ItemID.ObsidianSkullRose:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Magic attacks lower enemy contact damage by 15%";
-                        }
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text = "Enemies near the player take 10% more damage";
-                        }
-                    }
-                    break;
-                case 3999: // Magma Skull
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text = "Enemies near the player take 10% more damage\nMelee critical hits deal 17% more damage";
-                        }
-                    }
-                    break;
-                case ItemID.ObsidianSkull:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Enemies near the player take 10% more damage";
-                        }
-                    }
-                    break;
-                case ItemID.ObsidianShield:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text = "Enemies near the player take 10% more damage";
-                        }
-                    }
-                    break;
-                case ItemID.ObsidianRose:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Magic attacks lower enemy contact damage by 15%";
-                        }
-                    }
-                    break;
                 case ItemID.CrossNecklace:
                 case ItemID.StarVeil:
                     foreach (TooltipLine line in tooltips)
@@ -595,7 +520,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Magic critical hits have a chance to spawn a mana star";
+                            line.Text = "Magic critical strikes have a chance to spawn a mana star";
                         }
                     }
                     break;
@@ -604,7 +529,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Magic critical hits have a chance to spawn a mana star\n5% increased magic damage and critical strike chance";
+                            line.Text = "Magic critical strikes have a chance to spawn a mana star\n5% increased magic damage and critical strike chance";
                         }
                     }
                     break;
@@ -613,7 +538,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Magic critical hits have a chance to cause a damaging star to fall";
+                            line.Text = "Magic critical strikes have a chance to cause a damaging star to fall";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -843,27 +768,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                     }
                     break;
-                case ItemID.MoltenQuiver:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Your arrows will bounce towards nearby enemies, losing 33% damage in the process";
-                        }
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text = "20% increased arrow critical strike damage";
-                        }
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip2")
-                        {
-                            line.Text = "Lights wooden arrows ablaze";
-                        }
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip3")
-                        {
-                            line.Text = "Quiver in fear!";
-                        }
-                    }
-                    break;
+
                 case ItemID.RifleScope:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -913,14 +818,6 @@ namespace TRAEProject.Changes.Accesory
                     }
                     return;
             }
-        }
-        public override int ChoosePrefix(Item item, UnifiedRandom rand)
-        {
-            if (item.type == ItemID.MagicDagger)
-            {
-                return rand.Next(62, 81);
-            }
-            return base.ChoosePrefix(item, rand);
         }
     }
 }

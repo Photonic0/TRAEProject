@@ -71,6 +71,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     projectile.idStaticNPCHitCooldown = 10;
                     break;
                 case ProjectileID.FormatC:
+                case ProjectileID.CrimsonYoyo:
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.4f;
                     break;
                 case ProjectileID.ButchersChainsaw:
@@ -357,9 +358,6 @@ namespace TRAEProject.Changes.Weapon.Melee
                     }
             }                    
         }
-        private static int tillinsta = 0;
-        private static int shootDelay = 0;
-
 
         public int HitCount = 0;
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
@@ -378,20 +376,6 @@ namespace TRAEProject.Changes.Weapon.Melee
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);
             }
-            //if (player.HasBuff(BuffID.WeaponImbuePoison) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
-            //{
-            //    if (Main.rand.NextBool(20))
-            //    {
-            //        for (int num840 = 0; num840 < 15; num840++)
-            //        {
-            //            Dust dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Venom, 0f, 0f);
-            //            dust54.fadeIn = 0f;
-            //            Dust dust = dust54;
-            //            dust.velocity *= 0.5f;
-            //        }
-            //        target.AddBuff(BuffID.Venom, 60, false);
-            //    }
-            //}
             switch (projectile.type)
             {
                 // melee

@@ -53,6 +53,8 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
             if (Nazar > 0 && damage > 1)
             {
                 int DustType = 0;
+                
+
                 int debuffToApply = Main.rand.Next(NazarDebuffList);
                 int duration = 60 + damage * 3; // 5 seconds for every 100 damage taken
                 int enemyDuration = 60 + damage * 15 * Nazar; // 26 seconds for every 100 damage taken
@@ -70,6 +72,7 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
                     DustType = 179;
                 }
                 Player.AddBuff(debuffToApply, duration);
+                
                 float distance = 300f;
                 for (int i = 0; i < 50; i++)
                 {

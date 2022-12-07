@@ -5,6 +5,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Changes.Items;
 using TRAEProject.NewContent.Items.Materials;
 using static Terraria.ModLoader.ModContent;
 
@@ -30,12 +31,13 @@ namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
             Item.rare = ItemRarityID.Lime;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
-            Item.knockBack = 1f;
+            Item.knockBack = 2.5f;
             Item.shootSpeed = 8f;
             Item.noMelee = true;
             Item.shoot = ProjectileType<ElectricRIng>();
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundID.Item20;
+            Item.UseSound = SoundID.Item20; Item.GetGlobalItem<TRAEMagicItem>().rightClickSideWeapon = true;
+
         }
         public override Vector2? HoldoutOffset()
         {
@@ -82,22 +84,22 @@ namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
         }
        public float angletimer = 0;
         public int manaDrain = 0;
-        public int attackDelay = 12;
+        public int attackDelay = 10;
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
             Projectile.Center = player.Center;
-            manaDrain += (int)(60 * player.manaCost);
-            if (manaDrain >= 60)
+            manaDrain += (int)(40 * player.manaCost);
+            if (manaDrain >= 40)
             {
-                manaDrain -= 60;
+                manaDrain -= 40;
                 player.statMana--;
             }
             if (player.statMana <= 0)
             {
                 Projectile.Kill();
             }
-            int dusts = 8;
+            int dusts = 7;
             int NPCLimit = 0;
             int Range = 250;
             int damage = Projectile.damage;
@@ -113,9 +115,10 @@ namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
                     NPC nPC = Main.npc[k];
                     if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(Projectile.Center, nPC.Center) <= Range)
                     {
-                        ++NPCLimit;
+                        
                         if (NPCLimit < 3)
                         {
+							++NPCLimit;
                             player.ApplyDamageToNPC(nPC, damage, Projectile.knockBack, nPC.direction * -1, crit: false);
                             SoundEngine.PlaySound(SoundID.Item93, nPC.position);
                         }

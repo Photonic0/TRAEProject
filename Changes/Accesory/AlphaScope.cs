@@ -23,7 +23,7 @@ namespace TRAEProject.Changes.Accesory
                 player.magicQuiver = false; 
                 player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
-                player.GetModPlayer<CritDamage>().arrowCritDamage += 0.2f;
+                
             }
             if (item.type == ItemID.StalkersQuiver)
             {

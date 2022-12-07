@@ -102,13 +102,13 @@ namespace TRAEProject.Changes.Accesory
                     }
                     if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                     {
-                        line.Text = "Melee weapons deal 17% more damage on critical hits";
+                        line.Text = "Melee attacks deal fire damage";
                     }
                     if (line.Mod == "Terraria" && line.Name == "Tooltip3")
                     {
-                        line.Text = "";
+                        line.Text = "Melee critical strikes have have a very low chance to incinerate, higher on stronger hits";
                     }
-                
+
                 }
             }
         }

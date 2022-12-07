@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Common.ModPlayers;
 
 namespace TRAEProject.NewContent.Items.Accesories.TwoFlowers
 {    [AutoloadEquip(EquipType.Waist)]
@@ -14,7 +15,7 @@ namespace TRAEProject.NewContent.Items.Accesories.TwoFlowers
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Two Flowers");
-            Tooltip.SetDefault("Magic critical hits have a chance to spawn a mana star\nAutomatically uses mana potions when needed\nMagic attacks lower enemy contact damage by 15%");
+            Tooltip.SetDefault("Magic critical strikes deal 11% increased damage and have a chance to spawn a mana star\nAutomatically uses mana potions when needed\n");
         }
         public override void SetDefaults()
         {
@@ -25,6 +26,7 @@ namespace TRAEProject.NewContent.Items.Accesories.TwoFlowers
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.lavaRose = true;
+            player.GetModPlayer<CritDamage>().magicCritDamage += 0.11f;
             player.manaFlower = true;
         }
 

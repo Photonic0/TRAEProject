@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MechanicalEye
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
             DisplayName.SetDefault("Cyber Eye");
-            Tooltip.SetDefault("Rocket critical hits stun enemies for 1 second");
+            Tooltip.SetDefault("Rocket critical strikes stun enemies for 1 second");
         }
         public override void SetDefaults()
         {
