@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.Common;
+using TRAEProject.Changes.Projectiles;
 using static Terraria.ModLoader.ModContent;
-
+using TRAEProject.Changes.Items;
 namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
 {
     class WillOfTheWisp : ModItem
@@ -24,7 +24,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Item.damage = 25;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.mana = 150;
+            Item.mana = 15;
+            Item.GetGlobalItem<TRAEMagicItem>().rightClickSideWeapon = true;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 5);
             Item.DamageType = DamageClass.Magic;
@@ -63,7 +64,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Projectile.DamageType = DamageClass.Magic; 
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
-            Projectile.penetrate = 30;
+            Projectile.GetGlobalProjectile<MagicProjectile>().DrainManaOnHit = 10;            
+            Projectile.penetrate = -1;
             Projectile.aiStyle = 1;
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 1;

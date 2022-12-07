@@ -1,5 +1,4 @@
-private void AI_123_Deerclops()
-{
+
 	int num = 15;
 	NPCAimedTarget targetData = GetTargetData();
 	bool haltMovement = false;

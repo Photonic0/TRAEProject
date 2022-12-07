@@ -28,9 +28,6 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.autoReuse = true;
                     item.value = Item.buyPrice(gold: 5);
                     return;
-                case ItemID.ChainGuillotines:
-                    item.crit = 20;
-                    return;
                 case ItemID.VampireKnives:
                     item.damage = 32; // up from 29
                     return;
@@ -108,20 +105,6 @@ namespace TRAEProject.Changes.Weapon.Melee
             if (player.HasBuff(BuffID.WeaponImbueNanites))
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);
-            }
-            if (player.HasBuff(BuffID.WeaponImbuePoison) && (item.DamageType == DamageClass.Melee))
-            {
-                if (Main.rand.NextBool(20))
-                {
-                    for (int num840 = 0; num840 < 15; num840++)
-                    {
-                        Dust dust54 = Dust.NewDustDirect(item.position, item.width, item.height, DustID.Venom, 0f, 0f);
-                        dust54.fadeIn = 0f;
-                        Dust dust = dust54;
-                        dust.velocity *= 0.5f;
-                    }
-                    target.AddBuff(BuffID.Venom, 60, false);
-                }
             }
             if (item.type == ItemID.Cutlass)
             {
@@ -237,15 +220,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                         }
                     }
                     return;
-                case ItemID.ChainGuillotines:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Heals on a critical hit";
-                        }
-                    }
-                    return;
+   
             }
         }
     }

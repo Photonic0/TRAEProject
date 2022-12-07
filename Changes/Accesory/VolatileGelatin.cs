@@ -32,7 +32,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Critical hits temporarily raise defense\nWhen hit, all stored defense is released as damaging gel\nLimited to 25 extra defense";
+                            line.Text = "Critical strikes temporarily raise defense\nWhen hit, all stored defense is released as damaging gel\nLimited to 25 extra defense";
                         }
                     }
                     break;

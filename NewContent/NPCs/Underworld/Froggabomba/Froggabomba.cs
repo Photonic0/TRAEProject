@@ -11,6 +11,7 @@ using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.NPCs.Underworld.Boomxie;
 using TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff;
 using static Terraria.ModLoader.ModContent;
+using Terraria.DataStructures;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
 
@@ -19,6 +20,15 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
     {
         public override void SetStaticDefaults()
         {
+            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+            {
+                SpecificallyImmuneTo = new int[] {
+                    BuffID.OnFire,
+                    BuffID.OnFire3,
+                    BuffID.Confused // Most NPCs have this
+				}
+            };
+            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
             DisplayName.SetDefault("Froggabomba"); // Automatic from .lang files
             Main.npcFrameCount[NPC.type] = 4; // make sure to set this for your modnpcs.
         }
@@ -34,10 +44,11 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
             NPC.lifeMax = 150;
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit33; 
-            NPC.DeathSound = SoundID.NPCDeath36;
+            NPC.DeathSound = SoundID.NPCDeath36; 
             NPC.knockBackResist = 0.5f;
             Banner = NPC.type;
-            BannerItem = ItemType<FroggabombaBanner>();
+            BannerItem = ItemType<FroggabombaBanner>(); 
+
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
@@ -108,6 +119,15 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
     {
         public override void SetStaticDefaults()
         {
+            NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
+            {
+                SpecificallyImmuneTo = new int[] {
+                    BuffID.OnFire,
+                    BuffID.OnFire3,
+                    BuffID.Confused // Most NPCs have this
+				}
+            };
+            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
             DisplayName.SetDefault("Froggabomba"); // Automatic from .lang files
             Main.npcFrameCount[NPC.type] = 4; // make sure to set this for your modnpcs.
         }
@@ -125,7 +145,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit33;
             NPC.DeathSound = SoundID.NPCDeath36;
-            NPC.knockBackResist = 0.5f;
+            NPC.knockBackResist = 0.5f; 
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {

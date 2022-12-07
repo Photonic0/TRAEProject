@@ -18,40 +18,30 @@ namespace TRAEProject.Common
 
         public int moths = 0;
         public float braintimer = 0;
-        public override void AI(NPC npc)
-        {
-            if (npc.HasBuff(BuffID.Weak))
-            {
-                npc.damage = (int)(npc.defDamage * 0.85f);
-            }
-        }
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             npc.netUpdate = true;
             if (npc.HasBuff(BuffID.CursedInferno))
             {
-                npc.lifeRegen -= 48;
+                npc.lifeRegen -= 16; // 32 DoT
+                damage = npc.lifeRegen / 3;
                 npc.netUpdate = true;
             }
             if (npc.HasBuff(BuffID.ShadowFlame))
             {
-                npc.lifeRegen -= 90;
+                npc.lifeRegen -= 42; // 36 DoT total
+                damage = npc.lifeRegen / 3;
                 npc.netUpdate = true;
             }
             if (npc.HasBuff(BuffID.Venom))
             {
                 npc.lifeRegen -= 140;
+                damage = npc.lifeRegen / 6;
                 npc.netUpdate = true;
             }
         }
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
-            if (npc.HasBuff(BuffID.Weak))
-            {
-                drawColor.R = 118;
-                drawColor.G = 57;
-                drawColor.B = 49;
-            }
             if (npc.HasBuff(BuffID.WitheredWeapon))
             {
                 if (Main.rand.Next(4) < 1)

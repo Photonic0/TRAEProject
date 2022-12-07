@@ -11,6 +11,9 @@ namespace TRAEProject.Changes.Projectiles
 {
     public class MagicProjectile : GlobalProjectile
     {
+        public float manaDrain = 0;
+        public int DrainManaPassively = 0;
+        public int DrainManaOnHit = 0;
         public override bool InstancePerEntity => true;
         public override void SetDefaults(Projectile projectile)
         {
@@ -36,7 +39,10 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                     break;
                 case ProjectileID.WeatherPainShot:
-                    projectile.penetrate = 15; // up from 12
+                    projectile.penetrate = -1;
+                    DrainManaOnHit = 3;
+                    DrainManaPassively = 30;
+                    projectile.timeLeft = 1800;
                     break;
                 case ProjectileID.ManaCloakStar:
                     projectile.penetrate = 2;
@@ -53,7 +59,8 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.penetrate = 5;
                     break;
                 case ProjectileID.Typhoon:
-                    projectile.timeLeft = 882; // oddly specific but this is apparently equal to 10 seconds for this weapon. Reason for this is in the code probably
+                    DrainManaOnHit = 8;
+                    projectile.timeLeft = 1800;
                     break;
                 case ProjectileID.ToxicFlask:
                     projectile.timeLeft = 75;
@@ -74,10 +81,11 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.RainbowBack:
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
+                    DrainManaOnHit = 4;
                     break;
 			    case 244:
 				  case 238:
-					projectile.timeLeft = 900;
+					projectile.timeLeft = 1200;
 					break;			
 				case ProjectileID.BloodRain:
                 case ProjectileID.RainFriendly:
@@ -85,6 +93,7 @@ namespace TRAEProject.Changes.Projectiles
                     break;
                 case ProjectileID.ClingerStaff:
                     projectile.penetrate = 40;
+                    DrainManaPassively = 40;
                     break;
                 case ProjectileID.Blizzard:
                     projectile.timeLeft = 150;
@@ -156,9 +165,29 @@ namespace TRAEProject.Changes.Projectiles
             return true;
         }
 
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            if (DrainManaOnHit > 0)
+            {
+                Player player = Main.player[projectile.owner];
+                player.statMana -= (int)(DrainManaOnHit * player.manaCost);
+            }
+        }
         public override bool PreAI(Projectile projectile)
         {
+            Player player = Main.player[projectile.owner];
             // Crimson Rod Change
+            if (projectile.type == ProjectileID.MagnetSphereBall)
+            {
+                
+                if (projectile.localAI[0] >= 8f)
+                {
+                    if (player.statMana < (int)(6 * player.manaCost))
+                        return false;
+                    else
+                        player.statMana -= (int)(6 * player.manaCost);
+                }
+            }
             if (projectile.type == 244)
             {
                 int PosX = (int)projectile.Center.X;
@@ -184,12 +213,13 @@ namespace TRAEProject.Changes.Projectiles
                     }
                 }
                 projectile.ai[0] += 1f;
-                float BloodRainDelay = 13f; // Fire rate. Vanilla value = 10f
+                float BloodRainDelay = 12f; // Fire rate. Vanilla value = 10f
                 if (projectile.ai[0] > BloodRainDelay)
                 {
                     projectile.ai[0] = 0f;
-                    if (projectile.owner == Main.myPlayer)
+                    if (projectile.owner == Main.myPlayer && player.statMana >= 6)
                     {
+                        player.statMana -= 3;
                         PosX += Main.rand.Next(-14, 15);
                         Projectile.NewProjectile(projectile.GetSource_FromThis(), PosX, PosY, 0f, 5f, ProjectileID.BloodRain, projectile.damage, 0f, projectile.owner);
                     }
@@ -224,13 +254,38 @@ namespace TRAEProject.Changes.Projectiles
                 return false;
             }
 			if (projectile.type == 238) // nimbus cloud
-			{
-				{
-				if (projectile.timeLeft < 120)
-				projectile.ai[1] = 36000f;
-				}
-				projectile.ai[0] -= 0.5f;
-			}          
+            {
+                float var = projectile.Center.X;
+                if (projectile.ai[0] >= 8f)
+                {
+                    projectile.ai[0] = 0f;
+                    if (projectile.owner == Main.myPlayer && player.statMana >= 4)
+                    {
+                        player.statMana -= 2;
+                        var += Main.rand.Next(-14, 15);
+                        Projectile.NewProjectile(projectile.GetSource_FromThis(), var, projectile.Center.Y, 0f, 5f, 239, projectile.damage, 0f, projectile.owner);
+                    }
+                    return false;
+                }
+
+                if (projectile.timeLeft < 120)
+                    projectile.ai[1] = 36000f;
+
+                projectile.ai[0] -= 0.5f;
+            }   
+            if (DrainManaPassively > 0)
+            {
+                manaDrain += (int)(DrainManaPassively * player.manaCost);
+                if (manaDrain >= DrainManaPassively)
+                {
+                    manaDrain -= DrainManaPassively;
+                    player.statMana--;
+                }
+                if (player.statMana <= 0)
+                {
+                    projectile.Kill();
+                }
+            }    
             return true;
         }
         

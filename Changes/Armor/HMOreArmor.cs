@@ -127,7 +127,7 @@ namespace TRAEProject.Changes.Armor
                         player.manaCost += 0.14f;
                         break;
                 }
-                player.setBonus = "Critical Strikes significantly increase movement speed for a short time";
+                player.setBonus = "Critical strikes significantly increase movement speed for a short time";
                 player.GetModPlayer<CobaltArmorEffect>().CobaltCritical = true;
             }
             if (set == "MythrilSet") // see armor changes
@@ -145,7 +145,7 @@ namespace TRAEProject.Changes.Armor
                         player.manaCost += 0.17f;
                         break;
                 }
-                player.setBonus = "Critical Strikes deal 25% more damage";
+                player.setBonus = "25% increased critical strike damage";
                 player.GetModPlayer<CritDamage>().critDamage += 0.25f;
             }
         }

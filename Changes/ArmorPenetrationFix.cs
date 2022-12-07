@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.NewContent.TRAEDebuffs;
 
 namespace TRAEProject.Changes
 {
@@ -29,9 +30,9 @@ namespace TRAEProject.Changes
                 {
                     AP += 40;
                 }
-                if(npc.ichor)
+                if(npc.GetGlobalNPC<ObsidianSkulledStacks>().stacks > 0)
                 {
-                    AP += 15;
+                    AP += 2 * npc.GetGlobalNPC<ObsidianSkulledStacks>().stacks;
                 }
                 if (npc.HasBuff(BuffID.WitheredArmor))
                 {

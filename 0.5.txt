@@ -1,7 +1,9 @@
 * Direct rocket base damage reduced from 33 to 25
 * Snowman cannon homing radius reduced by 25%
 * Chlorophyte bullet/arrow max homing distance increased by 20%
-
+* Malaise inflicts poison instead of weak
+* Cursed Inferno DoT reduced from 48 to 32 (vanilla value: 24)
+* Shadowflame DoT reduced from 60 to 36 (vanilla value: 15
 Vortex Beater rocket:
 
 				if (alpha < 170)

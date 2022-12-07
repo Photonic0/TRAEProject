@@ -140,15 +140,34 @@ namespace TRAEProject.Changes.NPCs
                     return;
             }
         }
+        bool onlyOnce = false;
+        //public override bool PreAI(NPC npc)
+        //{
+        //    if (npc.type == NPCID.MoonLordFreeEye &&!onlyOnce)
+        //    {
+        //        for (int i = 0; i < 200; i++)
+        //        {
+        //            if (Main.npc[i].type == NPCID.MoonLordFreeEye)
+        //            {
+        //                for (int l = 0; l < 4; l++)
+        //                {
+        //                    npc.ai[l] = Main.npc[i].ai[l];
+        //                }
+
+        //            }
+        //        }
+        //        onlyOnce = true;
+        //        return true;
+        //    }
+        //    return default;
+        //}
+
         public float braintimer = 0;
         public override void AI(NPC npc)
         {
-            if (npc.HasBuff(BuffID.Weak))
-            {
-                npc.damage = (int)(npc.defDamage * 0.85f);
-            }
             switch (npc.type)
             {
+
                 case NPCID.SolarCorite:
                     npc.knockBackResist = 0.2f;
                     return;

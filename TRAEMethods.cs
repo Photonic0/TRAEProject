@@ -60,7 +60,7 @@ namespace TRAEProject
                 int num732 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default, 2f);
                 Dust dust = Main.dust[num732];
                 dust.velocity *= 2f;
-                if (Main.rand.Next(2) == 0)
+                if (Main.rand.NextBool(2))
                 {
                     Main.dust[num732].scale = 0.5f;
                     Main.dust[num732].fadeIn = 1f + Main.rand.Next(10) * 0.1f;

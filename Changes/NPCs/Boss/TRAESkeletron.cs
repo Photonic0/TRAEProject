@@ -145,6 +145,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 				
 					}
 				}
+
 				// hovering above the player
 				if (npc.ai[1] == 0f)
 				{
@@ -305,6 +306,10 @@ namespace TRAEProject.Changes.NPCs.Boss
 								if (npc.ai[2] >= 150f)
 								{
 									spinVelocity *= 1.70f;
+								}
+								if (npc.life <= (int)(npc.lifeMax * 0.05f))
+								{
+									spinVelocity *= 1.16f;
 								}
 							}
 						}

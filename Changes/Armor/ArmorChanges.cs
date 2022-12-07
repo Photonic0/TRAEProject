@@ -5,7 +5,6 @@ using TRAEProject;
 using System.Collections.Generic;
 using TRAEProject.Changes.Items;
 using TRAEProject.Changes.Armor;
-using ChangesBuffs;
 using Microsoft.Xna.Framework;
 
 namespace ChangesArmor
@@ -151,9 +150,6 @@ namespace ChangesArmor
                 case ItemID.CrystalNinjaHelmet:
                     player.manaCost -= 0.10f;
                     break;
-                case ItemID.TikiMask:
-                    player.whipRangeMultiplier += 0.3f;
-                    return;
                 case ItemID.SpectreMask:
                     player.manaCost += 0.13f;
                     return;
@@ -307,7 +303,7 @@ namespace ChangesArmor
 
             if (armorSet == "CrimsonSet")
             {
-                player.lifeRegenTime += 4; // beats a band of regen in 6 seconds instead of 1
+                player.lifeRegenTime += 3; 
                 player.setBonus = "Dramatically increases natural healing rate";
             }
             if (armorSet == "AncientSet")
@@ -710,16 +706,6 @@ namespace ChangesArmor
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
                             line.Text = "6% increased critical strike chance";
-                        }
-                    }
-                    return;
-                case ItemID.CrimsonHelmet:
-                case ItemID.CrimsonGreaves:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "2% increased damage";
                         }
                     }
                     return;

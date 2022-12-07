@@ -62,7 +62,7 @@ namespace TRAEProject.Changes.Armor
                       
                         if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(Player.Center, nPC.Center) <= distance)
                         {
-                            nPC.GetGlobalNPC<Freeze>().FreezeMe(nPC, 300);
+                            nPC.GetGlobalNPC<Freeze>().FreezeMe(nPC, Main.rand.Next(300, 400));
                         }
                         
                     }
