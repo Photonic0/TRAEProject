@@ -28,55 +28,23 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             Projectile.hostile = true;
             Projectile.tileCollide = false;
             Projectile.timeLeft = 30;
+            Projectile.alpha = 250;
             //28 32
         }
-        Vector2? anchor = null;
         Player player;
-        public override void Kill(int timeLeft)
-        {
-            Gore.NewGore(Projectile.GetSource_FromThis(),new Vector2(Projectile.position.X + (float)Main.rand.Next(Projectile.width), Projectile.position.Y + (float)Main.rand.Next(Projectile.height)), Projectile.velocity, 390, Projectile.scale);
-            Gore.NewGore(Projectile.GetSource_FromThis(), new Vector2(Projectile.position.X + (float)Main.rand.Next(Projectile.width), Projectile.position.Y + (float)Main.rand.Next(Projectile.height)), Projectile.velocity, 391, Projectile.scale);
-
-
-            float dist = (Projectile.Center - (Vector2)anchor).Length();
-            float rot = ((Vector2)anchor - Projectile.Center).ToRotation();
-            for (int k = 0; k < dist; k += 28)
-            {
-                Vector2 pos = Projectile.Center + TRAEMethods.PolarVector(k, rot);
-                Dust.NewDust(pos - Vector2.One * 16, 16, 16, DustID.Plantera_Green);
-            }
-
-            
-        }
+        
         public override void AI()
         {
-            
-            if(anchor == null)
+            if(Projectile.alpha > 0)
             {
-                anchor = Projectile.Center;
-                player = Main.player[Player.FindClosest(Projectile.Center, 1, 1)];
+                Projectile.alpha--;
+                Projectile.Center = Main.player[Projectile.owner].Center;
             }
-            else
-            {
-                if (TRAEMethods.AngularDifference(((Vector2)anchor - Projectile.Center).ToRotation(), (player.Center - Projectile.Center).ToRotation()) < (float)Math.PI/2)
-                {
-                    Projectile.tileCollide = true;
-                }
-            }
-            if(Projectile.velocity != Vector2.Zero)
-            {
-                Projectile.rotation = Projectile.velocity.ToRotation() + (float)Math.PI / 2f;
-            }
-            Projectile.frame = Projectile.velocity == Vector2.Zero ? 1 : 0;
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            if (anchor != null)
-            {
-                Vector2 targetCenter = targetHitbox.Center.ToVector2();
-                return (Projectile.Center - targetCenter).Length() > Radius-16 && (Projectile.Center - targetCenter).Length() < Radius+10;
-            }
-            return false;
+            Vector2 targetCenter = targetHitbox.Center.ToVector2();
+            return (Projectile.Center - targetCenter).Length() > Radius-16 && (Projectile.Center - targetCenter).Length() < Radius+10;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
@@ -92,7 +60,9 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             {
                 float theta = arcLength / Radius;
                 Vector2 pos = Projectile.Center + TRAEMethods.PolarVector(Radius, theta) ;
-                Main.EntitySpriteDraw(vine, pos - Main.screenPosition, null, Lighting.GetColor((int)pos.X / 16, (int)pos.Y / 16), theta, Vector2.UnitX * 14, 1f, SpriteEffects.None, 0);
+                Color light = Lighting.GetColor((int)pos.X / 16, (int)pos.Y / 16);
+                Color color = new Color(light.R, light.G, light.B, Projectile.alpha);
+                Main.EntitySpriteDraw(vine, pos - Main.screenPosition, null, color, theta, Vector2.UnitX * 14, 1f, SpriteEffects.None, 0);
             }
             return false;
         }

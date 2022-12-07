@@ -14,7 +14,8 @@ using TRAEProject.Changes.Weapon.Melee.SpearProjectiles;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
-
+//not motivated to finish sickles right now
+/*
 namespace TRAEProject.Changes.Weapon
 {
     class SickleItems : GlobalItem
@@ -64,14 +65,22 @@ namespace TRAEProject.Changes.Weapon
 
                     player.bodyFrame.Y = player.bodyFrame.Height * 1;
 
-                    Vector2 pointPoisition = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: true);
-
                     Player.CompositeArmStretchAmount stretch = Player.CompositeArmStretchAmount.Quarter;
-                    float rotation = (Main.MouseWorld - pointPoisition).ToRotation() - (float)Math.PI / 2f; //* (float)player.direction;
+                    if(((float)player.itemAnimation / player.itemAnimationMax) > 0.3f && ((float)player.itemAnimation / player.itemAnimationMax) < 0.6f )
+                    {
+                        stretch = Player.CompositeArmStretchAmount.Full;
+                    }
+                    else if(((float)player.itemAnimation / player.itemAnimationMax) > 0.2f && ((float)player.itemAnimation / player.itemAnimationMax) < 0.8f )
+                    {
+                        stretch = Player.CompositeArmStretchAmount.ThreeQuarters;
+                    }
+                    
+                    float rotation = player.itemRotation - (((float)player.itemAnimation / player.itemAnimationMax) * (float)Math.PI / 8f - (float)Math.PI / 16f) * player.direction;
                     player.SetCompositeArmFront(enabled: true, stretch, rotation);
                 }
                 else
                 {
+                    SwingingSickle.PositionArm(player);
                 }
             }
         }
@@ -89,7 +98,8 @@ namespace TRAEProject.Changes.Weapon
             {
                 if (player.altFunctionUse == 2)
                 {
-
+                    Vector2 pointPoisition = player.RotatedRelativePoint(player.MountedCenter, reverseRotation: true);
+                    player.itemRotation = (Main.MouseWorld - pointPoisition).ToRotation() - (float)Math.PI / 2f;
                 }
                 else
                 {
@@ -159,4 +169,65 @@ namespace TRAEProject.Changes.Weapon
             }
         }
     }
+    class SwingingSickle : PlayerDrawLayer
+    {
+        public static void PositionArm(Player player)
+        {
+            Player.CompositeArmStretchAmount stretchAmount = Player.CompositeArmStretchAmount.Quarter;
+            player.SetCompositeArmBack(enabled: true, stretchAmount, ((float)Math.PI / -2f) * (float)player.direction);
+        }
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+        }
+        public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
+        {
+            return true;
+        }
+        public override Position GetDefaultPosition() => new AfterParent(PlayerDrawLayers.ArmOverItem);
+
+        protected override void Draw(ref PlayerDrawSet drawInfo)
+        {
+            Player drawPlayer = drawInfo.drawPlayer;
+            if(drawPlayer.HeldItem.TryGetGlobalItem<SickleItems>(out SickleItems sItem))
+            {
+                if(sItem.isSickle && (drawPlayer.altFunctionUse != 2 && drawPlayer.itemAnimation > 0))
+                {
+                    Player.CompositeArmStretchAmount stretchAmount = Player.CompositeArmStretchAmount.Quarter;
+                    Vector2 offset = drawPlayer.GetBackHandPosition(stretchAmount, ((float)Math.PI / -2f)  * (float)drawPlayer.direction) - drawPlayer.MountedCenter;
+                    Vector2 drawAt = drawInfo.Position + new Vector2(drawPlayer.width * 0.5f, drawPlayer.height * 0.5f) + offset;
+                    float rotation = drawPlayer.bodyRotation + (float)Math.PI * -7f /4f;
+                    if(drawPlayer.direction == -1)
+                    {
+                        rotation += -(float)Math.PI/2;
+                        if(drawPlayer.gravDir == -1)
+                        {
+                            rotation += -(float)Math.PI/2;
+                        }
+                    }
+                    else if(drawPlayer.gravDir == -1)
+                    {
+                        rotation += (float)Math.PI/2;
+                    }
+                    Vector2 origin = new Vector2(drawPlayer.direction * drawPlayer.gravDir == 1 ? sItem.sickleSize.X - sItem.sickleHoldOrigin.X: sItem.sickleHoldOrigin.X, drawPlayer.gravDir == -1 ? sItem.sickleHoldOrigin.Y : sItem.sickleHoldOrigin.Y);
+                    int fHeight = 56;
+                    if (drawPlayer.bodyFrame.Y == 7 * fHeight || drawPlayer.bodyFrame.Y == 8 * fHeight || drawPlayer.bodyFrame.Y == 9 * fHeight || drawPlayer.bodyFrame.Y == 14 * fHeight || drawPlayer.bodyFrame.Y == 15 * fHeight || drawPlayer.bodyFrame.Y == 16 * fHeight)
+                    {
+                        if (drawPlayer.gravDir == -1)
+                        {
+                            drawAt.Y += 2;
+                        }
+                        else
+                        {
+                            drawAt.Y -= 2;
+                        }
+                    }
+
+                    DrawData drawData = new DrawData(TextureAssets.Item[drawPlayer.HeldItem.type].Value, drawAt - Main.screenPosition, null, drawInfo.colorArmorBody, rotation, origin, 1f, drawPlayer.direction * drawPlayer.gravDir == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+                    drawInfo.DrawDataCache.Add(drawData);
+                }
+            }
+        }
+    }
 }
+*/

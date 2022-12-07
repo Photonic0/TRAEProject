@@ -119,6 +119,7 @@ namespace TRAEProject
                 QwertyFlexOnBame.CreateDolphin();
                 if (!Main.dedServ)
                 {
+                    TRAEProject.Changes.Resprites.Resprites.LoadSprites();
                     debugCross = Request<Texture2D>("TRAEProject/DebugCross", AssetRequestMode.ImmediateLoad).Value;
                 }
 
@@ -158,6 +159,17 @@ namespace TRAEProject
             //array[43] = (array[41] = (array[42] = (array[40] = (array[39] = (array[38] = (array[36] = (array[35] = (array[34] = (array[33] = (array[28] = (array[19] = (array[18] = (array[17] = (array[16] = (array[3] = new WingStats(150, 7f)))))))))))))))); // devs
             //ArmorIDs.Wing.Sets.Stats = array;
 
+        }
+        public override void Unload()
+        {
+            Main.QueueMainThreadAction(() =>
+            {
+                if (!Main.dedServ)
+                {
+                    TRAEProject.Changes.Resprites.Resprites.UnloadSprites();
+                }
+
+            });
         }
         public override void AddRecipes()/* tModPorter Note: Removed. Use ModSystem.AddRecipes */
         {

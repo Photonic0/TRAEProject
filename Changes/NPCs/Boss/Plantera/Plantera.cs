@@ -510,12 +510,13 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         {
             if(Main.netMode != NetmodeID.MultiplayerClient)
             {
-                npc.ai[0] = Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), player.Center, Vector2.Zero, ModContent.ProjectileType<VineRing>(), 60, 0);
+                npc.ai[0] = Projectile.NewProjectile(Projectile.GetSource_NaturalSpawn(), player.Center, Vector2.Zero, ModContent.ProjectileType<VineRing>(), 60, 0, player.whoAmI);
                 npc.netUpdate = true;
             }
         }
         public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
         {
+            /*
             if(npc.type == NPCID.Plantera)
             {
                 if((npc.Center - Main.projectile[(int)npc.ai[0]].Center).Length() > VineRing.Radius)
@@ -538,10 +539,11 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                     }
                 }
             }
+            */
         }
         public override bool PreAI(NPC npc)
         {
-            if (npc.type == NPCID.Plantera)
+            if (npc.type == NPCID.Plantera && Main.netMode == NetmodeID.SinglePlayer)
             {
                 npc.chaseable = true;
                 if (runOnce)
@@ -617,10 +619,11 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                     npc.defense = 18;
 					npc.defDamage = 81;
                 }
+                npc.dontTakeDamage = false;
                 float rot = (player.Center - npc.Center).ToRotation();
-                if (!Collision.CanHit(npc.Center + TRAEMethods.PolarVector(-20, rot), 1, 1, player.Center, 1, 1))
+                if (!Collision.CanHit(npc.Center + TRAEMethods.PolarVector(-20, rot), 1, 1, player.Center, 1, 1) || (npc.Center - Main.projectile[(int)npc.ai[0]].Center).Length() > VineRing.Radius)
                 {
-                    npc.defense += 60;
+                    npc.dontTakeDamage = true;
                 }
                 return false;
             }
@@ -629,7 +632,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
 
-            if (npc.type == NPCID.Plantera)
+            if (npc.type == NPCID.Plantera && Main.netMode == NetmodeID.SinglePlayer)
             {
                 if (npc.ai[2] != -1 && Main.projectile[(int)npc.ai[2]] != null)
                 {

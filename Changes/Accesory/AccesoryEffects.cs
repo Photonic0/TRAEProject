@@ -194,7 +194,7 @@ namespace TRAEProject
             }
             if(QwertysMovementRemix.active)
             {
-                if (FastFall && Player.controlDown)
+                if (FastFall && Player.controlDown && Player.velocity.Y != 0)
                 {
                     Player.velocity.Y += 2f * Player.gravDir;
                 }

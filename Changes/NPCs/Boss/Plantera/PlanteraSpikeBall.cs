@@ -24,7 +24,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         }
         public override bool PreAI(Projectile projectile)
         {
-            if (projectile.type == ProjectileID.ThornBall)
+            if (projectile.type == ProjectileID.ThornBall && Main.netMode == NetmodeID.SinglePlayer)
             {
                 if (projectile.ai[1] == 0)
                 {
@@ -42,7 +42,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
             
-            if (projectile.type == ProjectileID.ThornBall)
+            if (projectile.type == ProjectileID.ThornBall && Main.netMode == NetmodeID.SinglePlayer)
             {
                 projectile.localAI[0] = 1;
                 if(projectile.ai[1] != 0)
@@ -64,7 +64,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
-            if (projectile.type == ProjectileID.ThornBall)
+            if (projectile.type == ProjectileID.ThornBall && Main.netMode == NetmodeID.SinglePlayer)
             {
                 Texture2D texture = TextureAssets.Projectile[projectile.type].Value;
                 Main.EntitySpriteDraw(texture, projectile.Center - Main.screenPosition,

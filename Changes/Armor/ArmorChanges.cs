@@ -5,7 +5,6 @@ using TRAEProject;
 using System.Collections.Generic;
 using TRAEProject.Changes.Items;
 using TRAEProject.Changes.Armor;
-using ChangesBuffs;
 using Microsoft.Xna.Framework;
 
 namespace ChangesArmor

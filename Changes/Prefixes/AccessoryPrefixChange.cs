@@ -19,19 +19,21 @@ namespace TRAEProject.Changes.Prefixes
                 {
                     if (Player.armor[i].prefix == PrefixID.Brisk)
                     {
-                        Player.jumpSpeedBoost += 0.05f; // remember that jump speed bonuses are weird
+                        Player.moveSpeed -= 0.01f;
+                        Player.jumpSpeedBoost += (0.05f * 5) * 1.28f; // remember that jump speed bonuses are weird
                     }
                     if (Player.armor[i].prefix == PrefixID.Fleeting)
                     {
-                        Player.jumpSpeedBoost += 0.1f;
+                        Player.moveSpeed -= 0.02f;
+                        Player.jumpSpeedBoost +=  (0.1f * 5) * 1.28f; // remember that jump speed bonuses are weird
                     }
                     if (Player.armor[i].prefix == PrefixID.Hasty2)
                     {
-                        Player.jumpSpeedBoost += 0.15f;
+                        Player.moveSpeed += 0.02f;
                     }
                     if (Player.armor[i].prefix == PrefixID.Quick2)
                     {
-                        Player.jumpSpeedBoost += 0.2f;
+                        Player.moveSpeed += 0.06f;
                     }
                     if (Player.armor[i].prefix == PrefixID.Wild)
                     {
@@ -86,11 +88,29 @@ namespace TRAEProject.Changes.Prefixes
                         {
                             if (line.Text.Contains("" + i))
                             {
-                                line.Text = line.Text.Replace("" + i, "" + (i * 1));
+                                if (line.Text.Contains("" + i))
+                                {
+                                    switch(i)
+                                    {
+                                        case 1:
+                                        case 3:
+                                            line.Text = line.Text.Replace("" + i, "" + 5);
+                                        break;
+                                        case 2:
+                                        case 4:
+                                            line.Text = line.Text.Replace("" + i, "" + 10);
+                                        break;
+                                    }
+                                    if(i == 1 || i == 2)
+                                    {
+                                        line.Text = line.Text.Replace("movement speed", "jump speed");
+                                    }
+                                    break;
+                                }
                                 break;
                             }
                         }
-                        line.Text += " and jump speed";
+                        //line.Text += " and jump speed";
                     }
                     if (line.Name == "PrefixAccMaxMana")
                     {

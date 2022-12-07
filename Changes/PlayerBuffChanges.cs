@@ -119,7 +119,7 @@ namespace TRAEProject
                 case BuffID.Swiftness:
                     if(QwertysMovementRemix.active)
                     {
-                        tip = "Increases horizontal speed by 3mph";
+                        tip = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(3) + "";
                     }
                     else
                     {

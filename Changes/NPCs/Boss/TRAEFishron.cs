@@ -38,16 +38,14 @@ namespace TRAEProject.Changes.NPCs.Boss
 		}
 		public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
         {
-
-				switch (npc.type)
-				{
-					case NPCID.DukeFishron:
-						npc.lifeMax += (npc.lifeMax / 2);
-						npc.defDefense = 60;
-						npc.defDamage = (int)(npc.defDamage * 0.9);
-						return;
-				}
-			
+			switch (npc.type)
+			{
+				case NPCID.DukeFishron:
+					npc.lifeMax += (npc.lifeMax / 2);
+					npc.defDefense = 60;
+					npc.defDamage = (int)(npc.defDamage * 0.9);
+					return;
+			}
         }
 		float phase3NadoTimer = 0f;
         public override bool PreAI(NPC npc)

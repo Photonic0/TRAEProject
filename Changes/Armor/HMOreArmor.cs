@@ -86,7 +86,8 @@ namespace TRAEProject.Changes.Armor
                     player.GetCritChance(DamageClass.Magic) -= 1;
                     return;
                 case ItemID.CobaltBreastplate:
-                    player.GetCritChance(DamageClass.Generic) += 3;
+                    player.GetCritChance(DamageClass.Generic) -= 3;
+                    player.GetArmorPenetration(DamageClass.Generic) += 10;
                     return;
                 case ItemID.CobaltLeggings:
                     player.GetDamage(DamageClass.Generic) += 0.03f;
@@ -127,8 +128,17 @@ namespace TRAEProject.Changes.Armor
                         player.manaCost += 0.14f;
                         break;
                 }
-                player.setBonus = "Critical Strikes significantly increase movement speed for a short time";
-                player.GetModPlayer<CobaltArmorEffect>().CobaltCritical = true;
+                if(QwertysMovementRemix.active)
+                {
+                    player.setBonus = "25% movement speed and jump speed";
+                    player.moveSpeed += 0.25f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
+                }
+                else
+                {
+                    player.setBonus = "Critical Strikes significantly increase movement speed for a short time";
+                    player.GetModPlayer<CobaltArmorEffect>().CobaltCritical = true;
+                }
             }
             if (set == "MythrilSet") // see armor changes
             {
@@ -202,7 +212,7 @@ namespace TRAEProject.Changes.Armor
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "8% increased critical strike chance";
+                            line.Text = "Increases armor penetration by 10";
                         }
                     }
                     break;
