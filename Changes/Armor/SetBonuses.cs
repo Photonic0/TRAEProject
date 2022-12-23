@@ -13,6 +13,7 @@ using TRAEProject.Common;
 using TRAEProject.NewContent.Buffs;
 using TRAEProject.NewContent.TRAEDebuffs;
 using static Terraria.ModLoader.ModContent;
+using Terraria.Audio;
 
 namespace TRAEProject.Changes.Armor
 {
@@ -23,12 +24,14 @@ namespace TRAEProject.Changes.Armor
         public bool HolyProtection = false;
 
         public bool whenHitDodge = false;
+        public bool secretPearlwoodSetBonus = false;
         public override void ResetEffects()
         {
             PirateSet = false;
             shadowArmorDodgeChance = 0;
             HolyProtection = false;
             whenHitDodge = false;
+            secretPearlwoodSetBonus = false;
         }
         public override void UpdateDead()
         {
@@ -36,6 +39,7 @@ namespace TRAEProject.Changes.Armor
             shadowArmorDodgeChance = 0;
             HolyProtection = false;
             whenHitDodge = false;
+            secretPearlwoodSetBonus = true;
         }
         public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
         {
@@ -63,6 +67,26 @@ namespace TRAEProject.Changes.Armor
                 }
             }
             return true; 
+        }
+        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        {
+            if(secretPearlwoodSetBonus && Main.rand.NextBool(100))
+            {
+                crit = false;
+                damage = 696969;
+                Main.NewText("Nice!");
+                SoundEngine.PlaySound(new SoundStyle("TRAEProject/Assets/Sounds/noice"));
+            }
+        }
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if(secretPearlwoodSetBonus && Main.rand.NextBool(100))
+            {
+                crit = false;
+                damage = 696969;
+                Main.NewText("Nice!");
+                SoundEngine.PlaySound(new SoundStyle("TRAEProject/Assets/Sounds/noice"));
+            }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)

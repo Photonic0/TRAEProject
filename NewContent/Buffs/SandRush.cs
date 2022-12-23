@@ -15,7 +15,14 @@ namespace TRAEProject.NewContent.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.moveSpeed += 0.25f;
-			player.jumpSpeedBoost += 1.5f;
+			if(QwertysMovementRemix.active)
+			{
+				player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
+			}
+			else
+			{
+				player.jumpSpeedBoost += 1.5f;
+			}
 		}
 	}
 }

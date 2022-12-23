@@ -158,6 +158,16 @@ namespace TRAEProject.Changes.Accesory
     }
     public class MobilityAccessories : GlobalItem
     {
+        public override void SetDefaults(Item item)
+        {
+            switch(item.type)
+            {
+                case ItemID.GravityGlobe:
+                item.expert = false;
+                item.rare = ItemRarityID.Orange;
+                break;
+            }
+        }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
             switch (item.type)
@@ -175,7 +185,7 @@ namespace TRAEProject.Changes.Accesory
                         player.moveSpeed += 0.25f; // increases from 20 mph to 25
                     }
 					player.accRunSpeed = 4.8f; // makes your movement speed 25 mph if it isn't already
-                    return;
+                    break;
                 case ItemID.SandBoots:
                     
                     if(QwertysMovementRemix.active)
@@ -189,14 +199,14 @@ namespace TRAEProject.Changes.Accesory
                     player.desertBoots = false;
                     player.GetModPlayer<AccesoryEffects>().sandRunning = true;
 					player.accRunSpeed = 4.8f;
-                    return;
+                    break;
                 case ItemID.FrogLeg:
                 case ItemID.FrogWebbing:
                 case ItemID.FrogFlipper:
                     player.frogLegJumpBoost = false;
                     player.extraFall += 15;
                     player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
-                    return;
+                    break;
                 case ItemID.FrogGear:
                     player.frogLegJumpBoost = false;
                     player.accFlipper = true;
@@ -204,7 +214,7 @@ namespace TRAEProject.Changes.Accesory
                     player.spikedBoots = 0;
                     player.extraFall += 15;
                     player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
-                    return;
+                    break;
                 case ItemID.AmphibianBoots:
                     player.frogLegJumpBoost = false;
                     player.extraFall += 15;
@@ -219,10 +229,10 @@ namespace TRAEProject.Changes.Accesory
                         player.moveSpeed += 0.25f;
                     }
                     player.accRunSpeed = 4.8f;
-                    return;     
+                    break;     
                 case ItemID.Aglet:
                     player.moveSpeed += 0.05f;
-                    return;
+                    break;
                 case ItemID.AnkletoftheWind:
 
                     if(QwertysMovementRemix.active)
@@ -234,10 +244,10 @@ namespace TRAEProject.Changes.Accesory
                         player.moveSpeed += 0.15f;
                     }
                     
-                    return;
+                    break;
                 case ItemID.IceSkates:
            	        player.runAcceleration *= 1.5f;
-                    return;
+                    break;
                 case ItemID.FrostsparkBoots:
                     player.rocketTimeMax -= 7;
                     player.accRunSpeed = 4.8f;
@@ -253,7 +263,7 @@ namespace TRAEProject.Changes.Accesory
                         player.moveSpeed += 0.25f;
                     }
                     player.runAcceleration *= 1.5f;
-                    return;
+                    break;
                 case ItemID.TerrasparkBoots:
                     player.iceSkate = false;
                     player.lavaMax -= 42;
@@ -280,7 +290,7 @@ namespace TRAEProject.Changes.Accesory
                         player.moveSpeed += 0.25f;
                     }
                     player.dashType = 1;
-                    return;
+                    break;
                 case ItemID.LightningBoots:
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
                     player.rocketTimeMax = 7;
@@ -301,10 +311,10 @@ namespace TRAEProject.Changes.Accesory
                     {
                         player.moveSpeed += 0.25f;
                     }
-                    return;
+                    break;
                 case ItemID.RocketBoots:
                     player.rocketTimeMax = 7;
-                    return;
+                    break;
                 case ItemID.FairyBoots:
                 case ItemID.SpectreBoots:
                     player.rocketTimeMax = 7; 
@@ -317,7 +327,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         player.moveSpeed += 0.25f;
                     }
-                    return;
+                    break;
                 case ItemID.LuckyHorseshoe:
                     if(QwertysMovementRemix.active)
                     {
@@ -331,7 +341,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         player.gravControl = true;
                     }
-                    return;
+                    break;
                     case ItemID.BlueHorseshoeBalloon:
                     case ItemID.WhiteHorseshoeBalloon:
                     case ItemID.YellowHorseshoeBalloon:
@@ -350,7 +360,7 @@ namespace TRAEProject.Changes.Accesory
                     player.noFallDmg = true;
                     player.fireWalk = false;
                     player.buffImmune[BuffID.Burning] = false;
-                    return;
+                    break;
                 case ItemID.BalloonHorseshoeHoney:
                     player.lifeRegen += 2;
                     if(QwertysMovementRemix.active)
@@ -360,18 +370,18 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.HoneyBalloon:
                     player.lifeRegen += 2;
-                    return;
+                    break;
                 case ItemID.BundleofBalloons:
                     player.noFallDmg = true;
-                    return;
+                    break;
                 case ItemID.WaterWalkingBoots:
                     player.GetModPlayer<AccesoryEffects>().waterRunning = true;
                     player.GetModPlayer<MoveSpeed>().TRAEwaterwalk = true;
                     player.waterWalk = true;
-                    return;
+                    break;
                 case ItemID.LavaCharm:
                     player.GetModPlayer<AccesoryEffects>().LavaShield = true;
-                    return;
+                    break;
                 case ItemID.LavaWaders:
                 case ItemID.HellfireTreads:
                     player.GetModPlayer<AccesoryEffects>().waterRunning = true;
@@ -380,11 +390,11 @@ namespace TRAEProject.Changes.Accesory
 
                     player.lavaImmune = true;
                     player.lavaRose = false;
-                    return;
+                    break;
 
                 case ItemID.EmpressFlightBooster:
                     player.jumpSpeedBoost -= 2.4f;
-                    return;
+                    break;
                 case ItemID.Magiluminescence:
                     player.hasMagiluminescence = false;
                     if(QwertysMovementRemix.active)
@@ -398,13 +408,13 @@ namespace TRAEProject.Changes.Accesory
                         player.accRunSpeed *= 1.2f;
                         player.runSlowdown *= 2f;
                     }
-                    return;
+                    break;
                 case ItemID.ShinyStone:
                     if (player.velocity.Y == 0)
                     {
                         player.lifeRegen += 4;
                     }
-                    return;
+                    break;
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -442,7 +452,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "mph";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5);
                             }
                             else
                             {
@@ -458,7 +468,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(6) + "\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
                             }
                             else
                             {

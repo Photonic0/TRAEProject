@@ -243,6 +243,12 @@ namespace TRAEProject.Changes.Recipes
                 recipe.AddIngredient(ItemID.SoulofMight, 15);
 
             }
+            if(recipe.HasResult(ItemID.ObsidianHorseshoe))
+            {
+                recipe.TryGetIngredient(ItemID.ObsidianSkull, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.GravityGlobe, 1);
+            }
         }
     }
 }

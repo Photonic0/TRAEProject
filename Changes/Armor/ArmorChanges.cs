@@ -90,7 +90,7 @@ namespace ChangesArmor
                     return;
                 case ItemID.ChlorophyteGreaves:
                     player.GetCritChance<GenericDamageClass>() += 2;
-                    player.moveSpeed += 0.5f;
+                    player.moveSpeed += 0.05f;
                     return;
 //////////////////////// OOA
 /// T1: SQUIRE, MONK, HUNTRESS, APPRENTICE
@@ -174,7 +174,7 @@ namespace ChangesArmor
             if (head.type == ItemID.RichMahoganyHelmet && body.type == ItemID.RichMahoganyBreastplate && legs.type == ItemID.RichMahoganyGreaves)
                 return "WoodSet"; 
             if (head.type == ItemID.PearlwoodHelmet && body.type == ItemID.PearlwoodBreastplate && legs.type == ItemID.PearlwoodGreaves)
-                return "WoodSet"; 
+                return "WoodSetPlus"; 
             if (head.type == ItemID.CopperHelmet && body.type == ItemID.CopperChainmail && legs.type == ItemID.CopperGreaves)
                 return "CopperSet";
             if (head.type == ItemID.TinHelmet && body.type == ItemID.TinChainmail && legs.type == ItemID.TinGreaves)
@@ -240,6 +240,11 @@ namespace ChangesArmor
             {
                 player.setBonus = "Reduces damage taken by 5%";
                 player.statDefense -= 1;
+            }
+            if (armorSet == "WoodSetPlus")
+            {
+                player.setBonus = "Reduces damage taken by 5%*";
+                player.GetModPlayer<SetBonuses>().secretPearlwoodSetBonus = true;
             }
             if (armorSet == "CopperSet") 
             {

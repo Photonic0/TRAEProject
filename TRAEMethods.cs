@@ -3,6 +3,7 @@ using TRAEProject.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Chat;
 
 namespace TRAEProject
 {
@@ -218,6 +219,20 @@ namespace TRAEProject
             //we now know the time allowing use to find all sides of the tirangle, now we use law of Sines to calculate the angle to shoot at.
             float calculatedShootAngle = angleToTarget - (float)Math.Asin((targetSpeed * time * (float)Math.Sin(z)) / (shootSpeed * time));
             return calculatedShootAngle;
+        }
+        
+
+        public static void ServerClientCheck(string q)
+        {
+            if (Main.netMode == 1)
+            {
+                Main.NewText("Client says  " + q, Color.Pink);
+            }
+
+            if (Main.netMode == 2) // Server
+            {
+                ChatHelper.BroadcastChatMessage(Terraria.Localization.NetworkText.FromLiteral("Server says " + q), Color.Green);
+            }
         }
     }
 }

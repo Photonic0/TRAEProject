@@ -20,11 +20,11 @@ namespace TRAEProject.Changes.NPCs.Boss
         {
             if(npc.type == NPCID.Retinazer)
             {
-				npc.lifeMax = (int)(npc.lifeMax  * ((float)18000 / 20000));
+				npc.lifeMax = (int)(npc.lifeMax  * ((float)16000 / 20000));
             }
             if(npc.type == NPCID.Spazmatism)
             {
-                npc.lifeMax = (int)(npc.lifeMax  * ((float)25000 / 23000));
+                npc.lifeMax = (int)(npc.lifeMax  * ((float)27000 / 23000));
             }
         }
         public static void FlyTo(NPC npc, Vector2 goHere, bool phase2 = false)
@@ -108,6 +108,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 
 				float shootSpeed = 10f;
                 float rotateTowards = TRAEMethods.PredictiveAimWithOffset(npc.Center, shootSpeed * 3, Main.player[npc.target].Center, Main.player[npc.target].velocity, npc.ai[1] == 0 ? 25 * 9 : 15 * 9) - (float)Math.PI / 2;
+                rotateTowards += RetPhase3.RotateModifer(npc);
 				float rotSpeed = 0.1f;
 				if(npc.ai[1] == 0)
 				{
@@ -217,14 +218,27 @@ namespace TRAEProject.Changes.NPCs.Boss
 						npc.ai[3] = 0f;
 						npc.netUpdate = true;
                     }
-					else if ((double)npc.life < (double)npc.lifeMax * 0.4)
-					{
-						npc.ai[0] = 1f;
-						npc.ai[1] = 0f;
-						npc.ai[2] = 0f;
-						npc.ai[3] = 0f;
-						npc.netUpdate = true;
-					}
+					else
+                    {
+                        float spazHealth = -1;
+                        for(int spazIndex = 0; spazIndex < 200; spazIndex++)
+                        {
+                            if(Main.npc[spazIndex].active && Main.npc[spazIndex].type == NPCID.Spazmatism)
+                            {
+                                spazHealth = (float)Main.npc[spazIndex].life / (float)Main.npc[spazIndex].lifeMax;
+                                break;
+                            }
+                        }
+                        if ((double)npc.life < (double)npc.lifeMax * 0.4 || (spazHealth != -1 && spazHealth < 0.05f))
+                        {
+                            npc.ai[0] = 1f;
+                            npc.ai[1] = 0f;
+                            npc.ai[2] = 0f;
+                            npc.ai[3] = 0f;
+                            npc.netUpdate = true;
+                        }
+                    } 
+                    
 					return false;
 				}
 				if (npc.ai[0] == 1f || npc.ai[0] == 2f)
@@ -311,8 +325,15 @@ namespace TRAEProject.Changes.NPCs.Boss
 					}
 					else
 					{
-						Vector2 goHere = Main.player[npc.target].Center + new Vector2(npc.localAI[2], npc.localAI[3]);
+                        //TRAEMethods.ServerClientCheck(npc.localAI[2] + ", " + npc.localAI[3]);
+                        int abs = (int)Math.Abs(npc.ai[3]);
+						Vector2 goHere = Main.player[npc.target].Center + new Vector2(abs % 10 == 2 ? 450 : -450, abs / 10 == 2 ? 300 : -300);
 						FlyTo(npc, goHere, true);
+                        if(npc.ai[3] >= 0)
+                        {
+                            npc.ai[3] = -11;
+                        }
+                        /*
                         if(npc.ai[3] != -1)
                         {
 							if(npc.ai[3] == 0)
@@ -325,11 +346,48 @@ namespace TRAEProject.Changes.NPCs.Boss
 							}
                             npc.ai[3] = -1;
                         }
+                        */
 						if(npc.ai[2] % 60 == 0 && npc.ai[2] % 120 != 0)
 						{
                             if(Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                npc.ai[3] = Main.rand.Next(2);
+                                int r = Main.rand.Next(2);
+                                if(r == 0)
+                                {
+                                    switch(npc.ai[3])
+                                    {
+                                        case -11:
+                                        npc.ai[3] = -21;
+                                        break;
+                                        case -12:
+                                        npc.ai[3] = -22;
+                                        break;
+                                        case -21:
+                                        npc.ai[3] = -11;
+                                        break;
+                                        case -22:
+                                        npc.ai[3] = -12;
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    switch(npc.ai[3])
+                                    {
+                                        case -11:
+                                        npc.ai[3] = -12;
+                                        break;
+                                        case -12:
+                                        npc.ai[3] = -21;
+                                        break;
+                                        case -21:
+                                        npc.ai[3] = -22;
+                                        break;
+                                        case -22:
+                                        npc.ai[3] = -21;
+                                        break;
+                                    }
+                                }
                                 npc.netUpdate = true;
                             }
 						}
@@ -343,6 +401,14 @@ namespace TRAEProject.Changes.NPCs.Boss
 							}
 						}
 					}
+                    if(NPC.CountNPCS(NPCID.Spazmatism) <= 0)
+                    {
+                        npc.ai[0] = 4f;
+						npc.ai[1] = 0f;
+						npc.ai[2] = 0f;
+						npc.ai[3] = 0f;
+						npc.netUpdate = true;
+                    }
 					return false;
 				}
 				
@@ -352,6 +418,7 @@ namespace TRAEProject.Changes.NPCs.Boss
             {
                 if(npc.ai[0] >= 4f)
                 {
+
                     if(npc.ai[0] == 4f || npc.ai[0] == 5f)
                     {
                         SpazPhase3.Start(npc);
@@ -528,10 +595,42 @@ namespace TRAEProject.Changes.NPCs.Boss
                         }
                     }
                 }
+                if(npc.ai[0] == 0)
+                {
+                    float retHealth = -1;
+                    for(int retIndex = 0; retIndex < 200; retIndex++)
+                    {
+                        if(Main.npc[retIndex].active && Main.npc[retIndex].type == NPCID.Retinazer)
+                        {
+                            retHealth = (float)Main.npc[retIndex].life / (float)Main.npc[retIndex].lifeMax;
+                            break;
+                        }
+                    }
+                    if ((double)npc.life < (double)npc.lifeMax * 0.4 || (retHealth != -1 && retHealth < 0.05f))
+                    {
+                        npc.ai[0] = 1f;
+                        npc.ai[1] = 0f;
+                        npc.ai[2] = 0f;
+                        npc.ai[3] = 0f;
+                        npc.netUpdate = true;
+                    }
+                }
             }
         }
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            
+            if (npc.type == NPCID.Retinazer && npc.ai[0] >= 4f)
+            {
+                RetPhase3.Phase3Draw(npc, spriteBatch, screenPos, drawColor);
+                return false;
+            }
+            if (npc.type == NPCID.Spazmatism && npc.ai[0] >= 4f)
+            {
+                SpazPhase3.Phase3Draw(npc, spriteBatch, screenPos, drawColor);
+                return false;
+            }
+            
             return base.PreDraw(npc, spriteBatch, screenPos, drawColor);
         }
         public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -544,9 +643,12 @@ namespace TRAEProject.Changes.NPCs.Boss
                     int c = (int)npc.ai[3];
                     Color color = new Color(c, c, c, c);
 					Vector2 halfSize = new Vector2(55f, 107f);
-                    Vector2 Pos = npc.Center + TRAEMethods.PolarVector(-54, npc.rotation + (float)Math.PI / 2)- Main.screenPosition;
-                    //Vector2 VanillaPos =new Vector2(npc.position.X - screenPos.X + (float)(npc.width / 2) - (float)TextureAssets.Npc[npc.type].Width() * npc.scale / 2f + halfSize.X * npc.scale, npc.position.Y - screenPos.Y + (float)npc.height - (float)TextureAssets.Npc[npc.type].Height() * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + halfSize.Y * npc.scale /*+ num36 + num35*/), 
-				    spriteBatch.Draw(eyeGlow, Pos, npc.frame, color, npc.rotation, npc.Size * 0.5f, npc.scale, SpriteEffects.None, 0f);
+                    float num35 = 0f;
+			        float num36 = Main.NPCAddHeight(npc);
+                    Vector2 Pos = new Vector2(
+                        npc.position.X - screenPos.X + (float)(npc.width / 2) - (float)TextureAssets.Npc[npc.type].Width() * npc.scale / 2f + halfSize.X * npc.scale, 
+                        npc.position.Y - screenPos.Y + (float)npc.height - (float)TextureAssets.Npc[npc.type].Height() * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + halfSize.Y * npc.scale + num36 + num35);
+				    spriteBatch.Draw(eyeGlow, Pos, npc.frame, color, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
                 }
             }
             base.PostDraw(npc, spriteBatch, screenPos, drawColor);

@@ -26,6 +26,8 @@ namespace TRAEProject
             return (v * 5) * 1.28f;
         }
     }
+
+    //comment out everything below this to turn off my changes
     public class TweakArmorMovespeed : GlobalItem
     {
         public override void UpdateEquip(Item item, Player player)
@@ -128,7 +130,6 @@ namespace TRAEProject
             }
         }
     }
-    //comment out everything below this to turn off my changes
     public class PlayerChanges : ModPlayer
     {
         public bool hasCap = true;
@@ -186,14 +187,12 @@ namespace TRAEProject
                         Player.moveSpeed += 0.5f;
                         break;
                     }
-                    if((Math.Sign(Player.velocity.X) == 1 && !Player.controlRight) || (Math.Sign(Player.velocity.X) == -1 && !Player.controlLeft))
+                    if((Math.Sign(Player.velocity.X) == 1 && Player.controlLeft) || (Math.Sign(Player.velocity.X) == -1 && Player.controlRight))
                     {
                         dashCount = 0;
-                        if(Player.controlLeft || Player.controlRight)
-                        {
-                            Player.velocity.X = 0;
-                        }
+                        Player.velocity.X = 0;
                     }
+                    
                 }
                 if(dashCount == 0)
                 {
@@ -208,6 +207,16 @@ namespace TRAEProject
             }
         }
         int ornamentTimer = 0;
+        int crippleTimer = 0;
+
+        [Obsolete]
+        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        {
+            if(!Player.noKnockback)
+            {
+                crippleTimer = 60;
+            }
+        }
         public override void PostUpdateEquips()
         {
             if(Player.wingsLogic == 23)
@@ -227,7 +236,14 @@ namespace TRAEProject
             {
                 Player.slowFall = false;
             }
-            Player.runAcceleration *= 1.5f;
+            if(crippleTimer <= 0)
+            {
+                Player.runAcceleration *= 1.5f;
+            }
+            else
+            {
+                crippleTimer--;
+            }
             Player.noFallDmg = true;
             if(Player.wingsLogic == 45)
             {
@@ -491,7 +507,7 @@ namespace TRAEProject
                 {
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + "and jump speed by " + QwertysMovementRemix.SpeedTooltip(3) + "\nInfinite flight time";
+                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(3) + "\nInfinite flight time";
                     }
                 }
                 break;
@@ -500,7 +516,7 @@ namespace TRAEProject
                 {
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + "and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "\nHold down to fall faster";
+                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "\nHold down to fall faster";
                     }
                 }
                 break;

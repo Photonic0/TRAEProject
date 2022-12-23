@@ -10,12 +10,13 @@ using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Terraria.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
 
 namespace TRAEProject.Changes.NPCs.Boss 
 {
     public static class SpazPhase3 
     {
-        const float flameTime = 600f;
+        const float flameTime = 400f;
         public static void Header(NPC npc)
         {
             if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
@@ -23,7 +24,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                 npc.TargetClosest();
             }
             bool dead3 = Main.player[npc.target].dead;
-            float angVel = ((float)Math.PI / 90f) + ((float)Math.PI / 60f) * (1f -((float)npc.ai[2] / flameTime)) * (1f -((float)npc.ai[2] / flameTime));
+            float angVel = ((float)Math.PI / 180f) + ((float)Math.PI / 120f) * (1f -((float)npc.ai[2] / flameTime)) * (1f -((float)npc.ai[2] / flameTime));
             npc.rotation.SlowRotation((Main.player[npc.target].Center - npc.Center).ToRotation() - (float)Math.PI/2, angVel);
             
             if (Main.rand.Next(5) == 0)
@@ -54,8 +55,12 @@ namespace TRAEProject.Changes.NPCs.Boss
         public static void Flame(NPC npc)
         {
             Header(npc);
-            float speed = 8f - 8f * (npc.ai[2] / flameTime);
+            float maxSpeed = 8f;
+            float distModifier = (float)Math.Min(1000f, (Main.player[npc.target].Center - npc.Center).Length()) / 1000f;
+            float speed = maxSpeed - maxSpeed * (npc.ai[2] / flameTime);
+            speed = distModifier * (maxSpeed - speed) + speed;
             float acceleration = 0.4f - 0.3f * (npc.ai[2] / flameTime);
+            acceleration = distModifier * (0.4f - acceleration) + acceleration;
             int num480 = 1;
             if (npc.position.X + (float)(npc.width / 2) < Main.player[npc.target].position.X + (float)Main.player[npc.target].width)
             {
@@ -141,6 +146,23 @@ namespace TRAEProject.Changes.NPCs.Boss
         }
         public static void Update(NPC npc)
         {
+            bool dead2 = Main.player[npc.target].dead;
+            if (Main.netMode != 1 && !Main.dayTime && !dead2 && npc.timeLeft < 10)
+            {
+                for (int num403 = 0; num403 < 200; num403++)
+                {
+                    if (num403 != npc.whoAmI && Main.npc[num403].active && (Main.npc[num403].type == 125 || Main.npc[num403].type == 126))
+                    {
+                        npc.DiscourageDespawn(Main.npc[num403].timeLeft - 1);
+                    }
+                }
+            }
+            if (Main.dayTime || dead2)
+            {
+                npc.velocity.Y -= 0.04f;
+                npc.EncourageDespawn(10);
+                return;
+            }
             npc.HitSound = SoundID.NPCHit4;
             npc.damage = (int)((double)npc.defDamage * 1.5);
             npc.defense = npc.defDefense + 18;
@@ -193,7 +215,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                 Vector2 vel = TRAEMethods.PolarVector(12f + npc.velocity.Y, npc.rotation + (float)Math.PI/2) + TRAEMethods.PolarVector(Main.rand.Next(-4, 5), npc.rotation); 
                 int num487 = Projectile.NewProjectile(npc.GetSource_ReleaseEntity(), shootFrom, vel, ModContent.ProjectileType<BouncingFlames>(), attackDamage_ForProjectiles7, 0f, Main.myPlayer);
             }
-            if(npc.ai[2] >= 400)
+            if(npc.ai[2] >= 280)
             {
                 npc.ai[2] = 0;
                 npc.ai[1] = 0;
@@ -251,13 +273,13 @@ namespace TRAEProject.Changes.NPCs.Boss
                 {
                     npc.rotation = (float)Math.Atan2(npc.velocity.Y, npc.velocity.X) - 1.57f;
                 }
-                if (npc.ai[2] >= 80f)
+                if (npc.ai[2] >= 60f)
                 {
                     npc.ai[3] += 1f;
                     npc.ai[2] = 0f;
                     npc.target = 255;
                     npc.rotation = (Main.player[npc.target].Center - npc.Center).ToRotation() - (float)Math.PI/2;
-                    if (npc.ai[3] >= 6f)
+                    if (npc.ai[3] >= 4f)
                     {
                         npc.ai[1] = 3f;
                         npc.ai[3] = 0f;
@@ -269,13 +291,71 @@ namespace TRAEProject.Changes.NPCs.Boss
                 }
             }
         }
-        
+        public static void Phase3Draw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            
+            Texture2D texture = TextureAssets.Npc[npc.type].Value;
+            Color color = drawColor;
+            Vector2 halfSize = new Vector2(55f, 107f);
+            float num35 = 0f;
+            float num36 = Main.NPCAddHeight(npc);
+            Texture2D effectTexture = ModContent.Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/GreenEffect").Value;
+            Vector2 Pos = new Vector2(
+                npc.position.X - screenPos.X + (float)(npc.width / 2) - (float)TextureAssets.Npc[npc.type].Width() * npc.scale / 2f + halfSize.X * npc.scale, 
+                npc.position.Y - screenPos.Y + (float)npc.height - (float)TextureAssets.Npc[npc.type].Height() * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + halfSize.Y * npc.scale + num36 + num35);
+            
+            if(npc.ai[0] == 4f)
+            {
+                float prog = npc.ai[1] / 100f;
+                for(int i =0; i <4; i++)
+                {
+                    float rot = ((float)i / 4f) * 2f * (float)Math.PI;
+                    rot += prog * (float)Math.PI / 2f;
+                    float radius = (1f-prog) * 200;
+                    float c = (1f * prog) * 0.3f;
+                    Color color2 = new Color(c, c, c, c);
+                    Vector2 effectPos = Pos + TRAEMethods.PolarVector(radius, rot);
+                    spriteBatch.Draw(effectTexture, effectPos, npc.frame, color2, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
+                }
+                
+            }
+            if(npc.ai[0] == 5f)
+            {
+                float prog = npc.ai[2] / 0.5f;
+                for(int i =0; i <16; i++)
+                {
+                    float rot = ((float)i / 16f) * 2f * (float)Math.PI;
+                    float radius = (1f-prog) * 8000;
+                    float c = (1f * prog) * 0.3f;
+                    Color color2 = new Color(c, c, c, c);
+                    Vector2 effectPos = Pos + TRAEMethods.PolarVector(radius, rot);
+                    spriteBatch.Draw(effectTexture, effectPos, npc.frame, color2, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
+                }
+            }
+            if((npc.ai[0] > 5f))
+            {
+                for(int i =0; i < npc.oldPos.Length; i++)
+                {
+                    float c = 255f * ((float)i / npc.oldPos.Length);
+                    Color color2 = new Color(c, c, c, c)* 0.3f;
+                    Vector2 effectPos = (Pos - npc.position) + npc.oldPos[i];
+                    /* new Vector2(
+                    npc.oldPos[i].X - screenPos.X + (float)(npc.width / 2) - (float)TextureAssets.Npc[npc.type].Width() * npc.scale / 2f + halfSize.X * npc.scale, 
+                    npc.oldPos[i].Y - screenPos.Y + (float)npc.height - (float)TextureAssets.Npc[npc.type].Height() * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + halfSize.Y * npc.scale + num36 + num35); */
+                    spriteBatch.Draw(effectTexture, effectPos, npc.frame, color2, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
+                }
+            }
+            
+            
+            spriteBatch.Draw(texture, Pos, npc.frame, color, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
+        }
         public static void Start(NPC npc)
         {
             if (npc.ai[0] == 4f)
             {
+                
                 npc.ai[2] += 0.005f;
-                if ((double)npc.ai[2] > 0.5)
+                if (npc.ai[2] > 0.5f)
                 {
                     npc.ai[2] = 0.5f;
                 }
@@ -288,7 +368,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                     npc.ai[2] = 0f;
                 }
             }
-            npc.rotation += npc.ai[2];
+            //npc.rotation += npc.ai[2];
             npc.ai[1] += 1f;
             if (npc.ai[1] >= 100f)
             {
