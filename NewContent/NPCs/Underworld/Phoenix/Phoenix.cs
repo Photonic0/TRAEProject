@@ -10,14 +10,16 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using TRAEProject.NewContent.NPCs.Banners;
-
+using TRAEProject.NewContent.NPCs.Underworld.Lavamander;
+using TRAEProject.NewContent.NPCs.Underworld.Salalava;
 using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 
 {
-    public class Phoenix : ModNPC
+    public class PhoenixNPC : ModNPC
     {
+
         public override void SetStaticDefaults()
 		{
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
@@ -35,14 +37,14 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 
         public override void SetDefaults()
         {
-            NPC.width = 82;
-            NPC.height = 68;
+            NPC.width = 60;
+            NPC.height = 60;
             NPC.aiStyle = 74;
             AIType = NPCID.SolarCorite;
 			NPC.value = 0;
             NPC.damage = 50;
             NPC.defense = 28;
-            NPC.lifeMax = 3000;
+            NPC.lifeMax = 3500;
 			NPC.scale = 1.1f;
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.DD2_WyvernHurt;
@@ -50,14 +52,13 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
             NPC.knockBackResist = 0f; 
 			NPC.noGravity = true;
 			NPC.noTileCollide = true;
-			NPC.buffImmune[BuffID.OnFire] = false;
-			NPC.buffImmune[BuffID.OnFire3] = false;
-			NPC.buffImmune[BuffID.Frostburn] = false;
-			NPC.buffImmune[BuffID.Frostburn2] = false;
-			Banner = NPC.type;
-            BannerItem = ItemType<FroggabombaBanner>();
+			Banner = NPC.type; 
+			DrawOffsetY = -4;
+            BannerItem = ItemType<FroggabombaBanner>(); 
+			NPC.GetGlobalNPC<HellMinibosses>().HellMinibossThatSpawnsInPairs = true;
+
         }
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
 			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
 			{
@@ -71,11 +72,25 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 5));
 			npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
         }
+   //     public override int SpawnNPC(int tileX, int tileY)
+   //     {
+   //         //if (!NPC.GetGlobalNPC<HellMinibosses>().dontSpawnAnotherOne)
+   //         //{
+   //             int spawn = Main.rand.Next(NPC.GetGlobalNPC<HellMinibosses>().MinibossList);
+   //             while (spawn == NPC.type)
+   //             {
+			//		spawn = Main.rand.Next(NPC.GetGlobalNPC<HellMinibosses>().MinibossList);
+   //             }
+   //             NPC npc = NPC.NewNPCDirect(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<LavamanderNPC>());
+   //         //    NPC.GetGlobalNPC<HellMinibosses>().dontSpawnAnotherOne = true;
+   //         //    npc.GetGlobalNPC<HellMinibosses>().dontSpawnAnotherOne = true;
+   //         //}
+			//return default;
+   //     }
         public override void AI()
         {
-			
-		
-				NPC.rotation = 0;
+
+            NPC.rotation = 0;
             if (NPC.ai[0] != 0f)
             {
 				if (dustTimer == 0f)
@@ -276,7 +291,22 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 				}
 				d.noGravity = true;
 			}
-		}
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+		{ 
+				for (int i = 0; i < NPC.GetGlobalNPC<HellMinibosses>().MinibossList.Length; i++)
+				{
+					if (NPC.AnyNPCs(NPC.GetGlobalNPC<HellMinibosses>().MinibossList[i]))
+						return 0f;
+				}
+				if (Main.hardMode && NPC.downedPlantBoss)
+				{
+					return SpawnCondition.Underworld.Chance * 0.2f;
+				}
+				
+			
+			return 0f;
+        }
     }
 
 	public class PhoenixAsh : ModNPC
@@ -292,7 +322,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 					BuffID.Confused // Most NPCs have this
 				}
 			};
-			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
+            };
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 			DisplayName.SetDefault("Phoenix Ash"); // Automatic from .lang files
 			Main.npcFrameCount[NPC.type] = 6; // make sure to set this for your modnpcs.
 		}
@@ -309,27 +344,15 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			NPC.lavaImmune = true;
 			NPC.knockBackResist = 0f;
 		}
-		public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{
-			for (int i = 0; i < 200; i++)
-			{
-				if (Main.npc[i].type == NPC.type && Main.npc[i].type == NPCType<Phoenix>())
-					return 0f;
-			}
-			if (Main.hardMode && NPC.downedPlantBoss)
-			{
-				return SpawnCondition.Underworld.Chance * 0.16f;
-			}
-			return 0f;
-		}
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-		{
-			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
-			{
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-				new FlavorTextBestiaryInfoElement("The ashes of a dying phoenix. The fires of the Underworld will very quickly reignite its spirit.")
-			});
-		}
+
+		//public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+		//{
+		//	bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
+		//	{
+		//		BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
+		//		new FlavorTextBestiaryInfoElement("The ashes of a dying phoenix. The fires of the Underworld will very quickly reignite its spirit.")
+		//	});
+		//}
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 5));
@@ -397,7 +420,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
             {
 				NPC.life = 0;
 				SoundEngine.PlaySound(SoundID.DD2_WyvernScream, NPC.Center);
-				NPC.NewNPC(NPC.GetSource_Death(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<Phoenix>());
+				NPC.NewNPC(NPC.GetSource_Death(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<PhoenixNPC>());
 				for (int i = 0; i < 100; i++)
 				{
 					Vector2 speed = Main.rand.NextVector2CircularEdge(3.6f, 3.6f);

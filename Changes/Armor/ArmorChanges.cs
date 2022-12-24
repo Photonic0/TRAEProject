@@ -588,7 +588,10 @@ namespace ChangesArmor
                         {
                             line.Text = "15% increased melee critical strike chance\n10% increased summon damage and movement speed";
                         }
-
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "";
+                        }
                     }
                     return;
                 case ItemID.ApprenticeTrousers:

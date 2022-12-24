@@ -8,6 +8,12 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.Items.Misc.Potions;
+using System.IO;
+using Terraria.ModLoader.IO;
+using TRAEProject.Common;
+using TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk;
+using TRAEProject.NewContent.NPCs.Underworld.Phoenix;
+using TRAEProject.NewContent.NPCs.Underworld.Salalava;
 
 namespace TRAEProject.Changes
 {
@@ -156,7 +162,53 @@ namespace TRAEProject.Changes
                     shop.item[nextSlot].SetDefaults(ItemID.TrifoldMap);
                     nextSlot++;
                     break;
+                case NPCID.DD2Bartender:
+                    if (!DownedBosses.downedOgre)
+                    {        
+                        int[] ArmorList = new int[] { ItemID.HuntressWig, ItemID.HuntressPants, ItemID.HuntressJerkin,
+                                                      ItemID.SquireGreatHelm, ItemID.SquirePlating, ItemID.SquireGreaves,
+                                                      ItemID.MonkBrows, ItemID.MonkPants, ItemID.MonkShirt ,
+                                                      ItemID.ApprenticeHat, ItemID.ApprenticeRobe, ItemID.ApprenticeTrousers,
+                        
+   
+                        };
+
+                        for (int i = 0; i < shop.item.Length; i++)
+                        {
+                            for (int k = 0; k < ArmorList.Length; k++)
+                            {
+                                if (shop.item[i].type == ArmorList[k])
+                                {
+                                    shop.item[i].type = ItemID.None;
+                                }
+                            }
+                        }
+                    }
+                    if (!DownedBosses.downedBetsy)
+                    {
+                        int[] ArmorList = new int[] { ItemID.HuntressAltHead, ItemID.HuntressAltPants, ItemID.HuntressAltShirt,
+                                                      ItemID.SquireAltHead, ItemID.SquireAltShirt, ItemID.SquireAltPants,
+                                                      ItemID.MonkAltHead, ItemID.MonkAltShirt, ItemID.MonkAltPants ,
+                                                      ItemID.ApprenticeAltHead, ItemID.ApprenticeAltShirt, ItemID.ApprenticeAltPants,
+
+
+                        };
+
+                        for (int i = 0; i < shop.item.Length; i++)
+                        {
+                            for (int k = 0; k < ArmorList.Length; k++)
+                            {
+                                if (shop.item[i].type == ArmorList[k])
+                                {
+                                    shop.item[i].type = ItemID.None;
+
+                                }
+                            }
+                        }
+                    }
+                    break;
             }
+        
         }
     }
 }

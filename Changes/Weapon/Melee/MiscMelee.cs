@@ -28,6 +28,10 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.autoReuse = true;
                     item.value = Item.buyPrice(gold: 5);
                     return;
+                case ItemID.ShadowFlameKnife:
+                    item.useTime = 14; // up from 12
+                    item.useAnimation = 14;
+                    return;
                 case ItemID.VampireKnives:
                     item.damage = 32; // up from 29
                     return;

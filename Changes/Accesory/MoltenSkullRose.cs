@@ -94,7 +94,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.Text = "Critical strikes lower defense by 2, up to 12";
+                            line.Text = "Critical strikes lower defense by 4, up to 12";
                         }
                     }
                     break;
@@ -107,7 +107,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Magic and Ranged critical strikes lower defense by 2, up to 12";
+                            line.Text = "Magic and Ranged critical strikes lower defense by 4, up to 12";
                         }
                     }
                     break;
@@ -129,7 +129,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Ranged critical strikes lower defense by 2, up to 12";
+                            line.Text = "Ranged critical strikes lower defense by 4, up to 12";
                         }
                     }
                     break;
@@ -148,7 +148,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Hitting nearby enemies lowers their defense by 2, up to 12";
+                            line.Text = "Hitting nearby enemies lowers their defense by 4, up to 12";
                         }
                     }
                     break;
@@ -203,12 +203,12 @@ namespace TRAEProject.Changes.Accesory
             }
             if (crit && (moltenskullrose > 0 || magmaSkull > 0)) // you need to have molten skull for this to work on true melee, no point on doing other checks
             {
-                int duration = damage  * Main.rand.Next(3, 6) * (skull + moltenskullrose + magmaSkull);              
-                TRAEDebuff.Apply<ObsidianSkulled>(target, duration, 6);
+                int duration = damage / Main.rand.Next(3, 6) * (skull + moltenskullrose + magmaSkull);              
+                TRAEDebuff.Apply<ObsidianSkulled>(target, duration, 3);
             }
             if (crit && Player.magmaStone)
             {
-                int chance = 1200 / (damage * 2 * (magmas + moltenskullrose)); //On hit NPC ignores crits' boosted damage
+                int chance = 1500 / (damage * 2 * (magmas + moltenskullrose)); //On hit NPC ignores crits' boosted damage
                 if (Main.rand.NextBool(chance))
                 {
                     if (!target.HasBuff(BuffID.Daybreak))
@@ -240,7 +240,7 @@ namespace TRAEProject.Changes.Accesory
             {
                 if (proj.CountsAsClass<MeleeDamageClass>() || moltenskullrose > 0 || (proj.CountsAsClass<RangedDamageClass>() && magmaSkull > 0))
                 {
-                    int chance = 1200 / (damage * 2 * (magmas + moltenskullrose));
+                    int chance = 1500 / (damage * 2 * (magmas + moltenskullrose));
                     if (chance <= 1)
                         chance = 1;
                     if (Main.rand.NextBool(chance)) // dont use nextbool, that breaks if damage is above 1500
@@ -277,7 +277,7 @@ namespace TRAEProject.Changes.Accesory
                 target.AddBuff(BuffID.OnFire3, Main.rand.Next(120, 360));
                 if (crit)
                 {
-                    int chance = 1200 / (damage * 2 * (arrowsburn + moltenskullrose));
+                    int chance = 1500 / (damage * 2 * (arrowsburn + moltenskullrose));
                     if (Main.rand.NextBool(chance))
                     {
                         if (target.HasBuff(BuffID.Daybreak))

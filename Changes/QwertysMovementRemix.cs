@@ -32,101 +32,101 @@ namespace TRAEProject
     {
         public override void UpdateEquip(Item item, Player player)
         {
-            switch(item.type)
+            switch (item.type)
             {
                 case ItemID.BeetleLeggings:
-                player.moveSpeed -= 0.01f;
-                break;
+                    player.moveSpeed -= 0.01f;
+                    break;
                 case ItemID.ShroomiteLeggings:
-                player.moveSpeed += 0.18f;
-                break;
+                    player.moveSpeed += 0.18f;
+                    break;
                 case ItemID.SpectrePants:
-                player.moveSpeed += 0.02f;
-                break;
+                    player.moveSpeed += 0.02f;
+                    break;
                 case ItemID.HallowedGreaves:
                 case ItemID.AncientHallowedGreaves:
-                player.moveSpeed += 0.02f;
-                break;
+                    player.moveSpeed += 0.02f;
+                    break;
                 case ItemID.TitaniumLeggings:
-                player.moveSpeed -= 0.01f;
-                break;
+                    player.moveSpeed -= 0.01f;
+                    break;
                 case ItemID.OrichalcumLeggings:
-                player.moveSpeed += 0.09f;
-                break;
+                    player.moveSpeed += 0.09f;
+                    break;
                 case ItemID.BeetleScaleMail:
-                player.moveSpeed += 0.04f;
-                break;
+                    player.moveSpeed += 0.04f;
+                    break;
             }
         }
-        
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             switch (item.type)
             {
                 case ItemID.BeetleLeggings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = "6% increased melee speed\n"+QwertysMovementRemix.SpeedTooltip(1)+" increased " + QwertysMovementRemix.MS;
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "6% increased melee speed\n" + QwertysMovementRemix.SpeedTooltip(1) + " increased " + QwertysMovementRemix.MS;
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.ShroomiteLeggings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = QwertysMovementRemix.SpeedTooltip(6)+" increased " + QwertysMovementRemix.MS;
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = QwertysMovementRemix.SpeedTooltip(6) + " increased " + QwertysMovementRemix.MS;
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.SpectrePants:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = QwertysMovementRemix.SpeedTooltip(2)+" increased " + QwertysMovementRemix.MS;
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = QwertysMovementRemix.SpeedTooltip(2) + " increased " + QwertysMovementRemix.MS;
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.HallowedGreaves:
                 case ItemID.AncientHallowedGreaves:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = QwertysMovementRemix.SpeedTooltip(2)+" increased " + QwertysMovementRemix.MS;
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = QwertysMovementRemix.SpeedTooltip(2) + " increased " + QwertysMovementRemix.MS;
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.TitaniumLeggings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = QwertysMovementRemix.SpeedTooltip(1)+" increased " + QwertysMovementRemix.MS;
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = QwertysMovementRemix.SpeedTooltip(1) + " increased " + QwertysMovementRemix.MS;
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.OrichalcumLeggings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = QwertysMovementRemix.SpeedTooltip(4)+" increased " + QwertysMovementRemix.MS;
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = QwertysMovementRemix.SpeedTooltip(4) + " increased " + QwertysMovementRemix.MS;
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.BeetleScaleMail:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = "6% increased melee speed\n"+QwertysMovementRemix.SpeedTooltip(2)+" increased " + QwertysMovementRemix.MS;
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "6% increased melee speed\n" + QwertysMovementRemix.SpeedTooltip(2) + " increased " + QwertysMovementRemix.MS;
+                        }
                     }
-                }
-                break;
+                    break;
             }
         }
     }
@@ -143,9 +143,9 @@ namespace TRAEProject
         }
         public override void PostUpdateBuffs()
         {
-            if(Player.gravControl && Player.velocity.Y != 0)
+            if (Player.gravControl && Player.velocity.Y != 0)
             {
-                if(Player.gravDir == 1)
+                if (Player.gravDir == 1)
                 {
                     Player.gravControl = false;
                 }
@@ -157,50 +157,50 @@ namespace TRAEProject
         }
         int dashCount = -1;
         int dashCooldown = 0;
-		public override void PreUpdateMovement()
+        public override void PreUpdateMovement()
         {
             //Main.NewText(Player.dashDelay + ", " + Player.dashTime + ", " + Player.dash+ ", " + Player.dashType);
             //Player.dashTime = 0;
-            if(Player.dashType != 2 )
+            if (Player.dashType != 2)
             {
-                if(Player.dashDelay == -1 && dashCount == -1)
+                if (Player.dashDelay == -1 && dashCount == -1)
                 {
                     dashCount = 30;
                     dashCooldown = 45;
                 }
-                if(dashCount > 0)
+                if (dashCount > 0)
                 {
                     dashCount--;
                     Player.dashDelay = -1;
-                    switch(Player.dashType)
+                    switch (Player.dashType)
                     {
                         case 1: //tabi
-                        Player.moveSpeed += 0.5f;
-                        break;
+                            Player.moveSpeed += 0.5f;
+                            break;
                         case 2: //SoC
-                        Player.moveSpeed += 0.1f;
-                        break;
+                            Player.moveSpeed += 0.1f;
+                            break;
                         case 3: //Solar Shield
-                        Player.moveSpeed += 1.5f;
-                        break;
+                            Player.moveSpeed += 1.5f;
+                            break;
                         case 5: //Crystal
-                        Player.moveSpeed += 0.5f;
-                        break;
+                            Player.moveSpeed += 0.5f;
+                            break;
                     }
-                    if((Math.Sign(Player.velocity.X) == 1 && Player.controlLeft) || (Math.Sign(Player.velocity.X) == -1 && Player.controlRight))
+                    if ((Math.Sign(Player.velocity.X) == 1 && Player.controlLeft) || (Math.Sign(Player.velocity.X) == -1 && Player.controlRight))
                     {
                         dashCount = 0;
                         Player.velocity.X = 0;
                     }
-                    
+
                 }
-                if(dashCount == 0)
+                if (dashCount == 0)
                 {
                     dashCount = -1;
                     Player.dashDelay = 0;
                 }
             }
-            if(dashCooldown > 0)
+            if (dashCooldown > 0)
             {
                 Player.dashTime = 0;
                 dashCooldown--;
@@ -212,31 +212,31 @@ namespace TRAEProject
         [Obsolete]
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
-            if(!Player.noKnockback)
+            if (!Player.noKnockback)
             {
                 crippleTimer = 60;
             }
         }
         public override void PostUpdateEquips()
         {
-            if(Player.wingsLogic == 23)
+            if (Player.wingsLogic == 23)
             {
                 ornamentTimer++;
-                if( Player.velocity.Y != 0 && ornamentTimer % 40 == 0)
+                if (Player.velocity.Y != 0 && ornamentTimer % 40 == 0)
                 {
                     Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.Center, Vector2.UnitY * 2, ProjectileID.OrnamentFriendly, 50, 0, Player.whoAmI, -1);
                 }
             }
-            if(Player.slowFall)
+            if (Player.slowFall)
             {
                 Player.gravControl = false;
                 Player.gravControl2 = false;
             }
-            if(Player.slowFall && Player.velocity.Y < 0)
+            if (Player.slowFall && Player.velocity.Y < 0)
             {
                 Player.slowFall = false;
             }
-            if(crippleTimer <= 0)
+            if (crippleTimer <= 0)
             {
                 Player.runAcceleration *= 1.5f;
             }
@@ -245,19 +245,19 @@ namespace TRAEProject
                 crippleTimer--;
             }
             Player.noFallDmg = true;
-            if(Player.wingsLogic == 45)
+            if (Player.wingsLogic == 45)
             {
                 hasCap = false;
                 hasCapVertical = false;
             }
-            
+
             if (Player.wingsLogic == 30 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
                 //Player.runSlowdown *= 2;
                 Player.moveSpeed += 0.5f;
             }
-            
+
             if (Player.wingsLogic == 37 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
@@ -279,7 +279,7 @@ namespace TRAEProject
         }
         public override void PostUpdate()
         {
-            if(forcedAntiGravity)
+            if (forcedAntiGravity)
             {
                 Player.gravDir = -1;
             }
@@ -289,34 +289,34 @@ namespace TRAEProject
     {
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            switch(item.type)
+            switch (item.type)
             {
                 case ItemID.FrozenWings:
                 case ItemID.HarpyWings:
                 case ItemID.FairyWings:
                 case ItemID.AngelWings:
                 case ItemID.DemonWings:
-                player.moveSpeed += 0;
-                break;
+                    player.moveSpeed += 0;
+                    break;
                 case ItemID.FinWings:
-                player.moveSpeed += 0;
-                player.ignoreWater = true;
-                break;
+                    player.moveSpeed += 0;
+                    player.ignoreWater = true;
+                    break;
                 case ItemID.FlameWings:
                 case ItemID.ButterflyWings:
                 case ItemID.BeeWings:
                 case ItemID.BatWings:
-                player.moveSpeed += 0.0f;
-                break;
+                    player.moveSpeed += 0.0f;
+                    break;
                 case ItemID.BetsyWings:
-                player.moveSpeed += 0.15f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
-                break;
+                    player.moveSpeed += 0.15f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
+                    break;
                 case ItemID.TatteredFairyWings:
-                player.wingTime = player.wingTimeMax;
-                player.moveSpeed += 0.15f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
-                break;
+                    player.wingTime = player.wingTimeMax;
+                    player.moveSpeed += 0.15f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
+                    break;
                 case ItemID.FestiveWings:
                 case ItemID.FishronWings:
                 case ItemID.MothronWings:
@@ -324,38 +324,38 @@ namespace TRAEProject
                 case ItemID.GhostWings:
                 case ItemID.BeetleWings:
                 case ItemID.SteampunkWings:
-                player.moveSpeed += 0.25f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
-                break;
+                    player.moveSpeed += 0.25f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
+                    break;
                 case ItemID.RainbowWings:
-                player.moveSpeed += 0.25f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.4f);
-                break;
+                    player.moveSpeed += 0.25f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.4f);
+                    break;
                 case ItemID.SpookyWings:
-                player.moveSpeed += 0.40f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
-                break;
+                    player.moveSpeed += 0.40f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
+                    break;
                 case ItemID.WingsSolar:
-                player.moveSpeed += 0.4f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.4f);
-                break;
+                    player.moveSpeed += 0.4f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.4f);
+                    break;
                 case ItemID.WingsStardust:
-                player.moveSpeed += 0.25f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.60f);
-                break;
+                    player.moveSpeed += 0.25f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.60f);
+                    break;
                 case ItemID.WingsNebula:
-                player.wingTime = player.wingTimeMax;
-                player.moveSpeed += 0.25f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
-                break;
+                    player.wingTime = player.wingTimeMax;
+                    player.moveSpeed += 0.25f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
+                    break;
                 case ItemID.WingsVortex:
-                player.moveSpeed += 0.25f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
-                break;
+                    player.moveSpeed += 0.25f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
+                    break;
                 case ItemID.LongRainbowTrailWings:
-                player.moveSpeed += 1f;
-                player.jumpSpeedBoost += QwertysMovementRemix.JSV(1f);
-                break;
+                    player.moveSpeed += 1f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(1f);
+                    break;
             }
         }
         public static void PostProcessChanges(Player player)
@@ -372,16 +372,16 @@ namespace TRAEProject
         }
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
         {
-             //Main.NewText(speed);
-             //speed = 6.75f;
+            //Main.NewText(speed);
+            //speed = 6.75f;
         }
         public override void VerticalWingSpeeds(Item item, Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
             //Main.NewText(maxAscentMultiplier);
             //Main.NewText(constantAscend);
-            if(!player.TryingToHoverDown)
+            if (!player.TryingToHoverDown)
             {
-			    player.velocity.Y -= 0.2f * player.gravDir;
+                player.velocity.Y -= 0.2f * player.gravDir;
             }
             maxAscentMultiplier = 1f;
             /*
@@ -441,143 +441,143 @@ namespace TRAEProject
                 case ItemID.BeetleWings:
                 case ItemID.MothronWings:
                 case ItemID.SteampunkWings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5);
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5);
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.WingsNebula:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = "";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip2")
+                        {
+                            line.Text = "";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "\nInfinite flight time";
+                        }
                     }
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip2")
-                    {
-                        line.Text = "";
-                    }
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                    {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5)+ "\nInfinite flight time";
-                    }
-                }
-                break;
+                    break;
                 case ItemID.WingsSolar:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(8);
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(8);
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.WingsStardust:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                         line.Text += "\nIncreases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + " and jump speed by 60%";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + " and jump speed by 60%";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.WingsVortex:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "\nHold down to hover for 50% more movement speed";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "\nHold down to hover for 50% more movement speed";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.LongRainbowTrailWings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(20) + "\nHold down to hover for 50% more movement speed";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(20) + "\nHold down to hover for 50% more movement speed";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.TatteredFairyWings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(3) + "\nInfinite flight time";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(3) + "\nInfinite flight time";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.FishronWings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "\nHold down to fall faster";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "\nHold down to fall faster";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.Hoverboard:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nHold down to hover for 50% more movement speed";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nHold down to hover for 50% more movement speed";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.BetsyWings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(3) + "\nHold down to hover for 50% more movement speed";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(3) + "\nHold down to hover for 50% more movement speed";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.RainbowWings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + " and jump speed by 40%";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + " and jump speed by 40%";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.SpookyWings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nIncreases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(8) + " and jump speed by 25%";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(8) + " and jump speed by 25%";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.FinWings:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text += "\nImproves movement in liquids";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nImproves movement in liquids";
+                        }
                     }
-                }
-                break;
+                    break;
                 case ItemID.BlueHorseshoeBalloon:
                 case ItemID.WhiteHorseshoeBalloon:
                 case ItemID.YellowHorseshoeBalloon:
                 case ItemID.BalloonHorseshoeFart:
                 case ItemID.BalloonHorseshoeSharkron:
-                foreach (TooltipLine line in tooltips)
-                {
-                    if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                    foreach (TooltipLine line in tooltips)
                     {
-                        line.Text = "Increases jump height/nAllows fast fall and gravity control";
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "Increases jump height/nAllows fast fall and gravity control";
+                        }
                     }
-                }
-                break;
+                    break;
 
             }
         }
@@ -590,7 +590,7 @@ namespace TRAEProject
         }
         public override void PostUpdateRunSpeeds()
         {
-            WingChanges.PostProcessChanges(Player);
+            //WingChanges.PostProcessChanges(Player);
 
             Player.runSlowdown += 0.3f;
             float mountSpeedBonus = 1f;

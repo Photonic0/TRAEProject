@@ -16,12 +16,12 @@ namespace TRAEProject.Changes.NPCs.Boss
 {
     public static class RetPhase3
     {
-        static int tpTime = 30;
+        static int tpTime = 40;
         static int tpCount = 3;
         static int shotTime = 10;
         static int rapidShotTime = 3;
-        static int shotCount = 3;
-        static int waitTime = 60;
+        static int shotCount = 4;
+        static int waitTime = 80;
         static int periodTime = (tpCount * tpTime + shotTime * shotCount + waitTime);
         public static void Update(NPC npc)
         {
@@ -37,19 +37,19 @@ namespace TRAEProject.Changes.NPCs.Boss
             int periodCount = (int)npc.ai[2] / periodTime;
             if(periodicTimer < tpCount * tpTime)
             {
-                if(periodicTimer % tpTime < 6)
+                if(periodicTimer % tpTime < 8)
                 {
-                    npc.scale = ((periodicTimer % tpTime) / 6f);
+                    npc.scale = ((periodicTimer % tpTime) / 8f);
                 }
-                else if(periodicTimer % tpTime > 24 && periodicTimer < (tpCount - 1) * tpTime)
+                else if(periodicTimer % tpTime > 32 && periodicTimer < (tpCount - 1) * tpTime)
                 {
-                    npc.scale = ((30 - (periodicTimer % tpTime)) / 6f);
+                    npc.scale = (tpTime - (periodicTimer % tpTime)) / 8f;
                 }
                 else
                 {
                     npc.scale = 1f;
                 }
-                if(npc.scale == 0)
+                if(npc.scale <= 0)
                 {
                     npc.scale = 0.01f;
                 }
@@ -298,6 +298,9 @@ namespace TRAEProject.Changes.NPCs.Boss
             Projectile.hostile = true;
             Projectile.tileCollide = false;
             Projectile.timeLeft = 10 * 60;
+            DrawOffsetX = 150;
+            DrawOriginOffsetX = 150;
+
         }
         void Explode(Projectile projectile)
         {
@@ -308,7 +311,7 @@ namespace TRAEProject.Changes.NPCs.Boss
             {
                 float theta = Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI);
                 float radius = 250;
-                Dust dust = Dust.NewDustPerfect(projectile.Center, DustID.SilverFlame, TRAEMethods.PolarVector(radius / 10f, theta));
+                Dust dust = Dust.NewDustPerfect(projectile.Center, DustID.SilverFlame, TRAEMethods.PolarVector(radius / 10f, theta), Scale: 1.5f);
                 dust.color = Color.Red;
                 dust.noGravity = true;
             }

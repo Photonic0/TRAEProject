@@ -24,19 +24,19 @@ namespace TRAEProject.Common
             if (npc.HasBuff(BuffID.CursedInferno))
             {
                 npc.lifeRegen -= 16; // 32 DoT
-                damage = npc.lifeRegen / 3;
+                damage = npc.lifeRegen / -6; // divide by a negative number, else the result is below 1!
                 npc.netUpdate = true;
             }
             if (npc.HasBuff(BuffID.ShadowFlame))
             {
                 npc.lifeRegen -= 42; // 36 DoT total
-                damage = npc.lifeRegen / 3;
+                damage = npc.lifeRegen / -6;
                 npc.netUpdate = true;
             }
             if (npc.HasBuff(BuffID.Venom))
             {
-                npc.lifeRegen -= 140;
-                damage = npc.lifeRegen / 6;
+                npc.lifeRegen -= 100;
+                damage = npc.lifeRegen / -12;
                 npc.netUpdate = true;
             }
         }

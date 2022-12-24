@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Changes;
 using TRAEProject.Common.ModPlayers;
 
 namespace TRAEProject.NewContent.Items.Accesories.TwoFlowers
@@ -28,6 +24,7 @@ namespace TRAEProject.NewContent.Items.Accesories.TwoFlowers
             player.lavaRose = true;
             player.GetModPlayer<CritDamage>().magicCritDamage += 0.11f;
             player.manaFlower = true;
+            player.GetModPlayer<Mana>().newManaFlower = true;
         }
 
         public override void AddRecipes()

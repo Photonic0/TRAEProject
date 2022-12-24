@@ -11,6 +11,7 @@ using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using Terraria.ModLoader.Utilities;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
 
@@ -76,11 +77,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.Player.ZoneUnderworldHeight)
-            {
-                return 0.15f;
-            }
-            return 0f;
+            return SpawnCondition.Underworld.Chance * 0.15f;
+
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
@@ -106,6 +104,11 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
     {
         public override void SetStaticDefaults()
         {
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
+            }; NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+
             DisplayName.SetDefault("Boom Dust"); // Automatic from .lang files
             Main.npcFrameCount[NPC.type] = 1; // make sure to set this for your modnpcs.
         }

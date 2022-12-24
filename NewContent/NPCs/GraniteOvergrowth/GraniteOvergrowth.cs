@@ -13,7 +13,7 @@ using Terraria.ModLoader.IO;
 using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.Items.Materials;
 using static Terraria.ModLoader.ModContent;
-
+using TRAEProject.Common;
 namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
 
 {
@@ -22,54 +22,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
     //    NPC.SetEventFlagCleared(ref DownedBossSystem.downedMinionBoss, -1);
 
     // Saving and loading these flags requires TagCompounds, a guide exists on the wiki: https://github.com/tModLoader/tModLoader/wiki/Saving-and-loading-using-TagCompound
-    public class DownedOvergrowth : ModSystem
-    {
-        public static bool downedOvergrowth = false;
-        // public static bool downedOtherBoss = false;
 
-        public override void OnWorldLoad()
-        {
-            downedOvergrowth = false;
-            // downedOtherBoss = false;
-        }
-
-        public override void OnWorldUnload()
-        {
-            downedOvergrowth = false;
-            // downedOtherBoss = false;
-        }
-
-        // We save our data sets using TagCompounds.
-        // NOTE: The tag instance provided here is always empty by default.
-        public override void SaveWorldData(TagCompound tag)
-        {
-            if (downedOvergrowth)
-            {
-                tag["downedOvergrowth"] = true;
-            }
-        }
-
-        public override void LoadWorldData(TagCompound tag)
-        {
-            downedOvergrowth = tag.ContainsKey("downedOvergrowth");
-        }
-
-        public override void NetSend(BinaryWriter writer)
-        {
-            // Order of operations is important and has to match that of NetReceive
-            var flags = new BitsByte();
-            flags[0] = downedOvergrowth;
-            // flags[1] = downedOtherBoss;
-            writer.Write(flags);
-        }
-
-        public override void NetReceive(BinaryReader reader)
-        {
-            BitsByte flags = reader.ReadByte();
-            downedOvergrowth = flags[0];
-
-        }
-    }
     public class GraniteOvergrowth : ModNPC
     {
 
@@ -153,9 +106,9 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                     dust3.scale *= 1.5f;
                 }
             }
-            if (!DownedOvergrowth.downedOvergrowth)
+            if (!DownedBosses.downedOvergrowth)
             {
-                DownedOvergrowth.downedOvergrowth = true;
+                DownedBosses.downedOvergrowth = true;
                 int i = (int)NPC.Center.X * 1;
                 int y = (int)NPC.Center.Y * 1;
                 NPC.NewNPC(NPC.GetSource_FromAI(),i, y, NPCID.Cyborg);
@@ -201,7 +154,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
                 NPC.frame.Y = frameHeight * frame;
                 NPC.frameCounter = 0;
             }
-            if (DownedOvergrowth.downedOvergrowth)
+            if (DownedBosses.downedOvergrowth)
             {
                 NPC.frame.Y = frameHeight * (frame + 8);
             }
@@ -496,7 +449,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
     {
         public override void AI(NPC npc)
         {
-            if (npc.type == NPCID.Mechanic && DownedOvergrowth.downedOvergrowth && !NPC.downedPlantBoss)
+            if (npc.type == NPCID.Mechanic && DownedBosses.downedOvergrowth && !NPC.downedPlantBoss)
             {
                 int findCyborg = NPC.FindFirstNPC(NPCID.Cyborg);
                 if (findCyborg == -1)

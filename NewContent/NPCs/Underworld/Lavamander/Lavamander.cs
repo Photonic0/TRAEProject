@@ -15,7 +15,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 {
-    public class Lavamander : ModNPC
+    public class LavamanderNPC : ModNPC
     {
         public override void SetStaticDefaults()
 		{
@@ -29,25 +29,26 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 			};
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
 			DisplayName.SetDefault("Lavamander"); 
-            Main.npcFrameCount[NPC.type] = 5; // make sure to set this for your modnpcs.
+            Main.npcFrameCount[NPC.type] = 5;
         }
 
 		public override void SetDefaults()
 		{
-			NPC.width = 84;
-			NPC.height = 20;
+			NPC.width = 94;
+			NPC.height = 22;
             NPC.aiStyle = 3;
             AIType = NPCID.WalkingAntlion;
 			//AnimationType = NPCID.WalkingAntlion;
 			NPC.value = 5000;
 			NPC.damage = 35;
-			NPC.defense = 8;
-			NPC.lifeMax = 120;
+			NPC.defense = 12;
+			NPC.lifeMax = 180;
 			NPC.lavaImmune = true;
 			NPC.HitSound = SoundID.NPCHit26;
 			NPC.DeathSound = SoundID.NPCDeath29;
 			NPC.knockBackResist = 0.25f;
-			NPC.scale = 1.15f;
+			DrawOffsetY = -4;
+			NPC.scale = 1.05f;         
 			Banner = NPC.type; 
             BannerItem = ItemType<FroggabombaBanner>();
         }
@@ -68,11 +69,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 		float jump = 0;
         public override void AI()
         {
+
 			NPC.noGravity = false;
-			int num = 2;
-			int num2 = 2;
+			int num = 1;
+			int num2 = 1;
 			int num3 = (int)((NPC.position.X + (NPC.width / 2)) / 16f);
-			int num4 = (int)((NPC.position.Y + NPC.height) / 16f);
+			int num4 = (int)(NPC.Bottom.Y / 16f);
 			for (int j = num3 - num; j <= num3 + num; j++)
 			{
 				for (int k = num4 - num2; k < num4 + num2; k++)
@@ -87,12 +89,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 						NPC.noGravity = true;
 						jump++;
 						if (NPC.Distance(NPC.GetTargetData().Center) <= 300f)
-							jump += 4; // jumps way more often if it can reach you
+							jump += 3; // jumps way more often if it can reach you
 						if (jump >= 750f) // We have to force it to jump, its normal AI won't let it jump while "water walking"
 						{
 							jump = 0;
 							NPC.velocity.Y = -8f;
-							NPC.velocity.X *= 1.5f;
+							NPC.velocity.X *= 2f;
 
 						}
 					}
@@ -101,15 +103,25 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 		}
 		public override bool PreKill()
 		{
-
-			Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore2").Type, 1f);
-			Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore3").Type, 1f);
-			Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore4").Type, 1f);
-			return false;
+            for (int i = 0; i < 4; i++)
+            {
+                Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("LavamanderGore4").Type, 1f);
+            }
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("LavamanderGore1").Type, 1f);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("LavamanderGore2").Type, 1f);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("LavamanderGore3").Type, 1f);
+            return false;
 
 		}
-
-		int frame = 0;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (Math.Abs(spawnInfo.SpawnTileX - Main.spawnTileX) > Main.maxTilesX / 3)
+            {
+                return SpawnCondition.Underworld.Chance * 0.25f;
+            }
+            return 0f;
+        }
+        int frame = 0;
 		public override void FindFrame(int frameHeight)
         {
 

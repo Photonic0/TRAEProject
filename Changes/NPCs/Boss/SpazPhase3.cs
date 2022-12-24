@@ -11,6 +11,7 @@ using Terraria.DataStructures;
 using Terraria.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using System.Threading;
 
 namespace TRAEProject.Changes.NPCs.Boss 
 {
@@ -208,7 +209,8 @@ namespace TRAEProject.Changes.NPCs.Boss
                 npc.velocity.X *= 0.98f;
             }
             npc.ai[2]++;
-            if((int)npc.ai[2] % 10 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            int timer = 13; // make it 10 on master 
+            if((int)npc.ai[2] % timer == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int attackDamage_ForProjectiles7 = npc.GetAttackDamage_ForProjectiles(30f, 27f);
                 Vector2 shootFrom = npc.Center + TRAEMethods.PolarVector(6, npc.rotation + (float)Math.PI/2);
@@ -254,7 +256,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                 npc.ai[2] += 1f;
                 if (Main.expertMode)
                 {
-                    npc.ai[2] += 0.5f;
+                    npc.ai[2] += 0.33f; // make it 0.5 on master
                 }
                 if (npc.ai[2] >= 30f)
                 {

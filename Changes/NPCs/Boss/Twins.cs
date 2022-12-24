@@ -20,21 +20,21 @@ namespace TRAEProject.Changes.NPCs.Boss
         {
             if(npc.type == NPCID.Retinazer)
             {
-				npc.lifeMax = (int)(npc.lifeMax  * ((float)16000 / 20000));
+				npc.lifeMax = (int)(npc.lifeMax  * ((float)14000 / 20000));
             }
             if(npc.type == NPCID.Spazmatism)
             {
-                npc.lifeMax = (int)(npc.lifeMax  * ((float)27000 / 23000));
+                npc.lifeMax = (int)(npc.lifeMax  * ((float)23000 / 23000));
             }
         }
         public static void FlyTo(NPC npc, Vector2 goHere, bool phase2 = false)
         {
             float topSpeed = 7f;
-            float acceleration = 0.1f;
+            float acceleration = 0.05f;
             if (Main.expertMode)
             {
                 topSpeed = 8.25f;
-                acceleration = 0.115f;
+                acceleration *= 1.15f;
             }
             if (Main.getGoodWorld)
             {
@@ -46,7 +46,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 			if(phase2)
 			{
 				topSpeed *= 2;
-				acceleration *= 40;
+				acceleration *= 16;
 				npc.damage = 0;
 				if((goHere - npc.Center).Length() < acceleration)
 				{
@@ -401,7 +401,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 							}
 						}
 					}
-                    if(NPC.CountNPCS(NPCID.Spazmatism) <= 0)
+                    if(NPC.CountNPCS(NPCID.Spazmatism) <= 0 && Main.expertMode)
                     {
                         npc.ai[0] = 4f;
 						npc.ai[1] = 0f;
@@ -440,7 +440,7 @@ namespace TRAEProject.Changes.NPCs.Boss
             {
                 if (Main.expertMode)
                 {
-                    if (NPC.CountNPCS(NPCID.Retinazer) <= 0 && npc.ai[0] < 4)
+                    if (NPC.CountNPCS(NPCID.Retinazer) <= 0 && npc.ai[0] < 4 && Main.expertMode)
 					{
 						npc.ai[0] = 4f;
 						npc.ai[1] = 0f;
@@ -450,7 +450,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 					}
                     if (npc.ai[1] == 0f && npc.ai[0] != 1f && npc.ai[0] != 2f && npc.ai[0] != 0f)
                     {
-						npc.defense = 40;
+						npc.defense = 28;
                         if (npc.ai[1] == 0f)
                         {
                             float speed = 2.7f;

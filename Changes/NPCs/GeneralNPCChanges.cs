@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using TRAEProject.NewContent.NPCs.GraniteOvergrowth;
+using TRAEProject.Common;
 
 namespace TRAEProject.Changes.NPCs
 {
@@ -207,9 +207,9 @@ namespace TRAEProject.Changes.NPCs
                     }
                     return;
                 case NPCID.DuneSplicerHead:
-                    if(npc.velocity.Length() > 1.4f)
+                    if(npc.velocity.Length() > 2f)
                     {
-                        npc.velocity = npc.velocity.SafeNormalize(Vector2.UnitY) * 4f;
+                        npc.velocity = npc.velocity.SafeNormalize(Vector2.UnitY) * 5f;
                     }
                     return;
             }
@@ -479,7 +479,7 @@ namespace TRAEProject.Changes.NPCs
             }
             if (npc.type == NPCID.Plantera)
             {
-                DownedOvergrowth.downedOvergrowth = true;
+                DownedBosses.downedOvergrowth = true;
             }
 
         }

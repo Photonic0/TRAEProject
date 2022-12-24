@@ -32,7 +32,7 @@ namespace TRAEProject.Changes
                 }
                 if(npc.GetGlobalNPC<ObsidianSkulledStacks>().stacks > 0)
                 {
-                    AP += 2 * npc.GetGlobalNPC<ObsidianSkulledStacks>().stacks;
+                    AP += 4 * npc.GetGlobalNPC<ObsidianSkulledStacks>().stacks;
                 }
                 if (npc.HasBuff(BuffID.WitheredArmor))
                 {

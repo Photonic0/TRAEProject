@@ -332,37 +332,8 @@ namespace TRAEProject.Common
                 }
 
             }
-            switch (projectile.type)
-            {
-                case ProjectileID.EyeLaser:
-                    if (Main.expertMode)
-                    {
-                        foreach (NPC enemy in Main.npc)
-                        {
-                            if (enemy.type == NPCID.Retinazer)
-                            {
-                                int length = Main.rand.Next(90, 180);
-                                target.AddBuff(BuffID.BrokenArmor, length, false);
-                            }
-                        }
-                    }
-                    return;
-                case ProjectileID.DeathLaser:
-                    {
-                        if (Main.expertMode)
-                        {
-                            foreach (NPC enemy in Main.npc)
-                            {
-                                if (enemy.type == NPCID.Retinazer)
-                                {
-                                        int length = Main.rand.Next(90, 180);
-                                        target.AddBuff(BuffID.BrokenArmor, length, false);
-                                }
-                            }
-                        }
-                        return;
-                    }
-            }
+
+            
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {

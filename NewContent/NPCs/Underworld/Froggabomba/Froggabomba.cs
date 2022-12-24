@@ -12,6 +12,7 @@ using TRAEProject.NewContent.NPCs.Underworld.Boomxie;
 using TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using Terraria.ModLoader.Utilities;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
 
@@ -61,11 +62,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.Player.ZoneUnderworldHeight)
-            {
-                return 0.10f;
-            }
-            return 0f;
+
+            return SpawnCondition.Underworld.Chance * 0.17f;
         }
         int damagestored = 0;
         public override void OnHitByItem(Player player, Item item, int damage, float knockback, bool crit)
@@ -126,8 +124,13 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
                     BuffID.OnFire3,
                     BuffID.Confused // Most NPCs have this
 				}
+            }; NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
             };
-            NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
+
             DisplayName.SetDefault("Froggabomba"); // Automatic from .lang files
             Main.npcFrameCount[NPC.type] = 4; // make sure to set this for your modnpcs.
         }
