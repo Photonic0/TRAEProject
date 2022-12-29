@@ -49,6 +49,7 @@ namespace TRAEProject.Common
         public bool DontRunThisAgain = false;
         public bool dontExplodeOnTiles = false;
         public bool UsesDefaultExplosion = false; // Regular rocket Explosions. Helpful if you are too lazy/don't need to create a special explosion effect.
+        public bool heavyCritter = false;
                                                   //
         public override void SetStaticDefaults()
         {
@@ -320,6 +321,17 @@ namespace TRAEProject.Common
 			{
 				crit = false;
 			}
+            if(heavyCritter && crit)
+            {
+                if(Main.rand.NextBool(2))
+                {
+                    damage = damage + (damage / 2);
+                }
+                else
+                {
+                    crit = false;
+                }
+            }
         }
         public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
         {

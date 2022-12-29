@@ -155,8 +155,8 @@ namespace TRAEProject.Changes.Armor
                         player.manaCost += 0.17f;
                         break;
                 }
-                player.setBonus = "Critical Strikes deal 25% more damage";
-                player.GetModPlayer<CritDamage>().critDamage += 0.25f;
+                player.setBonus = "Critical Strikes deal 20% more damage";
+                player.GetModPlayer<CritDamage>().critDamage += 0.20f;
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

@@ -31,7 +31,7 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.MoltenSkullRose:
                     player.GetModPlayer<ObsidianSkullEffect>().moltenskullrose += 1;
-                    player.GetModPlayer<CritDamage>().critDamage += 0.11f;
+                    player.GetModPlayer<CritDamage>().critDamage += 0.10f;
                     break;
                
                 case ItemID.MoltenQuiver:
@@ -42,8 +42,8 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.ObsidianSkullRose:
                     player.GetModPlayer<ObsidianSkullEffect>().roseskull += 1;
-                    player.GetModPlayer<CritDamage>().magicCritDamage += 0.11f;
-                    player.GetModPlayer<CritDamage>().rangedCritDamage += 0.11f;
+                    player.GetModPlayer<CritDamage>().magicCritDamage += 0.10f;
+                    player.GetModPlayer<CritDamage>().rangedCritDamage += 0.10f;
                     break;
             }
         }
@@ -86,7 +86,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Attacks inflict fire damage\n11% increased critical strike damage";
+                            line.Text = "Attacks inflict fire damage\n10% increased critical strike damage";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -103,7 +103,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "11% increased Magic and Ranged critical strike damage";
+                            line.Text = "10% increased Magic and Ranged critical strike damage";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -139,7 +139,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "11% increased Magic critical strike damage";
+                            line.Text = "10% increased Magic critical strike damage";
                         }
                     }
                     break;

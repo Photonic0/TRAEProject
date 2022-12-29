@@ -9,6 +9,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.Common;
 
 namespace TRAEProject.Changes.Weapon.Ranged
 {
@@ -75,6 +76,7 @@ namespace TRAEProject.Changes.Weapon.Ranged
             {
                 Projectile arrow = Main.projectile[Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI)];
                 arrow.scale *= item.scale;
+                arrow.GetGlobalProjectile<ProjectileStats>().heavyCritter = true;
                 return false;
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);

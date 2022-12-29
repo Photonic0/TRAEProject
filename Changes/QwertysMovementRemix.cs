@@ -6,6 +6,11 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using Terraria.Audio;
+using Terraria.GameContent.Shaders;
+using Terraria.GameContent;
 
 namespace TRAEProject
 {
@@ -135,11 +140,14 @@ namespace TRAEProject
         public bool hasCap = true;
         public bool hasCapVertical = true;
         bool forcedAntiGravity = false;
+        public bool blizzardDash = false;
+        bool performingBlizzardDash = false;
         public override void ResetEffects()
         {
             hasCap = false;
             hasCapVertical = false;
             forcedAntiGravity = false;
+            blizzardDash = false;
         }
         public override void PostUpdateBuffs()
         {
@@ -155,12 +163,129 @@ namespace TRAEProject
                 }
             }
         }
+        void DoCommonDashHandle(out int dir, out bool dashing, Player.DashStartAction dashStartAction = null)
+		{
+			dir = 0;
+			dashing = false;
+			if (Player.dashTime > 0)
+			{
+				Player.dashTime--;
+			}
+			if (Player.dashTime < 0)
+			{
+				Player.dashTime++;
+			}
+			if (Player.controlRight && Player.releaseRight)
+			{
+				if (Player.dashTime > 0)
+				{
+					dir = 1;
+					dashing = true;
+					Player.dashTime = 0;
+					Player.timeSinceLastDashStarted = 0;
+					dashStartAction?.Invoke(dir);
+				}
+				else
+				{
+					Player.dashTime = 15;
+				}
+			}
+			else if (Player.controlLeft && Player.releaseLeft)
+			{
+				if (Player.dashTime < 0)
+				{
+					dir = -1;
+					dashing = true;
+					Player.dashTime = 0;
+					Player.timeSinceLastDashStarted = 0;
+					dashStartAction?.Invoke(dir);
+				}
+				else
+				{
+					Player.dashTime = -15;
+				}
+			}
+		}
+        public override void PostUpdateRunSpeeds()
+        {
+            
+        }
         int dashCount = -1;
         int dashCooldown = 0;
         public override void PreUpdateMovement()
         {
+            if(skating)
+            {
+                Player.coldDash = true;
+            }
+        }
+        int ornamentTimer = 0;
+        int crippleTimer = 0;
+
+        [Obsolete]
+        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        {
+            if (!Player.noKnockback)
+            {
+                crippleTimer = 60;
+            }
+        }
+        bool skating = false;
+        public override void PostUpdateEquips()
+        {
+            skating = false;
+            
             //Main.NewText(Player.dashDelay + ", " + Player.dashTime + ", " + Player.dash+ ", " + Player.dashType);
             //Player.dashTime = 0;
+            if (Player.dash == 99)
+            {
+                DoCommonDashHandle(out var dir, out var dashing);
+                //Main.NewText(Player.dash);
+                //Main.NewText("Dash Delay: " + Player.dashDelay + ", Dash Time: " + Player.dashTime);
+                if (dashing && Player.velocity.Y == 0)
+                {
+                    Player.velocity.X = 10f * (float)dir;
+                    Player.dashDelay = -1;
+                    Point point = (Player.Center + new Vector2(dir * Player.width / 2 + 2, Player.gravDir * (float)(-Player.height) / 2f + Player.gravDir * 2f)).ToTileCoordinates();
+                    Point point2 = (Player.Center + new Vector2(dir * Player.width / 2 + 2, 0f)).ToTileCoordinates();
+                    if (WorldGen.SolidOrSlopedTile(point.X, point.Y) || WorldGen.SolidOrSlopedTile(point2.X, point2.Y))
+                    {
+                        Player.velocity.X /= 2f;
+                    }
+                    /*
+                    for (int num18 = 0; num18 < 20; num18++)
+                    {
+                        int num19 = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y), Player.width, Player.height, 31, 0f, 0f, 100, default(Color), 2f);
+                        Main.dust[num19].position.X += Main.rand.Next(-5, 6);
+                        Main.dust[num19].position.Y += Main.rand.Next(-5, 6);
+                        Main.dust[num19].velocity *= 0.2f;
+                        Main.dust[num19].scale *= 1f + (float)Main.rand.Next(20) * 0.01f;
+                    }
+                    int num20 = Gore.NewGore(new Vector2(Player.position.X + (float)(Player.width / 2) - 24f, Player.position.Y + (float)(Player.height / 2) - 34f), default(Vector2), Main.rand.Next(61, 64));
+                    Main.gore[num20].velocity.X = (float)Main.rand.Next(-50, 51) * 0.01f;
+                    Main.gore[num20].velocity.Y = (float)Main.rand.Next(-50, 51) * 0.01f;
+                    Main.gore[num20].velocity *= 0.4f;
+                    num20 = Gore.NewGore(new Vector2(Player.position.X + (float)(Player.width / 2) - 24f, Player.position.Y + (float)(Player.height / 2) - 14f), default(Vector2), Main.rand.Next(61, 64));
+                    Main.gore[num20].velocity.X = (float)Main.rand.Next(-50, 51) * 0.01f;
+                    Main.gore[num20].velocity.Y = (float)Main.rand.Next(-50, 51) * 0.01f;
+                    Main.gore[num20].velocity *= 0.4f;
+                    */
+                }
+                else if(dashing && blizzardDash && Player.canJumpAgain_Blizzard)
+                {
+                    Player.velocity.X = 18f * (float)dir;
+                    Player.dashDelay = -1;
+                    performingBlizzardDash = true;
+                    Player.canJumpAgain_Blizzard = false;
+                    Point point = (Player.Center + new Vector2(dir * Player.width / 2 + 2, Player.gravDir * (float)(-Player.height) / 2f + Player.gravDir * 2f)).ToTileCoordinates();
+                    Point point2 = (Player.Center + new Vector2(dir * Player.width / 2 + 2, 0f)).ToTileCoordinates();
+                    if (WorldGen.SolidOrSlopedTile(point.X, point.Y) || WorldGen.SolidOrSlopedTile(point2.X, point2.Y))
+                    {
+                        Player.velocity.X /= 2f;
+                    }
+					SoundEngine.PlaySound(SoundID.DoubleJump, Player.Center);
+                }
+            }
             if (Player.dashType != 2)
             {
                 if (Player.dashDelay == -1 && dashCount == -1)
@@ -186,18 +311,91 @@ namespace TRAEProject
                         case 5: //Crystal
                             Player.moveSpeed += 0.5f;
                             break;
+                        case 99: //ice skates
+                            if(performingBlizzardDash)
+                            {
+                                Player.moveSpeed += 0.4f;
+                            }
+                            Player.moveSpeed += 0.4f;
+                            skating = true;
+                            Player.armorEffectDrawShadow = false;
+                            if(Player.velocity.Y == 0 && ((Math.Sign(Player.velocity.X) == -1 && Player.controlLeft) || (Math.Sign(Player.velocity.X) == 1 && Player.controlRight)))
+                            {
+                                dashCount = 120;
+                            }
+                            else if(dashCount > 30 && Player.velocity.Y == 0)
+                            {
+                                dashCount = 30;
+                            }
+                            if(Player.velocity.Y == 0)
+                            {
+                                performingBlizzardDash = false;
+                            }
+                            
+                            break;
+                    }
+                    if(Player.dash == 99 && Player.velocity.Y != 0 && !performingBlizzardDash && ((Math.Sign(Player.velocity.X) == 1 && !Player.controlRight) || (Math.Sign(Player.velocity.X) == -1 && !Player.controlLeft)))
+                    {
+                        dashCount = 0;
                     }
                     if ((Math.Sign(Player.velocity.X) == 1 && Player.controlLeft) || (Math.Sign(Player.velocity.X) == -1 && Player.controlRight))
                     {
                         dashCount = 0;
                         Player.velocity.X = 0;
                     }
-
+                    if(dashCooldown <=0)
+                    {
+                        dashCooldown = 1;
+                    }
+                    //Main.NewText(dashCount);
                 }
                 if (dashCount == 0)
                 {
                     dashCount = -1;
                     Player.dashDelay = 0;
+                    performingBlizzardDash = false;
+                }
+                if(performingBlizzardDash)
+                {
+                    int num12 = Player.height - 6;
+                    if (Player.gravDir == -1f)
+                    {
+                        num12 = 6;
+                    }
+                    for (int k = 0; k < 2; k++)
+                    {
+                        int num13 = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + (float)num12), Player.width, 12, 76, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f);
+                        Main.dust[num13].velocity *= 0.1f;
+                        if (k == 0)
+                        {
+                            Main.dust[num13].velocity += Player.velocity * 0.03f;
+                        }
+                        else
+                        {
+                            Main.dust[num13].velocity -= Player.velocity * 0.03f;
+                        }
+                        Main.dust[num13].velocity -= Player.velocity * 0.1f;
+                        Main.dust[num13].noGravity = true;
+                        Main.dust[num13].noLight = true;
+                    }
+                    for (int l = 0; l < 3; l++)
+                    {
+                        int num14 = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + (float)num12), Player.width, 12, 76, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f);
+                        Main.dust[num14].fadeIn = 1.5f;
+                        Main.dust[num14].velocity *= 0.6f;
+                        Main.dust[num14].velocity += Player.velocity * 0.8f;
+                        Main.dust[num14].noGravity = true;
+                        Main.dust[num14].noLight = true;
+                    }
+                    for (int m = 0; m < 3; m++)
+                    {
+                        int num15 = Dust.NewDust(new Vector2(Player.position.X, Player.position.Y + (float)num12), Player.width, 12, 76, Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f);
+                        Main.dust[num15].fadeIn = 1.5f;
+                        Main.dust[num15].velocity *= 0.6f;
+                        Main.dust[num15].velocity -= Player.velocity * 0.8f;
+                        Main.dust[num15].noGravity = true;
+                        Main.dust[num15].noLight = true;
+                    }
                 }
             }
             if (dashCooldown > 0)
@@ -205,20 +403,7 @@ namespace TRAEProject
                 Player.dashTime = 0;
                 dashCooldown--;
             }
-        }
-        int ornamentTimer = 0;
-        int crippleTimer = 0;
-
-        [Obsolete]
-        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
-        {
-            if (!Player.noKnockback)
-            {
-                crippleTimer = 60;
-            }
-        }
-        public override void PostUpdateEquips()
-        {
+            
             if (Player.wingsLogic == 23)
             {
                 ornamentTimer++;
@@ -227,7 +412,7 @@ namespace TRAEProject
                     Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.Center, Vector2.UnitY * 2, ProjectileID.OrnamentFriendly, 50, 0, Player.whoAmI, -1);
                 }
             }
-            if (Player.slowFall)
+            if (Player.slowFall || Player.GetModPlayer<TRAEProject.NewContent.Items.Accesories.ExtraJumps.TRAEJumps>().isBoosting)
             {
                 Player.gravControl = false;
                 Player.gravControl2 = false;
@@ -235,6 +420,10 @@ namespace TRAEProject
             if (Player.slowFall && Player.velocity.Y < 0)
             {
                 Player.slowFall = false;
+            }
+            if(Player.controlUp && !Player.gravControl && !Player.gravControl2 && Player.GetModPlayer<TRAEProject.NewContent.Items.Accesories.SpaceBalloon.SpaceBalloonPlayer>().SpaceBalloon > 0)
+            {
+                Player.slowFall = true;
             }
             if (crippleTimer <= 0)
             {
@@ -277,12 +466,91 @@ namespace TRAEProject
                 Player.moveSpeed += 0.5f;
             }
         }
+        int skateCounter = 0;
         public override void PostUpdate()
         {
+            if(skating)
+            {
+
+                Player.armorEffectDrawShadow = false;
+                skateCounter++;
+                
+                Player.runSoundDelay = 2;
+                if(Player.velocity.Y == 0)
+                {
+                    //Main.NewText(Player.legFrameCounter);
+                    //Player.legFrameCounter = 2;
+                    //Main.NewText(Player.legFrame.Y);
+                    int slideTime = 30;
+                    int slideTrans = 10;
+                    if(skateCounter %  ((slideTime+slideTrans)*2) < slideTime)
+                    {
+                        Player.legFrame.Y = Player.legFrame.Height * 6;
+                    }
+                    else if (skateCounter % ((slideTime+slideTrans)*2) < slideTime + slideTrans)
+                    {
+                        Player.legFrame.Y = Player.legFrame.Height * 7;
+                    }
+                    else if (skateCounter % ((slideTime+slideTrans)*2) < slideTime * 2 + slideTrans)
+                    {
+                        Player.legFrame.Y = Player.legFrame.Height * 12;
+                    }
+                    else
+                    {
+                        Player.legFrame.Y = Player.legFrame.Height * 13;
+                    }
+
+                    float rot = (float)Math.PI / 8f;
+                    if(skateCounter % (slideTime+slideTrans) >=  slideTime)
+                    {
+                        rot = 0;
+                    }
+                    else if(skateCounter % ((slideTime+slideTrans)*2) > (slideTime+slideTrans))
+                    {
+                        rot = (float)Math.PI / -8f;
+                    }
+                    Player.SetCompositeArmBack(true, Player.CompositeArmStretchAmount.Full, -Player.direction * rot);
+                    
+                    if(Player.itemAnimation == 0)
+                    {
+                        
+                        Player.bodyFrame.Y = 0;
+                        Player.direction = Math.Sign(Player.velocity.X);
+                        
+                        Player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Player.direction * rot);
+                    }
+                    else
+                    {
+                        //Player.legFrame.Y = Player.legFrame.Height * 6;
+                    }
+                }
+                else
+                {
+                    if (Player.miscCounter % 4 == 0 && Player.itemAnimation == 0 && !Player.sandStorm)
+                    {
+                        Player.direction = Player.miscCounter % 8 >= 4 ? 1 : -1;
+                        if (Player.inventory[Player.selectedItem].holdStyle == 2)
+                        {
+                            if (Player.inventory[Player.selectedItem].type == 946 || Player.inventory[Player.selectedItem].type == 4707)
+                            {
+                                Player.itemLocation.X = Player.position.X + (float)Player.width * 0.5f - (float)(16 * Player.direction);
+                            }
+                            if (Player.inventory[Player.selectedItem].type == 186)
+                            {
+                                Player.itemLocation.X = Player.position.X + (float)Player.width * 0.5f + (float)(6 * Player.direction);
+                                Player.itemRotation = 0.79f * (float)(-Player.direction);
+                            }
+                        }
+                    }
+				    Player.legFrameCounter = 0.0;
+                    Player.legFrame.Y = 0;
+                }
+            }
             if (forcedAntiGravity)
             {
                 Player.gravDir = -1;
             }
+            Player.oldVelocity = Player.velocity;
         }
     }
     public class WingChanges : GlobalItem
@@ -332,7 +600,7 @@ namespace TRAEProject
                     player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.4f);
                     break;
                 case ItemID.SpookyWings:
-                    player.moveSpeed += 0.40f;
+                    player.moveSpeed += 0.4f;
                     player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
                     break;
                 case ItemID.WingsSolar:
@@ -591,7 +859,7 @@ namespace TRAEProject
         public override void PostUpdateRunSpeeds()
         {
             //WingChanges.PostProcessChanges(Player);
-
+            
             Player.runSlowdown += 0.3f;
             float mountSpeedBonus = 1f;
             if(Player.GetModPlayer<TRAEProject.Changes.Accesory.MoveSpeed>().TRAEMagi)

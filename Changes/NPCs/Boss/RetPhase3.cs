@@ -314,6 +314,9 @@ namespace TRAEProject.Changes.NPCs.Boss
                 Dust dust = Dust.NewDustPerfect(projectile.Center, DustID.SilverFlame, TRAEMethods.PolarVector(radius / 10f, theta), Scale: 1.5f);
                 dust.color = Color.Red;
                 dust.noGravity = true;
+                dust = Dust.NewDustPerfect(projectile.Center, DustID.SilverFlame, TRAEMethods.PolarVector(radius / 8f, theta), Scale: 1.5f);
+                dust.color = Color.Red;
+                dust.noGravity = true;
             }
         }
         public override void AI()
@@ -369,20 +372,23 @@ namespace TRAEProject.Changes.NPCs.Boss
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
-            Texture2D glowTexture = ModContent.Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/EyeNuke_Glow").Value;
-            Vector2 offset = Vector2.Zero;
-            if(Projectile.timeLeft < 60)
+            if(Projectile.timeLeft >1)
             {
-                offset = new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5));
+                Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+                Texture2D glowTexture = ModContent.Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/EyeNuke_Glow").Value;
+                Vector2 offset = Vector2.Zero;
+                if(Projectile.timeLeft < 60)
+                {
+                    offset = new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5));
+                }
+                int frameCount = Main.projFrames[Projectile.type];
+                Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + offset,
+                            new Rectangle(0, Projectile.frame * (texture.Height / frameCount), texture.Width, (texture.Height / frameCount)), lightColor, Projectile.rotation,
+                            new Vector2(texture.Width * 0.5f, (texture.Height / frameCount) * 0.5f), 1f, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(glowTexture, Projectile.Center - Main.screenPosition + offset,
+                            new Rectangle(0, Projectile.frame * (texture.Height / frameCount), texture.Width, (texture.Height / frameCount)), Color.White, Projectile.rotation,
+                            new Vector2(texture.Width * 0.5f, (texture.Height / frameCount) * 0.5f), 1f, SpriteEffects.None, 0);
             }
-            int frameCount = Main.projFrames[Projectile.type];
-            Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition + offset,
-                        new Rectangle(0, Projectile.frame * (texture.Height / frameCount), texture.Width, (texture.Height / frameCount)), lightColor, Projectile.rotation,
-                        new Vector2(texture.Width * 0.5f, texture.Height * 0.5f), 1f, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(glowTexture, Projectile.Center - Main.screenPosition + offset,
-                        new Rectangle(0, Projectile.frame * (texture.Height / frameCount), texture.Width, (texture.Height / frameCount)), Color.White, Projectile.rotation,
-                        new Vector2(texture.Width * 0.5f, texture.Height * 0.5f), 1f, SpriteEffects.None, 0);
             return false;
         }
     }

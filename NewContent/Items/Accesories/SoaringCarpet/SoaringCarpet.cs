@@ -21,7 +21,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 			DisplayName.SetDefault("Soaring Carpet");
             if(QwertysMovementRemix.active)
 			{
-            	Tooltip.SetDefault("Grants a soaring carpet, use it by holding UP\nIncreases horizontal speed by 9mph\nFall damage immunity");
+            	Tooltip.SetDefault("Grants a soaring carpet, use it by holding UP\nIncreases movement speed by 25%\nFall damage immunity");
 			}
 			else
 			{
@@ -41,14 +41,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
         {
             player.GetModPlayer<SoaringCarpetEffect>().soaringCarpet = true;
 
-            if(QwertysMovementRemix.active)
-			{
-				player.moveSpeed += 0.45f;
-			}
-			else
-			{
-				player.moveSpeed += 0.25f;
-			} 
+			player.moveSpeed += 0.25f;
 			player.noFallDmg = true;
 
 		}

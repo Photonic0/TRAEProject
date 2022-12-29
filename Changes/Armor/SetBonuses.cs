@@ -70,20 +70,20 @@ namespace TRAEProject.Changes.Armor
         }
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
-            if(secretPearlwoodSetBonus && Main.rand.NextBool(10000))
+            if(secretPearlwoodSetBonus && Main.rand.NextBool(100))
             {
                 crit = false;
-                damage = 6969;
+                damage = 696969;
                 Main.NewText("Nice!");
                 SoundEngine.PlaySound(new SoundStyle("TRAEProject/Assets/Sounds/noice"));
             }
         }
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if(secretPearlwoodSetBonus && Main.rand.NextBool(10000))
+            if(secretPearlwoodSetBonus && Main.rand.NextBool(100))
             {
                 crit = false;
-                damage = 6969;
+                damage = 696969;
                 Main.NewText("Nice!");
                 SoundEngine.PlaySound(new SoundStyle("TRAEProject/Assets/Sounds/noice"));
             }

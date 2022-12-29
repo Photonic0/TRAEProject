@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +9,12 @@ using Terraria.ModLoader;
 
 namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 {
-    public class Booster : ModItem
+    public class LevitationJuice : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Booster");
-            //DisplayName.SetDefault("Christmas Booster");
-            //Tooltip.SetDefault("Bame's note: I dont really like how this item feels... should I finish it?");
-            Tooltip.SetDefault("This is how santa gets down the chimmney so quickly");
+            DisplayName.SetDefault("Levitation Juice");
+            Tooltip.SetDefault("Provides a long lasting double jump");
         }
         public override void SetDefaults()
         {
@@ -26,7 +24,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<TRAEJumps>().boosterFlightTimeMax += 80;
+            player.GetModPlayer<TRAEJumps>().levitation = true;
         }
     }
 }

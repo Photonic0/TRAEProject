@@ -6,6 +6,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
+using TRAEProject.NewContent.Items.Accesories.ExtraJumps;
 
 namespace TRAEProject.Changes.Accesory
 {
@@ -118,9 +119,63 @@ namespace TRAEProject.Changes.Accesory
             }
             Player.jumpSpeedBoost += 1.4f;
             Player.moveSpeed *= 1.33f;
-            if (Player.isPerformingJump_Sandstorm)
+            /*
+            if (Player.sandStorm)
             {
-                Player.moveSpeed *= 0.75f;
+                Player.maxRunSpeed /= 2f;
+            }
+            if (Player.isPerformingJump_Blizzard && Player.hasJumpOption_Blizzard)
+            {
+                Player.maxRunSpeed /= 1.5f;
+            }
+            if (Player.isPerformingJump_Fart && Player.hasJumpOption_Fart)
+            {
+                Player.maxRunSpeed /= 1.75f;
+            }
+            if (Player.isPerformingJump_Unicorn && Player.hasJumpOption_Unicorn)
+            {
+                Player.maxRunSpeed /= 1.5f;
+            }
+            if (Player.isPerformingJump_Santank && Player.hasJumpOption_Santank)
+            {
+                Player.maxRunSpeed /= 1.5f;
+            }
+            if (Player.isPerformingJump_WallOfFleshGoat && Player.hasJumpOption_WallOfFleshGoat)
+            {
+                Player.maxRunSpeed /= 1.5f;
+            }
+            if (Player.isPerformingJump_Basilisk && Player.hasJumpOption_Basilisk)
+            {
+                Player.maxRunSpeed /= 1.5f;
+            }
+            if (Player.isPerformingJump_Sail && Player.hasJumpOption_Sail)
+            {
+                Player.maxRunSpeed /= 1.25f;
+            }
+            */
+            if (Player.sandStorm)
+            {
+                Player.moveSpeed *= 0.5f;
+            }
+            if(Player.isPerformingJump_Sandstorm)
+            {
+                Player.moveSpeed *= 1.5f;
+            }
+            if (Player.isPerformingJump_Fart)
+            {
+                Player.moveSpeed *= (1.5f / 1.75f);
+            }
+            if (Player.isPerformingJump_Sail)
+            {
+                Player.moveSpeed *= (1.5f / 1.25f);
+            }
+            if (Player.isPerformingJump_Cloud)
+            {
+                Player.moveSpeed *= 1.5f;
+            }
+            if(Player.GetModPlayer<TRAEJumps>().isLevitating)
+            {
+
             }
             if(TRAEMagi)
             {
@@ -246,7 +301,7 @@ namespace TRAEProject.Changes.Accesory
                     
                     break;
                 case ItemID.IceSkates:
-           	        player.runAcceleration *= 1.5f;
+           	        player.dashType = 99;
                     break;
                 case ItemID.FrostsparkBoots:
                     player.rocketTimeMax -= 7;
@@ -262,7 +317,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         player.moveSpeed += 0.25f;
                     }
-                    player.runAcceleration *= 1.5f;
+           	        player.dashType = 99;
                     break;
                 case ItemID.TerrasparkBoots:
                     player.iceSkate = false;
@@ -283,7 +338,7 @@ namespace TRAEProject.Changes.Accesory
                     }
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += 0.15f;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -305,7 +360,7 @@ namespace TRAEProject.Changes.Accesory
                     }
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += 0.15f;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -438,7 +493,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Doubles acceleration";
+                            line.Text = "Restores double jumps every 6 seconds while airborne";
                         }
                     }
                     return;
@@ -543,7 +598,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increases acceleration by 50%, and mobility on ice";
+                            line.Text = "Allows skating by double tapping on the ground";
                         }
                     }
                     return;
@@ -578,7 +633,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(10) + "";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(8) + "";
                             }
                             else
                             {
@@ -595,7 +650,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(10) + "";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(8) + "";
                             }
                             else
                             {
@@ -776,7 +831,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Increases acceleration by 50%\nIncreases mobility on ice";
+                            line.Text = "Allows skating by double tapping on the ground";
                         }
                     }
                     return;

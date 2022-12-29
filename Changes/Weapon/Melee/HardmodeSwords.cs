@@ -292,5 +292,19 @@ namespace TRAEProject.Changes.Weapon.Melee
                     return;
             }
         }
+        public override void ModifyHitNPC(Item item, Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
+        {
+            if(item.type == ItemID.MythrilSword)
+            {
+                if(Main.rand.NextBool(2))
+                {
+                    damage = damage + (damage / 2);
+                }
+                else
+                {
+                    crit = false;
+                }
+            }
+        }
     }
 }

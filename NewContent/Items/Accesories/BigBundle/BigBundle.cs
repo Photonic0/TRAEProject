@@ -37,6 +37,7 @@ namespace TRAEProject.NewContent.Items.Accesories.BigBundle
             player.noFallDmg = true;
             player.GetModPlayer<SpaceBalloonPlayer>().SpaceBalloon += 1;
         }
+        /*
         public override void AddRecipes()
         {
             CreateRecipe().AddIngredient(ItemID.BundleofBalloons)
@@ -45,5 +46,6 @@ namespace TRAEProject.NewContent.Items.Accesories.BigBundle
                .AddTile(TileID.TinkerersWorkbench)
                .Register();
         }
+        */
     }
 }

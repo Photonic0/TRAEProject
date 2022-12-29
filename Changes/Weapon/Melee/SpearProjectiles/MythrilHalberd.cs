@@ -21,6 +21,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             stabStart = 119f;
             stabEnd = 40f;
             swingAmount = (float)Math.PI / 24;
+            Projectile.GetGlobalProjectile<TRAEProject.Common.ProjectileStats>().heavyCritter = true;
         }
         float origonalAim = 0;
         public override void OnStart()
@@ -108,6 +109,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             floatTime = 10;
             DustOnDeath = DustID.Mythril;
             DustOnDeathCount = 35;
+            Projectile.GetGlobalProjectile<TRAEProject.Common.ProjectileStats>().heavyCritter = true;
         }
     }
 }

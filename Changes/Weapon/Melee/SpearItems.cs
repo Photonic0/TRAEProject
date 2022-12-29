@@ -173,7 +173,7 @@ namespace TRAEProject.Changes.Weapon
 					item.shoot = ProjectileType<TitaniumTrident>();
 					altShoot = ProjectileType<TitaniumTridentThrow>();
 
-					item.damage = 52;
+					item.damage = 47;
 					item.shootSpeed = 14; //only the throw uses this
 					item.useTime = item.useAnimation = 25;
 					break;

@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.Items.Accesories.WeirdBundle;
+using TRAEProject.NewContent.Items.Accesories.ExtraJumps;
 
 namespace TRAEProject.NewContent.Items.Accesories.SpaceBalloon
 {
@@ -16,7 +17,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SpaceBalloon
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
             DisplayName.SetDefault("Space Balloon");
-            Tooltip.SetDefault("Increases jump height\nResets all jumps and flight time every 12 seconds of being in the air");
+            Tooltip.SetDefault("Increases jump height\nAllows reducing gravity by hodling up");
         }
         public override void SetDefaults()
         {
@@ -56,10 +57,18 @@ namespace TRAEProject.NewContent.Items.Accesories.SpaceBalloon
             }
             if (Player.velocity.Y != 0 && SpaceBalloon > 0)
             {
-                SpaceBalloonTimer += SpaceBalloon;
+                if(QwertysMovementRemix.active)
+                {
+                    SpaceBalloonTimer += Player.empressBrooch ? 2 : 0;
+                }
+                else
+                {
+                    SpaceBalloonTimer += SpaceBalloon;
+                }
                 if (SpaceBalloonTimer >= 720)
                 {
                     Player.RefreshMovementAbilities(true);
+                    Player.GetModPlayer<TRAEJumps>().RestoreJumps();
                     Terraria.Audio.SoundEngine.PlaySound(SoundID.Item112);
                     for (int i = 0; i < 30; ++i)
                     {

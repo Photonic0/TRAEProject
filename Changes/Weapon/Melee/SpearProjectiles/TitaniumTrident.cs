@@ -31,7 +31,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             holdAt = 93f;
             Projectile.ignoreWater = true;
             maxSticks = 5;
-            stickingDps = 30;
+            stickingDps = 20;
             floatTime = 60;
         }
     }

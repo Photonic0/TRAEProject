@@ -136,6 +136,10 @@ namespace TRAEProject.Changes.Projectiles
         bool dontDoThisAgain = false;
         public override bool PreAI(Projectile projectile)
         {
+            if(projectile.type == ProjectileID.FairyQueenRangedItemShot)
+            {
+                //Main.NewText(projectile.ai[1]);
+            }
             Player player = Main.player[projectile.owner];
             if (!dontDoThisAgain)
             {
