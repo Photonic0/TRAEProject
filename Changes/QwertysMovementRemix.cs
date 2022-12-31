@@ -232,7 +232,7 @@ namespace TRAEProject
                 crippleTimer = 60;
             }
         }
-        bool skating = false;
+        public bool skating = false;
         public override void PostUpdateEquips()
         {
             skating = false;
@@ -457,17 +457,31 @@ namespace TRAEProject
                 //Player.runSlowdown *= 2;
                 Player.moveSpeed += 0.5f;
             }
-            if (Player.wingsLogic == 22 && Player.TryingToHoverDown)
+            else if (Player.wingsLogic == 22 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
                 //Player.runSlowdown *= 2;
                 Player.moveSpeed += 0.5f;
             }
-            if (Player.wingsLogic == 45 && Player.TryingToHoverDown)
+            else if (Player.wingsLogic == 45 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
                 //Player.runSlowdown *= 2;
                 Player.moveSpeed += 0.5f;
+            }
+            else if(Player.TryingToHoverDown && ArmorIDs.Wing.Sets.Stats[Player.wingsLogic].HasDownHoverStats && Player.wingTime > 0)
+            {
+                Player.GetModPlayer<PlayerChanges>().ankletAcc = true;
+                Player.wingTime += 0.5f;
+                Player.runAcceleration /= 2;
+                //Player.runSlowdown *= 2;
+                Player.moveSpeed += 0.5f;
+                Player.velocity.Y = Player.velocity.Y * 0.9f;
+                if (Player.velocity.Y > -2f && Player.velocity.Y < 1f)
+                {
+                    Player.velocity.Y = 1E-05f;
+                    //Player.position.Y += .1f;
+                }
             }
         }
         int skateCounter = 0;
@@ -570,7 +584,7 @@ namespace TRAEProject
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.CreativeWings].FlyTime = ph;
 
 
-            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.LeafWings].FlyTime = ph;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.LeafWings].FlyTime = eh;
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.DemonWings].FlyTime = eh;
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.AngelWings].FlyTime = eh;
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FairyWings].FlyTime = eh2;
@@ -580,7 +594,7 @@ namespace TRAEProject
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.HarpyWings].FlyTime = eh2;
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FinWings].FlyTime = eh2;
 
-            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.Jetpack].FlyTime = 30;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.Jetpack].FlyTime = eh;
 
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.CenxsWings].FlyTime = eh2;
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.RedsWings].FlyTime = eh2;
@@ -619,22 +633,39 @@ namespace TRAEProject
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.NebulaMantle].FlyTime = pp2;
             ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.VortexBooster].FlyTime = pp2;
         }
+        public override void SetDefaults(Item item)
+        {
+            if(item.type == ItemID.BeetleWings)
+            {
+                item.defense = 8;
+            }
+        }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
             switch (item.type)
             {
+                case ItemID.Jetpack:
+                    player.moveSpeed += - 0.1f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.2f);
+                break;
+                case ItemID.AngelWings:
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.1f);
+                break;
+                case ItemID.DemonWings:
+                    player.moveSpeed += 0.1f;
+                break;
+                case ItemID.FlameWings:
+                    player.GetDamage(DamageClass.Generic) += 0.08f;
+                break;
                 case ItemID.FrozenWings:
                 case ItemID.HarpyWings:
                 case ItemID.FairyWings:
-                case ItemID.AngelWings:
-                case ItemID.DemonWings:
                     player.moveSpeed += 0;
                     break;
                 case ItemID.FinWings:
                     player.moveSpeed += 0;
                     player.ignoreWater = true;
                     break;
-                case ItemID.FlameWings:
                 case ItemID.ButterflyWings:
                 case ItemID.BeeWings:
                 case ItemID.BatWings:
@@ -649,13 +680,24 @@ namespace TRAEProject
                     player.moveSpeed += 0.15f;
                     player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
                     break;
+                case ItemID.SteampunkWings:
+                    player.moveSpeed += 0.15f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
+                    player.GetModPlayer<TRAEProject.NewContent.Items.Accesories.ExtraJumps.TRAEJumps>().advFlight = true;
+                    break;
+                case ItemID.MothronWings:
+                    player.moveSpeed += 0.15f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
+                    player.GetModPlayer<PlayerChanges>().ankletAcc = true;
+                    break;
+                case ItemID.BeetleWings:
+                    player.moveSpeed += 0.15f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
+                    break;
                 case ItemID.FestiveWings:
                 case ItemID.FishronWings:
-                case ItemID.MothronWings:
                 case ItemID.BoneWings:
                 case ItemID.GhostWings:
-                case ItemID.BeetleWings:
-                case ItemID.SteampunkWings:
                     player.moveSpeed += 0.25f;
                     player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
                     break;
@@ -693,10 +735,28 @@ namespace TRAEProject
         public static void PostProcessChanges(Player player)
         {
             player.accRunSpeed = 3;
+
+            if(player.wingsLogic == 4)
+            {
+                if(player.gravDir == 1)
+                {
+                    if(player.velocity.Y < -Player.jumpSpeed)
+                    {
+                        player.velocity.Y = -Player.jumpSpeed;
+                    }
+                }
+                else
+                {
+                    if(player.velocity.Y > Player.jumpSpeed)
+                    {
+                        player.velocity.Y = Player.jumpSpeed;
+                    }
+                }
+            }
             //player.wingTimeMax += 60;
             //player.wingTimeMax *= 2;
             //Main.NewText("WingMax: " + player.wingTimeMax);
-            Main.NewText("WingTime: " + player.wingTime + "/" +  player.wingTimeMax);
+            //Main.NewText("WingTime: " + player.wingTime + "/" +  player.wingTimeMax);
         }
         public override bool WingUpdate(int wings, Player player, bool inUse)
         {
@@ -725,23 +785,80 @@ namespace TRAEProject
                 {
                     if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Tooltip0")
                     {
-                        tooltips.Insert(i-1, new TooltipLine(Mod, "WingTime", "Flight Time: " +  ArmorIDs.Wing.Sets.Stats[item.wingSlot].FlyTime));
+                        string text = "Flight Time: " +  ArmorIDs.Wing.Sets.Stats[item.wingSlot].FlyTime;
+                        if(item.wingSlot == ArmorIDs.Wing.TatteredFairyWings || item.wingSlot == ArmorIDs.Wing.NebulaMantle)
+                        {
+                            text = "Flight Time: infinite";
+                        }
+                        tooltips.Insert(i-1, new TooltipLine(Mod, "WingTime", text));
                         break;
                     }
                 }
             }
             switch (item.type)
             {
+                case ItemID.Jetpack:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases jump speed by " + QwertysMovementRemix.SpeedTooltip(4) +", but reduces movement speed by 10%";
+                        }
+                    }
+                    break;
+                case ItemID.AngelWings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases jump speed by " + QwertysMovementRemix.SpeedTooltip(2);
+                        }
+                    }
+                    break;
+                case ItemID.DemonWings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases movement speed by " + QwertysMovementRemix.SpeedTooltip(2);
+                        }
+                    }
+                    break;
+                case ItemID.FlameWings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases damage by 8%";
+                        }
+                    }
+                    break;
                 case ItemID.BoneWings:
                 case ItemID.GhostWings:
                 case ItemID.BeetleWings:
-                case ItemID.MothronWings:
-                case ItemID.SteampunkWings:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
                             line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5);
+                        }
+                    }
+                    break;
+                case ItemID.MothronWings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(3) + "\nGrants horizontal acceleration";
+                        }
+                    }
+                    break;
+                case ItemID.SteampunkWings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(3) + "\nGrants advanced flight";
                         }
                     }
                     break;
@@ -758,7 +875,7 @@ namespace TRAEProject
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "\nInfinite flight time";
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5);
                         }
                     }
                     break;
@@ -803,7 +920,7 @@ namespace TRAEProject
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(3) + "\nInfinite flight time";
+                            line.Text += "\nIncreases " + QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(3);
                         }
                     }
                     break;
@@ -886,7 +1003,7 @@ namespace TRAEProject
         }
         public override void PostUpdateRunSpeeds()
         {
-            //WingChanges.PostProcessChanges(Player);
+            WingChanges.PostProcessChanges(Player);
             
             Player.runSlowdown += 0.3f;
             float mountSpeedBonus = 1f;

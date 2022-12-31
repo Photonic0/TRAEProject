@@ -24,7 +24,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodWings
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(130, 6.25f);
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(200, 6.25f);
 		}
 
 		public override void SetDefaults()

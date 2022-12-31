@@ -67,7 +67,7 @@ namespace TRAEProject.Changes.Accesory
                 dust.velocity.Y -= Player.gravDir * 2f;
                 dust.shader = GameShaders.Armor.GetSecondaryShader(Player.cShoe, Player);
             }
-            else if (Player.coldDash)
+            else if (Player.coldDash || Player.GetModPlayer<PlayerChanges>().skating)
             {
                 for (int j = 0; j < 2; j++)
                 {
@@ -175,7 +175,7 @@ namespace TRAEProject.Changes.Accesory
             }
             if(Player.GetModPlayer<TRAEJumps>().isLevitating)
             {
-
+                Player.moveSpeed *= 1.5f;
             }
             if(TRAEMagi)
             {

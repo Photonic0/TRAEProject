@@ -19,11 +19,11 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Grants flight, slow fall, and hover\n'I will show you the world...'");
+			Tooltip.SetDefault("Grants flight, slow fall, and hover\n'I will show you the world...'\nReduces movement and jump speed by 15%");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(70, 5f, 1f, hasHoldDownHoverFeatures: true, 8f, 6.5f);
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(160, 5f, 1f, hasHoldDownHoverFeatures: true, 8f, 6.5f);
 			
 		}
 
@@ -43,13 +43,14 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 				.AddTile(TileID.TinkerersWorkbench)
 				.Register();
 		}
-
-
+        
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<Hover>().hasHoverWing = true;
+            //player.GetModPlayer<Hover>().hasHoverWing = true;
+            player.moveSpeed +=0.15f;
+            player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
         }
-
+        /*
 
         public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
             ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
@@ -93,6 +94,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
             
             return true;
         }
+        */
     }
 
     public class Hover : ModPlayer
@@ -112,7 +114,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
                 if (Player.velocity.Y > -2f && Player.velocity.Y < 1f)
                 {
                     Player.velocity.Y = 1E-05f;
-                    Player.position.Y += .1f;
+                    //Player.position.Y += .1f;
                 }
             }
         }
