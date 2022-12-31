@@ -292,11 +292,12 @@ namespace TRAEProject.Changes.Accesory
 
                     if(QwertysMovementRemix.active)
                     {
+                        player.GetModPlayer<PlayerChanges>().ankletAcc = true;
                         player.moveSpeed += 0.15f;
                     }
                     else 
                     {
-                        player.moveSpeed += 0.15f;
+                        player.moveSpeed += 0.25f;
                     }
                     
                     break;
@@ -308,7 +309,6 @@ namespace TRAEProject.Changes.Accesory
                     player.accRunSpeed = 4.8f;
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
 
-                    player.GetModPlayer<AccesoryEffects>().icceleration = true;
                     if(QwertysMovementRemix.active)
                     {
                         player.moveSpeed += 0.25f;
@@ -316,6 +316,7 @@ namespace TRAEProject.Changes.Accesory
                     else if (player.velocity.Y == 0)
                     {
                         player.moveSpeed += 0.25f;
+                        player.GetModPlayer<AccesoryEffects>().icceleration = true;
                     }
            	        player.dashType = 99;
                     break;
@@ -338,7 +339,7 @@ namespace TRAEProject.Changes.Accesory
                     }
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.15f;
+                        player.GetModPlayer<PlayerChanges>().ankletAcc = true;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -356,11 +357,11 @@ namespace TRAEProject.Changes.Accesory
                     }
                     else 
                     {
+                        player.GetModPlayer<PlayerChanges>().ankletAcc = true;
                         player.moveSpeed += 0.25f;
                     }
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.15f;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -556,7 +557,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(3) + "/nIncreases acceleration signifcantly";
                             }
                             else
                             {

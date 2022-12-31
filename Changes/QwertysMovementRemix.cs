@@ -142,12 +142,14 @@ namespace TRAEProject
         bool forcedAntiGravity = false;
         public bool blizzardDash = false;
         bool performingBlizzardDash = false;
+        public bool ankletAcc = false;
         public override void ResetEffects()
         {
             hasCap = false;
             hasCapVertical = false;
             forcedAntiGravity = false;
             blizzardDash = false;
+            ankletAcc = false;
         }
         public override void PostUpdateBuffs()
         {
@@ -220,7 +222,7 @@ namespace TRAEProject
             }
         }
         int ornamentTimer = 0;
-        int crippleTimer = 0;
+        public int crippleTimer = 0;
 
         [Obsolete]
         public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -425,15 +427,17 @@ namespace TRAEProject
             {
                 Player.slowFall = true;
             }
-            if (crippleTimer <= 0)
+            int num39 = (int)(Player.position.Y / 16f) - Player.fallStart;
+            if(Math.Abs(num39) > Player.extraFall + 25 + (Player.statLife / 20))
+            {
+                Player.extraFall += Math.Abs(num39) - (Player.extraFall + 25 + (Player.statLife / 20));
+            }
+
+            if(ankletAcc)
             {
                 Player.runAcceleration *= 1.5f;
             }
-            else
-            {
-                crippleTimer--;
-            }
-            Player.noFallDmg = true;
+            //Player.noFallDmg = true;
             if (Player.wingsLogic == 45)
             {
                 hasCap = false;
@@ -555,6 +559,66 @@ namespace TRAEProject
     }
     public class WingChanges : GlobalItem
     {
+        public override void SetStaticDefaults()
+        {
+            int ph = 85;
+            int eh = 160;
+            int eh2 = 200;
+            int pp = 230;
+            int pp2 = 240;
+            
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.CreativeWings].FlyTime = ph;
+
+
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.LeafWings].FlyTime = ph;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.DemonWings].FlyTime = eh;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.AngelWings].FlyTime = eh;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FairyWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FrozenWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.ButterflyWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.BeeWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.HarpyWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FinWings].FlyTime = eh2;
+
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.Jetpack].FlyTime = 30;
+
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.CenxsWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.RedsWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.JimsWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.DTownsWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.Yoraiz0rsSpell].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.LazuresBarrierPlatform].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FoodBarbarianWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SafemanWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.LeinforsWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.CrownosWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.GhostarsWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.GroxTheGreatWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.LokisWings].FlyTime = eh2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SkiphssPaws].FlyTime = eh2;
+
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FlameWings].FlyTime = eh2;
+
+
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SpectreWings].FlyTime = pp;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.BoneWings].FlyTime = pp;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.Hoverboard].FlyTime = pp;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SteampunkWings].FlyTime = pp;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.BeetleWings].FlyTime = pp;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.MothronWings].FlyTime = pp;
+
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FishronWings].FlyTime = pp2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SpookyWings].FlyTime = pp2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.TatteredFairyWings].FlyTime = pp2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.RainbowWings].FlyTime = pp2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.FestiveWings].FlyTime = pp2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.BetsyWings].FlyTime = pp2;
+
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.SolarWings].FlyTime = pp2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.StardustWings].FlyTime = pp2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.NebulaMantle].FlyTime = pp2;
+            ArmorIDs.Wing.Sets.Stats[ArmorIDs.Wing.VortexBooster].FlyTime = pp2;
+        }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
             switch (item.type)
@@ -629,10 +693,10 @@ namespace TRAEProject
         public static void PostProcessChanges(Player player)
         {
             player.accRunSpeed = 3;
-            player.wingTimeMax += 60;
+            //player.wingTimeMax += 60;
             //player.wingTimeMax *= 2;
             //Main.NewText("WingMax: " + player.wingTimeMax);
-            //Main.NewText("WingTime: " + player.wingTime);
+            Main.NewText("WingTime: " + player.wingTime + "/" +  player.wingTimeMax);
         }
         public override bool WingUpdate(int wings, Player player, bool inUse)
         {
@@ -652,56 +716,20 @@ namespace TRAEProject
                 player.velocity.Y -= 0.2f * player.gravDir;
             }
             maxAscentMultiplier = 1f;
-            /*
-            switch(item.type)
-            {
-                case ItemID.FrozenWings:
-                case ItemID.HarpyWings:
-                case ItemID.FairyWings:
-                case ItemID.AngelWings:
-                case ItemID.DemonWings:
-                case ItemID.FinWings:
-                case ItemID.FlameWings:
-                case ItemID.ButterflyWings:
-                case ItemID.BeeWings:
-                case ItemID.BatWings:
-                maxAscentMultiplier -= 0.3333f;
-                //36mph
-                break;
-                case ItemID.BoneWings:
-                case ItemID.GhostWings:
-                case ItemID.BeetleWings:
-                case ItemID.MothronWings:
-                maxAscentMultiplier -= 0.3333f;
-                //41mph
-                break;
-                case ItemID.TatteredFairyWings:
-                maxAscentMultiplier -= 0.3333f * 1.5f;
-                //40mph
-                break;
-                case ItemID.FestiveWings:
-                case ItemID.SteampunkWings:
-                maxAscentMultiplier -= 0.3333f;
-                //45mph
-                break;
-                case ItemID.FishronWings:
-                case ItemID.BetsyWings:
-                maxAscentMultiplier -= 1f;
-                //46mph
-                break;
-                case ItemID.RainbowWings:
-                maxAscentMultiplier -= 1f;
-                //54mph
-                break;
-                case ItemID.SpookyWings:
-                maxAscentMultiplier -= 0.3333f;
-                //45mph
-                break;
-            }
-            */
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if(item.wingSlot >= 0)
+            {
+                for(int i = 0; i < tooltips.Count; i++)
+                {
+                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Tooltip0")
+                    {
+                        tooltips.Insert(i-1, new TooltipLine(Mod, "WingTime", "Flight Time: " +  ArmorIDs.Wing.Sets.Stats[item.wingSlot].FlyTime));
+                        break;
+                    }
+                }
+            }
             switch (item.type)
             {
                 case ItemID.BoneWings:
@@ -1016,31 +1044,15 @@ namespace TRAEProject
                 }
             }
 
-
-
-            // removed speed cap for now
-            /*
-            //52mph is the max horizontal velocity the player can obtain
-            if(Player.GetModPlayer<PlayerChanges>().hasCap)
+            if (Player.GetModPlayer<PlayerChanges>().crippleTimer <= 0)
             {
-                float maxSpeedAllowed = 10.2f;
-                if(Math.Abs(Player.velocity.X) > maxSpeedAllowed)
-                {
-                    Player.velocity.X = Math.Sign(Player.velocity.X) * (maxSpeedAllowed-Player.runAcceleration);
-                }
             }
-
-            //56mph is the max vertical velocity the player can obtain
-            if(Player.GetModPlayer<PlayerChanges>().hasCapVertical)
+            else
             {
-                float vMaxSpeedAllowed = 11f;
-                if(Math.Abs(Player.velocity.Y) > vMaxSpeedAllowed)
-                {
-                    Player.velocity.Y = Math.Sign(Player.velocity.Y) * (vMaxSpeedAllowed);
-                }
+                Player.runAcceleration *= 0.5f;
+                Player.runSlowdown *= 0.5f;
+                Player.GetModPlayer<PlayerChanges>().crippleTimer--;
             }
-            */
-            //Main.NewText("After: " + Player.accRunSpeed);
         }
         public override void PostUpdateEquips()
         {

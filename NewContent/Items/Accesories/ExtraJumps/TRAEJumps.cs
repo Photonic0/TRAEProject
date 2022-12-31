@@ -392,12 +392,21 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 			if(Player.jump == 0)
 			{
 				isLevitating = false;
-				Player.fullRotation = 0;
+				if(Player.mount.Active && Player.mount.BlockExtraJumps)
+				{
+
+				}
+				else
+				{
+					Player.fullRotation = 0;
+				}
 			}
 			else if(isLevitating)
 			{
-				Player.fullRotation += Player.direction * Player.gravDir * (float)Math.PI / 15f;
-				Player.fullRotationOrigin = Player.Size * 0.5f;
+				{
+					Player.fullRotation += Player.direction * Player.gravDir * (float)Math.PI / 15f;
+					Player.fullRotationOrigin = Player.Size * 0.5f;
+				}
 				for(int i = 0; i < 30; i++)
 				{
 					Dust d = Dust.NewDustPerfect(Player.Center + TRAEMethods.PolarVector(30, (float)Math.PI * 2f * ((float)i / 3f) + Player.fullRotation), DustID.SilverFlame, Vector2.UnitY * Player.gravDir * -6);

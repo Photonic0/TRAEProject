@@ -16,7 +16,7 @@ namespace TRAEProject.NewContent.Items.Accesories.BigBundle
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             DisplayName.SetDefault("The Big Bundle");
-            Tooltip.SetDefault("Allows the player to sextuple jump!\nIncreases jump height, health regeneration and prevents fall damage\nResets all jumps and flight time every 10 seconds of being in the air\nReleases Bees and covers you in honey when damaged");
+            Tooltip.SetDefault("Allows the player to sextuple jump!\nIncreases jump height, health regeneration and prevents fall damage\nAllows reducing gravity by holding up\nReleases Bees and covers you in honey when damaged");
         }
         public override void SetDefaults()
         {
@@ -37,7 +37,7 @@ namespace TRAEProject.NewContent.Items.Accesories.BigBundle
             player.noFallDmg = true;
             player.GetModPlayer<SpaceBalloonPlayer>().SpaceBalloon += 1;
         }
-        /*
+        
         public override void AddRecipes()
         {
             CreateRecipe().AddIngredient(ItemID.BundleofBalloons)
@@ -46,6 +46,6 @@ namespace TRAEProject.NewContent.Items.Accesories.BigBundle
                .AddTile(TileID.TinkerersWorkbench)
                .Register();
         }
-        */
+        
     }
 }

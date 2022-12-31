@@ -20,129 +20,131 @@ namespace ChangesArmor
     {
             switch (item.type)
             {
-               
+                case ItemID.SpiderBreastplate:
+                    player.moveSpeed += 0.1f;
+                    break;
                 case ItemID.AncientArmorHat:
                     player.GetDamage<SummonDamageClass>() += 0.17f;
                     player.maxTurrets += 1;
-                    return;
+                    break;
                 case ItemID.AncientArmorShirt:
                     player.GetDamage<SummonDamageClass>() += 0.05f; 
                     player.maxTurrets += 1;
-                    return;
+                    break;
                 case ItemID.AncientArmorPants:
                     player.moveSpeed += 0.1f;
                     player.GetDamage<SummonDamageClass>() += 0.03f;
-                    return;
+                    break;
                 case ItemID.GladiatorHelmet:
                 case ItemID.GladiatorBreastplate:
                 case ItemID.GladiatorLeggings:
                     player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
-                    return;
+                    break;
                 case ItemID.PharaohsMask:
                     player.moveSpeed += 0.05f;
-                    return;
+                    break;
                 case ItemID.PharaohsRobe:
                     player.moveSpeed += 0.05f;
-                    return;
+                    break;
                 case ItemID.CrimsonHelmet:
                 case ItemID.CrimsonGreaves:
                     player.GetDamage<GenericDamageClass>() -= 0.01f;
-                    return;
+                    break;
                 case ItemID.MeteorHelmet:
                 case ItemID.MeteorSuit:
                 case ItemID.MeteorLeggings:
                     player.GetDamage<MagicDamageClass>() += 0.02f;
-                    return;
+                    break;
                 case ItemID.ObsidianShirt:
                     player.GetDamage<SummonDamageClass>() += 0.08f;
-                    return;
+                    break;
                 case ItemID.RuneRobe:
                     player.statManaMax2 += 100;
                     player.manaCost -= 0.21f;
-                    return;
+                    break;
                 case ItemID.RuneHat:
                     player.GetDamage<MagicDamageClass>() += 0.15f;
                     player.GetCritChance<MagicDamageClass>()  += 15;
-                    return;
+                    break;
                 case ItemID.OrichalcumMask:
                     player.GetDamage<MeleeDamageClass>()  -= 0.11f;
                     player.GetCritChance<MeleeDamageClass>()  += 13;
-                    return;
+                    break;
                 case ItemID.PirateHat:
                     player.whipRangeMultiplier += 0.3f;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
-                    return;
+                    break;
                 case ItemID.PirateShirt:
                     player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) += 0.12f;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
-                    return;
+                    break;
                 case ItemID.PiratePants:
                     player.moveSpeed += 0.1f;
 
                     player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) += 0.08f;
                     player.GetDamage<SummonDamageClass>() += 0.1f;
-                    return;
+                    break;
                 case ItemID.DjinnsCurse:
                     player.jumpSpeedBoost += 1f;
-                    return;
+                    break;
                 case ItemID.ChlorophytePlateMail:
                     player.GetDamage<GenericDamageClass>() += 0.05f;
-                    return;
+                    break;
                 case ItemID.ChlorophyteGreaves:
                     player.GetCritChance<GenericDamageClass>() += 2;
                     player.moveSpeed += 0.05f;
-                    return;
+                    break;
 //////////////////////// OOA
 /// T1: SQUIRE, MONK, HUNTRESS, APPRENTICE
                 case ItemID.SquireGreatHelm:
                     player.lifeRegen -= 2;
-                    return;
+                    break;
                 case ItemID.SquirePlating:
                     player.GetDamage<MeleeDamageClass>() -= 0.05f; 
                     player.GetDamage<SummonDamageClass>() -= 0.05f;
                     player.lifeRegen += 2;
-                    return;
+                    break;
                 case ItemID.SquireGreaves:
                     player.GetCritChance<MeleeDamageClass>() -= 10;
                     player.GetDamage<SummonDamageClass>() += 0.05f;
                     player.moveSpeed -= 0.15f;
-                    return;
+                    break;
                 case ItemID.MonkPants:
                 case ItemID.HuntressPants:
                 case ItemID.ApprenticeTrousers:
                     player.moveSpeed -= 0.1f;
-                    return;
+                    break;
 ////////// T2: VK, SHINOBI, RED RIDING, DARK ARTIST
                 case ItemID.SquireAltHead:
                     player.lifeRegen += 4;
                     ++player.maxMinions;
-                    return;
+                    break;
                 case ItemID.SquireAltShirt:
                     player.lifeRegen -= 4;
-                    return;
+                    break;
                 case ItemID.SquireAltPants:
                     player.moveSpeed -= 0.2f;
-                    return;
+                    break;
                 case ItemID.MonkAltShirt:
                     player.GetAttackSpeed(DamageClass.Melee) -= 0.2f;
                     player.GetDamage<MeleeDamageClass>()  += 0.2f;
-                    return;
+                    break;
                 case ItemID.MonkAltHead:
                     player.GetAttackSpeed(DamageClass.Melee) += 0.3f;
                     player.GetDamage<SummonDamageClass>()  += 0.1f;
                     player.GetDamage<MeleeDamageClass>()  -= 0.2f;
-                    return;
+                    break;
                 case ItemID.MonkAltPants:
                 case ItemID.HuntressAltPants:
                 case ItemID.ApprenticeAltPants:
                     player.moveSpeed -= 0.1f;
-                    return;
+                    break;
 ///////////////// end of OOA
                 case ItemID.NinjaHood:
                 case ItemID.NinjaShirt:
                 case ItemID.NinjaPants:
                     player.GetCritChance<GenericDamageClass>() += 3;
-                    return;
+                    break;
                 case ItemID.CrystalNinjaLeggings:
                     player.moveSpeed -= 0.05f;
                     player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
@@ -152,11 +154,11 @@ namespace ChangesArmor
                     break;
                 case ItemID.SpectreMask:
                     player.manaCost += 0.13f;
-                    return;
+                    break;
                 case ItemID.SpectreHood:
                     player.statManaMax2 += 100;
                     player.manaCost -= 0.20f;
-                    return;
+                    break;
             }
         }
         public override string IsArmorSet(Item head, Item body, Item legs)
@@ -387,6 +389,15 @@ namespace ChangesArmor
         {
             switch (item.type)
             {
+                case ItemID.SpiderBreastplate:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text += "\n10% increased movement speed";
+                        }
+                    }
+                    break;
                 case ItemID.GladiatorHelmet:
                 case ItemID.GladiatorBreastplate:
                 case ItemID.GladiatorLeggings:
