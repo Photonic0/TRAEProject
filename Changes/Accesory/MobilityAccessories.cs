@@ -293,7 +293,7 @@ namespace TRAEProject.Changes.Accesory
                     if(QwertysMovementRemix.active)
                     {
                         player.GetModPlayer<PlayerChanges>().ankletAcc = true;
-                        player.moveSpeed += 0.15f;
+                        player.moveSpeed += 0.05f;
                     }
                     else 
                     {
@@ -357,11 +357,11 @@ namespace TRAEProject.Changes.Accesory
                     }
                     else 
                     {
-                        player.GetModPlayer<PlayerChanges>().ankletAcc = true;
                         player.moveSpeed += 0.25f;
                     }
                     if(QwertysMovementRemix.active)
                     {
+                        player.GetModPlayer<PlayerChanges>().ankletAcc = true;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -634,7 +634,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(8) + "";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "/nGreatly increases acceleration";
                             }
                             else
                             {
@@ -651,7 +651,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(8) + "";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "/nGreatly increases acceleration";
                             }
                             else
                             {

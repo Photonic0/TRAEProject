@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Accesories.PalladiumShield;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.Items.Accesories.ExtraJumps;
 public class ChestLoot : ModSystem
 {
     public static int[] PyramidItems;
@@ -10,7 +11,7 @@ public class ChestLoot : ModSystem
     public override void PostSetupContent()
     {
         PyramidItems = new int[] { ItemID.SandstorminaBottle, ItemID.FlyingCarpet, ItemID.AnkhCharm, ItemID.AncientChisel, ItemID.SandBoots, ItemID.ThunderSpear, ItemID.ThunderStaff, ItemID.CatBast, ItemID.MagicConch };
-        ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury, ItemType<PalladiumShield>() };
+        ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury, ItemType<PalladiumShield>(), ItemID.GravityGlobe };
     }
     public override void PostWorldGen()
     {
@@ -35,6 +36,7 @@ public class ChestLoot : ModSystem
                 {
                     chest.item[0].SetDefaults(ItemType<PalladiumShield>(), false);
                 }
+                
 
                 if (WorldGen.genRand.NextBool(2)  && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 0 * 36)
                 {
@@ -98,6 +100,21 @@ public class ChestLoot : ModSystem
                         }
                     }
 
+                }
+
+                if (chest.item[0].type == ItemID.MagicMissile || chest.item[0].type == ItemID.Muramasa || chest.item[0].type == ItemID.CobaltShield || chest.item[0].type == ItemID.AquaScepter || chest.item[0].type == ItemID.Handgun || chest.item[0].type == ItemID.BlueMoon || chest.item[0].type == ItemID.ShadowKey || chest.item[0].type == ItemID.Valor || chest.item[0].type == ItemID.BoneWelder)
+                {
+                    if(Main.rand.NextBool(4))
+                    {
+                        for (int i = 0; i < 40; i++)
+                        {
+                            if (chest.item[i].IsAir)
+                            {
+                                chest.item[i].SetDefaults(ItemID.MysticCoilSnake);
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         }

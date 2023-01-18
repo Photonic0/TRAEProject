@@ -544,7 +544,7 @@ namespace TRAEProject
                 }
                 else
                 {
-                    if (Player.miscCounter % 4 == 0 && Player.itemAnimation == 0 && !Player.sandStorm)
+                    if (Player.miscCounter % 4 == 0 && Player.itemAnimation == 0 && !Player.sandStorm && Player.wingsLogic == 0)
                     {
                         Player.direction = Player.miscCounter % 8 >= 4 ? 1 : -1;
                         if (Player.inventory[Player.selectedItem].holdStyle == 2)
@@ -559,9 +559,9 @@ namespace TRAEProject
                                 Player.itemRotation = 0.79f * (float)(-Player.direction);
                             }
                         }
+                        Player.legFrameCounter = 0.0;
+                        Player.legFrame.Y = 0;
                     }
-				    Player.legFrameCounter = 0.0;
-                    Player.legFrame.Y = 0;
                 }
             }
             if (forcedAntiGravity)

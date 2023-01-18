@@ -16,7 +16,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public int boosterFlightTimeMax = 0;
         public int boosterFlightTime = 0;
         public const int boosterStartCost = 0;
-        public const float boosterSpeedMultiplier = 1.25f;
+        public const float boosterSpeedMultiplier = 1.6f;
 		public bool isBoosting = false;
 		bool canStartBoosting = false;
 		public bool levitation = false;

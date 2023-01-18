@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jet boots");
-            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nProvides rocket boot flight\nProvides a booster double jump\nProvides a booster double jump");
+            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nProvides rocket boot flight\nProvides a booster double jump");
         }
         public override void SetDefaults()
         {
@@ -26,7 +26,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         {
             player.GetModPlayer<TRAEJumps>().advFlight = true;
             player.rocketTimeMax = 14;
-            player.GetModPlayer<TRAEJumps>().boosterFlightTimeMax += 80;
+            player.GetModPlayer<TRAEJumps>().boosterFlightTimeMax += 40;
         }
         public override void AddRecipes()
         {

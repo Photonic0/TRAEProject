@@ -201,6 +201,10 @@ namespace TRAEProject.Changes.Recipes
             {
                 recipe.DisableRecipe();
             }
+            if (recipe.HasResult(ItemID.SpiritFlame))
+            {
+                recipe.DisableRecipe();
+            }
             if (recipe.HasResult(ItemID.BoneJavelin))
             {
                 recipe.ReplaceResult(ItemID.BoneJavelin, 1);

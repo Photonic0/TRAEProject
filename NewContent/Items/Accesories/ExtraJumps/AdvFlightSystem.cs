@@ -20,6 +20,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         {
             Item.rare = 5;
             Item.value = 300000;
+            Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

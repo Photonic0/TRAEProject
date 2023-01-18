@@ -26,7 +26,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<TRAEJumps>().boosterFlightTimeMax += 80;
+            player.GetModPlayer<TRAEJumps>().boosterFlightTimeMax += 40;
         }
     }
 }
