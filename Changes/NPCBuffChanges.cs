@@ -82,7 +82,8 @@ namespace TRAEProject.Common
             switch (type)
             {
                 case BuffID.MaceWhipNPCDebuff:
-                    npc.GetGlobalNPC<Tag>().Crit += 10;
+                    npc.GetGlobalNPC<Tag>().Damage += 3;
+                    npc.GetGlobalNPC<Tag>().Crit += 5;
                     return;
                 case BuffID.RainbowWhipNPCDebuff:
                     npc.GetGlobalNPC<Tag>().Damage += 30;

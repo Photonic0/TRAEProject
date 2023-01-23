@@ -6,13 +6,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.NPCs.Underworld.Boomxie;
 using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.NPCs.Underworld.Lavamander;
 
 namespace TRAEProject.Changes.NPCs
 {
     public class HellEnemies: GlobalNPC
-    {               
-	
-	public override bool InstancePerEntity => true;
+    {
+
+        public override bool InstancePerEntity => true;
+        public bool despawn = false;
         public override void SetDefaults(NPC npc)
         {
             switch (npc.type)
@@ -45,9 +47,8 @@ namespace TRAEProject.Changes.NPCs
                     return;
             }
         }
-        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
-        {
-        }
+
+   
         public override void OnKill(NPC npc)
         {
             Vector2 zero = new Vector2(0, 0);
@@ -64,7 +65,14 @@ namespace TRAEProject.Changes.NPCs
             if (projectile.type == ProjectileID.DemonSickle)
             {
                 projectile.tileCollide = false;
-            }    
+            }
         }
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit)
+        {
+            if (projectile.type == ProjectileID.UnholyTridentHostile)
+            {
+                damage /= 2;
+            }
+           }
     }
 }

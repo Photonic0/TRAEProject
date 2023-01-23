@@ -31,7 +31,7 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.MoltenSkullRose:
                     player.GetModPlayer<ObsidianSkullEffect>().moltenskullrose += 1;
-                    player.GetModPlayer<CritDamage>().critDamage += 0.10f;
+                    player.GetModPlayer<CritDamage>().critDamage += 0.1f;
                     break;
                
                 case ItemID.MoltenQuiver:
@@ -86,15 +86,15 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Attacks inflict fire damage\n10% increased critical strike damage";
+                            line.Text = "Attacks inflict fire damage";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Critical strikes have a very low chance to incinerate, higher on stronger hits";
+                            line.Text = "10% increased critical strike damage";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.Text = "Critical strikes lower defense by 4, up to 12";
+                            line.Text = "Critical strikes lower defense by 3, up to 9";
                         }
                     }
                     break;
@@ -107,7 +107,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Magic and Ranged critical strikes lower defense by 4, up to 12";
+                            line.Text = "Magic and Ranged critical strikes lower defense by 3, up to 9";
                         }
                     }
                     break;
@@ -120,7 +120,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Melee and Ranged critical strikes have a very low chance to incinerate, higher on stronger hits\nMelee and Ranged critical strikes lower defense by 1, up to 12";
+                            line.Text = "Melee and Ranged critical strikes lower defense by 3, up to 9";
                         }
                     }
                     break;
@@ -129,7 +129,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Ranged critical strikes lower defense by 4, up to 12";
+                            line.Text = "Ranged critical strikes lower defense by 3, up to 9";
                         }
                     }
                     break;
@@ -148,7 +148,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Hitting nearby enemies lowers their defense by 4, up to 12";
+                            line.Text = "Hitting nearby enemies lowers their defense by 3, up to 3";
                         }
                     }
                     break;
@@ -199,7 +199,7 @@ namespace TRAEProject.Changes.Accesory
        
             if ((target.Center - Player.Center).Length() < shieldRange)
             {
-                TRAEDebuff.Apply<ObsidianSkulled>(target, 180, 6);
+                TRAEDebuff.Apply<ObsidianSkulled>(target, 180, 3);
             }
             if (crit && (moltenskullrose > 0 || magmaSkull > 0)) // you need to have molten skull for this to work on true melee, no point on doing other checks
             {
@@ -208,7 +208,9 @@ namespace TRAEProject.Changes.Accesory
             }
             if (crit && Player.magmaStone)
             {
-                int chance = 1500 / (damage * 2 * (magmas + moltenskullrose)); //On hit NPC ignores crits' boosted damage
+                int chance = 1600 / (damage * 2 * (magmas)); //On hit NPC ignores crits' boosted damage
+				if (chance <= 1)
+                    chance = 1;
                 if (Main.rand.NextBool(chance))
                 {
                     if (!target.HasBuff(BuffID.Daybreak))
@@ -230,7 +232,7 @@ namespace TRAEProject.Changes.Accesory
         {
             if ((target.Center - Player.Center).Length() < shieldRange)
             {
-                TRAEDebuff.Apply<ObsidianSkulled>(target, 180, 6);
+                TRAEDebuff.Apply<ObsidianSkulled>(target, 180, 3);
             }
             if (moltenskullrose > 0 || magmaSkull > 0)
             {
@@ -238,14 +240,13 @@ namespace TRAEProject.Changes.Accesory
             }
             if (crit && Player.magmaStone)
             {
-                if (proj.CountsAsClass<MeleeDamageClass>() || moltenskullrose > 0 || (proj.CountsAsClass<RangedDamageClass>() && magmaSkull > 0))
+                if (proj.CountsAsClass<MeleeDamageClass>())
                 {
-                    int chance = 1500 / (damage * 2 * (magmas + moltenskullrose));
+                    int chance = 1600 / (damage * 2 * magmas);
                     if (chance <= 1)
                         chance = 1;
-                    if (Main.rand.NextBool(chance)) // dont use nextbool, that breaks if damage is above 1500
+                    if (Main.rand.NextBool(chance))
                     {
-                    
                         if (!target.HasBuff(BuffID.Daybreak))
                         {
                             SoundEngine.PlaySound(SoundID.Item45);
@@ -270,7 +271,7 @@ namespace TRAEProject.Changes.Accesory
                )
             {
                 int duration = damage * Main.rand.Next(3, 6) * (skull + moltenskullrose + roseskull);
-                TRAEDebuff.Apply<ObsidianSkulled>(target, duration, 6);
+                TRAEDebuff.Apply<ObsidianSkulled>(target, duration, 4);
             }
             if (proj.arrow && arrowsburn > 0)
             {

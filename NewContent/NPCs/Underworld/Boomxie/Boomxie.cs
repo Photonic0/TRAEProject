@@ -77,7 +77,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.Underworld.Chance * 0.15f;
+            if (NPC.downedPlantBoss)
+            {
+                return SpawnCondition.Underworld.Chance * 0.025f;
+            }
+            return SpawnCondition.Underworld.Chance * 0.15f; 
+        
 
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)

@@ -97,6 +97,30 @@ namespace TRAEProject.Changes
             }
             return;
         }
+        int timer = 0;
+        public override bool OnPickup(Item item, Player player)
+        {
+            timer = 0;
+            return true;
+        }
+        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
+        {
+            if (item.type == ItemID.GuideVoodooDoll && NPC.downedPlantBoss)
+            {
+                int num117 = Dust.NewDust(new Vector2(item.position.X, item.position.Y + 2f), item.width, item.height, DustID.PurpleTorch, item.velocity.X * 0.2f, item.velocity.Y * 0.2f, 100, default, 2f);
+                Main.dust[num117].noGravity = true;
+                Main.dust[num117].velocity.X *= 1f;
+                Main.dust[num117].velocity.Y *= 1f;
+                if (timer < 80)
+                    timer++;
+                if (timer >= 80)
+                {
+                    maxFallSpeed = 0;
+
+                }
+
+            }
+        }
         public override bool AltFunctionUse(Item item, Player player)
         {
             if (item.type == ItemID.DirtRod)
@@ -302,6 +326,15 @@ namespace TRAEProject.Changes
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
                             line.Text = "Increases maximum mana by 20 when near it";
+                        }
+                    }
+                    break;
+                case ItemID.GuideVoodooDoll:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0" && NPC.downedPlantBoss)
+                        {
+                            line.Text += "\nRespected by powerful underworld foes";
                         }
                     }
                     break;

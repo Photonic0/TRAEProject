@@ -37,7 +37,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
             Item.damage = 162;
             Item.useTime = Item.useAnimation = 30;
             Item.knockBack = 0.5f;
-            Item.shootSpeed = 5.5f;
+            Item.shootSpeed = 8.25f;
             Item.rare = ItemRarityID.Red;
             Item.value = Item.sellPrice(0, 10, 0, 0);
 		}

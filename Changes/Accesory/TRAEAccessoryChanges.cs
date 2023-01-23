@@ -169,12 +169,12 @@ namespace TRAEProject.Changes.Accesory
                     player.wolfAcc = false;
                     break;
                 case ItemID.BandofStarpower:
-                    player.GetModPlayer<Mana>().manaRegenBoost += 0.15f;                    player.statManaMax2 -= 20;
+                    player.GetModPlayer<Mana>().manaRegenBoost += 0.1f;                    player.statManaMax2 -= 20;
                     break;
                 case ItemID.ManaRegenerationBand:
                     player.statManaMax2 -= 20;
 
-                    player.GetModPlayer<Mana>().manaRegenBoost += 0.15f;
+                    player.GetModPlayer<Mana>().manaRegenBoost += 0.1f;
                     player.lifeRegen += 2;
                     break;
                 case ItemID.MagicCuffs:
@@ -419,7 +419,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Increases mana regeneration rate by 15%";
+                            line.Text = "Increases mana regeneration rate by 10%";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -631,7 +631,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Minion damage is stored as Fire energy, up to 2250\nWhip strikes summon a friendly Molten Apparition for every 750 damage stored";
+                            line.Text = "Minion damage is stored as Fire energy, up to 3000\nWhip strikes summon a friendly Molten Apparition for every 750 damage stored";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {

@@ -62,7 +62,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-
+            if (NPC.downedPlantBoss)
+            {
+                return SpawnCondition.Underworld.Chance * 0.025f;
+            }
             return SpawnCondition.Underworld.Chance * 0.17f;
         }
         int damagestored = 0;

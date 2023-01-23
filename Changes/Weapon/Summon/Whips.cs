@@ -29,6 +29,11 @@ namespace TRAEProject.Changes.Weapon.Summon
                 case ItemID.ScytheWhip:
                     item.damage = 111; // up from 100
                     break;
+                case ItemID.MaceWhip:
+                    item.damage = 160; // down from 165
+                    item.useTime = 35;
+                    item.useAnimation = 35;
+                    break;
                 case ItemID.RainbowWhip:
                     item.damage = 250; // up from 180
                     item.autoReuse = true;
@@ -61,9 +66,13 @@ namespace TRAEProject.Changes.Weapon.Summon
                 case ItemID.MaceWhip:
                     foreach (TooltipLine line in tooltips)
                     {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "8 summon tag damage";
+                        }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "15% summon tag critical strike chance";
+                            line.Text = "10% summon tag critical strike chance";
                         }
                     }
                     break;

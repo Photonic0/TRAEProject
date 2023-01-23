@@ -33,7 +33,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.useAnimation = 14;
                     return;
                 case ItemID.VampireKnives:
-                    item.damage = 32; // up from 29
+                    item.damage = 29; // up from 29
                     return;
                 case ItemID.IceBoomerang:
                     item.damage = 22; // up from 16
@@ -41,6 +41,12 @@ namespace TRAEProject.Changes.Weapon.Melee
                     return;
                 case ItemID.LightDisc:
                     item.damage = 100; // up from 57
+                    return;
+                case ItemID.PaladinsHammer:
+                    item.damage = 105; // up from 90
+                    return;
+                case ItemID.PossessedHatchet:
+                    item.damage = 100; // up from 80
                     return;
                 case ItemID.BlueMoon:
                     item.damage = 32;

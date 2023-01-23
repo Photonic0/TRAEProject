@@ -3,8 +3,10 @@ using MonoMod.Cil;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.Items.Weapons.Summoner.TailWhip;
 using TRAEProject.NewContent.TRAEDebuffs;
+using Terraria.ModLoader;
 
 namespace TRAEProject.Changes
 {
@@ -32,11 +34,15 @@ namespace TRAEProject.Changes
                 }
                 if(npc.GetGlobalNPC<ObsidianSkulledStacks>().stacks > 0)
                 {
-                    AP += 4 * npc.GetGlobalNPC<ObsidianSkulledStacks>().stacks;
+                    AP += 3 * npc.GetGlobalNPC<ObsidianSkulledStacks>().stacks;
                 }
                 if (npc.HasBuff(BuffID.WitheredArmor))
                 {
-                    AP += 25;
+                    AP += 18;
+                }
+                if (npc.HasBuff(BuffType<TailWhipTag>()))
+                {
+                    AP += 16;
                 }
                 return AP;
             });

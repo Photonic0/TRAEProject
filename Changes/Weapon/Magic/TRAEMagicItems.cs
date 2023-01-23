@@ -223,7 +223,8 @@ namespace TRAEProject.Changes.Items
                 case ItemID.StaffofEarth:
                     item.mana = 25; // up from 18
                     return;
-				 case ItemID.InfernoFork:
+
+                case ItemID.InfernoFork:
 				    item.damage = 95; // Vanilla value: 60
 					item.mana = 40; // up from 25
                     item.autoReuse = true;
@@ -274,15 +275,16 @@ namespace TRAEProject.Changes.Items
                     break;
                 case ItemID.MagnetSphere:
                     rightClickSideWeapon = true;
-                    item.mana = 10;
+                    item.mana = 30; // up from 14
                     break;
                 case ItemID.BlizzardStaff:
-                    item.damage = 38; // down from 58
+                    item.damage = 30; // down from 58
                     item.autoReuse = false;
                     item.useAnimation = 25;
                     item.useTime = 25;
                     item.UseSound = SoundID.Item20;
                     item.mana = 50; // up form 9
+                    item.shoot = ProjectileType<Blizzard>();
                     rightClickSideWeapon = true;
                     return;
                 case ItemID.ToxicFlask:
@@ -405,7 +407,7 @@ namespace TRAEProject.Changes.Items
                         Projectile.NewProjectile(source, mousePosition, Vector2.Zero, ProjectileType<Blizzard>(), damage, knockback, player.whoAmI);
 
 
-                        return true;
+                        return false;
                     }
                 case ItemID.AquaScepter:
                     {

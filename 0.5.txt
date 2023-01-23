@@ -6,3 +6,56 @@
 * Shadowflame DoT reduced from 60 to 36 (vanilla value: 15)
 * Venom DoT reduced from 100 to 80
 * Shadowflame Knife use time increased from 12 to 14
+* Shroomite bullet crit damage reduced from 25% to 20%
+* Tactical Shotgun damage reduced from 38 to 34
+
+
+* Scourge of the corruptor
+** damage reduced from 70 to 62
+** Thrown scourge now makes 2-4 mini eaters instead of 2-5
+** Worm enemies are immune to corrupted
+
+* Shroomite armor max damage bonus reduced from 35% to 25%
+* Vampire Knives damage reduced back to 29, now has 20 armor penetration
+* Withered armor reduces defense by 18 instead of 25
+* Withered weapon reduces damage by 16.66% instead of 20%
+
+* Paladin's hammer damage 90 -> 105, max hits set to 7
+
+* Possessed hatchet damage 80 -> 95
+* Inferno Fork max hits reduced to 16
+* Desert spirits drop spirit flame instead of Desert Spirit Lamp
+* Ghouls and Hallow Ghouls drop desert spirit lamp with a 1% chance
+* after Plantera has been defeated red devils are more common
+* red devils drop a guide voodoo doll with a 1.6667% chance
+
+* Magnet Sphere drains 8 mana per shot, range increased by 33%
+
+* Rocket Launcher damage 120 -> 100
+
+* Shadowflame charm apparitions inflict shadowflame for 4 seconds instead of 1
+* Molten charm 
+** apparitions inflict daybroken for 2 seconds instead of heavy burn for 1
+** Molten charm max charge and cost increased from 2400 and 600 to 3000 and 750
+** Doubled Explosion radius, pierce reduced to 5
+
+* Electro Shield
+** Mana drain reduced from 40 to 30
+** Damage increased from 45 to 60
+** knockback increased from 1 to 2.5
+
+* Stynger 
+** direct hit damage increased from 2x to 2.5x 
+** shrapnel now deals 75% damage instead of 100%
+**shnrapnel pierce reduced from infinite to 2
+
+* Nail Gun
+** Knockback increased from 0 to 1
+note: the nails do have knockback even if for some reason the weapon doesnt, this just lets it have unreal
+** damage increased from 85 to 95
+** Nails deal half damage instead of 15%
+** Explosions deal 100% damage instead of 135%
+** Note: Exact same single target DPS even with Defense taken into account
+** pierce limited to 4
+
+** Shinobi headgear summon damage and melee speed reduced back to 20%

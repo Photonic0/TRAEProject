@@ -234,7 +234,7 @@ namespace TRAEProject.Changes.Weapon
 					item.shoot = ProjectileType<SoTC>();
 					altShoot = ProjectileType<SoTCThrow>();
 					 
-					item.damage = 70;
+					item.damage = 62;
 					item.useTime = item.useAnimation = 24;
 					item.autoReuse = false;
 					item.shootSpeed = 9;

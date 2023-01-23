@@ -9,6 +9,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using TRAEProject.NewContent.Items.Materials;
 using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.NPCs.Underworld.Lavamander;
 using TRAEProject.NewContent.NPCs.Underworld.Salalava;
@@ -42,9 +43,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
             NPC.aiStyle = 74;
             AIType = NPCID.SolarCorite;
 			NPC.value = 0;
-            NPC.damage = 50;
+            NPC.damage = 60;
             NPC.defense = 28;
-            NPC.lifeMax = 3500;
+            NPC.lifeMax = 5000;
 			NPC.scale = 1.1f;
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.DD2_WyvernHurt;
@@ -55,7 +56,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			Banner = NPC.type; 
 			DrawOffsetY = -4;
             BannerItem = ItemType<FroggabombaBanner>(); 
-			NPC.GetGlobalNPC<HellMinibosses>().HellMinibossThatSpawnsInPairs = true;
+			NPC.GetGlobalNPC<UnderworldEnemies>().HellMinibossThatSpawnsInPairs = true;
 
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -63,14 +64,15 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
 			{
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-				new FlavorTextBestiaryInfoElement("With the sheer amount souls released, it seems the Underworld itself has gained sentience. It creates a legendary bird out of ashes and flames that will continue its assault until every trace of its presence has been dealt with.")
+				new FlavorTextBestiaryInfoElement("Legendary bird made out of ashes and flames. It will live on until every trace of its presence has been dealt with.")
 			});
 		}
 		float dustTimer = 0;
         public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
-			npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 5));
-			npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
+			npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 4));
+            npcLoot.Add(ItemDropRule.Common(ItemType<MagicalAsh>(), 1, 1, 2));
+            npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
         }
    //     public override int SpawnNPC(int tileX, int tileY)
    //     {
@@ -89,7 +91,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
    //     }
         public override void AI()
         {
-
             NPC.rotation = 0;
             if (NPC.ai[0] != 0f)
             {
@@ -293,19 +294,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			}
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
-		{ 
-				for (int i = 0; i < NPC.GetGlobalNPC<HellMinibosses>().MinibossList.Length; i++)
-				{
-					if (NPC.AnyNPCs(NPC.GetGlobalNPC<HellMinibosses>().MinibossList[i]))
-						return 0f;
-				}
-				if (Main.hardMode && NPC.downedPlantBoss)
-				{
-					return SpawnCondition.Underworld.Chance * 0.2f;
-				}
-				
-			
-			return 0f;
+        {
+            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn();
+
         }
     }
 
@@ -339,21 +330,22 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			NPC.value = 50000;
 			NPC.damage = 10;
 			NPC.defense = 0;
-			NPC.lifeMax = 1250;
+			NPC.lifeMax = 2000;
 			NPC.scale = 1f;
 			NPC.lavaImmune = true;
 			NPC.knockBackResist = 0f;
 		}
 
-		//public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-		//{
-		//	bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
-		//	{
-		//		BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-		//		new FlavorTextBestiaryInfoElement("The ashes of a dying phoenix. The fires of the Underworld will very quickly reignite its spirit.")
-		//	});
-		//}
-		public override void ModifyNPCLoot(NPCLoot npcLoot)
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            if (Main.masterMode)
+			{
+				NPC.lifeMax *= 3;
+				NPC.lifeMax /= 4;
+
+            }
+        }
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 5));
 			npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
@@ -420,7 +412,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
             {
 				NPC.life = 0;
 				SoundEngine.PlaySound(SoundID.DD2_WyvernScream, NPC.Center);
-				NPC.NewNPC(NPC.GetSource_Death(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<PhoenixNPC>());
+				NPC phoenix = NPC.NewNPCDirect(NPC.GetSource_Death(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<PhoenixNPC>());
+				phoenix.life = phoenix.lifeMax / 2;
 				for (int i = 0; i < 100; i++)
 				{
 					Vector2 speed = Main.rand.NextVector2CircularEdge(3.6f, 3.6f);

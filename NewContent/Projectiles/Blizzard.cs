@@ -36,17 +36,14 @@ namespace TRAEProject.NewContent.Projectiles
         public override void AI()
         {
             Projectile.localAI[0] += 1f;
-           
-			
-			if (Projectile.localAI[0] > fireRate)
+
+            Player player = Main.player[Projectile.owner];
+
+            if (player.statMana >= (int)(12 * player.manaCost) && Projectile.localAI[0] > fireRate)
             {
-				Main.player[Projectile.owner].statMana -= (int)(12 * Main.player[Projectile.owner].manaCost);
+				player.statMana -= (int)(12 * player.manaCost);
                 Projectile.localAI[0] -= fireRate;
-                TRAEMethods.SpawnProjectilesFromAbove(Main.player[Projectile.owner], Projectile.position, projectilesPerShot, SpreadX, SpreadY, offSetCenter, velocity, projectileType, Projectile.damage, Projectile.knockBack, Projectile.owner);
-            }
-            if (Main.player[Projectile.owner].statMana <= 0)
-            {
-                Projectile.Kill();
+                TRAEMethods.SpawnProjectilesFromAbove(player, Projectile.position, projectilesPerShot, SpreadX, SpreadY, offSetCenter, velocity, projectileType, Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
         }
     }

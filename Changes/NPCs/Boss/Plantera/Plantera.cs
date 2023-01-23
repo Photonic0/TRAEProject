@@ -12,6 +12,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using System.IO;
+using Terraria.Localization;
+using TRAEProject.NewContent.Items.Accesories.MagicalCarpet;
 
 namespace TRAEProject.Changes.NPCs.Boss.Plantera
 {
@@ -670,6 +672,24 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             }
             return base.PreDraw(npc, spriteBatch, screenPos, drawColor);
         }
+        public override void OnKill(NPC npc)
+        {
+
+            if (NPC.downedPlantBoss == false && npc.type == NPCID.Plantera)
+            {
+                if (Main.netMode == 2) // Server
+                {
+                    Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Underworld is burning hotter..."), new Color(73, 201, 127));
+                }
+                else if (Main.netMode == 0) // Single Player
+                {
+
+                    Main.NewText("The Underworld is burning hotter...", 73, 201, 127);
+                }
+            }
+
+        }
+
     }
 
 }

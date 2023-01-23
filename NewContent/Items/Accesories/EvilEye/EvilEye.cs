@@ -177,11 +177,11 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
                     return;
                 case BuffID.WitheredArmor:
                     player.witheredArmor = false;
-                    player.statDefense -= 25;
+                    player.statDefense -= 18;
                     return;
                 case BuffID.WitheredWeapon:
                     player.witheredWeapon = false;
-                    player.GetDamage<GenericDamageClass>() -= 0.2f;
+                    player.GetDamage<GenericDamageClass>() *= 0.933f;
                     return;
             }
         }

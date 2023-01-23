@@ -11,6 +11,7 @@ using static Terraria.ModLoader.ModContent;
 using TRAEProject.Common;
 using TRAEProject.Common.ModPlayers;
 using TRAEProject.NewContent.TRAEDebuffs;
+using TRAEProject.NewContent.NPCs;
 
 namespace TRAEProject.Changes.Weapon.Melee
 {
@@ -74,6 +75,9 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ProjectileID.CrimsonYoyo:
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.4f;
                     break;
+                case ProjectileID.VampireKnife:
+                    projectile.ArmorPenetration = 20;
+                    break;
                 case ProjectileID.ButchersChainsaw:
                     projectile.penetrate = -1;
                     projectile.usesIDStaticNPCImmunity = true;
@@ -98,6 +102,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                     break;
                 case ProjectileID.PaladinsHammerFriendly:
                     projectile.tileCollide = false;
+                    projectile.GetGlobalProjectile<ProjectileStats>().maxHits = 7;
                     break;
                 case ProjectileID.TerraBeam:
                     projectile.extraUpdates = 1;
@@ -364,7 +369,7 @@ namespace TRAEProject.Changes.Weapon.Melee
         {
             Player player = Main.player[projectile.owner];             
             if (projectile.type == ProjectileID.TinyEater)
-            {
+        { 
                 TRAEDebuff.Apply<Corrupted>(target, 181, 1);
             }
             if (projectile.type == ProjectileID.ChainGuillotine && crit)

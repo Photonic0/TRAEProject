@@ -9,6 +9,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using TRAEProject.NewContent.Items.Misc.Mounts;
 using TRAEProject.NewContent.NPCs.Banners;
 
 using static Terraria.ModLoader.ModContent;
@@ -57,16 +58,15 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 			bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>
 			{
 				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
-				new FlavorTextBestiaryInfoElement("")
+				new FlavorTextBestiaryInfoElement("Reptilian Lava Walkers. They hang near lava and attack only in self defense, meaning they could be domesticated with enough patience.")
 			});
 		}
 		float dustTimer = 0;
-		//      public override void ModifyNPCLoot(NPCLoot npcLoot)
-		//{
-		//	npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 5));
-		//	npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
-		//      }
-		float jump = 0;
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemType<HeatproofSaddle>(), 100));
+        }
+        float jump = 0;
         public override void AI()
         {
 
@@ -115,10 +115,11 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 		}
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (Math.Abs(spawnInfo.SpawnTileX - Main.spawnTileX) > Main.maxTilesX / 3)
+            if (!NPC.downedPlantBoss)
             {
                 return SpawnCondition.Underworld.Chance * 0.25f;
             }
+
             return 0f;
         }
         int frame = 0;

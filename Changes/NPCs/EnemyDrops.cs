@@ -29,10 +29,20 @@ namespace TRAEProject.Changes.NPCs
 
             switch (npc.type)
             {
+                case NPCID.RedDevil:
+                    npcLoot.Add(ItemDropRule.Common(ItemID.GuideVoodooDoll, 60));
+                    npcLoot.RemoveWhere(rule =>
+                    {
+                        if (rule is not CommonDrop drop) // Type of drop you expect here
+                            return false;
+                        return drop.itemId == ItemID.FireFeather; // compare more fields if needed
+                    });
+                    npcLoot.Remove(ItemDropRule.Common(ItemID.FireFeather));
+                    break;
                 case NPCID.DesertGhoul:
                 case NPCID.DesertGhoulHallow:
-                npcLoot.Add(ItemDropRule.Common(ItemID.DjinnLamp, 30));
-                break;
+                npcLoot.Add(ItemDropRule.Common(ItemID.DjinnLamp, 100));
+                    break;
                 case NPCID.DesertDjinn:
                     npcLoot.RemoveWhere(rule =>
                     {
@@ -40,7 +50,7 @@ namespace TRAEProject.Changes.NPCs
                             return false;
                         return drop.itemId == ItemID.DjinnLamp; // compare more fields if needed
                     });
-                    npcLoot.Add(ItemDropRule.Common(ItemID.SpiritFlame, 20));
+                    npcLoot.Add(ItemDropRule.Common(ItemID.SpiritFlame, 40));
                 break;
                 case NPCID.IcyMerman:
                 case NPCID.IceElemental:

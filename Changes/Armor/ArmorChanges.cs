@@ -130,8 +130,7 @@ namespace ChangesArmor
                     player.GetDamage<MeleeDamageClass>()  += 0.2f;
                     break;
                 case ItemID.MonkAltHead:
-                    player.GetAttackSpeed(DamageClass.Melee) += 0.3f;
-                    player.GetDamage<SummonDamageClass>()  += 0.1f;
+                    player.GetAttackSpeed(DamageClass.Melee) += 0.2f;
                     player.GetDamage<MeleeDamageClass>()  -= 0.2f;
                     break;
                 case ItemID.MonkAltPants:
@@ -655,7 +654,7 @@ namespace ChangesArmor
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Increases melee speed and minion damage by 30%\nIncreases your maximum number of sentries by 2 ";
+                            line.Text = "20% increased melee speed and minion damage\nIncreases your maximum number of sentries by 2 ";
                         }
                     }
                     return;

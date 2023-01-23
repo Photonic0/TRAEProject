@@ -479,7 +479,7 @@ namespace TRAEProject.Changes.NPCs
             }
             if (npc.type == NPCID.Plantera)
             {
-                DownedBosses.downedOvergrowth = true;
+                TRAEWorld.downedOvergrowth = true;
             }
 
         }

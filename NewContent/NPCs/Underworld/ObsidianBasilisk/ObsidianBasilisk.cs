@@ -1,14 +1,13 @@
-using TRAEProject.NewContent.NPCs;
 using Microsoft.Xna.Framework;
-using System.IO;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
-using Terraria.ModLoader.Utilities;
 using TRAEProject.Common;
-using TRAEProject.NewContent.NPCs.Underworld.Phoenix;
+using static Terraria.ModLoader.ModContent;
+using TRAEProject.NewContent.Items.Materials;
+using Terraria.GameContent.ItemDropRules;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 {
@@ -26,7 +25,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 				SpecificallyImmuneTo = new int[] {
 					BuffID.OnFire,
 					BuffID.OnFire3,
-					BuffID.Daybreak,
+                    BuffID.Venom,
+
                     BuffID.Confused // Most NPCs have this
 				}
             };
@@ -51,41 +51,61 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
             //AnimationType = NPCID.WalkingAntlion;
             NPC.value = 10000;
             NPC.damage = 100;
-            NPC.defense = 33;
-            NPC.lifeMax = 15000; NPC.scale = 1.1f;
+            NPC.defense = 30;
+            NPC.lifeMax = 26000; NPC.scale = 1.1f;
             NPC.lavaImmune = true;
-			NPC.GetGlobalNPC<Freeze>().freezeImmune = true;
-			NPC.GetGlobalNPC<HellMinibosses>().HellMinibossThatSpawnsInPairs = true;
+			NPC.GetGlobalNPC<Freeze>().freezeImmune = true; NPC.GetGlobalNPC<Stun>().stunImmune = true;
+
+            NPC.GetGlobalNPC<UnderworldEnemies>().HellMinibossThatSpawnsInPairs = true;
             NPC.HitSound = SoundID.NPCHit41;
             NPC.DeathSound = SoundID.NPCDeath24;
+       
             //NPC.aiStyle = -1;
 		}
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ItemType<ObsidianScale>(), 1, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Spaghetti, 33));
+        }
 
-		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
 			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the spawning conditions of this NPC that is listed in the bestiary.
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns,
+				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
 
 				// Sets the description of this NPC that is listed in the bestiary.
-				new FlavorTextBestiaryInfoElement("")
+				new FlavorTextBestiaryInfoElement("The Bone Serpents of the Underworld regained their scales and their power. With a heavily armored exoskeleton they relentlessly pursue any intruders.")
 			});
 		}
+        public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        {
+            damage *= 2;
+        }
+        public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            damage *= 2;
+        }
         public override void HitEffect(int hitDirection, double damage)
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 20; i++)
             {
-                Vector2 vel = new Vector2(Main.rand.NextFloat(-4, -8), Main.rand.NextFloat(4, 8));
-                var dust = Dust.NewDustDirect(new Vector2(NPC.Center.X - 10, NPC.Center.Y - 10), 20, 20, DustID.Torch, Scale: 1.2f); ;
-                dust.noGravity = true;
+                float radius = 300 / 41.67f;
+                Vector2 speed = Main.rand.NextVector2CircularEdge(radius, radius);
+                Dust d = Dust.NewDustPerfect(NPC.Center, DustID.Torch, speed, Scale: 3f);
+                if (Main.rand.NextBool(3))
+                {
+                    d.scale *= Main.rand.NextFloat(1.25f, 1.5f);
+                    d.velocity *= Main.rand.NextFloat(1.25f, 1.5f);
+                }
+                d.noGravity = true;
             }
         }
         public override void Init() {
 			// Set the segment variance
 			// If you want the segment length to be constant, set these two properties to the same value
-			MinSegmentLength = 66;
-			MaxSegmentLength = 66;
+			MinSegmentLength = 75;
+			MaxSegmentLength = 75;
 
 			CommonWormInit(this);
 		}
@@ -93,23 +113,13 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 		// This method is invoked from ExampleWormHead, ExampleWormBody and ExampleWormTail
 		internal static void CommonWormInit(Worm worm) {
 			// These two properties handle the movement of the worm
-			worm.MoveSpeed = 18f;
+			worm.MoveSpeed = 20f;
 			worm.Acceleration = 0.15f;
 		}
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn();
 
-                for (int i = 0; i < NPC.GetGlobalNPC<HellMinibosses>().MinibossList.Length; i++)
-                {
-                    if (NPC.AnyNPCs(NPC.GetGlobalNPC<HellMinibosses>().MinibossList[i]))
-                        return 0f;
-                }
-                if (Main.hardMode && NPC.downedPlantBoss)
-                {
-                    return SpawnCondition.Underworld.Chance * 0.2f;
-                }
-            
-			return 0f;
         }
         public override bool PreKill()
         {
@@ -130,6 +140,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
                     BuffID.OnFire,
                     BuffID.OnFire3,
                     BuffID.Daybreak,
+                    BuffID.Venom,
                     BuffID.Confused // Most NPCs have this
 				}
             };
@@ -145,8 +156,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
         public override void SetDefaults()
         {
             NPC.CloneDefaults(NPCID.DiggerBody);
-            NPC.damage = 90;
-            NPC.defense = 120; NPC.HitSound = SoundID.NPCHit4;
+            NPC.damage = 75;
+            NPC.defense = 125; NPC.HitSound = SoundID.NPCHit4;
+            NPC.GetGlobalNPC<Freeze>().freezeImmune = true;
+            NPC.GetGlobalNPC<Stun>().stunImmune = true;
 
             NPC.aiStyle = -1; NPC.scale = 1.2f;
         }
@@ -191,6 +204,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 			NPC.defense = 50;
 			NPC.aiStyle = -1;
 			NPC.scale = 1.2f; NPC.HitSound = SoundID.NPCHit41;
+            NPC.GetGlobalNPC<Freeze>().freezeImmune = true;
+            NPC.GetGlobalNPC<Stun>().stunImmune = true;
 
         }
         public override void HitEffect(int hitDirection, double damage)

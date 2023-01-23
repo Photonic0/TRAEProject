@@ -38,14 +38,14 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
 		public int ShadowflameCharmLimit = 3000;
         public int MoltenCharm = 0;
         public int MoltenCharmCharge = 0;
-        public int MoltenCharmLimit = 2400;
+        public int MoltenCharmLimit = 3000;
 
         public override void ResetEffects()
         {
             ShadowflameCharm = 0;
 			ShadowflameCharmLimit = 3000;
             MoltenCharm = 0;
-			MoltenCharmLimit = 2400;
+			MoltenCharmLimit = 3000;
         }
         public override void UpdateDead()
         {
@@ -103,9 +103,9 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
                         ShadowflameCharmCharge -= 750;
                     }
                 }
-                if (MoltenCharmCharge > 600)
+                if (MoltenCharmCharge > 750)
                 {
-                    for (int i = 0; i < MoltenCharmCharge / 600; ++i)
+                    for (int i = 0; i < MoltenCharmCharge / 750; ++i)
                     {
                         Player player = Main.player[proj.owner];
                         int direction = player.direction;
@@ -126,7 +126,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
                         num2 *= num4;
                         num3 *= num4;
                         Projectile.NewProjectile(player.GetSource_FromThis(), k, y2, num2, num3, ProjectileType<MoltenApparition>(), 50, 0f, player.whoAmI);
-                        MoltenCharmCharge -= 600;
+                        MoltenCharmCharge -= 750;
                     }
                 }    
             }
@@ -155,7 +155,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
             Projectile.localNPCHitCooldown = 10;
             Projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.ShadowFlame;
-            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 60;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 240;
         }
         public override void AI()
         {
@@ -181,7 +181,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
             Projectile.width = 44;
             Projectile.height = 44;
             Projectile.light = 0.1f;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 5;
             Projectile.timeLeft = 300;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
@@ -190,13 +190,12 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
             Projectile.localNPCHitCooldown = 10;  
 			Projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
+            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 160;            
+			Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.Daybreak;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 120;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            TRAEDebuff.Apply<HeavyBurn>(target, 120, 1);
-        }
+
         public override void AI()
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
