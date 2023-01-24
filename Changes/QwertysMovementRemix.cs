@@ -644,8 +644,25 @@ namespace TRAEProject
         {
             switch (item.type)
             {
+                case ItemID.CenxsWings:
+                case ItemID.RedsWings:
+                case ItemID.JimsWings:
+                case ItemID.DTownsWings:
+                case ItemID.Yoraiz0rWings:
+                case ItemID.FoodBarbarianWings:
+                case ItemID.SafemanWings:
+                case ItemID.LeinforsWings:
+                case ItemID.CrownosWings:
+                case ItemID.GhostarsWings:
+                case ItemID.GroxTheGreatWings:
+                case ItemID.BejeweledValkyrieWing:
+                case ItemID.LokisWings:
+                case ItemID.SkiphsWings:
+                    player.moveSpeed += 0.1f;
+                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.1f);
+                break;
                 case ItemID.Jetpack:
-                    player.moveSpeed += - 0.1f;
+                    player.moveSpeed += -0.1f;
                     player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.2f);
                 break;
                 case ItemID.AngelWings:
@@ -797,6 +814,22 @@ namespace TRAEProject
             }
             switch (item.type)
             {
+                case ItemID.CenxsWings:
+                case ItemID.RedsWings:
+                case ItemID.JimsWings:
+                case ItemID.DTownsWings:
+                case ItemID.Yoraiz0rWings:
+                case ItemID.FoodBarbarianWings:
+                case ItemID.SafemanWings:
+                case ItemID.LeinforsWings:
+                case ItemID.CrownosWings:
+                case ItemID.GhostarsWings:
+                case ItemID.GroxTheGreatWings:
+                case ItemID.BejeweledValkyrieWing:
+                case ItemID.LokisWings:
+                case ItemID.SkiphsWings:
+                    tooltips.Add(new TooltipLine(Mod, "dev wing speed", "Increases movement and jumps speed by 10%"));
+                break;
                 case ItemID.Jetpack:
                     foreach (TooltipLine line in tooltips)
                     {
