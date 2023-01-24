@@ -116,11 +116,10 @@ namespace TRAEProject.Changes.Weapons
                     return;
                 case ItemID.SniperRifle:
                     item.damage = 200; // up from 185
-                    item.crit = 50; //up from 30
                     item.autoReuse = true;
                     return;
                 case ItemID.TacticalShotgun:
-                    item.damage = 38; // up from 29
+                    item.damage = 34; // up from 29
                     item.useTime = 29; // down from 34
                     item.useAnimation = 29; // down from 34
                     return;
@@ -135,7 +134,8 @@ namespace TRAEProject.Changes.Weapons
                     item.useAnimation = 15;
                     return;
                 case ItemID.NailGun:
-                    item.damage = 110; // up from 85
+                    item.damage = 95; // up from 85
+                    item.knockBack = 1f; // up from 0
                     return;
                 case ItemID.Tsunami:
                     item.damage = 79;

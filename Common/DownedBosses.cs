@@ -9,12 +9,13 @@ using Terraria.ID;
 
 namespace TRAEProject.Common
 {
-    public class DownedBosses : ModSystem
+    public class TRAEWorld : ModSystem
     {
         public static bool downedOvergrowth = false;
         public static bool downedOgre = false;
         public static bool downedBetsy = false;
         // public static bool downedOtherBoss = false;
+
 
         public override void OnWorldLoad()
         {
@@ -80,17 +81,17 @@ public class DownedVanillaNPCs : GlobalNPC
     public override bool InstancePerEntity => true;
     public override void OnKill(NPC npc)
     {
-        if ((npc.type == NPCID.DD2OgreT2 || npc.type == NPCID.DD2OgreT3) && !DownedBosses.downedOgre)
+        if ((npc.type == NPCID.DD2OgreT2 || npc.type == NPCID.DD2OgreT3) && !TRAEWorld.downedOgre)
         {
-            DownedBosses.downedOgre = true;
+            TRAEWorld.downedOgre = true;
         }
-        if (npc.type == NPCID.DD2Betsy && !DownedBosses.downedBetsy)
+        if (npc.type == NPCID.DD2Betsy && !TRAEWorld.downedBetsy)
         {
-            DownedBosses.downedBetsy = true;
+            TRAEWorld.downedBetsy = true;
         }
-        if (!DownedBosses.downedOvergrowth)
+        if (!TRAEWorld.downedOvergrowth)
         {
-            DownedBosses.downedOvergrowth = true;
+            TRAEWorld.downedOvergrowth = true;
         }
     }
 }

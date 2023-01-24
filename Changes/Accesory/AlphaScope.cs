@@ -62,6 +62,8 @@ namespace TRAEProject.Changes.Accesory
                 case ProjectileID.PulseBolt:
                 case ProjectileID.Stake:
                 case ProjectileID.Hellwing:
+                    AffectedByReconScope = true;
+                    AffectedByAlphaScope = true;
                     projectile.arrow = true;
                     return;
                 case ProjectileID.Bullet:
@@ -77,6 +79,7 @@ namespace TRAEProject.Changes.Accesory
                 case ProjectileID.VenomBullet:
                 case ProjectileID.ChlorophyteBullet:
                 case ProjectileID.NanoBullet:
+
                 case ProjectileID.MoonlordBullet:
                     AffectedByReconScope = true; 
                     AffectedByAlphaScope = false;
@@ -156,10 +159,10 @@ namespace TRAEProject.Changes.Accesory
                     value2.Normalize();
                     projectile.velocity = value2 * scaleFactor2;
                     projectile.netUpdate = true;
-                    projectile.damage = (int)(projectile.damage * 0.5);
+                    projectile.damage = (int)(projectile.damage * 0.6);
                     --smartbounces;
                     hasBounced = true;
-                    for (int i = 0; i < 20; ++i)
+                    for (int i = 0; i < 15; ++i)
                     {
                         Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.UndergroundHallowedEnemies, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default, 1.5f);
                         dust.noGravity = true;
@@ -201,10 +204,10 @@ namespace TRAEProject.Changes.Accesory
                 value2.Normalize();
                 projectile.velocity = value2 * scaleFactor2;
                 projectile.netUpdate = true;
-                projectile.damage = (int)(projectile.damage * 0.5);
+                projectile.damage = (int)(projectile.damage * 0.6);
                 --smartbounces;
                 hasBounced = true;
-                for (int i = 0; i < 30; ++i)
+                for (int i = 0; i < 15; ++i)
                 {
                     Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.UndergroundHallowedEnemies, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, 150, default, 1.5f);
                     dust.noGravity = true;

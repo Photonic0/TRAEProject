@@ -105,7 +105,7 @@ namespace TRAEProject
                         Player.stealth = 1f;
                     }
                 }
-                Player.GetDamage<RangedDamageClass>() -= (1f - Player.stealth) * 0.1f;// at maximum stealth (0.25, not 0 like in vanilla), damage is increased by 45%. With this code, it's reduced by 10%, making it +35%
+                Player.GetDamage<RangedDamageClass>() -= (1f - Player.stealth) * 0.2f;// at maximum stealth (0.25, not 0 like in vanilla), damage is increased by 45%. With this code, it's reduced by 20%, making it +25%
                 //Player.aggro -= (int)((1f - Player.stealth) * 750f);
                 if (Player.stealthTimer > 0)
                 {

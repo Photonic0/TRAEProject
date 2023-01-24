@@ -42,9 +42,9 @@ namespace TRAEProject
                 case ItemID.BeetleLeggings:
                     player.moveSpeed -= 0.01f;
                     break;
-                case ItemID.ShroomiteLeggings:
-                    player.moveSpeed += 0.18f;
-                    break;
+                //case ItemID.ShroomiteLeggings:
+                //    player.moveSpeed += 0.18f;
+                //    break;
                 case ItemID.SpectrePants:
                     player.moveSpeed += 0.02f;
                     break;
@@ -77,15 +77,15 @@ namespace TRAEProject
                         }
                     }
                     break;
-                case ItemID.ShroomiteLeggings:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text = QwertysMovementRemix.SpeedTooltip(6) + " increased " + QwertysMovementRemix.MS;
-                        }
-                    }
-                    break;
+                //case ItemID.ShroomiteLeggings:
+                //    foreach (TooltipLine line in tooltips)
+                //    {
+                //        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                //        {
+                //            line.Text = QwertysMovementRemix.SpeedTooltip(6) + " increased " + QwertysMovementRemix.MS;
+                //        }
+                //    }
+                //    break;
                 case ItemID.SpectrePants:
                     foreach (TooltipLine line in tooltips)
                     {

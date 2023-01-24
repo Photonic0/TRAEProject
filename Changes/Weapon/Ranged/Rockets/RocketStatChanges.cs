@@ -64,7 +64,7 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     item.useAnimation = 30;
                     break;
                 case ItemID.RocketLauncher:
-                    item.damage = 120; // up from 45
+                    item.damage = 100; // up from 45
 					break;
             }
         }

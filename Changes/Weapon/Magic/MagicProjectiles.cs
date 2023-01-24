@@ -6,6 +6,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 using static Terraria.ModLoader.ModContent;
+using static Terraria.ModLoader.PlayerDrawLayer;
+using System;
 
 namespace TRAEProject.Changes.Projectiles
 {
@@ -73,7 +75,10 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.SharpTears:
                     projectile.penetrate = 5;
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFallon = 1.42f;
-                    break;              
+                    break;
+                case ProjectileID.MagnetSphereBall:
+                    projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
+                    break;
                 case ProjectileID.WaterStream:
                     projectile.penetrate = 1;
                     break;
@@ -142,6 +147,9 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = -1;
                     break;
+                case ProjectileID.InfernoFriendlyBlast:
+                    projectile.penetrate = 16;
+                    break;
             }
         }
 
@@ -170,24 +178,120 @@ namespace TRAEProject.Changes.Projectiles
             if (DrainManaOnHit > 0)
             {
                 Player player = Main.player[projectile.owner];
+                if (player.statMana < DrainManaOnHit * player.manaCost)
+                {
+                    projectile.Kill();
+                }
                 player.statMana -= (int)(DrainManaOnHit * player.manaCost);
             }
         }
         public override bool PreAI(Projectile projectile)
         {
             Player player = Main.player[projectile.owner];
-            // Crimson Rod Change
             if (projectile.type == ProjectileID.MagnetSphereBall)
             {
-                
-                if (projectile.localAI[0] >= 8f)
+
+                if (projectile.ai[0] == 0f)
                 {
-                    if (player.statMana < (int)(6 * player.manaCost))
-                        return false;
-                    else
-                        player.statMana -= (int)(6 * player.manaCost);
+                    projectile.ai[0] = projectile.velocity.X;
+                    projectile.ai[1] = projectile.velocity.Y;
                 }
-            }
+                if (projectile.velocity.X > 0f)
+                {
+                    projectile.rotation += (Math.Abs(projectile.velocity.Y) + Math.Abs(projectile.velocity.X)) * 0.001f;
+                }
+                else
+                {
+                    projectile.rotation -= (Math.Abs(projectile.velocity.Y) + Math.Abs(projectile.velocity.X)) * 0.001f;
+                }
+                projectile.frameCounter++;
+                if (projectile.frameCounter > 6)
+                {
+                    projectile.frameCounter = 0;
+                    projectile.frame++;
+                    if (projectile.frame > 4)
+                    {
+                        projectile.frame = 0;
+                    }
+                }
+                if (projectile.velocity.Length() > 2f)
+                {
+                    projectile.velocity *= 0.98f;
+                }
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (i != projectile.whoAmI)
+                    {
+                        Projectile Projectile = Main.projectile[i];
+                        if (Projectile.active && Projectile.owner == projectile.owner && Projectile.type == projectile.type && projectile.timeLeft > Main.projectile[i].timeLeft && Main.projectile[i].timeLeft > 30)
+                        {
+                            Main.projectile[i].timeLeft = 30;
+                        }
+                    }
+                }
+
+                int[] array = new int[20];
+                int num = 0;
+                float range = 400f;
+                bool flag = false;
+                float num3 = 0f;
+                float num4 = 0f;
+                for (int i = 0; i < 200; i++)
+                {
+                    if (!Main.npc[i].CanBeChasedBy(this))
+                    {
+                        continue;
+                    }
+                    float num5 = Main.npc[i].position.X + (float)(Main.npc[i].width / 2);
+                    float num6 = Main.npc[i].position.Y + (float)(Main.npc[i].height / 2);
+                    float num7 = Math.Abs(projectile.position.X + (float)(projectile.width / 2) - num5) + Math.Abs(projectile.position.Y + (float)(projectile.height / 2) - num6);
+                    if (num7 < range && Collision.CanHit(projectile.Center, 1, 1, Main.npc[i].Center, 1, 1))
+                    {
+                        if (num < 20)
+                        {
+                            array[num] = i;
+                            num++;
+                            num3 = num5;
+                            num4 = num6;
+                        }
+                        flag = true;
+                    }
+                }
+                if (projectile.timeLeft < 30)
+                {
+                    flag = false;
+                }
+                if (flag)
+                {
+                    int num8 = Main.rand.Next(num);
+                    num8 = array[num8];
+                    num3 = Main.npc[num8].position.X + (float)(Main.npc[num8].width / 2);
+                    num4 = Main.npc[num8].position.Y + (float)(Main.npc[num8].height / 2);
+                    projectile.localAI[0] += 1f;
+                    if (projectile.localAI[0] > 8f)
+                    {
+                        projectile.localAI[0] = 0f;
+                        if (player.statMana >= (int)(10 * player.manaCost))
+                        {
+                            player.statMana -= (int)(10 * player.manaCost);
+                            float num9 = 6f;
+                            Vector2 vector = new Vector2(projectile.position.X + (float)projectile.width * 0.5f, projectile.position.Y + (float)projectile.height * 0.5f);
+                            vector += projectile.velocity * 4f;
+                            float num10 = num3 - vector.X;
+                            float num11 = num4 - vector.Y;
+                            float num12 = (float)Math.Sqrt(num10 * num10 + num11 * num11);
+                            float num13 = num12;
+                            num12 = num9 / num12;
+                            num10 *= num12;
+                            num11 *= num12;
+                            Projectile.NewProjectile(projectile.GetSource_FromThis(), vector.X, vector.Y, num10, num11, 255, projectile.damage, projectile.knockBack, projectile.owner);
+                        }
+                    }
+                }
+                return false;
+            }            
+            // Crimson Rod Change
+
             if (projectile.type == 244)
             {
                 int PosX = (int)projectile.Center.X;

@@ -163,7 +163,7 @@ namespace TRAEProject.Changes
                     nextSlot++;
                     break;
                 case NPCID.DD2Bartender:
-                    if (!DownedBosses.downedOgre)
+                    if (!TRAEWorld.downedOgre)
                     {        
                         int[] ArmorList = new int[] { ItemID.HuntressWig, ItemID.HuntressPants, ItemID.HuntressJerkin,
                                                       ItemID.SquireGreatHelm, ItemID.SquirePlating, ItemID.SquireGreaves,
@@ -184,7 +184,7 @@ namespace TRAEProject.Changes
                             }
                         }
                     }
-                    if (!DownedBosses.downedBetsy)
+                    if (!TRAEWorld.downedBetsy)
                     {
                         int[] ArmorList = new int[] { ItemID.HuntressAltHead, ItemID.HuntressAltPants, ItemID.HuntressAltShirt,
                                                       ItemID.SquireAltHead, ItemID.SquireAltShirt, ItemID.SquireAltPants,

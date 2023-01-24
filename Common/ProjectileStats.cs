@@ -18,6 +18,9 @@ namespace TRAEProject.Common
         public int HitCount = 0;
 
         // Damage
+        public int maxHits = -1; 
+        public float CritDamage = 0f; // Bonus damage on a critical strike. Stacks additively with other damage sources
+
         public float DamageFalloff = 0f; // How much damage the projectile loses every time it hits an enemy. 
         public float DamageFallon = 1f; // How much damage the projectile gains every time it hits an enemy. 
         public float DirectDamage = 1f; // how much damage the projectile deals when it hits an enemy, independent of the weapon.
@@ -347,8 +350,18 @@ namespace TRAEProject.Common
 
             
         }
+        int hits = 0;
+
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            
+            if (maxHits > -1)
+            {
+                hits++;
+                if (hits == maxHits)
+                    projectile.damage = 0;
+
+            }
             if(extraAP > 0)
             {
                 Main.player[projectile.owner].GetArmorPenetration(DamageClass.Generic) -= extraAP;

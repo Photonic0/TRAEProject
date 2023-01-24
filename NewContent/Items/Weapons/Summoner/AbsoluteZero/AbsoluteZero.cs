@@ -34,7 +34,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
             Item.damage = 150;
             Item.useTime = Item.useAnimation = 30;
             Item.knockBack = 2f;
-            Item.shootSpeed = 5.35f;
+            Item.shootSpeed = 7.48f;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(0, 10, 0, 0);
         }
@@ -44,12 +44,14 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("AbsoluteZero");
+            DisplayName.SetDefault("AbsoluteZero"); ProjectileID.Sets.IsAWhip[Type] = true;
+
         }
         public override void WhipDefaults()
         {
+           
             originalColor = new Color(29, 41, 81);
-            whipRangeMultiplier = 1.4f;
+            whipRangeMultiplier = 1f;
             fallOff = 0.4f;
             tag = BuffType<AbsoluteZeroTag>();
             whipSegments = 40;

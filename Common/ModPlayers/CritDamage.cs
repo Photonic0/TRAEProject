@@ -48,7 +48,7 @@ namespace TRAEProject.Common.ModPlayers
         {
             if (crit)
             {
-                float multiplier = critDamage;
+                float multiplier = critDamage + proj.GetGlobalProjectile<ProjectileStats>().CritDamage;
                 if (proj.CountsAsClass(DamageClass.Melee))
                 {
                     multiplier += meleeCritDamage;

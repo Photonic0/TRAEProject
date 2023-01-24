@@ -14,12 +14,17 @@ using TRAEProject.NewContent.Items.Accesories.ShadowflameCharm;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Armor;
 using TRAEProject.Common;
+using TRAEProject.NewContent.Items.Weapons.Summoner.TailWhip;
 
 namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 {
     public abstract class WhipProjectile : ModProjectile
     {
-
+        public override void SetStaticDefaults()
+        {
+            // This makes the projectile use whip collision detection and allows flasks to be applied to it.
+            ProjectileID.Sets.IsAWhip[Type] = true;
+        }
         public override void SetDefaults()
         {
 			Projectile.width = 18;
@@ -33,24 +38,36 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 			Projectile.extraUpdates = 1;
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = -1;
-			Projectile.DamageType = DamageClass.Summon;
-			WhipDefaults();
+			//Projectile.DamageType = DamageClass.SummonMeleeSpeed;
+			Projectile.DefaultToWhip();
+            WhipDefaults();
 		}
 		public virtual void WhipDefaults()
-        {
-
-        }
-        protected int whipSegments = 20;
+		{
+			//Projectile.width = 18;
+			//Projectile.height = 18;
+			////Projectile.aiStyle = 165;
+			//Projectile.friendly = true;
+			//Projectile.penetrate = -1;
+			//Projectile.tileCollide = false;
+			//Projectile.scale = 1f;
+			//Projectile.ownerHitCheck = true;
+			//Projectile.extraUpdates = 1;
+			//Projectile.usesLocalNPCImmunity = true;
+			//Projectile.localNPCHitCooldown = -1;
+			//Projectile.DamageType = DamageClass.SummonMeleeSpeed;
+		}
+		protected int whipSegments = 20;
 		protected float whipRangeMultiplier = 1f;
 		protected Color originalColor = Color.White;
 		protected int tag = -1;
 		protected float tipScale = 1f;
 		protected float fallOff = 0.3f;
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
+		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		{
 			ProjectileID.Sets.IsAWhip[Type] = true;
 		}
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
 			Projectile.damage = (int)(Projectile.damage * (1f - fallOff));
 			Player player = Main.player[Projectile.owner];
@@ -109,14 +126,14 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 				}
 			}
 			Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-			ProjectileID.Sets.IsAWhip[Type] = false;
 
 		}
 		
-        public override void AI()
+        public override bool PreAI()
         {
-			// BAND-AID fix to the multiple whips bug
-			for (int i = 0; i < 1000; i++)
+            ProjectileID.Sets.IsAWhip[Type] = true;
+            // BAND-AID fix to the multiple whips bug
+            for (int i = 0; i < 1000; i++)
 			{
 				if (Main.projectile[i].active && Main.projectile[i].owner == Projectile.owner && Main.projectile[i].type == Projectile.type && Main.projectile[i].whoAmI != Projectile.whoAmI)
 				{
@@ -132,7 +149,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 			if (Projectile.ai[0] >= timeToFlyOut || player.itemAnimation == 0)
 			{
 				Projectile.Kill();
-				return;
+				return false;
 			}
 			player.heldProj = Projectile.whoAmI;
 			player.itemAnimation = player.itemAnimationMax - (int)(Projectile.ai[0] / (float)Projectile.MaxUpdates);
@@ -150,7 +167,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 				float num7 = Utils.GetLerpValue(0.1f, 0.7f, t4, clamped: true) * Utils.GetLerpValue(0.9f, 0.7f, t4, clamped: true);
 				if (!(num7 > 0.1f) || !(Main.rand.NextFloat() < num7 / 2f))
 				{
-					return;
+					return false;
 				}
 				Projectile.WhipPointsForCollision.Clear();
 				FillWhipControlPoints(Projectile, Projectile.WhipPointsForCollision);
@@ -177,15 +194,38 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 					}
 				}
 				Lighting.AddLight(r5.Center.ToVector2(), new Vector3(0.1f, 0.1f, 0.2f));
-				return;
-			}
-			if (Projectile.type == ProjectileType<StarflowP>())
+				return false;
+            }
+            if (Projectile.type == ProjectileType<TailWhipP>())
+            {
+                float t4 = Projectile.ai[0] / timeToFlyOut;
+                float num7 = Utils.GetLerpValue(0.1f, 0.7f, t4, clamped: true) * Utils.GetLerpValue(0.9f, 0.7f, t4, clamped: true);
+                if (!(num7 > 0.1f) || !(Main.rand.NextFloat() < num7 / 2f))
+                {
+                    return false;
+                }
+                Projectile.WhipPointsForCollision.Clear();
+                FillWhipControlPoints(Projectile, Projectile.WhipPointsForCollision);
+                Rectangle r5 = Utils.CenteredRectangle(Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 1], new Vector2(30f, 30f));
+                Vector2 value2 = Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 2].DirectionTo(Projectile.WhipPointsForCollision[Projectile.WhipPointsForCollision.Count - 1]).SafeNormalize(Vector2.Zero);
+                for (int j = 0; j < 4; j++)
+                {
+
+                    Dust dust5 = Dust.NewDustDirect(r5.TopLeft(), r5.Width, r5.Height, DustID.Torch, 0f, 0f, 0, default(Color), 1.5f);
+                    dust5.noGravity = true;
+                    dust5.velocity += value2 * 2f;
+                }
+                Lighting.AddLight(r5.Center.ToVector2(), new Vector3(0.1f, 0f, 0f));
+
+                return false;
+            }
+            if (Projectile.type == ProjectileType<StarflowP>())
 			{
 				float t4 = Projectile.ai[0] / timeToFlyOut;
 				float num7 = Utils.GetLerpValue(0.1f, 0.7f, t4, clamped: true) * Utils.GetLerpValue(0.9f, 0.7f, t4, clamped: true);
 				if (!(num7 > 0.1f) || !(Main.rand.NextFloat() < num7 / 2f))
 				{
-					return;
+					return false;
 				}
 				Projectile.WhipPointsForCollision.Clear();
 				FillWhipControlPoints(Projectile, Projectile.WhipPointsForCollision);
@@ -210,8 +250,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 				}
 				Lighting.AddLight(r5.Center.ToVector2(), new Vector3(0.1f, 0.1f, 0.2f));
 
-				return;
+				return false;
 			}
+			return false;
 		}
 		
 		public void GetWhipSettings(Projectile proj, out float timeToFlyOut, out int segments, out float rangeMultiplier)
