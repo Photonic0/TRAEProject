@@ -93,6 +93,16 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
         //	npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 5));
         //	npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
         //      }
+        void DoDeathray(Player target, Vector2 shootFrom)
+        {
+            facethisway = NPC.spriteDirection;
+            beamDirection = (target.Center - shootFrom).ToRotation();
+            SoundEngine.PlaySound(SoundID.Zombie104, NPC.position);
+            float rotateDirection = (target.Center.Y > shootFrom.Y ? 1 : -1) * (target.Center.X > shootFrom.X ? 1 : -1); 
+            float rotation = beamDirection + rotateDirection * beamSweepAngle / 2f;
+            Projectile p = Main.projectile[Projectile.NewProjectile(new EntitySource_Misc(""), shootFrom, TRAEMethods.PolarVector(1f, rotation), ProjectileType<DeathgazeBeam>(), 80, 0, 0)];
+            p.ai[0] = rotateDirection;
+        }
         float beamDirection = 0;
         public const float beamSweepAngle = (float)Math.PI / 6;
         int facethisway = 0;
@@ -386,11 +396,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     Vector2 shootFrom = ActualCenter - Vector2.UnitY * 10 + NPC.direction * Vector2.UnitX * 40;
                     if (NPC.ai[2] == 90)
                     {
-                        facethisway = NPC.spriteDirection;
-                        beamDirection = (target.Center - shootFrom).ToRotation();
-                        SoundEngine.PlaySound(SoundID.Zombie104, NPC.position); 
-
-                        Projectile.NewProjectile(new EntitySource_Misc(""), shootFrom, TRAEMethods.PolarVector(1f, beamDirection + beamSweepAngle / 2f), ProjectileType<DeathgazeBeam>(), 80, 0, 0);
+                       DoDeathray(target, shootFrom);
                     }
                     if (NPC.ai[2] >= 90)
                     {
@@ -526,11 +532,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     Vector2 shootFrom = ActualCenter - Vector2.UnitY * 10 + NPC.direction * Vector2.UnitX * 40;
                     if (NPC.ai[2] == 75)
                     {
-                        facethisway = NPC.spriteDirection;
-                        beamDirection = (target.Center - shootFrom).ToRotation();
-                        SoundEngine.PlaySound(SoundID.Zombie104, NPC.position);
-
-                        Projectile.NewProjectile(new EntitySource_Misc(""), shootFrom, TRAEMethods.PolarVector(1f, beamDirection + beamSweepAngle / 2f), ProjectileType<DeathgazeBeam>(), 80, 0, 0);
+                       DoDeathray(target, shootFrom);
                     }
                     if (NPC.ai[2] >= 75)
                     {
@@ -870,8 +872,11 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             {
                 beamWidth = Projectile.timeLeft;
             }
-
-                    Projectile.rotation -= BeholderNPC.beamSweepAngle / 60f;
+            if(Projectile.ai[0] == 0)
+            {
+                Projectile.ai[0] = 1;
+            }
+            Projectile.rotation -= Projectile.ai[0] * BeholderNPC.beamSweepAngle / 60f;
         } 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
