@@ -43,10 +43,10 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.damage = 100; // up from 57
                     return;
                 case ItemID.PaladinsHammer:
-                    item.damage = 105; // up from 90
+                    item.damage = 102; // up from 90
                     return;
                 case ItemID.PossessedHatchet:
-                    item.damage = 100; // up from 80
+                    item.damage = 102; // up from 80
                     return;
                 case ItemID.BlueMoon:
                     item.damage = 32;

@@ -372,11 +372,7 @@ namespace TRAEProject.Changes.Weapon.Melee
         { 
                 TRAEDebuff.Apply<Corrupted>(target, 181, 1);
             }
-            if (projectile.type == ProjectileID.ChainGuillotine && crit)
-            {
-                player.HealEffect(1, true);
-                player.statLife += 1;
-            }
+
             if (player.HasBuff(BuffID.WeaponImbueNanites) && (projectile.DamageType == DamageClass.Melee || projectile.aiStyle == 165 || projectile.type == ProjectileType<WhipProjectile>()))
             {
                 player.AddBuff(BuffType<NanoHealing>(), 60, false);

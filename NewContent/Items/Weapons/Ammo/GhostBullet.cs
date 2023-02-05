@@ -36,7 +36,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
 
         public override void AddRecipes()
         {
-            CreateRecipe(100).AddIngredient(ItemID.MusketBall, 100)
+            CreateRecipe(100).AddIngredient(ItemID.EmptyBullet, 100)
                 .AddIngredient(ItemID.Ectoplasm, 1)
                 .AddTile(TileID.Anvils)
                 .Register();

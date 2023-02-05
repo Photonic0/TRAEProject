@@ -15,6 +15,7 @@ using TRAEProject.Changes.Items;
 using TRAEProject.NewContent.Items.Weapons.GraniteBook;
 using Terraria.DataStructures;
 using TRAEProject.NewContent.NPCs.Underworld.OniRonin;
+using Terraria.Audio;
 
 namespace TRAEProject.NewContent.Items.Weapons.SuperRose
 {
@@ -25,7 +26,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Cursed Flower");
-            Tooltip.SetDefault("Summons petals to seek out your foes\nEach petal costs 15 mana, affected by gear");
+            Tooltip.SetDefault("Summons petals to seek out your foes\nEach petal costs 18 mana, affected by gear");
         }
         public override void SetDefaults()
         {
@@ -34,7 +35,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             Item.damage = 75;
             Item.useAnimation = 30;
             Item.useTime = 30;
-            Item.mana = 60;
+            Item.mana = 100;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 6);
             Item.DamageType = DamageClass.Magic;
@@ -88,7 +89,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             Projectile.CountsAsClass<MagicDamageClass>();
 
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 6000;
+            Projectile.timeLeft = 3600;
             Projectile.tileCollide = false;
 
         }
@@ -100,7 +101,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
         // Note, this Texture is actually just a blank texture, FYI.
 
         readonly int fireRate = 20; 
-        int drain = 15;
+        int drain = 18;
 
         public override void AI()
         {
@@ -127,6 +128,10 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             }
 
         }
+        public override void Kill(int timeLeft)
+        {
+            SoundEngine.PlaySound(SoundID.Item20, Projectile.Center);
+        }
     }
     public class PetalFriendly : ModProjectile
     {
@@ -144,7 +149,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             Projectile.CountsAsClass<MagicDamageClass>();
 
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 400;
+            Projectile.timeLeft = 360;
             Projectile.tileCollide = false;
 
         }
@@ -171,7 +176,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             if (Projectile.ai[0] >= maxSpin)
             {
                 NPC npc = null;
-                if (TRAEMethods.ClosestNPC(ref npc, 1000f, player.Center))
+                if (TRAEMethods.ClosestNPC(ref npc, 700f, player.Center))
                 {
                     float posX = npc.Center.X;
                     float posY = npc.Center.Y;
@@ -210,7 +215,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
 
             Projectile.penetrate = 1;
-            Projectile.timeLeft = 400;
+            Projectile.timeLeft = 360;
             Projectile.tileCollide = false;
 
         }
@@ -241,7 +246,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             if (Projectile.ai[0] >= maxSpin)
             {
                 NPC npc = null;
-                if (TRAEMethods.ClosestNPC(ref npc, 1000f, player.Center))
+                if (TRAEMethods.ClosestNPC(ref npc, 700f, player.Center))
                 {
                     float posX = npc.Center.X;
                     float posY = npc.Center.Y;

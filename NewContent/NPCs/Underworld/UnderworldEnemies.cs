@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TRAEProject.NewContent.NPCs.Underworld.Boomxie;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.NPCs.Underworld.Phoenix;
 using TRAEProject.NewContent.NPCs.Underworld.Salalava;
@@ -29,7 +28,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld
 
         public float MinibossSpawn()
         {
-            if (Main.hardMode && NPC.downedPlantBoss)
+            if (Main.hardMode && NPC.downedPlantBoss && !NPC.AnyNPCs(NPCType<BeholderNPC>()))
             {
                 for (int i = 0; i < 255; i++)
                 {
@@ -44,7 +43,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld
                     if (NPC.AnyNPCs(MinibossList[i]))
                         return 0f;
                 }
-                return SpawnCondition.Underworld.Chance * 0.125f;
+                return SpawnCondition.Underworld.Chance * 0.11f;
             }
             return 0f;
         }
@@ -52,10 +51,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld
         {
 
             NPC npc1 = Main.npc[npc];
-            if (npc1.type == NPCType<BeholderNPC>())
-            {
-                SoundEngine.PlaySound(SoundID.NPCDeath10, npc1.Center);
-            }
+
             if (npc1.type == NPCType<Lavalarva>() && NPC.downedPlantBoss)
             {
                 int amount = Main.rand.Next(2, 4);

@@ -61,7 +61,7 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.penetrate = 5;
                     break;
                 case ProjectileID.Typhoon:
-                    DrainManaOnHit = 8;
+                    DrainManaOnHit = 12;
                     projectile.timeLeft = 1800;
                     break;
                 case ProjectileID.ToxicFlask:
@@ -148,6 +148,8 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.localNPCHitCooldown = -1;
                     break;
                 case ProjectileID.InfernoFriendlyBlast:
+                    projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.Daybreak;
+                    projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 240;
                     projectile.penetrate = 16;
                     break;
             }

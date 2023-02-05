@@ -13,6 +13,8 @@ using TRAEProject.NewContent.Items.Armor.IceArmor;
 using TRAEProject.Changes.Weapon.Ranged;
 using TRAEProject.Changes.Recipes;
 using Terraria.DataStructures;
+using MonoMod.Cil;
+using Mono.Cecil.Cil;
 
 namespace TRAEProject
 {
@@ -107,6 +109,24 @@ namespace TRAEProject
     
         public override void Load()
         {
+            IL.Terraria.Projectile.StatusNPC += (il) => {
+                var c = new ILCursor(il);
+
+                if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(379))) {
+                    c.Emit(OpCodes.Pop);
+                    c.Emit(OpCodes.Ldc_I4, int.MinValue);
+                }
+
+                if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(390))) {
+                    c.Emit(OpCodes.Pop);
+                    c.Emit(OpCodes.Ldc_I4, int.MaxValue);
+                }
+
+                if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(392))) {
+                    c.Emit(OpCodes.Pop);
+                    c.Emit(OpCodes.Ldc_I4, int.MinValue);
+                }
+            };
             Instance = this;
             AddBossHeadTexture(DreadHead1);
             AddBossHeadTexture(DreadHead2);

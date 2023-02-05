@@ -155,7 +155,7 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
             {
        
                 case BuffID.WitheredWeapon:
-                    npc.damage = (int)(npc.defDamage * 0.8f);
+                    npc.damage = (int)(npc.defDamage * 0.86f);
                     return;
             }
         }
@@ -181,7 +181,7 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
                     return;
                 case BuffID.WitheredWeapon:
                     player.witheredWeapon = false;
-                    player.GetDamage<GenericDamageClass>() *= 0.933f;
+                    player.GetDamage<GenericDamageClass>() *= 0.84f;
                     return;
             }
         }
@@ -190,10 +190,10 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
             switch (type)
             {
                 case BuffID.WitheredArmor:
-                    tip = "Defense reduced by 25";
+                    tip = "Defense reduced by 18";
                     return;
                 case BuffID.WitheredWeapon:
-                    tip = "20% reduced damage";
+                    tip = "16% reduced damage";
                     return;
             }
         }

@@ -6,8 +6,24 @@
 * Shadowflame DoT reduced from 60 to 36 (vanilla value: 15)
 * Venom DoT reduced from 100 to 80
 * Shadowflame Knife use time increased from 12 to 14
-* Shroomite bullet crit damage reduced from 25% to 20%
-* Tactical Shotgun damage reduced from 38 to 34
+
+* Changed the way damage over time ticks show up and stack with one another
+
+* Shroomite bullet crit damage reduced from 25% to 18%
+** Now crafted with empty bullets
+** updated visuals
+* Ghost Bullets now smart bounce between hit enemies.
+** updated sprite
+** Now crafted with empty bullets
+* Venom Bullets and Arrows now apply their debuff in a small area after a hit.
+
+* Shroomite armor max damage bonus reduced from 35% to 25%
+
+* removed heavy burn
+
+*TODO TODO TODO TODO TODO Sunfury makes a ring of flames on hit
+
+* mana cloak star damage increased from 33% to 50%
 
 
 * Scourge of the corruptor
@@ -15,14 +31,21 @@
 ** Thrown scourge now makes 2-4 mini eaters instead of 2-5
 ** Worm enemies are immune to corrupted
 
-* Shroomite armor max damage bonus reduced from 35% to 25%
+
 * Vampire Knives damage reduced back to 29, now has 20 armor penetration
 * Withered armor reduces defense by 18 instead of 25
-* Withered weapon reduces damage by 16.66% instead of 20%
+* Withered weapon reduces damage by 16.7% instead of 20%
 
-* Paladin's hammer damage 90 -> 105, max hits set to 7
+* Paladin's hammer damage 90 -> 102, max hits set to 8
 
-* Possessed hatchet damage 80 -> 95
+* Possessed hatchet damage 80 -> 102
+
+Double Haxor
+* Damage 80 -> 102
+* Use time 17 -> 19
+* Big axe no longer deals extra damage, pierce 5 -> 8
+
+
 * Inferno Fork max hits reduced to 16
 * Desert spirits drop spirit flame instead of Desert Spirit Lamp
 * Ghouls and Hallow Ghouls drop desert spirit lamp with a 1% chance
@@ -52,10 +75,10 @@
 * Nail Gun
 ** Knockback increased from 0 to 1
 note: the nails do have knockback even if for some reason the weapon doesnt, this just lets it have unreal
-** damage increased from 85 to 95
 ** Nails deal half damage instead of 15%
 ** Explosions deal 100% damage instead of 135%
 ** Note: Exact same single target DPS even with Defense taken into account
+** damage increased from 85 to 90
 ** pierce limited to 4
 
 ** Shinobi headgear summon damage and melee speed reduced back to 20%

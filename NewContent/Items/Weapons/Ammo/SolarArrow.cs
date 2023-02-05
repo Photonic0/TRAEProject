@@ -90,7 +90,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                     dust.noGravity = true;
                 }
                 SoundEngine.PlaySound(SoundID.Item45, Projectile.Center);
-                TRAEDebuff.Apply<HeavyBurn>(target, 240, 1);
+            target.AddBuff(BuffID.Daybreak, 60);
             }
         }
 

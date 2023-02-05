@@ -8,6 +8,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using TRAEProject.NewContent.NPCs.Underworld.Beholder;
+using Terraria.Localization;
+using Terraria.Chat;
+using Terraria.Audio;
 
 namespace TRAEProject.Changes
 {
@@ -107,16 +111,70 @@ namespace TRAEProject.Changes
         {
             if (item.type == ItemID.GuideVoodooDoll && NPC.downedPlantBoss)
             {
+                Player player = Main.player[Player.FindClosest(item.Center, item.width, item.height)];
+                player.killGuide = true;
                 int num117 = Dust.NewDust(new Vector2(item.position.X, item.position.Y + 2f), item.width, item.height, DustID.PurpleTorch, item.velocity.X * 0.2f, item.velocity.Y * 0.2f, 100, default, 2f);
                 Main.dust[num117].noGravity = true;
                 Main.dust[num117].velocity.X *= 1f;
                 Main.dust[num117].velocity.Y *= 1f;
                 if (timer < 80)
                     timer++;
-                if (timer >= 80)
+                if (timer >= 80 && player.ZoneUnderworldHeight)
                 {
+      
                     maxFallSpeed = 0;
+                    if (!NPC.AnyNPCs(NPCType<BeholderNPC>()))
+                    {
 
+                        timer++;
+                        if (timer == 439) // almost exactly 6.66 seconds after the drop starts floating
+                        {
+                            SoundEngine.PlaySound(SoundID.ScaryScream, item.Center);
+                        }
+                        if (timer >= 439)
+                        {
+                            int num116 = Dust.NewDust(new Vector2(item.position.X, item.position.Y + 2f), item.width, item.height, DustID.PurpleTorch, 1, 1, 100, default, 2f);
+                            Main.dust[num116].noGravity = true;
+                            Main.dust[num116].scale *= Main.rand.NextFloat(0.5f, 1.5f);
+
+                            Main.dust[num116].velocity.X *= Main.rand.NextFloat(-0.5f, 0.5f) * 50;
+                            Main.dust[num116].velocity.Y *= Main.rand.NextFloat(-0.5f, 0.5f) * 50;
+                            player.AddBuff(BuffID.Horrified, 1);
+                        }
+                        if (timer == 746) // 666 ticks after it starts floating
+                        {
+                            for (int i = 0; i < 20; i++)
+                            {
+                                float radius = 300 / 41.67f;
+                                Vector2 vel = Main.rand.NextVector2CircularEdge(radius, radius);
+                                Dust d = Dust.NewDustPerfect(item.Center, DustID.PurpleTorch, vel * 2.5f, Scale: 3f);
+                                if (Main.rand.NextBool(3))
+                                {
+                                    d.scale *= Main.rand.NextFloat(1.25f, 1.5f);
+                                    d.velocity *= Main.rand.NextFloat(1.25f, 1.5f);
+                                }
+                                d.noGravity = true;
+                            }
+                            timer = 889;
+                            SoundEngine.PlaySound(SoundID.NPCDeath10, item.Center);
+
+                            int spawnPositionX = (int)(player.Center.X) + Main.rand.Next(-100, 100) * 16;
+                            int spawnPositionY = (int)(player.Center.Y) + 80 * 16;
+                            NPC.NewNPC(Item.GetSource_None(), spawnPositionX, spawnPositionY, NPCType<BeholderNPC>(), ai0: -369);
+
+
+                            if (Main.netMode == 0)
+                            {
+                                Main.NewText("A Beholder has awoken!", 175, 75);
+
+                            }
+                            else if (Main.netMode == 2)
+                            {
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("A Beholder has awoken!"), new Color(175, 75, 255));
+                            }
+                            return;
+                        }
+                    }
                 }
 
             }

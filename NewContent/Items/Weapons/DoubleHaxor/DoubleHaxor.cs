@@ -29,8 +29,8 @@ namespace TRAEProject.NewContent.Items.Weapons.DoubleHaxor
         {
             Item.width = 64;
             Item.height = 42;
-            Item.damage = 80;
-            Item.useTime = Item.useAnimation = 17;
+            Item.damage = 102;
+            Item.useTime = Item.useAnimation = 18;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 17);
@@ -48,7 +48,7 @@ namespace TRAEProject.NewContent.Items.Weapons.DoubleHaxor
         {
             if (player.ownedProjectileCounts[ProjectileType<HaxorBig>()] == 0)
             {
-                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileType<HaxorBig>(), (int)(damage * 1.125f), knockback * 1.8f, player.whoAmI); ;
+                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ProjectileType<HaxorBig>(), (int)(damage * 1), knockback * 1.8f, player.whoAmI); ;
 
             }
             return true;
@@ -98,7 +98,7 @@ namespace TRAEProject.NewContent.Items.Weapons.DoubleHaxor
 			Projectile.scale = 1.2f;
             Projectile.width = Projectile.height = 10;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 5;
+            Projectile.penetrate = 8;
 			Projectile.tileCollide = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;

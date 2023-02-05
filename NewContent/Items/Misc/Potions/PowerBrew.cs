@@ -46,7 +46,7 @@ Item.maxStack = 30;
             {
                 potionSickness = 45;
             }
-            player.AddBuff(BuffID.PotionSickness, potionSickness * 6);
+            player.AddBuff(BuffID.PotionSickness, potionSickness * 60);
         }
     }
     class Power : ModBuff

@@ -65,7 +65,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            TRAEDebuff.Apply<HeavyBurn>(target, 60, 1);
+            target.AddBuff(BuffID.Daybreak, 60);
         }
         public override void Kill(int timeLeft)
         {

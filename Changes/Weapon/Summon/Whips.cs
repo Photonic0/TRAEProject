@@ -103,6 +103,13 @@ namespace TRAEProject.Changes.Weapon.Summon
     }
     public class WhipChangesP : GlobalProjectile
     {
+        public override void SetDefaults(Projectile projectile)
+        {
+            if (ProjectileID.Sets.IsAWhip[projectile.type])
+            {
+                projectile.GetGlobalProjectile<ProjectileStats>().maxHits = 5;
+            }
+        }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
             if (projectile.type == ProjectileID.CoolWhip)

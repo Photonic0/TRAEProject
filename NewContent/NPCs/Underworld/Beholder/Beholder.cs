@@ -1,11 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
-using Mono.Cecil;
+
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Security.Policy;
+
 using Terraria;
 using Terraria.Audio;
 using Terraria.Chat;
@@ -14,10 +12,12 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Utilities;
-using TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom;
+using TRAEProject.NewContent.Items.Armor.UnderworldWarrior;
+using TRAEProject.NewContent.Items.BeholderItems;
 using TRAEProject.NewContent.NPCs.Banners;
 using TRAEProject.NewContent.NPCs.Underworld.OniRonin;
 using TRAEProject.NewContent.Projectiles;
@@ -26,7 +26,7 @@ using static Terraria.ModLoader.ModContent;
 using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
-{
+{    [AutoloadBossHead]
     public class BeholderNPC : ModNPC
     {
         // Needs boss icon and music
@@ -52,7 +52,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
         {
             NPC.width = 132;
             NPC.height = 102;
-            //AnimationType = NPCID.WalkingAntlion;
             NPC.value = 50000;
             NPC.damage = 100;
             NPC.defense = 66;
@@ -71,11 +70,11 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
         {
             if (Main.expertMode)
             {
-                NPC.lifeMax = (int)((NPC.lifeMax * 2 / 3) * bossLifeScale);
+                NPC.lifeMax = (int)((NPC.lifeMax * 3 / 4) * bossLifeScale);
             }
             if (Main.masterMode)
             {
-                NPC.lifeMax = (int)(NPC.lifeMax * 2 / 3 * bossLifeScale); 
+                NPC.lifeMax = (int)(NPC.lifeMax * 3 / 4 * bossLifeScale); 
             }
             
 
@@ -88,11 +87,61 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 new FlavorTextBestiaryInfoElement("Ancient Rulers of the Underworld sealed away by a powerful warrior. Released by the influx of souls into the world, they are ready to take the Underworld back for themselves.")
             });
         }
-        //      public override void ModifyNPCLoot(NPCLoot npcLoot)
-        //{
-        //	npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 5));
-        //	npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
-        //      }
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ItemType<GreaterRestorationPotion>();
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            NPCLoader.blockLoot.Add(ItemID.LesserHealingPotion);
+
+            //Add the treasure bag (automatically checks for expert mode)
+            npcLoot.Add(ItemDropRule.BossBag(ItemType<BeholderBag>())); //this requires you to set BossBag in SetDefaults accordingly
+            //All our drops here are based on "not expert", meaning we use .OnSuccess() to add them into the rule, which then gets added
+            LeadingConditionRule notExpertRule = new(new Conditions.NotExpert());
+            //Notice we use notExpertRule.OnSuccess instead of npcLoot.Add so it only applies in normal mode
+            notExpertRule.OnSuccess(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, ItemType<UnderworldWarriorHelmet>(), ItemType<UnderworldWarriorChestplate>(), ItemType<UnderworldWarriorGreaves>()));
+            //Finally add the leading rule
+            npcLoot.Add(notExpertRule);
+
+            //Trophies are spawned with 1/10 chance
+            npcLoot.Add(ItemDropRule.Common(ItemType<BeholderTrophyItem>(), 10));
+            //Boss masks are spawned with 1/7 chance
+            notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+            notExpertRule.OnSuccess(ItemDropRule.Common(ItemType<BeholderMask>(), 7));
+            npcLoot.Add(notExpertRule);
+
+            notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+            notExpertRule.OnSuccess(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, ItemType<RingOfFuror>(), ItemType<RingOfTenacity>(), ItemType<RingOfMight>()));
+            npcLoot.Add(notExpertRule);
+           
+            notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
+            notExpertRule.OnSuccess(ItemDropRule.OneFromOptionsNotScalingWithLuck(4, ItemType<ScrollOfWipeout>(), ItemType<WandOfDisintegration>()));
+            npcLoot.Add(notExpertRule);
+
+            LeadingConditionRule MasterRule = new(new Conditions.IsMasterMode());
+            MasterRule.OnSuccess(ItemDropRule.Common(ItemType<BeholderRelicItem>()));
+            MasterRule.OnSuccess(ItemDropRule.Common(ItemType<EvilLookingEye>(), 4));
+            npcLoot.Add(MasterRule);
+
+
+
+        }
+        public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        {
+            if (((NPC.ai[1] == 4 || NPC.ai[1] == 7 || NPC.ai[1] == 10) && NPC.ai[2] < 90) || NPC.ai[1] == 2)
+            {
+                damage /= 4;
+            }
+        }
+        public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if ((((NPC.ai[1] == 4 || NPC.ai[1] == 7 || NPC.ai[1] == 10 ) && NPC.ai[2] < 90) || NPC.ai[1] == 2)  && NPC.ai[2] > 1)
+            {
+                damage /= 4;            
+            }
+        }
         void DoDeathray(Player target, Vector2 shootFrom)
         {
             facethisway = NPC.spriteDirection;
@@ -108,58 +157,77 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
         int facethisway = 0;
         float angletimer = 0;
         bool hasHeRoared = false;
-        bool add666 = false;
+        bool onSpawn = false;
         public override void AI()
         {
-            if (!add666)
+            if (!onSpawn)
             {
-                NPC.life += 666;
-                NPC.lifeMax += 666;
-                add666 = true;
+                NPC.life += 6666;
+                NPC.lifeMax += 6666;             
+                onSpawn = true;
             }
-            NPC.defense = NPC.defDefense;
             NPC.TargetClosest();
             NPC.FaceTarget();
-            float speed = 3f;
-            float accelerationX = 0.18f;
-            Player target = Main.player[NPC.target];
-     
-            if (NPC.Distance(target.Center) > 450f)
-            {
-                speed *= 1.3f * (NPC.Distance(target.Center) / 450f);
+            NPC.HitSound = SoundID.NPCHit8;
 
-                accelerationX *= 1.3f * NPC.Distance(target.Center) / 450f;
+            Player target = Main.player[NPC.target];
+            target.AddBuff(BuffID.Horrified, 1);
+            target.blackout = true;
+            float speed = 5f;
+            float speedY = 2f;
+            float accelerationX = 0.18f;
+            float accelerationY = 0.11f;
+            Vector2 ActualCenter = new Vector2(NPC.Center.X + 24 * NPC.direction, NPC.Center.Y + 14);
+
+            bool angryExpert = NPC.life <= (int)(NPC.lifeMax * 0.66) && Main.expertMode;
+
+            bool belowQuarter = NPC.life <= NPC.lifeMax / 4;
+            speed *= 1.5f * (NPC.Distance(target.Center) / 300f);
+            accelerationX *= 1.5f * NPC.Distance(target.Center) / 300f;
+            if (NPC.Distance(target.Center) > 900f)
+            {
+                speed *= 2f;
+                accelerationX *= 2f;
+
             }
             if (NPC.Distance(target.Center) > 3000f)
             {
                 NPC.EncourageDespawn(300);
             }
-            float accelerationY = 0.11f;
-            Vector2 ActualCenter = new Vector2(NPC.Center.X + 24 * NPC.direction, NPC.Center.Y + 14);
 
-            bool angryExpert = NPC.life <= (int)(NPC.lifeMax * 0.66) && Main.expertMode;
-           
-            bool belowQuarter = NPC.life <= NPC.lifeMax / 4;
             // movement
             NPC.velocity.X += accelerationX * NPC.direction;
-            if (Math.Abs(NPC.velocity.X) >= 5f)
+            if (Math.Abs(NPC.velocity.X) >= speed)
             {
-                NPC.velocity.X = 5 * NPC.direction;
+                NPC.velocity.X = speed * NPC.direction;
             }
             float TargetAboveOrBelow = target.Center.Y - ActualCenter.Y;
-            if (TargetAboveOrBelow == 1)
+            if (TargetAboveOrBelow >= 200f) // speed up if you are too far vertically
+            {
+                accelerationY *= 1.6f * NPC.Distance(target.Center) / 200f;
+
+                speedY *= 1.6f * (NPC.Distance(target.Center) / 200f);
+            } 
+            if (Math.Sign(TargetAboveOrBelow) == 1)
             {
                 accelerationY /= 2;
             }
             NPC.velocity.Y += accelerationY * Math.Sign(TargetAboveOrBelow);
-            if (Math.Abs(NPC.velocity.Y) >= 2f)
+            if (Math.Abs(NPC.velocity.Y) >= speedY)
             {
-                NPC.velocity.Y = 2f * Math.Sign(TargetAboveOrBelow);
+                NPC.velocity.Y = speedY * Math.Sign(TargetAboveOrBelow);
             }
 
-            
+            if (Main.rand.Next(4) == 0)
+            {
 
-           
+                int num117 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, DustID.PurpleTorch, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f, 100, default, 2f);
+                Main.dust[num117].noGravity = true;
+                Main.dust[num117].velocity.X *= 1f;
+                Main.dust[num117].velocity.Y *= 1f;
+            }
+
+
 
             NPC.rotation += 0.005f * Math.Sign(TargetAboveOrBelow) * NPC.direction;
             if (Math.Abs(NPC.rotation) > 0.25f)
@@ -167,25 +235,20 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 NPC.rotation = 0.25f * NPC.direction * Math.Sign(TargetAboveOrBelow);
             }
 
-            int attackDelay = 180;
+            int attackDelay = 160;
 
             if (angryExpert || belowQuarter)
             {
                 if (Main.rand.Next(2) == 0)
                 {
-                    int num117 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, DustID.Blood, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f, 100, default, 2f);
-                    Main.dust[num117].velocity.X *= 1f;
-                    Main.dust[num117].velocity.Y *= 1f;
-                    num117 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y + 2f), NPC.width, NPC.height, DustID.PurpleTorch, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f, 100, default, 2f);
-                    Main.dust[num117].noGravity = true;
-                    Main.dust[num117].velocity.X *= 1f;
-                    Main.dust[num117].velocity.Y *= 1f;
+                    Vector2 crybloodfrom = ActualCenter - Vector2.UnitY * (10 - 5 * NPC.rotation) + NPC.direction * Vector2.UnitX * 36;
+                    int num117 = Dust.NewDust(crybloodfrom, 1, 1, DustID.Blood, NPC.velocity.X * 0.2f, 5, 0, default, 1.5f);
                 }
+             
             }
             if (angryExpert)
             {
-        
-                attackDelay = 75;
+                attackDelay = 90;
                 if (!hasHeRoared)
                 {
                     SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.Center);
@@ -221,27 +284,30 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     Main.dust[num117].velocity.X *= 1f;
                     Main.dust[num117].velocity.Y *= 1f;
                 }
-                attackDelay = 120;
+                attackDelay = 180;
                 // shoot scythes when it's not charging up
                 int ScytheToShoot = 0;
-                int delay = 29;
+                int delay = 44;
                 if (NPC.ai[0] % delay == 0)
                 {
-                    float VEL = 6f;
+                    float VEL = 5f;
                     switch (NPC.ai[0] / delay)
                     {
                         case 1:
+                            ScytheToShoot = ProjectileType<GreenScythe>();
+                            
+                            break;
+                        case 2:
                             ScytheToShoot = ProjectileID.DemonSickle;
                             VEL = 1f;
                             break;
-                        case 2:          
-                            ScytheToShoot = ProjectileType<GreenScythe>();
-                            break;
                         case 3:
-                            ScytheToShoot = ProjectileType<OrangeScythe>();
+                            ScytheToShoot = ProjectileType<YellowScythe>();
+                            VEL = 3f;
                             break;
                         case 4:
-                            ScytheToShoot = ProjectileType<YellowScythe>();
+                            SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.Center); // make him roar that's actually cool
+                            ScytheToShoot = ProjectileType<OrangeScythe>();
                             break;
 
                     }
@@ -278,7 +344,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 // 5- Green Scythes
                 // 6- Color Shotgun
                 // 7- Deathgaze
-                // 8- Orange Scythes
+                // 8- Color Shotgun
                 // 9- Green Scythes (Cycle is reset manually here, if you change the cycle remember to edit that)
                 // 10- Deathgaze Spam
                 ////////// green scythes
@@ -341,10 +407,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     //{
                     //    SoundEngine.PlaySound(SoundID. with { Pitch = -1f }, NPC.Center);
                     //}
+                    NPC.takenDamageMultiplier = 0.5f;
 
                     NPC.velocity.X = 0;
                     NPC.velocity.Y = 0;
                     NPC.ai[2]++;
+                    NPC.HitSound = SoundID.NPCHit1;
 
                     angletimer += 0.08f;
                     if (angletimer > 360)
@@ -382,11 +450,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 if (NPC.ai[1] == 4 || NPC.ai[1] == 7)
                 {
                     NPC.rotation = 0;
-                    NPC.defense += 100;
                     NPC.velocity.X = 0;
                     NPC.velocity.Y = 0;
-                    
-                
+
                     if (NPC.ai[2] == 0)
                     {
                         SoundEngine.PlaySound(SoundID.Zombie99, NPC.position);
@@ -404,7 +470,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
                     if (NPC.ai[2] < 90)
                     {
-                        
+                        NPC.HitSound = SoundID.NPCHit1;
+
                         for (int i = 0; i < 2; i++)
                         {
                             float rot = (float)Math.PI * i + (float)Math.PI * (float)NPC.ai[2] / 10f;
@@ -420,7 +487,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
                 }
                 ////////// orange scythes
-                if (NPC.ai[1] == 3 || NPC.ai[1] == 8)
+                if (NPC.ai[1] == 3 )
                 {
                     NPC.ai[2]++;
                     if (NPC.ai[2] % 35 == 0)
@@ -443,7 +510,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
                 }
                 ////////// Color Shotgun
-                if (NPC.ai[1] == 6)
+                if (NPC.ai[1] == 6 || NPC.ai[1] == 8)
                 {
                     NPC.ai[2]++;
                     int delay = 25;
@@ -457,24 +524,25 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                             switch (NPC.ai[2] / delay)
                             {
                                 case 1:
-                                    ScytheToShoot = ProjectileID.DemonSickle;
-                                    VEL = 0.75f;
+                                    VEL = 40f;
+                                    ScytheToShoot = ProjectileType<OrangeScythe>();                            
                                     break;
                                 case 2:
-                                    VEL = 16f;
-                                    ScytheToShoot = ProjectileType<YellowScythe>();
+                                    ScytheToShoot = ProjectileID.DemonSickle;
+                                    VEL = 1f;
                                     break;
                                 case 3:
                                     numProjectiles = 1;
+
                                     ScytheToShoot = ProjectileType<WhiteScythe>();
 
                                     break;
-                                case 4:               
-                                    VEL = 40f;
-                                    ScytheToShoot = ProjectileType<OrangeScythe>();
+                                case 4:
+                                    ScytheToShoot = ProjectileType<GreenScythe>();
                                     break;
                                 case 5:
-                                    ScytheToShoot = ProjectileType<GreenScythe>();
+                                    VEL = 16f;
+                                    ScytheToShoot = ProjectileType<YellowScythe>();
                                     break;
 
                             }
@@ -514,10 +582,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 ////////// angry
                 if (NPC.ai[1] == 10)
                 {
-                   
+
 
                     NPC.rotation = 0;
-                    NPC.defense += 100;
                     NPC.velocity.X = 0;
                     NPC.velocity.Y = 0;
                     NPC.ai[2] += 1f;
@@ -525,14 +592,14 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     if (NPC.ai[2] == 0)
                     {
                         SoundEngine.PlaySound(SoundID.Zombie99, NPC.position);
-                        SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.Center); // make him roar that's actually cool
 
                     }
 
                     Vector2 shootFrom = ActualCenter - Vector2.UnitY * 10 + NPC.direction * Vector2.UnitX * 40;
                     if (NPC.ai[2] == 75)
                     {
-                       DoDeathray(target, shootFrom);
+
+                        DoDeathray(target, shootFrom);
                     }
                     if (NPC.ai[2] >= 75)
                     {
@@ -540,6 +607,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
                     if (NPC.ai[2] < 75)
                     {
+                        NPC.HitSound = SoundID.NPCHit1;
 
                         for (int i = 0; i < 2; i++)
                         {
@@ -562,15 +630,26 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
         }
         public override bool PreKill()
         {
-       
-                Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("BeholderGore1").Type, 1f);
+        //    NPCLoader.blockLoot.Add(ItemID.LesserHealingPotion);
+
+        //    if (Main.netMode == 0)
+        //    {
+        //        Main.NewText("The Beholder has been defeated!", 175, 75);
+
+        //    }
+        //    else if (Main.netMode == 2)
+        //    {
+        //        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Beholder has been defeated!"), new Color(175, 75, 255));
+        //    }
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("BeholderGore1").Type, 1f);
             
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("BeholderGore2").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("BeholderGore3").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("BeholderGore4").Type, 1f);
-            return false;
+            return true;
 
         }
+
 
         public override void FindFrame(int frameHeight)
         {
@@ -639,11 +718,16 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                         float posY = player.Center.Y;
                         float Distance = Math.Abs(Projectile.Center.X - posX) + Math.Abs(Projectile.Center.Y - posY);
 
-                        if (Distance > 2000f)
+                        if (Distance > 6000f)
                         {
                             Projectile.Kill();
                         }
                         float speed = 22f;
+                        if (Distance > 1600f)
+                        {
+                            speed *= 4f;
+                        }
+                     
                         float velX = posX - Projectile.Center.X;
                         float velY = posY - Projectile.Center.Y;
                         float sqrRoot = (float)Math.Sqrt(velX * velX + velY * velY);
@@ -657,7 +741,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
                 }
             }
-            for (int num176 = 0; num176 < 2; num176++)
+            for (int num176 = 0; num176 < 3; num176++)
             {
                 int num177 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.GreenTorch, 0f, 0f, 100);
                 Main.dust[num177].noGravity = true;
@@ -696,10 +780,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             if (Projectile.ai[0] < 40f)
             {
                 Projectile.ai[0] += 1f;
-                if (Main.rand.NextBool(3)) // some slight variance in their trajectories
+                if (Main.rand.NextBool(4)) // some slight variance in their trajectories
                     Projectile.ai[0] += 1f;
             }
-            if (Projectile.ai[0] >= 40f)
+            if (Projectile.ai[0] >= 36f)
             {
                 Projectile.velocity = Vector2.Zero;
             }
@@ -739,18 +823,18 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
             Projectile.rotation += (float)Projectile.direction * 0.8f;
 
-            if (Projectile.ai[0] <= 40f)
+            if (Projectile.ai[0] <= 45f)
             {
                 Projectile.velocity *= 0.9f;
  
                 Projectile.ai[0]++;
             }
-            if (Projectile.ai[0] > 40f)
+            if (Projectile.ai[0] > 45f)
             {
                 Projectile.velocity *= 1.1f;
     
             }
-            for (int num176 = 0; num176 < 2; num176++)
+            for (int num176 = 0; num176 <3; num176++)
             {
                 int num177 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.OrangeTorch, 0f, 0f, 100);
                 Main.dust[num177].noGravity = true;
@@ -775,16 +859,16 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             Projectile.height = 48;
             Projectile.alpha = 100;
             Projectile.light = 0.2f;
-            Projectile.timeLeft = 120;
+            Projectile.timeLeft = 300;
             Projectile.hostile = true;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
             Projectile.scale = 0.9f;
         }
-        float speed = 15f;
+        float speed = 10f;
         public override void AI()
         {
-            speed *= 1 - 0.55f / 60;
+            speed *= 1 - 0.15f / 60;
 
             Projectile.rotation += (float)Projectile.direction * 0.8f;
             Projectile.damage = 0;
@@ -803,9 +887,17 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     if (rectangle.Intersects(player.Hitbox))
                     {
                         SoundEngine.PlaySound(SoundID.NPCDeath6, Projectile.position);
-
-                        int debuff = Main.rand.NextBool(2) ? BuffID.WitheredArmor : BuffID.WitheredWeapon;
-                        player.AddBuff(debuff, Main.rand.Next(15, 19) * 60);
+                        if (Main.expertMode)
+                        {
+                            player.AddBuff(BuffID.WitheredWeapon, Main.rand.Next(7, 9) * 60); 
+                            player.AddBuff(BuffID.WitheredArmor, Main.rand.Next(9, 11) * 60);
+                        }
+                        else
+                        {
+                            int debuff = Main.rand.NextBool(2) ? BuffID.WitheredArmor : BuffID.WitheredWeapon;
+                            player.AddBuff(debuff, Main.rand.Next(17, 19) * 60);
+                        }
+                     
                         Projectile.Kill();
                     }
                  
@@ -814,7 +906,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             }
 
             
-            for (int num176 = 0; num176 < 2; num176++)
+            for (int num176 = 0; num176 < 3; num176++)
             {
                 int num177 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.WhiteTorch, 0f, 0f, 100);
                 Main.dust[num177].noGravity = true;
@@ -857,7 +949,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 Projectile.velocity = Vector2.Zero;
                 runOnce = false;
             }
-            for (; length < 1000; length++)
+            for (; length < 1500; length++)
             {
                 if (!Collision.CanHitLine(Projectile.Center, 1, 1, Projectile.Center + TRAEMethods.PolarVector(length, Projectile.rotation), 1, 1))
                 {

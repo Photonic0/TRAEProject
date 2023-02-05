@@ -154,114 +154,114 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 			// We can only collide if we are at max charge, which is when the laser is actually fired
 			if (!IsAtMaxCharge) return false;
 
-			Player player = Main.player[Projectile.owner];
-			Vector2 unit = Projectile.velocity;
-			float point = 0f;
-			// Run an AABB versus Line check to look for collisions, look up AABB collision first to see how it works
-			// It will look for collisions on the given line using AABB
-			if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), player.Center,
-				player.Center + unit * Distance, 22, ref point))
-			{
-				for (int i = 0; i < 50; ++i)
-				{
-				Vector2 dustPos = player.Center + Projectile.velocity * Distance;
-				float num384 = Main.rand.Next(-10, 11);
-				float num385 = Main.rand.Next(-10, 11);
-				float num386 = Main.rand.Next(9, 18);
-				float num387 = (float)Math.Sqrt(num384 * num384 + num385 * num385);
-				num387 = num386 / num387;
-				num384 *= num387;
-				num385 *= num387;
-				int num388 = Dust.NewDust(new Vector2(dustPos.X, dustPos.Y), 50, 50, DustID.Blood, num384, num385, 100, default, 1.88f);
-				Main.dust[num388].noGravity = true;
-				Main.dust[num388].position.X += Main.rand.Next(10, 20) * Main.rand.Next(-1, 1);
-				Main.dust[num388].position.Y += Main.rand.Next(10, 20) * Main.rand.Next(-1, 1);
-				Main.dust[num388].velocity.X = num384;
-				Main.dust[num388].velocity.Y = num385;
-				}
-			}
-			return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), player.Center,
-					player.Center + unit * Distance, 22, ref point);
-		}
+            Player player = Main.player[Projectile.owner];
+            Vector2 unit = Projectile.velocity;
+            float point = 0f;
+            // Run an AABB versus Line check to look for collisions, look up AABB collision first to see how it works
+            // It will look for collisions on the given line using AABB
+            if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), player.Center, player.Center + unit * Distance, 22, ref point))
+
+            {
+                for (int i = 0; i < 50; ++i)
+                {
+                    Vector2 dustPos = player.Center + Projectile.velocity * Distance;
+                    float num384 = Main.rand.Next(-10, 11);
+                    float num385 = Main.rand.Next(-10, 11);
+                    float num386 = Main.rand.Next(9, 18);
+                    float num387 = (float)Math.Sqrt(num384 * num384 + num385 * num385);
+                    num387 = num386 / num387;
+                    num384 *= num387;
+                    num385 *= num387;
+                    int num388 = Dust.NewDust(new Vector2(dustPos.X, dustPos.Y), 50, 50, DustID.Blood, num384, num385, 100, default, 1.88f);
+                    Main.dust[num388].noGravity = true;
+                    Main.dust[num388].position.X += Main.rand.Next(10, 20) * Main.rand.Next(-1, 1);
+                    Main.dust[num388].position.Y += Main.rand.Next(10, 20) * Main.rand.Next(-1, 1);
+                    Main.dust[num388].velocity.X = num384;
+                    Main.dust[num388].velocity.Y = num385;
+                }
+            }
+            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), player.Center,
+                    player.Center + unit * Distance, 22, ref point);
+        }
 
 		// Set custom immunity time on hitting an NPC
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-			{
-				target.immune[Projectile.owner] = 5;
-			}
-		int time = 0;
-			// The AI of the projectile
-			public override void AI()
-			{
-				Player player = Main.player[Projectile.owner];
-				Projectile.position = player.Center + Projectile.velocity * MOVE_DISTANCE;
-				Projectile.timeLeft = 2;
+        {
+            target.immune[Projectile.owner] = 5;
+        }
+        int time = 0;
+        // The AI of the projectile
+        public override void AI()
+        {
+            Player player = Main.player[Projectile.owner];
+            Projectile.position = player.Center + Projectile.velocity * MOVE_DISTANCE;
+            Projectile.timeLeft = 2;
 
-				// By separating large AI into methods it becomes very easy to see the flow of the AI in a broader sense
-				// First we update player variables that are needed to channel the laser
-				// Then we run our charging laser logic
-				// If we are fully charged, we proceed to update the laser's position
-				// Finally we spawn some effects like dusts and light
+            // By separating large AI into methods it becomes very easy to see the flow of the AI in a broader sense
+            // First we update player variables that are needed to channel the laser
+            // Then we run our charging laser logic
+            // If we are fully charged, we proceed to update the laser's position
+            // Finally we spawn some effects like dusts and light
 
-				UpdatePlayer(player);
-				ChargeLaser(player);
+            UpdatePlayer(player);
+            ChargeLaser(player);
 
-				// If laser is not charged yet, stop the AI here.
-				if (Charge < MAX_CHARGE) return;
-			
-				if (Charge >= MAX_CHARGE)
+            // If laser is not charged yet, stop the AI here.
+            if (Charge < MAX_CHARGE) return;
+
+            if (Charge >= MAX_CHARGE)
             {
-				time++;
-				if (time >= 90)
+                time++;
+                if (time >= 90)
                 {
-					Projectile.Kill();
+                    Projectile.Kill();
                 }
             }
 
-			SetLaserPosition(player);
-				SpawnDusts(player);
-				CastLights();
-			}
+            SetLaserPosition(player);
+            SpawnDusts(player);
+            CastLights();
+        }
 
-			private void SpawnDusts(Player player)
-			{
-				Vector2 unit = Projectile.velocity * -1;
-				Vector2 dustPos = player.Center + Projectile.velocity * Distance;
+        private void SpawnDusts(Player player)
+        {
+            Vector2 unit = Projectile.velocity * -1;
+            Vector2 dustPos = player.Center + Projectile.velocity * Distance;
 
-				for (int i = 0; i < 2; ++i)
-				{
-					float num1 = Projectile.velocity.ToRotation() + (Main.rand.Next(2) == 1 ? -1.0f : 1.0f) * 1.57f;
-					float num2 = (float)(Main.rand.NextDouble() * 0.8f + 1.0f);
-					Vector2 dustVel = new Vector2((float)Math.Cos(num1) * num2, (float)Math.Sin(num1) * num2);
-					Dust dust = Main.dust[Dust.NewDust(dustPos, 0, 0, DustID.Blood, dustVel.X, dustVel.Y)];
-					dust.noGravity = true;
-					dust.scale = 1.2f;
-					dust = Dust.NewDustDirect(Main.player[Projectile.owner].Center, 0, 0, DustID.Blood,
-						-unit.X * Distance, -unit.Y * Distance);
-					dust.fadeIn = 0f;
-					dust.noGravity = true;
-					dust.scale = 0.88f;
-					dust.color = Color.Cyan;
-				}
+            for (int i = 0; i < 2; ++i)
+            {
+                float num1 = Projectile.velocity.ToRotation() + (Main.rand.Next(2) == 1 ? -1.0f : 1.0f) * 1.57f;
+                float num2 = (float)(Main.rand.NextDouble() * 0.8f + 1.0f);
+                Vector2 dustVel = new Vector2((float)Math.Cos(num1) * num2, (float)Math.Sin(num1) * num2);
+                Dust dust = Main.dust[Dust.NewDust(dustPos, 0, 0, DustID.Blood, dustVel.X, dustVel.Y)];
+                dust.noGravity = true;
+                dust.scale = 1.2f;
+                dust = Dust.NewDustDirect(Main.player[Projectile.owner].Center, 0, 0, DustID.Blood,
+                    -unit.X * Distance, -unit.Y * Distance);
+                dust.fadeIn = 0f;
+                dust.noGravity = true;
+                dust.scale = 0.88f;
+                dust.color = Color.Cyan;
+            }
 
-				if (Main.rand.NextBool(5))
-				{
-					Vector2 offset = Projectile.velocity.RotatedBy(1.57f) * ((float)Main.rand.NextDouble() - 0.5f) * Projectile.width;
-					Dust dust = Main.dust[Dust.NewDust(dustPos + offset - Vector2.One * 4f, 8, 8, DustID.Blood, 0.0f, 0.0f, 100, new Color(), 1.5f)];
-					dust.velocity *= 0.5f;
-					dust.velocity.Y = -Math.Abs(dust.velocity.Y);
-					unit = dustPos - Main.player[Projectile.owner].Center;
-					unit.Normalize();
-					dust = Main.dust[Dust.NewDust(Main.player[Projectile.owner].Center + 55 * unit, 8, 8, DustID.Blood, 0.0f, 0.0f, 100, new Color(), 1.5f)];
-					dust.velocity = dust.velocity * 0.5f;
-					dust.velocity.Y = -Math.Abs(dust.velocity.Y);
-				}
-			}
+            if (Main.rand.NextBool(5))
+            {
+                Vector2 offset = Projectile.velocity.RotatedBy(1.57f) * ((float)Main.rand.NextDouble() - 0.5f) * Projectile.width;
+                Dust dust = Main.dust[Dust.NewDust(dustPos + offset - Vector2.One * 4f, 8, 8, DustID.Blood, 0.0f, 0.0f, 100, new Color(), 1.5f)];
+                dust.velocity *= 0.5f;
+                dust.velocity.Y = -Math.Abs(dust.velocity.Y);
+                unit = dustPos - Main.player[Projectile.owner].Center;
+                unit.Normalize();
+                dust = Main.dust[Dust.NewDust(Main.player[Projectile.owner].Center + 55 * unit, 8, 8, DustID.Blood, 0.0f, 0.0f, 100, new Color(), 1.5f)];
+                dust.velocity = dust.velocity * 0.5f;
+                dust.velocity.Y = -Math.Abs(dust.velocity.Y);
+            }
+        }
 
-			/*
-			* Sets the end of the laser position based on where it collides with something
-			*/
-			private void SetLaserPosition(Player player)
+        /*
+        * Sets the end of the laser position based on where it collides with something
+        */
+        private void SetLaserPosition(Player player)
 			{
 				for (Distance = MOVE_DISTANCE; Distance <= 2200f; Distance += 5f)
 				{
@@ -275,6 +275,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 			}
 
 		bool dontDoItAgain = false;
+		int timer = 0;
 		private void ChargeLaser(Player player)
 		{
 			// Kill the projectile if the player stops channeling
@@ -283,11 +284,15 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 				Projectile.Kill();
 			}
 			else
-			{
-				// Do we still have enough mana? If not, we kill the projectile because we cannot use it anymore
-				if (Main.time % 10 < 1 && !player.CheckMana(player.inventory[player.selectedItem].mana, true))
-				{
-					time += 5;
+            {
+                timer++;
+				if (!player.CheckMana(player.inventory[player.selectedItem].mana, false))
+                    time += 5;
+                // Do we still have enough mana? If not, we kill the projectile because we cannot use it anymore
+                if (timer >= 10)
+                {
+					player.CheckMana(player.inventory[player.selectedItem].mana, true);
+                    timer = 0;
 				}
 				Vector2 offset = Projectile.velocity;
 				offset *= MOVE_DISTANCE - 20;

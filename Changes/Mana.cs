@@ -48,7 +48,7 @@ namespace TRAEProject.Changes
             if (proj.CountsAsClass(DamageClass.Magic) && manaCloak == true && crit && Main.rand.Next(3) == 0)
             {
                 int[] spread = { 3, 4, 5 };
-                TRAEMethods.SpawnProjectilesFromAbove(Player, target.position, 1, 400, 600, spread, 20, ProjectileID.ManaCloakStar, damage / 3, 2f, Player.whoAmI);
+                TRAEMethods.SpawnProjectilesFromAbove(Player, target.position, 1, 400, 600, spread, 20, ProjectileID.ManaCloakStar, damage / 2, 2f, Player.whoAmI);
             }
             if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && crit && manaFlowerLimit < 3)
             {

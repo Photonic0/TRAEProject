@@ -651,6 +651,25 @@ namespace TRAEProject.Changes.Projectiles
             Player player = Main.player[projectile.owner];
             switch (projectile.type)
             {
+                case ProjectileID.VenomArrow:
+                case ProjectileID.VenomBullet:
+                    float range = 100f; 
+                    for (int k = 0; k < 200; k++)
+                    {
+                        int NPCLimit = 0;
+                        NPC nPC = Main.npc[k];
+                        if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(target.Center, nPC.Center) <= range)
+                        {
+                            ++NPCLimit;
+                            if (NPCLimit < 3)
+                            {
+
+                                nPC.AddBuff(BuffID.Venom, 120);
+
+                            }
+                        }
+                    }
+                    break;
                 case ProjectileID.StyngerShrapnel:
                     SoundEngine.PlaySound(SoundID.Item14, projectile.position);
                     for (int num958 = 0; num958 < 7; num958++)

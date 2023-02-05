@@ -296,7 +296,7 @@ namespace TRAEProject.Changes.Items
                     item.useTime = 25; // down from 40
                     item.useAnimation = 25; // down from 40
                     item.autoReuse = false; // changed from true
-                    item.mana = 50; // up from 16
+                    item.mana = 80; // up from 16
                     rightClickSideWeapon = true;
                     return;
 				case 2795: // lmg
