@@ -8,12 +8,12 @@ namespace TRAEProject.NewContent.Buffs
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Lava Shield");
-			Description.SetDefault("Increases defense by 20");
+			Description.SetDefault("Increases defense by 12");
 		}
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.statDefense += 20;
+			player.statDefense += 12;
 		}
 	}
 }

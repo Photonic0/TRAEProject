@@ -42,9 +42,10 @@ namespace TRAEProject.Changes.Projectiles
                     break;
                 case ProjectileID.WeatherPainShot:
                     projectile.penetrate = -1;
-                    DrainManaOnHit = 3;
-                    DrainManaPassively = 30;
-                    projectile.timeLeft = 1800;
+                    DrainManaOnHit = 5;
+                    projectile.idStaticNPCHitCooldown = 30; // up from 25
+                    DrainManaPassively = 15;
+                    projectile.timeLeft = 3600; // this is irrelevant, its duration is set through code, check AI
                     break;
                 case ProjectileID.ManaCloakStar:
                     projectile.penetrate = 2;
@@ -382,9 +383,9 @@ namespace TRAEProject.Changes.Projectiles
             if (DrainManaPassively > 0)
             {
                 manaDrain += (int)(DrainManaPassively * player.manaCost);
-                if (manaDrain >= DrainManaPassively)
+                if (manaDrain >= 60)
                 {
-                    manaDrain -= DrainManaPassively;
+                    manaDrain = 0;
                     player.statMana--;
                 }
                 if (player.statMana <= 0)
@@ -415,7 +416,10 @@ namespace TRAEProject.Changes.Projectiles
                     return;
                 case ProjectileID.SharpTears:
                     projectile.ai[0] -= 0.8f;
-                    return;              
+                    return;
+                case ProjectileID.WeatherPainShot:
+                    projectile.ai[1] -= 0.75f;
+                    return;
             }                    
         }    
        

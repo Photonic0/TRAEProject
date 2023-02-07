@@ -63,7 +63,7 @@ namespace TRAEProject
             }
             if (LavaShield && waterRunning && Player.wet)
             {
-                Player.AddBuff(BuffType<LavaShield>(), 9000);
+                Player.AddBuff(BuffType<LavaShield>(), 900);
             }            
             if (Player.shroomiteStealth && !Player.mount.Active) // Always active while on the ground, Stealth disappears slower, reduced all bonuses by 25%, max damage is reduced by a further 10%.  
             {
