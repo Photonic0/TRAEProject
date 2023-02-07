@@ -367,9 +367,13 @@ namespace TRAEProject.Changes.Weapon.Melee
         public int HitCount = 0;
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            if(projectile.type == ProjectileID.FlamingMace)
+            {
+                target.AddBuff(BuffID.OnFire, 4 * 60);
+            }
             Player player = Main.player[projectile.owner];             
             if (projectile.type == ProjectileID.TinyEater)
-        { 
+            { 
                 TRAEDebuff.Apply<Corrupted>(target, 181, 1);
             }
 

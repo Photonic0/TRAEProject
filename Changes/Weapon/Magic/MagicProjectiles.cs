@@ -42,8 +42,8 @@ namespace TRAEProject.Changes.Projectiles
                     break;
                 case ProjectileID.WeatherPainShot:
                     projectile.penetrate = -1;
-                    DrainManaOnHit = 3;
-                    DrainManaPassively = 30;
+                    DrainManaOnHit = 5;
+                    DrainManaPassively = 0;
                     projectile.timeLeft = 1800;
                     break;
                 case ProjectileID.ManaCloakStar:
@@ -382,9 +382,9 @@ namespace TRAEProject.Changes.Projectiles
             if (DrainManaPassively > 0)
             {
                 manaDrain += (int)(DrainManaPassively * player.manaCost);
-                if (manaDrain >= DrainManaPassively)
+                while (manaDrain >= 60)
                 {
-                    manaDrain -= DrainManaPassively;
+                    manaDrain -= 60;
                     player.statMana--;
                 }
                 if (player.statMana <= 0)

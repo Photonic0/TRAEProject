@@ -98,10 +98,6 @@ namespace TRAEProject.Changes.Recipes
             if (recipe.HasResult(ItemID.LightningBoots))
             {
                 recipe.TryGetIngredient(ItemID.Aglet, out ingredientToRemove);
-                if(QwertysMovementRemix.active)
-                {
-                    recipe.AddIngredient(ItemID.SoulofFlight, 10);
-                }
                 recipe.RemoveIngredient(ingredientToRemove);
             }
             if (recipe.HasResult(ItemID.TerrasparkBoots))

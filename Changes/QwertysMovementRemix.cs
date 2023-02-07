@@ -30,6 +30,8 @@ namespace TRAEProject
         {
             return (v * 5) * 1.28f;
         }
+        public const int bootSpeed = 20;
+        public const int flegSpeed = 25;
     }
 
     //comment out everything below this to turn off my changes
@@ -153,6 +155,7 @@ namespace TRAEProject
         }
         public override void PostUpdateBuffs()
         {
+            /*
             if (Player.gravControl && Player.velocity.Y != 0)
             {
                 if (Player.gravDir == 1)
@@ -164,6 +167,7 @@ namespace TRAEProject
                     forcedAntiGravity = true;
                 }
             }
+            */
         }
         void DoCommonDashHandle(out int dir, out bool dashing, Player.DashStartAction dashStartAction = null)
 		{
@@ -1082,7 +1086,7 @@ namespace TRAEProject
             //Improved acceration
             if(Player.mount.Type == MountID.Bunny)
             {
-                Player.accRunSpeed = 6 * mountSpeedBonus;
+                Player.accRunSpeed = 5.6f * mountSpeedBonus;
                 Player.runAcceleration = 0.3f;
                 Player.jumpHeight = 10;
                 Player.jumpSpeed *= 1.4f;

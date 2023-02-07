@@ -7,6 +7,8 @@ namespace TRAEProject.Changes.Prefixes
 {
     public class AccModPlayer : ModPlayer
     {
+        public const int SpeedValue = 4;
+        public const int JumpValue = 5;
         public override void PostUpdateEquips()
         {
             for (int i = 3; i < 10; i++)
@@ -22,20 +24,22 @@ namespace TRAEProject.Changes.Prefixes
                         if (Player.armor[i].prefix == PrefixID.Brisk)
                         {
                             Player.moveSpeed -= 0.01f;
-                            Player.jumpSpeedBoost += (0.05f * 5) * 1.28f; // remember that jump speed bonuses are weird
+                            Player.jumpSpeedBoost += QwertysMovementRemix.JSV(JumpValue * 0.01f); // remember that jump speed bonuses are weird
                         }
                         if (Player.armor[i].prefix == PrefixID.Fleeting)
                         {
                             Player.moveSpeed -= 0.02f;
-                            Player.jumpSpeedBoost += (0.1f * 5) * 1.28f; // remember that jump speed bonuses are weird
+                            Player.jumpSpeedBoost += QwertysMovementRemix.JSV(JumpValue * 2 * 0.01f);
                         }
                         if (Player.armor[i].prefix == PrefixID.Hasty2)
                         {
-                            Player.moveSpeed += 0.02f;
+                            Player.moveSpeed -= 0.03f;
+                            Player.moveSpeed += SpeedValue * 0.01f;
                         }
                         if (Player.armor[i].prefix == PrefixID.Quick2)
                         {
-                            Player.moveSpeed += 0.06f;
+                            Player.moveSpeed -= 0.04f;
+                            Player.moveSpeed += SpeedValue * 2 * 0.01f;
                         } 
                     }
                     else
@@ -117,12 +121,16 @@ namespace TRAEProject.Changes.Prefixes
                                     switch(i)
                                     {
                                         case 1:
+                                            line.Text = line.Text.Replace("" + i, "" + AccModPlayer.JumpValue);
+                                            break;
                                         case 3:
-                                            line.Text = line.Text.Replace("" + i, "" + 5);
-                                        break;
+                                            line.Text = line.Text.Replace("" + i, "" + AccModPlayer.SpeedValue);
+                                            break;
                                         case 2:
+                                                line.Text = line.Text.Replace("" + i, "" + (AccModPlayer.JumpValue * 2));
+                                            break;
                                         case 4:
-                                            line.Text = line.Text.Replace("" + i, "" + 10);
+                                            line.Text = line.Text.Replace("" + i, "" + (AccModPlayer.SpeedValue * 2));
                                         break;
                                     }
                                     if(i == 1 || i == 2)
@@ -134,7 +142,6 @@ namespace TRAEProject.Changes.Prefixes
                                 break;
                             }
                         }
-                        line.Text += " and jump speed";
                     }
                     if (line.Name == "PrefixAccMaxMana")
                     {

@@ -227,12 +227,15 @@ namespace TRAEProject.Changes.Accesory
         {
             switch (item.type)
             {
+                case ItemID.GravityGlobe:
+                    player.GetModPlayer<GravitationPlayer>().noFlipGravity = true;
+                break;
                 case ItemID.HermesBoots:
                 case ItemID.FlurryBoots:
                 case ItemID.SailfishBoots:
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += QwertysMovementRemix.bootSpeed * 0.01f;
 
                     }
                     else if (player.velocity.Y == 0)
@@ -245,7 +248,7 @@ namespace TRAEProject.Changes.Accesory
                     
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += QwertysMovementRemix.bootSpeed * 0.01f;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -277,7 +280,7 @@ namespace TRAEProject.Changes.Accesory
                     player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += QwertysMovementRemix.bootSpeed * 0.01f;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -311,7 +314,7 @@ namespace TRAEProject.Changes.Accesory
 
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += QwertysMovementRemix.bootSpeed * 0.01f;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -331,7 +334,7 @@ namespace TRAEProject.Changes.Accesory
                     player.moveSpeed -= 0.08f; // get rid of the 8% move speed buff separately to not mess up future calcs 
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += QwertysMovementRemix.bootSpeed * 0.01f;
                     }
                     else 
                     {
@@ -353,7 +356,7 @@ namespace TRAEProject.Changes.Accesory
                     player.accRunSpeed = 6f;
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += QwertysMovementRemix.bootSpeed * 0.01f;
                     }
                     else 
                     {
@@ -377,7 +380,7 @@ namespace TRAEProject.Changes.Accesory
                     player.accRunSpeed = 4.8f;
                     if(QwertysMovementRemix.active)
                     {
-                        player.moveSpeed += 0.25f;
+                        player.moveSpeed += QwertysMovementRemix.bootSpeed * 0.01f;
                     }
                     else if (player.velocity.Y == 0)
                     {
@@ -396,6 +399,7 @@ namespace TRAEProject.Changes.Accesory
                     if(QwertysMovementRemix.active)
                     {
                         player.gravControl = true;
+                        player.GetModPlayer<GravitationPlayer>().noFlipGravity = true;
                     }
                     break;
                     case ItemID.BlueHorseshoeBalloon:
@@ -508,7 +512,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5);
+                                line.Text = QwertysMovementRemix.bootSpeed + "% increased movement speed";
                             }
                             else
                             {
@@ -524,7 +528,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
+                                line.Text = QwertysMovementRemix.bootSpeed + "% increased movement speed" + "\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
                             }
                             else
                             {
@@ -557,7 +561,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(3) + "/nIncreases acceleration signifcantly";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by 15%\nGreatly increases acceleration";
                             }
                             else
                             {
@@ -590,7 +594,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "";
+                                line.Text = QwertysMovementRemix.bootSpeed + "% increased movement speed";
                             }
                             else
                             {
@@ -610,7 +614,14 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " and jump speed by " + QwertysMovementRemix.SpeedTooltip(5) + "";
+                                if(QwertysMovementRemix.bootSpeed == QwertysMovementRemix.flegSpeed)
+                                {
+                                    line.Text = QwertysMovementRemix.bootSpeed + "% increased movement speed and jump speed";
+                                }
+                                else
+                                {
+                                    line.Text = QwertysMovementRemix.bootSpeed + "% increased movement speed\n" + QwertysMovementRemix.flegSpeed + "% increased jump speed";
+                                }
                             }
                             else
                             {
@@ -634,7 +645,7 @@ namespace TRAEProject.Changes.Accesory
                         {
                             if(QwertysMovementRemix.active)
                             {
-                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "/nGreatly increases acceleration";
+                                line.Text = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(5) + "\nGreatly increases acceleration";
                             }
                             else
                             {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Changes.Accesory;
 
 namespace TRAEProject.NewContent.Items.Accesories.GravityTabi
 {
@@ -26,6 +27,7 @@ namespace TRAEProject.NewContent.Items.Accesories.GravityTabi
         {
             player.GetModPlayer<AccesoryEffects>().FastFall = true;
             player.gravControl2 = true;
+            player.GetModPlayer<GravitationPlayer>().noFlipGravity = true;
             player.dashType = 1;
         }
         public override void AddRecipes()

@@ -391,14 +391,17 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
             }
 			if(Player.jump == 0)
 			{
-				isLevitating = false;
-				if(Player.mount.Active && Player.mount.BlockExtraJumps)
+				if(isLevitating)
 				{
+					isLevitating = false;
+					if(Player.mount.Active && Player.mount.BlockExtraJumps)
+					{
 
-				}
-				else
-				{
-					Player.fullRotation = 0;
+					}
+					else
+					{
+						Player.fullRotation = 0;
+					}
 				}
 			}
 			else if(isLevitating)

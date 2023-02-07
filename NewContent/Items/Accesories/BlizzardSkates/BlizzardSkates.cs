@@ -25,7 +25,7 @@ namespace TRAEProject.NewContent.Items.Accesories.BlizzardSkates
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.hasJumpOption_Blizzard = true;
-            //player.GetModPlayer<PlayerChanges>().blizzardDash = true;
+            player.GetModPlayer<PlayerChanges>().blizzardDash = true;
             player.dashType = 99;
         }
 

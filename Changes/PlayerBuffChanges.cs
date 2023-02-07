@@ -64,7 +64,7 @@ namespace TRAEProject
                     player.moveSpeed -= 0.33f;
                     return;
                 case BuffID.Swiftness:
-                    player.moveSpeed -= 0.10f;
+                    player.moveSpeed -= 0.15f;
                     return;
                 case BuffID.Sunflower:
                 case BuffID.SugarRush:
