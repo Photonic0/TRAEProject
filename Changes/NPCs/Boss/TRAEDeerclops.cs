@@ -26,7 +26,7 @@ namespace TRAEProject.NPCs.Boss
 		{
 			if (npc.type == NPCID.Deerclops)
 			{
-				npc.lifeMax = 4000; // down from 7000
+				npc.lifeMax = 3600; // down from 7000
 			}
 		}
 		float timer = 1f;
@@ -274,7 +274,7 @@ namespace TRAEProject.NPCs.Boss
 							if (Main.netMode != 1 && npc.ai[1] >= (float)num9)
 							{
 								Point sourceTileCoords = npc.Top.ToTileCoordinates();
-								int num10 = 10;
+								int num10 = 12; // down from 20
 								int DistancedByThisManyTiles = 1;
 								float upBiasPerSpike = 200f;
 								sourceTileCoords.X += npc.direction * 3;
@@ -699,13 +699,75 @@ namespace TRAEProject.NPCs.Boss
 			{
 				if (npc.Boss_CanShootExtraAt(i, num3 % 3, 3, 1200f, alwaysSkipMainTarget: false))
 				{
-					Projectile.RandomizeInsanityShadowFor(Main.player[i], isHostile: true, out var spawnposition, out var spawnvelocity, out var ai, out var ai2);
+					RandomizeInsanityShadowFor(Main.player[i], isHostile: true, out var spawnposition, out var spawnvelocity, out var ai, out var ai2);
 					Projectile.NewProjectile(npc.GetSource_FromThis(), spawnposition, spawnvelocity, 965, shadowHandDamage, 0f, Main.myPlayer, ai, ai2);
 				}
 			}
 		}
-
-		private void AI_123_Deerclops_ShootRubbleUp(NPC npc, ref NPCAimedTarget targetData, ref Point sourceTileCoords, int howMany, int distancedByThisManyTiles, float upBiasPerSpike, int whichOne)
+        public static void RandomizeInsanityShadowFor(Entity targetEntity, bool isHostile, out Vector2 spawnposition, out Vector2 spawnvelocity, out float ai0, out float ai1)
+        {
+            int num = Main.rand.Next(2) * 2 - 1;
+            // vanilla values:
+            // 0: cheap shot
+            // 1: spinny hand
+            // 2: accelerates slowly
+            // 3: Spawns far and travels towards targer
+            // TRAE values:
+            // 0: spinny hand
+            // 1: spawns far and travels towards target
+            // 2: cheap shot
+            // 3: accelerates slowly
+            int AttackStyle = isHostile ? Main.rand.Next(2) : Main.rand.Next(4);
+            float num3 = (isHostile ? 250f : 100f);
+            float num4 = (isHostile ? 30 : 20);
+            float num5 = (isHostile ? 30 : 0);
+            float num6 = Main.rand.NextFloatDirection() * (float)Math.PI * 0.125f;
+            if (isHostile && targetEntity.velocity.X * (float)num > 0f)
+            {
+                num *= -1;
+            }
+            if (AttackStyle == 2 && isHostile)
+            {
+                num4 += 10f;
+            }
+            spawnposition = targetEntity.Center + targetEntity.velocity * num5 + new Vector2((float)num * (0f - num3), 0f).RotatedBy(num6);
+            spawnvelocity = new Vector2((float)num * num3 / num4, 0f).RotatedBy(num6);
+            ai0 = 0f;
+            ai1 = 0f;
+            if (AttackStyle == 0)
+            {
+                float num7 = (float)Math.PI * 2f * 0.5f/*Main.rand.NextFloat()*/;
+                spawnposition = targetEntity.Center - num7.ToRotationVector2() * (isHostile ? num3 : (num3 * 0.5f));
+                ai0 = 180f;
+                ai1 = num7 - (float)Math.PI / 2f;
+                spawnvelocity = num7.ToRotationVector2() * (isHostile ? 4 : 2);
+            }
+            if (AttackStyle == 3)
+            {
+                float num8 = (float)Math.PI * 2f * Main.rand.NextFloat();
+                spawnposition = targetEntity.Center - num8.ToRotationVector2() * num3;
+                ai0 = 300f;
+                ai1 = num8;
+                spawnvelocity = num8.ToRotationVector2() * (isHostile ? 4 : 2);
+            }
+            if (AttackStyle == 1)
+            {
+                float f = (float)Math.PI * 2f * 0.5f/*Main.rand.NextFloat(0, 0.8f)*/;
+                float num9 = (isHostile ? 60 : 30);
+                float num10 = (float)Math.PI / 2f / num9 * Main.rand.NextFloatDirection();
+                spawnposition = targetEntity.Center + targetEntity.velocity * num9;
+                Vector2 vector = f.ToRotationVector2() * (isHostile ? 8 : 3);
+                for (int i = 0; (float)i < num9; i++)
+                {
+                    spawnposition -= vector;
+                    vector = vector.RotatedBy(0f - num10);
+                }
+                spawnvelocity = vector;
+                ai0 = 390f;
+                ai1 = num10;
+            }
+        }
+        private void AI_123_Deerclops_ShootRubbleUp(NPC npc, ref NPCAimedTarget targetData, ref Point sourceTileCoords, int howMany, int distancedByThisManyTiles, float upBiasPerSpike, int whichOne)
 		{
 			int num = 18;
 			int num2 = whichOne * distancedByThisManyTiles;

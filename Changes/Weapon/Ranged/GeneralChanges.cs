@@ -64,6 +64,10 @@ namespace TRAEProject.Changes.Weapons
                     item.shootSpeed = 7f;
                     item.autoReuse = true;
                     return;
+                case ItemID.PewMaticHorn:
+                    item.useTime = 17;
+                    item.useAnimation = 17;
+                    break;
                 case ItemID.BeesKnees:
                     item.damage = 19;
                     return;

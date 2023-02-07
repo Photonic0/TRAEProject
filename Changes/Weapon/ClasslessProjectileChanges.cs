@@ -12,6 +12,8 @@ namespace TRAEProject.Changes.Weapon
 {
     public class ClasslessProjectileChanges : GlobalProjectile
     {
+        public override bool InstancePerEntity => true;
+
         public override void SetDefaults(Projectile projectile)
         {
             switch (projectile.type)
@@ -50,9 +52,39 @@ namespace TRAEProject.Changes.Weapon
                     projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.25f;
                     break;
-
+                case ProjectileID.InsanityShadowHostile:
+                    projectile.alpha = 150;
+                    break;
             }
             //
+        }
+        int timer = 0;
+        public override void AI(Projectile projectile)
+        {
+            if (projectile.type == ProjectileID.InsanityShadowHostile)
+            {
+                
+                if (timer < 30)
+                {
+                    timer++;
+                }
+                    
+
+            }
+           return;
+        }
+
+        public override bool CanHitPlayer(Projectile projectile, Player target)
+        {
+            if (projectile.type == ProjectileID.InsanityShadowHostile)
+            {
+
+                if (timer < 30)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
