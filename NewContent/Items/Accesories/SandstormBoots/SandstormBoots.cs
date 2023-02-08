@@ -17,7 +17,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SandstormBoots
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Sandstorm Boots");
-            Tooltip.SetDefault("25% increased running speed\nThe wearer can perform an improved double jump\nRunning and jumping speed increased by 25% on sand, and for 8 seconds after leaving it");
+            Tooltip.SetDefault("20% increased movement speed\nThe wearer can perform an improved double jump\nRunning and jumping speed increased by 20% on sand, and for 4 seconds after leaving it");
         }
         public override void SetDefaults()
         {
@@ -28,10 +28,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SandstormBoots
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.accRunSpeed = 4.8f;
-			if (player.velocity.Y == 0)
-            {
-                player.moveSpeed += 0.25f;
-            }
+            player.moveSpeed += 0.20f;
             player.desertBoots = false;
             player.sailDash = false;
             player.coldDash = false;

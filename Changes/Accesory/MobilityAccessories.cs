@@ -532,7 +532,7 @@ namespace TRAEProject.Changes.Accesory
                             }
                             else
                             {
-                                line.Text = "25% increased running speed\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
+                                line.Text = "25% increased running speed\nRunning and jumping speed increased by 20% on sand, and for 4 seconds after leaving it";
                             }
                         }
                     }

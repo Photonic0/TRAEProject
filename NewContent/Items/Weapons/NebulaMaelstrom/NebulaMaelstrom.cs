@@ -18,7 +18,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             DisplayName.SetDefault("Nebula Maelstrom");
-            Tooltip.SetDefault("Unleash a particle storm on your opponents");
+            Tooltip.SetDefault("Unleash a particle storm on your opponents\nRight-click to uncast ");
         }
         public override void SetDefaults()
         {

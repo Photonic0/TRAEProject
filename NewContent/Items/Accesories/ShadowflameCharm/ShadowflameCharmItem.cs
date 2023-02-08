@@ -192,7 +192,9 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
             Projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 160;            
 			Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.Daybreak;
-            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 120;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffChance = 2;
+
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 60;
         }
 
 

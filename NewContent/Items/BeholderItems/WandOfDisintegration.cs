@@ -26,8 +26,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
 
         public override void SetDefaults()
         {
-            Item.damage = 20;
-            Item.DefaultToStaff(ProjectileType<DisintegrationBeam>(), 10, 10, 18);
+            Item.damage = 33;
+            Item.DefaultToStaff(ProjectileType<DisintegrationBeam>(), 10, 10, 15);
             Item.noMelee = true;
             Item.CountsAsClass<MagicDamageClass>(); 
             Item.channel = true; //Channel so that you can held the weapon [Important]
@@ -82,7 +82,14 @@ namespace TRAEProject.NewContent.Items.BeholderItems
             Projectile.DamageType = DamageClass.Magic;
             Projectile.hide = true;
         }
-
+        public override bool? CanHitNPC(NPC target)
+        {
+            if (target.townNPC)
+            {
+                return true;
+            }
+            return null;
+        }
         public override bool PreDraw(ref Color lightColor)
         {
             Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
@@ -145,7 +152,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         // Set custom immunity time on hitting an NPC
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.immune[Projectile.owner] = 5;
+            target.immune[Projectile.owner] = 10;
         }
         int destructotimer = 0;
         // The AI of the Projectile
@@ -172,7 +179,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
             SpawnDusts(player);
             CastLights();
             // important that this goes last
-            if (destructotimer >= 16)
+            if (destructotimer >= 30)
                 destructotimer = 0;
         }
 
@@ -216,7 +223,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
 		*/
         private void SetLaserPosition(Player player)
         {
-            for (Distance = MOVE_DISTANCE; Distance <= 640f; Distance += 5f)
+            for (Distance = MOVE_DISTANCE; Distance <= 600f; Distance += 5f)
             {
                 var start = player.Center + Projectile.velocity * Distance;
                 if (!Collision.CanHit(player.Center, 1, 1, start, 1, 1))
@@ -225,7 +232,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
                     Distance -= 5f;
                     break;
                 }
-                if (Collision.CanHit(player.Center, 1, 1, start, 1, 1) && destructotimer >= 15)
+                if (Collision.CanHit(player.Center, 1, 1, start, 1, 1) && destructotimer >= 30)
                 {
                     int minTileX = (int)(start.X / 16f - (float)2);
                     int maxTileX = (int)(start.X / 16f + (float)2);

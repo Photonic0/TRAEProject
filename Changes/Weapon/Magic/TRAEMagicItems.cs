@@ -90,14 +90,14 @@ namespace TRAEProject.Changes.Items
                     item.useAnimation = 20;
 					return;
 		        case ItemID.PoisonStaff:
-                    item.damage = 17; // down from 48
+                    item.damage = 16; // down from 48
                     item.mana = 45; // up from 22                  
                     return; 
                 case ItemID.BeeGun:
-                    item.damage = 8; 
-				    item.useTime = 27; // down from 16
-                    item.useAnimation = 27;
-                    item.mana = 18; // up from 6
+                    item.damage = 5; 
+				    item.useTime = 20; // down from 16
+                    item.useAnimation = 20;
+                    item.mana = 13; // up from 6
 				    item.knockBack = 1f;
                     break;
                 case ItemID.ZapinatorGray:
@@ -188,9 +188,9 @@ namespace TRAEProject.Changes.Items
                     return;
                 case ItemID.WaspGun:
                     item.damage = 19; // base value: 31
-					item.useTime = 22; // up from 18
-                    item.useAnimation = 22; // up from 18
-					item.mana = 15; // up from 10 
+					item.useTime = 20; // up from 18
+                    item.useAnimation = 20; // up from 18
+					item.mana = 13; // up from 10 
                     item.shootSpeed = 12f;
 					item.knockBack = 1f;					
                     return;
@@ -379,10 +379,10 @@ namespace TRAEProject.Changes.Items
             {
                 case ItemID.BeeGun:
                     {
-                        int bees = Main.rand.Next(2, 4);
+                        int bees = Main.rand.Next(2, 4); // 2-3 bees, that's so stupid why isn't it 2-4
                         for (int i = 0; i < bees; i++)
                         {
-
+              
                             Vector2 perturbedSpeed = new Vector2(velocity.X, velocity.Y).RotatedByRandom(MathHelper.ToRadians(10)); // 10 degree spread.
                             int num118 = Projectile.NewProjectile(source, position, perturbedSpeed, type, damage, knockback, player.whoAmI);
                             Main.projectile[num118].DamageType = DamageClass.Magic;
@@ -391,7 +391,11 @@ namespace TRAEProject.Changes.Items
 
 
                         }
-
+                        if (Main.rand.NextBool(4))
+                        {
+                            int num119 = Projectile.NewProjectile(source, position, velocity, ProjectileID.GiantBee, damage, knockback, player.whoAmI);
+                            Main.projectile[num119].DamageType = DamageClass.Magic;
+                        }
 
                         return false;
                     }
@@ -563,7 +567,30 @@ namespace TRAEProject.Changes.Items
                         }
                     }
                     return;
+                case ItemID.MagnetSphere:
+                case ItemID.ToxicFlask:
+
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Knockback")
+                        {
+                            line.Text = "Right-click to uncast";
+                        }
+                    }
+                    return;
             }
+            if (rightClickSideWeapon)
+            {
+                foreach (TooltipLine line in tooltips)
+                {
+                    if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                    {
+                        line.Text += "\nRight-click to uncast";
+                    }
+                }
+                return;
+            }
+
         }
     }
 }

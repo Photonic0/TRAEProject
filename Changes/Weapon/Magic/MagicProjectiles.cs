@@ -44,7 +44,7 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.penetrate = -1;
                     DrainManaOnHit = 5;
                     projectile.idStaticNPCHitCooldown = 30; // up from 25
-                    DrainManaPassively = 15;
+                    DrainManaPassively = 25;
                     projectile.timeLeft = 3600; // this is irrelevant, its duration is set through code, check AI
                     break;
                 case ProjectileID.ManaCloakStar:

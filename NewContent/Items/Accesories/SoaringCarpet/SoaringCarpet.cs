@@ -21,7 +21,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 			DisplayName.SetDefault("Soaring Carpet");
             if(QwertysMovementRemix.active)
 			{
-            	Tooltip.SetDefault("Grants a soaring carpet, use it by holding UP\nIncreases movement speed by 15%\nIncreases acceleration\nFall damage immunity");
+            	Tooltip.SetDefault("Grants a soaring carpet, use it by holding UP\nIncreases movement speed by 10%\nIncreases acceleration\nFall damage immunity");
 			}
 			else
 			{
@@ -41,7 +41,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
         {
             player.GetModPlayer<SoaringCarpetEffect>().soaringCarpet = true;
 
-			player.moveSpeed += 0.15f;
+			player.moveSpeed += 0.1f;
 			player.GetModPlayer<PlayerChanges>().ankletAcc = true;
 			player.noFallDmg = true;
 
@@ -71,6 +71,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 		
 				if (soaringCarpetTime < 240 && Player.controlUp && Player.gravDir != -1)
 				{
+					Player.moveSpeed += 0.3f;
 					Player.runAcceleration *= 1.5f;
 			        Player.wingRunAccelerationMult *= 1.5f;
 					if (Player.velocity.Y < 0)
@@ -82,10 +83,10 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 						Player.velocity.Y -= 0.7f;
 					}
 					++soaringCarpetTime;
-					for (int i = 0; i < 3; i++)
+					for (int i = 0; i < 5; i++)
 					{
 						int dustID = Main.rand.NextFromList(DustID.GreenTorch, DustID.WhiteTorch, DustID.PinkTorch);
-						Vector2 vector = new(Player.Bottom.X + Main.rand.Next(-Player.width, Player.width), Player.Bottom.Y);
+						Vector2 vector = new(Player.Bottom.X + Main.rand.Next(-Player.width, Player.width), Player.Bottom.Y + Main.rand.Next(-5, 0));
 						Dust dust = Dust.NewDustDirect(vector,  1, 1, dustID, Scale: 1.15f * Main.rand.NextFloat(1, 1.3f));
 						dust.noGravity = true;
 					}

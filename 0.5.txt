@@ -1,3 +1,45 @@
+Movement Speed reworked (Again)
+* Just about every item got changed, really
+
+
+Queen Bee
+* (Related) Bees now die when hitting a player
+* (Expert) Max defense growth decreased from 28 to 20, this also means she gains defense slower during the fight
+* Master Mode changes:
+** Charging velocity no longer increases as her health goes down, instead it starts maxed out.
+** Summons bees twice as fast.
+** When below 75% HP, shoots 4 stingers in 4 directions at the end of the attack. When below 37.5% HP, she shoots 6 instead.
+** Every fourth stinger shot is a triple shot.
+
+Deerclops
+* Fight reworked to make it a pre-Evil boss encounter instead of post-evil boss
+* HP decreased from 7000 to 3600
+* Walking speed reduced from 17.5-22.5 mph to 15-20. (His walking speed increases as he takes damage)
+* Forward Ice Spike attack is 10% slower
+* Rubble attack shoots out 40% less rubble
+* Now forced to use Rubble or Shadow Hand attack if he hasn't done so in 10 seconds.
+* Passive Shadow hands spawn less often, and now only have two patterns: The slow, spinning hands and the hands that spawn far away from the player.
+* Now takes 1 minute to despawn instead of 24
+
+* Master mode:
+** Forward Ice Spike is 10% faster instead of 10% slower.
+** Vertical Ice Spike attack is 50% faster
+** Slowing Roars very briefly Freeze and Chill the player
+** Becomes invincible when the player is 22.5 tiles away from it instead of 28
+** Walking speed increased to 22.5 mph
+
+Twins
+* Retinazer HP decreased from 20k to 14k
+* Retinazer charge attack replaced with laser spin attack.
+* Removed random spread on retinazer's lasers.
+* Completely overhauled Retinazer's second phase.
+* When one twin is at 5% HP or less, the other transforms to its second phase.
+
+* Expert mode:
+** Dramatically increased spazmatism's flamethrower speed
+** Retinazer's second phase moves faster.
+** When one twin dies, the other goes into a new third phase.
+
 * Direct rocket base damage reduced from 33 to 25
 * Snowman cannon homing radius reduced by 25%
 * Chlorophyte bullet/arrow max homing distance increased by 20%
@@ -12,27 +54,38 @@
 * Shroomite bullet crit damage reduced from 25% to 18%
 ** Now crafted with empty bullets
 ** updated visuals
+
 * Ghost Bullets now smart bounce between hit enemies.
 ** updated sprite
 ** Now crafted with empty bullets
+
 * Venom Bullets and Arrows now apply their debuff in a small area after a hit.
 
-* Shroomite armor max damage bonus reduced from 35% to 25%
+* Shroomite armor's set bonus max damage bonus reduced from 35% to 25%
+
+* Poison staff damage 17 -> 16 (to compensate for Poisoned's buff)
+
+* Bee Gun
+** Damage decreased from 8 to 5
+** Use Time decreased from 30 to 20
+** Mana cost decreased from 18 to 13
+** Now has a 25% chance to shoot a Big Bee on every attack.
+
+Wasp gun
+* Use time decreased from 22 to 20
+* mana cost decreased from 15 to 13
 
 * removed heavy burn
 
-*TODO TODO TODO TODO TODO Sunfury makes a ring of flames on hit
-
 * mana cloak star damage increased from 33% to 50%
-
 
 * Scourge of the corruptor
 ** damage reduced from 70 to 62
 ** Thrown scourge now makes 2-4 mini eaters instead of 2-5
 ** Worm enemies are immune to corrupted
 
-
 * Vampire Knives damage reduced back to 29, now has 20 armor penetration
+
 * Withered armor reduces defense by 18 instead of 25
 * Withered weapon reduces damage by 16.7% instead of 20%
 
@@ -45,10 +98,10 @@ Double Haxor
 * Use time 17 -> 19
 * Big axe no longer deals extra damage, pierce 5 -> 8
 
-
 * Inferno Fork max hits reduced to 16
 * Desert spirits drop spirit flame instead of Desert Spirit Lamp
 * Ghouls and Hallow Ghouls drop desert spirit lamp with a 1% chance
+** desert spirit lamp now has a new effect when placed.
 * after Plantera has been defeated red devils are more common
 * red devils drop a guide voodoo doll with a 1.6667% chance
 
@@ -57,8 +110,9 @@ Double Haxor
 * Rocket Launcher damage 120 -> 100
 
 * Shadowflame charm apparitions inflict shadowflame for 4 seconds instead of 1
+
 * Molten charm 
-** apparitions inflict daybroken for 2 seconds instead of heavy burn for 1
+** apparitions inflict daybroken for 1 seconds with a 50% chane. instead of heavy burn for 1
 ** Molten charm max charge and cost increased from 2400 and 600 to 3000 and 750
 ** Doubled Explosion radius, pierce reduced to 5
 
@@ -82,3 +136,5 @@ note: the nails do have knockback even if for some reason the weapon doesnt, thi
 ** pierce limited to 4
 
 ** Shinobi headgear summon damage and melee speed reduced back to 20%
+
+* Massive expansion to the post plantera underworld.

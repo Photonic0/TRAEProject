@@ -46,7 +46,7 @@ namespace TRAEProject.NPCs.Boss
 				bool goHome = false;
 				bool flag = npc.Distance(targetData.Center) >= 450f;
 				if (mustard)
-					flag = npc.Distance(targetData.Center) >= 375f;
+					flag = npc.Distance(targetData.Center) >= 360f;
 				npc.localAI[3] = MathHelper.Clamp(npc.localAI[3] + (float)flag.ToDirectionInt(), 0f, 30f);
 				npc.dontTakeDamage = npc.localAI[3] >= 30f;
 				float lifePercent = (float)npc.life / (float)npc.lifeMax;
@@ -445,11 +445,11 @@ namespace TRAEProject.NPCs.Boss
 		}
 		private void AI_123_Deerclops_Movement(NPC npc, bool haltMovement, bool goHome)
 		{
-			float num = npc.life / npc.lifeMax;
+            float num = (float)(npc.life / (float)npc.lifeMax);
 			float num2 = 1f - num;
 			float num3 = 3f + 1f * num2; // DOWN FROM 3.5
 			if (Main.masterMode)
-				num3 = 3f + 2f * num2;
+				num3 = 4.5f;
 			float num4 = 4f;
 			float num5 = -0.4f;
 			float min = -8f;

@@ -32,8 +32,10 @@ namespace TRAEProject.NPCs.Boss
 			{
 				if (Main.expertMode)
 				{
-					int num615 = (int)(12f * (1f - npc.life / npc.lifeMax));
-					npc.defense = npc.defDefense + num615;
+					float healthPercent = (float)(npc.life / (float)npc.lifeMax);
+
+                    float bonusDefense = 12 * (1 - healthPercent);
+					npc.defense = npc.defDefense + (int)bonusDefense;
 				}
 				if (npc.target < 0 || npc.target == 255 || Main.player[npc.target].dead || !Main.player[npc.target].active)
 				{
