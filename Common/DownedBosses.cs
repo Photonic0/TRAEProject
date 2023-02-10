@@ -6,6 +6,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria;
 using TRAEProject.Common;
 using Terraria.ID;
+using TRAEProject.NewContent.NPCs.GraniteOvergrowth;
 
 namespace TRAEProject.Common
 {
@@ -89,7 +90,7 @@ public class DownedVanillaNPCs : GlobalNPC
         {
             TRAEWorld.downedBetsy = true;
         }
-        if (!TRAEWorld.downedOvergrowth)
+        if (npc.type == NPCType<GraniteOvergrowth>() && !TRAEWorld.downedOvergrowth)
         {
             TRAEWorld.downedOvergrowth = true;
         }

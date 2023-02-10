@@ -7,6 +7,7 @@ using TRAEProject.Changes.Items;
 using TRAEProject.Changes;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using TRAEProject.Changes.Accesory;
 
 namespace TRAEProject
 {
@@ -24,6 +25,9 @@ namespace TRAEProject
                     return;
                 case BuffID.ScytheWhipPlayerBuff:
                     player.GetAttackSpeed(DamageClass.Melee) -= 0.15f;
+                    return;
+                case BuffID.WaterWalking:
+                    player.GetModPlayer<MoveSpeed>().TRAEwaterwalk = true;
                     return;
                 case BuffID.ObsidianSkin:
                     player.buffImmune[BuffID.OnFire] = false;

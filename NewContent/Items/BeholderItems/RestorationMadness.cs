@@ -22,7 +22,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
             Item.height = 28;
             Item.consumable = true;
             Item.maxStack = 30;
-            Item.DefaultToHealingPotion(20, 28, 6);
+            Item.DefaultToHealingPotion(20, 28, 3);
             Item.rare = ItemRarityID.LightPurple;
             Item.value = Item.buyPrice(silver: 50);
             Item.noMelee = true;
@@ -48,7 +48,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
             }
             player.AddBuff(BuffID.PotionSickness, potionSickness);
 
-            player.AddBuff(BuffType<Restoring2>(), 30 * 60);
+            player.AddBuff(BuffType<Restoring2>(), 1764);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
@@ -123,9 +123,9 @@ namespace TRAEProject.NewContent.Items.BeholderItems
                 item.width = 20;
                 item.height = 28;
                 item.consumable = true;
-                item.maxStack = 17;
+                item.maxStack = 30;
                 item.useTime = item.useAnimation = 17;
-                item.healLife = 4;
+                item.healLife = 2;
                 item.noMelee = true;
                 item.noUseGraphic = true;
                 item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -143,7 +143,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             if (item.type == ItemID.RestorationPotion)
             {
-                player.AddBuff(BuffType<Restoring1>(), 30 * 60);
+                player.AddBuff(BuffType<Restoring1>(), 1764);
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

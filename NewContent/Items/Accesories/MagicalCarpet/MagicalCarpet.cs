@@ -47,8 +47,8 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             //player.GetModPlayer<Hover>().hasHoverWing = true;
-            player.moveSpeed +=0.15f;
-            player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.15f);
+            player.moveSpeed -= 0.15f;
+            player.jumpSpeedBoost -= QwertysMovementRemix.JSV(0.15f);
         }
         /*
 
