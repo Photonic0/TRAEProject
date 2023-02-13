@@ -128,17 +128,9 @@ namespace TRAEProject.Changes.Armor
                         player.manaCost += 0.14f;
                         break;
                 }
-                if(QwertysMovementRemix.active)
-                {
-                    player.setBonus = "25% movement speed and jump speed";
-                    player.moveSpeed += 0.25f;
-                    player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
-                }
-                else
-                {
-                    player.setBonus = "Critical Strikes significantly increase movement speed for a short time";
-                    player.GetModPlayer<CobaltArmorEffect>().CobaltCritical = true;
-                }
+                player.setBonus = "25% increased movement speed and jump speed";
+                player.moveSpeed += 0.25f;
+                player.jumpSpeedBoost += Mobility.JSV(0.25f);
             }
             if (set == "MythrilSet") // see armor changes
             {

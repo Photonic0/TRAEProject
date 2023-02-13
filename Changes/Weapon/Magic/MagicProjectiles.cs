@@ -185,7 +185,7 @@ namespace TRAEProject.Changes.Projectiles
                 {
                     projectile.Kill();
                 }
-                player.statMana -= (int)(DrainManaOnHit * player.manaCost);
+                player.UseManaOverloadable((int)(DrainManaOnHit * player.manaCost));
             }
         }
         public override bool PreAI(Projectile projectile)
@@ -383,10 +383,10 @@ namespace TRAEProject.Changes.Projectiles
             if (DrainManaPassively > 0)
             {
                 manaDrain += (int)(DrainManaPassively * player.manaCost);
-                if (manaDrain >= 60)
+                while(manaDrain >= 60)
                 {
-                    manaDrain = 0;
-                    player.statMana--;
+                    manaDrain -= 60;
+                    player.UseManaOverloadable(1);
                 }
                 if (player.statMana <= 0)
                 {

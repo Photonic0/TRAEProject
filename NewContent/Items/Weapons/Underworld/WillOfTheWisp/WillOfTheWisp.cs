@@ -6,6 +6,8 @@ using Terraria.ModLoader;
 using TRAEProject.Changes.Projectiles;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Items;
+using TRAEProject;
+using System.Collections.Generic;
 namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
 {
     class WillOfTheWisp : ModItem
@@ -67,6 +69,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             Projectile.GetGlobalProjectile<MagicProjectile>().DrainManaOnHit = 10;            
             Projectile.penetrate = -1;
             Projectile.aiStyle = 1;
+            AIType = ProjectileID.Bullet;
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 1;
             Projectile.tileCollide = false;
@@ -83,43 +86,16 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
                     dust.noGravity = true;
                 }
                 Projectile.ai[0] = 0;
-                int[] array = new int[10];
-                int num6 = 0;
-                int Range = 250;
-                int num8 = 20;
-                for (int j = 0; j < 200; ++j)
+                if(TRAEMethods.NPCsInRange(out List<NPC> targets, 250, Projectile.Center, false, delegate(NPC possibleTarget){ return (possibleTarget.Center - Projectile.Center).Length() > 20;}))
                 {
-                    if (Main.npc[j].CanBeChasedBy((object)this, false))
-                    {
-                        float DistanceBetweenProjectileAndEnemy = (Projectile.Center - Main.npc[j].Center).Length();
-                        if (DistanceBetweenProjectileAndEnemy > num8 && DistanceBetweenProjectileAndEnemy < Range)
-                        {
-                            array[num6] = j;
-                            num6++;
-                            if (num6 >= 9)
-                            {
-                                break;
-                            }
-                        }
-
-                    }
-                }
-                if (num6 > 0)
-                {
-                    num6 = Main.rand.Next(num6);
-                    Vector2 value2 = Main.npc[array[num6]].Center - Projectile.Center;
+                    int index = Main.rand.Next(targets.Count);
+                    Vector2 value2 = targets[index].Center - Projectile.Center;
                     float scaleFactor2 = 8f;
                     value2.Normalize();
                     Projectile.velocity = value2 * scaleFactor2;
                     Projectile.netUpdate = true;
-                    return;
                 }
-                else
-                {
-
-                    return;
-                }
-
+                return;
             }
             Projectile.frameCounter++;
             if (Projectile.frameCounter >= 4)

@@ -57,14 +57,7 @@ namespace TRAEProject.NewContent.Items.Accesories.SpaceBalloon
             }
             if (Player.velocity.Y != 0 && SpaceBalloon > 0)
             {
-                if(QwertysMovementRemix.active)
-                {
-                    SpaceBalloonTimer += Player.empressBrooch ? 2 : 0;
-                }
-                else
-                {
-                    SpaceBalloonTimer += SpaceBalloon;
-                }
+                SpaceBalloonTimer += Player.empressBrooch ? 2 : 0;
                 if (SpaceBalloonTimer >= 720)
                 {
                     Player.RefreshMovementAbilities(true);

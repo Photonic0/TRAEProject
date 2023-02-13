@@ -64,7 +64,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 		float dustTimer = 0;
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemType<HeatproofSaddle>(), 100));
+            npcLoot.Add(ItemDropRule.Common(ItemType<HeatproofSaddle>(), 30));
         }
         float jump = 0;
         public override void AI()

@@ -73,6 +73,9 @@ namespace TRAEProject
                 case BuffID.Panic:
                     player.moveSpeed -= 0.6f;
                     return;
+                case BuffID.WaterWalking:
+                    player.GetModPlayer<Mobility>().TRAEwaterwalk = true;
+                    break;
             }
         }
 
@@ -117,14 +120,7 @@ namespace TRAEProject
                     tip = "Can't drink another mana potion";
                     return;
                 case BuffID.Swiftness:
-                    if(QwertysMovementRemix.active)
-                    {
-                        tip = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(3) + "";
-                    }
-                    else
-                    {
-                        tip = "15% increased movement speed";
-                    }
+                    tip = Mobility.swiftSpeed + "% increased movement speed";
                     return;
                 case BuffID.StarInBottle:
                     tip = "Increased max mana by 20";
@@ -230,10 +226,6 @@ namespace TRAEProject
         }
         public override void PostUpdateBuffs()
         {
-            if (!QwertysMovementRemix.active && Player.slowFall && !Player.TryingToHoverDown && Player.armor[2].type != ItemID.DjinnsCurse)
-            {    
-                    Player.maxFallSpeed *= 1.15f;               
-            }
         }
         public override void UpdateBadLifeRegen()
         {

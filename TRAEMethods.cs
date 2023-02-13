@@ -4,11 +4,21 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Chat;
+using System.Collections.Generic;
+using TRAEProject.Changes;
 
 namespace TRAEProject
 {
     public static class TRAEMethods
     {
+
+        public static void UseManaOverloadable(this Player player, int amount)
+        {
+            int overloadedManaLoss = Math.Min(player.GetModPlayer<Mana>().overloadedMana, amount);
+            player.GetModPlayer<Mana>().overloadedMana -= overloadedManaLoss;
+            int useMana = amount - overloadedManaLoss;
+            player.statMana -= useMana;
+        }
         public static void SpawnProjectilesFromAbove(Player Player, Vector2 Base, int projectileCount, int spreadX, int spreadY, int[] offsetCenter, float velocity, int type, int damage, float knockback, int player)
         {
             for (int i = 0; i < projectileCount; ++i)
@@ -144,6 +154,27 @@ namespace TRAEProject
                     foundTarget = true;
 
                     maxDistance = (target.Center - position).Length();
+                }
+            }
+            return foundTarget;
+        }
+        public static bool NPCsInRange(out List<NPC> targets, float maxDistance, Vector2 position, bool ignoreTiles = false, SpecialCondition specialCondition = null)
+        {
+            //very advance users can use a delegate to insert special condition into the function like only targetting enemies not currently having local iFrames, but if a special condition isn't added then just return it true
+            if (specialCondition == null)
+            {
+                specialCondition = delegate (NPC possibleTarget) { return true; };
+            }
+            bool foundTarget = false;
+            targets = new List<NPC>();
+            for (int k = 0; k < Main.npc.Length; k++)
+            {
+                NPC possibleTarget = Main.npc[k];
+                float distance = (possibleTarget.Center - position).Length();
+                if (distance < maxDistance && possibleTarget.active && possibleTarget.chaseable && !possibleTarget.dontTakeDamage && !possibleTarget.friendly && possibleTarget.lifeMax > 5 && !possibleTarget.immortal && (Collision.CanHit(position, 0, 0, possibleTarget.Center, 0, 0) || ignoreTiles) && specialCondition(possibleTarget))
+                {
+                    targets.Add(possibleTarget);
+                    foundTarget = true;
                 }
             }
             return foundTarget;

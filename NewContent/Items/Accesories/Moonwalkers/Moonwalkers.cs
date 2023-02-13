@@ -16,7 +16,7 @@ namespace TRAEProject.NewContent.Items.Accesories.Moonwalkers
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             DisplayName.SetDefault("Moonwalkers");
-            Tooltip.SetDefault("Increases jump height, prevents fall damage and grants extended flight\nResets all jumps and flight time every 10 seconds of being in the air\nPress DOWN to fall faster\nAllows reducing gravity by hodling up");
+            Tooltip.SetDefault("Increases jump height, prevents fall damage and grants extended flight\nPress DOWN to fall faster\nAllows reducing gravity by hodling up");
         }
         public override void SetDefaults()
         {
@@ -28,7 +28,7 @@ namespace TRAEProject.NewContent.Items.Accesories.Moonwalkers
         {
             player.GetModPlayer<SpaceBalloonPlayer>().SpaceBalloon += 1;
             player.rocketBoots = 2;
-            player.rocketTimeMax = 14;
+            player.rocketTimeMax += 10;
             player.GetModPlayer<AccesoryEffects>().FastFall = true;
             player.noFallDmg = true;
         }

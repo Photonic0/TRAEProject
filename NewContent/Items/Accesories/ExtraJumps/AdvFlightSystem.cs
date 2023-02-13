@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Adv. Flight System");
-            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump");
+            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nIncreases flight time by 40%");
         }
         public override void SetDefaults()
         {
@@ -25,6 +25,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<TRAEJumps>().advFlight = true;
+            player.GetModPlayer<Mobility>().flightTimeBonus += 0.4f;
         }
     }
 }

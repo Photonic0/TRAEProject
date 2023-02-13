@@ -18,7 +18,7 @@ namespace TRAEProject.Changes.Recipes
 
         public static void Load(Mod mod)
         {
-            Recipe YoyoBagAlt = Recipe.Create(ItemID.YoyoBag).AddIngredient(ItemID.YoYoGlove, 1).AddIngredient(ItemType<CounterweightString>()).AddTile(TileID.Loom);
+            Recipe YoyoBagAlt = Recipe.Create(ItemID.YoyoBag).AddIngredient(ItemID.YoYoGlove, 1).AddIngredient(ItemType<CounterweightString>()).AddTile(TileID.TinkerersWorkbench);
             YoyoBagAlt.Register();
             Recipe HermesBoots = Recipe.Create(ItemID.HermesBoots).AddIngredient(ItemID.Aglet, 1).AddIngredient(ItemID.Silk, 20).AddTile(TileID.Loom);
             HermesBoots.Register(); 

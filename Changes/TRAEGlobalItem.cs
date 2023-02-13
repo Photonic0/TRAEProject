@@ -33,73 +33,67 @@ namespace TRAEProject.Changes
             {
                 case ItemID.GingerBeard:
                     item.value = Item.sellPrice(gold: 8);
-                    return;
+                    break;
                 case ItemID.SiltBlock:
                 case ItemID.SlushBlock:
                 case ItemID.DesertFossil:
                     item.useTime = 3; // down from 10
                     item.useAnimation = 3;
-                    return;
+                    break;
                 case ItemID.AdamantitePickaxe:
 			       item.useTime = 7; // down from 8
-				   return;				
+				   break;				
                 case ItemID.ObsidianHorseshoe:
-
-                    item.SetNameOverride("Heavy Horseshoe");
-                    if(QwertysMovementRemix.active)
-                    {
-                        item.SetNameOverride("Gravity Horseshoe");
-                    }
-                    return;
+                    item.SetNameOverride("Gravity Horseshoe");
+                    break;
                 case ItemID.ObsidianWaterWalkingBoots:
                     item.SetNameOverride("Heavy Rocket Boots");
-                    return;
+                    break;
                 case ItemID.WormTooth:
                     item.SetNameOverride("Rotten Tooth");
-                    return;
+                    break;
                 case ItemID.MoonShell:
                     item.SetNameOverride("Monster Shell");
-                    return;
+                    break;
                 case ItemID.ManaRegenerationBand:
                     item.SetNameOverride("Band of Dual Regeneration");
-                    return;
+                    break;
                 case ItemID.VineRope:
                     item.useTime = 5;
                     item.useAnimation = 5;
                     item.tileBoost = 6;
-                    return;
+                    break;
                 case ItemID.StrangeBrew:
                     item.healMana = 0;
-                    return;
+                    break;
                 case ItemID.BottledHoney:
                     item.healLife = 70;
-                    return;
+                    break;
                 case ItemID.FastClock:
                     item.value = 100000;
-                    return;
+                    break;
                 case ItemID.Amethyst:
                     item.value = Item.sellPrice(silver: 20);
-                    return;
+                    break;
                 case ItemID.Topaz:
                     item.value = Item.sellPrice(silver: 30);
-                    return;
+                    break;
                 case ItemID.Sapphire:
                     item.value = Item.sellPrice(silver: 40);
-                    return;
+                    break;
                 case ItemID.Emerald:
                     item.value = Item.sellPrice(silver: 50);
-                    return;
+                    break;
                 case ItemID.Ruby:
                     item.value = Item.sellPrice(silver: 60);
-                    return;
+                    break;
                 case ItemID.Amber:
                     item.value = Item.sellPrice(silver: 70);
-                    return;
+                    break;
                 case ItemID.Diamond:
                     item.value = Item.sellPrice(gold: 1);
-                    return;
+                    break;
             }
-            return;
         }
         int timer = 0;
         public override bool OnPickup(Item item, Player player)

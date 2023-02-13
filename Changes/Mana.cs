@@ -155,7 +155,6 @@ namespace TRAEProject.Changes
             {
                 if (player.GetModPlayer<Mana>().overloadedMana > 0)
                 {
-
                     int amount = player.GetManaCost(item);
                     int overloadedManaLoss = Math.Min(player.GetModPlayer<Mana>().overloadedMana, amount);
                     player.GetModPlayer<Mana>().overloadedMana -= overloadedManaLoss;

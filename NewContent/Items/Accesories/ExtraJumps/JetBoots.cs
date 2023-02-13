@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Jet boots");
-            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nProvides rocket boot flight\nProvides a booster double jump");
+            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nIncreases flight time by 40%\nProvides rocket boot flight(10)\nProvides a booster double jump");
         }
         public override void SetDefaults()
         {
@@ -25,8 +25,10 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<TRAEJumps>().advFlight = true;
-            player.rocketTimeMax = 14;
+            player.rocketTimeMax += 10;
             player.GetModPlayer<TRAEJumps>().boosterFlightTimeMax += 40;
+            player.GetModPlayer<Mobility>().flightTimeBonus += 0.4f;
+            player.rocketBoots = player.vanityRocketBoots = 1;
         }
         public override void AddRecipes()
         {

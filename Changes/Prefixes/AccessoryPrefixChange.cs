@@ -8,7 +8,7 @@ namespace TRAEProject.Changes.Prefixes
     public class AccModPlayer : ModPlayer
     {
         public const int SpeedValue = 4;
-        public const int JumpValue = 5;
+        public const int JumpValue = 4;
         public override void PostUpdateEquips()
         {
             for (int i = 3; i < 10; i++)
@@ -19,70 +19,47 @@ namespace TRAEProject.Changes.Prefixes
                 //indexes 10-19 are vanity slots
                 if (Player.armor[i].active)
                 {
-                    if (QwertysMovementRemix.active)
+                    if (Player.armor[i].prefix == PrefixID.Brisk)
                     {
-                        if (Player.armor[i].prefix == PrefixID.Brisk)
-                        {
-                            Player.moveSpeed -= 0.01f;
-                            Player.jumpSpeedBoost += QwertysMovementRemix.JSV(JumpValue * 0.01f); // remember that jump speed bonuses are weird
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Fleeting)
-                        {
-                            Player.moveSpeed -= 0.02f;
-                            Player.jumpSpeedBoost += QwertysMovementRemix.JSV(JumpValue * 2 * 0.01f);
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Hasty2)
-                        {
-                            Player.moveSpeed -= 0.03f;
-                            Player.moveSpeed += SpeedValue * 0.01f;
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Quick2)
-                        {
-                            Player.moveSpeed -= 0.04f;
-                            Player.moveSpeed += SpeedValue * 2 * 0.01f;
-                        } 
+                        Player.moveSpeed -= 0.01f;
+                        Player.jumpSpeedBoost += Mobility.JSV(JumpValue * 0.01f); // remember that jump speed bonuses are weird
                     }
-                    else
+                    if (Player.armor[i].prefix == PrefixID.Fleeting)
                     {
-                        if (Player.armor[i].prefix == PrefixID.Brisk)
-                        {
-                            Player.jumpSpeedBoost += 0.05f; // remember that jump speed bonuses are weird
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Fleeting)
-                        {
-                            Player.jumpSpeedBoost += 0.1f; // remember that jump speed bonuses are weird
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Hasty2)
-                        {
-                            Player.jumpSpeedBoost += 0.15f; // remember that jump speed bonuses are weird
-
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Quick2)
-                        {
-                            Player.jumpSpeedBoost += 0.2f; // remember that jump speed bonuses are weird
-
-                        }
+                        Player.moveSpeed -= 0.02f;
+                        Player.jumpSpeedBoost += Mobility.JSV(JumpValue * 2 * 0.01f);
                     }
-                        if (Player.armor[i].prefix == PrefixID.Wild)
-                        {
-                            Player.GetAttackSpeed(DamageClass.Melee) += 0.01f;
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Rash)
-                        {
-                            Player.GetAttackSpeed(DamageClass.Melee) += 0.02f;
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Intrepid)
-                        {
-                            Player.GetAttackSpeed(DamageClass.Melee) += 0.03f;
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Violent)
-                        {
-                            Player.GetAttackSpeed(DamageClass.Melee) += 0.04f;
-                        }
-                        if (Player.armor[i].prefix == PrefixID.Arcane)
-                        {
-                            //Player.manaCost -= 0.04f;
-                        } 
+                    if (Player.armor[i].prefix == PrefixID.Hasty2)
+                    {
+                        Player.moveSpeed -= 0.03f;
+                        Player.moveSpeed += SpeedValue * 0.01f;
+                    }
+                    if (Player.armor[i].prefix == PrefixID.Quick2)
+                    {
+                        Player.moveSpeed -= 0.04f;
+                        Player.moveSpeed += SpeedValue * 2 * 0.01f;
+                    } 
+                    
+                    if (Player.armor[i].prefix == PrefixID.Wild)
+                    {
+                        Player.GetAttackSpeed(DamageClass.Melee) += 0.01f;
+                    }
+                    if (Player.armor[i].prefix == PrefixID.Rash)
+                    {
+                        Player.GetAttackSpeed(DamageClass.Melee) += 0.02f;
+                    }
+                    if (Player.armor[i].prefix == PrefixID.Intrepid)
+                    {
+                        Player.GetAttackSpeed(DamageClass.Melee) += 0.03f;
+                    }
+                    if (Player.armor[i].prefix == PrefixID.Violent)
+                    {
+                        Player.GetAttackSpeed(DamageClass.Melee) += 0.04f;
+                    }
+                    if (Player.armor[i].prefix == PrefixID.Arcane)
+                    {
+                        //Player.manaCost -= 0.04f;
+                    } 
                 }
             }
         }

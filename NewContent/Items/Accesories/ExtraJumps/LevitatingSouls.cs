@@ -26,7 +26,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         {
             player.GetModPlayer<TRAEJumps>().levitation = true;
             player.moveSpeed += 0.25f;
-            player.jumpSpeedBoost += QwertysMovementRemix.JSV(0.25f);
+            player.jumpSpeedBoost += Mobility.JSV(0.25f);
         }
         public override void AddRecipes()
         {

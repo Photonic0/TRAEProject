@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Flight Forecast");
-            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nProvides a double jump");
+            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nIncreases flight time by 40%\nProvides a double jump");
         }
         public override void SetDefaults()
         {
@@ -26,6 +26,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         {
             player.GetModPlayer<TRAEJumps>().advFlight = true;
             player.hasJumpOption_Cloud = true;
+            player.GetModPlayer<Mobility>().flightTimeBonus += 0.4f;
         }
         public override void AddRecipes()
         {

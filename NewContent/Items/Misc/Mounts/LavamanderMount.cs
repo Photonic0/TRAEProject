@@ -111,7 +111,7 @@ namespace TRAEProject.NewContent.Items.Misc.Mounts
 
         public override void Update(Player player, ref int buffIndex)
         {
-			player.waterWalk = true;
+			player.GetModPlayer<Mobility>().TRAEwaterwalk = true;
             player.mount.SetMount(ModContent.MountType<LavamanderMount>(), player);
             player.buffTime[buffIndex] = 10;
         }

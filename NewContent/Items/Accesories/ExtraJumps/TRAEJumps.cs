@@ -21,7 +21,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 		bool canStartBoosting = false;
 		public bool levitation = false;
 		bool canLevitate = false;
-		bool doVanillaJumps = false;
+		public bool doVanillaJumps = false;
 		public bool isLevitating = true;
 		public bool faeJump = false;
 		bool canFaeJump = false;
@@ -34,7 +34,16 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 		float? advFlightStorage = null;
 		int? advBootStorage = null;
 		int advFlyAttempt = 0;
-		
+		public bool allowBlizzardDash = false;
+		public bool usedBlizzardDash = false;
+		public bool BlizzardStored()
+		{
+			return advJumpStorage[1] != null && (bool)advJumpStorage[1];
+		}
+		public void SpendBlizzardJump()
+		{
+			advJumpStorage[1] = false;
+		}
 		void AdvFlightFreeze()
 		{
 			if(advFlightStorage == null)
@@ -170,11 +179,16 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 			canLevitate = levitation;
 			doVanillaJumps = true;
 			canFaeJump = faeJump;
+			usedBlizzardDash = false;
 		}
         void BlockVanillaJumps()
         {
             Player.canJumpAgain_Basilisk = false;
             Player.canJumpAgain_Blizzard = false;
+			if(Player.GetModPlayer<Mobility>().blizzardDash)
+			{
+				allowBlizzardDash = true;
+			}
             Player.canJumpAgain_Cloud = false;
             Player.canJumpAgain_Fart = false;
             Player.canJumpAgain_Sail = false;
@@ -182,8 +196,10 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
             Player.canJumpAgain_Unicorn = false;
             Player.canJumpAgain_WallOfFleshGoat = false;
 			Player.canJumpAgain_Santank = false;
-			Player.rocketTime = 0;
-			//Player.wingTime = 0;
+			if(!advFlight)
+			{
+				Player.rocketTime = 0;
+			}
         }
 		void RefreshVanillaJumps()
 		{
@@ -195,7 +211,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 			{
 				Player.canJumpAgain_Sandstorm = true;
 			}
-			if (Player.hasJumpOption_Blizzard)
+			if (Player.hasJumpOption_Blizzard && !usedBlizzardDash)
 			{
 				Player.canJumpAgain_Blizzard = true;
 			}
@@ -234,13 +250,16 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 		}
 		public override void PreUpdateMovement()
         {
+			if(Player.grappling[0] != -1)
+			{
+				RestoreJumps();
+			}
 			if(advFlight)
 			{
-				if(Player.oldVelocity.Y == 0)
+				if(Player.oldVelocity.Y == 0 || Player.grappling[0] != -1)
 				{
 					AdvReset();
 				}
-				else
 				{
 					if(Player.controlJump && advFlyAttempt <= 0)
 					{
