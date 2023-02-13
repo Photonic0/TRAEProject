@@ -161,9 +161,7 @@ namespace TRAEProject.Changes.Items
                     item.useTime = 24; // down from 22
                     item.useAnimation = 24;
                     return;
-                case ItemID.ClingerStaff:
-                    item.mana = 40; // up from 40
-                    return;
+          
                 case ItemID.CrystalVileShard:
                     item.mana = 20; // up from 13
                     return;
@@ -225,7 +223,7 @@ namespace TRAEProject.Changes.Items
                     return;
 
                 case ItemID.InfernoFork:
-				    item.damage = 95; // Vanilla value: 60
+				    item.damage = 80; // Vanilla value: 60
 					item.mana = 40; // up from 25
                     item.autoReuse = true;
                     item.useTime = 30; // vanilla value: 30
@@ -254,7 +252,7 @@ namespace TRAEProject.Changes.Items
                     item.mana = 45;
                     return;
                 case ItemID.RainbowGun:
-                    item.mana = 20; // up from 20
+                    item.mana = 180; // up from 20
                     item.useAnimation = 15; // down from 40
                     item.useTime = 15;
                     rightClickSideWeapon = true;
@@ -273,9 +271,14 @@ namespace TRAEProject.Changes.Items
                     item.mana = 30; // up from 30
                     rightClickSideWeapon = true;
                     break;
+                case ItemID.ClingerStaff:
+                    item.mana = 80; // up from 40
+                    rightClickSideWeapon = true;
+
+                    return;
                 case ItemID.MagnetSphere:
                     rightClickSideWeapon = true;
-                    item.mana = 30; // up from 14
+                    item.mana = 75; // up from 14
                     break;
                 case ItemID.BlizzardStaff:
                     item.damage = 30; // down from 58
@@ -288,7 +291,7 @@ namespace TRAEProject.Changes.Items
                     rightClickSideWeapon = true;
                     return;
                 case ItemID.ToxicFlask:
-                    item.mana = 30;
+                    item.mana = 80;
                     rightClickSideWeapon = true;
                     break;
                 case ItemID.RazorbladeTyphoon:
@@ -296,7 +299,7 @@ namespace TRAEProject.Changes.Items
                     item.useTime = 25; // down from 40
                     item.useAnimation = 25; // down from 40
                     item.autoReuse = false; // changed from true
-                    item.mana = 80; // up from 16
+                    item.mana = 50; // up from 16
                     rightClickSideWeapon = true;
                     return;
 				case 2795: // lmg
@@ -391,7 +394,7 @@ namespace TRAEProject.Changes.Items
 
 
                         }
-                        if (Main.rand.NextBool(4))
+                        if (Main.rand.NextBool(5))
                         {
                             int num119 = Projectile.NewProjectile(source, position, velocity, ProjectileID.GiantBee, damage, knockback, player.whoAmI);
                             Main.projectile[num119].DamageType = DamageClass.Magic;
@@ -501,6 +504,10 @@ namespace TRAEProject.Changes.Items
             if (item.type == ItemID.Star || item.type == ItemID.SoulCake || item.type == ItemID.SugarPlum)
             {
                 grabRange += 100; // vanilla's range for these is 250, this makes it 350.
+            }
+            if (item.type == ItemID.ManaCloakStar)
+            {
+                grabRange += 250;
             }
             return;
         }

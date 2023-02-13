@@ -31,6 +31,7 @@ namespace TRAEProject.Changes
             }
             switch (item.type)
             {
+                
                 case ItemID.GingerBeard:
                     item.value = Item.sellPrice(gold: 8);
                     return;

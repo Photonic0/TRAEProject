@@ -15,7 +15,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Shroomite Bullet");
-            Tooltip.SetDefault("Critical strikes deal 15% more damage");
+            Tooltip.SetDefault("Critical strikes deal 20% more damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -55,7 +55,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             AIType = ProjectileID.Bullet;
             Projectile.CloneDefaults(ProjectileID.Bullet);
             Projectile.GetGlobalProjectile<ScopeAndQuiver>().AffectedByReconScope = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().CritDamage = 0.15f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().CritDamage = 0.2f;
             Projectile.timeLeft = 1200;
             Projectile.penetrate = 1;
             Projectile.extraUpdates = 2;

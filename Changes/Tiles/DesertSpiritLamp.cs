@@ -3,10 +3,45 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using System;
+using static Terraria.ModLoader.ModContent;
+
 using TRAEProject.NewContent.Items.Misc.PermaBuffs;
+using System.Collections.Generic;
 
 namespace TRAEProject.Changes
 {
+    public class DesertLamp : GlobalItem
+    {
+        public override bool InstancePerEntity => true;
+        public override GlobalItem Clone(Item item, Item itemClone)
+        {
+            return base.Clone(item, itemClone);
+        }
+        public override void SetDefaults(Item item)
+        {
+            switch (item.type)
+            {
+                case ItemID.DjinnLamp:
+                    item.rare = ItemRarityID.Yellow;
+                    break;
+            }
+        }
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            switch (item.type)
+            {
+                case ItemID.DjinnLamp:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Placeable")
+                        {
+                            line.Text += "\nRight click it to make a wish";
+                        }
+                    }
+                    return;
+            }
+        }
+    }
     public class DesertSpiritLamp : GlobalTile
     {
         public override void SetStaticDefaults()
@@ -34,7 +69,7 @@ namespace TRAEProject.Changes
                 Tile tile = Main.tile[i, j];
                 Vector2 lampCenter = new Vector2(i * 16 + (tile.TileFrameX == 0 ?  8 : -8), j * 16) + new Vector2(8, 8);
                 //Main.NewText(lampCenter + ", " + player.MountedCenter);
-                if((lampCenter - player.MountedCenter).Length()  < 32)
+                if((lampCenter - player.MountedCenter).Length()  < 48)
                 {
                     player.GetModPlayer<LampInteraction>().rubHere = lampCenter;
                 }
@@ -51,7 +86,7 @@ namespace TRAEProject.Changes
             if(rubHere != null)
             {
                 Vector2 rubAt = (Vector2)rubHere;
-                if((rubAt - Player.MountedCenter).Length()  > 32)
+                if((rubAt - Player.MountedCenter).Length()  > 48)
                 {
                     rubTime = 0;
                     rubHere = null;
@@ -80,7 +115,7 @@ namespace TRAEProject.Changes
                 Dust d = Dust.NewDustPerfect(nozzle, 6, -1.5f * Vector2.UnitY);
                 d.noGravity = true;
                 d.color = Color.SkyBlue;
-                if(rubTime > 120)
+                if(rubTime > 180)
                 {
                     for(int i =0; i < 50; i++)
                     {
@@ -89,7 +124,7 @@ namespace TRAEProject.Changes
                         c.noGravity = true;
                         c.color = Color.SkyBlue;
                     }
-                    Player.GetModPlayer<PermaBuffs>().speedWish = true;
+                    Item.NewItem(Player.GetSource_TileInteraction((int)rubAt.X, (int)rubAt.Y), nozzle, ItemType<SpeedWish>()); 
                     rubTime = 0;
                     rubHere = null;
                 }

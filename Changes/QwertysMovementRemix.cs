@@ -1024,7 +1024,7 @@ namespace TRAEProject
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increases jump height/nAllows fast fall and gravity control";
+                            line.Text = "Increases jump height\nAllows fast fall";
                         }
                     }
                     break;

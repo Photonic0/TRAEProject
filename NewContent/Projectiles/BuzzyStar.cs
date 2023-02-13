@@ -53,6 +53,7 @@ namespace TRAEProject.NewContent.Projectiles
                     float scaleFactor2 = Projectile.velocity.Length();
                     value2.Normalize();
                     value2 *= scaleFactor2;
+                    int count = 4;
                     for (int i = 0; i < 4; i++)
                     {
                         float random = Main.rand.NextFloat(0.1f, 1f);

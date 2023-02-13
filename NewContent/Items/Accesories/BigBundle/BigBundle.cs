@@ -7,6 +7,8 @@ using Terraria.GameContent.Creative;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.Items.Accesories.SpaceBalloon;
 using TRAEProject.NewContent.Items.Accesories.WeirdBundle;
+using TRAEProject.Changes.Accesory;
+
 namespace TRAEProject.NewContent.Items.Accesories.BigBundle
 {
     [AutoloadEquip(EquipType.Balloon)]
@@ -16,7 +18,7 @@ namespace TRAEProject.NewContent.Items.Accesories.BigBundle
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             DisplayName.SetDefault("The Big Bundle");
-            Tooltip.SetDefault("Allows the player to sextuple jump!\nIncreases jump height, health regeneration and prevents fall damage\nAllows reducing gravity by holding up\nReleases Bees and covers you in honey when damaged");
+            Tooltip.SetDefault("Allows the player to sextuple jump!\nIncreases jump height and prevents fall damage\nAllows reducing gravity by holding up\nReleases Bees and covers you in honey when damaged\nMultiple combs increase efficiency and life regeneration");
         }
         public override void SetDefaults()
         {
@@ -31,9 +33,8 @@ namespace TRAEProject.NewContent.Items.Accesories.BigBundle
             player.hasJumpOption_Cloud = true;
             player.hasJumpOption_Fart = true;
             player.hasJumpOption_Sail = true;
-            player.honeyCombItem = Item;
             player.jumpBoost = true;
-            player.lifeRegen += 2;
+            player.GetModPlayer<HoneyCombPlayer>().combs += 1;
             player.noFallDmg = true;
             player.GetModPlayer<SpaceBalloonPlayer>().SpaceBalloon += 1;
         }

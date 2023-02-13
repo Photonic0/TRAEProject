@@ -60,7 +60,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
 			Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
             Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.3f;
-            Projectile.GetGlobalProjectile<ProjectileStats>().SmartBouncesOffEnemies = true;
             Projectile.penetrate = 2;
             Projectile.extraUpdates = 2;
             Projectile.ignoreWater = true;

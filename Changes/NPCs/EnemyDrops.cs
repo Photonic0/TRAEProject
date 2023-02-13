@@ -41,7 +41,7 @@ namespace TRAEProject.Changes.NPCs
                     break;
                 case NPCID.DesertGhoul:
                 case NPCID.DesertGhoulHallow:
-                npcLoot.Add(ItemDropRule.Common(ItemID.DjinnLamp, 100));
+                    npcLoot.Add(ItemDropRule.Common(ItemID.DjinnLamp, 80));
                     break;
                 case NPCID.DesertDjinn:
                     npcLoot.RemoveWhere(rule =>

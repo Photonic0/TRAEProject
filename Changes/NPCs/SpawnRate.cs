@@ -33,10 +33,25 @@ namespace TRAEProject.Changes.NPCs
                 pool.Add(NPCID.JungleCreeper, 0.2f);
             if (spawnInfo.Player.ZoneCorrupt)
             {
-                pool.Remove(NPCID.DevourerHead);
-                pool.Add(NPCID.DevourerHead, 0.15f);
+                float spawnrate = Main.hardMode ? 0.15f : 0.05f;
+                pool.Remove(NPCID.DevourerHead);            
+                pool.Add(NPCID.DevourerHead, spawnrate);
             }
-    
+            if (spawnInfo.Player.ZoneUnderworldHeight && NPC.downedPlantBoss)
+            {
+                pool.Remove(NPCID.RedDevil);
+                pool.Add(NPCID.RedDevil, 0.25f);
+            }
+            if (spawnInfo.Player.ZoneUnderworldHeight && NPC.downedPlantBoss)
+            {
+                int[] lowerTheseSpawnRates = new int[] { NPCID.LavaSlime, NPCID.FireImp, NPCID.Hellbat};
+                for (int k = 0; k < lowerTheseSpawnRates.Length; k++)
+                {
+                    pool.Remove(lowerTheseSpawnRates[k]);
+                    pool.Add(lowerTheseSpawnRates[k], 0.02f);
+                }
+                       
+            }
 
         }
     }

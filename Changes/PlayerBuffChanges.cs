@@ -97,7 +97,7 @@ namespace TRAEProject
                     tip = "Damage taken reduced by 30%";
                     return;
                 case BuffID.Panic:
-                    tip = "Greatly increased movement capabilities";
+                    tip = "40% increased movement speed";
                     return;
                 case BuffID.Archery:
                     tip = "10% increased arrow damage, 20% increased arrow speed";
@@ -121,14 +121,7 @@ namespace TRAEProject
                     tip = "Can't drink another mana potion";
                     return;
                 case BuffID.Swiftness:
-                    if(QwertysMovementRemix.active)
-                    {
-                        tip = "Increases " +QwertysMovementRemix.MS + " by " + QwertysMovementRemix.SpeedTooltip(3) + "";
-                    }
-                    else
-                    {
-                        tip = "15% increased movement speed";
-                    }
+                    tip = "10% increased movement speed";
                     return;
                 case BuffID.StarInBottle:
                     tip = "Increased max mana by 20";

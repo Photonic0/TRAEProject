@@ -20,7 +20,7 @@ namespace TRAEProject.NewContent.Projectiles
 			Projectile.height = 38;
             Projectile.scale = 1.15f;
             Projectile.friendly = true; 
-			Projectile.GetGlobalProjectile<MagicProjectile>().DrainManaOnHit = 9;
+			Projectile.GetGlobalProjectile<MagicProjectile>().DrainManaOnHit = 5;
 			Projectile.DamageType = DamageClass.Magic;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 3600;

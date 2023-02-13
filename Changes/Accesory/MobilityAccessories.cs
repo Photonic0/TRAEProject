@@ -421,16 +421,7 @@ namespace TRAEProject.Changes.Accesory
                     player.fireWalk = false;
                     player.buffImmune[BuffID.Burning] = false;
                     break;
-                case ItemID.BalloonHorseshoeHoney:
-                    player.lifeRegen += 2;
-                    if(QwertysMovementRemix.active)
-                    {
-                        player.GetModPlayer<AccesoryEffects>().FastFall = true;
-                    }
-                    break;
-                case ItemID.HoneyBalloon:
-                    player.lifeRegen += 2;
-                    break;
+
                 case ItemID.BundleofBalloons:
                     player.noFallDmg = true;
                     break;
@@ -808,36 +799,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                     }
                 break;
-                case ItemID.HoneyBalloon:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Releases bees and douses you in honey when damaged";
-                        }
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text = "Increases jump height and life regeneration";
-                            if(QwertysMovementRemix.active)
-                            {
-                                line.Text += "/nAllows fast fall";
-                            }
-                        }
-                    }
-                    return;
-                case ItemID.BalloonHorseshoeHoney:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Releases bees and douses you in honey when damaged and negates fall damage";
-                        }
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text = "Increases jump height and life regeneration";
-                        }
-                    }
-                    return;
+   
                 case ItemID.IceSkates:
                     foreach (TooltipLine line in tooltips)
                     {

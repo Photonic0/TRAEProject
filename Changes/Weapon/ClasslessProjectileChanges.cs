@@ -20,10 +20,15 @@ namespace TRAEProject.Changes.Weapon
             {
 
                 case ProjectileID.Bee:
+					projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = 30;
+                    projectile.penetrate = 2;
+                    projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 6;
+                    break;
                 case ProjectileID.GiantBee:
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 30;
-                    projectile.penetrate = 2;
+                    projectile.penetrate = 3;
                     projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 6;
                     break;
                 case ProjectileID.CrystalLeafShot:

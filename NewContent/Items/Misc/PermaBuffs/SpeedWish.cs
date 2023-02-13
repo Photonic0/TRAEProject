@@ -1,4 +1,3 @@
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -11,9 +10,9 @@ namespace TRAEProject.NewContent.Items.Misc.PermaBuffs
     {
         public override void SetStaticDefaults() 
         {
-            DisplayName.SetDefault("Wish for speed.");
-            Tooltip.SetDefault("You have 1 wish... as long as its 15% movement speed.");
-            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            DisplayName.SetDefault("Wish for Speed");
+            Tooltip.SetDefault("Permanently increases movement speed by 15%\nYou have 1 wish... as long as its 15% movement speed.");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 			// Registers a vertical animation with 4 frames and each one will last 5 ticks (1/12 second)
 			Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
@@ -27,7 +26,7 @@ namespace TRAEProject.NewContent.Items.Misc.PermaBuffs
             Item.consumable = true;
             Item.maxStack = 1;
             //Item.useTime = Item.useAnimation = 30;
-            Item.rare = ItemRarityID.LightPurple;
+            Item.rare = ItemRarityID.Yellow;
             Item.value = Item.buyPrice(silver: 20);
             Item.noMelee = true;
             Item.noUseGraphic = true;

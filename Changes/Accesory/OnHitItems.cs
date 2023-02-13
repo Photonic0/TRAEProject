@@ -17,18 +17,15 @@ namespace TRAEProject.Changes.Items
         public int LastHitDamage = 0;
         public int BaghnakhHeal = 0;
         public int magicCuffsCount = 0;
-        public bool NewbeesOnHit = false;
         public bool NewstarsOnHit = false;
         public float newthorns = 0f;
         public float runeCooldown = 0;
         public float runethorns = 0f;
-        public int beedamage = 1;
         public bool Frozen = false;
 
         public override void ResetEffects()
         {
             magicCuffsCount = 0;
-            NewbeesOnHit = false;
             NewstarsOnHit = false;
             newthorns = 0f;
             runethorns = 0f; 
@@ -36,12 +33,10 @@ namespace TRAEProject.Changes.Items
         public override void UpdateDead()
         {
             magicCuffsCount = 0;
-            NewbeesOnHit = false;
             runethorns = 0f;        
             runeCooldown = 0;
             newthorns = 0f;
             NewstarsOnHit = false;
-            beedamage = 0; 
         }
   
         public override void PostUpdateEquips()
@@ -85,14 +80,6 @@ namespace TRAEProject.Changes.Items
                 {
                     TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, 2 + (damage / 33), 400, 600, spread, 20, ProjectileID.StarCloakStar, 100, 2f, Player.whoAmI);
                 }
-                if (NewbeesOnHit)
-                {
-                    if (!Player.HasBuff(BuffID.ShadowDodge))
-                    {
-                        beedamage = damage;
-                    }
-                    TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, 3 + (damage / 33), 400, 600, spread, 20, ProjectileType<BuzzyStar>(), beedamage, 2f, Player.whoAmI);
-                }
                 if (runethorns > 0f && runeCooldown == 0)
                 {
                     RuneThorns(damage);
@@ -101,10 +88,6 @@ namespace TRAEProject.Changes.Items
             if (newthorns > 0f)
             {
                 Thorns(damage);
-            }
-            if (Player.honeyCombItem != null && !Player.honeyCombItem.IsAir)
-            {
-                Player.AddBuff(BuffID.Honey, 300 + damage * 4);
             }
             if (Player.panic)
             {
@@ -138,14 +121,7 @@ namespace TRAEProject.Changes.Items
                 {
                     TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, 2 + (damage / 33), 400, 600, spread, 20, ProjectileID.HallowStar, 100, 2f, Player.whoAmI);
                 }
-                if (NewbeesOnHit)
-                {
-                    if (!Player.HasBuff(BuffID.ShadowDodge))
-                    {
-                        beedamage = damage;
-                    }
-                    TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, 3 + (damage / 33), 400, 600, spread, 20, ProjectileType<BuzzyStar>(), beedamage, 2f, Player.whoAmI);
-                }
+
                 if (runethorns > 0f && runeCooldown == 0)
                 {
                     RuneThorns(damage);
@@ -156,13 +132,9 @@ namespace TRAEProject.Changes.Items
                 }
                 if (!Player.HasBuff(BuffID.ShadowDodge))
                 {
-                    beedamage = damage;
                     int starcount = 2 + damage / 33;
                 }
-                if (Player.honeyCombItem != null && !Player.honeyCombItem.IsAir)
-                {
-                    Player.AddBuff(BuffID.Honey, 300 + damage * 4, false);
-                }
+
                 if (Player.panic)
                 {
                     Player.AddBuff(BuffID.Panic, 300 + damage * 4, false);

@@ -36,7 +36,7 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     item.SetNameOverride("Destructive Rocket");
                     break;
                 case ItemID.RocketIV:
-                    item.damage = 25; // down from 65
+                    item.damage = 33; // down from 65
                     item.SetNameOverride("Direct Rocket");
                     break;
                 case ItemID.RocketIII:
@@ -64,7 +64,7 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     item.useAnimation = 30;
                     break;
                 case ItemID.RocketLauncher:
-                    item.damage = 100; // up from 45
+                    item.damage = 110; // up from 45
 					break;
             }
         }
@@ -113,7 +113,7 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Small explosion. Direct hits deal 50% more damage.";
+                            line.Text = "Small explosion. Direct hits deal 40% more damage.";
                         }
                     }
                     return;

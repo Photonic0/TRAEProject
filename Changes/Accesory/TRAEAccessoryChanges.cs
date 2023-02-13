@@ -85,11 +85,7 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharm += 1;
                     player.fireWalk = false;
                     break;
-                case ItemID.BeeCloak:
-                    player.honeyCombItem = null;
-                    player.starCloakItem = null;
-                    player.GetModPlayer<OnHitItems>().NewbeesOnHit = true;
-                    break;
+       
                 case ItemID.CrossNecklace:
                 case ItemID.StarVeil:
                     player.starCloakItem = null;
@@ -396,15 +392,7 @@ namespace TRAEProject.Changes.Accesory
                     }
                     break;
           
-                case ItemID.BeeCloak:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Causes buzzy stars to fall when damaged";
-                        }
-                    }
-                    break;
+       
                 case ItemID.Shackle:
                     foreach (TooltipLine line in tooltips)
                     {
