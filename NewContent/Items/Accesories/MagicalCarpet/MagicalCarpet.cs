@@ -49,7 +49,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
             //player.GetModPlayer<Hover>().hasHoverWing = true;
 
             player.moveSpeed -= 0.15f;
-            player.jumpSpeedBoost -= QwertysMovementRemix.JSV(0.15f);
+            player.jumpSpeedBoost -= Mobility.JSV(0.15f);
         }
         /*
 

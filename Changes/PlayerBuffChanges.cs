@@ -26,9 +26,6 @@ namespace TRAEProject
                 case BuffID.ScytheWhipPlayerBuff:
                     player.GetAttackSpeed(DamageClass.Melee) -= 0.15f;
                     return;
-                case BuffID.WaterWalking:
-                    player.GetModPlayer<MoveSpeed>().TRAEwaterwalk = true;
-                    return;
                 case BuffID.ObsidianSkin:
                     player.buffImmune[BuffID.OnFire] = false;
                     player.buffImmune[BuffID.Burning] = true;

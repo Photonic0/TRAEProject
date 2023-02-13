@@ -49,10 +49,10 @@ namespace TRAEProject.Changes.Prefixes
                     damage *= 1.25f / 1.05f;
                     break;
                 case PrefixID.Intense:
-                    damage *= 1.18f / 1.1f;
+                    damage *= 1.2f / 1.1f;
                     break;
                 case PrefixID.Furious:
-                    damage *= 1.18f / 1.15f;
+                    damage *= 1.2f / 1.15f;
                     break;
                 case PrefixID.Frenzying:
                     damage *= 0.95f / 0.85f;
@@ -102,12 +102,7 @@ namespace TRAEProject.Changes.Prefixes
                 case PrefixID.Powerful:
                     crit += 2; // 1% crit -> 3% crit
                     break;
-                case PrefixID.Intense:
-                    crit += 3;
-                    break;
-                case PrefixID.Furious:
-                    crit += 10;
-                    break;
+
                 case PrefixID.Unpleasant:
                     crit += 5; // 0% crit -> 5% crit
                     break;
@@ -241,10 +236,10 @@ namespace TRAEProject.Changes.Prefixes
                         line.Text = ModifyDamage(item, 1.05f, ModifyVanillaPrefixes.T7Damage);
                         break;
                     case PrefixID.Intense:
-                        line.Text = ModifyDamage(item, 1.1f, ModifyVanillaPrefixes.T5Damage);
+                        line.Text = ModifyDamage(item, 1.1f, ModifyVanillaPrefixes.T6Damage);
                         break;
                     case PrefixID.Furious:
-                        line.Text = ModifyDamage(item, 1.15f, ModifyVanillaPrefixes.T5Damage);
+                        line.Text = ModifyDamage(item, 1.15f, ModifyVanillaPrefixes.T6Damage);
                         break;
 
                     case PrefixID.Frenzying:
@@ -309,7 +304,6 @@ namespace TRAEProject.Changes.Prefixes
             {
                 switch (item.prefix)
                 {
-    
                     case PrefixID.Keen:
                         line.Text = "+8% critical strike chance";
                         break;
@@ -332,22 +326,6 @@ namespace TRAEProject.Changes.Prefixes
                 line = new TooltipLine(TRAEProj.Instance, "TRAECrit", "+2% critical strike chance");
                 line.IsModifier = true;
                 tooltips.Add(line);
-            }
-            if (item.prefix == PrefixID.Intense)
-            {
-                int kbIndex = tooltips.FindIndex(TL => TL.Name == "PrefixUseMana");
-
-                line = new TooltipLine(TRAEProj.Instance, "TRAECrit", "+3% critical strike chance");
-                line.IsModifier = true;
-                tooltips.Add(line);
-            }
-            if (item.prefix == PrefixID.Furious)
-            {
-                int kbIndex = tooltips.FindIndex(TL => TL.Name == "PrefixUseMana");
-
-                line = new TooltipLine(TRAEProj.Instance, "TRAECrit", "+10% critical strike chance");
-                line.IsModifier = true;
-                tooltips.Insert(kbIndex, line);
             }
             if (item.prefix == PrefixID.Unpleasant)
             {

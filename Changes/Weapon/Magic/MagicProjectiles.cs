@@ -208,7 +208,6 @@ namespace TRAEProject.Changes.Projectiles
 
             if (DrainManaOnHit > 0)
             {
-                Player player = Main.player[projectile.owner];
                 if (player.statMana < DrainManaOnHit * player.manaCost)
                 {
                     projectile.Kill();
