@@ -1,5 +1,5 @@
 Movement Speed reworked (Again)
-* Just about every item got changed, really
+* Just about every item got changed, really 
 
 
 Queen Bee
@@ -40,7 +40,7 @@ Twins
 ** Retinazer's second phase moves faster.
 ** When one twin dies, the other goes into a new third phase.
 
-* Direct rocket base damage reduced from 33 to 25
+* Direct rocket direct damage reduced from 1.5x to 1.4x
 * Snowman cannon homing radius reduced by 25%
 * Chlorophyte bullet/arrow max homing distance increased by 20%
 * Malaise inflicts poison instead of weak
@@ -51,11 +51,29 @@ Twins
 
 * Changed the way damage over time ticks show up and stack with one another
 
-* Shroomite bullet crit damage reduced from 25% to 18%
+* Honey Comb
+** Amount of bees now equal to 10% of damage taken, maximum 16 bees
+** Bee damage increased from 13 to 18
+** Each bee has a 20% chance of being a giant bee
+** Honey on hit duration is now 10% of damage taken, with minimum of 2.5 seconds. After 25 damage it's the same duration as vanilla, gets better from there.
+** Stacking the accessory increases bees and honey's duration by 50% and grants 1 hp/s per comb 
+
+* Bee Cloak
+** Now only spawns 1 star for every 33 damage.
+** Gains the effects of Honey Comb
+** Replaces honey comb's bee spawning, stacking combs increases number of buzzy stars by 50% instead 
+
+* Intense Damage 20% -> 18%
+* Now increases crit chance by 3%
+
+* Furious Damage 20% -> 18%
+* Now increases crit chance by 10%
+
+* Shroomite bullet crit damage reduced from 25% to 20%
 ** Now crafted with empty bullets
 ** updated visuals
 
-* Ghost Bullets now smart bounce between hit enemies.
+* Ghost Bullets 
 ** updated sprite
 ** Now crafted with empty bullets
 
@@ -69,7 +87,7 @@ Twins
 ** Damage decreased from 8 to 5
 ** Use Time decreased from 30 to 20
 ** Mana cost decreased from 18 to 13
-** Now has a 25% chance to shoot a Big Bee on every attack.
+** Now has a 20% chance to shoot an extra Big Bee on every attack.
 
 Wasp gun
 * Use time decreased from 22 to 20
@@ -100,19 +118,21 @@ Double Haxor
 
 * Inferno Fork max hits reduced to 16
 * Desert spirits drop spirit flame instead of Desert Spirit Lamp
-* Ghouls and Hallow Ghouls drop desert spirit lamp with a 1% chance
+
+* Ghouls and Hallow Ghouls drop desert spirit lamp with a 1.25% chance
 ** desert spirit lamp now has a new effect when placed.
-* after Plantera has been defeated red devils are more common
+
+* after Plantera has been defeated red devils are more common, prehardmode enemies are less common
 * red devils drop a guide voodoo doll with a 1.6667% chance
 
 * Magnet Sphere drains 8 mana per shot, range increased by 33%
 
-* Rocket Launcher damage 120 -> 100
+* Rocket Launcher damage 120 -> 110
 
 * Shadowflame charm apparitions inflict shadowflame for 4 seconds instead of 1
 
 * Molten charm 
-** apparitions inflict daybroken for 1 seconds with a 50% chane. instead of heavy burn for 1
+** apparitions inflict daybroken for 1 second with a 50% chance instead of heavy burn for 1
 ** Molten charm max charge and cost increased from 2400 and 600 to 3000 and 750
 ** Doubled Explosion radius, pierce reduced to 5
 
@@ -122,18 +142,24 @@ Double Haxor
 ** knockback increased from 1 to 2.5
 
 * Stynger 
-** direct hit damage increased from 2x to 2.5x 
-** shrapnel now deals 75% damage instead of 100%
-**shnrapnel pierce reduced from infinite to 2
+** direct hit damage increased from 2x to 2.25x 
+** rocket pierce reduced from infinite to 5
+**shrapnel pierce reduced from infinite to 3
 
 * Nail Gun
+** Damage increased from 85 to 115
+** Nail damage from 15% to 35%
+** Explosion damage decreased from 135% to 100%
+** Now has 1 knockback (allows it to get unreal, the weapon already has knockback it's just independent from the weapon's value)
 ** Knockback increased from 0 to 1
-note: the nails do have knockback even if for some reason the weapon doesnt, this just lets it have unreal
-** Nails deal half damage instead of 15%
-** Explosions deal 100% damage instead of 135%
-** Note: Exact same single target DPS even with Defense taken into account
-** damage increased from 85 to 90
 ** pierce limited to 4
+
+* Inferno Fork
+** Damage increased from 70 to 80
+** Direct hits inflict Daybroken for 4 seconds
+** Max hits per projectile reduced to 15
+
+* reverted stake launcher use time nerf, pierce limited to 7
 
 ** Shinobi headgear summon damage and melee speed reduced back to 20%
 

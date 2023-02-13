@@ -9,13 +9,14 @@ namespace TRAEProject.NewContent.Buffs
 		public override void SetStaticDefaults() 
 		{
 			DisplayName.SetDefault("Sand Rush");
-			Description.SetDefault("Movement and jumping speed increased by 20%");
+			Description.SetDefault("Movement speed increased by 20%");
 		}
 
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.moveSpeed += 0.20f;
 			player.jumpSpeedBoost += Mobility.JSV(0.20f);
+
 		}
 	}
 }

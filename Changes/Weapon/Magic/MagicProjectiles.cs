@@ -62,7 +62,9 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.penetrate = 5;
                     break;
                 case ProjectileID.Typhoon:
-                    DrainManaOnHit = 12;
+                    DrainManaOnHit = 5;                    
+					DrainManaPassively = 10; // this has extra updates, it's 30 mana per second
+
                     projectile.timeLeft = 1800;
                     break;
                 case ProjectileID.ToxicFlask:
@@ -98,9 +100,10 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.penetrate = 1;
                     break;
                 case ProjectileID.ClingerStaff:
-                    projectile.penetrate = 40;
-                    DrainManaPassively = 40;
+                    DrainManaOnHit = 4;
+                    DrainManaPassively = 30;
                     break;
+
                 case ProjectileID.Blizzard:
                     projectile.timeLeft = 150;
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
@@ -143,14 +146,21 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
                     projectile.usesLocalNPCImmunity = true;
                     break;
+                case ProjectileID.CursedFlameFriendly:
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageLossOffATileBounce = 0.25f;
+                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff= 0.25f;
+                    projectile.usesLocalNPCImmunity = true;
+                    break;
                 case ProjectileID.BoulderStaffOfEarth:
                     projectile.penetrate = 4;
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = -1;
                     break;
-                case ProjectileID.InfernoFriendlyBlast:
+                case ProjectileID.InfernoFriendlyBolt:
                     projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.Daybreak;
                     projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 240;
+                    break;
+                case ProjectileID.InfernoFriendlyBlast:              
                     projectile.penetrate = 16;
                     break;
             }
@@ -176,8 +186,26 @@ namespace TRAEProject.Changes.Projectiles
             return true;
         }
 
+        public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
+        {
+            if (projectile.type == ProjectileID.CursedFlameFriendly)
+                projectile.penetrate -= 1;
+            return true;
+        }
+        public override bool? CanDamage(Projectile projectile)
+        {
+            Player player = Main.player[projectile.owner];
+            if (player.statMana < DrainManaOnHit * player.manaCost)
+            {
+                return false;
+            }
+
+            return null;
+        }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            Player player = Main.player[projectile.owner];
+
             if (DrainManaOnHit > 0)
             {
                 Player player = Main.player[projectile.owner];
@@ -186,6 +214,7 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.Kill();
                 }
                 player.UseManaOverloadable((int)(DrainManaOnHit * player.manaCost));
+
             }
         }
         public override bool PreAI(Projectile projectile)
@@ -274,9 +303,9 @@ namespace TRAEProject.Changes.Projectiles
                     if (projectile.localAI[0] > 8f)
                     {
                         projectile.localAI[0] = 0f;
-                        if (player.statMana >= (int)(10 * player.manaCost))
+                        if (player.statMana >= (int)(8 * player.manaCost))
                         {
-                            player.statMana -= (int)(10 * player.manaCost);
+                            player.statMana -= (int)(8 * player.manaCost);
                             float num9 = 6f;
                             Vector2 vector = new Vector2(projectile.position.X + (float)projectile.width * 0.5f, projectile.position.Y + (float)projectile.height * 0.5f);
                             vector += projectile.velocity * 4f;

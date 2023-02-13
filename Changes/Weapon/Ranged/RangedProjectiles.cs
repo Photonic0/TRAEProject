@@ -83,6 +83,9 @@ namespace TRAEProject.Changes.Projectiles
 					projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 20;
                     return;
+                case ProjectileID.Stake:
+                    projectile.penetrate = 7;
+                    return;
                 case ProjectileID.CursedArrow:
                     projectile.extraUpdates = 1;
                     return;
@@ -523,82 +526,7 @@ namespace TRAEProject.Changes.Projectiles
         {
             switch (projectile.type)
             {
-                case ProjectileID.Stynger:
-                    SoundEngine.PlaySound(SoundID.Item14, projectile.position);
-                    for (int num947 = 0; num947 < 10; num947++)
-                    {
-                        int num948 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 1.5f);
-                        Dust dust2 = Main.dust[num948];
-                        dust2.velocity *= 0.9f;
-                    }
-                    for (int num949 = 0; num949 < 5; num949++)
-                    {
-                        int num950 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2.5f);
-                        Main.dust[num950].noGravity = true;
-                        Dust dust2 = Main.dust[num950];
-                        dust2.velocity *= 3f;
-                        num950 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 1.5f);
-                        dust2 = Main.dust[num950];
-                        dust2.velocity *= 2f;
-                    }
-                    int num951 = Gore.NewGore(projectile.GetSource_FromThis(), new Vector2(projectile.position.X, projectile.position.Y), default(Vector2), Main.rand.Next(61, 64));
-                    Gore gore = Main.gore[num951];
-                    gore.velocity *= 0.3f;
-                    Main.gore[num951].velocity.X += Main.rand.Next(-1, 2);
-                    Main.gore[num951].velocity.Y += Main.rand.Next(-1, 2);
-                    projectile.position.X += projectile.width / 2;
-                    projectile.position.Y += projectile.height / 2;
-                    projectile.width = 150;
-                    projectile.height = 150;
-                    projectile.position.X -= projectile.width / 2;
-                    projectile.position.Y -= projectile.height / 2;
-                    if (projectile.owner == Main.myPlayer)
-                    {
-                        int num952 = Main.rand.Next(2, 6);
-                        for (int num953 = 0; num953 < num952; num953++)
-                        {
-                            float num954 = Main.rand.Next(-100, 101);
-                            num954 += 0.01f;
-                            float num955 = Main.rand.Next(-100, 101);
-                            num954 -= 0.01f;
-                            float num956 = (float)Math.Sqrt(num954 * num954 + num955 * num955);
-                            num956 = 8f / num956;
-                            num954 *= num956;
-                            num955 *= num956;
-                            int num957 = Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center.X - oldVelocity.X, projectile.Center.Y - oldVelocity.Y, num954, num955, 249, projectile.damage, projectile.knockBack, projectile.owner);
-                        }
-                    }
-                    return true;
-                case ProjectileID.StyngerShrapnel:
-                    SoundEngine.PlaySound(SoundID.Item14, projectile.position);
-                    for (int num958 = 0; num958 < 7; num958++)
-                    {
-                        int num959 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 31, 0f, 0f, 100, default(Color), 1.5f);
-                        Dust dust2 = Main.dust[num959];
-                        dust2.velocity *= 0.8f;
-                    }
-                    for (int num960 = 0; num960 < 2; num960++)
-                    {
-                        int num961 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 2.5f);
-                        Main.dust[num961].noGravity = true;
-                        Dust dust2 = Main.dust[num961];
-                        dust2.velocity *= 2.5f;
-                        num961 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 6, 0f, 0f, 100, default(Color), 1.5f);
-                        dust2 = Main.dust[num961];
-                        dust2.velocity *= 1.5f;
-                    }
-                    int num962 = Gore.NewGore(projectile.GetSource_FromThis(), new Vector2(projectile.position.X, projectile.position.Y), default(Vector2), Main.rand.Next(61, 64));
-                    Gore gore2 = Main.gore[num962];
-                    gore2.velocity *= 0.2f;
-                    Main.gore[num962].velocity.X += Main.rand.Next(-1, 2);
-                    Main.gore[num962].velocity.Y += Main.rand.Next(-1, 2);
-                    projectile.position.X += projectile.width / 2;
-                    projectile.position.Y += projectile.height / 2;
-                    projectile.width = 100;
-                    projectile.height = 100;
-                    projectile.position.X -= projectile.width / 2;
-                    projectile.position.Y -= projectile.height / 2;
-                    return true;
+
                 case ProjectileID.ProximityMineI:
                 case ProjectileID.ProximityMineII:
                 case ProjectileID.ProximityMineIII:
@@ -632,7 +560,7 @@ namespace TRAEProject.Changes.Projectiles
         {
             if (projectile.type == ProjectileID.NailFriendly)
             {
-                damage = (projectile.ai[0] != 2f) ? ((int)(damage / 0.3)) : (int)(damage / 1.35); // makes it deal 50% or 100% damage.
+                damage = (projectile.ai[0] != 2f) ? ((int)(damage / 0.4)) : (int)(damage / 1.35); // makes it deal 37,5% or 100% damage.
             }
             return; 
         }
@@ -640,7 +568,7 @@ namespace TRAEProject.Changes.Projectiles
         {
             if (projectile.type == ProjectileID.NailFriendly)
             {
-                damage = (projectile.ai[0] != 2f) ? ((int)(projectile.damage * 0.5)) : projectile.damage * 1;
+                damage = (projectile.ai[0] != 2f) ? ((int)(damage / 0.4)) : (int)(damage / 1.35); // makes it deal 37,5% or 100% damage.
             }
             return;
         }

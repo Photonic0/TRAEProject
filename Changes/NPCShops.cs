@@ -162,6 +162,30 @@ namespace TRAEProject.Changes
                     shop.item[nextSlot].SetDefaults(ItemID.TrifoldMap);
                     nextSlot++;
                     break;
+                case NPCID.Steampunker:
+                    if (!TRAEWorld.downedAMech)
+                    {
+                        
+
+                        int[] lockTheseBehindAMech = new int[] { ItemID.Cog, ItemID.StaticHook, ItemID.Jetpack };
+                        for (int i = 0; i < shop.item.Length; i++)
+                        {
+                            for (int k = 0; k < lockTheseBehindAMech.Length; k++)
+                            {
+                                if (shop.item[i].type == lockTheseBehindAMech[k])
+                                {
+                                    shop.item[i].type = ItemID.None;
+                                    for (int j = i + 1; j < shop.item.Length; j++)
+                                    {
+                                        shop.item[j - 1] = shop.item[j];
+                                    }
+                                    shop.item[shop.item.Length - 1].type = ItemID.None;
+                                    nextSlot--;
+                                }
+                            }
+                        }
+                    }
+                    break;
                 case NPCID.DD2Bartender:
                     if (!TRAEWorld.downedOgre)
                     {        

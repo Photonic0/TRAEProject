@@ -133,12 +133,8 @@ namespace TRAEProject.Changes.Weapons
                     item.useAnimation = 21; // up from 8
                     item.autoReuse = true;
                     return;
-                case ItemID.StakeLauncher:
-                    item.useTime = 15;
-                    item.useAnimation = 15;
-                    return;
                 case ItemID.NailGun:
-                    item.damage = 90; // up from 85
+                    item.damage = 115; // up from 85
                     item.knockBack = 1f; // up from 0
                     return;
                 case ItemID.Tsunami:

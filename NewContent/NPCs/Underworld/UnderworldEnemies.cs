@@ -62,10 +62,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld
                     npc2.velocity.Y = Main.rand.Next(-2, 2);
                 }
             }
-            if (npc1.type == NPCType<CheapWayToSpawnARedDevil>())
-            {
-                NPC.NewNPCDirect(npc1.GetSource_FromAI(), (int)npc1.Center.X, (int)npc1.Center.Y, NPCID.RedDevil);
-            }
+
             if (npc1.GetGlobalNPC<UnderworldEnemies>().HellMinibossThatSpawnsInPairs)
             {
                 int spawn = Main.rand.Next(MinibossList);
@@ -75,44 +72,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld
                 }
                 NPC.NewNPCDirect(npc1.GetSource_FromAI(), (int)npc1.Center.X, (int)npc1.Center.Y, spawn);
             }
-        }
-    }
-    public class CheapWayToSpawnARedDevil : ModNPC
-    {
-        public override void SetStaticDefaults()
-        {
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
-                Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
-            };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
-
-            DisplayName.SetDefault("ThisIsARedDevilYouCantJustMakeVanillaNPCsMoreCommonSoIHaveToMakeAFakeNPC"); // Automatic from .lang files
-        }
-        public override void SetDefaults()
-        {
-            NPC.width = 1;
-            NPC.height = 1;
-
-            NPC.damage = 1337;
-            NPC.defense = 420;
-            NPC.lifeMax = 69;
-        }
-        public override void AI()
-        {
-            NPC.ai[0]++;
-            if (NPC.ai[0] >= 1)
-            {
-                NPC.life = 0;
-            }
-        }
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            if (NPC.downedPlantBoss)
-            {
-                return SpawnCondition.Underworld.Chance * 0.1f;
-            }
-            return SpawnCondition.Underworld.Chance * 0f;
         }
     }
 }

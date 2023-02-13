@@ -156,6 +156,14 @@ namespace TRAEProject.Changes.Weapons.Rockets
                     type = ProjectileType<LuminiteMine>();
                 }
             }
+
+            switch (ammo.type)
+            {
+                case ItemID.StyngerBolt:
+                    type = ProjectileType<TRAEProject.NewContent.Projectiles.Stynger>();
+                    return;
+            }
+
         }
     }
 }

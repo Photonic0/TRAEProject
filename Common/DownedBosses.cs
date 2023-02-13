@@ -6,6 +6,7 @@ using static Terraria.ModLoader.ModContent;
 using Terraria;
 using TRAEProject.Common;
 using Terraria.ID;
+using TRAEProject.NewContent.NPCs.GraniteOvergrowth;
 
 namespace TRAEProject.Common
 {
@@ -14,6 +15,8 @@ namespace TRAEProject.Common
         public static bool downedOvergrowth = false;
         public static bool downedOgre = false;
         public static bool downedBetsy = false;
+        public static bool downedAMech = false;
+
         // public static bool downedOtherBoss = false;
 
 
@@ -21,14 +24,16 @@ namespace TRAEProject.Common
         {
             downedOvergrowth = false;
             downedOgre = false;
-            downedBetsy = false;
+            downedBetsy = false; 
+            downedAMech = false;
         }
 
         public override void OnWorldUnload()
         {
             downedOvergrowth = false;
             downedOgre = false;
-            downedBetsy = false;
+            downedBetsy = false; 
+            downedAMech = false;
         }
 
         // We save our data sets using TagCompounds.
@@ -47,6 +52,10 @@ namespace TRAEProject.Common
             {
                 tag["downedBetsy"] = true;
             }
+            if (downedAMech)
+            {
+                tag["downedAMech"] = true;
+            }
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -54,7 +63,7 @@ namespace TRAEProject.Common
             downedOvergrowth = tag.ContainsKey("downedOvergrowth");
             downedOgre = tag.ContainsKey("downedOgre");
             downedBetsy = tag.ContainsKey("downedBetsy");
-
+            downedAMech = tag.ContainsKey("downedAMech");
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -64,6 +73,7 @@ namespace TRAEProject.Common
             flags[0] = downedOvergrowth;
             flags[1] = downedOgre;
             flags[2] = downedBetsy;
+            flags[3] = downedAMech;
             writer.Write(flags);
         }
 
@@ -73,6 +83,7 @@ namespace TRAEProject.Common
             downedOvergrowth = flags[0];
             downedBetsy = flags[1];
             downedOgre = flags[2];
+            downedAMech = flags[3];
         }
     }
 }
@@ -89,9 +100,13 @@ public class DownedVanillaNPCs : GlobalNPC
         {
             TRAEWorld.downedBetsy = true;
         }
-        if (!TRAEWorld.downedOvergrowth)
+        if (npc.type == NPCType<GraniteOvergrowth>() && !TRAEWorld.downedOvergrowth)
         {
             TRAEWorld.downedOvergrowth = true;
+        }
+        if ((npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime || npc.type == NPCID.Spazmatism || npc.type == NPCID.Retinazer) && !TRAEWorld.downedAMech)
+        {
+            TRAEWorld.downedAMech = true;
         }
     }
 }

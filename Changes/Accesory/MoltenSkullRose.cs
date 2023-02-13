@@ -31,7 +31,7 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.MoltenSkullRose:
                     player.GetModPlayer<ObsidianSkullEffect>().moltenskullrose += 1;
-                    player.GetModPlayer<CritDamage>().critDamage += 0.1f;
+                    player.GetModPlayer<CritDamage>().critDamage += 0.08f;
                     break;
                
                 case ItemID.MoltenQuiver:
@@ -90,7 +90,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "10% increased critical strike damage";
+                            line.Text = "8% increased critical strike damage";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
@@ -278,7 +278,7 @@ namespace TRAEProject.Changes.Accesory
                 target.AddBuff(BuffID.OnFire3, Main.rand.Next(120, 360));
                 if (crit)
                 {
-                    int chance = 1500 / (damage * 2 * (arrowsburn + moltenskullrose));
+                    int chance = 1600 / (damage * 2 * (arrowsburn + moltenskullrose));
                     if (Main.rand.NextBool(chance))
                     {
                         if (target.HasBuff(BuffID.Daybreak))

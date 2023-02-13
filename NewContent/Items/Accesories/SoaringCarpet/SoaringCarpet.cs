@@ -19,7 +19,8 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 			DisplayName.SetDefault("Soaring Carpet");
-            	Tooltip.SetDefault("Grants a soaring carpet, use it by holding UP\nIncreases movement speed by 10%\nIncreases acceleration\nFall damage immunity");
+            Tooltip.SetDefault("Grants a soaring carpet, use it by holding UP\nIncreases movement speed by 10%\nIncreases acceleration\nFall damage immunity");
+
         }
 
         public override void SetDefaults()
@@ -33,7 +34,6 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<SoaringCarpetEffect>().soaringCarpet = true;
-
 			player.moveSpeed += 0.1f;
 			player.GetModPlayer<Mobility>().ankletAcc = true;
 			player.noFallDmg = true;

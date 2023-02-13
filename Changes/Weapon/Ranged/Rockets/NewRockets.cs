@@ -362,10 +362,10 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             projectile.penetrate = 3; projectile.usesLocalNPCImmunity = true;
             projectile.localNPCHitCooldown = 10;
             IsARocket = true;
-            projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.5f;
+            projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.4f;
             projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
-            projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage = 0.67f;
+            projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage /= 1.4f;
             if (defaultExplosion)
             {
                 projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;

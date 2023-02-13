@@ -7,6 +7,7 @@ using TRAEProject.Changes.Items;
 using TRAEProject.Changes;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using TRAEProject.Changes.Accesory;
 
 namespace TRAEProject
 {
@@ -24,6 +25,9 @@ namespace TRAEProject
                     return;
                 case BuffID.ScytheWhipPlayerBuff:
                     player.GetAttackSpeed(DamageClass.Melee) -= 0.15f;
+                    return;
+                case BuffID.WaterWalking:
+                    player.GetModPlayer<MoveSpeed>().TRAEwaterwalk = true;
                     return;
                 case BuffID.ObsidianSkin:
                     player.buffImmune[BuffID.OnFire] = false;
@@ -96,7 +100,7 @@ namespace TRAEProject
                     tip = "Damage taken reduced by 30%";
                     return;
                 case BuffID.Panic:
-                    tip = "Greatly increased movement capabilities";
+                    tip = "40% increased movement speed";
                     return;
                 case BuffID.Archery:
                     tip = "10% increased arrow damage, 20% increased arrow speed";
@@ -121,6 +125,7 @@ namespace TRAEProject
                     return;
                 case BuffID.Swiftness:
                     tip = Mobility.swiftSpeed + "% increased movement speed";
+
                     return;
                 case BuffID.StarInBottle:
                     tip = "Increased max mana by 20";
