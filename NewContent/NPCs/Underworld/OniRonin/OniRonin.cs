@@ -290,7 +290,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("OniRoninGore2").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("OniRoninGore3").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("OniRoninGore4").Type, 1f);
-            return false;
+            return true;
 
         }
 
