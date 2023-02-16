@@ -81,8 +81,8 @@ namespace TRAEProject.Common
         {
             BitsByte flags = reader.ReadByte();
             downedOvergrowth = flags[0];
-            downedBetsy = flags[1];
             downedOgre = flags[2];
+            downedBetsy = flags[2];
             downedAMech = flags[3];
         }
     }
@@ -92,21 +92,21 @@ public class DownedVanillaNPCs : GlobalNPC
     public override bool InstancePerEntity => true;
     public override void OnKill(NPC npc)
     {
-        if ((npc.type == NPCID.DD2OgreT2 || npc.type == NPCID.DD2OgreT3) && !TRAEWorld.downedOgre)
+        if ((npc.type == NPCID.DD2OgreT2 || npc.type == NPCID.DD2OgreT3))
         {
-            TRAEWorld.downedOgre = true;
+            NPC.SetEventFlagCleared(ref TRAEWorld.downedOgre, -1);
         }
-        if (npc.type == NPCID.DD2Betsy && !TRAEWorld.downedBetsy)
+        if (npc.type == NPCID.DD2Betsy)
         {
-            TRAEWorld.downedBetsy = true;
+            NPC.SetEventFlagCleared(ref TRAEWorld.downedBetsy, -1);
         }
-        if (npc.type == NPCType<GraniteOvergrowth>() && !TRAEWorld.downedOvergrowth)
+        if (npc.type == NPCType<GraniteOvergrowth>())
         {
-            TRAEWorld.downedOvergrowth = true;
+            NPC.SetEventFlagCleared(ref TRAEWorld.downedOvergrowth, -1);
         }
-        if ((npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime || npc.type == NPCID.Spazmatism || npc.type == NPCID.Retinazer) && !TRAEWorld.downedAMech)
+        if ((npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime || npc.type == NPCID.Spazmatism || npc.type == NPCID.Retinazer))
         {
-            TRAEWorld.downedAMech = true;
+            NPC.SetEventFlagCleared(ref TRAEWorld.downedAMech, -1);
         }
     }
 }

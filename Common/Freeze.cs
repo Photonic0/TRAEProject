@@ -36,7 +36,7 @@ namespace TRAEProject.Common
                 case NPCID.BigMimicCorruption:
                 case NPCID.BigMimicCrimson:
                 case NPCID.BigMimicHallow:            
-case NPCID.ScutlixRider:
+                case NPCID.ScutlixRider:
                 case NPCID.SolarDrakomireRider:
                 case NPCID.DD2Betsy:
                 case NPCID.MartianSaucerCannon:
@@ -88,6 +88,7 @@ case NPCID.ScutlixRider:
         }
         public override bool PreAI(NPC npc)
         {
+            //TRAEMethods.ServerClientCheck(freezeTime + "");
             if (freezeCooldown > 0 && freezeTime == 0)
                 freezeCooldown--;
             if(freezeTime > 0)

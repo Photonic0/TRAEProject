@@ -866,7 +866,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 							{
 								npc.velocity = mouthDirection5 * -12f;
 							}
-							if (npc.ai[1] % totalTime < phase3spamDuration && npc.ai[1] % phase3attackSpeed == 0)
+							if (npc.ai[1] % totalTime < phase3spamDuration && npc.ai[1] % phase3attackSpeed == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                             {
 								int attackDamage_ForProjectiles = npc.GetAttackDamage_ForProjectiles(30f, 25f);
 								for (int i = 0; i < 8; i++)

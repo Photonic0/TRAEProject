@@ -203,12 +203,6 @@ namespace TRAEProject.Changes.Recipes
             {
                 recipe.AddIngredient(ItemID.Bone, 20);
             }
-            if (recipe.HasResult(ItemID.ObsidianHorseshoe))
-            {
-                recipe.TryGetIngredient(ItemID.ObsidianSkull, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.Obsidian, 20);
-            }
             if (recipe.HasResult(ItemID.FrogGear))
             {
                 recipe.TryGetIngredient(ItemID.FrogWebbing, out ingredientToRemove);
