@@ -167,17 +167,15 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
         {
             ObsidianBasiliskHead.CommonWormInit(this);
         }
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (NPC.life <= 0)
-            {
 
-                Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("ObsidianBasiliskBody_Gore").Type, 1f);
-            }
+        public override void OnKill()
+        {
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("ObsidianBasiliskBody_Gore").Type, 1f);
         }
+
     }
 
-	internal class ObsidianBasiliskTail : WormTail
+    internal class ObsidianBasiliskTail : WormTail
 	{
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Obsidian Basilisk");
@@ -207,19 +205,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
             NPC.GetGlobalNPC<Stun>().stunImmune = true;
 
         }
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            if (NPC.life <= 0)
-            {
 
-                Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("ObsidianBasiliskBody_Gore").Type, 1f);
-            }
-        }
-        public override bool PreKill()
+        public override void OnKill()
         {
-
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("ObsidianBasiliskTail_Gore").Type, 1f);
-            return false;
         }
 
         public override void Init() {

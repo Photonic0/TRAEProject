@@ -90,14 +90,14 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                 NPC.ai[0] = 200f;
             }
             int teleportCooldown = 200; 
-            if (NPC.Distance(NPC.GetTargetData().Center) >= 800f)
+            if (NPC.Distance(NPC.GetTargetData().Center) >= 800f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 teleportCooldown /= 10;
             }
             NPC.ai[0] += 1f;
-            if (NPC.ai[0] > 1000)
+            if (NPC.ai[0] > 1000 && Main.netMode != NetmodeID.MultiplayerClient)
                 teleportCooldown = 20;
-            if (NPC.ai[0] % teleportCooldown == 0 && Main.netMode != 1)
+            if (NPC.ai[0] % teleportCooldown == 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
                 int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
@@ -106,7 +106,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
 
                 if (AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
                 {
-
+                   
 
                     NPC.ai[1] = 0f;
                     NPC.ai[2] = chosenTile.X;
@@ -118,7 +118,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
 
                 }
             }
-            if (NPC.ai[2] != 0f && NPC.ai[3] != 0f)
+            if (NPC.ai[2] != 0f && NPC.ai[3] != 0f && Main.netMode != NetmodeID.MultiplayerClient)
             {
 
 
@@ -140,7 +140,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                 NPC.velocity.X = 0f;
                 NPC.velocity.Y = 0f;
                 NPC.ai[2] = 0f;
-                NPC.ai[3] = 0f;
+                NPC.ai[3] = 0f; 
+                NPC.netUpdate = true;
+
                 SoundEngine.PlaySound(SoundID.Item8, NPC.position);
                 for (int num79 = 0; num79 < 50; num79++)
                 {
@@ -157,7 +159,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
 
             if (NPC.ai[0] > 200 && NPC.ai[0] < 800 && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                NPC.ai[1] += 1f;
+                NPC.ai[1] += 1f; 
+
                 if (NPC.ai[1] > 35f && NPC.ai[1] % 25f == 0)
                 {
 
@@ -198,10 +201,13 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                     velY *= sqrRoot;
                     Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center.X, NPC.Center.Y, velX, velY, petal, 30, 0f);
                 }
+                NPC.netUpdate = true;
+
             }
-            if (NPC.ai[0] > 1200)
+            if (NPC.ai[0] > 1200 && Main.netMode != 1)
             {
-                NPC.ai[0] = 0;
+                NPC.ai[0] = 0; NPC.netUpdate = true;
+
             }
 
             if (Main.rand.Next(2) == 0)
@@ -211,7 +217,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                 Main.dust[num117].velocity.X *= 1f;
                 Main.dust[num117].velocity.Y *= 1f;
             }
-            NPC.position -= NPC.netOffset;
 
 
 
@@ -347,7 +352,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                 Projectile.ai[0] = Projectile.Center.X;
                 Projectile.ai[1] = Projectile.Center.Y;
             }
-            if (Projectile.ai[0] > 0 && Projectile.ai[1] > 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (Projectile.ai[0] > 0 && Projectile.ai[1] > 0)
             {
                 int radius = 75;
                 Projectile.localAI[0] += 1f / 60;
@@ -377,7 +382,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                             sqrRoot = speed / sqrRoot;
                             velX *= sqrRoot;
                             velY *= sqrRoot;
-                            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, velX, velY, ProjectileType<OniPetal2>(), 40, 0f);
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, velX, velY, ProjectileType<OniPetal2>(), 40, 0f);
                             Projectile.Kill();
                             return;
                         }
@@ -454,7 +460,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                 Projectile.ai[0] = Projectile.Center.X;
                 Projectile.ai[1] = Projectile.Center.Y;
             }
-            if (Projectile.ai[0] > 0 && Projectile.ai[1] > 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (Projectile.ai[0] > 0 && Projectile.ai[1] > 0)
             {
                 int radius = 75;
                 Projectile.localAI[0] += 1f / 60f;
@@ -484,8 +490,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                             sqrRoot = speed / sqrRoot; 
                             velX *= sqrRoot;
                             velY *= sqrRoot;
-                            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, velX, velY, ProjectileType<OniFirePetal2>(), 40, 0f);
-                            Projectile.Kill();
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, velX, velY, ProjectileType<OniFirePetal2>(), 40, 0f); Projectile.Kill();
                             break;
                         }
 

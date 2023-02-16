@@ -70,7 +70,8 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.ObsidianWaterWalkingBoots:
                     player.waterWalk2 = false;
                     player.rocketBoots = 1;
-                    player.rocketTimeMax += 10;
+                    player.rocketTimeMax += 10; player.rocketBoots = player.vanityRocketBoots = 1;
+
                     player.GetModPlayer<AccesoryEffects>().FastFall = true;
                     player.noFallDmg = true;
                     player.fireWalk = false;

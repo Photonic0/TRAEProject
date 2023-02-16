@@ -15,7 +15,7 @@ namespace TRAEProject.NewContent.Items.Accesories.GravityTabi
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Gravity Tabi");
-            Tooltip.SetDefault("Allows control of gravity\nAllows fast fall\nAllows dashing");
+            Tooltip.SetDefault("Allows control of gravity, fast fall and dashing\nPrevents fall damage");
         }
         public override void SetDefaults()
         {
@@ -27,6 +27,7 @@ namespace TRAEProject.NewContent.Items.Accesories.GravityTabi
         {
             player.GetModPlayer<AccesoryEffects>().FastFall = true;
             player.gravControl2 = true;
+            player.noFallDmg = true;
             player.GetModPlayer<GravitationPlayer>().noFlipGravity = true;
             player.dashType = 1;
         }

@@ -117,7 +117,7 @@ namespace TRAEProject.Changes.Recipes
                 recipe.TryGetIngredient(ItemID.ObsidianSkull, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.RocketBoots, 1);
-                recipe.AddIngredient(ItemID.ObsidianHorseshoe, 1);
+                recipe.AddIngredient(ItemID.LuckyHorseshoe, 1);
             }
             if (recipe.HasResult(ItemID.LavaWaders))
             {
