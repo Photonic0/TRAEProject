@@ -125,7 +125,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
         {
 
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("ObsidianBasiliskHead_Gore").Type, 1f);
-            return false;
+            return true;
         }
     }
 

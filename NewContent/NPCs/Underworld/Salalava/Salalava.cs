@@ -268,7 +268,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("SalalavaGore2").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("SalalavaGore3").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("SalalavaGore4").Type, 1f);
-            return false;
+            return true;
 
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
