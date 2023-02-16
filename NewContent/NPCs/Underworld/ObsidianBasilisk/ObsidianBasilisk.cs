@@ -121,11 +121,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
             return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn();
 
         }
-        public override bool PreKill()
+        public override void OnKill()
         {
 
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("ObsidianBasiliskHead_Gore").Type, 1f);
-            return true;
         }
     }
 

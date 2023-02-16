@@ -43,7 +43,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld
                     if (NPC.AnyNPCs(MinibossList[i]))
                         return 0f;
                 }
-                return SpawnCondition.Underworld.Chance * 0.11f;
+                return SpawnCondition.Underworld.Chance * 0.08f;
             }
             return 0f;
         }

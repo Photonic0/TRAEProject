@@ -255,7 +255,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     hasHeRoared = true;
                 }
             }
-            if (belowQuarter)
+            if (belowQuarter && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (NPC.ai[1] != 10) // ROAR
                 {
@@ -334,7 +334,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             }
 
 
-            if (NPC.ai[0] >= attackDelay + 1)
+            if (NPC.ai[0] >= attackDelay + 1 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 // Order:
                 // 1- Green Scythes
@@ -368,7 +368,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
                     }
 
-                    if (NPC.ai[2] == delay * 4 - delay / 3 || NPC.ai[2] == delay * 7 - delay / 6)
+                    if ((NPC.ai[2] == delay * 4 - delay / 3 || NPC.ai[2] == delay * 7 - delay / 6) && Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         float posX = target.Center.X;
                         float posY = target.Center.Y;
@@ -401,7 +401,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
      
                 }
                 ////////// purple spiral
-                if (NPC.ai[1] == 2)
+                if (NPC.ai[1] == 2 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     //if (NPC.ai[2] == 0)
                     //{
@@ -447,7 +447,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
                 }
                 ////////// deathgaze
-                if (NPC.ai[1] == 4 || NPC.ai[1] == 7)
+                if ((NPC.ai[1] == 4 || NPC.ai[1] == 7) && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     NPC.rotation = 0;
                     NPC.velocity.X = 0;
@@ -487,7 +487,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
                 }
                 ////////// orange scythes
-                if (NPC.ai[1] == 3 )
+                if (NPC.ai[1] == 3 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     NPC.ai[2]++;
                     if (NPC.ai[2] % 35 == 0)
@@ -510,7 +510,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
                 }
                 ////////// Color Shotgun
-                if (NPC.ai[1] == 6 || NPC.ai[1] == 8)
+                if ((NPC.ai[1] == 6 || NPC.ai[1] == 8) && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     NPC.ai[2]++;
                     int delay = 25;
@@ -580,7 +580,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
                 }
                 ////////// angry
-                if (NPC.ai[1] == 10)
+                if (NPC.ai[1] == 10 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
 
 
@@ -615,7 +615,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                             Dust.NewDustPerfect(shootFrom + TRAEMethods.PolarVector(30, rot), DustID.PurpleTorch, TRAEMethods.PolarVector(-3f, rot));
                         }
                     }
-                    if (NPC.ai[2] >= 165)
+                    if (NPC.ai[2] >= 165 && Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero, ProjectileType<WhiteScythe>(), 0, 1f);
 

@@ -81,21 +81,25 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             {
                 teleportTimer += 2f;
             }
-            if (teleportTimer >= 600f)
+            if (teleportTimer >= 600f && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 teleportTimer = 0;
                 int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
                 int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
 
                 Vector2 chosenTile = Vector2.Zero;
+
                 if (AI_AttemptToFindTeleportSpot(ref chosenTile, targetTileX, targetTileY))
                 {
-                    NPC.position += NPC.netOffset;
-                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-            
+
+                    NPC.ai[1] = 0f;
+                    NPC.ai[2] = chosenTile.X;
+                    NPC.ai[3] = chosenTile.Y;
+                    NPC.netUpdate = true;
+
                     NPC.position -= NPC.netOffset;
-                    NPC.position.X = chosenTile.X * 16f - (float)(NPC.width / 2) + 8f;
-                    NPC.position.Y = chosenTile.Y * 16f - (float)NPC.height;
+                    NPC.position.X = NPC.ai[2] * 16f - (float)(NPC.width / 2) + 8f;
+                    NPC.position.Y = NPC.ai[3] * 16f - (float)NPC.height;
                     NPC.netOffset *= 0f;
                     NPC.velocity.X = 0f;
                     NPC.velocity.Y = 0f;
@@ -108,6 +112,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
                         dust.velocity *= 3f;
 
                     }
+
+                    NPC.position += NPC.netOffset;
+                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
                 }
 
             }
@@ -158,14 +165,14 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
                     NPC.velocity.X = 0;
                     for (int i = 0; i < 200; i++)
                     {
-                        if (Main.npc[i].type == NPCType<Lavalarva>())
+                        if (Main.npc[i].type == NPCType<Lavalarva>() && Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             lavamandies++;
                         }
                     }
                     if (lavamandies < 7)
                     {
-                        if (attackTimer % 10 == 0)
+                        if (attackTimer % 10 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             SoundEngine.PlaySound(SoundID.DD2_OgreRoar, NPC.Center);
                             NPC npc = NPC.NewNPCDirect(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<Lavalarva>());
@@ -259,7 +266,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             return flag;
         }
 
-        public override bool PreKill()
+        public override void OnKill()
         {
             for (int i = 0; i < 4; i++)
             {
@@ -268,8 +275,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("SalalavaGore2").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("SalalavaGore3").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("SalalavaGore4").Type, 1f);
-            return true;
-
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {

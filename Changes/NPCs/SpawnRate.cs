@@ -33,7 +33,7 @@ namespace TRAEProject.Changes.NPCs
                 pool.Add(NPCID.JungleCreeper, 0.2f);
             if (spawnInfo.Player.ZoneCorrupt)
             {
-                float spawnrate = Main.hardMode ? 0.15f : 0.05f;
+                float spawnrate = Main.hardMode ? 0.05f : 0.15f;
                 pool.Remove(NPCID.DevourerHead);            
                 pool.Add(NPCID.DevourerHead, spawnrate);
             }

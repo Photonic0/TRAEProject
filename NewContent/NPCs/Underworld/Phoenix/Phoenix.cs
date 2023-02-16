@@ -233,9 +233,11 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			}
             NPC.spriteDirection = -Math.Sign(NPC.velocity.X); 
 		}
+		
+		
 		public override bool PreKill()
-		{
-			NPCLoader.blockLoot.Add(ItemID.ChickenNugget);
+		{ 
+            NPCLoader.blockLoot.Add(ItemID.ChickenNugget);
 			NPCLoader.blockLoot.Add(ItemID.FireFeather);
 			NPCLoader.blockLoot.Add(ItemType<MagicalAsh>());            
 
@@ -246,9 +248,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore2").Type, 1f);
 			Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore3").Type, 1f);
 			Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore4").Type, 1f);
-			NPC.NewNPC(NPC.GetSource_Death(), (int)(NPC.Center.X), (int)(NPC.Center.Y), NPCType<PhoenixAsh>());
-            return true;
-
+			if (Main.netMode != 1)
+				NPC.NewNPC(NPC.GetSource_Death(), (int)(NPC.Center.X), (int)(NPC.Center.Y), NPCType<PhoenixAsh>());
+			return false;
         }
         int frame = 0;
 
@@ -410,7 +412,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 					d.noGravity = true;
 				}
 			}
-			if (NPC.ai[0] == timeTillRevive)
+			if (NPC.ai[0] == timeTillRevive	&& Main.netMode != NetmodeID.MultiplayerClient)
             {
 				NPC.life = 0;
 				SoundEngine.PlaySound(SoundID.DD2_WyvernScream, NPC.Center);

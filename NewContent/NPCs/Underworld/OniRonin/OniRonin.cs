@@ -111,12 +111,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                     NPC.ai[1] = 0f;
                     NPC.ai[2] = chosenTile.X;
                     NPC.ai[3] = chosenTile.Y;
+                    NPC.netUpdate = true;
 
 
 
 
                 }
-                NPC.netUpdate = true;
             }
             if (NPC.ai[2] != 0f && NPC.ai[3] != 0f)
             {
@@ -155,7 +155,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
 
 
 
-            if (NPC.ai[0] > 200 && NPC.ai[0] < 800 && Main.netMode != 1)
+            if (NPC.ai[0] > 200 && NPC.ai[0] < 800 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NPC.ai[1] += 1f;
                 if (NPC.ai[1] > 35f && NPC.ai[1] % 25f == 0)
@@ -173,7 +173,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
 
                 }
             }
-            else if (NPC.ai[0] >= 800 && Main.netMode != 1)
+            else if (NPC.ai[0] >= 800 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NPC.ai[1] += 1f;
                 if (NPC.ai[1] > 35f && NPC.ai[1] % 8f == 0)
@@ -282,7 +282,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
             }
             return flag;
         }
-        public override bool PreKill()
+        public override void OnKill()
         {
 
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("OniRoninGore1").Type, 1f);
@@ -290,7 +290,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("OniRoninGore2").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("OniRoninGore3").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("OniRoninGore4").Type, 1f);
-            return true;
 
         }
 
@@ -348,7 +347,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                 Projectile.ai[0] = Projectile.Center.X;
                 Projectile.ai[1] = Projectile.Center.Y;
             }
-            if (Projectile.ai[0] > 0 && Projectile.ai[1] > 0)
+            if (Projectile.ai[0] > 0 && Projectile.ai[1] > 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int radius = 75;
                 Projectile.localAI[0] += 1f / 60;
@@ -455,7 +454,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
                 Projectile.ai[0] = Projectile.Center.X;
                 Projectile.ai[1] = Projectile.Center.Y;
             }
-            if (Projectile.ai[0] > 0 && Projectile.ai[1] > 0)
+            if (Projectile.ai[0] > 0 && Projectile.ai[1] > 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int radius = 75;
                 Projectile.localAI[0] += 1f / 60f;
