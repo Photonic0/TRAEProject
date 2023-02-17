@@ -68,12 +68,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			});
 		}
 		float dustTimer = 0;
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-		{
-			npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 4));
-            npcLoot.Add(ItemDropRule.Common(ItemType<MagicalAsh>(), 1, 1, 2));
-            npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
-        }
+  //      public override void ModifyNPCLoot(NPCLoot npcLoot)
+		//{
+		//	npcLoot.Add(ItemDropRule.Common(ItemID.ChickenNugget, 4));
+  //          npcLoot.Add(ItemDropRule.Common(ItemType<MagicalAsh>(), 1, 1, 2));
+  //          npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
+  //      }
    //     public override int SpawnNPC(int tileX, int tileY)
    //     {
    //         //if (!NPC.GetGlobalNPC<HellMinibosses>().dontSpawnAnotherOne)
@@ -234,24 +234,24 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
             NPC.spriteDirection = -Math.Sign(NPC.velocity.X); 
 		}
 
-		public override bool PreKill()
+		public override void OnKill()
 		{
 
-            NPCLoader.blockLoot.Add(ItemID.ChickenNugget);
-            NPCLoader.blockLoot.Add(ItemID.FireFeather);
-            NPCLoader.blockLoot.Add(ItemType<MagicalAsh>());
+            //NPCLoader.blockLoot.Add(ItemID.ChickenNugget);
+            //NPCLoader.blockLoot.Add(ItemID.FireFeather);
+            //NPCLoader.blockLoot.Add(ItemType<MagicalAsh>());
 
-            for (int i = 0; i < 2; i++)
-            {
-                Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore1").Type, 1f);
-            }
-            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore2").Type, 1f);
-            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore3").Type, 1f);
-            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore4").Type, 1f);
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore1").Type, 1f);
+            //}
+            //Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore2").Type, 1f);
+            //Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore3").Type, 1f);
+            //Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("PhoenixGore4").Type, 1f);
 
             if (Main.netMode != 1)
                 NPC.NewNPC(NPC.GetSource_Death(), (int)(NPC.Center.X), (int)(NPC.Center.Y), NPCType<PhoenixAsh>());
-			return false;
+			return;
         }
 
         int frame = 0;

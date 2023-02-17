@@ -178,19 +178,21 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             float accelerationX = 0.18f;
             float accelerationY = 0.11f;
             Vector2 ActualCenter = new Vector2(NPC.Center.X + 24 * NPC.direction, NPC.Center.Y + 14);
-
+            float distance = NPC.Distance(target.Center);
+            if (distance > 3000f)
+                distance = 3000f;
             bool angryExpert = NPC.life <= (int)(NPC.lifeMax * 0.66) && Main.expertMode;
 
             bool belowQuarter = NPC.life <= NPC.lifeMax / 4;
-            speed *= 1.5f * (NPC.Distance(target.Center) / 300f);
-            accelerationX *= 1.5f * NPC.Distance(target.Center) / 300f;
-            if (NPC.Distance(target.Center) > 900f)
+            speed *= 1.5f * (distance / 300f);
+            accelerationX *= 1.5f * distance / 300f;
+            if (distance > 900f)
             {
                 speed *= 2f;
                 accelerationX *= 2f;
 
             }
-            if (NPC.Distance(target.Center) > 3000f)
+            if (distance > 3000f)
             {
                 NPC.EncourageDespawn(300);
             }
@@ -204,9 +206,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             float TargetAboveOrBelow = target.Center.Y - ActualCenter.Y;
             if (TargetAboveOrBelow >= 200f) // speed up if you are too far vertically
             {
-                accelerationY *= 1.6f * NPC.Distance(target.Center) / 200f;
+                accelerationY *= 1.6f * distance / 200f;
 
-                speedY *= 1.6f * (NPC.Distance(target.Center) / 200f);
+                speedY *= 1.6f * (distance / 200f);
             } 
             if (Math.Sign(TargetAboveOrBelow) == 1)
             {
@@ -255,7 +257,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     hasHeRoared = true;
                 }
             }
-            if (belowQuarter && Main.netMode != NetmodeID.MultiplayerClient)
+            if (belowQuarter)
             {
                 if (NPC.ai[1] != 10) // ROAR
                 {
@@ -313,11 +315,13 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
 
                     SoundEngine.PlaySound(SoundID.Item8, NPC.position);
-
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    { 
                     for (int i = 0; i < 6; i++)
                     {
                         Vector2 direction = NPC.velocity.RotatedBy(360 - 45 * (i - 1)) * VEL;
                         Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, direction, ScytheToShoot, 40, 1f);
+                    }
                     }
                 }
       
@@ -334,7 +338,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             }
 
 
-            if (NPC.ai[0] >= attackDelay + 1 && Main.netMode != NetmodeID.MultiplayerClient)
+            if (NPC.ai[0] >= attackDelay + 1)
             {
                 // Order:
                 // 1- Green Scythes
@@ -401,7 +405,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
      
                 }
                 ////////// purple spiral
-                if (NPC.ai[1] == 2 && Main.netMode != NetmodeID.MultiplayerClient)
+                if (NPC.ai[1] == 2)
                 {
                     //if (NPC.ai[2] == 0)
                     //{
@@ -431,7 +435,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
 
                     }
-                    if (NPC.ai[2] >= scythes * delay)
+                    if (NPC.ai[2] >= scythes * delay && Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         for (int i = 0; i < Main.rand.Next(7, 9); i++)
                         {
@@ -447,7 +451,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
                 }
                 ////////// deathgaze
-                if ((NPC.ai[1] == 4 || NPC.ai[1] == 7) && Main.netMode != NetmodeID.MultiplayerClient)
+                if ((NPC.ai[1] == 4 || NPC.ai[1] == 7))
                 {
                     NPC.rotation = 0;
                     NPC.velocity.X = 0;
@@ -487,10 +491,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
                 }
                 ////////// orange scythes
-                if (NPC.ai[1] == 3 && Main.netMode != NetmodeID.MultiplayerClient)
+                if (NPC.ai[1] == 3)
                 {
                     NPC.ai[2]++;
-                    if (NPC.ai[2] % 35 == 0)
+                    if (NPC.ai[2] % 35 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         SoundEngine.PlaySound(SoundID.Item8, NPC.position);
 
@@ -500,7 +504,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                             Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, direction, ProjectileType<OrangeScythe>(), 40, 1f);
                         }
                     }
-                    if (NPC.ai[2] >= 115)
+                    if (NPC.ai[2] >= 115 && Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, Vector2.Zero, ProjectileType<WhiteScythe>(), 0, 1f);
 
@@ -510,14 +514,14 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     }
                 }
                 ////////// Color Shotgun
-                if ((NPC.ai[1] == 6 || NPC.ai[1] == 8) && Main.netMode != NetmodeID.MultiplayerClient)
+                if ((NPC.ai[1] == 6 || NPC.ai[1] == 8))
                 {
                     NPC.ai[2]++;
                     int delay = 25;
                     int ScytheToShoot = 0;
                     if (delay <= delay * 4)
                     {
-                        if (NPC.ai[2] % delay == 0)
+                        if (NPC.ai[2] % delay == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             float VEL = 25f;
                             int numProjectiles = 6;
@@ -575,12 +579,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
                             NPC.ai[0] = 0;
                             NPC.ai[2] = 0;
-
+                            NPC.netUpdate = true ;
                         }
                     }
                 }
                 ////////// angry
-                if (NPC.ai[1] == 10 && Main.netMode != NetmodeID.MultiplayerClient)
+                if (NPC.ai[1] == 10)
                 {
 
 
@@ -628,7 +632,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
 
         }
-        public override bool PreKill()
+        public override void OnKill()
         {
         //    NPCLoader.blockLoot.Add(ItemID.LesserHealingPotion);
 
@@ -646,7 +650,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("BeholderGore2").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("BeholderGore3").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("BeholderGore4").Type, 1f);
-            return true;
+            return;
 
         }
 
