@@ -84,8 +84,8 @@ namespace TRAEProject.Changes.Weapon.Melee
                     projectile.idStaticNPCHitCooldown = 10;
                     break;
                 case ProjectileID.Spark:
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 10;
+                    projectile.usesIDStaticNPCImmunity = true;
+                    projectile.idStaticNPCHitCooldown = 10;
                     break;
                 case ProjectileID.FlamingJack:
                     projectile.extraUpdates = 1;

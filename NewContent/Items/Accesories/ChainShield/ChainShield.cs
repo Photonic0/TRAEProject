@@ -25,7 +25,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ChainShield
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
             Item.value = 80000;
-            Item.defense = 1;
+            Item.defense = 3;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

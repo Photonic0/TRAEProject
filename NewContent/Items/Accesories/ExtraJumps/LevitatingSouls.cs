@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Levitating Soles");
-            Tooltip.SetDefault("Provides a long lasting double jump\n25% increased movement speed and jump speed");
+            Tooltip.SetDefault("Provides a long lasting double jump\n20% increased movement speed\n25% increased jump speed");
         }
         public override void SetDefaults()
         {
@@ -25,7 +25,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<TRAEJumps>().levitation = true;
-            player.moveSpeed += 0.25f;
+            player.moveSpeed += 0.20f;
             player.jumpSpeedBoost += Mobility.JSV(0.25f);
         }
         public override void AddRecipes()

@@ -50,10 +50,6 @@ namespace TRAEProject.Changes.Weapon.Summon
         public override bool InstancePerEntity => true;
         public override void SetDefaults(Projectile projectile)
         {
-            if (projectile.sentry)
-            {
-                projectile.timeLeft = Projectile.SentryLifeTime * 60;
-            }
             switch(projectile.type)
             {
 

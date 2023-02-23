@@ -69,7 +69,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         public override void PostItemCheck()
         {
 
-            if (Player.HeldItem.type == ItemType<ScrollOfWipeout>() && Player.itemAnimation > 0)
+            if (Player.HeldItem.type == ItemType<ScrollOfWipeout>() && Player.itemAnimation > 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 Item item = Player.HeldItem;
 
