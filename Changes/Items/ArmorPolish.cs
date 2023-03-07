@@ -19,7 +19,7 @@ namespace TRAEProject.Changes.Items
             if (item.type == ItemID.ArmorPolish)
             {
                 item.vanity = true;
-
+                item.hasVanityEffects = true;
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

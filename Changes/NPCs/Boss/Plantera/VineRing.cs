@@ -18,7 +18,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         public const float Radius = 600f;
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Vine Ring");
+            // DisplayName.SetDefault("Vine Ring");
             Main.projFrames[Projectile.type] = 4;
         }
         public override void SetDefaults()

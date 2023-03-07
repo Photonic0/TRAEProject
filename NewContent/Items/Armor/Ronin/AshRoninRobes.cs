@@ -25,8 +25,8 @@ namespace TRAEProject.NewContent.Items.Armor.Ronin
         // +11% movement speed
         public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Ash Ronin Robes");
-			//Tooltip.SetDefault("11% increased magic and summon damage\nIncreased your maximum number of minions by 1");
+			// DisplayName.SetDefault("Ash Ronin Robes");
+			// Tooltip.SetDefault("11% increased magic and summon damage\nIncreased your maximum number of minions by 1");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

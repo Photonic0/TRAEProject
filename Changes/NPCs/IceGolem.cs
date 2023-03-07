@@ -14,6 +14,15 @@ namespace TRAEProject.Changes.NPCs
 	public class Icegolem : GlobalNPC
 	{
 		public override bool InstancePerEntity => true;
+		public override void SetDefaults(NPC npc)
+		{
+		}
+		public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
+		{
+		}
+		public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)/* tModPorter Note:bossAdjustment -> balance (bossAdjustment is different, see the docs for details) */
+		{
+		}
 		public override void AI(NPC npc)
 		{
 			if (npc.type == NPCID.IceGolem)

@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Armor.Phoenix
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Phoenix Headgear");
-            ////Tooltip.SetDefault("11% increased ranged and summon damage\n7% increased ranged critical strike chance\n10% increased jump speed");
+            // DisplayName.SetDefault("Phoenix Headgear");
+            // Tooltip.SetDefault("11% increased ranged and summon damage\n7% increased ranged critical strike chance\n10% increased jump speed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

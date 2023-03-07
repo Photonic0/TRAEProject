@@ -2,6 +2,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
+using TRAEProject;
 using TRAEProject.Changes.Weapon;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
@@ -108,8 +109,7 @@ namespace TRAEProject
     
         public override void Load()
         {
-                IL_Projectile.StatusNPC += (il) => {
-
+            Terraria.IL_Projectile.StatusNPC += (il) => {
                 var c = new ILCursor(il);
 
                 if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(379))) {

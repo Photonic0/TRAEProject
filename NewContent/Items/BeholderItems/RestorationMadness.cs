@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 
-            //DisplayName.SetDefault("Greater Restoration Potion");
+            // DisplayName.SetDefault("Greater Restoration Potion");
         }
         public override void SetDefaults()
         {
@@ -68,8 +68,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            //DisplayName.SetDefault("Restoring");
-            //Description.SetDefault("Restoring health");
+            // DisplayName.SetDefault("Restoring");
+            // Description.SetDefault("Restoring health");
         }
 
     }
@@ -79,8 +79,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            //DisplayName.SetDefault("Restoring");
-            //Description.SetDefault("Restoring health");
+            // DisplayName.SetDefault("Restoring");
+            // Description.SetDefault("Restoring health");
         }
     }
     public class RestorationEffect: ModPlayer

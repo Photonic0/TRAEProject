@@ -10,8 +10,8 @@ namespace TRAEProject.NewContent.Buffs
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            //DisplayName.SetDefault("Band Aid Fix");
-            //Description.SetDefault("wait, don't band-aids actually help you HEAL your wounds?");
+            // DisplayName.SetDefault("Band Aid Fix");
+            // Description.SetDefault("wait, don't band-aids actually help you HEAL your wounds?");
         }
     }
     public class BandAidFixEffect : GlobalNPC

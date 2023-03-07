@@ -17,8 +17,8 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Nebula Maelstrom");
-            ////Tooltip.SetDefault("Unleash a particle storm on your opponents\nRight-click to uncast ");
+            // DisplayName.SetDefault("Nebula Maelstrom");
+            // Tooltip.SetDefault("Unleash a particle storm on your opponents\nRight-click to uncast ");
         }
         public override void SetDefaults()
         {
@@ -65,7 +65,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Nebula Ball");
+            // DisplayName.SetDefault("Nebula Ball");
             Main.projFrames[Projectile.type] = 5;
 
         }
@@ -195,7 +195,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Nebula Bolt");
+            // DisplayName.SetDefault("Nebula Bolt");
 
         }
         public override void SetDefaults()
@@ -241,7 +241,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Nebula Laser");
+            // DisplayName.SetDefault("Nebula Laser");
 
         }
         public override void SetDefaults()
@@ -269,7 +269,7 @@ namespace TRAEProject.NewContent.Items.Weapons.NebulaMaelstrom
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Nebula Zap");
+            // DisplayName.SetDefault("Nebula Zap");
 
         }
         public override void SetDefaults()

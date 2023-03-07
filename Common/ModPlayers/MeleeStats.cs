@@ -38,8 +38,8 @@ namespace TRAEProject.Common.ModPlayers
         #region Sword Size
         public override void SetStaticDefaults()
         {
-            IL_Player.GetAdjustedItemScale += HookSize;
-            IL_Player.ItemCheck_GetMeleeHitbox += HookHey;
+            Terraria.IL_Player.GetAdjustedItemScale += HookSize;
+            Terraria.IL_Player.ItemCheck_GetMeleeHitbox += HookHey;
             //IL.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_27_HeldItem += HookHey2;
         }
         private void HookHey(ILContext il)

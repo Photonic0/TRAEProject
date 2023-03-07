@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
@@ -24,9 +25,9 @@ namespace TRAEProject.NewContent.NPCs.Banners
             TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
             //disableSmartCursor = true;
-    //ModTranslation name = CreateMapEntryName();
-            //name.SetDefault("Bomber Bones Banner");
-            // AddMapEntry(new Color(13, 88, 130), name);
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Bomber Bones Banner");
+            AddMapEntry(new Color(13, 88, 130), name);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -66,9 +67,9 @@ namespace TRAEProject.NewContent.NPCs.Banners
             TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
             //disableSmartCursor = true;
-    //ModTranslation name = CreateMapEntryName();
-            //name.SetDefault("Boomxie Banner");
-            // AddMapEntry(new Color(13, 88, 130), name);
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Boomxie Banner");
+            AddMapEntry(new Color(13, 88, 130), name);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -108,9 +109,9 @@ namespace TRAEProject.NewContent.NPCs.Banners
             TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
             //disableSmartCursor = true;
-    //ModTranslation name = CreateMapEntryName();
-            //name.SetDefault("Froggabomba Banner");
-            // AddMapEntry(new Color(13, 88, 130), name);
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Froggabomba Banner");
+            AddMapEntry(new Color(13, 88, 130), name);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -150,9 +151,9 @@ namespace TRAEProject.NewContent.NPCs.Banners
             TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
             //disableSmartCursor = true;
-    //ModTranslation name = CreateMapEntryName();
-            //name.SetDefault("Granite Overgrowth Banner");
-            // AddMapEntry(new Color(13, 88, 130), name);
+            LocalizedText name = CreateMapEntryName();
+            // name.SetDefault("Granite Overgrowth Banner");
+            AddMapEntry(new Color(13, 88, 130), name);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

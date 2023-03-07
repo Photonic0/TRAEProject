@@ -17,8 +17,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
-            //DisplayName.SetDefault("Shadowflame Charm");
-            ////Tooltip.SetDefault("Minion damage is stored as Shadowflame energy, up to 3000\nWhip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored");
+            // DisplayName.SetDefault("Shadowflame Charm");
+            // Tooltip.SetDefault("Minion damage is stored as Shadowflame energy, up to 3000\nWhip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored");
         }
         public override void SetDefaults()
         {
@@ -138,7 +138,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 6;
-            //DisplayName.SetDefault("ShadowflameApparition");     //The English name of the Projectile
+            // DisplayName.SetDefault("ShadowflameApparition");     //The English name of the Projectile
         }
 
         public override void SetDefaults()
@@ -173,7 +173,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 6;
-            //DisplayName.SetDefault("ShadowflameApparition");     //The English name of the Projectile
+            // DisplayName.SetDefault("ShadowflameApparition");     //The English name of the Projectile
         }
 
         public override void SetDefaults()

@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Shroomite Bullet");
-            ////Tooltip.SetDefault("Critical strikes deal 20% more damage");
+            // DisplayName.SetDefault("Shroomite Bullet");
+            // Tooltip.SetDefault("Critical strikes deal 20% more damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -47,7 +47,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("ShroomitSHot");     //The English name of the Projectile
+            // DisplayName.SetDefault("ShroomitSHot");     //The English name of the Projectile
 
         }
         public override void SetDefaults()

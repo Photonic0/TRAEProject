@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Obsidian Scales");
-            ////Tooltip.SetDefault("Very Tough");
+            // DisplayName.SetDefault("Obsidian Scales");
+            // Tooltip.SetDefault("Very Tough");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
         }
 

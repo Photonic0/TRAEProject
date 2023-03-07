@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.Accesories.MechanicalEye
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-            //DisplayName.SetDefault("Eye Of The Destroyer");
-            ////Tooltip.SetDefault("10% increased critical strike chance\nRocket critical strikes stun enemies for 1 second");
+            // DisplayName.SetDefault("Eye Of The Destroyer");
+            // Tooltip.SetDefault("10% increased critical strike chance\nRocket critical strikes stun enemies for 1 second");
         }
         public override void SetDefaults()
         {

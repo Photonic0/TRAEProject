@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Levitating Soles");
-            ////Tooltip.SetDefault("Provides a long lasting double jump\n20% increased movement speed\n25% increased jump speed");
+            // DisplayName.SetDefault("Levitating Soles");
+            // Tooltip.SetDefault("Provides a long lasting double jump\n20% increased movement speed\n25% increased jump speed");
         }
         public override void SetDefaults()
         {

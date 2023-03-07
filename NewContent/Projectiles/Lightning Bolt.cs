@@ -9,7 +9,7 @@ namespace TRAEProject.NewContent.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("LightningBolt");    
+            // DisplayName.SetDefault("LightningBolt");    
         }
         public override void SetDefaults()
         {

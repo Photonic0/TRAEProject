@@ -22,8 +22,8 @@ namespace TRAEProject.NewContent.Items.Armor.Phoenix
         // +15% movement and jump speed (sort of)
         public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Phoenix Tunic");
-			//Tooltip.SetDefault("11% increased ranged and summon damage\nIncreased your maximum number of minions by 1");
+			// DisplayName.SetDefault("Phoenix Tunic");
+			// Tooltip.SetDefault("11% increased ranged and summon damage\nIncreased your maximum number of minions by 1");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -102,8 +102,8 @@ namespace TRAEProject.NewContent.Items.Armor.Phoenix
 
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Ash Rush");
-            //Description.SetDefault("15% increased movement and jump speed");
+            // DisplayName.SetDefault("Ash Rush");
+            // Description.SetDefault("15% increased movement and jump speed");
             Main.buffNoSave[Type] = true;
         }
         public override void Update(Player player, ref int buffIndex)

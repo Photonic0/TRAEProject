@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Accesories.GravityTabi
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Gravity Tabi");
-            ////Tooltip.SetDefault("Allows control of gravity, fast fall and dashing\nPrevents fall damage");
+            // DisplayName.SetDefault("Gravity Tabi");
+            // Tooltip.SetDefault("Allows control of gravity, fast fall and dashing\nPrevents fall damage");
         }
         public override void SetDefaults()
         {

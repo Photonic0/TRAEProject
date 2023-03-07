@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodSquidEgg
 		{
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			//DisplayName.SetDefault("Blood Squid Egg");
-			//Tooltip.SetDefault("Summons a Baby Blood Squid");
+			// DisplayName.SetDefault("Blood Squid Egg");
+			// Tooltip.SetDefault("Summons a Baby Blood Squid");
 		}
 
 		public override void SetDefaults()
@@ -35,7 +35,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodSquidEgg
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Baby Blood Squid");
+			// DisplayName.SetDefault("Baby Blood Squid");
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
 		}
@@ -84,9 +84,9 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodSquidEgg
 	{
 		public override void SetStaticDefaults()
 		{
-			// //DisplayName and Description are automatically set from the .lang files, but below is how it is done normally.
-			//DisplayName.SetDefault("Baby Blood Squid");
-			//Description.SetDefault("It drips and skips!");
+			// DisplayName and Description are automatically set from the .lang files, but below is how it is done normally.
+			// DisplayName.SetDefault("Baby Blood Squid");
+			// Description.SetDefault("It drips and skips!");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

@@ -14,8 +14,8 @@ namespace TRAEProject.Changes
     {
         public override void SetStaticDefaults()
         {
-            IL_NPC.checkArmorPenetration += HookAPCheck;
-            IL_NPC.StrikeNPC += HookStrike;
+            Terraria.IL_NPC.checkArmorPenetration += HookAPCheck;
+            Terraria.IL_NPC.StrikeNPC += HookStrike;
         }
         private void HookAPCheck(ILContext il)
         {

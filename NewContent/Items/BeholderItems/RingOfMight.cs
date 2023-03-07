@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Ring of Might");
-            ////Tooltip.SetDefault("9% increased maximum health\n6% increased total damage");
+            // DisplayName.SetDefault("Ring of Might");
+            // Tooltip.SetDefault("9% increased maximum health\n6% increased total damage");
         }
         public override void SetDefaults()
         {

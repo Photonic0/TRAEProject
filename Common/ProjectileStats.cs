@@ -56,7 +56,7 @@ namespace TRAEProject.Common
                                                   //
         public override void SetStaticDefaults()
         {
-            IL_Projectile.Damage += DamageHook;
+            Terraria.IL_Projectile.Damage += DamageHook;
         }
 
         int extraAP = 0;

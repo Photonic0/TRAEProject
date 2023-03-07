@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.Accesories.SkeletonBeetle
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Tribal Beetle");
-			//Tooltip.SetDefault("Increases your maximum number of sentries by 2\nIncreased summon knockback");
+			// DisplayName.SetDefault("Tribal Beetle");
+			// Tooltip.SetDefault("Increases your maximum number of sentries by 2\nIncreased summon knockback");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 

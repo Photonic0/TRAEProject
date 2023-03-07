@@ -10,7 +10,7 @@ namespace TRAEProject.NewContent.Projectiles
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 5;
-            //DisplayName.SetDefault("Solar Explosion");     //The English name of the Projectile
+            // DisplayName.SetDefault("Solar Explosion");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {

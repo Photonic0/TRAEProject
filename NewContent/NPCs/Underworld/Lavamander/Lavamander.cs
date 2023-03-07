@@ -29,8 +29,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 				}
 			};
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-			NPC.setNPCName("Lavamander", NPC.type);
-
+			// DisplayName.SetDefault("Lavamander"); 
             Main.npcFrameCount[NPC.type] = 5;
         }
 

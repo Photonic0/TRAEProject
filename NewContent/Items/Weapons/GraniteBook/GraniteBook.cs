@@ -17,8 +17,8 @@ namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Electro Shield");
-            ////Tooltip.SetDefault("Summons an electric ring around you\nDrains 30 mana per second, affected by gear");
+            // DisplayName.SetDefault("Electro Shield");
+            // Tooltip.SetDefault("Summons an electric ring around you\nDrains 30 mana per second, affected by gear");
         }
         public override void SetDefaults()
         {
@@ -68,7 +68,7 @@ namespace TRAEProject.NewContent.Items.Weapons.GraniteBook
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Electricity Ring");
+            // DisplayName.SetDefault("Electricity Ring");
         }
         public override void SetDefaults()
         {

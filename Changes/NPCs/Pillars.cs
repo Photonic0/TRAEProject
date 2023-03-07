@@ -105,7 +105,7 @@ namespace TRAEProject.Changes.NPCs
                     break;
             }
         }
-        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
+        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)/* tModPorter Note:bossAdjustment -> balance (bossAdjustment is different, see the docs for details) */
         {
 
             switch (npc.type)
@@ -177,16 +177,14 @@ namespace TRAEProject.Changes.NPCs
                     if (player3.dead || !player3.ZoneTowerSolar)
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerSolar <50 )
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerSolar < 50)
                         {
                             NPC.ShieldStrengthTowerSolar += 1;
                             shieldTimer = 0;
                         }
                     }
                     return;
-                case NPCID.SolarCorite:
-                    npc.knockBackResist = 0.2f;
-                    return;
+
                 case NPCID.SolarSolenian:
                     npc.reflectsProjectiles = false;
                     npc.takenDamageMultiplier = 1f;

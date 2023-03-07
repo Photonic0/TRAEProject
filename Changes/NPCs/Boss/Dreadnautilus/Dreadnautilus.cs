@@ -38,11 +38,11 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 				npc.catchItem = (short)ItemType<DreadSummon>();
 			}
 		}
-        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
+		public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)/* tModPorter Note:bossAdjustment -> balance (bossAdjustment is different, see the docs for details) */
 		{
 			if (npc.type == NPCID.BloodNautilus)
 			{
-				npc.lifeMax = (int)(npc.lifeMax * 0.75f * bossAdjustment);
+				npc.lifeMax = (int)(npc.lifeMax * 0.75f *bossAdjustment);
 				if (Main.masterMode)
 				{
 					npc.lifeMax = (int)(npc.lifeMax * 0.8f);

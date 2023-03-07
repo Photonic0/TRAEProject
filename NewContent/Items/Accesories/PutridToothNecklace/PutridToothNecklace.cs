@@ -15,8 +15,8 @@ namespace TRAEProject.NewContent.Items.Accesories.PutridToothNecklace
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Bone Biter Necklace");
-            ////Tooltip.SetDefault("Increases armor penetration by 5\n5% increased damage and critical strike chance\nEnemies are less likely to target you");
+            // DisplayName.SetDefault("Bone Biter Necklace");
+            // Tooltip.SetDefault("Increases armor penetration by 5\n5% increased damage and critical strike chance\nEnemies are less likely to target you");
         }
         public override void SetDefaults()
         {

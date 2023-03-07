@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.Misc.Potions
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 
-            //DisplayName.SetDefault("Teleportation Vial");
-            ////Tooltip.SetDefault("Teleports you to the position of the mouse");
+            // DisplayName.SetDefault("Teleportation Vial");
+            // Tooltip.SetDefault("Teleports you to the position of the mouse");
         }
         public override void SetDefaults()
         {

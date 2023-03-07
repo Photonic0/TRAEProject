@@ -8,8 +8,8 @@ namespace TRAEProject.NewContent.Buffs
 	{
 		public override void SetStaticDefaults() 
 		{
-			//DisplayName.SetDefault("Sand Rush");
-			//Description.SetDefault("Movement speed increased by 20%");
+			// DisplayName.SetDefault("Sand Rush");
+			// Description.SetDefault("Movement speed increased by 20%");
 		}
 
 		public override void Update(Player player, ref int buffIndex)

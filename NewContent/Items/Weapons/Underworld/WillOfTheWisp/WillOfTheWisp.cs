@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Will O' Wisp");
-            ////Tooltip.SetDefault("Shoots a smart bouncing fireball");
+            // DisplayName.SetDefault("Will O' Wisp");
+            // Tooltip.SetDefault("Shoots a smart bouncing fireball");
         }
         public override void SetDefaults()
         {
@@ -54,7 +54,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Will O' Wisp Flame");
+            // DisplayName.SetDefault("Will O' Wisp Flame");
             Main.projFrames[Projectile.type] = 4;
         }
         public override void SetDefaults()

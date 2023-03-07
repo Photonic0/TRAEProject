@@ -15,8 +15,8 @@ namespace TRAEProject.NewContent.Items.Accesories.Moonwalkers
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-            //DisplayName.SetDefault("Moonwalkers");
-            ////Tooltip.SetDefault("Increases jump height, prevents fall damage and grants extended flight\nPress DOWN to fall faster\nAllows reducing gravity by hodling up");
+            // DisplayName.SetDefault("Moonwalkers");
+            // Tooltip.SetDefault("Increases jump height, prevents fall damage and grants extended flight\nPress DOWN to fall faster\nAllows reducing gravity by hodling up");
         }
         public override void SetDefaults()
         {

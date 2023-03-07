@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.DreadMask
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Dreadnautilus Mask");
-            ////Tooltip.SetDefault("");
+            // DisplayName.SetDefault("Dreadnautilus Mask");
+            // Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()

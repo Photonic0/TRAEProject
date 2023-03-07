@@ -19,7 +19,7 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 
 		public override void SetStaticDefaults()
 		{
-			//Tooltip.SetDefault("Grants flight, slow fall, and hover\n'I will show you the world...'\nReduces movement and jump speed by 15%");
+			// Tooltip.SetDefault("Grants flight, slow fall, and hover\n'I will show you the world...'\nReduces movement and jump speed by 15%");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 

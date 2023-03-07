@@ -36,7 +36,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
 				}
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-            NPC.setNPCName("Oni Ronin", NPC.type);
+            // DisplayName.SetDefault("Oni Ronin");
             Main.npcFrameCount[NPC.type] = 3;
         }
 
@@ -325,7 +325,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
-            //DisplayName.SetDefault("Oni Petal");     //The English name of the Projectile
+            // DisplayName.SetDefault("Oni Petal");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {
@@ -399,7 +399,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
-            //DisplayName.SetDefault("Oni Petal");     //The English name of the Projectile
+            // DisplayName.SetDefault("Oni Petal");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {
@@ -424,7 +424,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
-            //DisplayName.SetDefault("Fire Petal");     //The English name of the Projectile
+            // DisplayName.SetDefault("Fire Petal");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {
@@ -507,7 +507,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
-            //DisplayName.SetDefault("Fire Petal");     //The English name of the Projectile
+            // DisplayName.SetDefault("Fire Petal");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {

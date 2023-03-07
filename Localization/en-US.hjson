@@ -1,0 +1,1464 @@
+
+Mods: {
+	TRAEProject: {
+		Projectiles: {
+			BouncingFlames.DisplayName: Bouncing Flames
+			BloodBeam.DisplayName: Blood Beam
+			BloodSnipe.DisplayName: Blood Snipe
+			EyeNuke.DisplayName: Eye Nuke
+			HostileCloud.DisplayName: Hostile Cloud
+			PlanteraHook.DisplayName: Plantera's Hook
+			PlanteraHook2.DisplayName: Plantera's Hook
+			VineRing.DisplayName: Vine Ring
+			ShadowflameSkull.DisplayName: Shadowflame Skull
+			Everstar.DisplayName: Everstar
+			Ornament.DisplayName: Ornament
+			Scanline.DisplayName: Scanline
+			Target.DisplayName: Target
+			AdamantiteGlaive.DisplayName: Adamantite Glaive
+			AdamantiteGlaiveThrow.DisplayName: Adamantite Glaive Throw
+			BasicSpear.DisplayName: Basic Spear
+			BasicSpearThrow.DisplayName: Basic Spear Throw
+			BoneSpear.DisplayName: Bone Spear
+			BoneSpearThrow.DisplayName: Bone Spear Throw
+			ChloroPartisan.DisplayName: Chloro Partisan
+			ChloroPartisanThrow.DisplayName: Chloro Partisan Throw
+			CobaltNaginata.DisplayName: Cobalt Naginata
+			CobaltNaginataThrow.DisplayName: Cobalt Naginata Throw
+			DarkLance.DisplayName: Dark Lance
+			DarkLanceThrow.DisplayName: Dark Lance Throw
+			Daybreak.DisplayName: Daybreak
+			DaybreakThrow.DisplayName: Daybreak Throw
+			GhastlyGlaive.DisplayName: Ghastly Glaive
+			GhastlyGlaiveThrow.DisplayName: Ghastly Glaive Throw
+			Gungnir.DisplayName: Gungnir
+			GungnirThrow.DisplayName: Gungnir Throw
+			Javelin.DisplayName: Javelin
+			JavelinThrow.DisplayName: Javelin Throw
+			MushroomSpear.DisplayName: Mushroom Spear
+			MushroomSpearThrow.DisplayName: Mushroom Spear Throw
+			MythrilHalberd.DisplayName: Mythril Halberd
+			MythrilHalberdThrow.DisplayName: Mythril Halberd Throw
+			NorthPole.DisplayName: North Pole
+			NorthPoleThrow.DisplayName: North Pole Throw
+			NorthStar.DisplayName: North Star
+			ObsidianSwordfish.DisplayName: Obsidian Swordfish
+			ObsidianSwordfishThrow.DisplayName: Obsidian Swordfish Throw
+			OrichalcumHookbill.DisplayName: Orichalcum Hookbill
+			OrichalcumHookbillThrow.DisplayName: Orichalcum Hookbill Throw
+			PalladiumPike.DisplayName: Palladium Pike
+			PalladiumPikeThrow.DisplayName: Palladium Pike Throw
+			RottedFork.DisplayName: Rotted Fork
+			RottedForkThrow.DisplayName: Rotted Fork Throw
+			SoTC.DisplayName: So T C
+			SoTCThrow.DisplayName: So T C Throw
+			StormSpear.DisplayName: Storm Spear
+			StormSpearThrow.DisplayName: Storm Spear Throw
+			Swordfish.DisplayName: Swordfish
+			SwordfishThrow.DisplayName: Swordfish Throw
+			TitaniumTrident.DisplayName: Titanium Trident
+			TitaniumTridentThrow.DisplayName: Titanium Trident Throw
+			Trident.DisplayName: Trident
+			TridentThrow.DisplayName: Trident Throw
+			ClusterGrenade.DisplayName: Cluster Grenade
+			ClusterMine.DisplayName: Cluster Mine
+			ClusterRocket.DisplayName: Cluster Rocket
+			ClusterSnowmanRocket.DisplayName: Cluster Snowman Rocket
+			DestructiveGrenade.DisplayName: Destructive Grenade
+			DestructiveMine.DisplayName: Destructive Mine
+			DestructiveMiniNuke.DisplayName: Destructive Mini Nuke
+			DestructiveMiniNukeGrenade.DisplayName: Destructive Mini Nuke Grenade
+			DestructiveMiniNukeMine.DisplayName: Destructive Mini Nuke Mine
+			DestructiveMiniNukeSnowman.DisplayName: Destructive Mini Nuke Snowman
+			DestructiveRocket.DisplayName: Destructive Rocket
+			DestructiveSnowmanRocket.DisplayName: Destructive Snowman Rocket
+			DirectGrenade.DisplayName: Direct Grenade
+			DirectMine.DisplayName: Direct Mine
+			DirectRocket.DisplayName: Direct Rocket
+			DirectSnowmanRocket.DisplayName: Direct Snowman Rocket
+			Grenade.DisplayName: Grenade
+			HeavyGrenade.DisplayName: Heavy Grenade
+			HeavyMine.DisplayName: Heavy Mine
+			HeavyRocket.DisplayName: Heavy Rocket
+			HeavySnowmanRocket.DisplayName: Heavy Snowman Rocket
+			LuminiteBoom.DisplayName: Luminite Boom
+			LuminiteGrenade.DisplayName: Luminite Grenade
+			LuminiteMine.DisplayName: Luminite Mine
+			LuminiteRocketP.DisplayName: Luminite Rocket P
+			LuminiteSnowmanRocket.DisplayName: Luminite Snowman Rocket
+			Mine.DisplayName: Mine
+			MiniNuke.DisplayName: Mini Nuke
+			MiniNukeGrenade.DisplayName: Mini Nuke Grenade
+			MiniNukeMine.DisplayName: Mini Nuke Mine
+			MiniNukeSnowman.DisplayName: Mini Nuke Snowman
+			Rocket.DisplayName: Rocket
+			SnowmanRocket.DisplayName: Snowman Rocket
+			SuperGrenade.DisplayName: Super Grenade
+			SuperMine.DisplayName: Super Mine
+			SuperRocket.DisplayName: Super Rocket
+			SuperSnowmanRocket.DisplayName: Super Snowman Rocket
+			TitaniumShrapnel.DisplayName: Titanium Shrapnel
+			PirateHook.DisplayName: Pirate Hook
+			MoltenApparition.DisplayName: ShadowflameApparition
+			ShadowflameApparition.DisplayName: ShadowflameApparition
+			MadFlocko.DisplayName: MadFlocko
+			JoterTridentSpear.DisplayName: Joter Trident Spear
+			JoterTridentThrow.DisplayName: Joter Trident Throw
+			Jottie.DisplayName: Jottie
+			DisintegrationBeam.DisplayName: Disintegration Beam
+			EvilLookingEyePet.DisplayName: Baby Beholder
+			BloodSquidPet.DisplayName: Baby Blood Squid
+			BrimstoneBeam.DisplayName: Brimstone Beam
+			ShellSpinnerP.DisplayName: Shell Spinner P
+			BlessedGelP.DisplayName: BlessedFlamethrower
+			BloodyGelP.DisplayName: BloodyGel
+			CrystalGelP.DisplayName: Crystal Flamethrower
+			CursedGelP.DisplayName: CursedFlamethrower
+			FrozenGelP.DisplayName: GlacialFlamethrower
+			IchorGelP.DisplayName: Ichorthrower
+			Ichorthrower.DisplayName: Ichorthrower
+			LavaGelP.DisplayName: Lavaflamethrower
+			PinkGelP.DisplayName: PinkFlamethrower
+			SolarGelP.DisplayName: Solar Flamethrower
+			BeetleArrowShot.DisplayName: Beetle Arrow
+			BeetleDartShot.DisplayName: BeetleSHot
+			BloodyArrowDrop.DisplayName: Blood Drop
+			BloodyArrowShot.DisplayName: BloodyArrow
+			BoneBulletShot.DisplayName: BoneSHot
+			ChargedArrowShot.DisplayName: ChargedArrow
+			ChargedBulletShot.DisplayName: ChargedSHot
+			GhostDartShot.DisplayName: GhostSHot
+			GhostDartSubShot.DisplayName: GhostSHot
+			GhostShot.DisplayName: GhostSHot
+			ShroomiteShot.DisplayName: ShroomitSHot
+			SolarArrowShot.DisplayName: SolarArrow
+			BAMGel.DisplayName: BAMGel
+			BAMRocket.DisplayName: B A M Rocket
+			BAMRocketCluster.DisplayName: B A M Rocket Cluster
+			BAMRocketDestructive.DisplayName: B A M Rocket Destructive
+			BAMRocketDirect.DisplayName: B A M Rocket Direct
+			BAMRocketDMiniNuke.DisplayName: B A M Rocket D Mini Nuke
+			BAMRocketDry.DisplayName: B A M Rocket Dry
+			BAMRocketHeavy.DisplayName: B A M Rocket Heavy
+			BAMRocketHoney.DisplayName: B A M Rocket Honey
+			BAMRocketLava.DisplayName: B A M Rocket Lava
+			BAMRocketLuminite.DisplayName: B A M Rocket Luminite
+			BAMRocketMiniNuke.DisplayName: B A M Rocket Mini Nuke
+			BAMRocketSuper.DisplayName: B A M Rocket Super
+			BAMRocketWet.DisplayName: B A M Rocket Wet
+			HaxorBig.DisplayName: Haxor Big
+			HaxorSmall.DisplayName: Haxor Small
+			ElectricRIng.DisplayName: Electricity Ring
+			FlamingScythe.DisplayName: Flaming Scythe
+			ClusterCryo.DisplayName: Cluster Cryo
+			CryoRocket.DisplayName: Cryo Rocket
+			DestructiveCryo.DisplayName: Destructive Cryo
+			DestructiveMiniNukeCryo.DisplayName: Destructive Mini Nuke Cryo
+			DirectCryo.DisplayName: Direct Cryo
+			DryCryo.DisplayName: Dry Cryo
+			HeavyCryo.DisplayName: Heavy Cryo
+			HoneyCryo.DisplayName: Honey Cryo
+			LavaCryo.DisplayName: Lava Cryo
+			LuminiteCryo.DisplayName: Luminite Cryo
+			MiniNukeCryo.DisplayName: Mini Nuke Cryo
+			SuperCryo.DisplayName: Super Cryo
+			WetCryo.DisplayName: Wet Cryo
+			ClusterPixie.DisplayName: Cluster Pixie
+			DestructiveMiniNukePixie.DisplayName: Destructive Mini Nuke Pixie
+			DestructivePixie.DisplayName: Destructive Pixie
+			DirectPixie.DisplayName: Direct Pixie
+			DryPixie.DisplayName: Dry Pixie
+			HeavyPixie.DisplayName: Heavy Pixie
+			HoneyPixie.DisplayName: Honey Pixie
+			LavaPixie.DisplayName: Lava Pixie
+			LuminitePixie.DisplayName: Luminite Pixie
+			MiniNukePixie.DisplayName: Mini Nuke Pixie
+			PixieRocket.DisplayName: Pixie Rocket
+			SuperPixie.DisplayName: Super Pixie
+			WetPixie.DisplayName: Wet Pixie
+			MaelstromBall.DisplayName: Nebula Ball
+			MaelstromLaser.DisplayName: Nebula Laser
+			MaelstromSubshot.DisplayName: Nebula Bolt
+			MaelstromZap.DisplayName: Nebula Zap
+			CurseDollArmorflame.DisplayName: Curse Doll Armor Flame
+			CurseDollShadowflame.DisplayName: Curse Doll Shadowflame
+			CurseDollWeaponflame.DisplayName: Curse Doll Weapon Flame
+			FlamingWood.DisplayName: Flaming Wood
+			AbsoluteZeroP.DisplayName: AbsoluteZero
+			Boomfrog.DisplayName: Boomfrog
+			Froggy.DisplayName: Froggy
+			GraniteShock.DisplayName: Granite Shock
+			GraniteShockerSentry.DisplayName: GraniteShocker
+			YoungQueenBee.DisplayName: Young Queen Bee
+			SpikedWhipP.DisplayName: SpikedWhip
+			StarflowInvader.DisplayName: Starflow Invader
+			StarflowP.DisplayName: Starflow
+			TailWhipP.DisplayName: Tail Whip
+			FirePetalFriendly.DisplayName: Fire Petal
+			PetalFriendly.DisplayName: Petal
+			SuperRoseProj.DisplayName: PetalSpawner
+			WillOfTheWispFlame.DisplayName: Will O' Wisp Flame
+			BomberBonesGrenade.DisplayName: Bomber Bones Grenade
+			GraniteBolt.DisplayName: Granite Bolt
+			GraniteBoom.DisplayName: Granite Boom
+			DeathgazeBeam.DisplayName: Deathgaze
+			GreenScythe.DisplayName: Green Scythe
+			OrangeScythe.DisplayName: Orange Scythe
+			WhiteScythe.DisplayName: White Scythe
+			YellowScythe.DisplayName: Yellow Scythe
+			Boom.DisplayName: Boom
+			OniFirePetal.DisplayName: Fire Petal
+			OniFirePetal2.DisplayName: Fire Petal
+			OniPetal.DisplayName: Oni Petal
+			OniPetal2.DisplayName: Oni Petal
+			BigBubble.DisplayName: BigBubble
+			Blank.DisplayName: Blank
+			Blizzard.DisplayName: Blizzard
+			BuzzyStar.DisplayName: BuzzyStar
+			CosmicStingy.DisplayName: CosmicStingy
+			Harpoon.DisplayName: Harpoon
+			LightningBolt.DisplayName: LightningBolt
+			LightsLong.DisplayName: LightsLong
+			LilRocket.DisplayName: LilRocket
+			NightsBeam.DisplayName: NightsBeam
+			PhantomTentacle.DisplayName: Phantom Tentacle
+			SolarExplosion.DisplayName: Solar Explosion
+			Star1.DisplayName: Star1
+			Starrow.DisplayName: Starrow
+			Stynger.DisplayName: Stynger
+			StyngerShrapnel.DisplayName: StyngerShrapnel
+			ThrownLucy.DisplayName: Thrown Lucy
+			ToxicCloud.DisplayName: ToxicCloud
+			ToxicDrop.DisplayName: ToxicDrop
+		}
+
+		Prefixes: {
+			Aerodynamic.DisplayName: Aerodynamic
+			Bad.DisplayName: Bad
+			Brutal.DisplayName: Brutal
+			Dense.DisplayName: Dense
+			Devastating.DisplayName: Devastating
+			Enchanted.DisplayName: Enchanted
+			Extended.DisplayName: Extended
+			Extreme.DisplayName: Extreme
+			Kinetic.DisplayName: Kinetic
+			Pathetic.DisplayName: Pathetic
+			Piercing.DisplayName: Piercing
+			Pounding.DisplayName: Pounding
+			Radical.DisplayName: Radical
+			Relentless.DisplayName: Relentless
+			Spiked.DisplayName: Spiked
+			Tricky.DisplayName: Tricky
+			Zoned.DisplayName: Zoned
+		}
+
+		Buffs: {
+			Celled: {
+				DisplayName: Celled
+				Description: Being eaten by cells
+			}
+
+			Impaled: {
+				DisplayName: Impaled
+				Description: Ouch!
+			}
+
+			KaleidoscopeSecondTag: {
+				DisplayName: KaleidoscopeNewDebuff
+				Description: Mods.TRAEProject.Buffs.KaleidoscopeSecondTag.Description
+			}
+
+			LavaShield: {
+				DisplayName: Lava Shield
+				Description: Increases defense by 12
+			}
+
+			MagicBoost: {
+				DisplayName: Magic Boost
+				Description: Magic damage increased by 20%
+			}
+
+			NanoHealing: {
+				DisplayName: Nano Healing
+				Description: Being repaired by nanites
+			}
+
+			NeoFeralBite: {
+				DisplayName: Feral Bite
+				Description: Causes confusion
+			}
+
+			SandRush: {
+				DisplayName: Sand Rush
+				Description: Movement speed increased by 20%
+			}
+
+			SBandAidFix: {
+				DisplayName: Band Aid Fix
+				Description: wait, don't band-aids actually help you HEAL your wounds?
+			}
+
+			ShackledDefenses: {
+				DisplayName: Shackled Defenses
+				Description: Defense increased by 10
+			}
+
+			StrongerPoisoned: {
+				DisplayName: Stronger Poisoned
+				Description: Yes, I'm fully aware that this is the exact opposite of what a Bezoar is for.
+			}
+
+			WaterAffinity: {
+				DisplayName: Water Affinity
+				Description: Running Speed increased
+			}
+
+			HeartAttack: {
+				DisplayName: Heart Attack!
+				Description: Damage increased by 20%
+			}
+
+			MadFlockos: {
+				DisplayName: Flocko Flock
+				Description: The Mad Flockos will fight for you
+			}
+
+			PhoenixRush: {
+				DisplayName: Ash Rush
+				Description: 15% increased movement and jump speed
+			}
+
+			ReptilianMight: {
+				DisplayName: Reptilian Might
+				Description: 30% increased melee speed
+			}
+
+			BurntOut: {
+				DisplayName: Burnt Out
+				Description: Need To Recharge
+			}
+
+			EvilLookingEyeBuff: {
+				DisplayName: Baby Beholder
+				Description: It can't shoot lasers yet. I think.
+			}
+
+			Restoring1: {
+				DisplayName: Restoring
+				Description: Restoring health
+			}
+
+			Restoring2: {
+				DisplayName: Restoring
+				Description: Restoring health
+			}
+
+			Wipeout: {
+				DisplayName: Wiped Out
+				Description: The scroll needs to recharge
+			}
+
+			BloodSquidBuff: {
+				DisplayName: Baby Blood Squid
+				Description: It drips and skips!
+			}
+
+			BloodRush: {
+				DisplayName: Blood Rush
+				Description: Fly away!
+			}
+
+			LavamanderBuff: {
+				DisplayName: Lavamander
+				Description: Dont get cold feet again
+			}
+
+			Power: {
+				DisplayName: Power
+				Description: Damage increased by 30%
+			}
+
+			AbsoluteZeroTag: {
+				DisplayName: AbsoluteZeroTag
+				Description: You will be frozen when hit by a critical strike. Except not, because you are a player and not an enemy, but whatever.
+			}
+
+			SpikedTag: {
+				DisplayName: Spiked Tag
+				Description: Do you think there could've been a cooler name than 'Spiked Whip'? Sometimes simple is better, i suppose.
+			}
+
+			StarflowTag: {
+				DisplayName: Starflow Tag
+				Description: 22 tag damage pogchamp
+			}
+
+			TailWhipTag: {
+				DisplayName: TailWhipTag
+				Description: I wanted the crit tag on this to be equal to pokemon's normal critical strike chance, but that's 6.25% and it was way too low
+			}
+		}
+
+		Items: {
+			AlligatorBalloon: {
+				DisplayName: Croco Balloon
+				Tooltip:
+					'''
+					Allows the holder to double jump
+					Greatly increases jump speed and fall resistance
+					Allows auto-jump
+					'''
+			}
+
+			AngelicStone: {
+				DisplayName: Angelic Stone
+				Tooltip:
+					'''
+					10% increased mana regeneration
+					Automatically uses mana potions when needed
+					Reduces the cooldown of mana sickness by 50%
+					'''
+			}
+
+			BalanceCuffs: {
+				DisplayName: Balance Cuffs
+				Tooltip: Temporarily increases damage by 20% and restore mana when damaged
+			}
+
+			BigBundle: {
+				DisplayName: The Big Bundle
+				Tooltip:
+					'''
+					Allows the player to sextuple jump!
+					Increases jump height and prevents fall damage
+					Allows reducing gravity by holding up
+					Releases Bees and covers you in honey when damaged
+					Multiple combs increase efficiency and life regeneration
+					'''
+			}
+
+			BlizzardSkates: {
+				DisplayName: Blizzard Skates
+				Tooltip:
+					'''
+					Allows skating by double tapping on the ground
+					Grants a double jump
+					Allows for a powerful airborne dash that uses the double jump.
+					'''
+			}
+
+			ChainShield: {
+				DisplayName: Chain Shield
+				Tooltip:
+					'''
+					Increases max life by 40
+					Temporarily increases defense when damaged
+					'''
+			}
+
+			CounterweightString: {
+				DisplayName: Counterweight String
+				Tooltip:
+					'''
+					Increases yoyo range
+					Throws a counterweight after hitting an enemy with a yoyo
+					'''
+			}
+
+			DemonShield: {
+				DisplayName: Demon Shield
+				Tooltip:
+					'''
+					Absorbs 25% of damage done to players on your team when above 25% life
+					Grants immunity to knockback
+					8% increased damage to nearby enemies
+					'''
+			}
+
+			EvilEye: {
+				DisplayName: Evil Eye
+				Tooltip:
+					'''
+					Unleashes curses to the wielder and nearby enemies when damaged
+					Projectiles deal 15% less damage and curse all enemies
+					'''
+			}
+
+			AdvFlightBoots: {
+				DisplayName: Adv. Flight boots
+				Tooltip:
+					'''
+					Rocket boots and wings are activated by pushing UP instead of jump
+					Increases flight time by 40%
+					Provides rocket boot flight(10)
+					'''
+			}
+
+			AdvFlightSystem: {
+				DisplayName: Adv. Flight System
+				Tooltip:
+					'''
+					Rocket boots and wings are activated by pushing UP instead of jump
+					Increases flight time by 40%
+					'''
+			}
+
+			Booster: {
+				DisplayName: Booster
+				Tooltip: This is how santa gets down the chimmney so quickly
+			}
+
+			FaeInABalloon: {
+				DisplayName: Fae Balloon
+				Tooltip:
+					'''
+					A weak double jump that grant immunity frames
+					Increases jump height
+					Allows reducing gravity by hodling up
+					'''
+			}
+
+			FaeInABottle: {
+				DisplayName: Fae in a bottle
+				Tooltip: A weak double jump that grant immunity frames
+			}
+
+			FantasyPack: {
+				DisplayName: Fantasy Pack
+				Tooltip: Provides a booster jump, a levitation jump, and a fae jump
+			}
+
+			FlightForecast: {
+				DisplayName: Flight Forecast
+				Tooltip:
+					'''
+					Rocket boots and wings are activated by pushing UP instead of jump
+					Increases flight time by 40%
+					Provides a double jump
+					'''
+			}
+
+			JetBoots: {
+				DisplayName: Jet boots
+				Tooltip:
+					'''
+					Rocket boots and wings are activated by pushing UP instead of jump
+					Increases flight time by 40%
+					Provides rocket boot flight(10)
+					Provides a booster double jump
+					'''
+			}
+
+			LevitatingSoles: {
+				DisplayName: Levitating Soles
+				Tooltip:
+					'''
+					Provides a long lasting double jump
+					25% increased movement speed and jump speed
+					'''
+			}
+
+			LevitationJuice: {
+				DisplayName: Levitation Juice
+				Tooltip: Provides a long lasting double jump
+			}
+
+			GravityTabi: {
+				DisplayName: Gravity Tabi
+				Tooltip:
+					'''
+					Allows control of gravity, fast fall and dashing
+					Prevents fall damage
+					'''
+			}
+
+			LifeCuffs: {
+				DisplayName: Life Cuffs
+				Tooltip: Getting hit will temporarily increase damage by 20%
+			}
+
+			MagicalCarpet: {
+				DisplayName: Magical Carpet
+				Tooltip:
+					'''
+					Grants flight, slow fall, and hover
+					'I will show you the world...'
+					Reduces movement and jump speed by 15%
+					'''
+			}
+
+			MasochistChains: {
+				DisplayName: Masochist Chains
+				Tooltip: Getting hit will temporarily increase damage by 20% and movement speed
+			}
+
+			AlphaScope: {
+				DisplayName: Alpha Scope
+				Tooltip:
+					'''
+					Increases ranged velocity and tightens gun spread
+					Rockets, guns and arrows smart bounce and stun enemies on critical strikes
+					'Prepare to be Terminated'
+					'''
+			}
+
+			EyeOfTheDestroyer: {
+				DisplayName: Eye Of The Destroyer
+				Tooltip:
+					'''
+					10% increased critical strike chance
+					Rocket critical strikes stun enemies for 1 second
+					'''
+			}
+
+			MechanicalEyeItem: {
+				DisplayName: Cyber Eye
+				Tooltip: Rocket critical strikes stun enemies for 1 second
+			}
+
+			MirrorShield: {
+				DisplayName: Mirror Shield
+				Tooltip:
+					'''
+					Increases max life by 40
+					Reduces damage taken from projectiles by 12%
+					'''
+			}
+
+			Moonwalkers: {
+				DisplayName: Moonwalkers
+				Tooltip:
+					'''
+					Increases jump height, prevents fall damage and grants extended flight
+					Press DOWN to fall faster
+					Allows reducing gravity by hodling up
+					'''
+			}
+
+			PalladiumShield: {
+				DisplayName: Palladium Shield
+				Tooltip: Increases max life by 40
+			}
+
+			PutridToothNecklace: {
+				DisplayName: Bone Biter Necklace
+				Tooltip:
+					'''
+					Increases armor penetration by 5
+					5% increased damage and critical strike chance
+					Enemies are less likely to target you
+					'''
+			}
+
+			RuneCobra: {
+				DisplayName: Rune Cobra
+				Tooltip:
+					'''
+					Increases your maximum number of minions by 1 and minion critical strike chance by 5%
+					Minion damage is stored as Shadowflame energy, up to 3000
+					Whip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored
+					'''
+			}
+
+			SandstormBoots: {
+				DisplayName: Sandstorm Boots
+				Tooltip:
+					'''
+					20% increased movement speed
+					The wearer can perform an improved double jump
+					20% increased movement speed on sand
+					'''
+			}
+
+			ShadowClaws: {
+				DisplayName: Shadow Claws
+				Tooltip:
+					'''
+					Increases melee speed by 12% and allows all melee weapons and whips to autoswing
+					Minion damage is stored as Shadowflame energy, up to 3000
+					Whip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored
+					'''
+			}
+
+			ShadowflameCharmItem: {
+				DisplayName: Shadowflame Charm
+				Tooltip:
+					'''
+					Minion damage is stored as Shadowflame energy, up to 3000
+					Whip strikes spawn a friendly Shadowflame Apparition for every 750 damage stored
+					'''
+			}
+
+			ShamanNecklace: {
+				DisplayName: Shaman Necklace
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					12% increased summon damage
+					'''
+			}
+
+			SkeletonBeetle: {
+				DisplayName: Tribal Beetle
+				Tooltip:
+					'''
+					Increases your maximum number of sentries by 2
+					Increased summon knockback
+					'''
+			}
+
+			SoaringCarpet: {
+				DisplayName: Soaring Carpet
+				Tooltip:
+					'''
+					Grants a soaring carpet, use it by holding UP
+					Increases movement speed by 10%
+					Increases acceleration
+					Fall damage immunity
+					'''
+			}
+
+			SpaceBalloonItem: {
+				DisplayName: Space Balloon
+				Tooltip:
+					'''
+					Increases jump height
+					Allows reducing gravity by hodling up
+					'''
+			}
+
+			TheBlackCross: {
+				DisplayName: The Black Cross
+				Tooltip:
+					'''
+					Increases length of invincibility after taking damage.
+					Grants the wearer a chance to dodge an attack
+					'''
+			}
+
+			TwoFlowers: {
+				DisplayName: Two Flowers
+				Tooltip:
+					'''
+					Magic critical strikes deal 11% increased damage and have a chance to spawn a mana star
+					Automatically uses mana potions when needed
+
+					'''
+			}
+
+			BundleOfWeirdBalloons: {
+				DisplayName: Bundle of Weird Balloons
+				Tooltip:
+					'''
+					Allows the user to triple jump
+					Increases jump height
+					Releases bees and douses the wielder in honey when damaged
+					Multiple combs increase efficiency and life regeneration
+					'''
+			}
+
+			ChlorophyteHood: {
+				DisplayName: Chlorophyte Hood
+				Tooltip: Increases your maximum number of minions by 2
+			}
+
+			IceMajestyBreastplate: {
+				DisplayName: Glacial Breastplate
+				Tooltip:
+					'''
+					15% increased summon damage
+					30% increased whip range
+					'''
+			}
+
+			IceMajestyCrown: {
+				DisplayName: Glacial Crown
+				Tooltip:
+					'''
+					Increases your maximum number of minions by 1
+					20% increased whip speed
+					'''
+			}
+
+			IceMajestyLeggings: {
+				DisplayName: Glacial Leggings
+				Tooltip:
+					'''
+					10% increased summon damage and whip speed
+					20% increased movement speed
+					'''
+			}
+
+			FinalBoss: {
+				DisplayName: Final Boss
+				Tooltip: !srepoleved gnitanosrepmi snoitanimoba gnitanosrepmi rof taerG
+			}
+
+			JoterMask: {
+				DisplayName: Joter Mask
+				Tooltip: Great for impersonating abominations impersonating developers!
+			}
+
+			JoterTrident: {
+				DisplayName: Joter Trident
+				Tooltip: Feed the Joter
+			}
+
+			LeatherHat: {
+				DisplayName: Leather Hood
+				Tooltip: 3% increased summon damage
+			}
+
+			LeatherPants: {
+				DisplayName: Leather Pants
+				Tooltip: 3% increased summon damage
+			}
+
+			LeatherTunic: {
+				DisplayName: Leather Tunic
+				Tooltip: 4% increased summon damage
+			}
+
+			PhoenixHeadgear: {
+				DisplayName: Phoenix Headgear
+				Tooltip:
+					'''
+					11% increased ranged and summon damage
+					7% increased ranged critical strike chance
+					10% increased jump speed
+					'''
+			}
+
+			PhoenixLeggings: {
+				DisplayName: Phoenix Leggings
+				Tooltip:
+					'''
+					11% increased ranged and summon damage
+					11% increased movement speed
+					'''
+			}
+
+			PhoenixTunic: {
+				DisplayName: Phoenix Tunic
+				Tooltip:
+					'''
+					11% increased ranged and summon damage
+					Increased your maximum number of minions by 1
+					'''
+			}
+
+			ReptilianBulwark: {
+				DisplayName: Reptilian Bulwark
+				Tooltip:
+					'''
+					11% increased melee and summon damage
+					Increased your maximum number of minions by 1
+					'''
+			}
+
+			ReptilianGreaves: {
+				DisplayName: Reptilian Treads
+				Tooltip:
+					'''
+					11% increased melee and summon damage
+					11% increased movement speed
+					'''
+			}
+
+			ReptilianMask: {
+				DisplayName: Reptilian Mask
+				Tooltip:
+					'''
+					11% increased melee and summon damage
+					7% increased melee critical strike chance
+					15% increased whip range
+					'''
+			}
+
+			AshRoninHat: {
+				DisplayName: Ash Ronin Mask
+				Tooltip:
+					'''
+					11% increased magic and summon damage
+					7% increased magic critical strike chance
+					Increases maximum mana by 80
+					'''
+			}
+
+			AshRoninPants: {
+				DisplayName: Ash Ronin Pants
+				Tooltip:
+					'''
+					11% increased magic and summon damage
+					11% increased movement speed
+					'''
+			}
+
+			AshRoninRobes: {
+				DisplayName: Ash Ronin Robes
+				Tooltip:
+					'''
+					11% increased magic and summon damage
+					Increased your maximum number of minions by 1
+					'''
+			}
+
+			UnderworldWarriorChestplate: {
+				DisplayName: Underworld Warrior Chestplate
+				Tooltip:
+					'''
+					15% increased damage
+					25% increased ranged velocity
+					'''
+			}
+
+			UnderworldWarriorGreaves: {
+				DisplayName: Underworld Warrior Greaves
+				Tooltip:
+					'''
+					15% increased critical strike chance and movement speed
+					25% increased melee speed
+					'''
+			}
+
+			UnderworldWarriorHelmet: {
+				DisplayName: Underworld Warrior Helmet
+				Tooltip:
+					'''
+					15% increased damage
+					25% reduced mana costs
+					'''
+			}
+
+			BeholderBag: {
+				DisplayName: Treasure Bag
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			BeholderMask: {
+				DisplayName: Beholder Mask
+				Tooltip: ""
+			}
+
+			BeholderRelicItem: {
+				DisplayName: Beholder Relic
+				Tooltip: ""
+			}
+
+			BeholderTrophyItem: {
+				DisplayName: Beholder Trophy
+				Tooltip: ""
+			}
+
+			EvilLookingEye: {
+				DisplayName: Evil Looking Eye
+				Tooltip: Summons a baby Beholder
+			}
+
+			GreaterRestorationPotion: {
+				DisplayName: Greater Restoration Potion
+				Tooltip: ""
+			}
+
+			MasterEmblem: {
+				DisplayName: Master Emblem
+				Tooltip:
+					'''
+					12% increased melee speed
+					12% increased ranged critical strike damage
+					12% increased mana regeneration
+					Increases your maximum number of minions by 1
+					'''
+			}
+
+			RingOfFuror: {
+				DisplayName: Ring of Fury
+				Tooltip:
+					'''
+					12% increased total damage
+					9% reduced maximum HP
+					'''
+			}
+
+			RingOfMight: {
+				DisplayName: Ring of Might
+				Tooltip:
+					'''
+					9% increased maximum health
+					6% increased total damage
+					'''
+			}
+
+			RingOfTenacity: {
+				DisplayName: Ring of Tenacity
+				Tooltip:
+					'''
+					18% increased maximum hp
+					6% reduced total damage
+					'''
+			}
+
+			ScrollOfWipeout: {
+				DisplayName: Scroll of Wipeout
+				Tooltip: Deals massive damage to all nearby enemies
+			}
+
+			WandOfDisintegration: {
+				DisplayName: Wand of Disintegration
+				Tooltip:
+					'''
+					Disintegrate everything in your path
+					Use at your own risk
+					'''
+			}
+
+			BloodBoiler: {
+				DisplayName: Blood Boiler
+				Tooltip: Gives a new meaning to 'making your blood boil'
+			}
+
+			BloodSquidEgg: {
+				DisplayName: Blood Squid Egg
+				Tooltip: Summons a Baby Blood Squid
+			}
+
+			BloodWings: {
+				DisplayName: Bloodfin Wings
+				Tooltip:
+					'''
+					Allows flight and slow fall
+					Flight is boosted upon taking damage
+					'''
+			}
+
+			DreadBag: {
+				DisplayName: Treasure Bag
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			BottomlessChumBucket: {
+				DisplayName: Bottomless Chum Bucket
+				Tooltip:
+					'''
+					Toss in water up to 3 times to increase fishing power
+					This can't possibly fail!
+					'''
+			}
+
+			Brimstone: {
+				DisplayName: Brimstone
+				Tooltip: Blood laser barrage
+			}
+
+			DreadMask: {
+				DisplayName: Dreadnautilus Mask
+				Tooltip: ""
+			}
+
+			DreadnautilusRelic: {
+				DisplayName: Dreadnautilus Relic
+				Tooltip: ""
+			}
+
+			DreadSummon: {
+				DisplayName: Bloody Sea Wasp
+				Tooltip: Use to catch a powerful Blood Moon monster
+			}
+
+			DreadTrophy: {
+				DisplayName: Dreadnautilus Trophy
+				Tooltip: ""
+			}
+
+			RedPearl: {
+				DisplayName: Red Pearl
+				Tooltip: Increases enemy spawn rates and luck
+			}
+
+			ShellSpinner: {
+				DisplayName: Shell Spinner
+				Tooltip: Spin to win!
+			}
+
+			BlessedGel: {
+				DisplayName: Water Gel
+				Tooltip: Flames bounce to their targets
+			}
+
+			BloodyGel: {
+				DisplayName: Bloody Gel
+				Tooltip: Destroys your enemy from the inside
+			}
+
+			CrystalGel: {
+				DisplayName: Crystal Gel
+				Tooltip: Splits and ignores 25 defense
+			}
+
+			CursedGel: {
+				DisplayName: Cursed Gel
+				Tooltip: Flames seek out their targets
+			}
+
+			FrozenGel: {
+				DisplayName: Glacial Gel
+				Tooltip: Create the coldest winds
+			}
+
+			IchorGel: {
+				DisplayName: Ichor Gel
+				Tooltip: Highly Volatile
+			}
+
+			LavaGel: {
+				DisplayName: Lava Gel
+				Tooltip: Ignite it to know what REAL fire is!
+			}
+
+			SolarGel: {
+				DisplayName: Sun Gel
+				Tooltip: Shoots a concentrated Solar Flare
+			}
+
+			DriedRose: {
+				DisplayName: Dried Rose
+				Tooltip: Has a bit of magic remaining
+			}
+
+			GraniteBattery: {
+				DisplayName: Granite Battery
+				Tooltip: Holds more power than it looks
+			}
+
+			IceQueenJewel: {
+				DisplayName: Glacial Diamond
+				Tooltip: Holds the power of the Ice Queen
+			}
+
+			LuminiteFeather: {
+				DisplayName: Luminite Feather
+				Tooltip: Use to make the ultimate wings
+			}
+
+			MagicalAsh: {
+				DisplayName: Magical Ash
+				Tooltip: Let's hope a Phoenix isnt born from these
+			}
+
+			ObsidianScale: {
+				DisplayName: Obsidian Scales
+				Tooltip: Very Tough
+			}
+
+			SalamanderTail: {
+				DisplayName: Salamander Tail
+				Tooltip: It's still moving
+			}
+
+			HeatproofSaddle: {
+				DisplayName: Heatproof Saddle
+				Tooltip: Summons a ridable lava walker mount
+			}
+
+			SpeedWish: {
+				DisplayName: Wish for Speed
+				Tooltip:
+					'''
+					Permanently increases movement speed by 15%
+					You have 1 wish... as long as its 15% movement speed.
+					'''
+			}
+
+			PowerBrew: {
+				DisplayName: Power Brew
+				Tooltip: Increases damage by 30% for 20 seconds after drunk
+			}
+
+			SweetElixir: {
+				DisplayName: Sweet Elixir
+				Tooltip: Grants Honey for 45 seconds
+			}
+
+			TeleportationVial: {
+				DisplayName: Teleportation Vial
+				Tooltip: Teleports you to the position of the mouse
+			}
+
+			BeetleArrow: {
+				DisplayName: Beetle Arrow
+				Tooltip: 25% chance to stun and create a damaging shockwave
+			}
+
+			BeetleDart: {
+				DisplayName: Beetle Dart
+				Tooltip: 33% chance to stun enemies and deal triple damage
+			}
+
+			BloodyArrow: {
+				DisplayName: Bloody Arrow
+				Tooltip: Leaves Blood Drops in its path
+			}
+
+			BoneBullet: {
+				DisplayName: Bone Bullet
+				Tooltip: Chance to break into bones
+			}
+
+			ChargedArrow: {
+				DisplayName: Charged arrow
+				Tooltip:
+					'''
+					Creates a damaging ring around hit enemies
+					Stacks up to 5 times, increasing range
+					'''
+			}
+
+			ChargedBullet: {
+				DisplayName: Charged Bullet
+				Tooltip: Jumps between hit enemies
+			}
+
+			GhostBullet: {
+				DisplayName: Ghost Bullet
+				Tooltip:
+					'''
+					Goes through tiles and enemies
+					Leaves up to 9 ghost bullets inside the enemy, releases them when killed
+					'''
+			}
+
+			GhostDart: {
+				DisplayName: Ghost Dart
+				Tooltip:
+					'''
+					Goes through tiles and enemies
+					Splits into 6 when close to a target
+					'''
+			}
+
+			LuminiteRocket: {
+				DisplayName: Luminite Rocket
+				Tooltip:
+					'''
+					Giant explosion
+					Explodes multiple times
+					'''
+			}
+
+			ShroomiteBullet: {
+				DisplayName: Shroomite Bullet
+				Tooltip: Critical strikes deal 20% more damage
+			}
+
+			SolarArrow: {
+				DisplayName: Sun Arrow
+				Tooltip: 5% chance to deal greatly increased damage
+			}
+
+			BAM: {
+				DisplayName: B.A.M.
+				Tooltip:
+					'''
+					'Bombardment Assault Multitool'
+					Shoots gel, rockets and darts
+					'''
+			}
+
+			DoubleHaxor: {
+				DisplayName: Double Haxor
+				Tooltip: A chasing axe and a powerful hammer
+			}
+
+			GraniteBook: {
+				DisplayName: Electro Shield
+				Tooltip:
+					'''
+					Summons an electric ring around you
+					Drains 30 mana per second, affected by gear
+					'''
+			}
+
+			HeadHarvester: {
+				DisplayName: Head Harvester
+				Tooltip: ""
+			}
+
+			Jungla: {
+				DisplayName: Jungla
+				Tooltip: Shoots three darts at once
+			}
+
+			CryoCannon: {
+				DisplayName: Cryo Cannon
+				Tooltip: Shoots Freezing Rockets
+			}
+
+			H410WFLASH: {
+				DisplayName: H410W FLASH
+				Tooltip:
+					'''
+					'Fairy Launching Assault Shoulder weapon'
+					Shoots explosive pixie Rockets that follow your cursor
+					'''
+			}
+
+			SkullCannon: {
+				DisplayName: Skull Cannon
+				Tooltip: Shoots Rockets
+			}
+
+			AdamantiteLauncher: {
+				DisplayName: Adamantite Launcher
+				Tooltip: Shoots Rockets
+			}
+
+			TitaniumBazooka: {
+				DisplayName: Titanium Bazooka
+				Tooltip: Shoots two to three Rockets in one shot
+			}
+
+			NebulaMaelstrom: {
+				DisplayName: Nebula Maelstrom
+				Tooltip:
+					'''
+					Unleash a particle storm on your opponents
+					Right-click to uncast 
+					'''
+			}
+
+			OnyxCurseDoll: {
+				DisplayName: Onyx Curse Doll
+				Tooltip:
+					'''
+					Summons 3 fireballs to circle around you
+					The fireballs will drain 50 mana per second, affected by gear
+					They will curse nearby enemies, causing damage over time, lower damage or defense
+					Right-click to uncast 
+					'''
+			}
+
+			SharpLament: {
+				DisplayName: Sharp Tears
+				Tooltip: Shoots flaming wood
+			}
+
+			AbsoluteZero: {
+				DisplayName: Absolute Zero
+				Tooltip:
+					'''
+					Your summons will focus struck enemies
+					12 summon tag damage
+					25% summon tag critical strike chance
+					'''
+			}
+
+			BoomfrogStaff: {
+				DisplayName: Boomfrog Staff
+				Tooltip: Summons a parent boomfrog sentry that spawns kamikaze frogs
+			}
+
+			GraniteShockerStaff: {
+				DisplayName: Granite Shocker Staff
+				Tooltip: Summons a Shocker Sentry that shoots chain lightning
+			}
+
+			YoungQueenBeeStaff: {
+				DisplayName: Young Queen Bee Staff
+				Tooltip: Summons a bee Sentry that shoots bees at your enemies
+			}
+
+			SpikedWhip: {
+				DisplayName: Spiked Whip
+				Tooltip:
+					'''
+					Your summons will focus struck enemies
+					2 summon tag damage
+					11% summon tag critical strike chance
+					More effective at striking multiple enemies
+					'''
+			}
+
+			Starflow: {
+				DisplayName: Stardust Trail
+				Tooltip:
+					'''
+					Your summons will focus struck enemies
+					22 summon tag damage
+					Summon flow invaders while attacking
+					'''
+			}
+
+			TailWhip: {
+				DisplayName: Tail Whip
+				Tooltip:
+					'''
+					Your summons will focus struck enemies
+					11 summon tag damage
+					Decreases defense by 16 points on hit
+					'''
+			}
+
+			SuperRose: {
+				DisplayName: Cursed Flower
+				Tooltip:
+					'''
+					Summons petals to seek out your foes
+					Each petal costs 18 mana, affected by gear
+					'''
+			}
+
+			WillOfTheWisp: {
+				DisplayName: Will O' Wisp
+				Tooltip: Shoots a smart bouncing fireball
+			}
+
+			BomberBonesBanner: {
+				DisplayName: Bomber Bones Banner
+				Tooltip: Nearby players get a bonus against: Bomber Bones
+			}
+
+			BoomxieBanner: {
+				DisplayName: Boom Pixie Banner
+				Tooltip: Nearby players get a bonus against: Boom Pixie
+			}
+
+			FroggabombaBanner: {
+				DisplayName: Froggabomba Banner
+				Tooltip: Nearby players get a bonus against: Froggabomba
+			}
+
+			GraniteOvergrowthBanner: {
+				DisplayName: GraniteOvergrowth Banner
+				Tooltip: Nearby players get a bonus against: GraniteOvergrowth
+			}
+		}
+
+		NPCs: {
+			BomberBones.DisplayName: Bomber Bones
+			GraniteCore.DisplayName: Granite Core
+			GraniteOvergrowth.DisplayName: Granite Overgrowth
+			BeholderNPC.DisplayName: Beholder
+			Boomxie.DisplayName: Boom Pixie
+			LittleBoomxie.DisplayName: Boom Dust
+			Froggabomba.DisplayName: Froggabomba
+			FroggabombaClone.DisplayName: Froggabomba
+			LavamanderNPC.DisplayName: Lavamander
+			ObsidianBasiliskBody.DisplayName: Obsidian Basilisk
+			ObsidianBasiliskHead.DisplayName: Obsidian Basilisk
+			ObsidianBasiliskTail.DisplayName: Obsidian Basilisk
+			OniRoninNPC.DisplayName: Oni Ronin
+			PhoenixAsh.DisplayName: Phoenix Ash
+			PhoenixNPC.DisplayName: Undying Phoenix
+			LavaBubble.DisplayName: Lava Bubble
+			Lavalarva.DisplayName: Magmander
+			SalalavaNPC.DisplayName: Salalava
+		}
+
+		Tiles: {
+			BomberBonesBannerPlaced.MapEntry: Bomber Bones Banner
+			BoomxieBannerPlaced.MapEntry: Boomxie Banner
+			FroggabombaBannerPlaced.MapEntry: Froggabomba Banner
+			GraniteOvergrowthBannerPlaced.MapEntry: Granite Overgrowth Banner
+		}
+	}
+}

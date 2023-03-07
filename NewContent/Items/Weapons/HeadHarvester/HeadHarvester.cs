@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Items.Weapons.HeadHarvester
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Head Harvester");
+            // DisplayName.SetDefault("Head Harvester");
         }
         public override void SetDefaults()
         {

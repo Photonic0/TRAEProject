@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Levitation Juice");
-            ////Tooltip.SetDefault("Provides a long lasting double jump");
+            // DisplayName.SetDefault("Levitation Juice");
+            // Tooltip.SetDefault("Provides a long lasting double jump");
         }
         public override void SetDefaults()
         {

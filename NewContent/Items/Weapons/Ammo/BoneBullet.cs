@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Bone Bullet");
-            ////Tooltip.SetDefault("Chance to break into bones");
+            // DisplayName.SetDefault("Bone Bullet");
+            // Tooltip.SetDefault("Chance to break into bones");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -49,7 +49,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("BoneSHot");     //The English name of the Projectile
+            // DisplayName.SetDefault("BoneSHot");     //The English name of the Projectile
 
         }
         public override void SetDefaults()

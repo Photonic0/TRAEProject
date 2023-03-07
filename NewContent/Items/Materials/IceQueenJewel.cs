@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Glacial Diamond");
-            ////Tooltip.SetDefault("Holds the power of the Ice Queen");
+            // DisplayName.SetDefault("Glacial Diamond");
+            // Tooltip.SetDefault("Holds the power of the Ice Queen");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
         }
 

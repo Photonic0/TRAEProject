@@ -5,7 +5,7 @@ using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.NPCs.Underworld.Beholder;
 using TRAEProject.NewContent.Items.Armor.UnderworldWarrior;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader.Core;
+using Terraria.UI;
 
 namespace TRAEProject.NewContent.Items.BeholderItems
 {
@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Treasure Bag");
-            ////Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
+            // DisplayName.SetDefault("Treasure Bag");
+            // Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -28,10 +28,12 @@ namespace TRAEProject.NewContent.Items.BeholderItems
             Item.expert = true;
         }
 
+
         public override bool CanRightClick()
         {
             return true;
         }
+
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             int previousLoot = 0;
@@ -42,7 +44,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
                 int mainLoot = Main.rand.Next(lootList);
                 while (mainLoot == previousLoot) // dont drop the same piece twice
                 {
-                    mainLoot = Main.rand.Next(lootList); 
+                    mainLoot = Main.rand.Next(lootList);
                 }
                 itemLoot.Add(ItemDropRule.Common(mainLoot));
                 previousLoot = mainLoot;

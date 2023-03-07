@@ -288,7 +288,7 @@ namespace TRAEProject.Changes.NPCs.Boss
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Eye Nuke");
+            // DisplayName.SetDefault("Eye Nuke");
             Main.projFrames[Projectile.type] = 2;
         }
         public override void SetDefaults()

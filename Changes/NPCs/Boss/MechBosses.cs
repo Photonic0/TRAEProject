@@ -56,7 +56,7 @@ namespace TRAEProject.Changes.NPCs.Boss
                 
             }
         }
-        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
+        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)/* tModPorter Note:bossAdjustment -> balance (bossAdjustment is different, see the docs for details) */
         {
          
                 switch (npc.type)

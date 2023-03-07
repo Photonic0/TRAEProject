@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Accesories.BlizzardSkates
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Blizzard Skates");
-            ////Tooltip.SetDefault("Allows skating by double tapping on the ground\nGrants a double jump\nAllows for a powerful airborne dash that uses the double jump.");
+            // DisplayName.SetDefault("Blizzard Skates");
+            // Tooltip.SetDefault("Allows skating by double tapping on the ground\nGrants a double jump\nAllows for a powerful airborne dash that uses the double jump.");
         }
         public override void SetDefaults()
         {

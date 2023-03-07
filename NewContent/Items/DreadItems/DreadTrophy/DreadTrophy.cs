@@ -17,7 +17,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.DreadTrophy
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Dreadnautilus Trophy");
+            // DisplayName.SetDefault("Dreadnautilus Trophy");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

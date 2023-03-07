@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.BottomlessChumBucket
     {
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Bottomless Chum Bucket");
-			//Tooltip.SetDefault("Toss in water up to 3 times to increase fishing power\nThis can't possibly fail!");
+			// DisplayName.SetDefault("Bottomless Chum Bucket");
+			// Tooltip.SetDefault("Toss in water up to 3 times to increase fishing power\nThis can't possibly fail!");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

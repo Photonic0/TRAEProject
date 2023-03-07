@@ -13,10 +13,10 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Glacial Crown");
+            // DisplayName.SetDefault("Glacial Crown");
            
             Head.Sets.DrawHatHair[Item.headSlot] = true;
-            ////Tooltip.SetDefault("Increases your maximum number of minions by 1\n20% increased whip speed");
+            // Tooltip.SetDefault("Increases your maximum number of minions by 1\n20% increased whip speed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

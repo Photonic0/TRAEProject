@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.Accesories.SpaceBalloon
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
-            //DisplayName.SetDefault("Space Balloon");
-            ////Tooltip.SetDefault("Increases jump height\nAllows reducing gravity by hodling up");
+            // DisplayName.SetDefault("Space Balloon");
+            // Tooltip.SetDefault("Increases jump height\nAllows reducing gravity by hodling up");
         }
         public override void SetDefaults()
         {

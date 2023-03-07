@@ -9,7 +9,7 @@ namespace TRAEProject.NewContent.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("LilRocket");     //The English name of the Projectile
+            // DisplayName.SetDefault("LilRocket");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {

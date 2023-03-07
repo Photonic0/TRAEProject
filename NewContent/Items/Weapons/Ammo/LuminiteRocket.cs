@@ -11,8 +11,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Luminite Rocket");
-            ////Tooltip.SetDefault("Giant explosion\nExplodes multiple times");
+            // DisplayName.SetDefault("Luminite Rocket");
+            // Tooltip.SetDefault("Giant explosion\nExplodes multiple times");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()

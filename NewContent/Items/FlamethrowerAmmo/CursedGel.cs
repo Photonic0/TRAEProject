@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Cursed Gel");
-            ////Tooltip.SetDefault("Flames seek out their targets");
+            // DisplayName.SetDefault("Cursed Gel");
+            // Tooltip.SetDefault("Flames seek out their targets");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 
@@ -45,7 +45,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("CursedFlamethrower");     //The English name of the Projectile
+            // DisplayName.SetDefault("CursedFlamethrower");     //The English name of the Projectile
 
         }
         public override string Texture => "Terraria/Images/Item_0";

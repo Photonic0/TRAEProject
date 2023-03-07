@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Salamander Tail");
-            ////Tooltip.SetDefault("It's still moving");
+            // DisplayName.SetDefault("Salamander Tail");
+            // Tooltip.SetDefault("It's still moving");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
         }
 

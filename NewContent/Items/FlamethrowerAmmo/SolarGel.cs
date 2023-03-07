@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Sun Gel");
-            ////Tooltip.SetDefault("Shoots a concentrated Solar Flare");
+            // DisplayName.SetDefault("Sun Gel");
+            // Tooltip.SetDefault("Shoots a concentrated Solar Flare");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 
@@ -46,7 +46,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Solar Flamethrower");     //The English name of the Projectile
+            // DisplayName.SetDefault("Solar Flamethrower");     //The English name of the Projectile
         
             }
             public override string Texture => "Terraria/Images/Item_0";

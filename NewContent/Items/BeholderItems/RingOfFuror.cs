@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Ring of Fury");
-            ////Tooltip.SetDefault("12% increased total damage\n9% reduced maximum HP");
+            // DisplayName.SetDefault("Ring of Fury");
+            // Tooltip.SetDefault("12% increased total damage\n9% reduced maximum HP");
         }
         public override void SetDefaults()
         {

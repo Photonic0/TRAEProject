@@ -20,8 +20,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Brimstone");
-            ////Tooltip.SetDefault("Blood laser barrage");
+            // DisplayName.SetDefault("Brimstone");
+            // Tooltip.SetDefault("Blood laser barrage");
         }
         public override void SetDefaults()
 		{

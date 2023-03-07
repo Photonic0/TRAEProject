@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("Beetle Dart");
-            ////Tooltip.SetDefault("33% chance to stun enemies and deal triple damage");
+            // DisplayName.SetDefault("Beetle Dart");
+            // Tooltip.SetDefault("33% chance to stun enemies and deal triple damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -46,7 +46,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("BeetleSHot");     //The English name of the Projectile
+            // DisplayName.SetDefault("BeetleSHot");     //The English name of the Projectile
 
         }
         public override void SetDefaults()

@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.Accesories.SandstormBoots
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("Sandstorm Boots");
-            ////Tooltip.SetDefault("20% increased movement speed\nThe wearer can perform an improved double jump\n20% increased movement speed on sand");
+            // DisplayName.SetDefault("Sandstorm Boots");
+            // Tooltip.SetDefault("20% increased movement speed\nThe wearer can perform an improved double jump\n20% increased movement speed on sand");
         }
         public override void SetDefaults()
         {

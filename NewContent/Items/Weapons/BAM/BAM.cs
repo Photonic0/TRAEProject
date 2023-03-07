@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            //DisplayName.SetDefault("B.A.M.");
-            ////Tooltip.SetDefault("'Bombardment Assault Multitool'\nShoots gel, rockets and darts");
+            // DisplayName.SetDefault("B.A.M.");
+            // Tooltip.SetDefault("'Bombardment Assault Multitool'\nShoots gel, rockets and darts");
         }
         public override void SetDefaults()
         {
@@ -167,7 +167,7 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
     {
         public override void SetStaticDefaults()
         {
-            //DisplayName.SetDefault("BAMGel");     //The English name of the Projectile
+            // DisplayName.SetDefault("BAMGel");     //The English name of the Projectile
 
         }
         public override string Texture => "Terraria/Images/Item_0";

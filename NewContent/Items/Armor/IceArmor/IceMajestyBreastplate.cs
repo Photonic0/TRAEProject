@@ -18,8 +18,8 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Glacial Breastplate");
-			//Tooltip.SetDefault("15% increased summon damage\n30% increased whip range");
+			// DisplayName.SetDefault("Glacial Breastplate");
+			// Tooltip.SetDefault("15% increased summon damage\n30% increased whip range");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -85,8 +85,8 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
 
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("Flocko Flock");
-			//Description.SetDefault("The Mad Flockos will fight for you");
+			// DisplayName.SetDefault("Flocko Flock");
+			// Description.SetDefault("The Mad Flockos will fight for you");
 			Main.buffNoSave[Type] = true;
 			Main.buffNoTimeDisplay[Type] = true;
 		}
@@ -113,7 +113,7 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
 	{
 		public override void SetStaticDefaults()
 		{
-			//DisplayName.SetDefault("MadFlocko");
+			// DisplayName.SetDefault("MadFlocko");
 			ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true; //This is necessary for right-click targeting
 		}
 
