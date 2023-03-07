@@ -19,7 +19,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 		public override int TailType => ModContent.NPCType<ObsidianBasiliskTail>();
 
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Obsidian Basilisk");
+			// DisplayName.SetDefault("Obsidian Basilisk");
 			NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
 			{
 				SpecificallyImmuneTo = new int[] {
@@ -132,7 +132,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Obsidian Basilisk");
+            // DisplayName.SetDefault("Obsidian Basilisk");
             NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
             {
                 SpecificallyImmuneTo = new int[] {
@@ -178,7 +178,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
     internal class ObsidianBasiliskTail : WormTail
 	{
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Obsidian Basilisk");
+			// DisplayName.SetDefault("Obsidian Basilisk");
             NPCDebuffImmunityData debuffData = new NPCDebuffImmunityData
             {
                 SpecificallyImmuneTo = new int[] {

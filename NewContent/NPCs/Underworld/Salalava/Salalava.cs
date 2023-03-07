@@ -30,7 +30,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
 				}
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-            DisplayName.SetDefault("Salalava");
+            // DisplayName.SetDefault("Salalava");
             Main.npcFrameCount[NPC.type] = 6;
         }
 
@@ -335,7 +335,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
 				}
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-            DisplayName.SetDefault("Lava Bubble");
+            // DisplayName.SetDefault("Lava Bubble");
             Main.npcFrameCount[NPC.type] = 1;
             NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -412,7 +412,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
 				}
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-            DisplayName.SetDefault("Magmander");
+            // DisplayName.SetDefault("Magmander");
             Main.npcFrameCount[NPC.type] = 5;
 
         }

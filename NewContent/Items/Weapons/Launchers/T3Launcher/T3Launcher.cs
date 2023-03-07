@@ -11,8 +11,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Adamantite Launcher");
-            Tooltip.SetDefault("Shoots Rockets");
+            // DisplayName.SetDefault("Adamantite Launcher");
+            // Tooltip.SetDefault("Shoots Rockets");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
         }
@@ -49,8 +49,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.T3Launcher
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Titanium Bazooka");
-            Tooltip.SetDefault("Shoots two to three Rockets in one shot"); CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            // DisplayName.SetDefault("Titanium Bazooka");
+            // Tooltip.SetDefault("Shoots two to three Rockets in one shot"); CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
         }
         public override void SetDefaults()

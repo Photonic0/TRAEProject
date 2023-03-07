@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
 		{
 			Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			DisplayName.SetDefault("Evil Looking Eye");
-			Tooltip.SetDefault("Summons a baby Beholder");
+			// DisplayName.SetDefault("Evil Looking Eye");
+			// Tooltip.SetDefault("Summons a baby Beholder");
 		}
 
 		public override void SetDefaults()
@@ -35,7 +35,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Baby Beholder");
+			// DisplayName.SetDefault("Baby Beholder");
 			Main.projFrames[Projectile.type] = 12;
 			Main.projPet[Projectile.type] = true;
 		}
@@ -84,8 +84,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
 		public override void SetStaticDefaults()
 		{
 			// DisplayName and Description are automatically set from the .lang files, but below is how it is done normally.
-			DisplayName.SetDefault("Baby Beholder");
-			Description.SetDefault("It can't shoot lasers yet. I think.");
+			// DisplayName.SetDefault("Baby Beholder");
+			// Description.SetDefault("It can't shoot lasers yet. I think.");
 			Main.buffNoTimeDisplay[Type] = true;
 			Main.vanityPet[Type] = true;
 		}

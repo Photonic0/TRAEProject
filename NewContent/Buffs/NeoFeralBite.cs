@@ -10,8 +10,8 @@ namespace TRAEProject.NewContent.Buffs
 		public override void SetStaticDefaults() {
 			Main.debuff[Type] = true;
 			Main.buffNoSave[Type] = true;
-			DisplayName.SetDefault("Feral Bite");
-			Description.SetDefault("Causes confusion");
+			// DisplayName.SetDefault("Feral Bite");
+			// Description.SetDefault("Causes confusion");
 		}
 		int timer = 0;
 

@@ -10,8 +10,8 @@ namespace TRAEProject.NewContent.Items.Accesories.TwoFlowers
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Two Flowers");
-            Tooltip.SetDefault("Magic critical strikes deal 11% increased damage and have a chance to spawn a mana star\nAutomatically uses mana potions when needed\n");
+            // DisplayName.SetDefault("Two Flowers");
+            // Tooltip.SetDefault("Magic critical strikes deal 11% increased damage and have a chance to spawn a mana star\nAutomatically uses mana potions when needed\n");
         }
         public override void SetDefaults()
         {

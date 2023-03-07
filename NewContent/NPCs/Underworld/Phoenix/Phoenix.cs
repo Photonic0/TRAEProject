@@ -32,7 +32,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 				}
 			};
 			NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-			DisplayName.SetDefault("Undying Phoenix"); 
+			// DisplayName.SetDefault("Undying Phoenix"); 
             Main.npcFrameCount[NPC.type] = 5; // make sure to set this for your modnpcs.
         }
 
@@ -324,7 +324,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-			DisplayName.SetDefault("Phoenix Ash"); // Automatic from .lang files
+			// DisplayName.SetDefault("Phoenix Ash"); // Automatic from .lang files
 			Main.npcFrameCount[NPC.type] = 6; // make sure to set this for your modnpcs.
 		}
 
@@ -341,7 +341,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			NPC.knockBackResist = 0f;
 		}
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note:bossAdjustment -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.masterMode)
 			{

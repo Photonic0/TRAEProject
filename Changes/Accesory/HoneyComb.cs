@@ -25,14 +25,15 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.HoneyComb:
                 case ItemID.SweetheartNecklace:
                 case ItemID.StingerNecklace:
-                    player.GetModPlayer<HoneyCombPlayer>().combs += 1;
+                    player.GetModPlayer<HoneyCombPlayer>().combs += 1; player.lifeRegen += 1;
+
                     player.honeyCombItem = null;
                     break;
                 case ItemID.BeeCloak:
                     player.honeyCombItem = null;
                     player.starCloakItem = null; 
                     player.GetModPlayer<HoneyCombPlayer>().combs += 1;
-
+                    player.lifeRegen += 1;
                     player.GetModPlayer<HoneyCombPlayer>().NewbeesOnHit = true;
                     break;
             }
@@ -46,7 +47,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Causes buzzy stars to fall and douses you in honey when damaged\nMultiple combs increase efficiency and life regeneration";
+                            line.Text = "Causes buzzy stars to fall and douses you in honey when damaged\nMinor increase to life regeneration\nMultiple combs increase efficiency and life regeneration";
                         }
                     }
                     break;
@@ -59,7 +60,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increases jump height";
+                            line.Text = "Increases jump height and life regeneration";
                         }
                     }
                     return;
@@ -72,7 +73,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Increases jump height, prevents fall damage and allows fast fall";
+                            line.Text = "Increases jump height, life regeneration, prevents fall damage and allows fast fall";
                         }
                     }
                     return;
@@ -83,7 +84,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\nMultiple combs increase efficiency and life regeneration";
+                            line.Text += "\nMinor increase to life regeneration\nMultiple combs increase efficiency and life regeneration";
                         }
                     }
                     break;
@@ -107,7 +108,7 @@ namespace TRAEProject.Changes.Accesory
         public override void UpdateLifeRegen()
         {
             if (combs >= 2)
-                Player.lifeRegen += 2 * combs;
+                Player.lifeRegen += 1 * combs;
         }
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {

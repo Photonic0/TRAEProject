@@ -17,7 +17,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Beholder Trophy");
+            // DisplayName.SetDefault("Beholder Trophy");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

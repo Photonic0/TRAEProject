@@ -12,7 +12,7 @@ namespace TRAEProject.NewContent.Projectiles
         {
             Main.projFrames[Projectile.type] = 3;
 			Projectile.frame = Main.rand.Next(3);
-            DisplayName.SetDefault("ToxicCloud");     //The English name of the Projectile
+            // DisplayName.SetDefault("ToxicCloud");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {

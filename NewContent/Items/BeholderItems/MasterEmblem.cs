@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Master Emblem");
-            Tooltip.SetDefault("12% increased melee speed\n12% increased ranged critical strike damage\n12% increased mana regeneration\nIncreases your maximum number of minions by 1");
+            // DisplayName.SetDefault("Master Emblem");
+            // Tooltip.SetDefault("12% increased melee speed\n12% increased ranged critical strike damage\n12% increased mana regeneration\nIncreases your maximum number of minions by 1");
         }
         public override void SetDefaults()
         {            

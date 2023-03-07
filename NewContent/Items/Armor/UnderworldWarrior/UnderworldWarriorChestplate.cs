@@ -23,8 +23,8 @@ namespace TRAEProject.NewContent.Items.Armor.UnderworldWarrior
         // +15% movement speed
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Underworld Warrior Chestplate");
-			Tooltip.SetDefault("15% increased damage\n25% increased ranged velocity");
+			// DisplayName.SetDefault("Underworld Warrior Chestplate");
+			// Tooltip.SetDefault("15% increased damage\n25% increased ranged velocity");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -92,7 +92,7 @@ namespace TRAEProject.NewContent.Items.Armor.UnderworldWarrior
                         }
 
                         SoundEngine.PlaySound(SoundID.Item8, Player.Center);
-                        Player.AddBuff(BuffType<BurntOut>(), 33 * 60);
+                        Player.AddBuff(BuffType<BurntOut>(), 30 * 60);
 
                     }
                 }
@@ -105,8 +105,8 @@ namespace TRAEProject.NewContent.Items.Armor.UnderworldWarrior
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Burnt Out");
-            Description.SetDefault("Need To Recharge");
+            // DisplayName.SetDefault("Burnt Out");
+            // Description.SetDefault("Need To Recharge");
             Main.buffNoSave[Type] = true;
             Main.debuff[Type] = true;
         }

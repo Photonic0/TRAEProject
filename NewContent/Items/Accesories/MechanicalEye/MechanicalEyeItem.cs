@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Accesories.MechanicalEye
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
-            DisplayName.SetDefault("Cyber Eye");
-            Tooltip.SetDefault("Rocket critical strikes stun enemies for 1 second");
+            // DisplayName.SetDefault("Cyber Eye");
+            // Tooltip.SetDefault("Rocket critical strikes stun enemies for 1 second");
         }
         public override void SetDefaults()
         {

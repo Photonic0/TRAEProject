@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Adv. Flight System");
-            Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nIncreases flight time by 40%");
+            // DisplayName.SetDefault("Adv. Flight System");
+            // Tooltip.SetDefault("Rocket boots and wings are activated by pushing UP instead of jump\nIncreases flight time by 40%");
         }
         public override void SetDefaults()
         {

@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Glacial Leggings");
-            Tooltip.SetDefault("10% increased summon damage and whip speed\n20% increased movement speed");
+            // DisplayName.SetDefault("Glacial Leggings");
+            // Tooltip.SetDefault("10% increased summon damage and whip speed\n20% increased movement speed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

@@ -44,7 +44,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 				}
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-            DisplayName.SetDefault("Beholder");
+            // DisplayName.SetDefault("Beholder");
             Main.npcFrameCount[NPC.type] = 6;
         }
 
@@ -66,15 +66,15 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             NPC.DeathSound = SoundID.NPCDeath10;
             Music = MusicID.Boss3;
         }
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note:bossAdjustment -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.expertMode)
             {
-                NPC.lifeMax = (int)((NPC.lifeMax * 3 / 4) * bossLifeScale);
+                NPC.lifeMax = (int)((NPC.lifeMax * 3 / 4) *bossAdjustment);
             }
             if (Main.masterMode)
             {
-                NPC.lifeMax = (int)(NPC.lifeMax * 3 / 4 * bossLifeScale); 
+                NPC.lifeMax = (int)(NPC.lifeMax * 3 / 4 *bossAdjustment); 
             }
             
 
@@ -932,7 +932,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Deathgaze");
+            // DisplayName.SetDefault("Deathgaze");
         }
         public override void SetDefaults()
         {

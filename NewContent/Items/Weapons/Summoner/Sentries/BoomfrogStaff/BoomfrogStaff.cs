@@ -15,8 +15,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Boomfrog Staff");
-            Tooltip.SetDefault("Summons a parent boomfrog sentry that spawns kamikaze frogs");
+            // DisplayName.SetDefault("Boomfrog Staff");
+            // Tooltip.SetDefault("Summons a parent boomfrog sentry that spawns kamikaze frogs");
             //ItemID.Sets.SortingPriorityMaterials[Item.type] = 46; // what does this do
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller.
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
@@ -74,7 +74,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Boomfrog");
+            // DisplayName.SetDefault("Boomfrog");
             Main.projFrames[Projectile.type] = 8;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 
@@ -210,7 +210,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.BoomfrogStaff
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Froggy");
+            // DisplayName.SetDefault("Froggy");
             Main.projFrames[Projectile.type] = 4;
            
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;

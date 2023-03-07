@@ -25,8 +25,8 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Cursed Flower");
-            Tooltip.SetDefault("Summons petals to seek out your foes\nEach petal costs 18 mana, affected by gear");
+            // DisplayName.SetDefault("Cursed Flower");
+            // Tooltip.SetDefault("Summons petals to seek out your foes\nEach petal costs 18 mana, affected by gear");
         }
         public override void SetDefaults()
         {
@@ -78,7 +78,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 0;
-            DisplayName.SetDefault("PetalSpawner");     //The English name of the Projectile
+            // DisplayName.SetDefault("PetalSpawner");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {
@@ -138,7 +138,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
-            DisplayName.SetDefault("Petal");     //The English name of the Projectile
+            // DisplayName.SetDefault("Petal");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {
@@ -202,7 +202,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
-            DisplayName.SetDefault("Fire Petal");     //The English name of the Projectile
+            // DisplayName.SetDefault("Fire Petal");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {

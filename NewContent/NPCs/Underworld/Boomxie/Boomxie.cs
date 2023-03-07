@@ -29,7 +29,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
 				}
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-            DisplayName.SetDefault("Boom Pixie"); // Automatic from .lang files
+            // DisplayName.SetDefault("Boom Pixie"); // Automatic from .lang files
             Main.npcFrameCount[NPC.type] = 4; // make sure to set this for your modnpcs.
         }
         public override void SetDefaults()
@@ -114,7 +114,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
                 Hide = true // Hides this NPC from the Bestiary, useful for multi-part NPCs whom you only want one entry.
             }; NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 
-            DisplayName.SetDefault("Boom Dust"); // Automatic from .lang files
+            // DisplayName.SetDefault("Boom Dust"); // Automatic from .lang files
             Main.npcFrameCount[NPC.type] = 1; // make sure to set this for your modnpcs.
         }
         public override void SetDefaults()

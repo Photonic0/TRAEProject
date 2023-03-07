@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Luminite Feather");
-            Tooltip.SetDefault("Use to make the ultimate wings");
+            // DisplayName.SetDefault("Luminite Feather");
+            // Tooltip.SetDefault("Use to make the ultimate wings");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
         }
 

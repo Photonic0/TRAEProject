@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.Accesories.DemonShield
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Demon Shield");
-            Tooltip.SetDefault("Absorbs 25% of damage done to players on your team when above 25% life\nGrants immunity to knockback\n8% increased damage to nearby enemies");
+            // DisplayName.SetDefault("Demon Shield");
+            // Tooltip.SetDefault("Absorbs 25% of damage done to players on your team when above 25% life\nGrants immunity to knockback\n8% increased damage to nearby enemies");
         }
         public override void SetDefaults()
         {
@@ -29,7 +29,7 @@ namespace TRAEProject.NewContent.Items.Accesories.DemonShield
             Item.value = 66666; 
             Item.width = 32;          
             Item.height = 40;
-            Item.defense = 8;
+            Item.defense = 7;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

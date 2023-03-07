@@ -26,7 +26,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("PinkFlamethrower");     //The English name of the Projectile
+            // DisplayName.SetDefault("PinkFlamethrower");     //The English name of the Projectile
         
             }
             public override string Texture => "Terraria/Images/Item_0";

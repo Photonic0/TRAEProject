@@ -7,7 +7,7 @@ namespace TRAEProject.NewContent.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("NightsBeam");     //The English name of the Projectile
+            // DisplayName.SetDefault("NightsBeam");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {

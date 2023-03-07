@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Dried Rose");
-            Tooltip.SetDefault("Has a bit of magic remaining");
+            // DisplayName.SetDefault("Dried Rose");
+            // Tooltip.SetDefault("Has a bit of magic remaining");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
         }
 

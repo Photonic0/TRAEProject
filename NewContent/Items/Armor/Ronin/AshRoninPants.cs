@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.Armor.Ronin
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ash Ronin Pants");
-            Tooltip.SetDefault("11% increased magic and summon damage\n11% increased movement speed");
+            // DisplayName.SetDefault("Ash Ronin Pants");
+            // Tooltip.SetDefault("11% increased magic and summon damage\n11% increased movement speed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

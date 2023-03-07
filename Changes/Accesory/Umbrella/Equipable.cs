@@ -17,7 +17,7 @@ namespace TRAEProject
             if(item.type == ItemID.Umbrella || item.type == ItemID.TragicUmbrella)
             {
                 item.accessory = true;
-                item.canBePlacedInVanityRegardlessOfConditions = true;
+                item.hasVanityEffects = true;
                 item.damage = 0;
                 item.DamageType = DamageClass.Default;
                 item.holdStyle = 0;

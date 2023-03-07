@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.Misc.Mounts
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Heatproof Saddle");
-            Tooltip.SetDefault("Summons a ridable lava walker mount");
+            // DisplayName.SetDefault("Heatproof Saddle");
+            // Tooltip.SetDefault("Summons a ridable lava walker mount");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -103,8 +103,8 @@ namespace TRAEProject.NewContent.Items.Misc.Mounts
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lavamander");
-            Description.SetDefault("Dont get cold feet again");
+            // DisplayName.SetDefault("Lavamander");
+            // Description.SetDefault("Dont get cold feet again");
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true; 
         }

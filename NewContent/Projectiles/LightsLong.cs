@@ -8,7 +8,7 @@ namespace TRAEProject.NewContent.Projectiles
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
-            DisplayName.SetDefault("LightsLong");     //The English name of the Projectile
+            // DisplayName.SetDefault("LightsLong");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {

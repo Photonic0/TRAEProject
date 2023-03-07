@@ -17,15 +17,15 @@ namespace TRAEProject.NewContent.Items.Accesories.ChainShield
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Chain Shield");
-            Tooltip.SetDefault("Increases max life by 40\nTemporarily increases defense when damaged");
+            // DisplayName.SetDefault("Chain Shield");
+            // Tooltip.SetDefault("Increases max life by 40\nTemporarily increases defense when damaged");
         }
         public override void SetDefaults()
         {
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
             Item.value = 80000;
-            Item.defense = 1;
+            Item.defense = 3;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

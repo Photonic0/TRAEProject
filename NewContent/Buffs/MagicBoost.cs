@@ -6,8 +6,8 @@ namespace TRAEProject.NewContent.Buffs
 	{
 
 		public override void SetStaticDefaults() {
-			DisplayName.SetDefault("Magic Boost");
-			Description.SetDefault("Magic damage increased by 20%");
+			// DisplayName.SetDefault("Magic Boost");
+			// Description.SetDefault("Magic damage increased by 20%");
 		}
 
 		public override void Update(Player player, ref int buffIndex)

@@ -9,7 +9,7 @@ namespace TRAEProject.NewContent.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("BigBubble");     //The English name of the projectile
+            // DisplayName.SetDefault("BigBubble");     //The English name of the projectile
         }
         public override void SetDefaults()
         {

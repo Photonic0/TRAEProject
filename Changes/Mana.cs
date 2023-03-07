@@ -142,8 +142,8 @@ namespace TRAEProject.Changes
         }
         public override void SetStaticDefaults()
         {
-            IL.Terraria.Player.ItemCheck_PayMana += PayManaHook2; //this method is used by most magic weapons
-            IL.Terraria.Player.CheckMana_Item_int_bool_bool += CheckManaHook2; //this is used by held projectiles like LMG
+            Terraria.IL_Player.ItemCheck_PayMana += PayManaHook2; //this method is used by most magic weapons
+            Terraria.IL_Player.CheckMana_Item_int_bool_bool += CheckManaHook2; //this is used by held projectiles like LMG
         }
         private void PayManaHook2(ILContext il)
         {

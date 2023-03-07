@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ghost Bullet");
-            Tooltip.SetDefault("Goes through tiles and enemies\nLeaves up to 9 ghost bullets inside the enemy, releases them when killed");
+            // DisplayName.SetDefault("Ghost Bullet");
+            // Tooltip.SetDefault("Goes through tiles and enemies\nLeaves up to 9 ghost bullets inside the enemy, releases them when killed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -47,7 +47,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("GhostSHot");     //The English name of the Projectile
+            // DisplayName.SetDefault("GhostSHot");     //The English name of the Projectile
 
         }
         public override void SetDefaults()

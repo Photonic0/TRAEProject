@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lava Gel");
-            Tooltip.SetDefault("Ignite it to know what REAL fire is!");
+            // DisplayName.SetDefault("Lava Gel");
+            // Tooltip.SetDefault("Ignite it to know what REAL fire is!");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
 
@@ -44,7 +44,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         {
             public override void SetStaticDefaults()
             {
-                DisplayName.SetDefault("Lavaflamethrower");     //The English name of the Projectile
+                // DisplayName.SetDefault("Lavaflamethrower");     //The English name of the Projectile
 
             }
             public override string Texture => "Terraria/Images/Item_0";

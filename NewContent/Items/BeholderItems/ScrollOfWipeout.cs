@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Scroll of Wipeout");
-            Tooltip.SetDefault("Deals massive damage to all nearby enemies");
+            // DisplayName.SetDefault("Scroll of Wipeout");
+            // Tooltip.SetDefault("Deals massive damage to all nearby enemies");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -69,7 +69,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         public override void PostItemCheck()
         {
 
-            if (Player.HeldItem.type == ItemType<ScrollOfWipeout>() && Player.itemAnimation > 0)
+            if (Player.HeldItem.type == ItemType<ScrollOfWipeout>() && Player.itemAnimation > 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 Item item = Player.HeldItem;
 
@@ -137,8 +137,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Wiped Out");
-            Description.SetDefault("The scroll needs to recharge");
+            // DisplayName.SetDefault("Wiped Out");
+            // Description.SetDefault("The scroll needs to recharge");
             Main.buffNoSave[Type] = true;
             Main.debuff[Type] = true;
         }

@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Granite Battery");
-            Tooltip.SetDefault("Holds more power than it looks");
+            // DisplayName.SetDefault("Granite Battery");
+            // Tooltip.SetDefault("Holds more power than it looks");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
         }
 

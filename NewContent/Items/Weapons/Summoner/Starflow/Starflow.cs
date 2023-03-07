@@ -17,8 +17,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Stardust Trail");
-            Tooltip.SetDefault("Your summons will focus struck enemies\n22 summon tag damage\nSummon flow invaders while attacking");
+            // DisplayName.SetDefault("Stardust Trail");
+            // Tooltip.SetDefault("Your summons will focus struck enemies\n22 summon tag damage\nSummon flow invaders while attacking");
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
         public override void SetDefaults()
@@ -54,7 +54,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starflow");
+            // DisplayName.SetDefault("Starflow");
         }
         public override void WhipDefaults()
         {
@@ -70,8 +70,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starflow Tag");
-            Description.SetDefault("22 tag damage pogchamp");
+            // DisplayName.SetDefault("Starflow Tag");
+            // Description.SetDefault("22 tag damage pogchamp");
             Main.debuff[Type] = true;
   
         }
@@ -114,7 +114,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Starflow Invader");
+            // DisplayName.SetDefault("Starflow Invader");
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true; //This is necessary for right-click targeting
         }
 

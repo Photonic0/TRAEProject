@@ -8,8 +8,8 @@ namespace TRAEProject.NewContent.Buffs
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Nano Healing");
-			Description.SetDefault("Being repaired by nanites");
+			// DisplayName.SetDefault("Nano Healing");
+			// Description.SetDefault("Being repaired by nanites");
 		}
 		public override void Update(Player player, ref int buffIndex)
 		{

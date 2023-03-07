@@ -20,7 +20,7 @@ namespace TRAEProject.Changes.NewContent.Accesory.Vitamins
             if(item.type == ItemID.Vitamins || item.type == ItemID.ArmorBracing)
             {
                 item.vanity = true;
-                item.canBePlacedInVanityRegardlessOfConditions = true;
+                item.hasVanityEffects = true;
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

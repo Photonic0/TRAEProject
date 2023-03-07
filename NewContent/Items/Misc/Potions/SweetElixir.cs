@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.Misc.Potions
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 
-            DisplayName.SetDefault("Sweet Elixir");
-            Tooltip.SetDefault("Grants Honey for 45 seconds");
+            // DisplayName.SetDefault("Sweet Elixir");
+            // Tooltip.SetDefault("Grants Honey for 45 seconds");
         }
         public override void SetDefaults()
         {

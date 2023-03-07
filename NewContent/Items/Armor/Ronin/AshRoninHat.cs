@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Armor.Ronin
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ash Ronin Mask");
-            Tooltip.SetDefault("11% increased magic and summon damage\n7% increased magic critical strike chance\nIncreases maximum mana by 80");
+            // DisplayName.SetDefault("Ash Ronin Mask");
+            // Tooltip.SetDefault("11% increased magic and summon damage\n7% increased magic critical strike chance\nIncreases maximum mana by 80");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1; 
             Head.Sets.DrawHatHair[Item.headSlot] = true;
 

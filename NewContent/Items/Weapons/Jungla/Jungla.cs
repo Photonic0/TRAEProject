@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Jungla
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Jungla");
-            Tooltip.SetDefault("Shoots three darts at once");
+            // DisplayName.SetDefault("Jungla");
+            // Tooltip.SetDefault("Shoots three darts at once");
         }
         public override void SetDefaults()
         {

@@ -30,7 +30,7 @@ namespace TRAEProject.NewContent.Items.Misc.PermaBuffs
 			speedWish = reader.ReadBoolean();
 		}
 
-		public override void clientClone(ModPlayer clientClone) {
+		public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */ {
 			PermaBuffs clone = clientClone as PermaBuffs;
 			clone.speedWish = speedWish;
 		}

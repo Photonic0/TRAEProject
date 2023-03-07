@@ -109,7 +109,7 @@ namespace TRAEProject
     
         public override void Load()
         {
-            IL.Terraria.Projectile.StatusNPC += (il) => {
+            Terraria.IL_Projectile.StatusNPC += (il) => {
                 var c = new ILCursor(il);
 
                 if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(379))) {

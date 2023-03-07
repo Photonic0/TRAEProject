@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fae in a bottle");
-            Tooltip.SetDefault("A weak double jump that grant immunity frames");
+            // DisplayName.SetDefault("Fae in a bottle");
+            // Tooltip.SetDefault("A weak double jump that grant immunity frames");
         }
         public override void SetDefaults()
         {

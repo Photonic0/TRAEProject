@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Armor.LeatherArmor
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Leather Tunic");
-			Tooltip.SetDefault("4% increased summon damage");
+			// DisplayName.SetDefault("Leather Tunic");
+			// Tooltip.SetDefault("4% increased summon damage");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()

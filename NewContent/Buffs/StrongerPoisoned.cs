@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Buffs
 		{
 			Main.debuff[Type] = true;
 			Main.buffNoSave[Type] = true;
-			DisplayName.SetDefault("Stronger Poisoned");
-			Description.SetDefault("Yes, I'm fully aware that this is the exact opposite of what a Bezoar is for.");
+			// DisplayName.SetDefault("Stronger Poisoned");
+			// Description.SetDefault("Yes, I'm fully aware that this is the exact opposite of what a Bezoar is for.");
 		}
         public override void Update(NPC npc, ref int buffIndex)
         {

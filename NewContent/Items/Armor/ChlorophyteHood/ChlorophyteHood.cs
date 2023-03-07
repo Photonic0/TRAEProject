@@ -17,10 +17,10 @@ namespace TRAEProject.NewContent.Items.Armor.ChlorophyteHood
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Chlorophyte Hood");
+            // DisplayName.SetDefault("Chlorophyte Hood");
 
             Head.Sets.DrawHatHair[Item.headSlot] = true;
-            Tooltip.SetDefault("Increases your maximum number of minions by 2");
+            // Tooltip.SetDefault("Increases your maximum number of minions by 2");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

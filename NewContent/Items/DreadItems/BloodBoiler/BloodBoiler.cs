@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodBoiler
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Blood Boiler");
-            Tooltip.SetDefault("Gives a new meaning to 'making your blood boil'");
+            // DisplayName.SetDefault("Blood Boiler");
+            // Tooltip.SetDefault("Gives a new meaning to 'making your blood boil'");
         }
         public override void SetDefaults()
         {

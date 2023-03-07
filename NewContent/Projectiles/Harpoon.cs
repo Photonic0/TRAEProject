@@ -7,7 +7,7 @@ namespace TRAEProject.NewContent.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Harpoon");     
+            // DisplayName.SetDefault("Harpoon");     
         }
         public override void SetDefaults()
         {

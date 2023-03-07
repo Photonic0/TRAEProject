@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Buffs
 			Main.debuff[Type] = true;
 			BuffID.Sets.IsAnNPCWhipDebuff[Type] = true;
 			Main.buffNoSave[Type] = true;
-			DisplayName.SetDefault("KaleidoscopeNewDebuff");
-			Description.SetDefault(""); 
+			// DisplayName.SetDefault("KaleidoscopeNewDebuff");
+			// Description.SetDefault(""); 
 		}
 	}
 	public class KaleidoscopeSecondTagOnHit : GlobalProjectile

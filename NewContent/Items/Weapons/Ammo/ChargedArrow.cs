@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Charged arrow");
-            Tooltip.SetDefault("Creates a damaging ring around hit enemies\nStacks up to 5 times, increasing range");
+            // DisplayName.SetDefault("Charged arrow");
+            // Tooltip.SetDefault("Creates a damaging ring around hit enemies\nStacks up to 5 times, increasing range");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -47,7 +47,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("ChargedArrow");     //The English name of the Projectile
+            // DisplayName.SetDefault("ChargedArrow");     //The English name of the Projectile
 
         }
         public override void SetDefaults()

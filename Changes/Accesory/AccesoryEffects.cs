@@ -118,7 +118,7 @@ namespace TRAEProject
                 Player.maxRunSpeed *= 2f;
             }
         }
-        public override void OnRespawn(Player Player)
+        public override void OnRespawn()
         {
             Player.statLife = Player.statLifeMax;
             return;

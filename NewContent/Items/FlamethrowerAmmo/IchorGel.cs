@@ -11,8 +11,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ichor Gel");
-            Tooltip.SetDefault("Highly Volatile");
+            // DisplayName.SetDefault("Ichor Gel");
+            // Tooltip.SetDefault("Highly Volatile");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -44,7 +44,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ichorthrower");     //The English name of the Projectile
+            // DisplayName.SetDefault("Ichorthrower");     //The English name of the Projectile
         }
         public override string Texture => "Terraria/Images/Item_0";
         public override void SetDefaults()
@@ -110,7 +110,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         {
             public override void SetStaticDefaults()
             {
-                DisplayName.SetDefault("Ichorthrower");     //The English name of the Projectile
+                // DisplayName.SetDefault("Ichorthrower");     //The English name of the Projectile
             }
             public override string Texture => "Terraria/Images/Item_0";
             public override void SetDefaults()

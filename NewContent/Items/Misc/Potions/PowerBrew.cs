@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.Misc.Potions
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 20;
 
-            DisplayName.SetDefault("Power Brew");
-            Tooltip.SetDefault("Increases damage by 30% for 20 seconds after drunk");
+            // DisplayName.SetDefault("Power Brew");
+            // Tooltip.SetDefault("Increases damage by 30% for 20 seconds after drunk");
         }
         public override void SetDefaults()
         {
@@ -55,8 +55,8 @@ Item.maxStack = 30;
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            DisplayName.SetDefault("Power");
-            Description.SetDefault("Damage increased by 30%");
+            // DisplayName.SetDefault("Power");
+            // Description.SetDefault("Damage increased by 30%");
         }
         public override void Update(Player player, ref int buffIndex)
         {

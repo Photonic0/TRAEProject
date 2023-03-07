@@ -682,7 +682,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Shadowflame Skull");
+			// DisplayName.SetDefault("Shadowflame Skull");
 			Main.projFrames[Projectile.type] = 4;
 		}
 

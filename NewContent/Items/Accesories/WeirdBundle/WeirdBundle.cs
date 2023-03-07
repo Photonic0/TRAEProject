@@ -18,8 +18,8 @@ namespace TRAEProject.NewContent.Items.Accesories.WeirdBundle
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Bundle of Weird Balloons");
-            Tooltip.SetDefault("Allows the user to triple jump\nIncreases jump height\nReleases bees and douses the wielder in honey when damaged\nMultiple combs increase efficiency and life regeneration");
+            // DisplayName.SetDefault("Bundle of Weird Balloons");
+            // Tooltip.SetDefault("Allows the user to triple jump\nIncreases jump height\nReleases bees and douses the wielder in honey when damaged\nMultiple combs increase efficiency and life regeneration");
         }
 
         public override void SetDefaults()
@@ -34,6 +34,7 @@ namespace TRAEProject.NewContent.Items.Accesories.WeirdBundle
             player.hasJumpOption_Sail = true;
             player.jumpBoost = true;
             player.GetModPlayer<HoneyCombPlayer>().combs += 1;
+            player.lifeRegen += 1;
             player.noFallDmg = true;
         }
         public override void AddRecipes()

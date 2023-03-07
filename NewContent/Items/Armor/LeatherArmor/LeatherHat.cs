@@ -13,10 +13,10 @@ namespace TRAEProject.NewContent.Items.Armor.LeatherArmor
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Leather Hood");
+            // DisplayName.SetDefault("Leather Hood");
            
             Head.Sets.DrawHatHair[Item.headSlot] = true;
-            Tooltip.SetDefault("3% increased summon damage");
+            // Tooltip.SetDefault("3% increased summon damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
