@@ -261,6 +261,12 @@ namespace TRAEProject.Changes.NPCs
                     ruleC.OnSuccess(ItemDropRule.Common(ItemID.BabyGrinchMischiefWhistle, 15)).OnFailedRoll(ItemDropRule.OneFromOptions(1, ItemID.NorthPole, ItemID.SnowmanCannon, ItemID.BlizzardStaff, ItemType<AbsoluteZero>()));
                     ruleC.OnSuccess(ItemDropRule.MasterModeCommonDrop(ItemID.IceQueenMasterTrophy));
                     ruleC.OnSuccess(ItemDropRule.MasterModeDropOnAllPlayers(ItemID.IceQueenPetItem, 4));
+                    npcLoot.Add(ruleC);
+                    break;
+                    case NPCID.SantaNK1:
+                    IItemDropRule ruleD = new LeadingConditionRule(new Conditions.FrostMoonDropGatingChance());
+                    ruleD.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Booster>(), 4));
+                    npcLoot.Add(ruleD);
                     break;
                 case NPCID.Mimic:
                     npcLoot.RemoveWhere(rule => true);

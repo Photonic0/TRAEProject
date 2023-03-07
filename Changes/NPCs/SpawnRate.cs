@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.DreadItems.RedPearl;
+using TRAEProject.NewContent.NPCs.Underworld.Beholder;
 
 namespace TRAEProject.Changes.NPCs
 {
@@ -14,12 +15,11 @@ namespace TRAEProject.Changes.NPCs
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            if(NPC.AnyNPCs(NPCID.BloodNautilus))
+            if(NPC.AnyNPCs(NPCID.BloodNautilus) || NPC.AnyNPCs(ModContent.NPCType<BeholderNPC>()))
             {
                 spawnRate = 0;
                 maxSpawns = 0;
             }
-
             else if(player.GetModPlayer<PearlEffects>().spawnUp)
             {
                 spawnRate = (int)((double)spawnRate * 0.5);
