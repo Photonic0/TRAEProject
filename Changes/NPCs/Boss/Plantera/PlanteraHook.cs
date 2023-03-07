@@ -17,7 +17,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Plantera's Hook");
+            //DisplayName.SetDefault("Plantera's Hook");
             Main.projFrames[Projectile.type] = 4;
         }
         public override void SetDefaults()

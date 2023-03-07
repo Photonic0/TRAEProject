@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.Armor.UnderworldWarrior
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Underworld Warrior Helmet");
-            Tooltip.SetDefault("15% increased damage\n25% reduced mana costs");
+            //DisplayName.SetDefault("Underworld Warrior Helmet");
+            ////Tooltip.SetDefault("15% increased damage\n25% reduced mana costs");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

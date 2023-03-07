@@ -10,8 +10,8 @@ namespace TRAEProject.NewContent.Buffs
 
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Water Affinity");
-			Description.SetDefault("Running Speed increased");
+			//DisplayName.SetDefault("Water Affinity");
+			//Description.SetDefault("Running Speed increased");
 		}
 
 		public override void Update(Player player, ref int buffIndex)

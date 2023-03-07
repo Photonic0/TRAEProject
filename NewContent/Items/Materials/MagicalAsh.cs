@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Magical Ash");
-            Tooltip.SetDefault("Let's hope a Phoenix isnt born from these");
+            //DisplayName.SetDefault("Magical Ash");
+            ////Tooltip.SetDefault("Let's hope a Phoenix isnt born from these");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
         }
 

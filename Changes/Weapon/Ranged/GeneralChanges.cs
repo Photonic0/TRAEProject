@@ -49,7 +49,7 @@ namespace TRAEProject.Changes.Weapons
                     item.useTime = 10; // up from 6
                     item.knockBack = 0.25f; // down from 0.3
                     return;
-                case ItemID.EldMelter:
+                case ItemID.ElfMelter:
                     item.damage = 30;
                     item.useAnimation = 60; // up from 30
                     item.useTime = 6; // up from 6
@@ -196,7 +196,7 @@ namespace TRAEProject.Changes.Weapons
                     return false;
                 }
             }
-            if ((weapon.type == ItemID.Flamethrower || weapon.type == ItemID.EldMelter))
+            if ((weapon.type == ItemID.Flamethrower || weapon.type == ItemID.ElfMelter))
             {
                 return player.itemAnimation >= player.itemAnimationMax - 4;
             }
@@ -249,7 +249,7 @@ namespace TRAEProject.Changes.Weapons
                     }
                     return;
                 case ItemID.VenusMagnum:
-                case ItemID.EldMelter:
+                case ItemID.ElfMelter:
                 case ItemID.Flamethrower:
                     foreach (TooltipLine line in tooltips)
                     {

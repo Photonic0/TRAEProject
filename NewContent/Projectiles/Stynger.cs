@@ -14,7 +14,7 @@ namespace TRAEProject.NewContent.Projectiles
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 1;
-            DisplayName.SetDefault("Stynger");     //The English name of the Projectile
+            //DisplayName.SetDefault("Stynger");     //The English name of the Projectile
         }
         public override void SetDefaults()
         {

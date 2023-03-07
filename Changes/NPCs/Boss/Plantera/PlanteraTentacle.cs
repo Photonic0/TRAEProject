@@ -28,7 +28,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
             }
         }
 
-        public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
             if (npc.type == NPCID.PlanterasTentacle)
             {

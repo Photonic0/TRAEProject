@@ -18,9 +18,9 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("Feed the Joter");
+            ////Tooltip.SetDefault("Feed the Joter");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-            DisplayName.SetDefault("Joter Trident");
+            //DisplayName.SetDefault("Joter Trident");
         }
         // STATS IN SpearItems.cs
     }

@@ -105,7 +105,7 @@ namespace TRAEProject.Changes.NPCs
                     break;
             }
         }
-        public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
 
             switch (npc.type)
@@ -130,13 +130,12 @@ namespace TRAEProject.Changes.NPCs
             {
                 case NPCID.LunarTowerNebula:
                     NPC.LunarShieldPowerNormal = 50;
-                    NPC.LunarShieldPowerExpert = 50;
                     npc.TargetClosest();
                     Player player = Main.player[npc.target];
                     if (player.dead || !player.ZoneTowerNebula )
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerNebula < NPC.LunarShieldPowerExpert)
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerNebula < 50)
                         {
                             NPC.ShieldStrengthTowerNebula += 1;
                             shieldTimer = 0;
@@ -145,13 +144,12 @@ namespace TRAEProject.Changes.NPCs
                     return;
                 case NPCID.LunarTowerVortex:
                     NPC.LunarShieldPowerNormal = 50;
-                    NPC.LunarShieldPowerExpert = 50;
                     npc.TargetClosest();
                     Player player1 = Main.player[npc.target];
                     if (player1.dead || !player1.ZoneTowerVortex)
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerVortex < NPC.LunarShieldPowerExpert)
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerVortex < 50)
                         {
                             NPC.ShieldStrengthTowerVortex += 1;
                             shieldTimer = 0;
@@ -160,13 +158,12 @@ namespace TRAEProject.Changes.NPCs
                     return;
                 case NPCID.LunarTowerStardust:
                     NPC.LunarShieldPowerNormal = 50;
-                    NPC.LunarShieldPowerExpert = 50; 
                     npc.TargetClosest();
                     Player player2 = Main.player[npc.target];
                     if (player2.dead || !player2.ZoneTowerStardust)
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerStardust < NPC.LunarShieldPowerExpert)
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerStardust < 50)
                         {
                             NPC.ShieldStrengthTowerStardust += 1;
                             shieldTimer = 0;
@@ -175,13 +172,12 @@ namespace TRAEProject.Changes.NPCs
                     return;
                 case NPCID.LunarTowerSolar:
                     NPC.LunarShieldPowerNormal = 50;
-                    NPC.LunarShieldPowerExpert = 50;
                     npc.TargetClosest();
                     Player player3 = Main.player[npc.target];
                     if (player3.dead || !player3.ZoneTowerSolar)
                     {
                         shieldTimer += 1f;
-                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerSolar < NPC.LunarShieldPowerExpert)
+                        if (shieldTimer > 30f && NPC.ShieldStrengthTowerSolar <50 )
                         {
                             NPC.ShieldStrengthTowerSolar += 1;
                             shieldTimer = 0;

@@ -18,8 +18,8 @@ namespace TRAEProject.NewContent.Items.Accesories.MasochistChains
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Masochist Chains");
-            Tooltip.SetDefault("Getting hit will temporarily increase damage by 20% and movement speed");
+            //DisplayName.SetDefault("Masochist Chains");
+            ////Tooltip.SetDefault("Getting hit will temporarily increase damage by 20% and movement speed");
         }
         public override void SetDefaults()
         {

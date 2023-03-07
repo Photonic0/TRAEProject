@@ -15,8 +15,8 @@ namespace TRAEProject.NewContent.Items.Armor.Reptilian
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Reptilian Mask");
-            Tooltip.SetDefault("11% increased melee and summon damage\n7% increased melee critical strike chance\n15% increased whip range");
+            //DisplayName.SetDefault("Reptilian Mask");
+            ////Tooltip.SetDefault("11% increased melee and summon damage\n7% increased melee critical strike chance\n15% increased whip range");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

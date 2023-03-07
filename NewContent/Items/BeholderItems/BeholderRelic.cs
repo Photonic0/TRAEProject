@@ -17,7 +17,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Beholder Relic");
+			//DisplayName.SetDefault("Beholder Relic");
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}

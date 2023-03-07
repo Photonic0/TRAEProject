@@ -10,8 +10,8 @@ namespace TRAEProject.NewContent.Items.Misc.PermaBuffs
     {
         public override void SetStaticDefaults() 
         {
-            DisplayName.SetDefault("Wish for Speed");
-            Tooltip.SetDefault("Permanently increases movement speed by 15%\nYou have 1 wish... as long as its 15% movement speed.");
+            //DisplayName.SetDefault("Wish for Speed");
+            ////Tooltip.SetDefault("Permanently increases movement speed by 15%\nYou have 1 wish... as long as its 15% movement speed.");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
 			// Registers a vertical animation with 4 frames and each one will last 5 ticks (1/12 second)

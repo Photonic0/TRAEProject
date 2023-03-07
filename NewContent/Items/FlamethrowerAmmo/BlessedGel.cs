@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Water Gel");
-            Tooltip.SetDefault("Flames bounce to their targets");
+            //DisplayName.SetDefault("Water Gel");
+            //Tooltip.SetDefault
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -43,7 +43,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("BlessedFlamethrower");     //The English name of the Projectile
+            //DisplayName.SetDefault("BlessedFlamethrower");     //The English name of the Projectile
         }
         public override string Texture => "Terraria/Images/Item_0";
         public override void SetDefaults()

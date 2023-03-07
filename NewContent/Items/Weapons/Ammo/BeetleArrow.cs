@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Beetle Arrow");
-            Tooltip.SetDefault("25% chance to stun and create a damaging shockwave");
+            //DisplayName.SetDefault("Beetle Arrow");
+            ////Tooltip.SetDefault("25% chance to stun and create a damaging shockwave");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -47,7 +47,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Beetle Arrow");     //The English name of the Projectile
+            //DisplayName.SetDefault("Beetle Arrow");     //The English name of the Projectile
 
         }
         public override void SetDefaults()

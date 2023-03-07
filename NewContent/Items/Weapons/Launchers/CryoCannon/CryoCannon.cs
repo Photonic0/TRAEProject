@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Cryo Cannon");
-            Tooltip.SetDefault("Shoots Freezing Rockets");
+            //DisplayName.SetDefault("Cryo Cannon");
+            ////Tooltip.SetDefault("Shoots Freezing Rockets");
         }
         public override void SetDefaults()
         {

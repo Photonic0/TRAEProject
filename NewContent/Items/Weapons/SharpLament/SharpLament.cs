@@ -19,8 +19,8 @@ namespace TRAEProject.NewContent.Items.Weapons.SharpLament
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             Item.staff[Item.type] = true;
-            DisplayName.SetDefault("Sharp Tears");
-            Tooltip.SetDefault("Shoots flaming wood");
+            //DisplayName.SetDefault("Sharp Tears");
+            ////Tooltip.SetDefault("Shoots flaming wood");
         }
         public override void SetDefaults()
         {

@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bloody Arrow");
-            Tooltip.SetDefault("Leaves Blood Drops in its path");
+            //DisplayName.SetDefault("Bloody Arrow");
+            ////Tooltip.SetDefault("Leaves Blood Drops in its path");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -49,7 +49,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("BloodyArrow");     //The English name of the Projectile
+            //DisplayName.SetDefault("BloodyArrow");     //The English name of the Projectile
 
         }
         public override void SetDefaults()
@@ -86,7 +86,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blood Drop");     //The English name of the Projectile
+            //DisplayName.SetDefault("Blood Drop");     //The English name of the Projectile
 
         }
         public override void SetDefaults()

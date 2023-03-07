@@ -15,8 +15,8 @@ namespace TRAEProject.NewContent.Items.Accesories.CounterweightString
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Counterweight String");
-            Tooltip.SetDefault("Increases yoyo range\nThrows a counterweight after hitting an enemy with a yoyo");
+            //DisplayName.SetDefault("Counterweight String");
+            ////Tooltip.SetDefault("Increases yoyo range\nThrows a counterweight after hitting an enemy with a yoyo");
         }
         public override void SetDefaults()
         {

@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodWings
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Blood Rush");
-            Description.SetDefault("Fly away!");
+            //DisplayName.SetDefault("Blood Rush");
+            //Description.SetDefault("Fly away!");
         }
         public override void Update(Player player, ref int buffIndex)
         {

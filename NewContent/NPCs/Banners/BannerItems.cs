@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Bomber Bones Banner");
-            Tooltip.SetDefault("Nearby players get a bonus against: Bomber Bones");
+            //DisplayName.SetDefault("Bomber Bones Banner");
+            ////Tooltip.SetDefault("Nearby players get a bonus against: Bomber Bones");
         }
         public override void SetDefaults()
         {
@@ -39,8 +39,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Boom Pixie Banner");
-            Tooltip.SetDefault("Nearby players get a bonus against: Boom Pixie");
+            //DisplayName.SetDefault("Boom Pixie Banner");
+            ////Tooltip.SetDefault("Nearby players get a bonus against: Boom Pixie");
         }
         public override void SetDefaults()
         {
@@ -66,8 +66,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Froggabomba Banner");
-            Tooltip.SetDefault("Nearby players get a bonus against: Froggabomba");
+            //DisplayName.SetDefault("Froggabomba Banner");
+            ////Tooltip.SetDefault("Nearby players get a bonus against: Froggabomba");
         }
         public override void SetDefaults()
         {
@@ -93,8 +93,8 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("GraniteOvergrowth Banner");
-            Tooltip.SetDefault("Nearby players get a bonus against: GraniteOvergrowth");
+            //DisplayName.SetDefault("GraniteOvergrowth Banner");
+            ////Tooltip.SetDefault("Nearby players get a bonus against: GraniteOvergrowth");
         }
         public override void SetDefaults()
         {

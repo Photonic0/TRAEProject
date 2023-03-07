@@ -124,9 +124,8 @@ namespace TRAEProject.Changes.NPCs
                     break;
             }
         }
-        public override void ScaleExpertStats(NPC npc, int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
         {
-
             switch (npc.type)
             {
                 case NPCID.SolarFlare:

@@ -15,8 +15,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Absolute Zero");
-            Tooltip.SetDefault("Your summons will focus struck enemies\n12 summon tag damage\n25% summon tag critical strike chance");
+            //DisplayName.SetDefault("Absolute Zero");
+            ////Tooltip.SetDefault("Your summons will focus struck enemies\n12 summon tag damage\n25% summon tag critical strike chance");
              CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
         public override void SetDefaults()
@@ -44,7 +44,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("AbsoluteZero"); ProjectileID.Sets.IsAWhip[Type] = true;
+            //DisplayName.SetDefault("AbsoluteZero"); ProjectileID.Sets.IsAWhip[Type] = true;
 
         }
         public override void WhipDefaults()
@@ -62,8 +62,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("AbsoluteZeroTag");
-            Description.SetDefault("You will be frozen when hit by a critical strike. Except not, because you are a player and not an enemy, but whatever.");
+            //DisplayName.SetDefault("AbsoluteZeroTag");
+            //Description.SetDefault("You will be frozen when hit by a critical strike. Except not, because you are a player and not an enemy, but whatever.");
             Main.debuff[Type] = true;
   
         }

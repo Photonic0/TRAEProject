@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Beholder Mask");
-            Tooltip.SetDefault("");
+            //DisplayName.SetDefault("Beholder Mask");
+            ////Tooltip.SetDefault("");
         }
 
         public override void SetDefaults()

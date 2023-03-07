@@ -18,8 +18,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Granite Shocker Staff");
-            Tooltip.SetDefault("Summons a Shocker Sentry that shoots chain lightning");
+            //DisplayName.SetDefault("Granite Shocker Staff");
+            ////Tooltip.SetDefault("Summons a Shocker Sentry that shoots chain lightning");
         }
         public override void SetDefaults()
         {
@@ -85,7 +85,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("GraniteShocker");
+            //DisplayName.SetDefault("GraniteShocker");
             Main.projFrames[Projectile.type] = 2;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 
@@ -236,7 +236,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Granite Shock");
+            //DisplayName.SetDefault("Granite Shock");
         }
         public override void SetDefaults()
         {

@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bloody Gel");
-            Tooltip.SetDefault("Destroys your enemy from the inside");
+            //DisplayName.SetDefault("Bloody Gel");
+            ////Tooltip.SetDefault("Destroys your enemy from the inside");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -46,7 +46,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("BloodyGel");     //The English name of the Projectile
+            //DisplayName.SetDefault("BloodyGel");     //The English name of the Projectile
 
         }
         public override string Texture => "Terraria/Images/Item_0";

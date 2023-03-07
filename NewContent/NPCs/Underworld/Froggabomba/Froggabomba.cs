@@ -30,7 +30,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
 				}
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
-            DisplayName.SetDefault("Froggabomba"); // Automatic from .lang files
+            NPC.setNPCName("Froggabomba", NPC.type);
             Main.npcFrameCount[NPC.type] = 4; // make sure to set this for your modnpcs.
         }
         public override void SetDefaults()
@@ -134,7 +134,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
             };
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, value);
 
-            DisplayName.SetDefault("Froggabomba"); // Automatic from .lang files
+            NPC.setNPCName("Froggabomba", NPC.type);
             Main.npcFrameCount[NPC.type] = 4; // make sure to set this for your modnpcs.
         }
         public override void SetDefaults()

@@ -8,8 +8,8 @@ namespace TRAEProject.NewContent.Buffs
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Impaled");
-            Description.SetDefault("Ouch!");
+            //DisplayName.SetDefault("Impaled");
+            //Description.SetDefault("Ouch!");
             Main.debuff[Type] = true;
 
         }

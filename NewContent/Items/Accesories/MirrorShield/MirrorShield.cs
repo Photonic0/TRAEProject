@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.Accesories.MirrorShield
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Mirror Shield");
-            Tooltip.SetDefault("Increases max life by 40\nReduces damage taken from projectiles by 12%");
+            //DisplayName.SetDefault("Mirror Shield");
+            ////Tooltip.SetDefault("Increases max life by 40\nReduces damage taken from projectiles by 12%");
         }
         public override void SetDefaults()
         {

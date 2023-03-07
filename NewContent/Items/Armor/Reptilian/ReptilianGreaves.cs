@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.Armor.Reptilian
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Reptilian Treads");
-            Tooltip.SetDefault("11% increased melee and summon damage\n11% increased movement speed");
+            //DisplayName.SetDefault("Reptilian Treads");
+            ////Tooltip.SetDefault("11% increased melee and summon damage\n11% increased movement speed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

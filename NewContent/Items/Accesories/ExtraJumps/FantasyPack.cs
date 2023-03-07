@@ -13,10 +13,10 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fantasy Pack");
-            //DisplayName.SetDefault("Christmas Booster");
-            //Tooltip.SetDefault("Bame's note: I dont really like how this item feels... should I finish it?");
-            Tooltip.SetDefault("Provides a booster jump, a levitation jump, and a fae jump");
+            //DisplayName.SetDefault("Fantasy Pack");
+            ////DisplayName.SetDefault("Christmas Booster");
+            ////Tooltip.SetDefault("Bame's note: I dont really like how this item feels... should I finish it?");
+            ////Tooltip.SetDefault("Provides a booster jump, a levitation jump, and a fae jump");
         }
         public override void SetDefaults()
         {

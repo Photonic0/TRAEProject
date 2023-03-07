@@ -29,11 +29,11 @@ namespace TRAEProject.NewContent.Items.Misc.PermaBuffs
 		{
 			speedWish = reader.ReadBoolean();
 		}
-
-		public override void clientClone(ModPlayer clientClone) {
-			PermaBuffs clone = clientClone as PermaBuffs;
-			clone.speedWish = speedWish;
-		}
+        public override void CopyClientState(ModPlayer targetCopy)
+        {
+            PermaBuffs clone = targetCopy as PermaBuffs;
+            clone.speedWish = speedWish;
+        }
 
 		public override void SendClientChanges(ModPlayer clientPlayer) 
 		{

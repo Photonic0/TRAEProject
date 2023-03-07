@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Crystal Gel");
-            Tooltip.SetDefault("Splits and ignores 25 defense");
+            //DisplayName.SetDefault("Crystal Gel");
+            ////Tooltip.SetDefault("Splits and ignores 25 defense");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -45,7 +45,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
     {   
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Crystal Flamethrower");     //The English name of the Projectile
+            //DisplayName.SetDefault("Crystal Flamethrower");     //The English name of the Projectile
         }
         public override string Texture => "Terraria/Images/Item_0";
         public override void SetDefaults()

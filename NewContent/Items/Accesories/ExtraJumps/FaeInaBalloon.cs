@@ -14,8 +14,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Fae Balloon");
-            Tooltip.SetDefault("A weak double jump that grant immunity frames\nIncreases jump height\nAllows reducing gravity by hodling up");
+            //DisplayName.SetDefault("Fae Balloon");
+            ////Tooltip.SetDefault("A weak double jump that grant immunity frames\nIncreases jump height\nAllows reducing gravity by hodling up");
         }
         public override void SetDefaults()
         {

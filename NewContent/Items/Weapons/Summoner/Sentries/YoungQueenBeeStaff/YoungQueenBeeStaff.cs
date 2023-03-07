@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.YoungQueenBeeSt
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-            DisplayName.SetDefault("Young Queen Bee Staff");
-            Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies");
+            //DisplayName.SetDefault("Young Queen Bee Staff");
+            ////Tooltip.SetDefault("Summons a bee Sentry that shoots bees at your enemies");
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true; // This lets the player target anywhere on the whole screen while using a controller.
             ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
         }
@@ -85,7 +85,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.YoungQueenBeeSt
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Young Queen Bee");
+            //DisplayName.SetDefault("Young Queen Bee");
             Main.projFrames[Projectile.type] = 2;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
 

@@ -9,8 +9,8 @@ namespace TRAEProject.NewContent.Items.Armor.UnderworldWarrior
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Underworld Warrior Greaves");
-            Tooltip.SetDefault("15% increased critical strike chance and movement speed\n25% increased melee speed");
+            //DisplayName.SetDefault("Underworld Warrior Greaves");
+            ////Tooltip.SetDefault("15% increased critical strike chance and movement speed\n25% increased melee speed");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

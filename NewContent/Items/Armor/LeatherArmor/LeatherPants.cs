@@ -12,8 +12,8 @@ namespace TRAEProject.NewContent.Items.Armor.LeatherArmor
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Leather Pants");
-            Tooltip.SetDefault("3% increased summon damage");
+            //DisplayName.SetDefault("Leather Pants");
+            ////Tooltip.SetDefault("3% increased summon damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

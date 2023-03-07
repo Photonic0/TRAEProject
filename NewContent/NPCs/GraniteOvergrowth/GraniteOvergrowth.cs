@@ -23,7 +23,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Granite Overgrowth"); // Automatic from .lang files
+            NPC.setNPCName("Granite Overgrowth", NPC.type);
             Main.npcFrameCount[NPC.type] = 16; // make sure to set this for your modnpcs.
         }
         public override void SetDefaults()
@@ -41,7 +41,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
             Banner = NPC.type;
             BannerItem = ItemType<GraniteOvergrowthBanner>();
         }
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
             NPC.lifeMax = 10000; // 20k on expert
                                  // 30k on master 
@@ -283,7 +283,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Granite Core"); // Automatic from .lang files
+            NPC.setNPCName("Granite Core", NPC.type);
         }
         public override void SetDefaults()
         {
@@ -356,7 +356,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Granite Bolt");
+            Projectile.Name = "Granite Bolt";              
         }
         public override void SetDefaults()
         {
@@ -399,7 +399,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Granite Boom");
+
         }
         public override void SetDefaults()
         {

@@ -22,8 +22,8 @@ namespace TRAEProject.NewContent.Items.Armor.Reptilian
         // +11% movement speed
         public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Reptilian Bulwark");
-			Tooltip.SetDefault("11% increased melee and summon damage\nIncreased your maximum number of minions by 1");
+			//DisplayName.SetDefault("Reptilian Bulwark");
+			//Tooltip.SetDefault("11% increased melee and summon damage\nIncreased your maximum number of minions by 1");
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 		public override void SetDefaults()
@@ -81,8 +81,8 @@ namespace TRAEProject.NewContent.Items.Armor.Reptilian
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Reptilian Might");
-            Description.SetDefault("30% increased melee speed");
+            //DisplayName.SetDefault("Reptilian Might");
+            //Description.SetDefault("30% increased melee speed");
             Main.buffNoSave[Type] = true;
         }
         public override void Update(Player player, ref int buffIndex)

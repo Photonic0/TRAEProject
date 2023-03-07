@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Final Boss");
-            Tooltip.SetDefault("!srepoleved gnitanosrepmi snoitanimoba gnitanosrepmi rof taerG");
+            //DisplayName.SetDefault("Final Boss");
+            ////Tooltip.SetDefault("!srepoleved gnitanosrepmi snoitanimoba gnitanosrepmi rof taerG");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

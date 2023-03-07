@@ -13,8 +13,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.DreadSummon
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Bloody Sea Wasp");
-            Tooltip.SetDefault("Use to catch a powerful Blood Moon monster");
+            //DisplayName.SetDefault("Bloody Sea Wasp");
+            ////Tooltip.SetDefault("Use to catch a powerful Blood Moon monster");
 
         }
         public override void SetDefaults()

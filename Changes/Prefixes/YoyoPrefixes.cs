@@ -189,7 +189,7 @@ namespace TRAEProject.Changes.Prefixes
         public override bool InstancePerEntity => true;
         public override void SetStaticDefaults()
         {
-            IL.Terraria.Projectile.AI_099_2 += HookYoyo;
+            IL_Projectile.AI_099_2 += HookYoyo;
         }
 		//rewrite yoyo AI so they can benifit from the rang and speed stats
         private void HookYoyo(ILContext il)

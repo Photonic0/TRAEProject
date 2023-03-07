@@ -18,8 +18,8 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Onyx Curse Doll");
-            Tooltip.SetDefault("Summons 3 fireballs to circle around you\nThe fireballs will drain 50 mana per second, affected by gear\nThey will curse nearby enemies, causing damage over time, lower damage or defense\nRight-click to uncast ");
+            //DisplayName.SetDefault("Onyx Curse Doll");
+            ////Tooltip.SetDefault("Summons 3 fireballs to circle around you\nThe fireballs will drain 50 mana per second, affected by gear\nThey will curse nearby enemies, causing damage over time, lower damage or defense\nRight-click to uncast ");
         }
         public override void SetDefaults()
         {
@@ -84,7 +84,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Curse Doll Weapon Flame");
+            //DisplayName.SetDefault("Curse Doll Weapon Flame");
         }
         public override void SetDefaults()
         {
@@ -148,7 +148,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Curse Doll Shadowflame");
+            //DisplayName.SetDefault("Curse Doll Shadowflame");
         }
         public override void SetDefaults()
         {
@@ -200,7 +200,7 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Curse Doll Armor Flame");
+            //DisplayName.SetDefault("Curse Doll Armor Flame");
         }
         public override void SetDefaults()
         {

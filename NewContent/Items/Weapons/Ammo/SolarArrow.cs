@@ -15,8 +15,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Sun Arrow");
-            Tooltip.SetDefault("5% chance to deal greatly increased damage");
+            //DisplayName.SetDefault("Sun Arrow");
+            ////Tooltip.SetDefault("5% chance to deal greatly increased damage");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
         }
         public override void SetDefaults()
@@ -48,7 +48,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("SolarArrow");     //The English name of the Projectile
+            //DisplayName.SetDefault("SolarArrow");     //The English name of the Projectile
 
         }
         public override void SetDefaults()

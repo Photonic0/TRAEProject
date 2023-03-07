@@ -16,7 +16,8 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bomber Bones");
+            NPC.setNPCName("Bomber Bones", NPC.type);
+
             Main.npcFrameCount[NPC.type] = 20;
 	NPC.buffImmune[BuffID.Poisoned] = true;
         }

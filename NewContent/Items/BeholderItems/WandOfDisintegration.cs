@@ -19,9 +19,9 @@ namespace TRAEProject.NewContent.Items.BeholderItems
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Wand of Disintegration");
+            //DisplayName.SetDefault("Wand of Disintegration");
             Item.staff[Item.type] = true;
-            Tooltip.SetDefault("Disintegrate everything in your path\nUse at your own risk");
+            ////Tooltip.SetDefault("Disintegrate everything in your path\nUse at your own risk");
         }
 
         public override void SetDefaults()

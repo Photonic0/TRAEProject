@@ -17,8 +17,8 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         {
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-            DisplayName.SetDefault("Ring of Tenacity");
-            Tooltip.SetDefault("18% increased maximum hp\n6% reduced total damage");
+            //DisplayName.SetDefault("Ring of Tenacity");
+            ////Tooltip.SetDefault("18% increased maximum hp\n6% reduced total damage");
         }
         public override void SetDefaults()
         {

@@ -51,12 +51,19 @@ Twins
 
 * Changed the way damage over time ticks show up and stack with one another
 
+* Butcher's chainsaw is now static instead of local
+
+* drills scale with mining speed
+
 * Honey Comb
 ** Amount of bees now equal to 10% of damage taken, maximum 16 bees
 ** Bee damage increased from 13 to 18
 ** Each bee has a 20% chance of being a giant bee
+** Grants 0.5 hp/s regen
 ** Honey on hit duration is now 10% of damage taken, with minimum of 2.5 seconds. After 25 damage it's the same duration as vanilla, gets better from there.
-** Stacking the accessory increases bees and honey's duration by 50% and grants 1 hp/s per comb 
+** Stacking the accessory increases bees and honey's duration by 50% and grants another 0.5 hp/s per comb 
+
+* Chain shield defense increased from 1 to 3
 
 * Bee Cloak
 ** Now only spawns 1 star for every 33 damage.
