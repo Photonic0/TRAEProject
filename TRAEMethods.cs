@@ -6,12 +6,62 @@ using Terraria.ID;
 using Terraria.Chat;
 using System.Collections.Generic;
 using TRAEProject.Changes;
-
+using Microsoft.Xna.Framework.Graphics;
 namespace TRAEProject
 {
     public static class TRAEMethods
     {
-
+        /// <summary>
+        /// overrde the texture of something you're gonna copy a vanilla texture for, then use DrawSelfFullbright and pass the projectile ID of the vnilla projecile.
+        /// This avoids bloating folders with images.
+        /// public override string TRAEMethods.blankTexture;
+        /// </summary>
+        public const string blankTexture = "TRAEProject/NewContent/NPCs/Underworld/CheapWayToSpawnARedDevil";
+        /// <summary>
+        /// Eliminates the need for a glowmask texture. CALL THIS IN PREDRAW AND NOT AI
+        /// Alwys returns false, so you can just do "return TRAEMethods.DrawSelfFullbright(Projectile);"
+        /// This methods assumes that the projectile spritesheet is vertical
+        /// </summary>
+        /// <param name="projectile">the projectile to be drawn</param>
+        /// <param name="texture"> if null, will use the projectile texture</param>
+        /// <returns></returns>
+        public static bool DrawSelfFullbright(Projectile projectile, Texture2D texture = null)
+        {
+            if(texture == null)
+            {
+                Main.instance.LoadProjectile(projectile.type);
+                texture = Terraria.GameContent.TextureAssets.Projectile[projectile.type].Value;
+            }
+            Rectangle frame = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
+            Main.EntitySpriteDraw(texture, projectile.Center - Main.screenPosition + new Vector2(0, projectile.gfxOffY), frame, Color.White, projectile.rotation, frame.Size() / 2, projectile.scale, projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
+            return false;
+        }
+        /// <summary>
+        /// Eliminates the need for a glowmask texture. CALL THIS IN PREDRAW AND NOT AI
+        /// Alwys returns false, so you can just do "return TRAEMethods.DrawSelfFullbright(Projectile, projectileToCopy);"
+        /// This methods assumes that the projectile spritesheet is vertical
+        /// </summary>
+        /// <param name="projectile">The projectile you are calling this one</param>
+        /// <param name="projectileTypeToCopy">a vanilla projectile you want to copy the texture of</param>
+        /// <returns></returns>
+        public static bool DrawSelfFullbright(Projectile projectile, int projectileTypeToCopy)
+        {
+            Main.instance.LoadProjectile(projectileTypeToCopy);
+            Texture2D texture = Terraria.GameContent.TextureAssets.Projectile[projectileTypeToCopy].Value;
+            Rectangle frame = texture.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
+            Main.EntitySpriteDraw(texture, projectile.Center - Main.screenPosition + new Vector2(0, projectile.gfxOffY), frame, Color.White, projectile.rotation, frame.Size() / 2, projectile.scale, projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
+            return false;
+        }
+        public static bool DrawSelfFullbright(NPC npc, Texture2D texture = null)
+        {
+            if (texture == null)
+            {
+                Main.instance.LoadProjectile(npc.type);
+                texture = Terraria.GameContent.TextureAssets.Npc[npc.type].Value;
+            }
+            Main.EntitySpriteDraw(texture, npc.Center - Main.screenPosition + new Vector2(0, npc.gfxOffY), npc.frame, Color.White, npc.rotation, npc.frame.Size() / 2, npc.scale, npc.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+            return false;
+        }
         public static void UseManaOverloadable(this Player player, int amount)
         {
             int overloadedManaLoss = Math.Min(player.GetModPlayer<Mana>().overloadedMana, amount);
@@ -31,7 +81,7 @@ namespace TRAEProject
                 Vector2 vector17 = new Vector2(x2, y);
                 float X = Base.X - vector17.X;
                 float Y = Base.Y + (Main.rand.Next(offsetCenter) * 100) - vector17.Y;
-                float squareRoot = (float)Math.Sqrt(X * X + Y * Y);
+                float squareRoot =  MathF.Sqrt(X * X + Y * Y);
                 squareRoot = velocity / squareRoot;
                 X *= squareRoot;
                 Y *= squareRoot;
@@ -90,7 +140,7 @@ namespace TRAEProject
         }
         public static Vector2 PolarVector(float radius, float theta)
         {
-            return new Vector2((float)Math.Cos(theta), (float)Math.Sin(theta)) * radius;
+            return new Vector2(MathF.Cos(theta), MathF.Sin(theta)) * radius;
         }
         /// <summary>
         /// give an angle to shoot at to attempt to hit a moving target, returns NaN when this is impossible
@@ -104,7 +154,7 @@ namespace TRAEProject
 
             //imagine a tirangle between the shooter, its target and where it think the target will be in the future
             // we need to find an angle in the triangle z this is the angle located at the target's corner
-            float z = (float)Math.PI + (targetTraj - angleToTarget);
+            float z = MathF.PI + (targetTraj - angleToTarget);
 
             //with this angle z we can now use the law of cosines to find time
             //the side opposite of z is equal to shootSpeed * time
@@ -114,12 +164,12 @@ namespace TRAEProject
 
             //here we use the quadratic formula to find time
             float a = shootSpeed * shootSpeed - targetSpeed * targetSpeed;
-            float b = 2 * targetSpeed * dist * (float)Math.Cos(z);
+            float b = 2 * targetSpeed * dist *  MathF.Cos(z);
             float c = -(dist * dist);
-            float time = (-b + (float)Math.Sqrt(b * b - 4 * a * c)) / (2 * a);
+            float time = (-b +  MathF.Sqrt(b * b - 4 * a * c)) / (2 * a);
 
             //we now know the time allowing use to find all sides of the tirangle, now we use law of Sines to calculate the angle to shoot at.
-            float calculatedShootAngle = angleToTarget - (float)Math.Asin((targetSpeed * time * (float)Math.Sin(z)) / (shootSpeed * time));
+            float calculatedShootAngle = angleToTarget -  MathF.Asin((targetSpeed * time *  MathF.Sin(z)) / (shootSpeed * time));
             travelTime = time;
             return calculatedShootAngle;
         }
@@ -185,15 +235,15 @@ namespace TRAEProject
             angle2 = PolarVector(1f, angle2).ToRotation();
             if (Math.Abs(angle1 - angle2) > Math.PI)
             {
-                return (float)Math.PI * 2 - Math.Abs(angle1 - angle2);
+                return  MathF.PI * 2 - Math.Abs(angle1 - angle2);
             }
             return Math.Abs(angle1 - angle2);
         }
         public static void SlowRotation(this ref float currentRotation, float targetAngle, float speed)
         {
             int f = 1; //this is used to switch rotation direction
-            float actDirection = new Vector2((float)Math.Cos(currentRotation), (float)Math.Sin(currentRotation)).ToRotation();
-            targetAngle = new Vector2((float)Math.Cos(targetAngle), (float)Math.Sin(targetAngle)).ToRotation();
+            float actDirection = new Vector2( MathF.Cos(currentRotation),  MathF.Sin(currentRotation)).ToRotation();
+            targetAngle = new Vector2( MathF.Cos(targetAngle),  MathF.Sin(targetAngle)).ToRotation();
 
             //this makes f 1 or -1 to rotate the shorter distance
             if (Math.Abs(actDirection - targetAngle) > Math.PI)
@@ -217,7 +267,7 @@ namespace TRAEProject
             {
                 actDirection -= speed * f;
             }
-            actDirection = new Vector2((float)Math.Cos(actDirection), (float)Math.Sin(actDirection)).ToRotation();
+            actDirection = new Vector2( MathF.Cos(actDirection),  MathF.Sin(actDirection)).ToRotation();
             currentRotation = actDirection;
         }
         public static float PredictiveAimWithOffset(Vector2 shootFrom, float shootSpeed, Vector2 targetPos, Vector2 targetVelocity, float shootOffset)
@@ -233,7 +283,7 @@ namespace TRAEProject
 
             //imagine a tirangle between the shooter, its target and where it think the target will be in the future
             // we need to find an angle in the triangle z this is the angle located at the target's corner
-            float z = (float)Math.PI + (targetTraj - angleToTarget);
+            float z =  MathF.PI + (targetTraj - angleToTarget);
 
             //with this angle z we can now use the law of cosines to find time
             //the side opposite of z is equal to shootSpeed * time
@@ -243,24 +293,24 @@ namespace TRAEProject
 
             //here we use the quadratic formula to find time
             float a = shootSpeed * shootSpeed - targetSpeed * targetSpeed;
-            float b = 2 * targetSpeed * dist * (float)Math.Cos(z) + 2 * shootOffset * shootSpeed;
+            float b = 2 * targetSpeed * dist *  MathF.Cos(z) + 2 * shootOffset * shootSpeed;
             float c = (shootOffset * shootOffset) - (dist * dist);
-            float time = (-b + (float)Math.Sqrt(b * b - 4 * a * c)) / (2 * a);
+            float time = (-b +  MathF.Sqrt(b * b - 4 * a * c)) / (2 * a);
 
             //we now know the time allowing use to find all sides of the tirangle, now we use law of Sines to calculate the angle to shoot at.
-            float calculatedShootAngle = angleToTarget - (float)Math.Asin((targetSpeed * time * (float)Math.Sin(z)) / (shootSpeed * time));
+            float calculatedShootAngle = angleToTarget -  MathF.Asin((targetSpeed * time *  MathF.Sin(z)) / (shootSpeed * time));
             return calculatedShootAngle;
         }
         
 
         public static void ServerClientCheck(string q)
         {
-            if (Main.netMode == 1)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 Main.NewText("Client says  " + q, Color.Pink);
             }
 
-            if (Main.netMode == 2) // Server
+            if (Main.netMode == NetmodeID.Server) // Server
             {
                 ChatHelper.BroadcastChatMessage(Terraria.Localization.NetworkText.FromLiteral("Server says " + q), Color.Green);
             }
