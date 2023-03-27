@@ -15,21 +15,23 @@ namespace TRAEProject.Changes.Accesory
             if (item.type == ItemID.MagicQuiver)
             {
                 player.magicQuiver = false; 
-                player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
+      
+                if (player.HeldItem.useAmmo == AmmoID.Arrow || player.HeldItem.useAmmo == AmmoID.Stake)
+                    player.GetDamage<RangedDamageClass>() -= 0.1f; // 1.4.4 magic quiver uses a new bool and guess what it is not supported by tmod (at least at the time i'm writing this note)
             }
             if (item.type == ItemID.MoltenQuiver)
             {
                 player.magicQuiver = false; 
-                player.arrowDamage -= 0.091f;
                 player.GetModPlayer<RangedStats>().Magicquiver += 1;
-                
+                if (player.HeldItem.useAmmo == AmmoID.Arrow || player.HeldItem.useAmmo == AmmoID.Stake)
+                    player.GetDamage<RangedDamageClass>() -= 0.1f; // 1.4.4 magic quiver uses a new bool and guess what it is not supported by tmod (at least at the time i'm writing this note)
             }
             if (item.type == ItemID.StalkersQuiver)
             {
                 player.magicQuiver = false;
-                player.arrowDamage -= 0.091f;
-                player.GetModPlayer<RangedStats>().Magicquiver += 1;
+                if (player.HeldItem.useAmmo == AmmoID.Arrow || player.HeldItem.useAmmo == AmmoID.Stake)
+                    player.GetDamage<RangedDamageClass>() -= 0.1f; // 1.4.4 magic quiver uses a new bool and guess what it is not supported by tmod (at least at the time i'm writing this note)                player.GetModPlayer<RangedStats>().Magicquiver += 1;
                 player.GetDamage<RangedDamageClass>() += 0.05f;
                 player.GetCritChance<RangedDamageClass>() += 5;
             }
@@ -119,7 +121,7 @@ namespace TRAEProject.Changes.Accesory
                 }
             }
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (smartbounces > 0 && projectile.penetrate > 1)
             {

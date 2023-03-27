@@ -34,10 +34,14 @@ namespace TRAEProject.Changes.Items
                     return;
                 case ItemID.AmethystStaff:
                     item.damage = 21; // up from 14
+                    item.useTime = 40; // up from 37
+                    item.useAnimation = 40; // up from 37
                     item.mana = 20; // up from 3
                     return;
                 case ItemID.TopazStaff:
                     item.damage = 22; // up from 15
+                    item.useTime = 38; // up from 36
+                    item.useAnimation = 38; // up from 36
                     item.mana = 19; // up from 4
                     return; 
                 case ItemID.SapphireStaff:
@@ -110,9 +114,7 @@ namespace TRAEProject.Changes.Items
                     item.useAnimation = 16;
                     item.mana = 10; // up from 6
                     return;
-			    case ItemID.MagicMissile:
-                    item.damage = 33; // up from 27
-                    return;
+
                 case ItemID.WaterBolt:
                     item.damage = 22; // up from 19
                     item.mana = 23; // up from 10
@@ -140,7 +142,6 @@ namespace TRAEProject.Changes.Items
                     item.useAnimation = 18;
 					return;
                 case ItemID.GoldenShower:
-                    item.damage = 21; // vanilla: 21
                     item.mana = 10; // up from 7
                     return;
 				case ItemID.CrystalStorm:
@@ -175,9 +176,12 @@ namespace TRAEProject.Changes.Items
                     return;
                 case ItemID.MeteorStaff:
                     item.damage = 53; // up from 53
+                    item.mana = 13; // up from 9
+
                     item.shootSpeed = 12.5f; // up from 10f
                     return;
                 case ItemID.ShadowFlameHexDoll:
+                    item.damage = 37; // up from 32
                     item.mana = 30; // up from 6
                     return;
   
@@ -197,7 +201,6 @@ namespace TRAEProject.Changes.Items
                     return;
                 case ItemID.MagicalHarp:
                     item.mana = 8; // up from 5
-                    item.knockBack = 5f;
                     return;
                 case ItemID.VenomStaff:
                     item.damage = 38; // down from 45
@@ -292,6 +295,8 @@ namespace TRAEProject.Changes.Items
                     return;
                 case ItemID.ToxicFlask:
                     item.mana = 80;
+                    item.damage = 46; // down from 52
+                    item.shootSpeed = 9; // down from 14
                     rightClickSideWeapon = true;
                     break;
                 case ItemID.RazorbladeTyphoon:

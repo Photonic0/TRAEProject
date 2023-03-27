@@ -54,7 +54,7 @@ namespace TRAEProject.Changes.Accesory
                     timebeforeReleasingBees = 0;
                     ++beetimer;
                 }
-                if (beetimer == 8 * ifHoneyedWithBeepack && beesStored < 16)
+                if (beetimer == 6 * ifHoneyedWithBeepack && beesStored < 16)
                 {
                     ++beesStored;
                     beetimer = 0;

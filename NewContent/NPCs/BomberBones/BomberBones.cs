@@ -622,19 +622,19 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
 					return;
 				}
 		}
-		public override void HitEffect(int hitdirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
 			if (NPC.life > 0)
 			{
-				for (int num662 = 0; (double)num662 < damage / (double)NPC.lifeMax * 50.0; num662++)
+				for (int num662 = 0; (double)num662 < hit.Damage / (double)NPC.lifeMax * 50.0; num662++)
 				{
-					Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, hitdirection, -1f);
+					Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, hit.HitDirection, -1f);
 				}
 				return;
 			}
 			for (int num663 = 0; num663 < 20; num663++)
 			{
-				Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 2.5f * (float)hitdirection, -2.5f);
+				Dust.NewDust(NPC.position, NPC.width, NPC.height, 26, 2.5f * (float)hit.HitDirection, -2.5f);
 			}
 			Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, 42, NPC.scale);
 			Gore.NewGore(NPC.GetSource_Death(), new Vector2(NPC.position.X, NPC.position.Y + 20f), NPC.velocity, 43, NPC.scale);
@@ -656,16 +656,16 @@ namespace TRAEProject.NewContent.NPCs.BomberBones
             Projectile.timeLeft = 120;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            TRAEMethods.Explode(Projectile, 80, Projectile.damage);
+            TRAEMethods.Explode(Projectile, 80);
             TRAEMethods.DefaultExplosion(Projectile);
         }
         public override void AI()
         {
             if (Projectile.timeLeft == 5)
             {
-                TRAEMethods.Explode(Projectile, 120, 1);
+                TRAEMethods.Explode(Projectile, 120);
                 TRAEMethods.DefaultExplosion(Projectile); 
             }
         }

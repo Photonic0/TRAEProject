@@ -48,20 +48,20 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
             Nazar = 0; NazarMirror = false;
         }
         public static readonly int[] NazarDebuffList = new int[] { BuffID.ShadowFlame, BuffID.WitheredWeapon, BuffID.WitheredArmor };
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
         {
-            if (Nazar > 0 && damage > 1)
+            if (Nazar > 0 && hurtInfo.Damage > 1)
             {
                 int DustType = 0;
                 
 
                 int debuffToApply = Main.rand.Next(NazarDebuffList);
-                int duration = 60 + damage * 3; // 5 seconds for every 100 damage taken
-                int enemyDuration = 60 + damage * 15 * Nazar; // 26 seconds for every 100 damage taken
+                int duration = 60 + hurtInfo.Damage * 3; // 5 seconds for every 100 damage taken
+                int enemyDuration = 60 + hurtInfo.Damage * 15 * Nazar; // 26 seconds for every 100 damage taken
                 if (debuffToApply == BuffID.ShadowFlame)
                 {
                     DustType = DustID.Shadowflame;
-                    enemyDuration = 60 + damage; // 60 damage + what was taken
+                    enemyDuration = 60 + hurtInfo.Damage; // 60 damage + what was taken
                 }
                 if (debuffToApply == BuffID.WitheredArmor)
                 {
@@ -91,18 +91,18 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
                 }
             }
         }       
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
         {
-            if (Nazar > 0 && damage > 1)
+            if (Nazar > 0 &&hurtInfo.Damage > 1)
             {
                 int DustType = 0;
                 int debuffToApply = Main.rand.Next(NazarDebuffList);
-                int duration = 60 + damage * 3; // 5 seconds for every 100 damage taken
-                int enemyDuration = 60 + damage * 15 * Nazar; // 26 seconds for every 100 damage taken
+                int duration = 60 + hurtInfo.Damage * 3; // 5 seconds for every 100 damage taken
+                int enemyDuration = 60 + hurtInfo.Damage * 15 * Nazar; // 26 seconds for every 100 damage taken
                 if (debuffToApply == BuffID.ShadowFlame)
                 {
                     DustType = DustID.Shadowflame; 
-                    enemyDuration = 60 + damage; // 60 damage + what was taken
+                    enemyDuration = 60 + hurtInfo.Damage; // 60 damage + what was taken
                 }
                 if (debuffToApply == BuffID.WitheredArmor)
                 {
@@ -185,7 +185,7 @@ namespace TRAEProject.NewContent.Items.Accesories.EvilEye
                     return;
             }
         }
-        public override void ModifyBuffTip(int type, ref string tip, ref int rare)
+        public override void ModifyBuffText(int type, ref string buffName, ref string tip, ref int rare)
         {
             switch (type)
             {

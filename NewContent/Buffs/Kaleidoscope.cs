@@ -18,14 +18,15 @@ namespace TRAEProject.NewContent.Buffs
 	}
 	public class KaleidoscopeSecondTagOnHit : GlobalProjectile
 	{
-		public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if (target.HasBuff<KaleidoscopeSecondTag>() && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]) && projectile.type != ProjectileID.StardustGuardian)
 			{
-				damage *= 5;
+				modifiers.SourceDamage *= 5;
 			}
 		}
-		public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+
 		{
 			if (projectile.type == ProjectileID.RainbowWhip)
 			{
@@ -62,7 +63,7 @@ namespace TRAEProject.NewContent.Buffs
 					float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);// could simplify this using Vector2.Length?
 					if (!enemy.dontTakeDamage && enemy.active && !enemy.friendly && !enemy.immortal && distanceTo < distance && enemy.whoAmI != target.whoAmI)
 					{
-						Main.player[projectile.owner].ApplyDamageToNPC(enemy, damage, 0f, 0, crit: false);
+						Main.player[projectile.owner].ApplyDamageToNPC(enemy, damageDone, 0f, 0, crit: false);
 					}
 				}
 			}

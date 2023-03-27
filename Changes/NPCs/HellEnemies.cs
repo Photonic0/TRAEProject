@@ -54,7 +54,7 @@ namespace TRAEProject.Changes.NPCs
             Vector2 zero = new Vector2(0, 0);
             if (npc.type == NPCID.BurningSphere && Main.expertMode)
             {
-                Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, zero, ProjectileType<Boom>(), npc.damage, 0);
+                Projectile.NewProjectile(npc.GetSource_FromAI(), npc.Center, zero, ProjectileType<Boom>(), 30, 0);
             }
         }
     }
@@ -67,11 +67,11 @@ namespace TRAEProject.Changes.NPCs
                 projectile.tileCollide = false;
             }
         }
-        public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit)
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
             if (projectile.type == ProjectileID.UnholyTridentHostile)
             {
-                damage /= 2;
+                modifiers.SourceDamage.Base /= 2;
             }
            }
     }

@@ -68,7 +68,7 @@ namespace TRAEProject.NewContent.Items.Armor.Reptilian
         {
             ReptilianSetBonus = false;
         }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (ReptilianSetBonus && ProjectileID.Sets.IsAWhip[proj.type])
             {

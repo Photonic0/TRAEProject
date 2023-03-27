@@ -113,15 +113,15 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 			}
 
 		}
-        public override void HitEffect(NPC npc, int hitDirection, double damage)
+        public override void HitEffect(NPC npc, NPC.HitInfo hit)
 		{
 			if (npc.type == NPCID.BloodNautilus)
 			{
 				if (npc.life > 0)
 				{
-					for (int num65 = 0; (double)num65 < damage / (double)npc.lifeMax * 200.0; num65++)
+					for (int num65 = 0; (double)num65 < hit.Damage / (double)npc.lifeMax * 200.0; num65++)
 					{
-						Dust dust10 = Dust.NewDustDirect(npc.position, npc.width, npc.height, 5, hitDirection, -1f);
+						Dust dust10 = Dust.NewDustDirect(npc.position, npc.width, npc.height, 5, hit.HitDirection, -1f);
 						Dust dust = dust10;
 						dust.velocity *= 2.5f;
 						dust10.scale = 2f;
@@ -131,7 +131,7 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
 				{
 					for (int num66 = 0; (float)num66 < 200f; num66++)
 					{
-						Dust dust11 = Dust.NewDustDirect(npc.position, npc.width, npc.height, 5, hitDirection, -1f);
+						Dust dust11 = Dust.NewDustDirect(npc.position, npc.width, npc.height, 5, hit.HitDirection, -1f);
 						Dust dust = dust11;
 						dust.velocity *= 2.5f;
 						dust11.scale = 2.5f;

@@ -139,7 +139,7 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
         {
             return true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             int[] array = Projectile.localNPCImmunity;
             for (int i = 0; i < 200; i++)

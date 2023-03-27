@@ -243,7 +243,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn();
+            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn(spawnInfo);
 
         }
     

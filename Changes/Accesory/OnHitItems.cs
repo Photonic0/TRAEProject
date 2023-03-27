@@ -59,92 +59,46 @@ namespace TRAEProject.Changes.Items
                 dust.scale *= 1f + Main.rand.Next(6) * 0.1f;
             }
         }
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        public override void OnHurt(Player.HurtInfo info)
         {
- 
-            LastHitDamage = damage;
+
+            LastHitDamage = info.Damage;
             BaghnakhHeal = 0;
-            if (damage > 1)
+            if (info.Damage > 1)
             {
-				if (damage > 1000)
+				if (info.Damage > 1000)
 				{
-					damage = 1000;
+					info.Damage = 1000;
                 }
 				if (magicCuffsCount > 0)
                 {
-                    int manaRestored = damage * magicCuffsCount;
+                    int manaRestored = info.Damage * magicCuffsCount;
                     Player.GetModPlayer<Mana>().GiveManaOverloadable(manaRestored);
                 }
                 int[] spread = { 1, 2 };
                 if (NewstarsOnHit)
                 {
-                    TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, 2 + (damage / 33), 400, 600, spread, 20, ProjectileID.StarCloakStar, 100, 2f, Player.whoAmI);
+                    TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, 2 + (info.Damage / 33), 400, 600, spread, 20, ProjectileID.StarCloakStar, 100, 2f, Player.whoAmI);
                 }
                 if (runethorns > 0f && runeCooldown == 0)
                 {
-                    RuneThorns(damage);
+                    RuneThorns(info.Damage);
                 }
             }
             if (newthorns > 0f)
             {
-                Thorns(damage);
+                Thorns(info.Damage);
             }
             if (Player.panic)
             {
-                Player.AddBuff(BuffID.Panic, 300 + damage * 4);
+                Player.AddBuff(BuffID.Panic, 300 + info.Damage * 4);
             }
             if (Player.longInvince)
             {
-                int invintime = (int)(damage * 3 / 5); // every point of damage adds 0.01 seconds 
+                int invintime = (int)(info.Damage * 3 / 5); // every point of info.Damage adds 0.01 seconds 
+                if (invintime > 120)
+                    invintime = 120;
                 Player.immuneTime += invintime - 40; // cross necklace adds .67 seconds so we need to substract that from the total.
-            }
-        }
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
-        {
-
-            LastHitDamage = damage;
-            BaghnakhHeal = 0;
-            if (damage > 1)
-            {		
-		        if (damage > 1000)
-				{
-					damage = 1000;
-                }
-                if (magicCuffsCount > 0)
-                {
-                    int manaRestored = damage * magicCuffsCount;
-                    Player.statMana += manaRestored;
-                    Player.ManaEffect(manaRestored);
-                }
-                int[] spread = { 1, 2 };
-                if (NewstarsOnHit)
-                {
-                    TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, 2 + (damage / 33), 400, 600, spread, 20, ProjectileID.HallowStar, 100, 2f, Player.whoAmI);
-                }
-
-                if (runethorns > 0f && runeCooldown == 0)
-                {
-                    RuneThorns(damage);
-                }
-                if (newthorns > 0f)
-                {
-                    Thorns(damage);
-                }
-                if (!Player.HasBuff(BuffID.ShadowDodge))
-                {
-                    int starcount = 2 + damage / 33;
-                }
-
-                if (Player.panic)
-                {
-                    Player.AddBuff(BuffID.Panic, 300 + damage * 4, false);
-                }
-                if (Player.longInvince)
-                {
-                    int invintime = (int)(damage * 3 / 5); // every point of damage adds 0.01 seconds 
-                    Player.immuneTime += invintime - 40; // cross necklace adds .67 seconds so we need to substract that from the total.
-                }
-
             }
         }
 

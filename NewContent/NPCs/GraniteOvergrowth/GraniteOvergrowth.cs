@@ -110,7 +110,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
              
             }
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             for (int i = 0; i < 5; i++)
             {
@@ -296,7 +296,8 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
             NPC.DeathSound = SoundID.NPCDeath44;
             NPC.knockBackResist = 1f;
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
+
         {
             for (int i = 0; i < 2; i++)
             {
@@ -370,7 +371,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
             Projectile.penetrate = 1;
             Projectile.alpha = 255;
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.Electrified, 300);
         }

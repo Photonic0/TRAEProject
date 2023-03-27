@@ -6,7 +6,8 @@ using Terraria.ModLoader;
 using TRAEProject.Changes.Projectiles;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.Changes.Items;
-using TRAEProject;
+using TRAEProject;using TRAEProject.Common;
+
 using System.Collections.Generic;
 namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
 {
@@ -72,7 +73,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Underworld.WillOfTheWisp
             AIType = ProjectileID.Bullet;
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 1;
-            Projectile.tileCollide = false;
+			                    Projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
+
+            Projectile.tileCollide = true;
         }
         int timeBeforebounce = 16;
         public override void AI()

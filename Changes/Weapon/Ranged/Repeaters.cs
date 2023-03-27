@@ -43,16 +43,15 @@ namespace TRAEProject.Changes.Weapon.Ranged
                     item.useTime = item.useAnimation = 24;
                     item.SetNameOverride("Orichalcum Crossbow");
                     break;
-                case ItemID.AdamantiteRepeater:
-                    item.damage = 40;
-                    item.useTime = item.useAnimation = 19;
-                    break;
                 case ItemID.TitaniumRepeater:
                     item.damage = 30;
                     item.useTime = item.useAnimation = 25;
                     item.SetNameOverride("Titanium Obliterator");
                     break;
-   
+                case ItemID.HallowedRepeater:
+                    item.damage = 53;
+                    item.useTime = item.useAnimation = 16;
+                    break;
                 case ItemID.ChlorophyteShotbow:
                     item.useTime = item.useAnimation = 24;
                     break;
@@ -64,15 +63,15 @@ namespace TRAEProject.Changes.Weapon.Ranged
         }
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if(item.type == ItemID.TitaniumRepeater)
+            if (item.type == ItemID.TitaniumRepeater)
             {
                 int count = Main.rand.Next(3) + 3;
-                for(int i =0; i < count; i++)
+                for (int i = 0; i < count; i++)
                 {
                     Projectile.NewProjectile(player.GetSource_ItemUse(item), position, (velocity * 1f).RotatedByRandom((float)Math.PI / 10), ProjectileType<TitaniumShrapnel>(), damage / 4, 0, player.whoAmI);
                 }
             }
-            if(item.type == ItemID.MythrilRepeater)
+            if (item.type == ItemID.MythrilRepeater)
             {
                 Projectile arrow = Main.projectile[Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI)];
                 arrow.scale *= item.scale;
@@ -81,10 +80,26 @@ namespace TRAEProject.Changes.Weapon.Ranged
             }
             return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
         }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            switch (item.type)
+            {
+                case ItemID.MythrilRepeater:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Knockback")
+                        {
+                            line.Text += "\nDeals 25% more damage on critical hits";
+                        }
+                    }
+                    break;
+            }
+        }
     }
-    public class RepeaterHits : GlobalProjectile
+        public class RepeaterHits : GlobalProjectile
     {
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if(projectile.arrow)
             {
@@ -92,7 +107,8 @@ namespace TRAEProject.Changes.Weapon.Ranged
                 switch (player.HeldItem.type)
                 {
                     case ItemID.PalladiumRepeater:
-                        player.AddBuff(BuffID.RapidHealing, 300);
+
+                            player.AddBuff(BuffID.RapidHealing, 300);
                         return;
                     case ItemID.OrichalcumRepeater:
                         int direction = player.direction;

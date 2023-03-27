@@ -35,19 +35,18 @@ namespace TRAEProject.Common.ModPlayers
             magicCritDamage = 0f;
             arrowCritDamage = 0f;
         }
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
-        {   
-            if (crit)
-            {
-                float multiplier = critDamage + meleeCritDamage;
-                damage += (int)(damage * multiplier);
-            }
-                
-        }
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (crit)
-            {
+
+            float multiplier = critDamage + meleeCritDamage;
+                modifiers.CritDamage += multiplier;
+
+            
+
+        }
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            modifiers.DefenseEffectiveness *= 0.5f;
                 float multiplier = critDamage + proj.GetGlobalProjectile<ProjectileStats>().CritDamage;
                 if (proj.CountsAsClass(DamageClass.Melee))
                 {
@@ -65,9 +64,9 @@ namespace TRAEProject.Common.ModPlayers
                 {
                     multiplier += magicCritDamage;
                 }
-                damage += (int)(damage * multiplier);
+            modifiers.CritDamage += multiplier;
 
-            }
+            
 
         }
     }

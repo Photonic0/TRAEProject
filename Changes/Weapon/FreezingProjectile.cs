@@ -14,7 +14,7 @@ namespace TRAEProject.Changes.Projectiles
     {
         public override bool InstancePerEntity => true;
         int duration = 0;
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (projectile.GetGlobalProjectile<CryoRockets>().IceRocket)
             {
@@ -41,8 +41,12 @@ namespace TRAEProject.Changes.Projectiles
             {
 
                 case ProjectileID.FrostBoltSword:
-                    duration = Main.rand.Next(80, 120);
-                    target.GetGlobalNPC<Freeze>().FreezeMe(target, duration); 
+                    if (Main.rand.NextBool(5))
+                    {
+                        duration = Main.rand.Next(80, 120);
+                        target.GetGlobalNPC<Freeze>().FreezeMe(target, duration);
+
+                    }
                     break;
                 case ProjectileID.BallofFrost:
                     duration = Main.rand.Next(80, 120);

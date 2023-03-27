@@ -20,10 +20,31 @@ namespace TRAEProject.Changes.Weapon.Summon
                 case ItemID.QueenSpiderStaff:
                     item.damage = 19; // down from 26
                     break;
+                case ItemID.DD2LightningAuraT1Popper:
+                    item.damage = 7; // up from 4
+                    break;
+                case ItemID.DD2LightningAuraT2Popper:
+                    item.damage = 15; // up from 11
+                    break;
+                case ItemID.DD2LightningAuraT3Popper:
+                    item.damage = 44; // up from 34
+                    break;
+                case ItemID.DD2FlameburstTowerT1Popper:
+                    item.damage = 25; // up from 17
+                    break;
+                case ItemID.DD2FlameburstTowerT2Popper:
+                    item.damage = 58; // up from 42
+                    break;
+                case ItemID.DD2FlameburstTowerT3Popper:
+                    item.damage = 123; // up from 88
+                    break;
+
                 case ItemID.RainbowCrystalStaff:
                     item.damage = 30; // down from 150
                     break;
                 case ItemID.MoonlordTurretStaff:
+                    item.damage = 33; // down from 100
+
                     item.SetNameOverride("Stardust Portal Staff");
                     break;
                 
@@ -59,7 +80,7 @@ namespace TRAEProject.Changes.Weapon.Summon
                     break;
             }
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             switch (projectile.type)
             {

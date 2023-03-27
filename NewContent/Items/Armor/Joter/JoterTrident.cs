@@ -34,13 +34,13 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
             swingAmount = (float)Math.PI / 32;
 
         }
-        public override void SpearHitNPC(NPC target, int damage, float knockback, bool crit) // if more on kills are ever added, make this a method in ProjectileStats
+        public override void SpearHitNPCMelee(NPC target, NPC.HitInfo hit) // if more on kills are ever added, make this a method in ProjectileStats
         {
             Player player = Main.player[Projectile.owner];
 
             if (target.life <= 0) // this hook is run directly after the damage has been dealt, so you can just make it 0
             {
-                JoterEat(player, target, damage);
+                JoterEat(player, target, hit.Damage);
             }
         }
         public void JoterEat(Player player, NPC target, int damage)
@@ -74,8 +74,8 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
             DustOnDeath = DustID.t_Flesh;
         }
         int targetlife = 0;
-        
-        public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
+
+        public override void SpearHitNPC(bool atMaxCharge, NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
 
@@ -95,7 +95,7 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
                 {
                     float velX = Main.rand.Next(-35, 36) * 0.1f;
                     float velY = Main.rand.Next(-35, 36) * 0.1f;
-                    Projectile.NewProjectile(player.GetSource_FromAI(), player.Center.X, player.Center.Y, velX, velY, ProjectileType<Jottie>(), damage, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.GetSource_FromAI(), player.Center.X, player.Center.Y, velX, velY, ProjectileType<Jottie>(), damageDone, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
         }
@@ -138,7 +138,7 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
             Projectile.DamageType = DamageClass.Melee;
             Projectile.friendly = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
 
@@ -158,7 +158,7 @@ namespace TRAEProject.NewContent.Items.Armor.Joter
                 {
                     float velX = Main.rand.Next(-35, 36) * 0.1f;
                     float velY = Main.rand.Next(-35, 36) * 0.1f;
-                    Projectile.NewProjectile(player.GetSource_FromAI(), player.Center.X, player.Center.Y, velX, velY, ProjectileType<Jottie>(), damage, 0f, Main.myPlayer, 0f, 0f);
+                    Projectile.NewProjectile(player.GetSource_FromAI(), player.Center.X, player.Center.Y, velX, velY, ProjectileType<Jottie>(), damageDone, 0f, Main.myPlayer, 0f, 0f);
                 }
             }
         }

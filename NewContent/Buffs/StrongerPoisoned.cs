@@ -72,7 +72,7 @@ namespace TRAEProject.NewContent.Buffs
         {
             bezoar = false;
         }
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (bezoar && target.HasBuff(BuffID.Poisoned))
             {
@@ -80,7 +80,7 @@ namespace TRAEProject.NewContent.Buffs
                 target.AddBuff(BuffType<StrongerPoisoned>(), 300);
             }
         }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (bezoar && target.HasBuff(BuffID.Poisoned))
             {

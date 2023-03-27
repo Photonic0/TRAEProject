@@ -30,8 +30,8 @@ namespace TRAEProject.Changes.Accesory
             {
                 player.kbGlove = false;
                 player.meleeScaleGlove = false;
-                player.GetModPlayer<MeleeStats>().weaponSize += 0.25f;
-                player.GetModPlayer<MeleeStats>().meleeVelocity += 0.5f;
+                player.GetModPlayer<MeleeStats>().weaponSize += 0.20f;
+                player.GetModPlayer<MeleeStats>().meleeVelocity += 0.2f;
             }
             if(item.type == ItemID.FireGauntlet)
             {
@@ -55,7 +55,7 @@ namespace TRAEProject.Changes.Accesory
 
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.Text = "25% increased melee weapon size and 50% increased melee velocity";
+                        line.Text = "20% increased melee weapon size and velocity";
                     }
                     if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                     {
@@ -78,7 +78,7 @@ namespace TRAEProject.Changes.Accesory
                     }  
 					if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                     {
-                        line.Text = "25% increased melee weapon size and 50% increased melee velocity";
+                        line.Text = "20% increased melee weapon size and velocity";
                     }
                     if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                     {
@@ -94,7 +94,7 @@ namespace TRAEProject.Changes.Accesory
                 {
                     if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                     {
-                        line.Text = "25% increased melee weapon size and 50% increased melee velocity";
+                        line.Text = "20% increased melee weapon size and velocity";
                     }
                     if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                     {

@@ -59,6 +59,7 @@ namespace TRAEProject.Common
             }
             if (npc.HasBuff(BuffID.WitheredArmor))
             {
+                npc.defense -= 18;
                 if (Main.rand.Next(5) < 1)
                 {
                     int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 21, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default, 2f);
@@ -81,17 +82,11 @@ namespace TRAEProject.Common
         {
             switch (type)
             {
-                case BuffID.MaceWhipNPCDebuff:
-                    npc.GetGlobalNPC<Tag>().Damage += 3;
-                    npc.GetGlobalNPC<Tag>().Crit += 5;
-                    return;
                 case BuffID.RainbowWhipNPCDebuff:
                     npc.GetGlobalNPC<Tag>().Damage += 30;
                     npc.GetGlobalNPC<Tag>().Crit += 20; // this isn't exactly 30% crit but whatevs
                     return;
-                case BuffID.ScytheWhipEnemyDebuff:
-                    npc.GetGlobalNPC<Tag>().Damage += 10;
-                    return;
+
             }
         }
     }

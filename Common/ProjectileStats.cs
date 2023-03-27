@@ -24,8 +24,8 @@ namespace TRAEProject.Common
         public float DamageFalloff = 0f; // How much damage the projectile loses every time it hits an enemy. 
         public float DamageFallon = 1f; // How much damage the projectile gains every time it hits an enemy. 
         public float DirectDamage = 1f; // how much damage the projectile deals when it hits an enemy, independent of the weapon.
+        public float FirstHitDamage = 1f;
         public bool IgnoresDefense = false; // self-explanatory
-        public int armorPenetration = 0; //how much defense the projectile ignores
         public bool cantCrit = false; // self-explanatory
         public bool dontHitTheSameEnemyMultipleTimes = false;// self-explanatory
                                                              // Bouncing
@@ -49,31 +49,12 @@ namespace TRAEProject.Common
         public bool explodes = false; // set to true to make the projectile explode. 
         public int ExplosionRadius = 80; // Hitbox size of the base explosion. Base value is 80.
         public float ExplosionDamage = 1f; // Makes the explosion deal Increased/decreased damage. 
-        public bool DontRunThisAgain = false;
+        public bool FirstHit = false;
         public bool dontExplodeOnTiles = false;
         public bool UsesDefaultExplosion = false; // Regular rocket Explosions. Helpful if you are too lazy/don't need to create a special explosion effect.
         public bool heavyCritter = false;
                                                   //
-        public override void SetStaticDefaults()
-        {
-            Terraria.IL_Projectile.Damage += DamageHook;
-        }
-
         int extraAP = 0;
-        private void DamageHook(ILContext il)
-        {
-            var c = new ILCursor(il);
-            c.Emit(OpCodes.Ldarg_0);
-            c.EmitDelegate<Action<Projectile>>((projectile) =>
-            {
-                if (projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration > 0)
-                {
-                    Main.player[projectile.owner].GetArmorPenetration(DamageClass.Generic) += projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration;
-                    projectile.GetGlobalProjectile<ProjectileStats>().extraAP += projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration;
-                }
-            });
-        }
-
         public float timer = 0;
         public override void AI(Projectile projectile)
         {
@@ -111,72 +92,11 @@ namespace TRAEProject.Common
             }
             if (explodes && projectile.timeLeft < 3)
             {
-                TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
+                TRAEMethods.Explode(projectile, ExplosionRadius);
                 if (UsesDefaultExplosion)
                 {
                     TRAEMethods.DefaultExplosion(projectile);
                 }
-            }
-            switch (projectile.type)
-            {
-                case ProjectileID.NebulaSphere:
-                    {
-                        if (Main.expertMode)
-                        {
-                            bool flag4 = false;
-                            projectile.localAI[1] += 1f;
-                            if (projectile.localAI[1] >= 6f)
-                            {
-                                projectile.localAI[1] = 6f;
-                                flag4 = true;
-                            }
-                            if (flag4)
-                            {
-                                projectile.localAI[1] = 0f;
-                                projectile.height += 1;
-                                projectile.width += 1;
-                            }
-                            projectile.scale += 0.005f;
-                        }
-                        break;
-                    }
-                case ProjectileID.SharknadoBolt:
-                    projectile.hostile = false;
-                    break;
-                case ProjectileID.Sharknado:
-                case ProjectileID.Cthulunado:
-                    projectile.localAI[1] += 1f; // cannot damage the player before 60 updates
-                    if (projectile.localAI[1] <= 60f)
-                    {
-                        projectile.hostile = false;
-                    }
-                    else
-                    {
-                        projectile.hostile = true;
-                    }
-                    break;
-                case ProjectileID.TitaniumStormShard:
-                    timer += 0.01f;
-                    if (timer <= 1f)
-                    {
-                        projectile.scale = timer;
-                        projectile.damage = 0;
-                    }
-                    else
-                    {
-                        projectile.damage = 70;
-                        projectile.position.X += projectile.width / 2;
-                        projectile.position.Y += projectile.height / 2;
-                        projectile.width = projectile.height = 70;
-                        projectile.position.X -= projectile.width / 2;
-                        projectile.position.Y -= projectile.height / 2;
-                        projectile.position.X += projectile.width / 2;
-                        projectile.position.Y += projectile.height / 2;
-                        projectile.width = projectile.height = 70;
-                        projectile.position.X -= (projectile.width / 2);
-                        projectile.position.Y -= (projectile.height / 2);
-                    }
-                    return;
             }
 
 
@@ -187,7 +107,7 @@ namespace TRAEProject.Common
         {
             if (explodes && !dontExplodeOnTiles) // If you want a projectile that doesn't explode in contact with tiles, make the second variable true.//
             {
-                TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
+                TRAEMethods.Explode(projectile, ExplosionRadius);
                 if (UsesDefaultExplosion)
                 {
                     TRAEMethods.DefaultExplosion(projectile);
@@ -245,102 +165,42 @@ namespace TRAEProject.Common
             }
             return true;
         }
-        public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit) // SIMPLIFY THIS
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
         {
-            switch (projectile.type)
+            if (!FirstHit)
             {
-                case ProjectileID.DeathLaser:
-                    {
-                        foreach (NPC enemy in Main.npc)
-                        {
-                            if (enemy.type == NPCID.Retinazer && Main.expertMode)
-                            {
-                                damage *= 90;
-                                damage /= 100;
-                            }
-                        }
-                    }
-                    return;
-                case ProjectileID.EyeLaser:
-                case ProjectileID.EyeFire:
-                    {
-                        if (Main.expertMode)
-                        {
-                            damage *= 90;
-                            damage /= 100;
-                        }
-                    }
-                    return;
-                case ProjectileID.StardustSoldierLaser:
-                    {
-                        damage *= 80;
-                        damage /= 100;
-                    }
-                    return;
-                case ProjectileID.StardustJellyfishSmall:
-                    {
-                        damage *= 65;
-                        damage /= 100;
-                    }
-                    return;
-                case ProjectileID.NebulaLaser:
-                    {
-                        damage *= 85;
-                        damage /= 100;
-                    }
-                    return;
-                case ProjectileID.NebulaBolt:
-                    {
-                        damage *= 80;
-                        damage /= 100;
-                    }
-                    return;
+                FirstHit = true;
+                modifiers.FinalDamage *= FirstHitDamage;
             }
-        }
-
-
-
-        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit,ref int hitDirection)
-        {
             Player player = Main.player[projectile.owner];
-            if (armorPenetration > 0)
-            {
-                player.GetArmorPenetration(DamageClass.Generic) += armorPenetration;
-                extraAP += armorPenetration;
-            }
-            damage = (int)(damage * DirectDamage);
-            if (IgnoresDefense && target.type != NPCID.DungeonGuardian)
-            {
-                int finalDefense = target.defense - (int)player.GetArmorPenetration(DamageClass.Generic);
-                target.ichor = false;
-                target.betsysCurse = false;
-                if (finalDefense < 0)
-                {
-                    finalDefense = 0;
-                }
-                damage += finalDefense / 2;
-            }
-			if (cantCrit)
+            modifiers.FinalDamage.Base *= DirectDamage;
+
+            if (cantCrit)
 			{
-				crit = false;
+				modifiers.DisableCrit();
 			}
-            if(heavyCritter && crit)
+
+            if (heavyCritter)
             {
-                if(Main.rand.NextBool(2))
+                modifiers.CritDamage *= 1.25f;
+
+            }
+            if (explodes)
+            {
+
+                TRAEMethods.Explode(projectile, ExplosionRadius);
+                if (UsesDefaultExplosion)
                 {
-                    damage = damage + (damage / 2);
-                }
-                else
-                {
-                    crit = false;
+                    TRAEMethods.DefaultExplosion(projectile);
                 }
             }
+
         }
-        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
             if (explodes)
             {
-                TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
+                TRAEMethods.Explode(projectile, ExplosionRadius);
                 if (UsesDefaultExplosion)
                 {
                     TRAEMethods.DefaultExplosion(projectile);
@@ -352,7 +212,7 @@ namespace TRAEProject.Common
         }
         int hits = 0;
 
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             
             if (maxHits > -1)
@@ -372,14 +232,7 @@ namespace TRAEProject.Common
 
             if (dontHitTheSameEnemyMultipleTimes)
                 projectile.localNPCImmunity[target.whoAmI] = -1; // this makes the enemy invincible to the projectile.
-            if (explodes)
-            {
-                TRAEMethods.Explode(projectile, ExplosionRadius, ExplosionDamage);
-                if (UsesDefaultExplosion)
-                {
-                    TRAEMethods.DefaultExplosion(projectile);
-                }
-            }
+
             if (BouncesOffEnemies)
             {
                 projectile.velocity.X = -projectile.oldVelocity.X;

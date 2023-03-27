@@ -29,7 +29,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.DreadRelic
             Item.DefaultToPlaceableTile(ModContent.TileType<DreadRelic>(), 0);
 			Item.width = 30;
 			Item.height = 40;
-			Item.maxStack = 99;
+			Item.maxStack = 9999;
 			Item.rare = ItemRarityID.Master;
 			Item.master = true; // This makes sure that "Master" displays in the tooltip, as the rarity only changes the item name color
 			Item.value = Item.buyPrice(0, 5);
@@ -101,27 +101,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.DreadRelic
 			AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
 		}
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			// This code here infers the placeStyle the tile was placed with. Only required if you go the Item.placeStyle approach. You just need Item.NewItem otherwise
-			// The placeStyle calculated here corresponds to whatever placeStyle you specified on your items that place this tile (Either through Item.placeTile or Item.DefaultToPlacableTile)
-			int placeStyle = frameX / FrameWidth;
 
-			int itemType = 0;
-			switch (placeStyle)
-			{
-				case 0:
-					itemType = ModContent.ItemType<DreadnautilusRelic>();
-					break;
-					// Optional: Add more cases here
-			}
-
-			if (itemType > 0)
-			{
-				// Spawn the item
-				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, itemType);
-			}
-		}
 
 		public override bool CreateDust(int i, int j, ref int type)
 		{

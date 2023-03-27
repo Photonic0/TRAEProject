@@ -13,7 +13,7 @@ namespace TRAEProject.Common.AIs
 {
     public static class HeavyFlail
     {
-		public static void ModifyDamage(Projectile Projectile, ref int damage)
+		public static void ModifyDamage(Projectile Projectile, ref float damage)
 		{
 			if (Projectile.ai[0] == 0f)
 			{

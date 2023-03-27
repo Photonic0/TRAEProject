@@ -39,7 +39,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.ShellSpinner
             Item.noUseGraphic = true;
             Item.useStyle = 1;
             Item.UseSound = SoundID.Item1;
-            Item.GetGlobalItem<GiveWeaponsPrefixes>().canGetBoomerangModifers = true;
+            Item.GetGlobalItem<GiveWeaponsPrefixes>().canGetMeleeOtherModifers = true;
         }
     }
     class ShellSpinnerP : ModProjectile
@@ -128,7 +128,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.ShellSpinner
                 }
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if(spinAround == null && !returnToPlayer)
             {

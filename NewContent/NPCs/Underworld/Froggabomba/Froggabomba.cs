@@ -62,6 +62,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            if (spawnInfo.Player.ZoneBeach && Main.remixWorld)
+                return SpawnCondition.Underworld.Chance * 0.25f;
             if (NPC.downedPlantBoss)
             {
                 return SpawnCondition.Underworld.Chance * 0.025f;
@@ -69,9 +71,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
             return SpawnCondition.Underworld.Chance * 0.17f;
         }
         int damagestored = 0;
-        public override void OnHitByItem(Player player, Item item, int damage, float knockback, bool crit)
+        public override void OnHitByItem(Player player, Item item, NPC.HitInfo hit, int damageDone)
         {
-            damagestored += damage;
+            damagestored += damageDone;
             if (damagestored > 30)
             {
                 int smallBoomxiesToSpawn = damagestored / 30;
@@ -83,9 +85,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
                 }
             }
         }
-        public override void OnHitByProjectile(Projectile projectile, int damage, float knockback, bool crit)
+        public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone)
+
         {
-            damagestored += damage;
+            damagestored += damageDone;
             if (damagestored > 30)
             {
                 int smallBoomxiesToSpawn = damagestored / 30;
@@ -102,7 +105,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
             npcLoot.Add(ItemDropRule.Common(ItemType<BoomfrogStaff>(), 20));
 
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -113,7 +116,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
         public override void OnKill()
         {
             Vector2 zero = new Vector2(0, 0);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), 30, 0);
         }
     }
     public class FroggabombaClone : ModNPC
@@ -198,7 +201,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
         public override void OnKill()
         {
             Vector2 zero = new Vector2(0, 0);
-            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), NPC.damage, 0);
+            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, zero, ProjectileType<Boom>(), 30, 0);
         }
     }
 

@@ -73,7 +73,6 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.Clown:
                     {
                         npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(4, ItemID.WhoopieCushion));
-                        npcLoot.Add(ItemDropRule.Common(ItemID.Bananarang, 1));
                         return;
                     }
                 case NPCID.SkeletonCommando:
@@ -107,16 +106,8 @@ namespace TRAEProject.Changes.NPCs
                     });
                     npcLoot.Remove(ItemDropRule.Common(ItemID.PoisonStaff));
                     break;
-                case NPCID.ScutlixRider:
-                    npcLoot.RemoveWhere(rule =>
-                    {
-                        if (rule is not CommonDrop drop) // Type of drop you expect here
-                            return false;
-                        return drop.itemId == ItemID.BrainScrambler; // compare more fields if needed
-                    });
+                case NPCID.Scutlix:
                     npcLoot.Add(ItemDropRule.Common(ItemID.BrainScrambler, 30));
-                    break;
-                case NPCID.BrainScrambler:
                     npcLoot.Add(ItemDropRule.Common(ItemID.BrainScrambler, 30));
                     break;
                 case NPCID.IceMimic:
@@ -140,13 +131,6 @@ namespace TRAEProject.Changes.NPCs
                             return false;
                         return drop.itemId == ItemID.IceSickle; // compare more fields if needed
                     });
-                    npcLoot.RemoveWhere(rule =>
-                    {
-                        if (rule is not CommonDrop drop) // Type of drop you expect here
-                            return false;
-                        return drop.itemId == ItemID.FrozenTurtleShell; // compare more fields if needed
-                    });
-                    npcLoot.Add(ItemDropRule.Common(ItemID.FrozenTurtleShell, 50));
                     break;
                 case NPCID.GoblinSummoner:
                     npcLoot.Add(ItemDropRule.Common(ItemType<ShadowflameCharmItem>(), 5));
@@ -195,17 +179,7 @@ namespace TRAEProject.Changes.NPCs
                     notExpertRule0.OnSuccess(crimson);
                     npcLoot.Add(notExpertRule0);
                     break;
-                case NPCID.Medusa:
-                    npcLoot.RemoveWhere(rule =>
-                    {
-                        if (rule is not CommonDrop drop) // Type of drop you expect here
-                        {
-                            return false;
-                        }
-                        return drop.itemId == ItemID.PocketMirror; // compare more fields if needed
-                    });
-                    npcLoot.Add(ItemDropRule.Common(ItemID.PocketMirror, 20));
-                    break;
+
                 case NPCID.MourningWood:
                     npcLoot.RemoveWhere(rule =>
                     {

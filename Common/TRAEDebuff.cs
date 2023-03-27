@@ -47,11 +47,11 @@ namespace TRAEProject.Common
         {
 
         }
-        public virtual void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        public virtual void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
         {
     
         }
-        public virtual void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public virtual void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
         }
     }
@@ -89,18 +89,18 @@ namespace TRAEProject.Common
                 debuffs[k].Update(npc);
             }
         }
-        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
         {
             for (int k = 0; k < debuffs.Count; k++)
             {
-                debuffs[k].ModifyHitByItem(npc, player, item, ref damage, ref knockback, ref crit);
+                debuffs[k].ModifyHitByItem(npc, player, item, ref modifiers);
             }
         }
-        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
             for (int k = 0; k < debuffs.Count; k++)
             {
-                debuffs[k].ModifyHitByProjectile(npc, projectile, ref damage, ref knockback, ref crit, ref hitDirection);
+                debuffs[k].ModifyHitByProjectile(npc, projectile, ref modifiers);
             }
         }
         public override void UpdateLifeRegen(NPC npc, ref int damage)

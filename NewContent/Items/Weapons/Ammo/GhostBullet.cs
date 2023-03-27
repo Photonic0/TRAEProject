@@ -76,7 +76,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             Lighting.AddLight(Projectile.Center, 0.4f, 0.4f, 0.4f);
 
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             GhostBulletStacks GB = TRAEDebuff.Apply<GhostBulletStacks>(target, 300, 9);
             if (GB != null)

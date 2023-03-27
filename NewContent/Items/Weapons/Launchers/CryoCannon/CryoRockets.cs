@@ -102,7 +102,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
             }
 
         }
-        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
             if (CryoExplosion)
             {
@@ -119,7 +119,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.CryoCannon
             }
             return true;
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (CryoExplosion)
             {

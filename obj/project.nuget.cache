@@ -1,17 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "myM8Kd9+Btg2z2MdvNoQo2MlYwMumSWtIHE1//9C0T1KkMThmQ1FsVzQRCwxr1m6kUspkf17VoGnufYZmVyvbA==",
-  "success": false,
+  "dgSpecHash": "yfMG+eO6qG91OKYTHrvumRH7BQ1Ub4UMQELMini16qom1ZRY7CU0j1lwEae95euCP7i+wMG347x8iTYNTzfn5Q==",
+  "success": true,
   "projectFilePath": "C:\\Users\\lenovo\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\TRAEProject\\TRAEProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lenovo\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1301",
-      "level": "Error",
-      "message": "El origen local \"C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages\" no existe.",
-      "libraryId": "tModLoader.CodeAssist"
-    }
-  ]
+  "logs": []
 }

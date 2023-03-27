@@ -128,20 +128,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
 
 
         }
-        public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)
-        {
-            if (((NPC.ai[1] == 4 || NPC.ai[1] == 7 || NPC.ai[1] == 10) && NPC.ai[2] < 90) || NPC.ai[1] == 2)
-            {
-                damage /= 4;
-            }
-        }
-        public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            if ((((NPC.ai[1] == 4 || NPC.ai[1] == 7 || NPC.ai[1] == 10 ) && NPC.ai[2] < 90) || NPC.ai[1] == 2)  && NPC.ai[2] > 1)
-            {
-                damage /= 4;            
-            }
-        }
         void DoDeathray(Player target, Vector2 shootFrom)
         {
             facethisway = NPC.spriteDirection;
@@ -165,6 +151,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 NPC.life += 6666;
                 NPC.lifeMax += 6666;             
                 onSpawn = true;
+            }
+            if (((NPC.ai[1] == 4 || NPC.ai[1] == 7 || NPC.ai[1] == 10) && NPC.ai[2] < 90) || NPC.ai[1] == 2)
+            {
+                NPC.takenDamageMultiplier /= 4;
             }
             NPC.TargetClosest();
             NPC.FaceTarget();

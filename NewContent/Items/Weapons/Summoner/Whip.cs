@@ -63,12 +63,13 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Whip
 		protected int tag = -1;
 		protected float tipScale = 1f;
 		protected float fallOff = 0.3f;
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-		{
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
+        {
 			ProjectileID.Sets.IsAWhip[Type] = true;
 		}
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
+
 			Projectile.damage = (int)(Projectile.damage * (1f - fallOff));
 			Player player = Main.player[Projectile.owner];
 			if (tag != -1)

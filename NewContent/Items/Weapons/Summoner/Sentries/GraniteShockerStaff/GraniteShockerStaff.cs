@@ -254,7 +254,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Sentries.GraniteShockerS
             Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.22f;
             Projectile.alpha = 255;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {            
             SoundEngine.PlaySound(SoundID.Item93, Projectile.position);
             for (int n = 0; n < 8; n++)

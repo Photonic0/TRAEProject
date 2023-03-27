@@ -24,7 +24,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
             Item.autoReuse = false;
             Item.useStyle = 1; 
             Item.DamageType = DamageClass.SummonMeleeSpeed;
-            Item.GetGlobalItem<SpearItems>().canGetMeleeModifiers = true;
             Item.width = 54;
             Item.height = 52;
             Item.shoot = ProjectileType<AbsoluteZeroP>();
@@ -37,6 +36,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
             Item.shootSpeed = 7.48f;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(0, 10, 0, 0);
+        }
+        public override bool MeleePrefix()
+        {
+            return true;
         }
     }
  
@@ -75,7 +78,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.AbsoluteZero
     }
     public class AbsoluteZeroVisualOnHitEffect : GlobalProjectile
     {
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (target.HasBuff(BuffType<AbsoluteZeroTag>()) && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]))
             {

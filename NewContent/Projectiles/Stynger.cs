@@ -29,12 +29,11 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
 
-            Projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 2.25f;
-            Projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage /= 2.25f; 
+            Projectile.GetGlobalProjectile<ProjectileStats>().FirstHitDamage = 2.25f;
 
         }
         bool dontDoThisAgain = false;
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (!dontDoThisAgain)
             {

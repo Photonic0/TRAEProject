@@ -4,12 +4,16 @@ using Terraria.ModLoader;
 using TRAEProject.NewContent.Items.Accesories.PalladiumShield;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.Items.Accesories.ExtraJumps;
+using System.Linq;
+
 public class ChestLoot : ModSystem
 {
+    public static int[] GoldChestItems;
     public static int[] PyramidItems;
     public static int[] ShadowItems;
     public override void PostSetupContent()
     {
+        GoldChestItems = new int[] { ItemID.Mace, ItemID.MagicMirror, ItemID.HermesBoots, ItemID.BandofRegeneration, ItemID.ShoeSpikes, ItemID.Extractinator };
         PyramidItems = new int[] { ItemID.SandstorminaBottle, ItemID.FlyingCarpet, ItemID.AnkhCharm, ItemID.AncientChisel, ItemID.SandBoots, ItemID.ThunderSpear, ItemID.ThunderStaff, ItemID.CatBast, ItemID.MagicConch };
         ShadowItems = new int[] { ItemID.HellwingBow, ItemID.Flamelash, ItemID.FlowerofFire, ItemID.Sunfury, ItemType<PalladiumShield>(), ItemID.GravityGlobe };
     }
@@ -20,25 +24,14 @@ public class ChestLoot : ModSystem
             Chest chest = Main.chest[chestIndex];
             if (chest != null)
             {
-                if (chest.item[0].type == ItemID.TreasureMagnet)
-                {
-                    chest.item[0].SetDefaults(Main.rand.Next(ShadowItems), false);
-                    for (int i = 0; i < 40; i++)
-                    {
-                        if (chest.item[i].IsAir)
-                        {
-                            chest.item[i].SetDefaults(ItemID.TreasureMagnet);
-                            break;
-                        }
-                    }
-                }
+
                 if (chest.item[0].type == ItemID.DarkLance)
                 {
                     chest.item[0].SetDefaults(ItemType<PalladiumShield>(), false);
                 }
-                
 
-                if (WorldGen.genRand.NextBool(2)  && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 0 * 36)
+
+                if (WorldGen.genRand.NextBool(2) && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 0 * 36)
                 {
                     for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
                     {
@@ -49,7 +42,7 @@ public class ChestLoot : ModSystem
                         }
                     }
                 }
-                if (WorldGen.genRand.NextBool(2) && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 1 * 36)
+                if (Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 1 * 36)
                 {
                     for (int i = 0; i < 40; i++)
                     {
@@ -68,15 +61,15 @@ public class ChestLoot : ModSystem
                     {
                         if (chest.item[i].type == ItemID.None)
                         {
-                            
-                                chest.item[i].SetDefaults(ItemID.FlaskofFire, false);
-                                break;
 
-                            
+                            chest.item[i].SetDefaults(ItemID.FlaskofFire, false);
+                            break;
+
+
                         }
                     }
                 }
-       
+
                 if (Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == 11 * 36)
                 {
                     if (WorldGen.genRand.NextBool(8))
@@ -101,7 +94,23 @@ public class ChestLoot : ModSystem
                     }
 
                 }
+                if (Main.tile[chest.x, chest.y].TileFrameX == 1 * 36)
+                {
+                    for (int i = 0; i < GoldChestItems.Length; i++)
+                    {
+                        if (chest.item[0].type == GoldChestItems[i]) 
+                        {
+                            if (WorldGen.genRand.NextBool(8))
+                            {
+                                chest.item[0].SetDefaults(ItemID.LuckyHorseshoe, false);
 
+                            }
+                        }
+
+
+                    }
+                  
+                }
                 if (chest.item[0].type == ItemID.MagicMissile || chest.item[0].type == ItemID.Muramasa || chest.item[0].type == ItemID.CobaltShield || chest.item[0].type == ItemID.AquaScepter || chest.item[0].type == ItemID.Handgun || chest.item[0].type == ItemID.BlueMoon || chest.item[0].type == ItemID.ShadowKey || chest.item[0].type == ItemID.Valor || chest.item[0].type == ItemID.BoneWelder)
                 {
                     if(Main.rand.NextBool(4))
@@ -110,11 +119,30 @@ public class ChestLoot : ModSystem
                         {
                             if (chest.item[i].IsAir)
                             {
-                                chest.item[i].SetDefaults(ItemID.MysticCoilSnake);
+                                chest.item[i].SetDefaults(ItemType<AdvFlightSystem>());
                                 break;
                             }
                         }
                     }
+                }
+                if (chest.item[0].type == ItemID.LuckyHorseshoe || chest.item[0].type == ItemID.CelestialMagnet || chest.item[0].type == ItemID.Starfury || chest.item[0].type == ItemID.ShinyRedBalloon)
+                {
+
+                    for (int i = 0; i < 40; i++)
+                    {
+                        if (chest.item[i].type == ItemID.CreativeWings)
+                        {
+                            chest.item[0].SetDefaults(ItemID.None, false);
+
+                        }
+                    }
+
+                }
+            
+                if (chest.item[0].type == ItemID.LuckyHorseshoe && Main.tile[chest.x, chest.y].TileFrameX != 1 * 36 )
+                {
+                    chest.item[0].SetDefaults(ItemID.CreativeWings);
+
                 }
             }
         }

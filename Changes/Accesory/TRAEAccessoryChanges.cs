@@ -85,8 +85,6 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<ShadowflameCharmPlayer>().MoltenCharm += 1;
                     player.fireWalk = false;
                     break;
-       
-                case ItemID.CrossNecklace:
                 case ItemID.StarVeil:
                     player.starCloakItem = null;
                     player.GetModPlayer<OnHitItems>().NewstarsOnHit = true;
@@ -632,7 +630,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\nStores damage dealt, dealing it slowly over time";
+                            line.Text += "\nReduces damage of one hit by 25 every 30 seconds";
                         }
                     }
                     break;

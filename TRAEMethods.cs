@@ -94,12 +94,12 @@ namespace TRAEProject
             }
             return;
         }
-        public static void Explode(Projectile projectile, int ExplosionRadius, float ExplosionDamage) // Doesn't set any special effects
+        public static void Explode(Projectile projectile, int ExplosionRadius) // Doesn't set any special effects
         {
             projectile.GetGlobalProjectile<ProjectileStats>().explodes = false; // without this, the projectile will keep exploding infinitely
+            projectile.damage = (int)(projectile.damage * projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage);
             projectile.timeLeft = 3; // Explosion will stay active for 3 frames          
             projectile.alpha = 255; // Projectile becomes invisible
-            projectile.damage = (int)(projectile.damage * ExplosionDamage); // Damage is lowered by a certian amount if necessary
             projectile.tileCollide = false; // if set to true, the explosion won't go through blocks (and probably be messed up)
             // Adjust the explosion's hitbox so that it spawns at the center of the projectile.
             projectile.position.X += projectile.width / 2;

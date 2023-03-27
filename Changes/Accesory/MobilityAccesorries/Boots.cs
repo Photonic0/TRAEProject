@@ -17,6 +17,7 @@ namespace TRAEProject.Changes.Accesory
             switch (item.type)
             {
                 //running boots
+                case ItemID.HellfireTreads:
                 case ItemID.HermesBoots:
                 case ItemID.FlurryBoots:
                 case ItemID.SailfishBoots:
@@ -35,7 +36,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.FrogFlipper:
                     player.frogLegJumpBoost = false;
                     player.extraFall += 15;
-                    player.jumpSpeedBoost += Mobility.JSV(0.25f);
+                    player.jumpSpeedBoost -= Mobility.JSV(0.07f);
                     break;
                 case ItemID.FrogGear:
                     player.frogLegJumpBoost = false;
@@ -43,12 +44,12 @@ namespace TRAEProject.Changes.Accesory
                     player.dashType = 1;
                     player.spikedBoots = 0;
                     player.extraFall += 15;
-                    player.jumpSpeedBoost += Mobility.JSV(0.25f);
+                    player.jumpSpeedBoost -= Mobility.JSV(0.07f);
                     break;
                 case ItemID.AmphibianBoots:
                     player.frogLegJumpBoost = false;
                     player.extraFall += 15;
-                    player.jumpSpeedBoost += Mobility.JSV(0.25f);
+                    player.jumpSpeedBoost -= Mobility.JSV(0.07f);
                     player.moveSpeed += Mobility.amphibootSpeed * 0.01f;
                     player.accRunSpeed = 4.8f;
                     break;
@@ -110,11 +111,11 @@ namespace TRAEProject.Changes.Accesory
                     player.waterWalk = true;
                     break;
                 case ItemID.LavaWaders:
-                case ItemID.HellfireTreads:
+
                     player.GetModPlayer<AccesoryEffects>().waterRunning = true;
                     player.GetModPlayer<AccesoryEffects>().LavaShield = true;
                     player.GetModPlayer<Mobility>().TRAEwaterwalk = true;
-
+					player.buffImmune[BuffID.Burning] = true;
                     player.lavaImmune = true;
                     player.lavaRose = false;
                     break;
@@ -127,6 +128,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.HermesBoots:
                 case ItemID.SailfishBoots:
                 case ItemID.FlurryBoots:
+                case ItemID.HellfireTreads:
                     foreach (TooltipLine line in tooltips)
                     {
                         
@@ -141,7 +143,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = Mobility.bootSpeed + "% increased movement speed" + "\nRunning and jumping speed increased by 25% on sand, and for 4 seconds after leaving it";
+                            line.Text = Mobility.bootSpeed + "% increased movement speed" + "\n20% increased movement speed on sand";
                         }
                     }
                     break;
@@ -151,7 +153,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Provides rocket boot flight(5)";
+                            line.Text = "Provides rocket boot flight";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -197,7 +199,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Provides rocket boot flight(5)";
+                            line.Text = "Provides rocket boot flight";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -285,7 +287,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Provides rocket boot flight(10)";
+                            line.Text = "Provides rocket boot flight";
                         }
                     }
                     break;
@@ -294,7 +296,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Provides rocket boot flight(10)";
+                            line.Text = "Provides rocket boot flight";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -307,7 +309,6 @@ namespace TRAEProject.Changes.Accesory
                     }
                     break;
                 case ItemID.LavaWaders:
-                case ItemID.HellfireTreads:
                     foreach (TooltipLine line in tooltips)
                     {
                         {

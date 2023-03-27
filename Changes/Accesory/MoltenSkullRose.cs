@@ -32,6 +32,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.MoltenSkullRose:
                     player.GetModPlayer<ObsidianSkullEffect>().moltenskullrose += 1;
                     player.GetModPlayer<CritDamage>().critDamage += 0.09f;
+                    
                     break;
                
                 case ItemID.MoltenQuiver:
@@ -193,22 +194,21 @@ namespace TRAEProject.Changes.Accesory
                 Player.lavaRose = false;
             }
         }
-
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-       
+
             if ((target.Center - Player.Center).Length() < shieldRange)
             {
                 TRAEDebuff.Apply<ObsidianSkulled>(target, 180, 3);
             }
-            if (crit && (moltenskullrose > 0 || magmaSkull > 0)) // you need to have molten skull for this to work on true melee, no point on doing other checks
+            if (hit.Crit && (moltenskullrose > 0 || magmaSkull > 0)) // you need to have molten skull for this to work on true melee, no point on doing other checks
             {
-                int duration = damage / Main.rand.Next(3, 6) * (skull + moltenskullrose + magmaSkull);              
+                int duration = damageDone / Main.rand.Next(3, 6) * (skull + moltenskullrose + magmaSkull);              
                 TRAEDebuff.Apply<ObsidianSkulled>(target, duration, 3);
             }
-            if (crit && Player.magmaStone)
+            if (hit.Crit && Player.magmaStone)
             {
-                int chance = 1600 / (damage * 2 * (magmas)); //On hit NPC ignores crits' boosted damage
+                int chance = 1600 / (damageDone * magmas); //On hit NPC ignores crits' boosted damage
 				if (chance <= 1)
                     chance = 1;
                 if (Main.rand.NextBool(chance))
@@ -228,8 +228,9 @@ namespace TRAEProject.Changes.Accesory
                 }
             }
         }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
+
             if ((target.Center - Player.Center).Length() < shieldRange)
             {
                 TRAEDebuff.Apply<ObsidianSkulled>(target, 180, 3);
@@ -238,11 +239,11 @@ namespace TRAEProject.Changes.Accesory
             {
                 target.AddBuff(BuffID.OnFire3, Main.rand.Next(120, 360));
             }
-            if (crit && Player.magmaStone)
+            if (hit.Crit && Player.magmaStone)
             {
                 if (proj.CountsAsClass<MeleeDamageClass>())
                 {
-                    int chance = 1600 / (damage * 2 * magmas);
+                    int chance = 1600 / (damageDone * magmas);
                     if (chance <= 1)
                         chance = 1;
                     if (Main.rand.NextBool(chance))
@@ -263,22 +264,22 @@ namespace TRAEProject.Changes.Accesory
                 }
             }
          
-            if (crit
+            if (hit.Crit
                 && (skull > 0 && proj.CountsAsClass<RangedDamageClass>())
                 || moltenskullrose > 0 
                 || (proj.CountsAsClass<MagicDamageClass>() && roseskull > 0)
                 || (proj.CountsAsClass<MeleeDamageClass>() && magmaSkull > 0)
                )
             {
-                int duration = damage * Main.rand.Next(3, 6) * (skull + moltenskullrose + roseskull);
+                int duration = damageDone * Main.rand.Next(3, 6) * (skull + moltenskullrose + roseskull);
                 TRAEDebuff.Apply<ObsidianSkulled>(target, duration, 4);
             }
             if (proj.arrow && arrowsburn > 0)
             {
                 target.AddBuff(BuffID.OnFire3, Main.rand.Next(120, 360));
-                if (crit)
+                if (hit.Crit)
                 {
-                    int chance = 1600 / (damage * 2 * (arrowsburn + moltenskullrose));
+                    int chance = 1600 / (damageDone * (arrowsburn + moltenskullrose));
                     if (Main.rand.NextBool(chance))
                     {
                         if (target.HasBuff(BuffID.Daybreak))

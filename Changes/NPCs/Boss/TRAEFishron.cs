@@ -20,12 +20,12 @@ namespace TRAEProject.Changes.NPCs.Boss
 						return;
 				}
 		}
-		public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
-		{
-		
-				switch (npc.type)
-				{
-				case NPCID.DukeFishron:
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
+        {
+
+            switch (npc.type)
+            {
+                case NPCID.DukeFishron:
 					{
 						if (Main.rand.Next(3) == 0)
 						{
@@ -41,7 +41,6 @@ namespace TRAEProject.Changes.NPCs.Boss
 			switch (npc.type)
 			{
 				case NPCID.DukeFishron:
-					npc.lifeMax += (npc.lifeMax / 2);
 					npc.defDefense = 60;
 					npc.defDamage = (int)(npc.defDamage * 0.9);
 					return;

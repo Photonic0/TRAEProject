@@ -55,7 +55,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             AIType = ProjectileID.Bullet;
             Projectile.CloneDefaults(ProjectileID.Bullet);
             Projectile.GetGlobalProjectile<ScopeAndQuiver>().AffectedByReconScope = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().CritDamage = 0.2f;
+            Projectile.GetGlobalProjectile<ProjectileStats>().CritDamage = 0.25f;
             Projectile.timeLeft = 1200;
             Projectile.penetrate = 1;
             Projectile.extraUpdates = 2;

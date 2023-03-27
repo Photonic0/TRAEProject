@@ -97,7 +97,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
 			Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
             Projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 600;
 			Projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 100;
+            Projectile.ArmorPenetration = 100;
             Projectile.GetGlobalProjectile<ScopeAndQuiver>().AffectedByAlphaScope = true;
             Projectile.penetrate = 3;
             Projectile.ignoreWater = true;

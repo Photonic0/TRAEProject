@@ -10,6 +10,9 @@ using TRAEProject.NewContent.Projectiles;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using TRAEProject.Common.ModPlayers;
+using Mono.Cecil;
+using System.Collections;
 
 namespace TRAEProject.Changes.Weapon.Melee
 {
@@ -17,6 +20,7 @@ namespace TRAEProject.Changes.Weapon.Melee
     {
         public override bool InstancePerEntity => true;
         public bool FetidHeal = false;
+        int aura = 0; // for use for those swords that also shoot a projectile on top of the aura
         public override GlobalItem Clone(Item item, Item itemClone)
         {
             return base.Clone(item, itemClone);
@@ -25,89 +29,69 @@ namespace TRAEProject.Changes.Weapon.Melee
         {
             switch (item.type)
             {
+                case ItemID.BeeKeeper:
+                    item.damage = 26; // down from 30
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<BeekeeperAura>();
+                    break;
+                case ItemID.BreakerBlade:
+                    item.height = 92;
+                    item.width = 92;
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<BreakerAura>();
+                    break;
                 case ItemID.CobaltSword:
-                    item.damage = 47; // up from 39
-                    item.useTime = 16; // down from 22
-                    item.useAnimation = 16;  // down from 22
-                    item.scale = 1.59f;
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<CobaltAura>();
+                    item.crit = 24; 
                     item.useTurn = false;
-                    item.crit = 24;
+
                     item.SetNameOverride("Cobalt Katana");
                     break;
                 case ItemID.PalladiumSword:
-                    item.damage = 61; // up from 45
-                    item.useTime = 20;
-                    item.useAnimation = 20;
-                    item.scale = 1.67f;
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<PallaAura>();
                     item.useTurn = false;
                     item.SetNameOverride("Palladium Falcata");
                     break;
                 case ItemID.MythrilSword:
-                    item.damage = 140;
-                    item.useTime = 40;
-                    item.useAnimation = 40;
-                    item.scale = 2.4f;
+                    item.damage = 75;
+                    item.useTime = 30;
+                    item.useAnimation = 30; 
+                    item.noMelee = true; 
+                    item.useTurn = false;
+
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<MythrilAura>();
                     item.SetNameOverride("Mythril Zweihänder");
                     break;
                 case ItemID.OrichalcumSword:
-                    item.damage = 50;
-                    item.useTime = 25;
-                    item.useAnimation = 25;
-                    item.scale = 1.66f;
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<OrichalcumAura>();
                     item.SetNameOverride("Orichalcum Flamberge");
                     break;
                 case ItemID.AdamantiteSword:
-                    item.damage = 60;
-                    item.useTime = 17;
-                    item.useAnimation = 17;
-                    item.scale = 1.75f;
+                    item.noMelee = true; item.useTurn = false;
+
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<AdamantiteAura>();
                     item.SetNameOverride("Adamantite Broadsword");
                     break;
-                case ItemID.Frostbrand:
-                    item.useTime = 40;
-                    item.scale = 1.5f; // up from 1.15
-                    return;
                 case ItemID.TitaniumSword:
-                    item.scale = 1.75f;
+                    item.damage = 58; // down from 61
+                    item.useTime = item.useAnimation = 25; // up from 20
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<TitaniumAura>();
                     item.SetNameOverride("Titanium Falchion");
                     break;
-                case ItemID.Excalibur:
-                case ItemID.TrueExcalibur:
-                    item.damage = 70;
-                    item.useTime = 32;
-                    item.useAnimation = 16;
-                    item.scale = 1.8f;
-                    break;
-                case ItemID.ChlorophyteSaber:
-                    item.damage = 50;
-                    item.scale = 1.75f;
-                    item.useTime = 16;
-                    item.useAnimation = 16;
-                    item.useTurn = false;
-                    item.shoot = ProjectileID.None;
-                    break;
-                case ItemID.ChlorophyteClaymore:
-                    item.damage = 120;
-                    item.useTime = 50;
-                    item.useAnimation = 40;
-                    item.scale = 2.4f;
-                    item.autoReuse = true;
-                    item.useTurn = false;
-                    break;
-                case ItemID.BeamSword: // REVISIT
-                    item.useTime = 45;
-                    item.useAnimation = 15;
-                    item.autoReuse = true;
-                    item.useTurn = false;
-                    return;
-                case ItemID.TrueNightsEdge: // REVISIT
-                    item.autoReuse = true;
-                    item.damage = 100;
-                    item.useTime = 30;
-                    item.useAnimation = 30;
-                    item.scale = 1.75f;
-                    return;
-                //phasesabars
+
+                //phasesabers
                 case ItemID.PurplePhasesaber:
                 case ItemID.YellowPhasesaber:
                 case ItemID.BluePhasesaber:
@@ -115,66 +99,38 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.RedPhasesaber:
                 case ItemID.OrangePhasesaber:
                 case ItemID.WhitePhasesaber:
-                    item.damage = 60;
+                    item.damage = 48;
                     item.crit = 24;
-                    item.knockBack = 1f;
-                    item.useTime = 17;
-                    item.useAnimation = 17;
                     item.autoReuse = true;
                     item.useTurn = false;
-                    break;
-                case ItemID.BreakerBlade:
-                    item.scale = 1.5f; // up from 1.05f
-                    item.damage = 80;
-                    item.useTime = 60;
-                    item.useAnimation = 60;
-                    item.height = 90;
-                    item.width = 80;
-                    break;
-                case ItemID.Cutlass:
-                    //item.damage = 60;
-                    //item.knockBack = 1f;
-                    //item.useTime = 13;
-                    //item.useAnimation = 13;
-                    //item.autoReuse = true;
-                    //item.useTurn = false;
                     break;
                 case ItemID.Seedler:
                     item.useTime = 27;
                     item.useAnimation = 27;
                     break;
                 case ItemID.Keybrand:
-                    item.scale = 1.7f;
-                    item.damage = 100;
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<KeybrandAura>();
                     break;
-                case ItemID.TerraBlade: // REVISIT
-                    item.damage = 100;
-                    item.scale = 1.6f;
-                    item.useTime = 16;
-                    item.useAnimation = 16;
-                    item.shootSpeed = 6f; //down from 12 (beam now has an extra update)
-                    break;
-                case ItemID.TheHorsemansBlade:
-                    item.damage = 150;
-                    item.scale = 1.75f;
-                    break;
-                case ItemID.DD2SquireDemonSword:
-                    item.useTurn = false;
-                    item.scale = 1.7f;
-                    item.shoot = ProjectileType<Blank>();
+                case ItemID.PiercingStarlight:
+                    item.damage = 70; // down from 80
                     break;
                 case ItemID.FetidBaghnakhs:
                     FetidHeal = true;
-                    item.useTurn = false;
-                    item.shoot = ProjectileType<Blank>();
-                    item.damage = 45;
+                    item.noMelee = true; item.useTurn = false;
+
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<ShortAura>(); item.damage = 45;
                     item.useTime = 8;
                     item.useAnimation = 8;
                     break;
                 case ItemID.PsychoKnife:
+                    item.noMelee = true; item.useTurn = false;
+
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<ShortAura>();
                     FetidHeal = true;
-                    item.damage = 80; // down from 85
-                    item.shoot = ProjectileType<Blank>();
                     item.useTime = 8;
                     item.useAnimation = 8;
                     break;
@@ -186,35 +142,81 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.knockBack = 4f;
                     item.autoReuse = true;
                     break;
-                case ItemID.DD2SquireBetsySword:
-                    item.scale = 1.7f;
+                case ItemID.DD2SquireDemonSword:
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<BrandAura>();
+                    item.useTurn = false;
+
                     break;
-                case 3063: // meowmere
-                    item.scale = 1.95f; // up from 1.05
-                    return;
+                case ItemID.InfluxWaver:
+                    item.noMelee = true;
+                    aura = ProjectileType<InfluxAura>();
+                    item.useTurn = false;
+                    break;
+                case ItemID.DD2SquireBetsySword:
+                    item.noMelee = true;
+                    aura = ProjectileType<DrgngnAura>();
+                    item.useTurn = false;
+                    break;
                 case 3065: // star wrath
-                    item.damage = 110; // down from 110
-                    item.scale = 1.7f; // up from 1.05
+                    item.noMelee = true;
+                    aura = ProjectileType<StarWrathAura>();
+                    item.damage = 110; // down from 170
                     return;
+                case 3063: // meowmere
+                    return;
+     
 
             }
         }
-        public override bool? CanHitNPC(Item item, Player player, NPC target)
+
+        public override void UseAnimation(Item item, Player player)
         {
-            if(item.type == ItemID.TheHorsemansBlade)
+
+            if (aura != 0)
             {
-                if(target.SpawnedFromStatue)
+                Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
+
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    return false;
+                    Vector2 velocity = new Vector2(Math.Sign(mousePosition.X - player.Center.X), 0); // determines direction
+
+                    Projectile spawnedProj = Projectile.NewProjectileDirect(player.GetSource_ItemUse(item), player.MountedCenter - velocity * 2, velocity * 5 , aura, item.damage, item.knockBack, Main.myPlayer,
+                            Math.Sign(mousePosition.X - player.Center.X) * player.gravDir, player.itemAnimationMax, player.GetAdjustedItemScale(item));
+                    NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
+
                 }
+                return;
             }
-            return base.CanHitNPC(item, player, target);
         }
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Vector2 mousePosition = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
             switch (item.type)
             {
+                case ItemID.BeeKeeper:
+                case ItemID.Keybrand:
+                case ItemID.BreakerBlade:
+                case ItemID.CobaltSword:
+                case ItemID.MythrilSword:
+                case ItemID.AdamantiteSword:
+                case ItemID.DD2SquireDemonSword:
+                case ItemID.PalladiumSword:
+                case ItemID.OrichalcumSword:
+                case ItemID.TitaniumSword:
+                case ItemID.FetidBaghnakhs:
+                case ItemID.PsychoKnife:
+                    if (player.whoAmI == Main.myPlayer)
+                    {
+                        Projectile spawnedProj = Projectile.NewProjectileDirect(source, player.MountedCenter - velocity * 2, velocity * 5, type, damage, knockback, Main.myPlayer,
+                            player.direction * player.gravDir, player.itemAnimationMax, player.GetAdjustedItemScale(item));
+                        NetMessage.SendData(MessageID.PlayerControls, -1, -1, null, player.whoAmI);
+
+
+                    }
+                    return false;
+
                 case ItemID.ChristmasTreeSword:
                     {
                         int number = 1 + Main.rand.Next(1, 2); // 1 to 3 shots
@@ -244,66 +246,72 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
             return true;
         }
-        public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void ModifyItemScale(Item item, Player player, ref float scale)
         {
-            if (FetidHeal && player.GetModPlayer<OnHitItems>().BaghnakhHeal <= (int)(player.GetModPlayer<OnHitItems>().LastHitDamage * 0.5))
+            if (item.CountsAsClass(DamageClass.Melee)/* && !item.CountsAsClass(DamageClass.MeleeNoSpeed)*/)
             {
-                float healAmount = (float)(damage * 0.05f);
-                player.GetModPlayer<OnHitItems>().BaghnakhHeal += (int)healAmount;
-                player.HealEffect((int)healAmount, true);
-                player.statLife += (int)healAmount;
+                float bonusSize = 1f;
+                switch (item.prefix)
+                {
+                    case PrefixID.Large:
+                        bonusSize = (1.18f / 1.15f);
+                        break;
+                    case PrefixID.Massive:
+                        bonusSize = (1.25f / 1.18f);
+                        break;
+                    case PrefixID.Dangerous:
+                        bonusSize = (1.12f / 1.05f);
+                        break;
+                    case PrefixID.Bulky:
+                        bonusSize = (1.2f / 1.1f);
+                        break;
+                }
+                scale *= bonusSize;
+                scale *= player.GetModPlayer<MeleeStats>().weaponSize;
             }
-            switch (item.type)
+            if (item.type == ItemID.PiercingStarlight)
             {
-                case ItemID.PalladiumSword:
-                    player.AddBuff(BuffID.RapidHealing, 300);
-                    return;
-                case ItemID.OrichalcumSword:
-                    int direction = player.direction;
-                    float k = Main.screenPosition.X;
-                    if (direction < 0)
-                    {
-                        k += (float)Main.screenWidth;
-                    }
-                    float y2 = Main.screenPosition.Y;
-                    y2 += (float)Main.rand.Next(Main.screenHeight);
-                    Vector2 vector = new Vector2(k, y2);
-                    float num2 = target.Center.X - vector.X;
-                    float num3 = target.Center.Y - vector.Y;
-                    num2 += (float)Main.rand.Next(-50, 51) * 0.1f;
-                    num3 += (float)Main.rand.Next(-50, 51) * 0.1f;
-                    float num4 = (float)Math.Sqrt(num2 * num2 + num3 * num3);
-                    num4 = 24f / num4;
-                    num2 *= num4;
-                    num3 *= num4;
-                    Projectile.NewProjectile(player.GetSource_FromThis(), k, y2, num2, num3, 221, 36, 0f, player.whoAmI);
-                    return;
-                case ItemID.ChlorophyteSaber:
-                    Projectile.NewProjectile(player.GetSource_ItemUse(item), target.Center, TRAEMethods.PolarVector(Main.rand.NextFloat() * 2f, Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI)), ProjectileID.SporeCloud, (int)(.8f * damage), 0, player.whoAmI);
-                    break;
-            }
+                scale *= 1 + (player.GetAttackSpeed<MeleeDamageClass>() - 1) / 2;
+            }    
         }
+        public override float UseSpeedMultiplier(Item item, Player player)
+        {
+            if (item.type == ItemID.TheHorsemansBlade)
+            {
+                return player.GetAttackSpeed<MeleeDamageClass>();
+            }
+            if (item.type == ItemID.TerraBlade)
+            {
+                return player.GetAttackSpeed<MeleeDamageClass>();
+            }
+            return 1f;
+        }
+
         public override void HoldItem(Item item, Player player)
         {
             switch (item.type)
             {
+                case ItemID.TerraBlade:
+                    player.GetAttackSpeed<MeleeDamageClass>() /= 0.75f;
+                    break;
                 case ItemID.TitaniumSword:
                     player.onHitTitaniumStorm = true;
                     return;
             }
         }
-        public override void ModifyHitNPC(Item item, Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if(item.type == ItemID.MythrilSword)
+            switch (item.type)
             {
-                if(Main.rand.NextBool(2))
-                {
-                    damage = damage + (damage / 2);
-                }
-                else
-                {
-                    crit = false;
-                }
+                case ItemID.MythrilSword:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Knockback")
+                        {
+                            line.Text += "\nDeals 25% more damage on critical hits";
+                        }
+                    }
+                    break;
             }
         }
     }

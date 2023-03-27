@@ -45,12 +45,12 @@ namespace TRAEProject.Common
 
         }
         /// <summary> Use this instead of OnHitNPC() </summary>
-        public virtual void SpearHitNPC(NPC target, int damage, float knockback, bool crit)
+        public virtual void SpearHitNPCMelee(NPC target, NPC.HitInfo hit)
         {
 
         }
         /// <summary> Use this instead of ModifyHitNPC <summary> 
-        public virtual void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public virtual void SpearModfiyHitNPCMelee(NPC target, ref NPC.HitModifiers modifiers)
         {
 
         }
@@ -256,15 +256,15 @@ namespace TRAEProject.Common
             float point = 0;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + PolarVector((spearLength - stabStart) * Projectile.scale, stabDirection + (float)Math.PI), Projectile.Center, spearLength - stabStart, ref point);
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            hitDirection = Math.Sign(target.Center.X - Main.player[Projectile.owner].Center.X);
-            SpearModfiyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
+            int direction = Math.Sign(target.Center.X - Main.player[Projectile.owner].Center.X);
+            SpearModfiyHitNPCMelee(target, ref modifiers);
         }
         public int[] hitCount = new int[Main.npc.Length];
         public int pierceLimit = 0;
         public int MaxPierce = 6;
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             hitCount[target.whoAmI]++;
             if(hitCount[target.whoAmI] >= 2)
@@ -281,7 +281,7 @@ namespace TRAEProject.Common
             {
                 Projectile.damage = 0;
             }
-            SpearHitNPC(target, damage, knockback, crit);
+            SpearHitNPCMelee(target, hit);
         }
         public override bool PreDraw(ref Color lightColor)
         {
@@ -351,12 +351,12 @@ namespace TRAEProject.Common
 
         }
         /// <summary> Use this instead of OnHitNPC() </summary>
-        public virtual void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
+        public virtual void SpearHitNPC(bool atMaxCharge, NPC target, NPC.HitInfo hit, int damageDone)
         {
 
         }
         /// <summary> Use this instead of ModifyHitNPC <summary> 
-        public virtual void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public virtual void SpearModfiyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
 
         }
@@ -549,15 +549,15 @@ namespace TRAEProject.Common
             get { return Projectile.ai[1]; }
             set { Projectile.ai[1] = value; }
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             if (chargeAmt == 1)
             {
-                damage = (int)(damage * 2f);
+                modifiers.FinalDamage *= 2f;
             }
             else
             {
-                damage = (int)(damage * chargeAmt);
+                modifiers.FinalDamage *= chargeAmt;
             }
             if(maxSticks > 0)
             {
@@ -615,7 +615,7 @@ namespace TRAEProject.Common
                 Projectile.ignoreWater = true; // Make sure the projectile ignores water
                 Projectile.tileCollide = false; // Make sure the projectile doesn't collide with tiles anymore
             }
-            SpearModfiyHitNPC(target, ref damage, ref knockback, ref crit, ref hitDirection);
+            SpearModfiyHitNPC(target, ref modifiers);
         }
         void Sticking()
         {
@@ -674,9 +674,9 @@ namespace TRAEProject.Common
             }
             return false;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            SpearHitNPC(chargeAmt==1, target, damage, knockback, crit);
+            SpearHitNPC(chargeAmt ==1, target, hit, damageDone);
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {

@@ -26,9 +26,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.SpikedWhip
             Item.autoReuse = false; 
 			Item.DamageType = DamageClass.SummonMeleeSpeed;
 			Item.useStyle = 1;
-            Item.GetGlobalItem<SpearItems>().canGetMeleeModifiers = true;
             Item.width = 46;
-            Item.height = 32;
+            Item.height = 34;
             Item.shoot = ProjectileType<SpikedWhipP>();
             Item.UseSound = SoundID.Item152;
             Item.noMelee = true;
@@ -47,8 +46,12 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.SpikedWhip
 				.AddIngredient(ItemID.Leather, 2)
 				.AddTile(TileID.Anvils)
 				.Register();
-		}
-	}
+        }
+        public override bool MeleePrefix()
+        {
+            return true;
+        }
+    }
  
     public class SpikedWhipP : WhipProjectile
     {

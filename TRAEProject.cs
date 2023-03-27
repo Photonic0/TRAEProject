@@ -111,7 +111,11 @@ namespace TRAEProject
         {
             Terraria.IL_Projectile.StatusNPC += (il) => {
                 var c = new ILCursor(il);
-
+                if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(359)))
+                {
+                    c.Emit(OpCodes.Pop);
+                    c.Emit(OpCodes.Ldc_I4, int.MinValue);
+                }
                 if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(379))) {
                     c.Emit(OpCodes.Pop);
                     c.Emit(OpCodes.Ldc_I4, int.MinValue);
@@ -121,11 +125,16 @@ namespace TRAEProject
                     c.Emit(OpCodes.Pop);
                     c.Emit(OpCodes.Ldc_I4, int.MaxValue);
                 }
-
+                if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(391)))
+                {
+                    c.Emit(OpCodes.Pop);
+                    c.Emit(OpCodes.Ldc_I4, int.MinValue);
+                }
                 if (c.TryGotoNext(MoveType.After, x => x.MatchLdcI4(392))) {
                     c.Emit(OpCodes.Pop);
                     c.Emit(OpCodes.Ldc_I4, int.MinValue);
                 }
+   
             };
             Instance = this;
             AddBossHeadTexture(DreadHead1);

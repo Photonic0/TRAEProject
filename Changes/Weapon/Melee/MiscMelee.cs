@@ -28,12 +28,18 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.autoReuse = true;
                     item.value = Item.buyPrice(gold: 5);
                     return;
+                case ItemID.HiveFive:
+                    item.damage = 21; // down from 24 
+                    return;
                 case ItemID.ShadowFlameKnife:
                     item.useTime = 14; // up from 12
                     item.useAnimation = 14;
                     return;
                 case ItemID.VampireKnives:
                     item.damage = 29; // up from 29
+                    return;
+					case ItemID.EnchantedBoomerang:
+                    item.damage = 20; // up from 17
                     return;
                 case ItemID.IceBoomerang:
                     item.damage = 22; // up from 16
@@ -90,27 +96,8 @@ namespace TRAEProject.Changes.Weapon.Melee
             return;
         }
 
-        public override void ModifyHitNPC(Item item, Player player, NPC target, ref int damage, ref float knockBack, ref bool crit)
-        {
-            if (item.type == ItemID.BreakerBlade)
-            {
-                if (target.life >= target.lifeMax * 0.9)
-                {
-                    Terraria.Audio.SoundEngine.PlaySound(SoundID.Item14, target.position);
-                    for (int i = 0; i < 20; ++i)
-                    {
-                        int Fire = Dust.NewDust(new Vector2(target.position.X, target.position.Y), target.width, target.height, DustID.Torch, 0f, 0f, 100, default, 3f);
-                        Main.dust[Fire].noGravity = true;
-                        Main.dust[Fire].velocity *= 4f;
-                        int Fire2 = Dust.NewDust(new Vector2(target.position.X, target.position.Y), target.width, target.height, DustID.Torch, 0f, 0f, 100, default, 2f);
-                        Main.dust[Fire2].velocity *= 2f;
-                    }
-                    return;
-                }
-            }
-        }
         
-        public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
         { 
             if (player.HasBuff(BuffID.WeaponImbueNanites))
             {
@@ -120,7 +107,7 @@ namespace TRAEProject.Changes.Weapon.Melee
             {
                 if (target.active && !target.dontTakeDamage && !target.friendly && target.lifeMax > 5 && !target.immortal && !target.SpawnedFromStatue)
                 {
-                    int amount = damage / 2;
+                    int amount = damageDone / 2;
                     player.QuickSpawnItem(player.GetSource_OnHit(target), ItemID.CopperCoin, amount);
                     return;
                 }

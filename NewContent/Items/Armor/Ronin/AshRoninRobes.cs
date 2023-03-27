@@ -78,7 +78,7 @@ namespace TRAEProject.NewContent.Items.Armor.Ronin
         {
             AshRoninSetBonus = false;
         }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (AshRoninSetBonus && ProjectileID.Sets.IsAWhip[proj.type] && !proj.GetGlobalProjectile<AshRoninBool>().OnlyOnce)
             {

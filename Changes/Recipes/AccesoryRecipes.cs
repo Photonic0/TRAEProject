@@ -24,8 +24,8 @@ namespace TRAEProject.Changes.Recipes
             HermesBoots.Register(); 
             Recipe Mantra = Recipe.Create(ItemID.CountercurseMantra).AddIngredient(ItemID.Nazar, 1).AddIngredient(ItemID.AnkhCharm, 1).AddTile(TileID.TinkerersWorkbench);
             Mantra.Register();
-            Recipe Magnet = Recipe.Create(ItemID.CelestialMagnet).AddIngredient(ItemID.TreasureMagnet, 1).AddIngredient(ItemID.ManaCrystal, 5).AddTile(TileID.Anvils);
-            Magnet.Register();
+            Recipe Waders = Recipe.Create(ItemID.LavaWaders).AddIngredient(ItemID.WaterWalkingBoots, 1).AddIngredient(ItemID.LavaCharm, 1).AddTile(TileID.Loom);
+            Waders.Register();
             Recipe BoBrecipe = Recipe.Create(ItemID.BundleofBalloons);
             BoBrecipe.AddRecipeGroup("CloudBalloon");
             BoBrecipe.AddRecipeGroup("BlizzardJump");
@@ -121,18 +121,8 @@ namespace TRAEProject.Changes.Recipes
             }
             if (recipe.HasResult(ItemID.LavaWaders))
             {
-                recipe.TryGetIngredient(ItemID.ObsidianWaterWalkingBoots, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.TryGetIngredient(ItemID.ObsidianRose, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.TryGetIngredient(ItemID.MoltenCharm, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.TryGetIngredient(ItemID.LavaCharm, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.TryGetIngredient(ItemID.WaterWalkingBoots, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.WaterWalkingBoots, 1);
-                recipe.AddIngredient(ItemID.LavaCharm, 1);
+                recipe.DisableRecipe();
+           
             }
             if (recipe.HasResult(ItemID.MoonShell))
             {
@@ -202,6 +192,24 @@ namespace TRAEProject.Changes.Recipes
             if (recipe.HasResult(ItemID.ObsidianSkull))
             {
                 recipe.AddIngredient(ItemID.Bone, 20);
+            }
+            if (recipe.HasResult(3999)) // MAGMA SKULL
+            {
+                recipe.TryGetIngredient(ItemID.LavaCharm, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.MagmaStone, 1);
+            }
+            if (recipe.HasResult(ItemID.MoltenSkullRose)) // MAGMA SKULL
+            {
+                recipe.TryGetIngredient(ItemID.LavaCharm, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.MagmaStone, 1);
+            }
+            if (recipe.HasResult(ItemID.HeroShield))
+            {
+                recipe.TryGetIngredient(ItemID.PaladinsShield, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.CobaltShield, 1);
             }
             if (recipe.HasResult(ItemID.FrogGear))
             {

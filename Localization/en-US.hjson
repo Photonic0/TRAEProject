@@ -133,19 +133,19 @@ Mods: {
 			ShroomiteShot.DisplayName: ShroomitSHot
 			SolarArrowShot.DisplayName: SolarArrow
 			BAMGel.DisplayName: BAMGel
-			BAMRocket.DisplayName: B A M Rocket
-			BAMRocketCluster.DisplayName: B A M Rocket Cluster
-			BAMRocketDestructive.DisplayName: B A M Rocket Destructive
-			BAMRocketDirect.DisplayName: B A M Rocket Direct
-			BAMRocketDMiniNuke.DisplayName: B A M Rocket D Mini Nuke
-			BAMRocketDry.DisplayName: B A M Rocket Dry
-			BAMRocketHeavy.DisplayName: B A M Rocket Heavy
-			BAMRocketHoney.DisplayName: B A M Rocket Honey
-			BAMRocketLava.DisplayName: B A M Rocket Lava
-			BAMRocketLuminite.DisplayName: B A M Rocket Luminite
-			BAMRocketMiniNuke.DisplayName: B A M Rocket Mini Nuke
-			BAMRocketSuper.DisplayName: B A M Rocket Super
-			BAMRocketWet.DisplayName: B A M Rocket Wet
+			BAMRocket.DisplayName: BAM Rocket
+			BAMRocketCluster.DisplayName: BAM Rocket Cluster
+			BAMRocketDestructive.DisplayName: BAM Rocket Destructive
+			BAMRocketDirect.DisplayName: BAM Rocket Direct
+			BAMRocketDMiniNuke.DisplayName: BAM Rocket D Mini Nuke
+			BAMRocketDry.DisplayName: BAM Rocket Dry
+			BAMRocketHeavy.DisplayName: BAM Rocket Heavy
+			BAMRocketHoney.DisplayName: BAM Rocket Honey
+			BAMRocketLava.DisplayName: BAM Rocket Lava
+			BAMRocketLuminite.DisplayName: BAM Rocket Luminite
+			BAMRocketMiniNuke.DisplayName: BAM Rocket Mini Nuke
+			BAMRocketSuper.DisplayName: BAM Rocket Super
+			BAMRocketWet.DisplayName: BAM Rocket Wet
 			HaxorBig.DisplayName: Haxor Big
 			HaxorSmall.DisplayName: Haxor Small
 			ElectricRIng.DisplayName: Electricity Ring
@@ -230,6 +230,28 @@ Mods: {
 			ThrownLucy.DisplayName: Thrown Lucy
 			ToxicCloud.DisplayName: ToxicCloud
 			ToxicDrop.DisplayName: ToxicDrop
+			KeybrandAura.DisplayName: Keybrand Aura
+			AdamantiteAura.DisplayName: Adamantite Aura
+			CobaltAura.DisplayName: Cobalt Aura
+			MythrilAura.DisplayName: Mythril Aura
+			BrandAura.DisplayName: Brand Aura
+			DrgngnAura.DisplayName: Drgngn Aura
+			InfluxAura.DisplayName: Influx Aura
+			StarWrathAura.DisplayName: Star Wrath Aura
+			OniPetalCircling.DisplayName: Oni Petal Circling
+			OniPetalCirclingFire.DisplayName: Oni Petal Circling Fire
+			OniPetalSpiraling.DisplayName: Oni Petal Spiraling
+			OniPetalSpiralingFire.DisplayName: Oni Petal Spiraling Fire
+			FlameP.DisplayName: Flame P
+			FrostFlameP.DisplayName: Frost Flame P
+			CrystaP.DisplayName: Crysta P
+			CrystalGelSplitP.DisplayName: Crystal Gel Split P
+			BeekeeperAura.DisplayName: Beekeeper Aura
+			BreakerAura.DisplayName: Breaker Aura
+			OrichalcumAura.DisplayName: Orichalcum Aura
+			PallaAura.DisplayName: Palla Aura
+			ShortAura.DisplayName: Short Aura
+			TitaniumAura.DisplayName: Titanium Aura
 		}
 
 		Prefixes: {
@@ -490,7 +512,7 @@ Mods: {
 					'''
 					Rocket boots and wings are activated by pushing UP instead of jump
 					Increases flight time by 40%
-					Provides rocket boot flight(10)
+					Provides extended rocket boot flight
 					'''
 			}
 
@@ -533,7 +555,7 @@ Mods: {
 				Tooltip:
 					'''
 					Rocket boots and wings are activated by pushing UP instead of jump
-					Increases flight time by 40%
+					20% increased jump speed
 					Provides a double jump
 					'''
 			}
@@ -544,7 +566,7 @@ Mods: {
 					'''
 					Rocket boots and wings are activated by pushing UP instead of jump
 					Increases flight time by 40%
-					Provides rocket boot flight(10)
+					Provides rocket boot flight
 					Provides a booster double jump
 					'''
 			}
@@ -554,7 +576,8 @@ Mods: {
 				Tooltip:
 					'''
 					Provides a long lasting double jump
-					25% increased movement speed and jump speed
+					20% increased movement speed 
+					25% increased jump speed
 					'''
 			}
 
@@ -976,7 +999,7 @@ Mods: {
 				Tooltip:
 					'''
 					12% increased total damage
-					9% reduced maximum HP
+					11% reduced maximum HP
 					'''
 			}
 
@@ -984,7 +1007,7 @@ Mods: {
 				DisplayName: Ring of Might
 				Tooltip:
 					'''
-					9% increased maximum health
+					11% increased maximum health
 					6% increased total damage
 					'''
 			}
@@ -993,7 +1016,7 @@ Mods: {
 				DisplayName: Ring of Tenacity
 				Tooltip:
 					'''
-					18% increased maximum hp
+					22% increased maximum hp
 					6% reduced total damage
 					'''
 			}
@@ -1092,7 +1115,7 @@ Mods: {
 
 			CrystalGel: {
 				DisplayName: Crystal Gel
-				Tooltip: Splits and ignores 25 defense
+				Tooltip: Splits into 3 flames, ignores 25 defense
 			}
 
 			CursedGel: {
@@ -1247,7 +1270,7 @@ Mods: {
 
 			ShroomiteBullet: {
 				DisplayName: Shroomite Bullet
-				Tooltip: Critical strikes deal 20% more damage
+				Tooltip: Critical strikes deal 25% more damage
 			}
 
 			SolarArrow: {
@@ -1428,8 +1451,8 @@ Mods: {
 			}
 
 			GraniteOvergrowthBanner: {
-				DisplayName: GraniteOvergrowth Banner
-				Tooltip: Nearby players get a bonus against: GraniteOvergrowth
+				DisplayName: Granit eOvergrowth Banner
+				Tooltip: Nearby players get a bonus against: Granite Overgrowth
 			}
 		}
 

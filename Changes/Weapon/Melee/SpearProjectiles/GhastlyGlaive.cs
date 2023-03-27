@@ -27,7 +27,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
                 Projectile.localAI[0] -= 1f;
             }
         }
-        public override void SpearHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPCMelee(NPC target, NPC.HitInfo hit)
         {
             SummonMonkGhast();
         }
@@ -75,7 +75,8 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
 
 
         }
-        public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPC(bool atMaxCharge, NPC target, NPC.HitInfo hit, int damageDone)
+
         {
             if (atMaxCharge)
             {

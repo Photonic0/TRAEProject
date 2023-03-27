@@ -87,8 +87,8 @@ namespace TRAEProject.Changes.Recipes
             StarWrath.AddIngredient(ItemID.FragmentSolar, 18);
             StarWrath.AddTile(TileID.LunarCraftingStation);
             StarWrath.Register();
-            Recipe TentacleSpike = Recipe.Create(ItemID.WormTooth, 12);
 
+            Recipe TentacleSpike = Recipe.Create(ItemID.WormTooth, 12);
             TentacleSpike.AddIngredient(ItemID.Leather, 2);
             TentacleSpike.AddTile(TileID.Anvils);
             TentacleSpike.Register();
@@ -137,6 +137,8 @@ namespace TRAEProject.Changes.Recipes
             {
                 recipe.TryGetIngredient(ItemID.WoodenArrow, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
+                recipe.TryGetIngredient(ItemID.Vertebrae, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
                 recipe.TryGetIngredient(ItemID.WormTooth, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.WoodenArrow, 33);
@@ -174,12 +176,6 @@ namespace TRAEProject.Changes.Recipes
                 recipe.AddIngredient(ItemID.SoulofMight, 20);
                 recipe.AddIngredient(ItemID.SoulofLight, 20);
             }
-            if (recipe.HasResult(ItemID.Megashark))
-            {
-                recipe.TryGetIngredient(ItemID.SoulofMight, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.SoulofMight, 20);
-            }
             if (recipe.HasResult(ItemID.TrueNightsEdge))
             {
                 recipe.TryGetIngredient(ItemID.SoulofFright, out ingredientToRemove);
@@ -201,6 +197,7 @@ namespace TRAEProject.Changes.Recipes
             {
                 recipe.DisableRecipe();
             }
+
             if (recipe.HasResult(ItemID.SpiritFlame))
             {
                 recipe.DisableRecipe();

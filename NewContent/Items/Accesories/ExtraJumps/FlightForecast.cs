@@ -26,7 +26,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         {
             player.GetModPlayer<TRAEJumps>().advFlight = true;
             player.hasJumpOption_Cloud = true;
-            player.GetModPlayer<Mobility>().flightTimeBonus += 0.4f;
+            player.jumpSpeedBoost += Mobility.JSV(0.2f);
+
         }
         public override void AddRecipes()
         {

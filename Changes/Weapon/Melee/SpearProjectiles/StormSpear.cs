@@ -20,7 +20,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             stabEnd = -10;
             swingAmount = (float)Math.PI / 48;
         }
-        public override void SpearHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPCMelee(NPC target, NPC.HitInfo hit)
         {
             StormSpearShot.MakeBolt(Projectile, target);
         }
@@ -34,7 +34,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             floatTime = 60; DustOnDeath = DustID.Electric;
 
         }
-        public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPC(bool atMaxCharge, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if(atMaxCharge)
             {

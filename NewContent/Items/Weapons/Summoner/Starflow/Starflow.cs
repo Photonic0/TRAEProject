@@ -25,7 +25,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
         {
             Item.autoReuse = false;
             Item.useStyle = 1;
-            Item.GetGlobalItem<SpearItems>().canGetMeleeModifiers = true;
             Item.width = 54;
             Item.height = 30;
             Item.shoot = ProjectileType<StarflowP>();
@@ -47,8 +46,12 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
 				.AddIngredient(ItemID.FragmentStardust, 18)
 				.AddTile(TileID.LunarCraftingStation)
 				.Register();
-		}
-	}
+        }
+        public override bool MeleePrefix()
+        {
+            return true;
+        }
+    }
  
     public class StarflowP : WhipProjectile
     {
@@ -95,7 +98,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
         }
         
 
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
 
             if (proj.type == ProjectileType<StarflowP>() && flowies < MaxFlowies)
@@ -105,7 +108,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
 					Dust dust = Dust.NewDustDirect(proj.oldPosition, proj.width, proj.height, DustID.YellowStarDust, 1f);
 					dust.noGravity = true;
 				}
-				Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.position, new Vector2(0), ProjectileType<StarflowInvader>(), damage / 2, 1f, Player.whoAmI);
+				Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.position, new Vector2(0), ProjectileType<StarflowInvader>(), damageDone / 2, 1f, Player.whoAmI);
             }
 
         }
@@ -129,7 +132,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
             Projectile.penetrate = 2;
             Projectile.timeLeft = 180;
 			Projectile.scale = 1f;
-			Projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 50;
+			Projectile.ArmorPenetration= 50;
             Projectile.tileCollide = false;
             Projectile.minionSlots = 0; // is this needed? Wouldn't the default value be 0 already?
             Projectile.usesLocalNPCImmunity = true;
@@ -140,7 +143,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.Starflow
         {
             return true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.localNPCHitCooldown = (int)Projectile.ai[0];
 

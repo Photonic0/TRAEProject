@@ -73,20 +73,10 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.StardustJellyfishBig:
                     npc.lifeMax = 2000; // up from 1500
                     break;
-                case NPCID.StardustSpiderBig:
-                    npc.scale = 1.5f;
-                    npc.width = 63;
-                    npc.height = 54;
-                    npc.knockBackResist = 0.05f;
-                    break;
-                case NPCID.StardustWormHead:
-                    npc.lifeMax = 3300;
-                    npc.defense = 50;
-                    break;
                
             }
         }
-        public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
             switch (npc.type)
             {
@@ -440,7 +430,7 @@ namespace TRAEProject.Changes.NPCs
 
             }
         }
-        public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        public override void HitEffect(NPC npc, NPC.HitInfo hit)
         {
             switch (npc.type)
             {
@@ -452,9 +442,8 @@ namespace TRAEProject.Changes.NPCs
                         Main.dust[num].noGravity = true;
                         Main.dust[num].noLight = true;
                     }
-                    return true;
+                    break;
             }
-            return true;
         }
     }
 }

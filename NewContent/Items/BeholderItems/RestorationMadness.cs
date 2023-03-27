@@ -21,7 +21,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
             Item.width = 20;
             Item.height = 28;
             Item.consumable = true;
-            Item.maxStack = 30;
+            Item.maxStack = 9999;
             Item.DefaultToHealingPotion(20, 28, 3);
             Item.rare = ItemRarityID.LightPurple;
             Item.value = Item.buyPrice(silver: 50);
@@ -123,7 +123,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
                 item.width = 20;
                 item.height = 28;
                 item.consumable = true;
-                item.maxStack = 30;
+                item.maxStack = 9999;
                 item.useTime = item.useAnimation = 17;
                 item.healLife = 2;
                 item.noMelee = true;

@@ -77,6 +77,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            if (spawnInfo.Player.ZoneBeach && Main.remixWorld)
+                return SpawnCondition.Underworld.Chance * 0.25f;
             if (NPC.downedPlantBoss)
             {
                 return SpawnCondition.Underworld.Chance * 0.025f;
@@ -90,7 +92,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
             npcLoot.Add(ItemDropRule.Common(ItemID.ExplosivePowder, 2, 1, 3));
             npcLoot.Add(ItemDropRule.Common(ItemType<WillOfTheWisp>(), 20));
         }
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -200,22 +202,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Boomxie
             if (!runonce)
             {
                 runonce = true;
-                TRAEMethods.Explode(Projectile, 172, 1);
+                TRAEMethods.Explode(Projectile, 150);
                 TRAEMethods.DefaultExplosion(Projectile);
             }
-        }
-        public override void ModifyHitPlayer(Player target, ref int damage, ref bool crit)
-        {
-            // for some reason it deals massive damage unless i do this. Bandaid fix, i know...
-            damage = 50;
-            if (Main.expertMode)
-            {
-                damage = 100;
-            }
-            if (Main.masterMode)
-            {
-                damage = 150;
-            }
-        }   
+        }  
     }
 }

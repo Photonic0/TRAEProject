@@ -46,11 +46,12 @@ namespace TRAEProject.NewContent.Items.Accesories.LifeCuffs
         {
             cuffs = 0;
         }
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+        public override void OnHurt(Player.HurtInfo info)
+
         {
             if(cuffs > 0)
             {
-                Player.AddBuff(BuffType<HeartAttack>(), cuffs * ((int)damage * 3 + 300));
+                Player.AddBuff(BuffType<HeartAttack>(), cuffs * ((int)info.Damage * 3 + 300));
             }
         }
     }

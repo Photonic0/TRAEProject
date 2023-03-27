@@ -20,7 +20,7 @@ namespace TRAEProject.NPCs.Boss
 			}
 
 		}
-		public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {				
 			if (npc.type >= 210 && npc.type <= 211)
 				target.ApplyDamageToNPC(npc, npc.life + (npc.defense + 1) / 2, 0, 0, false);

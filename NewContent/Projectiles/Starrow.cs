@@ -28,7 +28,7 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.extraUpdates = 0;
             Projectile.GetGlobalProjectile<ProjectileStats>().goThroughWallsUntilReachingThePlayer = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.damage -= (int)(Projectile.damage * 0.25); 
         }

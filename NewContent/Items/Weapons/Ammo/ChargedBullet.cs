@@ -82,7 +82,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                 Main.dust[dust].velocity *= 0.2f;
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.localNPCImmunity[target.whoAmI] = -1;
             target.immune[Projectile.owner] = 0;

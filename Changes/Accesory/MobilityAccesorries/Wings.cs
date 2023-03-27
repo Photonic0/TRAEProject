@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
 using TRAEProject.NewContent.Items.Accesories.ExtraJumps;
+using System;
 
 namespace TRAEProject.Changes.Accesory
 {
@@ -239,9 +240,10 @@ namespace TRAEProject.Changes.Accesory
             {
                 for(int i = 0; i < tooltips.Count; i++)
                 {
+                    float flightTime = MathF.Round((float)ArmorIDs.Wing.Sets.Stats[item.wingSlot].FlyTime / 60, 2);
                     if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Tooltip0")
                     {
-                        string text = "Flight Time: " +  ArmorIDs.Wing.Sets.Stats[item.wingSlot].FlyTime;
+                        string text = "Flight Time: " + flightTime + " seconds";
                         if(item.wingSlot == ArmorIDs.Wing.TatteredFairyWings || item.wingSlot == ArmorIDs.Wing.NebulaMantle)
                         {
                             text = "Flight Time: infinite";

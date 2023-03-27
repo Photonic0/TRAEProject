@@ -23,8 +23,8 @@ namespace TRAEProject.NewContent.Items.Weapons.OnyxCurseDoll
         }
         public override void SetDefaults()
         {
-            Item.width = 30;
-            Item.height = 32;
+            Item.width = 38;
+            Item.height = 38;
             Item.damage = 38;
             Item.useAnimation = 30;
             Item.useTime = 30;

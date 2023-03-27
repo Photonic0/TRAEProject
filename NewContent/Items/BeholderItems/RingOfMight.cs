@@ -27,7 +27,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.statLifeMax2 = (int)(player.statLifeMax2 * 1.09f);
+            player.statLifeMax2 = (int)(player.statLifeMax2 * 1.11f);
             player.GetDamage(DamageClass.Generic) *= 1.06f;
         }
 

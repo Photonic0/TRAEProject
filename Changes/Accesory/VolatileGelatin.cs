@@ -89,31 +89,31 @@ namespace TRAEProject.Changes.Accesory
                 Player.statDefense += gelStored;
             }
         }
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (crit && VolatileGelatinNew && cooldown == 0)
+            if (hit.Crit && VolatileGelatinNew && cooldown == 0)
             {
                 cooldown = 15;
-                gelStored += damage / 50;
+                gelStored += damageDone / 50;
                 if (gelStored > 25)
                 {
                     gelStored = 25;
                 }
             }
         }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (crit && VolatileGelatinNew && cooldown == 0)
+            if (hit.Crit && VolatileGelatinNew && cooldown == 0)
             {
                 cooldown = 15;
-                gelStored += damage / 50;
+                gelStored += damageDone / 50;
                 if (gelStored > 25)
                 {
                     gelStored = 25;
                 }
             }
         }
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
         {
             if (gelStored > 0)
             {
@@ -135,7 +135,7 @@ namespace TRAEProject.Changes.Accesory
 
             }
         }
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
         {
             if (gelStored > 0)
             {

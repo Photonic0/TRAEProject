@@ -76,7 +76,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "\nHold DOWN to increase falling speed";
+                            line.Text += "\nHold DOWN to increase falling speed";
                         }
                     }
                     break;
@@ -115,8 +115,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increases jump height and life regeneration";
-                            line.Text += "\nAllows fast fall";
+                            line.Text = "Increases jump height and life regeneration\nAllows fast fall";
                         }
                     }
                     break;

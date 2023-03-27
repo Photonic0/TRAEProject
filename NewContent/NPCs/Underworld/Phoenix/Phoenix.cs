@@ -278,7 +278,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			}
 		
 	}
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
 			Lighting.AddLight((int)(NPC.Center.X / 16f), (int)(NPC.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
 			float range = 60f;
@@ -300,7 +300,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn();
+            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn(spawnInfo);
 
         }
     }
@@ -356,7 +356,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			npcLoot.Add(ItemDropRule.Common(ItemID.FireFeather, 10));
 			npcLoot.Add(ItemDropRule.Common(ItemType<MagicalAsh>(), 1, 1, 2));
 		}
-		public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
 		{
 			for (int i = 0; i < 5; i++)
 			{

@@ -16,8 +16,8 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.SkullCannon
         }
         public override void SetDefaults()
         {
-            Item.width = 56;
-            Item.height = 24;
+            Item.width = 66;
+            Item.height = 34;
             Item.damage = 50;
             Item.useAnimation = 39;
             Item.useTime = 39;

@@ -278,7 +278,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn();
+            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn(spawnInfo);
 
         }
         int frame = 0;
@@ -392,7 +392,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
                 }
             }
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             NPC.life = 0;
             NPC.active = false;

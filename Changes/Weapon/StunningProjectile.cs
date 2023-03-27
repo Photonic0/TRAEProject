@@ -13,7 +13,7 @@ namespace TRAEProject.Changes.Weapon
 {
     public class StunningProjectile : GlobalProjectile
     {
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[projectile.owner];
             if (projectile.owner == player.whoAmI)
@@ -25,10 +25,10 @@ namespace TRAEProject.Changes.Weapon
                 }
                 if (player.GetModPlayer<RangedStats>().AlphaScope > 0  
                     && projectile.CountsAsClass(DamageClass.Ranged) 
-                    && crit 
-                    && damage >= 20)
+                    && hit.Crit
+                    && damageDone >= 20)
                 {
-                    int chance = 1000 / (damage * player.GetModPlayer<RangedStats>().AlphaScope);
+                    int chance = 1000 / (damageDone * player.GetModPlayer<RangedStats>().AlphaScope);
                     if (Main.rand.NextBool(chance))
                     {
                         int duration = 60; 
@@ -40,11 +40,11 @@ namespace TRAEProject.Changes.Weapon
                     }
                 }
                 if (player.GetModPlayer<RangedStats>().RocketsStun > 0 
-                    && projectile.GetGlobalProjectile<NewRockets>().IsARocket 
-                    && crit 
-                    && damage >= 20)
+                    && projectile.GetGlobalProjectile<NewRockets>().IsARocket
+                    && hit.Crit
+                    && damageDone >= 20)
                 {
-                    int chance = 100 / (damage / 10 * (player.GetModPlayer<RangedStats>().AlphaScope + player.GetModPlayer<RangedStats>().RocketsStun));
+                    int chance = 100 / (damageDone / 10 * (player.GetModPlayer<RangedStats>().AlphaScope + player.GetModPlayer<RangedStats>().RocketsStun));
                     if (Main.rand.NextBool(chance))
                     {
                         int duration = 60;

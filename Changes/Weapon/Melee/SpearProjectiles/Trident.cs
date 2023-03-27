@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.WorldBuilding;
 using TRAEProject.Common;
 
 namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
@@ -18,11 +19,11 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             stabEnd = -10;
             swingAmount = (float)Math.PI / 32;
         }
-        public override void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void SpearModfiyHitNPCMelee(NPC target, ref NPC.HitModifiers modifiers)
         {
             if(Projectile.wet)
             {
-                damage = (int)(damage * 1.33f);
+                modifiers.FinalDamage.Base *= 1.33f;
             }
         }
     }
@@ -36,11 +37,11 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             maxSticks = 3;
             stickingDps = 2;
         }
-        public override void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void SpearModfiyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             if (Projectile.wet)
             {
-                damage = (int)(damage * 1.33f);
+                modifiers.FinalDamage.Base *= 1.33f;
             }
         }
     }

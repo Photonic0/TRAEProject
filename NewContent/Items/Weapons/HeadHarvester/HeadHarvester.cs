@@ -20,16 +20,16 @@ namespace TRAEProject.NewContent.Items.Weapons.HeadHarvester
         {
             Item.width = 58;
             Item.height = 60;
-            Item.damage = 101;
-            Item.useTime = 43;
-            Item.useAnimation = 43;
+            Item.damage = 94;
+            Item.useTime = 40;
+            Item.useAnimation = 40;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 10);
             Item.DamageType = DamageClass.MeleeNoSpeed;
             Item.shoot = ProjectileType<FlamingScythe>();
             Item.knockBack = 4f;
-            Item.shootSpeed = 4.5f;
+            Item.shootSpeed = 2f;
             Item.useStyle = 1;
             Item.scale = 1.35f;
             Item.UseSound = SoundID.Item71;
@@ -45,10 +45,10 @@ namespace TRAEProject.NewContent.Items.Weapons.HeadHarvester
         {
             Projectile.width = 106; Projectile.height = 84;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 5;
+            Projectile.penetrate = 6;
             Projectile.timeLeft = 300;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 6;
+            Projectile.localNPCHitCooldown = 5;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
         }
@@ -58,7 +58,7 @@ namespace TRAEProject.NewContent.Items.Weapons.HeadHarvester
         {
             Player player = Main.player[Projectile.owner];
             Projectile.ai[0]++;
-            if (Projectile.ai[0] > 60f)
+            if (Projectile.ai[0] > 25f)
             {
                 if (Projectile.localAI[0] == 0f)
                 {
@@ -67,7 +67,7 @@ namespace TRAEProject.NewContent.Items.Weapons.HeadHarvester
                 }
                 if (Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) < 16f)
                 {
-                    Projectile.velocity *= 1.025f;
+                    Projectile.velocity *= 1.033f;
                 }
                 if (Projectile.velocity.X < 0f)
                 {

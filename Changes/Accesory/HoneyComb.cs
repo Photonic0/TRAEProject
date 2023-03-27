@@ -56,11 +56,11 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Releases bees and douses you in honey when damaged\nMultiple combs increase efficiency and life regeneration";
+                            line.Text = "Releases bees and douses you in honey when damaged";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increases jump height and life regeneration";
+                            line.Text = "Increases jump height and life regeneration\nMultiple combs increase efficiency and life regeneration";
                         }
                     }
                     return;
@@ -69,11 +69,11 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Releases bees and douses you in honey when damaged\nMultiple combs increase efficiency and life regeneration";
+                            line.Text = "Releases bees and douses you in honey when damaged";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Increases jump height, life regeneration, prevents fall damage and allows fast fall";
+                            line.Text = "Increases jump height, life regeneration, prevents fall damage and allows fast fall\nMultiple combs increase efficiency and life regeneration";
                         }
                     }
                     return;
@@ -110,20 +110,21 @@ namespace TRAEProject.Changes.Accesory
             if (combs >= 2)
                 Player.lifeRegen += 1 * combs;
         }
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+
+        public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
         {
-            if (combs > 0 && damage > 0)
+            if (combs > 0 && hurtInfo.Damage > 0)
             {
                 if (NewbeesOnHit)
                 {
-                    int duration = damage * 6;
+                    int duration = hurtInfo.Damage * 6;
                     duration += duration / 2 * (combs - 1);
                     if (duration < 150)
                         duration = 150;
                     Player.AddBuff(BuffID.Honey, duration);
                     if (!Player.HasBuff(BuffID.ShadowDodge))
                     {
-                        beedamage = damage;
+                        beedamage = hurtInfo.Damage;
                         if (beedamage > 200)
                             beedamage = 200;
                     }
@@ -135,24 +136,26 @@ namespace TRAEProject.Changes.Accesory
                     TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, count, 400, 600, spread, 20, ProjectileType<BuzzyStar>(), beedamage, 2f, Player.whoAmI);
                 }
                 else
-                    combOnHit(damage, npc);
+                    combOnHit(hurtInfo.Damage, npc);
             }
         }
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
         {
 
-   if (combs > 0 && damage > 0)
+        
+
+   if (combs > 0 && hurtInfo.Damage > 0)
             {
                 if (NewbeesOnHit)
                 {
-                    int duration = damage * 6;
+                    int duration = hurtInfo.Damage * 6;
                     duration += duration / 2 * (combs - 1);
                     if (duration < 150)
                         duration = 150;
                     Player.AddBuff(BuffID.Honey, duration);
                     if (!Player.HasBuff(BuffID.ShadowDodge))
                     {
-                        beedamage = damage;
+                        beedamage = hurtInfo.Damage;
                         if (beedamage > 200)
                             beedamage = 200;
                     }
@@ -164,7 +167,7 @@ namespace TRAEProject.Changes.Accesory
                     TRAEMethods.SpawnProjectilesFromAbove(Player, Player.position, count, 400, 600, spread, 20, ProjectileType<BuzzyStar>(), beedamage, 2f, Player.whoAmI);
                 }
                 else
-                    combOnHit(damage, proj);
+                    combOnHit(hurtInfo.Damage, proj);
             }
         }
 

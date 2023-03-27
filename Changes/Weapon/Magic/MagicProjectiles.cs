@@ -63,7 +63,7 @@ namespace TRAEProject.Changes.Projectiles
                     break;
                 case ProjectileID.Typhoon:
                     DrainManaOnHit = 4;                    
-					DrainManaPassively = 10; // this has extra updates, it's 30 mana per second
+					DrainManaPassively = 10; // this has extra updates, it's 24 mana per second
 
                     projectile.timeLeft = 1800;
                     break;
@@ -77,10 +77,6 @@ namespace TRAEProject.Changes.Projectiles
                     break;
                 case ProjectileID.SharpTears:
                     projectile.penetrate = 5;
-                    projectile.GetGlobalProjectile<ProjectileStats>().DamageFallon = 1.42f;
-                    break;
-                case ProjectileID.MagnetSphereBall:
-                    projectile.GetGlobalProjectile<ProjectileStats>().BouncesOffTiles = true;
                     break;
                 case ProjectileID.WaterStream:
                     projectile.penetrate = 1;
@@ -202,7 +198,7 @@ namespace TRAEProject.Changes.Projectiles
 
             return null;
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[projectile.owner];
 

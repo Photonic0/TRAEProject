@@ -43,23 +43,23 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 return 2.25f - 1.25f * (npc.life / npc.lifeMax);
         }
         int attackNumber = 0;
-        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
             if (npc.type == NPCID.CultistBoss)
             {
                 if(ProjectileID.Sets.CultistIsResistantTo[projectile.type])
                 {
-                    damage = (int)(damage * (1 / 0.75f));
+                    modifiers.FinalDamage /= 0.75f;
+
                 }
             }
-            
-            base.ModifyHitByProjectile(npc, projectile, ref damage, ref knockback, ref crit, ref hitDirection);
         }
         public override bool PreAI(NPC npc)
 		{
 			if (npc.type == NPCID.CultistBoss)
             {
-                if (npc.ai[0] != -1f && Main.rand.Next(1000) == 0)
+                if (npc.ai[0] != -1f && Main.rand.NextBool(1000))
                 {
                     int Sound = Main.rand.Next(4); 
                     SoundStyle sound = SoundID.Zombie88;

@@ -22,7 +22,7 @@ namespace TRAEProject.NewContent.Items.Materials
         {
             Item.width = 22;
             Item.height = 28;
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(0, 25, 0, 0);
         }

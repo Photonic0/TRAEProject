@@ -42,17 +42,17 @@ namespace TRAEProject.Changes
             manaCloak = false;
         }
 
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
 
-            if (proj.CountsAsClass(DamageClass.Magic) && manaCloak == true && crit && Main.rand.Next(3) == 0)
+            if (proj.CountsAsClass(DamageClass.Magic) && manaCloak == true && hit.Crit && Main.rand.NextBool(3))
             {
                 int[] spread = { 3, 4, 5 };
-                TRAEMethods.SpawnProjectilesFromAbove(Player, target.position, 1, 400, 600, spread, 20, ProjectileID.ManaCloakStar, damage / 2, 2f, Player.whoAmI);
+                TRAEMethods.SpawnProjectilesFromAbove(Player, target.position, 1, 400, 600, spread, 20, ProjectileID.ManaCloakStar, damageDone / 2, 2f, Player.whoAmI);
             }
-            if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && crit && manaFlowerLimit < 3)
+            if (proj.CountsAsClass(DamageClass.Magic) && newManaFlower == true && hit.Crit && manaFlowerLimit < 3)
             {
-                if (Main.rand.Next(3) == 0)
+                if (Main.rand.NextBool(3))
                 {
                     Item.NewItem(Player.GetSource_OnHit(target), target.getRect(), ItemID.Star, 1);
                     ++manaFlowerLimit;

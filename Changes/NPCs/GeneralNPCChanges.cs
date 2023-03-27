@@ -102,10 +102,14 @@ namespace TRAEProject.Changes.NPCs
                 case NPCID.DuneSplicerHead:
                     npc.lifeMax = 3500;
                     npc.noGravity = true;
+                    break;  
+				case NPCID.DuneSplicerBody:
+                    npc.damage = 30;
+                    npc.noGravity = true;
                     break;
             }
         }
-        public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
             switch (npc.type)
             {
@@ -452,7 +456,7 @@ namespace TRAEProject.Changes.NPCs
 
             }
         }
-        public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        public override void HitEffect(NPC npc, NPC.HitInfo hit)
         {
             switch (npc.type)
             {
@@ -464,9 +468,8 @@ namespace TRAEProject.Changes.NPCs
                         Main.dust[num].noGravity = true;
                         Main.dust[num].noLight = true;
                     }
-                    return true;
+                    return;
             }
-            return true;
         }
         public override void OnKill(NPC npc)
         {

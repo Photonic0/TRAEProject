@@ -55,9 +55,6 @@ namespace ChangesArmor
                 case ItemID.MeteorLeggings:
                     player.GetDamage<MagicDamageClass>() += 0.02f;
                     break;
-                case ItemID.ObsidianShirt:
-                    player.GetDamage<SummonDamageClass>() += 0.08f;
-                    break;
                 case ItemID.RuneRobe:
                     player.statManaMax2 += 100;
                     player.manaCost -= 0.21f;
@@ -203,8 +200,7 @@ namespace ChangesArmor
          
             if (head.type == ItemID.AdamantiteMask && body.type == ItemID.AdamantiteBreastplate && legs.type == ItemID.AdamantiteLeggings)
                 return "AdamantiteSet";
-            if ((head.type == ItemID.TitaniumHeadgear || head.type == ItemID.TitaniumHelmet || head.type == ItemID.TitaniumMask) && body.type == ItemID.TitaniumBreastplate && legs.type == ItemID.TitaniumLeggings)
-                return "TitaniumSet";
+
             if (head.type == ItemID.CobaltMask && body.type == ItemID.CobaltBreastplate && legs.type == ItemID.CobaltLeggings)
                 return "CobaltSet";
             if ((head.type == ItemID.AncientHallowedHeadgear || head.type == ItemID.AncientHallowedHelmet || head.type == ItemID.AncientHallowedMask || head.type == ItemID.HallowedHeadgear || head.type == ItemID.HallowedHelmet || head.type == ItemID.HallowedMask) && (body.type == ItemID.HallowedPlateMail || body.type == ItemID.AncientHallowedPlateMail) && (legs.type == ItemID.AncientHallowedGreaves || legs.type == ItemID.HallowedGreaves))
@@ -213,14 +209,12 @@ namespace ChangesArmor
                 return "HallowedSetSummon"; 
             if (head.type == ItemID.ChlorophyteMask && body.type == ItemID.ChlorophytePlateMail && legs.type == ItemID.ChlorophyteGreaves)
                 return "ChloroMeleeSet";
-            if (head.type == ItemID.TikiMask && body.type == ItemID.TikiShirt && legs.type == ItemID.TikiPants)
-                return "TikiSet"; 
+
             if (head.type == ItemID.SpectreHood && body.type == ItemID.SpectreRobe && legs.type == ItemID.SpectrePants)
                 return "SpectreHoodSet";
             if ((head.type == ItemID.ShroomiteHeadgear || head.type == ItemID.ShroomiteHelmet || head.type == ItemID.ShroomiteMask) && body.type == ItemID.ShroomiteBreastplate && legs.type == ItemID.ShroomiteLeggings)
                 return "ShroomiteSet";
-            if (head.type == ItemID.ObsidianHelm && body.type == ItemID.ObsidianShirt && legs.type == ItemID.ObsidianPants)
-                return "ObsidianSet";
+
             if (head.type == ItemID.PirateHat && body.type == ItemID.PirateShirt && legs.type == ItemID.PiratePants)
                 return "PirateSet"; 
             if (head.type == ItemID.GladiatorHelmet && body.type == ItemID.GladiatorBreastplate && legs.type == ItemID.GladiatorLeggings)
@@ -309,7 +303,7 @@ namespace ChangesArmor
 
             if (armorSet == "CrimsonSet")
             {
-                player.lifeRegenTime += 3; 
+                player.lifeRegenTime += 2; 
                 player.setBonus = "Dramatically increases natural healing rate";
             }
             if (armorSet == "AncientSet")
@@ -346,13 +340,7 @@ namespace ChangesArmor
             {
                 player.setBonus = "Enter a stealth mode while on the ground, significantly increasing ranged abilities";
             }
-			if (armorSet == "ObsidianSet")
-            {
-                player.setBonus = "30% increased whip range and 15% increased whip speed";
-				player.whipRangeMultiplier -= 0.2f;
-				player.GetAttackSpeed(DamageClass.SummonMeleeSpeed) /= 0.869f;
-				player.GetDamage<SummonDamageClass>() -= 0.15f;
-            }
+
             if (armorSet == "PirateSet")
             {
                 player.setBonus = "All whips gain a stackable 2% minion crit tag";
@@ -426,15 +414,7 @@ namespace ChangesArmor
                         }
                     }
                     return;
-                case ItemID.ObsidianShirt:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text += "\nIncreases summon damage by 8%";
-                        }
-                    }
-                    return;
+
                 case ItemID.PharaohsRobe:
                 case ItemID.PharaohsMask:
                     foreach (TooltipLine line in tooltips)
@@ -561,15 +541,6 @@ namespace ChangesArmor
                         }
                     }
                     return;
-                case ItemID.TikiMask:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
-                        {
-                            line.Text += "\nIncreases whip range by 30%";
-                        }
-                    }
-                    return;              
 
 //////////////////////// OOA, ORDERED BY SQUIRE-MONK-APPRENTICE-HUNTRESS
                 case ItemID.SquireGreaves:

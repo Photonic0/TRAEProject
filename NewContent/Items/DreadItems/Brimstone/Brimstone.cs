@@ -99,7 +99,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
 		}
 
         public const int chargeTime = 30;
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
 			time += 2;
         }
@@ -184,8 +184,8 @@ namespace TRAEProject.NewContent.Items.DreadItems.Brimstone
                     player.Center + unit * Distance, 22, ref point);
         }
 
-		// Set custom immunity time on hitting an NPC
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        // Set custom immunity time on hitting an NPC
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.immune[Projectile.owner] = 5;
         }

@@ -40,61 +40,25 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
                 .Register();
         } 
     }
-        public class LavaGelP : ModProjectile
+    public class LavaGelP : FlamethrowerProjectile
+    {
+        public override void SetStaticDefaults()
         {
-            public override void SetStaticDefaults()
-            {
-                // DisplayName.SetDefault("Lavaflamethrower");     //The English name of the Projectile
+            // DisplayName.SetDefault("CursedFlamethrower");     //The English name of the Projectile
 
-            }
-            public override string Texture => "Terraria/Images/Item_0";
-            public override void SetDefaults()
-            {
-            Projectile.width = 6;
-            Projectile.height = 6;
-            Projectile.alpha = 255;
-            Projectile.timeLeft = 60;
-            Projectile.penetrate = 3;
-            Projectile.DamageType = DamageClass.Ranged;            Projectile.usesLocalNPCImmunity = true;
-Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
-                Projectile.hostile = false;
-                Projectile.friendly = true;
-                Projectile.extraUpdates = 3;
-                Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.OnFire3;
-                Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 90;
-                Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.15f;
-            }
-            public override void AI()
-            {
-            float dustScale = 1f;
-            if (Projectile.ai[0] == 0f)
-                dustScale = 0.25f;
-            else if (Projectile.ai[0] == 1f)
-                dustScale = 0.5f;
-            else if (Projectile.ai[0] == 2f)
-                dustScale = 0.75f;
-
-            if (Main.rand.Next(2) == 0)
-            {
-                for (int i = 0; i < 2; ++i)
-                {
-                    Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100);
-
-                    // Some dust will be large, the others small and with gravity, to give visual variety.
-                    if (Main.rand.NextBool(3))
-                    {
-                        dust.noGravity = true;
-                        dust.scale *= 3f;
-                        dust.velocity.X *= 2f;
-                        dust.velocity.Y *= 2f;
-                    }
-
-                    dust.scale *= 1.5f;
-                    dust.velocity *= 1.2f;
-                    dust.scale *= dustScale;
-                }
-            }
-            Projectile.ai[0] += 1f;
+        }
+        public override string Texture => "Terraria/Images/Item_0";
+        public override void FlamethrowerDefaults()
+        {
+            color1 = new Color(255, 67, 67, 200);
+            color2 = new Color(255, 127, 20, 200);
+            color3 = Color.Lerp(color1, color2, 0.25f);
+            color4 = new Color(80, 80, 80, 100);
+            dustID = DustID.RedTorch;
+            Projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.OnFire3;
+            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 240;
+            Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.1f;
         }
     }
 }

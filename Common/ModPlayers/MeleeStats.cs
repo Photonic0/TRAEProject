@@ -18,13 +18,11 @@ namespace TRAEProject.Common.ModPlayers
     {
 
         public float weaponSize = 1f;
-        public int inflictHeavyBurn = 0;
         public float meleeVelocity = 1f;
         public bool TRAEAutoswing = false;
         public override void ResetEffects()
         {
             weaponSize = 1f;
-            inflictHeavyBurn = 0;
             meleeVelocity = 1f;
             TRAEAutoswing = false;
         }
@@ -34,11 +32,14 @@ namespace TRAEProject.Common.ModPlayers
             {            
                 Player.autoReuseGlove = true;
             }
+
         }
         #region Sword Size
         public override void SetStaticDefaults()
         {
             Terraria.IL_Player.GetAdjustedItemScale += HookSize;
+            //Terraria.IL_Player.ApplyMeleeScale += HookSize;
+
             Terraria.IL_Player.ItemCheck_GetMeleeHitbox += HookHey;
             //IL.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_27_HeldItem += HookHey2;
         }
@@ -114,13 +115,5 @@ namespace TRAEProject.Common.ModPlayers
             c.Emit(OpCodes.Ldloc_0);
         }
         #endregion
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
-        {
-            if(inflictHeavyBurn >0 && item.CountsAsClass(DamageClass.Melee))
-            {
-                TRAEDebuff.Apply<HeavyBurn>(target, inflictHeavyBurn, 1);
-            }
-        }
-
     }
 }

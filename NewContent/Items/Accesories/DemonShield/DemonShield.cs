@@ -55,14 +55,14 @@ namespace TRAEProject.NewContent.Items.Accesories.DemonShield
         {
             demonShield = 0; 
         }
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
         {
             if (demonShield > 0)
             {
-                if (target.Distance(Player.Center) <= 160f)
+                if (target.Distance(Player.Center) <= 300f)
                 {
-                    damage = (int)(damage * 1.1 * demonShield);
-                    for (int i = 0; i < damage / 20 + 5; i++)
+                    modifiers.FinalDamage.Base *= 1.1f * demonShield;
+                    for (int i = 0; i < 5; i++)
                     {
                         Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
                         Dust d = Dust.NewDustPerfect(target.Center, DustID.ShadowbeamStaff, speed * 5, Scale: 1.5f);
@@ -71,14 +71,14 @@ namespace TRAEProject.NewContent.Items.Accesories.DemonShield
                 }
             }
         }
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
         {
             if (demonShield > 0)
             {
                 if (target.Distance(Player.Center) <= 300f)
                 {
-                    damage = (int)(damage * 1.1 * demonShield);
-                    for (int i = 0; i < damage / 20 + 5; i++)
+                    modifiers.FinalDamage.Base *= 1.1f * demonShield;
+                    for (int i = 0; i < 5; i++)
                     {
                         Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
                         Dust d = Dust.NewDustPerfect(target.Center, DustID.ShadowbeamStaff, speed * 5, Scale: 1.5f);

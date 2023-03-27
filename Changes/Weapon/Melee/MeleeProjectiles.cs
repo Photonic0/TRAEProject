@@ -75,6 +75,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ProjectileID.CrimsonYoyo:
                     projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.4f;
                     break;
+
                 case ProjectileID.VampireKnife:
                     projectile.ArmorPenetration = 20;
                     break;
@@ -86,10 +87,6 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ProjectileID.Spark:
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
-                    break;
-                case ProjectileID.FlamingJack:
-                    projectile.extraUpdates = 1;
-                    projectile.scale = 1.25f;
                     break;
                 case ProjectileID.SporeCloud:
                     projectile.penetrate = 4;
@@ -104,9 +101,9 @@ namespace TRAEProject.Changes.Weapon.Melee
                     projectile.tileCollide = false;
                     projectile.GetGlobalProjectile<ProjectileStats>().maxHits = 7;
                     break;
-                case ProjectileID.TerraBeam:
-                    projectile.extraUpdates = 1;
-                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.67f;
+                case ProjectileID.TerraBlade2Shot:
+                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.6f;
+					projectile.penetrate = 3;
                     break;
 
                 case ProjectileID.FrostBoltSword:
@@ -114,7 +111,6 @@ namespace TRAEProject.Changes.Weapon.Melee
                     break;
                 case ProjectileID.StarWrath:
                     projectile.penetrate = 1;
-                    projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 0.5f;
                     projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.Daybreak;
                     projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 300;
                     break;
@@ -233,6 +229,9 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
             switch (projectile.type)
             {
+                case ProjectileID.TerraBlade2Shot:
+                    projectile.scale *= 0.6f;
+                    break;
                 case ProjectileID.Shroomerang:
                     ++timer;
 					if (timer > 20)
@@ -365,7 +364,7 @@ namespace TRAEProject.Changes.Weapon.Melee
         }
 
         public int HitCount = 0;
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if(projectile.type == ProjectileID.FlamingMace)
             {
@@ -386,7 +385,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 // melee
                 case ProjectileID.Chik:
                     {
-                        int shards = damage / 10;
+                        int shards = damageDone / 10;
                         for (int i = 0; i < shards; i++)
                         {
                             float velX = (0f - projectile.velocity.X) * Main.rand.Next(40, 70) * 0.01f + Main.rand.Next(-20, 21) * 0.5f;
@@ -411,6 +410,17 @@ namespace TRAEProject.Changes.Weapon.Melee
 
                     TRAEDebuff.Apply<HeavyBurn>(target, 120, 1);
                     break;
+            }
+        }
+        public override void PostAI(Projectile projectile)
+        {
+            if (projectile.type == ProjectileID.TheHorsemansBlade)
+            {
+                projectile.scale *= 1.2f;
+            }
+            if (projectile.type == ProjectileID.TerraBlade2)
+            {
+                projectile.scale *= 1.2f;
             }
         }
         public override bool PreKill(Projectile projectile, int timeLeft)

@@ -147,7 +147,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
                 }
 
         }
-        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
             if (PixieExplosion)
             {
@@ -164,7 +164,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Launchers.H410WFLASH
             }
             return true;
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (PixieExplosion)
             {

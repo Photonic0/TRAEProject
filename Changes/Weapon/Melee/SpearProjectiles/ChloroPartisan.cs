@@ -45,7 +45,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
         {
             Projectile.extraUpdates = 1;
         }
-        public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPC(bool atMaxCharge, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if(atMaxCharge)
             {
@@ -80,7 +80,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
                 projectile.usesIDStaticNPCImmunity = true;
             }
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (projectile.type == ProjectileID.SporeCloud)
             {

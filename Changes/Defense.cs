@@ -63,7 +63,7 @@ namespace TRAEProject
         {
             Player.endurance = 0;
         }
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
+        public override bool FreeDodge(PlayerDeathReason damageSource, int cooldownCounter)
         {
             if (newBrain && Main.rand.NextBool(6) && Player.FindBuffIndex(321) == -1)
             {
@@ -84,27 +84,22 @@ namespace TRAEProject
 
                 }
                 Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center.X + (float)Main.rand.Next(-40, 40), Player.Center.Y - (float)Main.rand.Next(20, 60), Player.velocity.X * 0.3f, Player.velocity.Y * 0.3f, 565, 0, 0f, Player.whoAmI);
-                return false;
+                return true;
             }
-            // New Defense calculation                    
-            customDamage = true; // when set to true, the game will no longer substract defense from the damage.
-            int defense = Player.statDefense;
-            double DefenseDamageReduction = defense * 100 / (defense + 80); // Formula for defense
-            damage -= (int)(damage * DefenseDamageReduction * 0.01f); // calculate the damage taken
-            DamageAfterDefenseAndDR += damage;
-            if (damage < 1)
-            {
-                damage = 1; // if the damage is below 1, it defaults to 1
-            }
-
-            return true;
+            return false;
         }
-        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+        public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
         {
+            Player.DefenseEffectiveness *= 0f;
+
+            float defense = Player.statDefense;
+            float DefenseDamageReduction = defense / (defense + 80); // Formula for defense
+
+            modifiers.FinalDamage *= 1 - DefenseDamageReduction;
             if (RoyalGel && RoyalGelCooldown == 0)
             {
                 RoyalGelCooldown = 30 * 60;
-                damage -= 25;
+                modifiers.SourceDamage.Flat -= 25;
                 SoundEngine.PlaySound(SoundID.NPCDeath1);
                 for (int i = 0; i < 25; ++i)
                 {
@@ -113,66 +108,68 @@ namespace TRAEProject
                     dust.velocity *= 3f;
                 }
             }
-            damage -= FlatDamageReduction;
+            modifiers.SourceDamage.Flat -= FlatDamageReduction;
             if (EndurancePot)
             {
-                damage = (int)(damage * 0.90);
+                modifiers.FinalDamage *= 0.90f;
             }
             if (WormScarf)
             {
-                damage = (int)(damage * 0.83);
+                modifiers.FinalDamage *= 0.83f;
             }
             if (IceBarrier)
             {
-                damage = (int)(damage * 0.75);
+                modifiers.FinalDamage *= 0.75f;
+            }
+            if (Player.beetleDefense)
+            {
+                float beetleEndurance = (1 - 0.15f * Player.beetleOrbs) / (1 - 0.10f * Player.beetleOrbs);
+                modifiers.FinalDamage /= (int)beetleEndurance;
+            }
+            DamageAfterDefenseAndDR += (int)(modifiers.FinalDamage.Flat);
+        }
+        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
+        {
+            Player.DefenseEffectiveness *= 0f;
+
+            float defense = Player.statDefense;
+            float DefenseDamageReduction = defense / (defense + 80); // Formula for defense
+            modifiers.FinalDamage *= 1 - DefenseDamageReduction;
+            if (RoyalGel && RoyalGelCooldown == 0)
+            {
+                RoyalGelCooldown = 30 * 60;
+                modifiers.SourceDamage.Flat -= 25;
+                SoundEngine.PlaySound(SoundID.NPCDeath1);
+                for (int i = 0; i < 25; ++i)
+                {
+                    Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
+                    Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.t_Slime, 0f, 0f, 100, default, 2.5f);
+                    dust.velocity *= 3f;
+                }
+            }
+            modifiers.SourceDamage.Flat -= FlatDamageReduction;
+            if (EndurancePot)
+            {
+                modifiers.FinalDamage *= 0.90f;
+            }
+            if (WormScarf)
+            {
+                modifiers.FinalDamage *= 0.83f;
+            }
+            if (IceBarrier)
+            {
+                modifiers.FinalDamage *= 0.75f;
             }
             if (pocketMirror)
             {
-                damage = (int)(damage * 0.88);
+                modifiers.FinalDamage *= 0.88f;
             }
             if (Player.beetleDefense)
             {
                 float beetleEndurance = (1 - 0.15f * Player.beetleOrbs) / (1 - 0.10f * Player.beetleOrbs);
-                beetleEndurance = damage / beetleEndurance;
-                damage = (int)beetleEndurance;
+                modifiers.FinalDamage /= (int)beetleEndurance;
             }
-            DamageAfterDefenseAndDR += damage;
-        }
-        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
-        {
-            //	
-            if (RoyalGel && RoyalGelCooldown == 0)
-            {
-                RoyalGelCooldown = 30 * 60;
-                damage -= 25;
-                SoundEngine.PlaySound(SoundID.NPCDeath1);
-                for (int i = 0; i < 25; ++i)
-                {
-                    Vector2 position10 = new Vector2(Player.position.X, Player.position.Y);
-                    Dust dust = Dust.NewDustDirect(position10, Player.width, Player.height, DustID.t_Slime, 0f, 0f, 100, default, 2.5f);
-                    dust.velocity *= 3f;
-                }
-            }
-            damage -= FlatDamageReduction;
-            if (EndurancePot)
-            {
-                damage = (int)(damage * 0.90);
-            }
-            if (WormScarf)
-            {
-                damage = (int)(damage * 0.83);
-            }
-            if (IceBarrier)
-            {
-                damage = (int)(damage * 0.75);
-            }
-            if (Player.beetleDefense)
-            {
-                float beetleEndurance = (1 - 0.15f * Player.beetleOrbs) / (1 - 0.10f * Player.beetleOrbs);
-                beetleEndurance = damage / beetleEndurance;
-                damage = (int)beetleEndurance;
-            }
-            DamageAfterDefenseAndDR += damage;
+            DamageAfterDefenseAndDR += (int)(modifiers.FinalDamage.Flat);
         }
     }
     public class DRAccessories : GlobalItem
@@ -278,7 +275,7 @@ namespace TRAEProject
             }
             return;
         }
-        public override void ModifyBuffTip(int type, ref string tip, ref int rare)
+        public override void ModifyBuffText(int type, ref string buffName, ref string tip, ref int rare)
         {
             switch (type)
             {

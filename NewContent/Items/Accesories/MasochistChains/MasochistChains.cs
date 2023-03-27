@@ -49,11 +49,11 @@ namespace TRAEProject.NewContent.Items.Accesories.MasochistChains
         {
             cuffs = 0;
         }
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+        public override void OnHurt(Player.HurtInfo info)
         {
             if (cuffs > 0)
             {
-                Player.AddBuff(BuffType<HeartAttack>(), cuffs * ((int)damage * 6 + 300));
+                Player.AddBuff(BuffType<HeartAttack>(), cuffs * ((int)info.Damage * 6 + 300));
             }
         }
     }

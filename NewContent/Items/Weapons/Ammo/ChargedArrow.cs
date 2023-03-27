@@ -78,9 +78,9 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             Lighting.AddLight(Projectile.Center, 0f, 0f, 0.4f);
 
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            ChargedArrowStacks GB = TRAEDebuff.Apply<ChargedArrowStacks>(target, damage, 5);
+            ChargedArrowStacks GB = TRAEDebuff.Apply<ChargedArrowStacks>(target, damageDone, 5);
             if (GB != null)
             {
                 GB.SetProjectileAndPlayer(Projectile, Main.player[Projectile.owner]);

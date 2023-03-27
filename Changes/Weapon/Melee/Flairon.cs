@@ -58,11 +58,11 @@ namespace TRAEProject.Changes.Weapon.Melee.Flairon
                 projectile.aiStyle = -1;
             }
         }
-        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
         {
             if (projectile.type == ProjectileID.Flairon)
             {
-                HeavyFlail.ModifyDamage(projectile, ref damage);
+                HeavyFlail.ModifyDamage(projectile, ref modifiers.FinalDamage.Base);
             }
         }
         public override bool PreAI(Terraria.Projectile projectile)

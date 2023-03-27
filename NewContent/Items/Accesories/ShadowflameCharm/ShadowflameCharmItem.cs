@@ -68,12 +68,12 @@ namespace TRAEProject.NewContent.Items.Accesories.ShadowflameCharm
                 MoltenCharmCharge = MoltenCharmLimit;
             }
         }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (proj.minion || ProjectileID.Sets.MinionShot[proj.type])
             {
-                ShadowflameCharmCharge += damage * ShadowflameCharm;
-                MoltenCharmCharge += damage * MoltenCharm;
+                ShadowflameCharmCharge += damageDone * ShadowflameCharm;
+                MoltenCharmCharge += damageDone * MoltenCharm;
             }
             if (ProjectileID.Sets.IsAWhip[proj.type] || proj.type == ProjectileType<WhipProjectile>())
             {

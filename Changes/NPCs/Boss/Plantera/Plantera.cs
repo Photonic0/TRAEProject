@@ -516,33 +516,6 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
                 npc.netUpdate = true;
             }
         }
-        public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit)
-        {
-            /*
-            if(npc.type == NPCID.Plantera)
-            {
-                if((npc.Center - Main.projectile[(int)npc.ai[0]].Center).Length() > VineRing.Radius)
-                {
-                    Vector2 here = new Vector2((npc.Center.X / 16f), (npc.Center.Y / 16f));
-                    int size = 12;
-                    int radius = size / 2;
-                    int x = (int)here.X - radius;
-                    int y = (int)here.Y - radius;
-                    for (int i = 0; i < size; i++)
-                    {
-                        for (int j = 0; j < size; j++)
-                        {
-                            Vector2 pos = new Vector2(x + i, y + j);
-                            if ((here - pos).Length() < radius)
-                            {
-                                WorldGen.PlaceTile(i + x, j + y, TileID.Mud, forced: true);
-                            }
-                        }
-                    }
-                }
-            }
-            */
-        }
         public override bool PreAI(NPC npc)
         {
             if (npc.type == NPCID.Plantera && Main.netMode == NetmodeID.SinglePlayer)

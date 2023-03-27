@@ -70,7 +70,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                 dust.noGravity = true;
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
             if (Main.rand.NextBool(4))
@@ -94,7 +94,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                     if (nPC != target && nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && Vector2.Distance(target.Center, nPC.Center) <= range)
                     {
                         ++NPCLimit;
-                        damage /= 2;
+                        damageDone /= 2;
                         if (NPCLimit < 5)
                         {
                             float finalDefense = nPC.defense - player.GetArmorPenetration(DamageClass.Generic);
@@ -108,10 +108,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                             {
                                 finalDefense = 100;
                             }
-                            damage += (int)finalDefense / 2;
+                            damageDone += (int)finalDefense / 2;
                             duration /= 2;
                             nPC.GetGlobalNPC<Stun>().StunMe(target, duration);
-                            player.ApplyDamageToNPC(nPC, damage, knockback * 0.5f, 0, crit: false);
+                            player.ApplyDamageToNPC(nPC, damageDone, hit.KnockBack * 0.5f, 0, crit: false);
 
                         }
                     }

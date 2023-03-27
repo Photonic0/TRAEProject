@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Changes.Armor;
 using TRAEProject.Common;
 
 namespace TRAEProject.Changes.Weapon
@@ -23,16 +24,13 @@ namespace TRAEProject.Changes.Weapon
 					projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 30;
                     projectile.penetrate = 2;
-                    projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 6;
+                    projectile.ArmorPenetration = 6;
                     break;
                 case ProjectileID.GiantBee:
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 30;
                     projectile.penetrate = 3;
-                    projectile.GetGlobalProjectile<ProjectileStats>().armorPenetration = 6;
-                    break;
-                case ProjectileID.CrystalLeafShot:
-                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
+                    projectile.ArmorPenetration = 6;
                     break;
                 case ProjectileID.EyeFire:
                     if (Main.expertMode)
@@ -79,6 +77,18 @@ namespace TRAEProject.Changes.Weapon
            return;
         }
 
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if (projectile.type == ProjectileID.TitaniumStormShard)
+            {
+                Player player = Main.player[projectile.owner];
+                if (player.GetModPlayer<SetBonuses>().TitaniumArmorOn && player.HeldItem.type == ItemID.TitaniumSword)
+                {
+
+                    modifiers.FinalDamage *= 1.5f;
+                }
+            }
+        }
         public override bool CanHitPlayer(Projectile projectile, Player target)
         {
             if (projectile.type == ProjectileID.InsanityShadowHostile)

@@ -22,7 +22,7 @@ namespace TRAEProject
         public const int flegSpeed = 25;
 
         public const int bootSpeed = 20;
-        public const int amphibootSpeed = 25;
+        public const int amphibootSpeed = 20;
         public const int swiftSpeed = 10;
         public const int wishSpeed = 15;
         public const float advFlightTimeBonus = 40;
@@ -76,13 +76,13 @@ namespace TRAEProject
         }
 
         [Obsolete]
-        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
-        {
-            if (!Player.noKnockback)
-            {
-                crippleTimer = 60;
-            }
-        }
+        //public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+        //{
+        //    if (!Player.noKnockback)
+        //    {
+        //        crippleTimer = 60;
+        //    }
+        //}
         void DoCommonDashHandle(out int dir, out bool dashing, Player.DashStartAction dashStartAction = null)
 		{
 			dir = 0;

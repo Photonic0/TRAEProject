@@ -23,7 +23,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             swingAmount = (float)Math.PI / 24;
         }
         bool spawnedEater = false;
-        public override void SpearHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPCMelee(NPC target, NPC.HitInfo hit)
         {
             if (!spawnedEater)
             {
@@ -70,7 +70,7 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             Projectile.Kill();
         }
         */
-        public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPC(bool atMaxCharge, NPC target, NPC.HitInfo hit, int damageDone)
         {
             int amount = 2 + Main.rand.Next(2);
             //if (Main.rand.NextBool(100))
@@ -87,11 +87,11 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             int num701 = 2;
-            if (Main.rand.Next(3) == 0)
+            if (Main.rand.NextBool(3))
             {
                 num701++;
             }
-            if (Main.rand.Next(3) == 0)
+            if (Main.rand.NextBool(3))
             {
                 num701++;
             }

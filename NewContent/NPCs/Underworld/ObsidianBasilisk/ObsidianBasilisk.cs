@@ -55,7 +55,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
             NPC.lifeMax = 26000; NPC.scale = 1.1f;
             NPC.lavaImmune = true;
 			NPC.GetGlobalNPC<Freeze>().freezeImmune = true; NPC.GetGlobalNPC<Stun>().stunImmune = true;
-
+            NPC.takenDamageMultiplier *= 2f;
             NPC.GetGlobalNPC<UnderworldEnemies>().HellMinibossThatSpawnsInPairs = true;
             NPC.HitSound = SoundID.NPCHit41;
             NPC.DeathSound = SoundID.NPCDeath24;
@@ -78,15 +78,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 				new FlavorTextBestiaryInfoElement("The Bone Serpents of the Underworld regained their scales and their power. With a heavily armored exoskeleton they relentlessly pursue any intruders.")
 			});
 		}
-        public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit)
-        {
-            damage *= 2;
-        }
-        public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            damage *= 2;
-        }
-        public override void HitEffect(int hitDirection, double damage)
+
+        public override void HitEffect(NPC.HitInfo hit)
         {
             for (int i = 0; i < 20; i++)
             {
@@ -118,7 +111,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 		}
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn();
+            return NPC.GetGlobalNPC<UnderworldEnemies>().MinibossSpawn(spawnInfo);
 
         }
         public override void OnKill()

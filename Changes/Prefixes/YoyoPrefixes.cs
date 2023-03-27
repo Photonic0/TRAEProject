@@ -157,7 +157,7 @@ namespace TRAEProject.Changes.Prefixes
 	{
 		public override void SetStaticDefaults()
 		{
-			SetPrefix(10, 10, 30, -30, -15);
+			SetPrefix(10, 0, 20, -30, -15);
 		}
 	}
 	public class Tricky : YoyoPrefix
@@ -178,7 +178,7 @@ namespace TRAEProject.Changes.Prefixes
 	{
 		public override void SetStaticDefaults()
 		{
-			SetPrefix(-30, 0, -20, -20, -35);
+			SetPrefix(-15, 0, -10, -10, -15);
 		}
 	}
 	public class YoyoStats : GlobalItem

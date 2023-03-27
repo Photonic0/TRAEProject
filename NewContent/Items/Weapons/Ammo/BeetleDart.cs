@@ -67,14 +67,14 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(90f);
 
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
 
             if (Main.rand.NextBool(3))
             {
                 Terraria.Audio.SoundEngine.PlaySound(SoundID.Item89, Projectile.position);
 
-                damage *= 3;
+                modifiers.FinalDamage *= 3;
                 target.GetGlobalNPC<Stun>().StunMe(target, 45);
                 for (int i = 0; i < 20; i++)
                 {

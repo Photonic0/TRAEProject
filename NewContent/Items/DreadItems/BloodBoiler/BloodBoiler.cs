@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Common;
 using TRAEProject.NewContent.Items.FlamethrowerAmmo;
 using static Terraria.ModLoader.ModContent;
 
@@ -28,7 +29,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodBoiler
             Item.height = 32;
             Item.damage = 19;
             Item.useAnimation = 60;
-            Item.useTime = 10;
+            Item.useTime = 6;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.LightPurple;
             Item.value = Item.sellPrice(gold: 5);

@@ -24,11 +24,6 @@ namespace TRAEProject.Changes
         }
         public override void SetDefaults(Item item)
         {
-
-			if (item.ammo > 0 && item.type != ItemID.SilverCoin && item.type != ItemID.GoldCoin && item.type != ItemID.CopperCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.Ale && item.type != ItemID.SandBlock)
-            {
-                item.maxStack = 3000;
-            }
             switch (item.type)
             {
                 
@@ -66,6 +61,7 @@ namespace TRAEProject.Changes
                     break;
                 case ItemID.StrangeBrew:
                     item.healMana = 0;
+                    item.healLife = 80;
                     break;
                 case ItemID.BottledHoney:
                     item.healLife = 70;
@@ -216,7 +212,7 @@ namespace TRAEProject.Changes
             return base.CanUseItem(item, player);
         }
 
-        public override void OnHitNPC(Item item, Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (player.inferno)
             {
@@ -225,12 +221,12 @@ namespace TRAEProject.Changes
                     Lighting.AddLight((int)(target.Center.X / 16f), (int)(target.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
                     int OnFireID = 24;
                     float range = 100f;
-                    int RingDamage = damage / 10;
+                    int RingDamage = damageDone / 10;
                     if (RingDamage < 1)
                     {
                         RingDamage = 1;
                     }
-                    int dustsToMake = 10 + damage / 10;
+                    int dustsToMake = 10 + damageDone / 10;
                     for (int i = 0; i < dustsToMake; i++)
                     {
                         float radius = range / 62.5f;

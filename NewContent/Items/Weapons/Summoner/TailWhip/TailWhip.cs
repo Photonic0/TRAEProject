@@ -27,7 +27,6 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.TailWhip
             Item.autoReuse = false;
             Item.DamageType = DamageClass.SummonMeleeSpeed;
             Item.useStyle = 1;
-            Item.GetGlobalItem<SpearItems>().canGetMeleeModifiers = true;
             Item.width = 46;
             Item.height = 32;
             Item.shoot = ProjectileType<TailWhipP>();
@@ -42,8 +41,12 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.TailWhip
 			// 30 tiles range
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(0, 4, 0, 0);
-		}
-		public override void AddRecipes()
+        }
+        public override bool MeleePrefix()
+        {
+            return true;
+        }
+        public override void AddRecipes()
 		{
             CreateRecipe(1)
                               .AddIngredient(ItemType<SalamanderTail>(), 3)
@@ -83,6 +86,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Summoner.TailWhip
         public override void Update(NPC npc, ref int buffIndex)
         {
             npc.GetGlobalNPC<Tag>().Damage += 11;
+            npc.defense -= 16;
         }
     }
 }

@@ -95,16 +95,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1301",
-      "level": "Error",
-      "message": "El origen local \"C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages\" no existe.",
-      "libraryId": "tModLoader.CodeAssist"
-    }
-  ]
+  }
 }

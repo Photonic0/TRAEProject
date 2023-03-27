@@ -12,59 +12,6 @@ using TRAEProject.Common.ModPlayers;
 
 namespace TRAEProject.Changes.Armor
 {
-    public class CobaltArmorEffect : ModPlayer
-    {
-        public bool CobaltCritical = false; 
-        public float CobaltSpeed = 0;
-        public override void ResetEffects()
-        {
-            CobaltCritical = false;
-        }
-        public override void PostUpdateEquips()
-        {
-            if (CobaltSpeed > 0)
-            {
-                // TO DO: VISUAL FOR THE SPEED INCREASE. LOOK AT AMPHIBIAN BOOTS. 
-                float speedIncrease = CobaltSpeed / 450;
-
-                if (CobaltSpeed > 300)
-                    CobaltSpeed = 300;
-                CobaltSpeed -= 1 + CobaltSpeed / 100;
-                Player.moveSpeed += speedIncrease;
-                Player.runAcceleration *= 1 + speedIncrease * 2;
-                Player.armorEffectDrawShadow = true;
-                if (Player.velocity.X != 0)
-                {
-                    if (Main.rand.NextBool(7 - (int)(CobaltSpeed / 100))) // the more boost the more dusts
-                    { 
-                            int num3 = Dust.NewDust(new Vector2(Player.position.X - 4f, Player.position.Y), Player.width + 8, Player.height, DustID.BlueFairy, (0f - Player.velocity.X) * 0.5f, Player.velocity.Y * 0.5f, 100, default(Color), 1.5f);
-                        Main.dust[num3].noGravity = true;
-                        Main.dust[num3].velocity.X = Main.dust[num3].velocity.X * 0.2f;
-                        Main.dust[num3].velocity.Y = Main.dust[num3].velocity.Y * 0.2f;
-                        Main.dust[num3].shader = GameShaders.Armor.GetSecondaryShader(Player.cShoe, Player);
-                        Main.dust[num3].scale += (float)Main.rand.Next(-5, 3) * 0.1f;
-                        Vector2 vector = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
-                        vector.Normalize();
-                        vector *= (float)Main.rand.Next(81) * 0.1f;
-                    }
-                }
-            }    
-        }
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
-        {
-            if (CobaltCritical && crit)
-            {
-                CobaltSpeed += damage;
-            }
-        }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
-        {
-            if (CobaltCritical && crit)
-            {
-                CobaltSpeed += damage;
-            }
-        }
-    }
     public class HMOreArmor : GlobalItem
     {
         //public override bool InstancePerEntity => true;
@@ -110,6 +57,8 @@ namespace TRAEProject.Changes.Armor
             {
                 return "MythrilSet";
             }
+            if ((head.type == ItemID.TitaniumHeadgear || head.type == ItemID.TitaniumHelmet || head.type == ItemID.TitaniumMask) && body.type == ItemID.TitaniumBreastplate && legs.type == ItemID.TitaniumLeggings)
+                return "TitaniumSet";
             return base.IsArmorSet(head, body, legs);
         }
         public override void UpdateArmorSet(Player player, string set)
@@ -149,6 +98,11 @@ namespace TRAEProject.Changes.Armor
                 }
                 player.setBonus = "Critical Strikes deal 20% more damage";
                 player.GetModPlayer<CritDamage>().critDamage += 0.20f;
+            }
+            if (set == "TitaniumSet") // see armor changes
+            {
+                player.GetModPlayer<SetBonuses>().TitaniumArmorOn = true;
+
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

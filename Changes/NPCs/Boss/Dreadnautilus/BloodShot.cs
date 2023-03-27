@@ -36,11 +36,12 @@ namespace TRAEProject.Changes.NPCs.Boss.Dreadnautilus
             }
             return base.PreDraw(projectile, ref lightColor);
         }
-        public override void ModifyHitPlayer(Projectile projectile, Player target, ref int damage, ref bool crit)
+
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
         {
             if(projectile.type == ProjectileID.BloodShot && NPC.AnyNPCs(NPCID.BloodSquid))
             {
-                damage = (int)(damage * 0.6f);
+                modifiers.FinalDamage *= 0.6f;
             }
         }
     }

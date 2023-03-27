@@ -43,14 +43,14 @@ namespace TRAEProject.NewContent.Buffs
             Bandaid = false;
         }
 
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Bandaid)
             {
                 target.AddBuff(BuffType<SBandAidFix>(), 300);
             }
         }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Bandaid)
             {

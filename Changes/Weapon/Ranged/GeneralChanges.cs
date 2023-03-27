@@ -21,10 +21,6 @@ namespace TRAEProject.Changes.Weapons
         }
         public override void SetDefaults(Item item)
         {
-            if (item.ammo > 0 && item.type != ItemID.SilverCoin && item.type != ItemID.GoldCoin && item.type != ItemID.CopperCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.PlatinumCoin && item.type != ItemID.Ale && item.type != ItemID.SandBlock)
-            {
-                item.maxStack = 9999;
-            }
             switch (item.type)
             {
 
@@ -42,27 +38,12 @@ namespace TRAEProject.Changes.Weapons
                     item.damage = 30; // up from 20
                     item.value = 250000; // 25 gold
                     return;
-                case ItemID.Flamethrower:
-                    item.damage = 14; // down from 35
-                    item.shootSpeed = 5.33f; // down from 7
-                    item.useAnimation = 60; // down from 30
-                    item.useTime = 10; // up from 6
-                    item.knockBack = 0.25f; // down from 0.3
-                    return;
-                case ItemID.ElfMelter:
-                    item.damage = 30;
-                    item.useAnimation = 60; // up from 30
-                    item.useTime = 6; // up from 6
-                    return;
+   
                 case ItemID.Harpoon:
                     item.shoot = ProjectileType<Harpoon>();
                     item.shootSpeed = 22f;
                     item.useAnimation = 36;
                     item.useTime = 36;
-                    return;
-                case ItemID.FlintlockPistol:
-                    item.shootSpeed = 7f;
-                    item.autoReuse = true;
                     return;
                 case ItemID.PewMaticHorn:
                     item.useTime = 17;
@@ -86,14 +67,6 @@ namespace TRAEProject.Changes.Weapons
                     item.shootSpeed = 5f;
                     item.useTime = 7;
                     item.useAnimation = 7;
-                    return;
-                case ItemID.Handgun:
-                    item.damage = 33; // up from 17
-                    item.useTime = 17;
-                    item.useAnimation = 17;
-                    return;
-                case ItemID.PhoenixBlaster:
-                    item.shootSpeed = 19f;
                     return;
                 case ItemID.Toxikarp:
                     item.useTime = 14;
@@ -249,8 +222,6 @@ namespace TRAEProject.Changes.Weapons
                     }
                     return;
                 case ItemID.VenusMagnum:
-                case ItemID.ElfMelter:
-                case ItemID.Flamethrower:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")

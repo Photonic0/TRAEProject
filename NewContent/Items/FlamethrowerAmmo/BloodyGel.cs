@@ -63,12 +63,12 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             Projectile.friendly = true;
             Projectile.usesLocalNPCImmunity = true;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             BoilingBlood bb = TRAEDebuff.Apply<BoilingBlood>(target, 30, 5);
             if(bb != null)
             {
-                bb.SetDamage(damage);
+                bb.SetDamage(damageDone);
             }
         }
         public override void AI()

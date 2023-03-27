@@ -697,8 +697,8 @@ namespace TRAEProject.Changes.NPCs.Boss
 			Projectile.hostile = true;
 			Projectile.scale = 1.3f;
 		}
-		public override void OnHitPlayer(Player target, int damage, bool crit)
-		{
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
 			target.AddBuff(BuffID.ShadowFlame, 750);
 		}
 		public override void AI()

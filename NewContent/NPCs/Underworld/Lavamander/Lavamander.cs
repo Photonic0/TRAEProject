@@ -64,7 +64,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 		float dustTimer = 0;
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemType<HeatproofSaddle>(), 30));
+            npcLoot.Add(ItemDropRule.Common(ItemType<HeatproofSaddle>(), 20));
         }
         float jump = 0;
         public override void AI()
@@ -110,11 +110,13 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("LavamanderGore1").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("LavamanderGore2").Type, 1f);
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("LavamanderGore3").Type, 1f);
-            return false;
+            return true;
 
 		}
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+			if (spawnInfo.Player.ZoneBeach && Main.remixWorld)
+                return SpawnCondition.Underworld.Chance * 0.25f;
             if (!NPC.downedPlantBoss)
             {
                 return SpawnCondition.Underworld.Chance * 0.25f;

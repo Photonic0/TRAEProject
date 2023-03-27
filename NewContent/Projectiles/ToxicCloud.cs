@@ -32,7 +32,7 @@ namespace TRAEProject.NewContent.Projectiles
 			Projectile.extraUpdates = 0;
             
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             int length = Main.rand.Next(3, 5) * 60;
             target.AddBuff(BuffID.Venom, length, false);

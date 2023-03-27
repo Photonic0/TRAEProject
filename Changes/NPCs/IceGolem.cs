@@ -17,7 +17,7 @@ namespace TRAEProject.Changes.NPCs
 		public override void SetDefaults(NPC npc)
 		{
 		}
-		public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
 		{
 		}
 		public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)/* tModPorter Note:bossAdjustment -> balance (bossAdjustment is different, see the docs for details) */
@@ -47,42 +47,7 @@ namespace TRAEProject.Changes.NPCs
 			}
 
 		}
-		//private void FindSpotToSpawnSpike(NPC npc, int howMany, int whichOne, ref int x, ref int y)
-		//{
-		//	if (WorldGen.ActiveAndWalkableTile(x, y))
-		//	{
-		//		return;
-		//	}
-		//	Rectangle rectangle = npc.targetRect;
-		//	int num = rectangle.Center.X / 16;
-		//	int num2 = (rectangle.Bottom - 16) / 16;
-		//	int num3 = ((num2 - y > 0) ? 1 : (-1));
-		//	int num4 = y;
-		//	for (int i = 1; i <= 10; i++)
-		//	{
-		//		int num5 = y + num3 * i;
-		//		if (num5 >= 20 && num5 <= Main.maxTilesY - 20 && WorldGen.ActiveAndWalkableTile(x, num5))
-		//		{
-		//			num4 = num5;
-		//		}
-		//	}
-		//	if (num4 != y)
-		//	{
-		//		y = num4;
-		//		return;
-		//	}
-		//	y = (int)MathHelper.Lerp(num2, y, (float)Math.Abs(num - x) * 0.1f);
-		//	for (int j = 0; j < 4; j++)
-		//	{
-		//		int num6 = y + j;
-		//		if (num6 >= 20 && num6 <= Main.maxTilesY - 20 && WorldGen.ActiveAndWalkableTile(x, num6))
-		//		{
-		//			y = num6;
-		//			break;
-		//		}
-		//	}
-		//}
-
+	
 		private void MakeSpikesForward(NPC npc, int AISLOT_PhaseCounter, NPCAimedTarget targetData)
 		{
 			int num = 2;
@@ -194,17 +159,13 @@ namespace TRAEProject.Changes.NPCs
 				projectile.tileCollide = false;
             }
         }
-        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
 			if(projectile.type == ProjectileID.FrostBeam)
 			{
-                int findbuffIndex = target.FindBuffIndex(BuffID.Chilled);
-                if (findbuffIndex != -1)
-                {
-                    target.DelBuff(findbuffIndex);
-                };
+				target.ClearBuff(BuffID.Chilled);
 				target.AddBuff(BuffID.Chilled, 240);
-				target.AddBuff(BuffID.Frozen, 45);
+				target.AddBuff(BuffID.Frozen, 30);
 			}
 		}
     }

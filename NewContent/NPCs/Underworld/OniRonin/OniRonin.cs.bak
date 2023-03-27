@@ -366,7 +366,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
 
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 450));
         }
@@ -454,7 +454,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
             Projectile.tileCollide = false;
         }
         int frame = Main.rand.Next(0, 4);
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.OnFire, Main.rand.Next(300, 450));
         }

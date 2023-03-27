@@ -42,7 +42,7 @@ namespace TRAEProject.NewContent.Items.Weapons.DoubleHaxor
             Item.noUseGraphic = true;
             Item.useStyle = 1;
             Item.UseSound = SoundID.Item1;
-            Item.GetGlobalItem<GiveWeaponsPrefixes>().canGetBoomerangModifers = true;
+            Item.GetGlobalItem<GiveWeaponsPrefixes>().canGetMeleeOtherModifers = true;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

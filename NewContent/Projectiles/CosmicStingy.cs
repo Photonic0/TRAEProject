@@ -25,19 +25,7 @@ namespace TRAEProject.NewContent.Projectiles
             Projectile.ignoreWater = true;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 10;
-        }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            Player player = Main.player[Projectile.owner];
-            float finalDefense = target.defense - player.GetArmorPenetration(DamageClass.Generic);
-            target.ichor = false;
-            target.betsysCurse = false;
-            if (finalDefense < 0)
-            {
-                finalDefense = 0;
-            }
-            damage += (int)finalDefense / 2;
-            crit = false;
+            Projectile.ArmorPenetration = 100;
         }
         public override void AI()
         {

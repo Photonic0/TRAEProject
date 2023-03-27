@@ -26,7 +26,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
                 projectile.light = 1f;
             }
         }
-        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
             if (Main.expertMode)
             {

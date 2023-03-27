@@ -22,11 +22,12 @@ namespace TRAEProject.Changes.Armor
         public int shadowArmorDodgeChance = 0;
         public bool PirateSet = false;
         public bool HolyProtection = false;
-
+        public bool TitaniumArmorOn = false;
         public bool whenHitDodge = false;
         public bool secretPearlwoodSetBonus = false;
         public override void ResetEffects()
         {
+            TitaniumArmorOn = false;
             PirateSet = false;
             shadowArmorDodgeChance = 0;
             HolyProtection = false;
@@ -35,61 +36,40 @@ namespace TRAEProject.Changes.Armor
         }
         public override void UpdateDead()
         {
+            TitaniumArmorOn = false;
             PirateSet = false;
             shadowArmorDodgeChance = 0;
             HolyProtection = false;
             whenHitDodge = false;
             secretPearlwoodSetBonus = true;
         }
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        public override void OnHurt(Player.HurtInfo info)
         {
-            if (damage > 1)
+            if (info.Damage > 1)
             {
                 Shadowdodge();
             }
         }
-
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
-        {
-            if (damage > 1)
-            {
-                Shadowdodge();
-            }
-        }
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
-        {
-            if (shadowArmorDodgeChance != 0)
-            {
-                if (Main.rand.NextBool(shadowArmorDodgeChance))//if set to 0, it will give 100% dodge chance without the set bonus
-                {
-                    DarkDodge();
-                    return false;
-                }
-            }
-            return true; 
-        }
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        public override void ModifyHitNPCWithItem(Item item, NPC target, ref NPC.HitModifiers modifiers)
         {
             if(secretPearlwoodSetBonus && Main.rand.NextBool(1000))
             {
-                crit = false;
-                damage = 6969;
+                modifiers.GetDamage(6969, false);
                 Main.NewText("Nice!");
                 SoundEngine.PlaySound(new SoundStyle("TRAEProject/Assets/Sounds/noice"));
             }
         }
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
         {
             if(secretPearlwoodSetBonus && Main.rand.NextBool(1000))
             {
-                crit = false;
-                damage = 6969;
+                modifiers.GetDamage(6969, false);
                 Main.NewText("Nice!");
                 SoundEngine.PlaySound(new SoundStyle("TRAEProject/Assets/Sounds/noice"));
             }
         }
 
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (PirateSet && (ProjectileID.Sets.IsAWhip[proj.type]))
             {

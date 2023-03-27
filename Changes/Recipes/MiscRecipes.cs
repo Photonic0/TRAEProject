@@ -87,40 +87,12 @@ namespace TRAEProject.Changes.Recipes
                 recipe.AddIngredient(ItemID.WormTooth, 10);
                 recipe.AddIngredient(ItemID.ViciousPowder, 20);
             }
-            if (recipe.HasResult(ItemID.SeafoodDinner))
+
+            if (recipe.HasResult(ItemID.DeerThing))
             {
-                if (recipe.HasIngredient(ItemID.SpecularFish))
-                {
-                    recipe.TryGetIngredient(ItemID.SpecularFish, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.SpecularFish, 6);
-                }
-                if (recipe.HasIngredient(ItemID.CrimsonTigerfish))
-                {
-                    recipe.TryGetIngredient(ItemID.CrimsonTigerfish, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.CrimsonTigerfish, 6);
-                }
-                if (recipe.HasIngredient(ItemID.PrincessFish))
-                {
-                    recipe.TryGetIngredient(ItemID.PrincessFish, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.AddIngredient(ItemID.PrincessFish, 6);
-                }
-                if (recipe.HasIngredient(ItemID.NeonTetra))
-                {
-                    recipe.TryGetIngredient(ItemID.NeonTetra, out ingredientToRemove);
-                    recipe.RemoveIngredient(ingredientToRemove);
-                    recipe.DisableRecipe();
-                }
-  
-            }
-            if (recipe.HasResult(ItemID.ThornsPotion))
-            {
-                recipe.TryGetIngredient(ItemID.Stinger, out ingredientToRemove);
+                recipe.TryGetIngredient(ItemID.FlinxFur, out ingredientToRemove);
                 recipe.RemoveIngredient(ingredientToRemove);
-                recipe.TryGetIngredient(ItemID.WormTooth, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.FlinxFur, 2);
             }
             if (recipe.HasResult(ItemID.InfernoPotion))
             {

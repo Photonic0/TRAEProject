@@ -10,6 +10,7 @@ using Terraria.Audio;
 using TRAEProject.Changes.Weapon.Ranged.Rockets;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.Items.Weapons.Ammo;
+using TRAEProject.NewContent.Items.FlamethrowerAmmo;
 
 namespace TRAEProject.NewContent.Items.Weapons.BAM
 {
@@ -27,8 +28,8 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             Item.width = 68;
             Item.height = 22;
             Item.damage = 40;
-            Item.useAnimation = 72;
-            Item.useTime = 9;
+            Item.useAnimation = 48;
+            Item.useTime = 6;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Red;
             Item.value = Item.sellPrice(gold: 5);
@@ -88,16 +89,18 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
                 }
                 return false;
             }
+            if (shotCount >= 7)
+            {
+                shotCount = 0;
+            }
             return true;
         }
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
+
             if (shotCount != 1 && shotCount != 4 && shotCount != 7)
                 return false;
-            if (shotCount == 7)
-            {
-                shotCount = 0; 
-            }
+    
             return true;
         }
     }
@@ -163,70 +166,27 @@ namespace TRAEProject.NewContent.Items.Weapons.BAM
             }
         }
     }
-    public class BAMGel : ModProjectile
+    public class BAMGel : FlamethrowerProjectile
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("BAMGel");     //The English name of the Projectile
+            // DisplayName.SetDefault("CursedFlamethrower");     //The English name of the Projectile
 
         }
         public override string Texture => "Terraria/Images/Item_0";
-        public override void SetDefaults()
+        public override void FlamethrowerDefaults()
         {
-
-            Projectile.width = 6;
-            Projectile.height = 6;
-            Projectile.alpha = 255;
-            Projectile.penetrate = 3;
-            Projectile.extraUpdates = 2;
-            Projectile.DamageType = DamageClass.Ranged;
-            Projectile.hostile = false;
-            Projectile.friendly = true;
-            Projectile.timeLeft = 60;
-            Projectile.usesLocalNPCImmunity = true;
+            color1 = new Color(33, 255, 164, 200);
+            color2 = new Color(87, 255, 186, 200);
+            color3 = Color.Lerp(color1, color2, 0.25f);
+            color4 = new Color(80, 80, 80, 100);
+            dustID = 229;
+            dustScale = 0.5f;
             Projectile.GetGlobalProjectile<ProjectileStats>().dontHitTheSameEnemyMultipleTimes = true;
-            Projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 240;
             Projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.1f;
         }
-        public override void AI()
-        {
-            float dustScale = 1f;
-            if (Projectile.ai[0] == 0f)
-                dustScale = 0.25f;
-            else if (Projectile.ai[0] == 1f)
-                dustScale = 0.5f;
-            else if (Projectile.ai[0] == 2f)
-                dustScale = 0.75f;
-
-            if (Main.rand.NextBool(3))
-            {
-                for (int i = 0; i < 2; ++i)
-                {
-                    Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 229, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, Scale: 0.8f);
-                    dust.noGravity = true;
-                    if (Main.rand.NextBool(4))
-                    {
-                        dust.scale *= 2f;
-                        dust.velocity.X *= 2f;
-                        dust.velocity.Y *= 2f;
-                    }
-
-                    dust.scale *= 1.25f;
-                    dust.velocity *= 1.2f;
-                    dust.scale *= dustScale;
-                }
-            }
-            Projectile.ai[0] += 1f;
-        }
-        public override void ModifyDamageHitbox(ref Rectangle hitbox)
-        {
-            int size = 30;
-            hitbox.X -= size;
-            hitbox.Y -= size;
-            hitbox.Width += size * 2;
-            hitbox.Height += size * 2;
-        }
     }
+
     public class BAMAttacks : ModPlayer
     {
         public int ammoToUse = 1;

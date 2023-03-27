@@ -48,7 +48,7 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<Mobility>().TRAELavaMax += 420;
                     break;
                 case ItemID.EmpressFlightBooster:
-                    player.jumpSpeedBoost -= 2.4f;
+                    player.jumpSpeedBoost -= 1.8f;
                     break;
                 case ItemID.Magiluminescence:
                     player.GetModPlayer<Mobility>().TRAEMagi = true;
@@ -111,7 +111,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Allows control over gravity";
+                            line.Text = "Prevents fall damage and allows control over gravity";
                         }
                         
                     }

@@ -75,12 +75,12 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             }
 
         }
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             target.AddBuff(BuffID.OnFire3, 240);
             if (Main.rand.NextBool(20))
             {
-                damage = (int)(damage * 2.5);
+                modifiers.FinalDamage *= 2.5f;
                 for (int i = 0; i < 30; i++)
                 {
                     // Create a new dust

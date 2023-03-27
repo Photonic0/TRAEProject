@@ -1,6 +1,6 @@
 Movement Speed reworked (Again)
 * Just about every item got changed, really 
-
+* tones down devourer spawn rate, even more so in hardmode
 
 Queen Bee
 * (Related) Bees now die when hitting a player
@@ -13,6 +13,7 @@ Queen Bee
 
 Deerclops
 * Fight reworked to make it a pre-Evil boss encounter instead of post-evil boss
+* * deer thing now costs 2 flinx fur instead of 3
 * HP decreased from 7000 to 3600
 * Walking speed reduced from 17.5-22.5 mph to 15-20. (His walking speed increases as he takes damage)
 * Forward Ice Spike attack is 10% slower
@@ -20,6 +21,7 @@ Deerclops
 * Now forced to use Rubble or Shadow Hand attack if he hasn't done so in 10 seconds.
 * Passive Shadow hands spawn less often, and now only have two patterns: The slow, spinning hands and the hands that spawn far away from the player.
 * Now takes 1 minute to despawn instead of 24
+
 
 * Master mode:
 ** Forward Ice Spike is 10% faster instead of 10% slower.
@@ -39,6 +41,8 @@ Twins
 ** Dramatically increased spazmatism's flamethrower speed
 ** Retinazer's second phase moves faster.
 ** When one twin dies, the other goes into a new third phase.
+
+* Dune Splicer body damage reduced from 54 to 30
 
 * Direct rocket direct damage reduced from 1.5x to 1.4x
 * Snowman cannon homing radius reduced by 25%
@@ -69,7 +73,7 @@ Twins
 * Furious Damage 20% -> 18%
 * Now increases crit chance by 10%
 
-* Shroomite bullet crit damage reduced from 25% to 20%
+Shroomite Bullets
 ** Now crafted with empty bullets
 ** updated visuals
 
@@ -82,6 +86,10 @@ Twins
 * Shroomite armor's set bonus max damage bonus reduced from 35% to 25%
 
 * Poison staff damage 17 -> 16 (to compensate for Poisoned's buff)
+
+* phoenix blaster shoots flares
+
+* bam, elf melter and flamethrower stats updated (possibly blood boiler too)
 
 * Bee Gun
 ** Damage decreased from 8 to 5
@@ -164,3 +172,138 @@ Double Haxor
 ** Shinobi headgear summon damage and melee speed reduced back to 20%
 
 * Massive expansion to the post plantera underworld.
+* Removed damage changes on hostile projectiles
+
+* pyscho knife damage nerf reverted (80 -> 85), has aura
+
+* If the player has palladium armor and is holding a palladium weapon, rapid healing is 3 hp/s instead of 2
+* Orichalcum sword now only makes 1 petal per swing
+* titanium storm shards deal 50% more damage if the player is holding the Titanium Sword and has the titanium armor set bonus
+* reverted other titanium armor changes
+
+1.4.4 stuff:
+* Reverted milkyway weaver hp buff
+* Reverted phm ore sword sprite changes (because 1.4.4 resprites made them just as big)
+* Bone sword scale decreased from 1.33 to 1.1 (remember the resprite)
+* reverted HP buffs on Duke Fishron
+* Bat bat:
+** Damage reduced from 36 to 24
+** Use Time reduced from 45 to 30
+
+
+* Reverted Gladius buffs
+* [NOT FOR CHANGELOG] Purple Clubberfish no longer has increased damage
+
+* Mandible blade damage reduced from 16 to 14
+* Reverted Light's Bane, Blood Butcherer, Blade of Grass, Katana, Phaseblade, Muramasa, Volcano, and Night's Edge changes
+* Reverted Breaker Blade's changes, added aura 
+* Reverted Handgun and Phoenix Blaster TRAE changes
+** Phoenix Blaster can now shoot flares with right click
+* Hallowed repeater damage 50 -> 53, use time 16 -> 17
+* Holy arrow star still deals 50% damage.
+* Amethyst Staff use time 38 -> 40
+* Topaz Staff use time 36 -> 38
+* Magic Missile damage 33 -> 35
+* Nimbus Rod damage 30 -> 36
+* Meteor Staff mana cost 9 -> 13
+* Shadowflame hex doll damage 32 -> 37
+* Magical Harp knockback 5 -> 2 (reverted TRAE buff)
+* Shadowbeam staff damage 80 -> 64
+* Toxic Flask damage 52 -> 46, velocity 14 -> 9
+ * Snapthorn damage 19 -> 18
+* Morning Star damage 165 -> 160
+* Reverted Blade staff kb nerf
+* Reverted Optic Staff buffs
+* Reverted Deadly Sphere changes
+* Sanguine Staff 35 -> 40
+* Lightning aura:
+** T1 damage 4 -> 7	
+** T2 damage 11 -> 15	
+** T3 damage 34 -> 44	
+* Flameburst:
+** T1 damage 17 -> 25	
+** T2 damage 42 -> 58	
+** T3 damage 88 -> 114, inflicts Daybroken as well as Hellfire
+* Stardust[Lunar] Portal damage 100 -> 33
+
+* [NOT FOR CHANGELOG] Obsidian armor reverted
+* Reverted TRAE horseman blade buffs
+
+
+* Crimson armor now quadruples natural regen rate instead of doubling it
+
+* beekeeper 
+** Damage down from 30 to 26
+** Only makes bees on its first hit
+** no longer inflicts confused
+** now has an aura with extended reach
+
+Redone HM ore sword changes:
+* Cobalt Katana now has an aura giving it 10% increased range and more coverage; crit chance increased to 24%
+* Mythril Zweihander now has an aura giving it 10% increased range and more coverage, use time and base damage increased by 50%, deals 25% more damage on a critical hit
+* Adamantite Broadsword now has an aura giving it 20% increased range and more coverage
+* Reverted all stat changes (but not the special effects or name changes)
+
+* Phasesaber crit chance increased from 4% to 24%
+
+* Frostbrand now only has a 20% chance to freeze
+
+* Keybrand now has an aura increasing its range by 45%
+
+* Terra blade:
+** wave damage reduced by 35%
+** wave is now 40% smaller
+** wave can only hit 3 enemies
+** removed melee speed penalty
+** Aura is 15%
+
+* Horsemans' blade aura is now 20% bigger
+
+* Head harvester
+** Accelerates faster
+** iframes reduced from 6 to 5
+** max hits increased from 5 to 6
+** use time reduced from 43 to 40
+** damage reduced from 101 to 94
+
+* Starlight 
+** now receives a size increase equal to half your melee speed stat
+** Damage 80 -> 70
+
+* Titan glove size/velocity bonuses reduced from 25/50% to 20/20%
+* rocket boots stack
+* reverted destroyer rework
+* [NOT FOR CHANGELOG] reverted max ammo stack size change
+* [NOT FOR CHANGELOG] frost staff no longer inflicts frostbite
+*  reverted treasure magnet chest loot and recipe change
+* reverted seafood dinner recipe changes
+* changed molten skull rose line of recipes back to before 1.4.4
+
+* readded lucky horseshoe to Gold Chest Loot, no longer found in sky chests
+* fledgling wings are now primary sky chest loot again
+
+* tentacle spike can be crafted with 12 rotten tooth and 2 leather
+* flamethrower use time increased from 6 to 8, damage falloff increased from 15% to 20%, removed armor penetration, pierce reduced from 4 to 
+
+* Relentless no longer increases crit, speed reduced from 30% to 20%
+* Bad is now -15% damage and knockback, -10% speed and range
+* hive five damage 24 -> 21 
+* Hive Pack now charges up 25% faster
+* Reduced explosion radius on froggabomba and boom pixie explosions
+credits: 
+Charley: almost every sprite for the hell expansion, glacial armor resprite, possibly more
+frogpage#2186: mechanical eye, eye of the destroyer, spiked whip, skull cannon, onyx curse doll resprites
+photonic: lots of code, mainly on the sword auras
+
+
+to do:
+* Banner sprites come on now
+* add auras for 1.2 ore swords, beekeeper, fetid bagnakh, psycho knife
+* check and compare 1.4.4 changes again
+* look into move speed rework again
+* fix bugs
+* sunfury rework
+* dark mage and ogre drop all 4 accessories
+* glacial armor new sprite sheet
+* make sure swords are in a fine state
+* toggle for boss changes

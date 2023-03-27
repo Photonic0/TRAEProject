@@ -88,18 +88,19 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
             amt *= amt;
             aimDirection = origonalAim + 5f * ((float)Math.PI / 6f) * player.direction * -1f * amt;
         }
-        public override void SpearModfiyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void SpearModfiyHitNPCMelee(NPC target, ref NPC.HitModifiers modifiers)
         {
             if (maxInterupting > 0)
             {
                 Player player = Main.player[Projectile.owner];
-                damage += (int)(damage * (3 * (float)maxInterupting / (float)player.itemAnimationMax));
+                modifiers.FinalDamage.Base *= 3 * (float)maxInterupting / (float)player.itemAnimationMax;
             }
         }
-        public override void SpearHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPCMelee(NPC target, NPC.HitInfo hit)
         {
             Player player = Main.player[Projectile.owner];
-            player.AddBuff(BuffID.RapidHealing, 300);
+
+                player.AddBuff(BuffID.RapidHealing, 300);
         }
     }
     public class PalladiumPikeThrow : SpearThrow
@@ -116,12 +117,13 @@ namespace TRAEProject.Changes.Weapon.Melee.SpearProjectiles
 
 
         }
-        public override void SpearHitNPC(bool atMaxCharge, NPC target, int damage, float knockback, bool crit)
+        public override void SpearHitNPC(bool atMaxCharge, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (atMaxCharge)
             {
                 Player player = Main.player[Projectile.owner];
-                player.AddBuff(BuffID.RapidHealing, 150);
+
+                    player.AddBuff(BuffID.RapidHealing, 300);
             }
         }
     }

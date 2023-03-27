@@ -17,15 +17,7 @@ namespace TRAEProject
         {
             switch (type)
             {
-                case BuffID.ThornWhipPlayerBuff:
-                    player.GetAttackSpeed(DamageClass.Melee) -= 0.05f;
-                    return;
-                case BuffID.SwordWhipPlayerBuff:
-                    player.GetAttackSpeed(DamageClass.Melee) -= 0.1f;
-                    return;
-                case BuffID.ScytheWhipPlayerBuff:
-                    player.GetAttackSpeed(DamageClass.Melee) -= 0.15f;
-                    return;
+
                 case BuffID.ObsidianSkin:
                     player.buffImmune[BuffID.OnFire] = false;
                     player.buffImmune[BuffID.Burning] = true;
@@ -40,9 +32,6 @@ namespace TRAEProject
                 case BuffID.Thorns:
                     player.thorns -= 1f;
                     player.GetModPlayer<OnHitItems>().newthorns += 0.33f;
-                    return;
-                case BuffID.Archery:
-                    player.arrowDamage -= 0.08f; //  because Archery Potion uses a unique multiplier -8% makes it effectively +10% arrow damage 
                     return;
                 case BuffID.Rabies:
                     player.AddBuff(BuffType<NeoFeralBite>(), player.buffTime[buffIndex], false);
@@ -77,10 +66,17 @@ namespace TRAEProject
                 case BuffID.WaterWalking:
                     player.GetModPlayer<Mobility>().TRAEwaterwalk = true;
                     break;
+                case BuffID.RapidHealing:
+                    if (player.HeldItem.type == ItemID.PalladiumSword ||
+                        player.HeldItem.type == ItemID.PalladiumPike ||
+                        player.HeldItem.type == ItemID.PalladiumRepeater
+                        )
+                        player.lifeRegenCount += 1;
+                    break;
             }
         }
 
-        public override void ModifyBuffTip(int type, ref string tip, ref int rare)
+        public override void ModifyBuffText(int type, ref string buffName, ref string tip, ref int rare)
         {
             switch (type)
             {
@@ -151,7 +147,7 @@ namespace TRAEProject
                 }    
             }
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[projectile.owner]; 
             if (player.inferno && InfernoHits < 3)
@@ -160,12 +156,12 @@ namespace TRAEProject
                 Lighting.AddLight((int)(target.Center.X / 16f), (int)(target.Center.Y / 16f), 0.65f, 0.4f, 0.1f);
                 int OnFireID = 24;
                 float range = 100f;
-                int RingDamage = damage / 10;
+                int RingDamage = damageDone / 10;
                 if (RingDamage < 1)
                 {
                     RingDamage = 1;
                 }
-                int dustsToMake = 10 + damage / 10;
+                int dustsToMake = 10 + damageDone / 10;
                 for (int i = 0; i < dustsToMake; i++)
                 {
                     float radius = range / 62.5f;

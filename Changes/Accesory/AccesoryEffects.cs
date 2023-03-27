@@ -123,14 +123,14 @@ namespace TRAEProject
             Player.statLife = Player.statLifeMax;
             return;
         }
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
+        public override bool FreeDodge(PlayerDeathReason damageSource, int cooldownCounter)
         {
-            if (Player.hasRaisableShield && Player.HeldItem.type == ItemID.DD2SquireDemonSword && Main.rand.Next(5) == 0)
+            if (Player.hasRaisableShield && Player.HeldItem.type == ItemID.DD2SquireDemonSword && Main.rand.NextBool(5))
             {
                 Block();
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
         public override void PostUpdateEquips()
         {

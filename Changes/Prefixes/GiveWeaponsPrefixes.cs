@@ -20,8 +20,7 @@ namespace TRAEProject.Changes.Prefixes
 		{
 			return base.Clone(item, itemClone);
 		}
-		public bool canGetRangedModifiers = false;
-		public bool canGetBoomerangModifers = false;
+		public bool canGetMeleeOtherModifers = false;
 		public bool canGetYoyoModifers = false;
         public override void SetDefaults(Item item)
         {
@@ -29,9 +28,6 @@ namespace TRAEProject.Changes.Prefixes
             {
 				case ItemID.VampireKnives:
 				case ItemID.ShadowFlameKnife:
-			    case ItemID.RocketLauncher:
-					canGetRangedModifiers = true;
-					break;
 				case ItemID.Mace:
 				case ItemID.FlamingMace:
 				case ItemID.BallOHurt:
@@ -60,7 +56,7 @@ namespace TRAEProject.Changes.Prefixes
 				case ItemID.PaladinsHammer:
 				case ItemID.PossessedHatchet:
 				case ItemID.SolarEruption:
-					canGetBoomerangModifers = true;
+					canGetMeleeOtherModifers = true;
 					break;
 			}
 			if(ItemID.Sets.Yoyo[item.type])
@@ -84,156 +80,7 @@ namespace TRAEProject.Changes.Prefixes
 			//item.GetGlobalItem<YoyoStats>().range = 1f;
 			//item.GetGlobalItem<YoyoStats>().speed = 1f;
 
-			if (canGetRangedModifiers)
-			{
-				int num = 0;
-				#region pick
-				int num11 = rand.Next(35);
-				if (num11 == 0)
-				{
-					num = 16;
-				}
-				if (num11 == 1)
-				{
-					num = 17;
-				}
-				if (num11 == 2)
-				{
-					num = 18;
-				}
-				if (num11 == 3)
-				{
-					num = 19;
-				}
-				if (num11 == 4)
-				{
-					num = 20;
-				}
-				if (num11 == 5)
-				{
-					num = 21;
-				}
-				if (num11 == 6)
-				{
-					num = 22;
-				}
-				if (num11 == 7)
-				{
-					num = 23;
-				}
-				if (num11 == 8)
-				{
-					num = 24;
-				}
-				if (num11 == 9)
-				{
-					num = 25;
-				}
-				if (num11 == 10)
-				{
-					num = 58;
-				}
-				if (num11 == 11)
-				{
-					num = 36;
-				}
-				if (num11 == 12)
-				{
-					num = 37;
-				}
-				if (num11 == 13)
-				{
-					num = 38;
-				}
-				if (num11 == 14)
-				{
-					num = 53;
-				}
-				if (num11 == 15)
-				{
-					num = 54;
-				}
-				if (num11 == 16)
-				{
-					num = 55;
-				}
-				if (num11 == 17)
-				{
-					num = 39;
-				}
-				if (num11 == 18)
-				{
-					num = 40;
-				}
-				if (num11 == 19)
-				{
-					num = 56;
-				}
-				if (num11 == 20)
-				{
-					num = 41;
-				}
-				if (num11 == 21)
-				{
-					num = 57;
-				}
-				if (num11 == 22)
-				{
-					num = 42;
-				}
-				if (num11 == 23)
-				{
-					num = 44;
-				}
-				if (num11 == 24)
-				{
-					num = 45;
-				}
-				if (num11 == 25)
-				{
-					num = 46;
-				}
-				if (num11 == 26)
-				{
-					num = 47;
-				}
-				if (num11 == 27)
-				{
-					num = 48;
-				}
-				if (num11 == 28)
-				{
-					num = 49;
-				}
-				if (num11 == 29)
-				{
-					num = 50;
-				}
-				if (num11 == 30)
-				{
-					num = 51;
-				}
-				if (num11 == 31)
-				{
-					num = 59;
-				}
-				if (num11 == 32)
-				{
-					num = 60;
-				}
-				if (num11 == 33)
-				{
-					num = 61;
-				}
-				if (num11 == 34)
-				{
-					num = 82;
-				}
-				#endregion
-
-				return num;
-			}
-			if(canGetBoomerangModifers)
+			if(canGetMeleeOtherModifers)
             {
 				int num13 = rand.Next(23);
 				int num = 0;

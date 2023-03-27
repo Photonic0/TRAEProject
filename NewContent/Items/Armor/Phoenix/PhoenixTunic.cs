@@ -68,7 +68,7 @@ namespace TRAEProject.NewContent.Items.Armor.Phoenix
         {
             PhoenixSetBonus = false;
         }
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (PhoenixSetBonus && ProjectileID.Sets.IsAWhip[proj.type])
             {     

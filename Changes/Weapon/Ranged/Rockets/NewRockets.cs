@@ -280,7 +280,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
                 }
             }
         }
-        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
             if (DryRocket || WetRocket || LavaRocket || HoneyRocket)
             {
@@ -297,7 +297,7 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             }
             return true;
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (DryRocket || WetRocket || LavaRocket || HoneyRocket)
             {
@@ -362,10 +362,9 @@ namespace TRAEProject.Changes.Weapon.Ranged.Rockets
             projectile.penetrate = 3; projectile.usesLocalNPCImmunity = true;
             projectile.localNPCHitCooldown = 10;
             IsARocket = true;
-            projectile.GetGlobalProjectile<ProjectileStats>().DirectDamage = 1.4f;
-            projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
+            projectile.GetGlobalProjectile<ProjectileStats>().FirstHitDamage = 1.4f;
+           projectile.GetGlobalProjectile<ProjectileStats>().explodes = true;
             projectile.GetGlobalProjectile<ProjectileStats>().ExplosionRadius = 80;
-            projectile.GetGlobalProjectile<ProjectileStats>().ExplosionDamage /= 1.4f;
             if (defaultExplosion)
             {
                 projectile.GetGlobalProjectile<ProjectileStats>().UsesDefaultExplosion = true;

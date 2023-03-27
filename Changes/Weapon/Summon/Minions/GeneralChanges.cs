@@ -33,9 +33,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                 case ItemID.HornetStaff:
                     item.damage = 12;
                     break;
-                case ItemID.OpticStaff:
-                    item.damage = 25; // down from 30
-                    break;
                 case ItemID.QueenSpiderStaff:
                     item.damage = 19; // down from 26
                     break;
@@ -50,9 +47,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                 case ItemID.TempestStaff:
                     item.damage = 42; //down from 50
                     break;
-                case ItemID.DeadlySphereStaff:
-                    item.damage = 15; // down from 50
-                    break;
                 case ItemID.StardustCellStaff:
                     item.damage = 50; // down from 60
                     break;
@@ -60,7 +54,10 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     item.damage = 60; // up from 40
                     item.SetNameOverride("Lunar Dragon Staff");
                     break;
-                
+                case ItemID.SanguineStaff:
+                    item.damage = 40; // up from 35
+                    break;
+
             }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -97,26 +94,6 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 15;
                     break;
-                case ProjectileID.Retanimini:
-                case ProjectileID.Spazmamini:
-                    projectile.tileCollide = false;
-                    projectile.usesIDStaticNPCImmunity = false;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
-                    break;
-                case ProjectileID.MiniRetinaLaser:
-                    projectile.penetrate = -1;
-                    projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
-                    projectile.GetGlobalProjectile<ProjectileStats>().homingRange = 200f;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = -1;
-                    break;
-                case ProjectileID.DeadlySphere:
-                    projectile.extraUpdates = 1;
-                    projectile.usesIDStaticNPCImmunity = false;
-                    projectile.usesLocalNPCImmunity = true;
-                    projectile.localNPCHitCooldown = 30;
-                    break;
                 case ProjectileID.DangerousSpider:
                 case ProjectileID.VenomSpider:
                 case ProjectileID.JumperSpider:
@@ -144,7 +121,10 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     projectile.usesLocalNPCImmunity = true;
                     projectile.localNPCHitCooldown = 10;
                     break;
-                   
+                case ProjectileID.DD2FlameBurstTowerT3Shot:
+                    projectile.GetGlobalProjectile<ProjectileStats>().AddsBuff = BuffID.Daybreak;
+                    projectile.GetGlobalProjectile<ProjectileStats>().AddsBuffDuration = 240;
+                    break;
             }
 
         }
@@ -158,22 +138,10 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                         projectile.ai[1] -= 0.33f;
                     }
                     break;
-                case ProjectileID.DeadlySphere:
-                    projectile.ai[1] += 2f;
-                    break;
-                case ProjectileID.BatOfLight:
-                    projectile.localNPCHitCooldown = (int)projectile.ai[0];
-                    break;
-                case ProjectileID.Spazmamini:
-                    if(projectile.ai[1] > 1)
-                    {
-                        projectile.ai[1] -= 0.5f;
-                    }
-                    break;
 
             }
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             switch (projectile.type)
             {
@@ -193,30 +161,23 @@ namespace TRAEProject.Changes.Weapon.Summon.Minions
                     target.immune[projectile.owner] = 0;
                     projectile.localNPCImmunity[target.whoAmI] = 20;
                     break;
-                case ProjectileID.MiniRetinaLaser:
-                    projectile.Kill();
-                    break;
                 case ProjectileID.VampireFrog:
                     projectile.localNPCImmunity[target.whoAmI] = (int)projectile.ai[1];
                     break;
             }
         }
-        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
         {
-            if(projectile.type == ProjectileID.Smolstar)
-            {
-                knockback = 0;
-            }
             if (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type])
             {
-                damage += target.GetGlobalNPC<Tag>().Damage;
+                modifiers.FlatBonusDamage += target.GetGlobalNPC<Tag>().Damage;
                 if (Main.rand.Next(100) < target.GetGlobalNPC<Tag>().Crit)
                 {
-                    crit = true;
+                    modifiers.SetCrit();
                 }
                 if (Main.rand.Next(100) < Main.player[projectile.owner].GetModPlayer<SummonStats>().minionCritChance)
                 {
-                    crit = true;
+                    modifiers.SetCrit();
                 }
             }
         }
