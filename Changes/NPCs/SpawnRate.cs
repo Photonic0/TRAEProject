@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TRAEProject.Common;
 using TRAEProject.NewContent.Items.DreadItems.RedPearl;
 using TRAEProject.NewContent.NPCs.Underworld.Beholder;
 
@@ -26,9 +29,14 @@ namespace TRAEProject.Changes.NPCs
                 maxSpawns = (int)((float)maxSpawns * 2f);
             }
         }
-
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (!TRAEWorld.downedAMech && npc.type == NPCID.Steampunker)
+                npc.life = 0;
+        }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
+            
             if (spawnInfo.Player.ZoneJungle && spawnInfo.SpawnTileY <= Main.maxTilesY - 200 && spawnInfo.SpawnTileY > Main.rockLayer)
                 pool.Add(NPCID.JungleCreeper, 0.2f);
             if (spawnInfo.Player.ZoneCorrupt)

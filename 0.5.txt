@@ -274,6 +274,8 @@ Redone HM ore sword changes:
 * rocket boots stack
 * reverted destroyer rework
 * [NOT FOR CHANGELOG] reverted max ammo stack size change
+* [NOT FOR CHANGELOG] correct changelog on moon phases for skeleton merchant
+
 * [NOT FOR CHANGELOG] frost staff no longer inflicts frostbite
 *  reverted treasure magnet chest loot and recipe change
 * reverted seafood dinner recipe changes
@@ -285,6 +287,10 @@ Redone HM ore sword changes:
 * tentacle spike can be crafted with 12 rotten tooth and 2 leather
 * flamethrower use time increased from 6 to 8, damage falloff increased from 15% to 20%, removed armor penetration, pierce reduced from 4 to 
 
+8* reverted minishark price increase
+* gatligator price decreased to 70 gold
+* reverted strange brew change
+* froggabombas can now only split into 5 enemies
 * Relentless no longer increases crit, speed reduced from 30% to 20%
 * Bad is now -15% damage and knockback, -10% speed and range
 * hive five damage 24 -> 21 
@@ -307,3 +313,8 @@ to do:
 * glacial armor new sprite sheet
 * make sure swords are in a fine state
 * toggle for boss changes
+* change how shops work
+* check if arms dealer sells empty bullets in phm, if not unlist it
+** exploding bullets normal bullets
+* beam sword
+* check if all shops work

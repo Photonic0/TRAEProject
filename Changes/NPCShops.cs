@@ -14,9 +14,12 @@ using TRAEProject.Common;
 using TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk;
 using TRAEProject.NewContent.NPCs.Underworld.Phoenix;
 using TRAEProject.NewContent.NPCs.Underworld.Salalava;
+using static Terraria.GameContent.Bestiary.IL_BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions;
+using Mono.CompilerServices.SymbolWriter;
 
 namespace TRAEProject.Changes
 {
+
     class NPCShops : GlobalNPC
     {
         public override void SetupTravelShop(int[] shop, ref int nextSlot)
@@ -52,187 +55,113 @@ namespace TRAEProject.Changes
                 }
             }
         }
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void ModifyShop(NPCShop shop)
         {
-            switch (type)
+            if (shop.NpcType == NPCID.Wizard)
+                shop.Add(ItemID.FastClock);
+            if (shop.NpcType == NPCID.ArmsDealer)
             {
-                case NPCID.ArmsDealer:
-                    if (NPC.downedBoss3)
-                    {
-                        bool foundBeetle = false;
-                        for (int i = 0; i < shop.item.Length; i++)
-                        {
-                            if (shop.item[i].type == ItemID.EmptyBullet)
-                            {
-                                foundBeetle = true;
-                            }
-                        }
-                        if (!foundBeetle)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.EmptyBullet);
-                            nextSlot++;
-                        }
-                    }
-                    if (Main.hardMode) // when will this code run?
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.Gatligator);
-                            nextSlot++;
-                        }
-                        if (NPC.downedPlantBoss) // when will this code run?
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.Uzi);
-                            nextSlot++;
-                        }
-                    
-                    break;
-                case NPCID.Wizard:
-                    shop.item[nextSlot].SetDefaults(ItemID.FastClock);
-                    nextSlot++;
-                    break;
-                case NPCID.SkeletonMerchant:
-                    if (Main.hardMode)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemType<PowerBrew>());
-                        nextSlot++;
-                        break;
-                    }
-                    if (Main.moonPhase == 2 || Main.moonPhase == 8)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.Rally);
-                        nextSlot++; 
-                        break;
-                    }
-                    if (Main.moonPhase == 4 || Main.moonPhase == 6)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ChainKnife);
-                        nextSlot++; 
-                        break;
-                    }
-                    if (Main.moonPhase == 3 || Main.moonPhase == 7)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BoneSword);
-                        nextSlot++; 
-                        break;
-                    }
-                    if (Main.moonPhase == 1 || Main.moonPhase == 5)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.BookofSkulls);
-                        nextSlot++;
-                        break;
-                    }
-                    break;
-                case NPCID.Truffle:
-                    if (!NPC.downedPlantBoss)
-                    {
-                        for (int i = 0; i < shop.item.Length; i++)
-                        {
-                            if (shop.item[i].type == ItemID.MushroomSpear)
-                            {
-                                for (int j = i + 1; j < shop.item.Length; j++)
-                                {
-                                    shop.item[j - 1] = shop.item[j];
-                                }
-                                shop.item[shop.item.Length - 1].type = ItemID.None;
-                                nextSlot--;
-                            }
-                        }
-                    }
-                    break;
-                case NPCID.WitchDoctor:
-                    if (Main.dayTime)
-                    {
-                        bool foundBeetle = false;
-                        for (int i = 0; i < shop.item.Length; i++)
-                        {
-                            if (shop.item[i].type == ItemID.HerculesBeetle)
-                            {
-                                foundBeetle = true;
-                            }
-                        }
-                        if (!foundBeetle)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.HerculesBeetle);
-                            nextSlot++;
-                        }    
-                    }
-                    break;
-                case NPCID.Pirate:
-                    shop.item[nextSlot].SetDefaults(ItemID.ThePlan);
-                    nextSlot++;
-                    shop.item[nextSlot].SetDefaults(ItemID.TrifoldMap);
-                    nextSlot++;
-                    break;
-                case NPCID.Steampunker:
-                    if (!TRAEWorld.downedAMech)
-                    {
-                        
+                shop.Add(ItemID.Gatligator, Condition.Hardmode);
+                shop.Add(ItemID.Uzi, Condition.DownedPlantera);
 
-                        int[] lockTheseBehindAMech = new int[] { ItemID.Cog, ItemID.StaticHook, ItemID.Jetpack };
-                        for (int i = 0; i < shop.item.Length; i++)
-                        {
-                            for (int k = 0; k < lockTheseBehindAMech.Length; k++)
-                            {
-                                if (shop.item[i].type == lockTheseBehindAMech[k])
-                                {
-                                    shop.item[i].type = ItemID.None;
-                                    for (int j = i + 1; j < shop.item.Length; j++)
-                                    {
-                                        shop.item[j - 1] = shop.item[j];
-                                    }
-                                    shop.item[shop.item.Length - 1].type = ItemID.None;
-                                    nextSlot--;
-                                }
-                            }
-                        }
-                    }
-                    break;
-                case NPCID.DD2Bartender:
-                    if (!TRAEWorld.downedOgre)
-                    {        
-                        int[] ArmorList = new int[] { ItemID.HuntressWig, ItemID.HuntressPants, ItemID.HuntressJerkin,
-                                                      ItemID.SquireGreatHelm, ItemID.SquirePlating, ItemID.SquireGreaves,
-                                                      ItemID.MonkBrows, ItemID.MonkPants, ItemID.MonkShirt ,
-                                                      ItemID.ApprenticeHat, ItemID.ApprenticeRobe, ItemID.ApprenticeTrousers,
-                        
-   
-                        };
-
-                        for (int i = 0; i < shop.item.Length; i++)
-                        {
-                            for (int k = 0; k < ArmorList.Length; k++)
-                            {
-                                if (shop.item[i].type == ArmorList[k])
-                                {
-                                    shop.item[i].type = ItemID.None;
-                                }
-                            }
-                        }
-                    }
-                    if (!TRAEWorld.downedBetsy)
-                    {
-                        int[] ArmorList = new int[] { ItemID.HuntressAltHead, ItemID.HuntressAltPants, ItemID.HuntressAltShirt,
-                                                      ItemID.SquireAltHead, ItemID.SquireAltShirt, ItemID.SquireAltPants,
-                                                      ItemID.MonkAltHead, ItemID.MonkAltShirt, ItemID.MonkAltPants ,
-                                                      ItemID.ApprenticeAltHead, ItemID.ApprenticeAltShirt, ItemID.ApprenticeAltPants,
-
-
-                        };
-
-                        for (int i = 0; i < shop.item.Length; i++)
-                        {
-                            for (int k = 0; k < ArmorList.Length; k++)
-                            {
-                                if (shop.item[i].type == ArmorList[k])
-                                {
-                                    shop.item[i].type = ItemID.None;
-
-                                }
-                            }
-                        }
-                    }
-                    break;
             }
-        
+            if (shop.NpcType == NPCID.SkeletonMerchant)
+            {
+                //int[] items = new int[] { ItemID.WoodenBoomerang, ItemID.Umbrella, ItemID.WandofSparking, ItemID.PortableStool, ItemID.Aglet, ItemID.ClimbingClaws, ItemID.CordageGuide, ItemID.Radar, ItemID.MagicDagger };
+
+
+                shop.InsertAfter(ItemID.StrangeBrew, ItemType<PowerBrew>(), Condition.Hardmode);
+
+                shop.Add(ItemID.Rally, Condition.MoonPhases04);
+                shop.Add(ItemID.ChainKnife, Condition.MoonPhases15);
+                shop.Add(ItemID.BoneSword, Condition.MoonPhases26);
+                shop.Add(ItemID.BookofSkulls, Condition.MoonPhases37);
+
+
+            }
+            if (shop.NpcType == NPCID.Truffle && !NPC.downedPlantBoss)
+            {
+                shop.TryGetEntry(ItemID.MushroomSpear, out var entry);
+                entry.Disable();
+            }
+            if (shop.NpcType == NPCID.WitchDoctor)
+            {
+                shop.TryGetEntry(ItemID.HerculesBeetle, out var entry);
+                entry.Disable();
+                shop.InsertBefore(ItemID.PureWaterFountain, ItemID.HerculesBeetle, Condition.TimeDay);
+            }
+            if (shop.NpcType == NPCID.Pirate)
+            {
+                shop.Add(ItemID.TrifoldMap);
+                shop.Add(ItemID.ThePlan);
+            }
+            //if (shop.NpcType == NPCID.Steampunker)
+            //{
+            //    shop.TryGetEntry(ItemID.StaticHook, out var entry);
+            //    entry.Disable(); 
+            //    shop.TryGetEntry(ItemID.Jetpack, out entry);
+            //    entry.Disable(); 
+            //    shop.TryGetEntry(ItemID.Cog, out entry);
+            //    entry.Disable();
+            //}
+        }
+
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
+        {
+            //if (shopName == NPCShopDatabase.GetShopName(NPCID.Steampunker) && TRAEWorld.downedAMech)
+            //{
+            //    int slot = 0;
+            //    do
+            //    {
+            //        if (++slot >= items.Length)
+            //            return;
+            //    }
+            //    while (!items[slot].IsAir);
+            //    items[slot].SetDefaults(ItemID.Cog);
+            //    items[slot].SetDefaults(ItemID.StaticHook);
+            //    items[slot].SetDefaults(ItemID.Jetpack);
+
+            //}
+            if (shopName == NPCShopDatabase.GetShopName(NPCID.DD2Bartender))
+            {
+                
+                if (!TRAEWorld.downedOgre)
+                {
+                    items[4].SetDefaults(ItemID.None); 
+                    items[5].SetDefaults(ItemID.None);
+                    items[6].SetDefaults(ItemID.None);
+
+                    items[14].SetDefaults(ItemID.None);
+                    items[15].SetDefaults(ItemID.None);
+                    items[16].SetDefaults(ItemID.None);
+
+                    items[24].SetDefaults(ItemID.None);
+                    items[25].SetDefaults(ItemID.None);
+                    items[26].SetDefaults(ItemID.None);
+
+                    items[34].SetDefaults(ItemID.None);
+                    items[35].SetDefaults(ItemID.None);
+                    items[36].SetDefaults(ItemID.None);
+                }
+                if (!TRAEWorld.downedBetsy)
+                {
+                    items[7].SetDefaults(ItemID.None);
+                    items[8].SetDefaults(ItemID.None);
+                    items[9].SetDefaults(ItemID.None);
+
+                    items[17].SetDefaults(ItemID.None);
+                    items[18].SetDefaults(ItemID.None);
+                    items[19].SetDefaults(ItemID.None);
+
+                    items[27].SetDefaults(ItemID.None);
+                    items[28].SetDefaults(ItemID.None);
+                    items[29].SetDefaults(ItemID.None);
+
+                    items[37].SetDefaults(ItemID.None);
+                    items[38].SetDefaults(ItemID.None);
+                    items[39].SetDefaults(ItemID.None);
+                }
+            }
         }
     }
 }

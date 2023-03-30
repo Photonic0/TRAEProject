@@ -111,7 +111,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
                             damageDone += (int)finalDefense / 2;
                             duration /= 2;
                             nPC.GetGlobalNPC<Stun>().StunMe(target, duration);
-                            player.ApplyDamageToNPC(nPC, damageDone, hit.KnockBack * 0.5f, 0, crit: false);
+                            player.ApplyDamageToNPC(nPC, damageDone, hit.Knockback * 0.5f, 0, crit: false);
 
                         }
                     }

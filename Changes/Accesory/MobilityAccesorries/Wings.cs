@@ -184,8 +184,8 @@ namespace TRAEProject.Changes.Accesory
                     player.jumpSpeedBoost += Mobility.JSV(0.25f);
                     break;
                 case ItemID.LongRainbowTrailWings:
-                    player.moveSpeed += 1f;
-                    player.jumpSpeedBoost += Mobility.JSV(1f);
+                    player.moveSpeed += 0.6f;
+                    player.jumpSpeedBoost += Mobility.JSV(0.6f);
                     break;
             }
         }

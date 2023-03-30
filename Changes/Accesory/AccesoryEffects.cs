@@ -123,7 +123,8 @@ namespace TRAEProject
             Player.statLife = Player.statLifeMax;
             return;
         }
-        public override bool FreeDodge(PlayerDeathReason damageSource, int cooldownCounter)
+
+        public override bool FreeDodge(Player.HurtInfo info)
         {
             if (Player.hasRaisableShield && Player.HeldItem.type == ItemID.DD2SquireDemonSword && Main.rand.NextBool(5))
             {

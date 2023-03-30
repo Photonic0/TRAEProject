@@ -41,7 +41,7 @@ namespace TRAEProject.Changes.Armor
             shadowArmorDodgeChance = 0;
             HolyProtection = false;
             whenHitDodge = false;
-            secretPearlwoodSetBonus = true;
+            secretPearlwoodSetBonus = false;
         }
         public override void OnHurt(Player.HurtInfo info)
         {

@@ -31,7 +31,7 @@ namespace TRAEProject.NewContent.Items.Accesories.AlligatorBalloon
             player.hasJumpOption_Sail = true;
             player.extraFall += 15;
 			player.autoJump = true;
-            player.jumpSpeedBoost += 1.4f;
+            player.jumpSpeedBoost += 1.6f;
         }
         public override void AddRecipes()
         {

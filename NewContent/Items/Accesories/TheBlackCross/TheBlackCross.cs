@@ -50,7 +50,7 @@ namespace TRAEProject.NewContent.Items.Accesories.TheBlackCross
         {
             BlackCrossBelt = false;
         }
-        public override bool FreeDodge(PlayerDeathReason damageSource, int cooldownCounter)
+        public override bool FreeDodge(Player.HurtInfo info)
         {
 
             if (BlackCrossBelt && Main.rand.NextBool(10))

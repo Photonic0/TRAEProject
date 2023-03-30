@@ -46,7 +46,7 @@ namespace TRAEProject.Common.ModPlayers
         }
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
         {
-            modifiers.DefenseEffectiveness *= 0.5f;
+            //modifiers.DefenseEffectiveness *= 0.5f;
                 float multiplier = critDamage + proj.GetGlobalProjectile<ProjectileStats>().CritDamage;
                 if (proj.CountsAsClass(DamageClass.Melee))
                 {

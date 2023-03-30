@@ -71,17 +71,19 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Froggabomba
             return SpawnCondition.Underworld.Chance * 0.17f;
         }
         int damagestored = 0;
+        int frogsSpawned = 0;
         public override void OnHitByItem(Player player, Item item, NPC.HitInfo hit, int damageDone)
         {
             damagestored += damageDone;
-            if (damagestored > 30)
+            if (damagestored > 30 && frogsSpawned < 5)
             {
                 int smallBoomxiesToSpawn = damagestored / 30;
                 for (int i = 0; i < smallBoomxiesToSpawn; i++)
                 {
                     damagestored -= 30;
                     NPC.life -= 30;
-                NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<FroggabombaClone>());
+                    frogsSpawned++;
                 }
             }
         }

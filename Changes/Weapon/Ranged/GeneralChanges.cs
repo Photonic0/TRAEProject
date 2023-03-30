@@ -53,14 +53,14 @@ namespace TRAEProject.Changes.Weapons
                     item.damage = 19;
                     return;
                 case ItemID.Minishark:
-                    item.value = Item.buyPrice(gold: 50);
+                    item.value = Item.buyPrice(gold: 35);
                     return;
                 case ItemID.QuadBarrelShotgun:
                     item.value = Item.buyPrice(gold: 50);
                     item.autoReuse = true;
                     return;
                 case ItemID.Gatligator:
-                    item.value = Item.buyPrice(gold: 75);
+                    item.value = Item.buyPrice(gold: 70);
                     return;
                 case ItemID.Uzi:
                     item.value = Item.buyPrice(platinum: 1);

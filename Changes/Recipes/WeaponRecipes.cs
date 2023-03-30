@@ -118,6 +118,12 @@ namespace TRAEProject.Changes.Recipes
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.MusketBall, 100);
             }
+            if (recipe.HasResult(ItemID.ExplodingBullet))
+            {
+                recipe.TryGetIngredient(ItemID.EmptyBullet, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.AddIngredient(ItemID.MusketBall, 50);
+            }
             if (recipe.HasResult(ItemID.MoonlordBullet))
             {
                 recipe.ReplaceResult(ItemID.MoonlordBullet, 500);

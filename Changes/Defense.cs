@@ -63,7 +63,7 @@ namespace TRAEProject
         {
             Player.endurance = 0;
         }
-        public override bool FreeDodge(PlayerDeathReason damageSource, int cooldownCounter)
+        public override bool FreeDodge(Player.HurtInfo info)
         {
             if (newBrain && Main.rand.NextBool(6) && Player.FindBuffIndex(321) == -1)
             {

@@ -81,7 +81,7 @@ namespace TRAEProject.Common
         {
             BitsByte flags = reader.ReadByte();
             downedOvergrowth = flags[0];
-            downedOgre = flags[2];
+            downedOgre = flags[1];
             downedBetsy = flags[2];
             downedAMech = flags[3];
         }

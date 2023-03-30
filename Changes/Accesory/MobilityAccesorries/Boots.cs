@@ -36,7 +36,6 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.FrogFlipper:
                     player.frogLegJumpBoost = false;
                     player.extraFall += 15;
-                    player.jumpSpeedBoost -= Mobility.JSV(0.07f);
                     break;
                 case ItemID.FrogGear:
                     player.frogLegJumpBoost = false;
@@ -44,12 +43,10 @@ namespace TRAEProject.Changes.Accesory
                     player.dashType = 1;
                     player.spikedBoots = 0;
                     player.extraFall += 15;
-                    player.jumpSpeedBoost -= Mobility.JSV(0.07f);
                     break;
                 case ItemID.AmphibianBoots:
                     player.frogLegJumpBoost = false;
                     player.extraFall += 15;
-                    player.jumpSpeedBoost -= Mobility.JSV(0.07f);
                     player.moveSpeed += Mobility.amphibootSpeed * 0.01f;
                     player.accRunSpeed = 4.8f;
                     break;
