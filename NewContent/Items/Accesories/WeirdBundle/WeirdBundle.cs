@@ -34,7 +34,6 @@ namespace TRAEProject.NewContent.Items.Accesories.WeirdBundle
             player.hasJumpOption_Sail = true;
             player.jumpBoost = true;
             player.GetModPlayer<HoneyCombPlayer>().combs += 1;
-            player.lifeRegen += 1;
             player.noFallDmg = true;
         }
         public override void AddRecipes()

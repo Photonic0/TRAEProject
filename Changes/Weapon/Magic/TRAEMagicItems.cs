@@ -142,7 +142,10 @@ namespace TRAEProject.Changes.Items
                     item.useAnimation = 18;
 					return;
                 case ItemID.GoldenShower:
-                    item.mana = 10; // up from 7
+                    item.damage = 24; // down from 30
+                    item.mana = 12; // up from 7
+                    item.useTime = 8; // up from 15
+                    item.useAnimation = 24;
                     return;
 				case ItemID.CrystalStorm:
                     item.mana = 6; // up from 5

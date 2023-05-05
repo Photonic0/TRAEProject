@@ -51,7 +51,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 			DrawOffsetY = -4;
 			NPC.scale = 1.05f;         
 			Banner = NPC.type; 
-            BannerItem = ItemType<FroggabombaBanner>();
+            BannerItem = ItemType<LavamanderBanner>();
         }
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
 		{
@@ -64,7 +64,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Lavamander
 		float dustTimer = 0;
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemType<HeatproofSaddle>(), 20));
+            npcLoot.Add(ItemDropRule.Common(ItemType<HeatproofSaddle>(), 25));
         }
         float jump = 0;
         public override void AI()

@@ -43,9 +43,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
             NPC.aiStyle = 74;
             AIType = NPCID.SolarCorite;
 			NPC.value = 0;
-            NPC.damage = 60;
+            NPC.damage = 75;
             NPC.defense = 28;
-            NPC.lifeMax = 5000;
+            NPC.lifeMax = 6000;
 			NPC.scale = 1.1f;
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.DD2_WyvernHurt;
@@ -55,7 +55,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Phoenix
 			NPC.noTileCollide = true;
 			Banner = NPC.type; 
 			DrawOffsetY = -4;
-            BannerItem = ItemType<FroggabombaBanner>(); 
+            BannerItem = ItemType<PhoenixBanner>(); 
 			NPC.GetGlobalNPC<UnderworldEnemies>().HellMinibossThatSpawnsInPairs = true;
 
         }

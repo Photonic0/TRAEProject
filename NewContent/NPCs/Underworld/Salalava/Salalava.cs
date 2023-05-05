@@ -31,7 +31,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             };
             NPCID.Sets.DebuffImmunitySets.Add(Type, debuffData);
             // DisplayName.SetDefault("Salalava");
-            Main.npcFrameCount[NPC.type] = 6;
+            Main.npcFrameCount[NPC.type] = 10;
         }
 
         public override void SetDefaults()
@@ -43,9 +43,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             //AnimationType = NPCID.WalkingAntlion;
             NPC.value = 5000;
             NPC.damage = 70;
-            NPC.defense = 40;
+            NPC.defense = 45;
             NPC.lifeMax = 6000;
-          
+
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.DD2_DrakinHurt;
             NPC.DeathSound = SoundID.DD2_DrakinDeath;
@@ -54,7 +54,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             NPC.scale = 1f;
             Banner = NPC.type;
             NPC.GetGlobalNPC<UnderworldEnemies>().HellMinibossThatSpawnsInPairs = true;
-            BannerItem = ItemType<FroggabombaBanner>();
+            BannerItem = ItemType<SalalavaBanner>();
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
@@ -74,15 +74,44 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
         float jump = 0;
         float attackTimer = 0;
         float teleportTimer;
+        bool onlyOnce = false;
         public override void AI()
         {
-            teleportTimer += 0.2f + Main.rand.NextFloat(0.3f, 1.3f);
-            if (NPC.Distance(NPC.GetTargetData().Center) >= 800f)
+            teleportTimer += 1f;
+            if (NPC.Distance(NPC.GetTargetData().Center) >= 600f)
             {
                 teleportTimer += 2f;
             }
+            float teleportAt = 570f;
+            if (teleportTimer == teleportAt && !onlyOnce)
+            {
+                NPC.velocity.Y = -6f;
+                SoundEngine.PlaySound(SoundID.MaxMana, NPC.Center);
+                onlyOnce = true; 
+                for (int num70 = 0; num70 < 25; num70++)
+                {
+
+                    int num78 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y), NPC.width, NPC.height, DustID.Torch, 0f, 0f, 100, default, 2.5f);
+                    Dust dust = Main.dust[num78];
+                    dust.velocity *= 3f;
+
+                }
+                for (int i = 0; i < 20; i++)
+                {
+                    Dust dust7 = Dust.NewDustDirect(NPC.Center - NPC.Size / 4f, NPC.width, NPC.height, DustID.Torch);
+                    dust7.noGravity = true;
+                    dust7.velocity *= 2.3f;
+                    dust7.fadeIn = 1.5f;
+                    dust7.noLight = true;
+                }
+            }
+            if (teleportTimer >= teleportAt && teleportTimer < 600f)
+            {
+                NPC.velocity.X = 0f;
+            }
             if (teleportTimer >= 600f && Main.netMode != NetmodeID.MultiplayerClient)
             {
+                onlyOnce = false;
                 teleportTimer = 0;
                 int targetTileX = (int)Main.player[NPC.target].Center.X / 16;
                 int targetTileY = (int)Main.player[NPC.target].Center.Y / 16;
@@ -138,8 +167,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
                         NPC.noGravity = true;
                         jump++;
                         if (NPC.Distance(NPC.GetTargetData().Center) <= 300f)
-                            jump += 3; // jumps way more often if it can reach you
-                        if (jump >= 900f) // We have to force it to jump, its normal AI won't let it jump while "water walking"
+                            jump += 5; // jumps way more often if it can reach you
+                        if (jump >= 600f && attackTimer < 240f && teleportTimer < teleportAt) // We have to force it to jump, its normal AI won't let it jump while "water walking"
                         {
                             jump = 0;
                             NPC.velocity.Y = -8f;
@@ -150,19 +179,18 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             }
             int lavamandies = 0;
 
-            if (NPC.Distance(NPC.GetTargetData().Center) <= 600f)
+            if (teleportTimer < teleportAt) // do not attack in midair or when about to teleport
             {
-
                 attackTimer++;
-               
+
                 if (attackTimer >= 240f)
                 {
-                    NPC.FaceTarget();
+                    //NPC.FaceTarget();
                     if (attackTimer == 240f)
                     {
                         SoundEngine.PlaySound(SoundID.DD2_DrakinBreathIn, NPC.Center);
                     }
-                    NPC.velocity.X = 0;
+                    NPC.velocity.X *= 0.9f;
                     for (int i = 0; i < 200; i++)
                     {
                         if (Main.npc[i].type == NPCType<Lavalarva>() && Main.netMode != NetmodeID.MultiplayerClient)
@@ -170,32 +198,35 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
                             lavamandies++;
                         }
                     }
-                    if (lavamandies < 7)
+                    if (attackTimer >= 270f)
                     {
-                        if (attackTimer % 10 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                        if (lavamandies < 7)
                         {
-                            SoundEngine.PlaySound(SoundID.DD2_OgreRoar, NPC.Center);
-                            NPC npc = NPC.NewNPCDirect(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<Lavalarva>());
-                            npc.velocity.X = Main.rand.NextFloat(-3f, 3f);
-                            npc.velocity.Y = Main.rand.NextFloat(-5f, -7f);
-
-                        }
-                    }
-                    else
-                    {
-                        if (attackTimer % 10 == 0)
-                        {
-                            SoundEngine.PlaySound(SoundID.DD2_DrakinShot, NPC.Center);
-                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            if (attackTimer % 10 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                Vector2 vector3 = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * (NPC.width/* + 20*/) / 2f + NPC.Center;
-                                NPC.NewNPC(NPC.GetBossSpawnSource(NPC.target), (int)vector3.X, (int)vector3.Y + 17, NPCType<LavaBubble>());
+                                SoundEngine.PlaySound(SoundID.DD2_OgreRoar, NPC.Center);
+                                NPC npc = NPC.NewNPCDirect(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, NPCType<Lavalarva>());
+                                npc.velocity.X = Main.rand.NextFloat(-3f, 3f);
+                                npc.velocity.Y = Main.rand.NextFloat(-5f, -7f);
 
                             }
                         }
-                        NPC.TargetClosest(true);
+                        else
+                        {
+                            if (attackTimer % 10 == 0)
+                            {
+                                SoundEngine.PlaySound(SoundID.DD2_DrakinShot, NPC.Center);
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                {
+                                    Vector2 vector3 = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * (NPC.width/* + 20*/) / 2f + NPC.Center;
+                                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)vector3.X, (int)vector3.Y - 17, NPCType<LavaBubble>());
+
+                                }
+                            }
+                            NPC.TargetClosest(true);
+                        }
                     }
-                    if (attackTimer > 300f)
+                    if (attackTimer > 330f)
                         attackTimer = 0f;
                 }
             }
@@ -284,40 +315,42 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
         int frame = 0;
         public override void FindFrame(int frameHeight)
         {
-            if (attackTimer >= 240f)
-                NPC.frame.Y = 5 * frameHeight;
-            else
+       
+
+            if (NPC.velocity.X == 0f)
             {
-                if (NPC.velocity.X == 0f)
-                {
-                    NPC.frame.Y = 0;
-                }
-                if (NPC.direction < 0 && NPC.velocity.X < 0f)
-                {
-                    NPC.spriteDirection = -1;
-                }
-                if (NPC.direction > 0 && NPC.velocity.X > 0f)
-                {
-                    NPC.spriteDirection = 1;
-                }
-                //if (NPC.frame.Y / frameHeight < 2)
-                //{
-                //	NPC.frame.Y = frameHeight * 2;
-                //}
-                NPC.frameCounter += 1f + Math.Abs(NPC.velocity.X) / 2f;
-                if (NPC.frameCounter > 12.0)
-                {
-                    NPC.frame.Y += frameHeight;
-                    NPC.frameCounter = 0.0;
-                }
-                if (NPC.frame.Y / frameHeight > 4)
-                {
-                    NPC.frame.Y = 0;
-                }
-                if (NPC.velocity.Y != 0f)
-                {
-                    NPC.frame.Y = 0;
-                }
+                NPC.frame.Y = 0;
+            }
+            if (NPC.direction < 0 && NPC.velocity.X < 0f)
+            {
+                NPC.spriteDirection = -1;
+            }
+            if (NPC.direction > 0 && NPC.velocity.X > 0f)
+            {
+                NPC.spriteDirection = 1;
+            }
+            //if (NPC.frame.Y / frameHeight < 2)
+            //{
+            //	NPC.frame.Y = frameHeight * 2;
+            //}
+            NPC.frameCounter += 1f + Math.Abs(NPC.velocity.X) / 2f;
+            if (NPC.frameCounter > 12.0)
+            {
+                frame++; 
+                if (frame > 4)
+                    frame = 0;
+                NPC.frame.Y = frameHeight * frame;
+
+                NPC.frameCounter = 0.0;
+            }
+         
+            if (NPC.velocity.Y != 0f)
+            {
+                NPC.frame.Y = 0;
+            }
+            if (attackTimer >= 270f && teleportTimer < 570)
+            {
+                NPC.frame.Y = frameHeight * (frame + 5);
             }
         }
     }
@@ -359,9 +392,16 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             NPC.noGravity = true;
             NPC.noTileCollide = true;
         }
+        bool onlyonce = true;
         public override void AI()
         {
-            NPC.velocity *= 0.96f;
+            if (onlyonce)
+            {
+                NPC.velocity *= 0.4f;
+                onlyonce = false;
+            }
+           
+            NPC.velocity *= 0.98f;
         }
         public override void OnKill()
         {
@@ -385,8 +425,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
                     {
                         dust61.velocity = vector25 * Main.rand.Next(45, 91) / 10f;
                     }
-                    dust61.color = Main.hslToRgb((float)(0.40000000596046448 + Main.rand.NextDouble() * 0.20000000298023224), 0.9f, 0.5f);
-                    dust61.color = Color.Lerp(dust61.color, Color.White, 0.3f);
                     dust61.noGravity = true;
                     dust61.scale = 0.7f;
                 }
@@ -432,6 +470,8 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
             NPC.lavaImmune = true;
             NPC.HitSound = SoundID.NPCHit26;
             NPC.DeathSound = SoundID.NPCDeath29;
+            Banner = NPC.type;
+            BannerItem = ItemType<MagmanderBanner>();
             NPC.knockBackResist = 0.1f;
             DrawOffsetY = -2;
             NPC.scale = 1f;
@@ -467,18 +507,19 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Salalava
                         if (NPC.velocity.Y > 0)
                             NPC.velocity.Y = 0;
                         NPC.noGravity = true;
-                        jump++;
-                        if (NPC.Distance(NPC.GetTargetData().Center) <= 300f)
-                            jump += 3; // jumps way more often if it can reach you
-                        if (jump >= 750f) // We have to force it to jump, its normal AI won't let it jump while "water walking"
-                        {
-                            jump = 0;
-                            NPC.velocity.Y = -8f;
-                            NPC.velocity.X *= 2f;
-
-                        }
+                  
                     }
                 }
+            }
+            jump += Main.rand.NextFloat(0.9f, 1.1f);
+            if (NPC.Distance(NPC.GetTargetData().Center) <= 300f)
+                jump += Main.rand.NextFloat(2.7f, 3.3f); // jumps way more often if it can reach you
+            if (jump >= 360f && NPC.velocity.Y == 0) // We have to force it to jump, its normal AI won't let it jump while "water walking"
+            {
+                jump = 0;
+                NPC.velocity.Y = Main.rand.NextFloat(-7.5f, -9f);
+                NPC.velocity.X *= 1.5f;
+
             }
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

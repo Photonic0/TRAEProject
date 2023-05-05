@@ -90,6 +90,9 @@ namespace TRAEProject.Changes
                 case ItemID.Diamond:
                     item.value = Item.sellPrice(gold: 1);
                     break;
+                case ItemID.WitchBroom:
+                    item.rare = ItemRarityID.Yellow;
+                    break;
             }
         }
         int timer = 0;
@@ -226,7 +229,7 @@ namespace TRAEProject.Changes
                     {
                         RingDamage = 1;
                     }
-                    int dustsToMake = 10 + damageDone / 10;
+                    int dustsToMake = 5 + damageDone / 10;
                     for (int i = 0; i < dustsToMake; i++)
                     {
                         float radius = range / 62.5f;
@@ -356,7 +359,7 @@ namespace TRAEProject.Changes
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "15% increased movement speed";
+                            line.Text = "10% increased movement speed";
                         }
                     }
                     break;

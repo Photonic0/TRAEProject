@@ -26,8 +26,8 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
 		{
 			Item.value = Item.sellPrice(0, 30, 0, 0);
 			Item.rare = ItemRarityID.Yellow;
-			Item.width = 32;
-			Item.height = 26;
+			Item.width = 42;
+			Item.height = 24;
 			Item.defense = 16;
 		}
 		public override void AddRecipes()

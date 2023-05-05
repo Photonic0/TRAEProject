@@ -1,3 +1,4 @@
+using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -146,16 +147,14 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
         bool onSpawn = false;
         public override void AI()
         {
+            NPC.takenDamageMultiplier = 1;       
             if (!onSpawn)
             {
                 NPC.life += 6666;
                 NPC.lifeMax += 6666;             
                 onSpawn = true;
             }
-            if (((NPC.ai[1] == 4 || NPC.ai[1] == 7 || NPC.ai[1] == 10) && NPC.ai[2] < 90) || NPC.ai[1] == 2)
-            {
-                NPC.takenDamageMultiplier /= 4;
-            }
+
             NPC.TargetClosest();
             NPC.FaceTarget();
             NPC.HitSound = SoundID.NPCHit8;
@@ -176,15 +175,11 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             bool belowQuarter = NPC.life <= NPC.lifeMax / 4;
             speed *= 1.5f * (distance / 300f);
             accelerationX *= 1.5f * distance / 300f;
-            if (distance > 900f)
-            {
-                speed *= 2f;
-                accelerationX *= 2f;
-
-            }
+            if (speed >= 15f)
+                speed = 15f;
             if (distance > 3000f)
             {
-                NPC.EncourageDespawn(300);
+                NPC.EncourageDespawn(1);
             }
 
             // movement
@@ -401,13 +396,12 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     //{
                     //    SoundEngine.PlaySound(SoundID. with { Pitch = -1f }, NPC.Center);
                     //}
-                    NPC.takenDamageMultiplier = 0.5f;
 
                     NPC.velocity.X = 0;
                     NPC.velocity.Y = 0;
                     NPC.ai[2]++;
                     NPC.HitSound = SoundID.NPCHit1;
-
+                    NPC.takenDamageMultiplier /= 4;
                     angletimer += 0.08f;
                     if (angletimer > 360)
                     {
@@ -465,7 +459,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     if (NPC.ai[2] < 90)
                     {
                         NPC.HitSound = SoundID.NPCHit1;
-
+                        NPC.takenDamageMultiplier /= 4;
                         for (int i = 0; i < 2; i++)
                         {
                             float rot = (float)Math.PI * i + (float)Math.PI * (float)NPC.ai[2] / 10f;
@@ -602,7 +596,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                     if (NPC.ai[2] < 75)
                     {
                         NPC.HitSound = SoundID.NPCHit1;
-
+                        NPC.takenDamageMultiplier /= 4;
                         for (int i = 0; i < 2; i++)
                         {
                             float rot = (float)Math.PI * i + (float)Math.PI * (float)NPC.ai[2] / 10f;
@@ -690,6 +684,16 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             Projectile.tileCollide = false;
             Projectile.scale = 0.9f;
         }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D blackBall = ModContent.Request<Texture2D>("TRAEProject/Assets/SpecialTextures/GlowBallTransparent").Value;
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            Main.EntitySpriteDraw(blackBall, Projectile.Center - Main.screenPosition + new Vector2(0, Projectile.gfxOffY), null, Color.Black * 0.6f, Projectile.rotation, blackBall.Size() / 2, Projectile.scale * 0.07f, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            return base.PreDraw(ref lightColor);
+        }
         public override void AI()
         {
 
@@ -717,9 +721,9 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                             Projectile.Kill();
                         }
                         float speed = 22f;
-                        if (Distance > 1600f)
+                        if (Distance > 2400f)
                         {
-                            speed *= 4f;
+                            speed *= 3f;
                         }
                      
                         float velX = posX - Projectile.Center.X;
@@ -777,7 +781,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 if (Main.rand.NextBool(4)) // some slight variance in their trajectories
                     Projectile.ai[0] += 1f;
             }
-            if (Projectile.ai[0] >= 36f)
+            if (Projectile.ai[0] >= 40f)
             {
                 Projectile.velocity = Vector2.Zero;
             }
@@ -786,6 +790,16 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 int num177 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.YellowTorch, 0f, 0f, 100);
                 Main.dust[num177].noGravity = true;
             }
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D blackBall = ModContent.Request<Texture2D>("TRAEProject/Assets/SpecialTextures/GlowBallTransparent").Value;
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            Main.EntitySpriteDraw(blackBall, Projectile.Center - Main.screenPosition + new Vector2(0, Projectile.gfxOffY), null, Color.Black * 0.6f, Projectile.rotation, blackBall.Size() / 2, Projectile.scale * 0.07f, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            return base.PreDraw(ref lightColor);
         }
         public override void Kill(int timeLeft)
         {
@@ -811,6 +825,16 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
             Projectile.scale = 0.9f;
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D blackBall = ModContent.Request<Texture2D>("TRAEProject/Assets/SpecialTextures/GlowBallTransparent").Value;
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            Main.EntitySpriteDraw(blackBall, Projectile.Center - Main.screenPosition + new Vector2(0, Projectile.gfxOffY), null, Color.Black * 0.6f, Projectile.rotation, blackBall.Size() / 2, Projectile.scale * 0.07f, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            return base.PreDraw(ref lightColor);
         }
         public override void AI()
         {
@@ -859,11 +883,20 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
             Projectile.tileCollide = false;
             Projectile.scale = 0.9f;
         }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Texture2D blackBall = ModContent.Request<Texture2D>("TRAEProject/Assets/SpecialTextures/GlowBallTransparent").Value;
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            Main.EntitySpriteDraw(blackBall, Projectile.Center - Main.screenPosition + new Vector2(0, Projectile.gfxOffY), null, Color.Black * 0.6f, Projectile.rotation, blackBall.Size() / 2, Projectile.scale * 0.07f, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally);
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            return base.PreDraw(ref lightColor);
+        }
         float speed = 10f;
         public override void AI()
         {
             speed *= 1 - 0.15f / 60;
-
             Projectile.rotation += (float)Projectile.direction * 0.8f;
             Projectile.damage = 0;
             Rectangle rectangle = Projectile.Hitbox;
@@ -872,7 +905,6 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
                 Player player = Main.player[index1];
                 if (index1 >= 0 && player.active && !player.dead)
                 {
-
                     Vector2 unitY = Projectile.DirectionTo(player.Center);
                     if (unitY.HasNaNs())
                         unitY = Vector2.UnitY;

@@ -14,6 +14,8 @@ namespace TRAEProject.NewContent.Items.Accesories.GravityTabi
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             // DisplayName.SetDefault("Gravity Tabi");
             // Tooltip.SetDefault("Allows control of gravity, fast fall and dashing\nPrevents fall damage");
         }

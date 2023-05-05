@@ -18,7 +18,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
 
 {
 
-    public class GraniteOvergrowth : ModNPC
+    public class GraniteOvergrowthNPC : ModNPC
     {
 
         public override void SetStaticDefaults()
@@ -59,7 +59,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
         {
             for (int i = 0; i < 200; i++)
             {
-                if (Main.npc[i].type == NPCType<GraniteOvergrowth>())
+                if (Main.npc[i].type == NPCType<GraniteOvergrowthNPC>())
                     return 0f;
             }
             if (spawnInfo.Granite && Main.hardMode && spawnInfo.SpawnTileType == TileID.Granite)
@@ -158,7 +158,7 @@ namespace TRAEProject.NewContent.NPCs.GraniteOvergrowth
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
 
         {
-            Texture2D texture = (Texture2D)Mod.Assets.Request<Texture2D>("NewContent/NPCs/GraniteOvergrowth/GraniteOvergrowth_Glow");
+            Texture2D texture = (Texture2D)Mod.Assets.Request<Texture2D>("NewContent/NPCs/GraniteOvergrowth/GraniteOvergrowthNPC_Glow");
 
             spriteBatch.Draw(texture, NPC.Center - screenPos, NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2f, 1f, NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
 

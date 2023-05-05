@@ -57,10 +57,10 @@ namespace TRAEProject
 
                 Player.accRunSpeed = 8f * mountSpeedBonus;
             }
-            //Nerfed max horizontal speed to ~35mph
+            //Nerfed max horizontal speed to ~34mph
             if (Player.mount.Type == MountID.Basilisk)
             {
-                Player.accRunSpeed = 7f * mountSpeedBonus;
+                Player.accRunSpeed = 6.75f * mountSpeedBonus;
                 if(Math.Abs(Player.velocity.X) > Player.accRunSpeed)
                 {
                     Player.velocity.X = Math.Sign(Player.velocity.X) * (Player.accRunSpeed-Player.runAcceleration - 0.2f);
@@ -160,33 +160,62 @@ namespace TRAEProject
                 }
             }
             //nerfed to ~30mph horizontal and vertical max speed
-            if (Player.mount.Type == MountID.UFO || Player.mount.Type == MountID.WitchBroom || Player.mount.Type == MountID.CuteFishron)
+            if (Player.mount.Type == MountID.UFO)
             {
-                float infinimountMax  = 6 * mountSpeedBonus;
-                if(Player.mount.Type == MountID.CuteFishron)
+                float VerticalSpeed  = 7 * mountSpeedBonus;
+                float HorizontalSpeed = 5 * mountSpeedBonus;
+
+                if (Math.Abs(Player.velocity.X) > HorizontalSpeed)
                 {
-                    Player.runAcceleration = 0.16f;
-                    if(Player.controlUp || Player.controlJump)
-                    {
-                        Player.velocity.Y -= 0.1f;
-                    }
-                    else if(Player.controlDown)
-                    {
-                        Player.velocity.Y += 0.1f;
-                    }
+                    Player.velocity.X = Math.Sign(Player.velocity.X) * (HorizontalSpeed-Player.runAcceleration);
                 }
-                if(Math.Abs(Player.velocity.X) > infinimountMax)
+                if(Math.Abs(Player.velocity.Y) > VerticalSpeed)
                 {
-                    Player.velocity.X = Math.Sign(Player.velocity.X) * (infinimountMax-Player.runAcceleration);
-                }
-                if(Math.Abs(Player.velocity.Y) > infinimountMax)
-                {
-                    Player.velocity.Y = Math.Sign(Player.velocity.Y) * (infinimountMax-Player.runAcceleration);
+                    Player.velocity.Y = Math.Sign(Player.velocity.Y) * (VerticalSpeed-Player.runAcceleration);
                 }
             }
-
-            if (Player.GetModPlayer<Mobility>().crippleTimer <= 0)
+            if (Player.mount.Type == MountID.WitchBroom)
             {
+                float VerticalSpeed = 5 * mountSpeedBonus;
+                float HorizontalSpeed = 7 * mountSpeedBonus;
+
+                if (Math.Abs(Player.velocity.X) > HorizontalSpeed)
+                {
+                    Player.velocity.X = Math.Sign(Player.velocity.X) * (HorizontalSpeed - Player.runAcceleration);
+                }
+                if (Math.Abs(Player.velocity.Y) > VerticalSpeed)
+                {
+                    Player.velocity.Y = Math.Sign(Player.velocity.Y) * (VerticalSpeed - Player.runAcceleration);
+                }
+            }
+            
+            if ( Player.mount.Type == MountID.CuteFishron)
+            {
+                float VerticalSpeed = 6 * mountSpeedBonus;
+                float HorizontalSpeed = 6 * mountSpeedBonus;
+                Player.runAcceleration = 0.16f;
+                if (Player.controlUp || Player.controlJump)
+                {
+                    Player.velocity.Y -= 0.1f;
+                }
+                else if (Player.controlDown)
+                {
+                    Player.velocity.Y += 0.1f;
+                }
+                if (Player.wet)
+                {
+                    Player.GetDamage<GenericDamageClass>() -= 0.05f;
+                    VerticalSpeed *= 1.15f;
+                    HorizontalSpeed *= 1.15f;
+                }
+                if (Math.Abs(Player.velocity.X) > HorizontalSpeed)
+                {
+                    Player.velocity.X = Math.Sign(Player.velocity.X) * (HorizontalSpeed - Player.runAcceleration);
+                }
+                if (Math.Abs(Player.velocity.Y) > VerticalSpeed)
+                {
+                    Player.velocity.Y = Math.Sign(Player.velocity.Y) * (VerticalSpeed - Player.runAcceleration);
+                }
             }
             else
             {

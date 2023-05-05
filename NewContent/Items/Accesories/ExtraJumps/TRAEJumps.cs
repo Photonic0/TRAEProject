@@ -248,15 +248,27 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 			}
 
 		}
-		public override void PreUpdateMovement()
+		public override void PostUpdateEquips()
+		{
+			if (advFlight)
+			{
+				Player.gravControl = false;
+				Player.gravControl2 = false;
+			}
+		}
+
+        public override void PreUpdateMovement()
         {
+
 			if(Player.grappling[0] != -1)
 			{
 				RestoreJumps();
 			}
 			if(advFlight)
-			{
-				if(Player.oldVelocity.Y == 0 || Player.grappling[0] != -1)
+            {
+                Player.gravControl = false;
+                Player.gravControl2 = false;
+                if (Player.oldVelocity.Y == 0 || Player.grappling[0] != -1)
 				{
 					AdvReset();
 				}
@@ -362,7 +374,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 					{
 						canLevitate = false;
 						Player.velocity.Y = (0f - Player.jumpSpeed) * Player.gravDir;
-						Player.jump = Player.jumpHeight * 10;
+						Player.jump = Player.jumpHeight * 8;
 						isLevitating = true;
 						SoundEngine.PlaySound(SoundID.DoubleJump, Player.Center);
 					}

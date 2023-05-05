@@ -4,6 +4,8 @@ using System;
 using Terraria.ID;
 using TRAEProject.Common;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
+
 namespace TRAEProject.Changes.NPCs.Boss
 {
     public class ChangesFishron : GlobalNPC
@@ -22,34 +24,41 @@ namespace TRAEProject.Changes.NPCs.Boss
 		}
         public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo)
         {
-
-            switch (npc.type)
-            {
-                case NPCID.DukeFishron:
-					{
-						if (Main.rand.Next(3) == 0)
+			if (GetInstance<TRAEConfig>().FishronChanges)
+			{
+				switch (npc.type)
+				{
+					case NPCID.DukeFishron:
 						{
-							int length = Main.rand.Next(1, 2) * 600;
-							target.AddBuff(BuffID.Rabies, length, false);
+							if (Main.rand.Next(3) == 0)
+							{
+								int length = Main.rand.Next(1, 2) * 600;
+								target.AddBuff(BuffID.Rabies, length, false);
+							}
+							return;
 						}
-						return;
 				}
 			}
 		}
 		public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)/* tModPorter Note:bossAdjustment -> balance (bossAdjustment is different, see the docs for details) */
         {
-			switch (npc.type)
+			if (GetInstance<TRAEConfig>().FishronChanges)
 			{
-				case NPCID.DukeFishron:
-					npc.defDefense = 60;
-					npc.defDamage = (int)(npc.defDamage * 0.9);
-					return;
+				switch (npc.type)
+				{
+					case NPCID.DukeFishron:
+						npc.defDefense = 60;
+						npc.defDamage = (int)(npc.defDamage * 0.9);
+						return;
+				}
 			}
         }
 		float phase3NadoTimer = 0f;
         public override bool PreAI(NPC npc)
         {
-			switch (npc.type)
+            if (GetInstance<TRAEConfig>().FishronChanges)
+			{ 
+            switch (npc.type)
 			{
 				case NPCID.DetonatingBubble:
 					{
@@ -1100,7 +1109,8 @@ namespace TRAEProject.Changes.NPCs.Boss
 					}
 					return false;
 			}
-			return true;
+            }
+            return true;
 		}
 			
 		

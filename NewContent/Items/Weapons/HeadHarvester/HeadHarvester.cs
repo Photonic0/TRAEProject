@@ -21,8 +21,8 @@ namespace TRAEProject.NewContent.Items.Weapons.HeadHarvester
             Item.width = 58;
             Item.height = 60;
             Item.damage = 94;
-            Item.useTime = 40;
-            Item.useAnimation = 40;
+            Item.useTime = 38;
+            Item.useAnimation = 38;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 10);
@@ -45,7 +45,7 @@ namespace TRAEProject.NewContent.Items.Weapons.HeadHarvester
         {
             Projectile.width = 106; Projectile.height = 84;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 6;
+            Projectile.penetrate = 8;
             Projectile.timeLeft = 300;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 5;

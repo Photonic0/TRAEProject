@@ -27,9 +27,13 @@ namespace TRAEProject.Changes.Resprites
 
             SpriteReplace(ref TextureAssets.Item[ProjectileID.StardustDragon1], VSRP(ProjectileID.StardustDragon1), Request<Texture2D>(path + "LunarDragonHead", AssetRequestMode.ImmediateLoad));
             */
+            TextureAssets.Item[ItemID.PearlwoodSword] = Request<Texture2D>(path + "PearlwoodSword");
+            TextureAssets.Item[ItemID.PearlwoodHammer] = Request<Texture2D>(path + "PearlwoodHammer");
+            TextureAssets.Item[ItemID.PearlwoodBow] = Request<Texture2D>(path + "PearlwoodBow");
+
             TextureAssets.Item[ItemID.StarWrath] = Request<Texture2D>(path + "StarWrath");
             TextureAssets.Projectile[ProjectileID.StarWrath] = Request<Texture2D>(path + "StarWrathProjectile");
-
+            TextureAssets.FlameRing = Request<Texture2D>(path + "FlameRing");
             TextureAssets.Item[ItemID.StardustDragonStaff] = Request<Texture2D>(path + "LunarDragonStaff");
 
             TextureAssets.Projectile[ProjectileID.StardustDragon1] = Request<Texture2D>(path + "LunarDragonHead");

@@ -7,7 +7,7 @@ namespace TRAEProject.Changes.Prefixes
 {
     public class AccModPlayer : ModPlayer
     {
-        public const int SpeedValue = 4;
+        public const int SpeedValue = 3;
         public const int JumpValue = 4;
         public override void PostUpdateEquips()
         {

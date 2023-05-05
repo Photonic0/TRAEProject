@@ -75,6 +75,14 @@ namespace TRAEProject.Changes.Weapons
                 case ItemID.DaedalusStormbow:
                     item.damage = 30;
                     return;
+                case ItemID.PearlwoodBow:
+                    item.damage = 25; // up from 12
+                    item.useTime = 17; // down from 20
+                    item.useAnimation = 17;
+                    item.knockBack = 1f; // up from 0
+                    item.autoReuse = true;
+                    item.rare = ItemRarityID.Pink;
+                    return;
                 case ItemID.Marrow:
                     item.damage = 100;
                     item.crit = 20;
@@ -182,6 +190,10 @@ namespace TRAEProject.Changes.Weapons
             {
                 type = ProjectileType<LilRocket>();
             }
+            if (weapon.type == ItemID.PearlwoodBow && (ammo.type == ItemID.WoodenArrow || ammo.type == ItemID.EndlessQuiver))
+            {
+                type = ProjectileID.HolyArrow;
+            }
         }
         public override bool AltFunctionUse(Item item, Player player)
         {
@@ -212,6 +224,15 @@ namespace TRAEProject.Changes.Weapons
         {
             switch (item.type)
             {
+                case ItemID.PearlwoodBow:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Knockback")
+                        {
+                            line.Text += "\nWooden arrows turn into Holy arrows";
+                        }
+                    }
+                    return;
                 case ItemID.PhoenixBlaster:
                     foreach (TooltipLine line in tooltips)
                     {

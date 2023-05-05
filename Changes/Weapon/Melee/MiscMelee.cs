@@ -31,10 +31,6 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.HiveFive:
                     item.damage = 21; // down from 24 
                     return;
-                case ItemID.ShadowFlameKnife:
-                    item.useTime = 14; // up from 12
-                    item.useAnimation = 14;
-                    return;
                 case ItemID.VampireKnives:
                     item.damage = 29; // up from 29
                     return;

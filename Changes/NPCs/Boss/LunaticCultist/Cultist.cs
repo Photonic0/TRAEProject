@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
 {
@@ -15,24 +16,30 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
     {
         public override bool InstancePerEntity => true;
         public override void SetDefaults(NPC npc)
-		{
-            if (npc.type == NPCID.CultistBoss)
+        {
+            if (GetInstance<TRAEConfig>().CultistChanges)
             {
-				npc.lifeMax = (int)(npc.lifeMax  * ((float)80000 / 32000));
+                if (npc.type == NPCID.CultistBoss)
+                {
+                    npc.lifeMax = (int)(npc.lifeMax * ((float)80000 / 32000));
 
-                npc.height = 84;
-                npc.width = 84;
-            }
-            if (npc.type == NPCID.CultistBossClone)
-            {
-                npc.height = 84;
-                npc.width = 84;
-            }
-            if (npc.type == NPCID.CultistDragonHead)
-            {            
+                    npc.height = 84;
+                    npc.width = 84;
+                }
+                if (npc.type == NPCID.CultistBossClone)
+                {
+                    npc.height = 84;
+                    npc.width = 84;
+                }
             }
         }
-      
+        public override void ApplyDifficultyAndPlayerScaling(NPC npc, int numPlayers, float balance, float bossAdjustment)
+        {
+            if (npc.type == NPCID.CultistBoss && GetInstance<TRAEConfig>().CultistChanges)
+            {
+                npc.lifeMax = (int)(npc.lifeMax / 1.2f);
+            }
+        }
         static float AttackSpeed(NPC npc)
         {
             if ((npc.life / npc.lifeMax) <= 0.1f)
@@ -46,7 +53,7 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
 
         public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
         {
-            if (npc.type == NPCID.CultistBoss)
+            if (npc.type == NPCID.CultistBoss && GetInstance<TRAEConfig>().CultistChanges)
             {
                 if(ProjectileID.Sets.CultistIsResistantTo[projectile.type])
                 {
@@ -57,676 +64,681 @@ namespace TRAEProject.Changes.NPCs.Boss.LunaticCultist
         }
         public override bool PreAI(NPC npc)
 		{
-			if (npc.type == NPCID.CultistBoss)
+            if (GetInstance<TRAEConfig>().CultistChanges)
             {
-                if (npc.ai[0] != -1f && Main.rand.NextBool(1000))
+                if (npc.type == NPCID.CultistBoss)
                 {
-                    int Sound = Main.rand.Next(4); 
-                    SoundStyle sound = SoundID.Zombie88;
+                    if (npc.ai[0] != -1f && Main.rand.NextBool(1000))
+                    {
+                        int Sound = Main.rand.Next(4);
+                        SoundStyle sound = SoundID.Zombie88;
 
-                    switch (Sound)
-                    {
-                        case 1:
-                            sound = SoundID.Zombie89;
-                            break;
-                        case 2:
-                            sound = SoundID.Zombie90;
-                            break;
-                        case 3:
-                            sound = SoundID.Zombie91;
-                            break;
+                        switch (Sound)
+                        {
+                            case 1:
+                                sound = SoundID.Zombie89;
+                                break;
+                            case 2:
+                                sound = SoundID.Zombie90;
+                                break;
+                            case 3:
+                                sound = SoundID.Zombie91;
+                                break;
+                        }
+                        SoundEngine.PlaySound(sound, npc.Center);
                     }
-                    SoundEngine.PlaySound(sound, npc.Center);
-                }
-                bool master = Main.masterMode;
-                bool belowHalf = npc.life <= npc.lifeMax / 2;
-				npc.damage = 0;
+                    bool master = Main.masterMode;
+                    bool belowHalf = npc.life <= npc.lifeMax / 2;
+                    npc.damage = 0;
 
-                bool isCultist = npc.type == NPCID.CultistBoss;
-                bool flag2 = false;
-                bool flag3 = false;
-                if (isCultist)
-                {
-                    //Main.NewText(npc.ai[0] + ", " + npc.ai[1] + ", " + npc.ai[2] + ", " + npc.ai[3]);
-                    //Main.NewText(attackNumber);
-                }
-                if (!isCultist)
-                {
-                    if (npc.ai[3] < 0f || !Main.npc[(int)npc.ai[3]].active || Main.npc[(int)npc.ai[3]].type != 439)
+                    bool isCultist = npc.type == NPCID.CultistBoss;
+                    bool flag2 = false;
+                    bool flag3 = false;
+                    if (isCultist)
                     {
-                        npc.life = 0;
-                        npc.HitEffect();
-                        npc.active = false;
-                        return false;
+                        //Main.NewText(npc.ai[0] + ", " + npc.ai[1] + ", " + npc.ai[2] + ", " + npc.ai[3]);
+                        //Main.NewText(attackNumber);
                     }
-                    npc.ai[0] = Main.npc[(int)npc.ai[3]].ai[0];
-                    npc.ai[1] = Main.npc[(int)npc.ai[3]].ai[1];
-                    if (npc.ai[0] == 5f)
+                    if (!isCultist)
                     {
-                        if (npc.justHit)
+                        if (npc.ai[3] < 0f || !Main.npc[(int)npc.ai[3]].active || Main.npc[(int)npc.ai[3]].type != 439)
                         {
                             npc.life = 0;
                             npc.HitEffect();
                             npc.active = false;
-                            if (Main.netMode != 1)
-                            {
-                                NetMessage.SendData(23, -1, -1, null, npc.whoAmI);
-                            }
-                            NPC obj = Main.npc[(int)npc.ai[3]];
-                            obj.ai[0] = 6f;
-                            obj.ai[1] = 0f;
-                            obj.netUpdate = true;
+                            return false;
                         }
-                    }
-                    else
-                    {
-                        flag2 = true;
-                        flag3 = true;
-                    }
-                }
-                else if (npc.ai[0] == 5f && npc.ai[1] >= 120f && npc.ai[1] < 420f && npc.justHit)
-                {
-                    //Kill Clones
-                    EndAttack(npc);
-                    List<int> list = new List<int>();
-                    for (int i = 0; i < 200; i++)
-                    {
-                        if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone && Main.npc[i].ai[3] == (float)npc.whoAmI)
+                        npc.ai[0] = Main.npc[(int)npc.ai[3]].ai[0];
+                        npc.ai[1] = Main.npc[(int)npc.ai[3]].ai[1];
+                        if (npc.ai[0] == 5f)
                         {
-                            list.Add(i);
-                        }
-                    }
-                    int num10 = 10;
-                    if (Main.expertMode)
-                    {
-                        num10 = 3;
-                    }
-                    foreach (int item in list)
-                    {
-                        NPC nPC = Main.npc[item];
-                        if (nPC.localAI[1] == npc.localAI[1] && num10 > 0)
-                        {
-                            num10--;
-                            nPC.life = 0;
-                            nPC.HitEffect();
-                            nPC.active = false;
-                            if (Main.netMode != 1)
+                            if (npc.justHit)
                             {
-                                NetMessage.SendData(23, -1, -1, null, item);
+                                npc.life = 0;
+                                npc.HitEffect();
+                                npc.active = false;
+                                if (Main.netMode != 1)
+                                {
+                                    NetMessage.SendData(23, -1, -1, null, npc.whoAmI);
+                                }
+                                NPC obj = Main.npc[(int)npc.ai[3]];
+                                obj.ai[0] = 6f;
+                                obj.ai[1] = 0f;
+                                obj.netUpdate = true;
                             }
                         }
-                        else if (num10 > 0)
+                        else
                         {
-                            num10--;
-                            nPC.life = 0;
-                            nPC.HitEffect();
-                            nPC.active = false;
+                            flag2 = true;
+                            flag3 = true;
                         }
                     }
-                    Main.projectile[(int)npc.ai[2]].ai[1] = -1f;
-                    Main.projectile[(int)npc.ai[2]].netUpdate = true;
-                }
-                Vector2 center = npc.Center;
-                Player player = Main.player[npc.target];
-                CheckDeadPlayer(npc, center, ref player);
-
-                float attackTally = npc.ai[3];
-                if (npc.localAI[0] == 0f)
-                {
-                    SoundEngine.PlaySound(SoundID.Zombie89, npc.Center);
-                    npc.localAI[0] = 1f;
-                    npc.alpha = 255;
-                    npc.rotation = 0f;
-                    if (Main.netMode != 1)
+                    else if (npc.ai[0] == 5f && npc.ai[1] >= 120f && npc.ai[1] < 420f && npc.justHit)
                     {
-                        npc.ai[0] = -1f;
-                        npc.netUpdate = true;
-                    }
-                }
-                if (npc.ai[0] == -1f)
-                {
-                    Opening(npc, out flag2, out flag3);
-                }
-                if (npc.ai[0] == 0f)
-                {
-                    if (npc.ai[1] == 0f)
-                    {
-                        npc.TargetClosest(faceTarget: false);
-                    }
-                    npc.localAI[2] = 10f;
-                    int num13 = Math.Sign(player.Center.X - center.X);
-                    if (num13 != 0)
-                    {
-                        npc.direction = (npc.spriteDirection = num13);
-                    }
-                    npc.ai[1] += AttackSpeed(npc);
-                    if (npc.ai[1] >= 40f && isCultist)
-                    {
-                        attackNumber = 0;
-                        SelectAction(npc, master, belowHalf, center, player);
-                    }
-                }
-                else if (npc.ai[0] == 1f)
-                {
-                    flag2 = true;
-                    npc.localAI[2] = 10f;
-                    if ((float)(int)npc.ai[1] % 2f != 0f && npc.ai[1] != 1f)
-                    {
-                        npc.position -= npc.velocity;
-                    }
-                    npc.ai[1] -= AttackSpeed(npc);
-                    if (npc.ai[1] <= 0f)
-                    {
+                        //Kill Clones
                         EndAttack(npc);
+                        List<int> list = new List<int>();
+                        for (int i = 0; i < 200; i++)
+                        {
+                            if (Main.npc[i].active && Main.npc[i].type == NPCID.CultistBossClone && Main.npc[i].ai[3] == (float)npc.whoAmI)
+                            {
+                                list.Add(i);
+                            }
+                        }
+                        int num10 = 10;
+                        if (Main.expertMode)
+                        {
+                            num10 = 3;
+                        }
+                        foreach (int item in list)
+                        {
+                            NPC nPC = Main.npc[item];
+                            if (nPC.localAI[1] == npc.localAI[1] && num10 > 0)
+                            {
+                                num10--;
+                                nPC.life = 0;
+                                nPC.HitEffect();
+                                nPC.active = false;
+                                if (Main.netMode != 1)
+                                {
+                                    NetMessage.SendData(23, -1, -1, null, item);
+                                }
+                            }
+                            else if (num10 > 0)
+                            {
+                                num10--;
+                                nPC.life = 0;
+                                nPC.HitEffect();
+                                nPC.active = false;
+                            }
+                        }
+                        Main.projectile[(int)npc.ai[2]].ai[1] = -1f;
+                        Main.projectile[(int)npc.ai[2]].netUpdate = true;
                     }
-                }
-                else if (npc.ai[0] == 2f)
-                {
-                    
-                    int iceCount = 1;
-                    int iceAttackDelay = 120;
-                    int iceDamage = npc.GetAttackDamage_ForProjectiles(35f, 25f);
-                    if (Main.expertMode)
+                    Vector2 center = npc.Center;
+                    Player player = Main.player[npc.target];
+                    CheckDeadPlayer(npc, center, ref player);
+
+                    float attackTally = npc.ai[3];
+                    if (npc.localAI[0] == 0f)
                     {
-                        iceAttackDelay = 90;
-                    }
-                    npc.localAI[2] = 11f;
-                    Vector2 vec = Vector2.Normalize(player.Center - center);
-                    if (vec.HasNaNs())
-                    {
-                        vec = new Vector2(npc.direction, 0f);
-                    }
-                    if (npc.ai[1] >= 4f && isCultist && (int)(npc.ai[1] - 4f) >= iceAttackDelay*(int)attackNumber)
-                    {
-                        attackNumber++;
+                        SoundEngine.PlaySound(SoundID.Zombie89, npc.Center);
+                        npc.localAI[0] = 1f;
+                        npc.alpha = 255;
+                        npc.rotation = 0f;
                         if (Main.netMode != 1)
                         {
-                            IllusionsAttack(npc, player);
-                            vec = Vector2.Normalize(player.Center - center + player.velocity * 20f);
-                            if (vec.HasNaNs())
-                            {
-                                vec = new Vector2(npc.direction, 0f);
-                            }
-                            Vector2 vector2 = npc.Center + new Vector2(npc.direction * 30, 12f);
-                            for (int n = 0; n < 1; n++)
-                            {
-                                Vector2 vector3 = vec * 4f;
-                                Projectile.NewProjectile(npc.GetSource_FromThis(), vector2.X, vector2.Y, vector3.X, vector3.Y, 464, iceDamage, 0f, Main.myPlayer, 0f, 1f);
-                            }
+                            npc.ai[0] = -1f;
+                            npc.netUpdate = true;
                         }
                     }
-                    npc.ai[1] += AttackSpeed(npc);
-                    if (npc.ai[1] >= (float)(4 + iceAttackDelay * iceCount))
+                    if (npc.ai[0] == -1f)
                     {
-                        EndAttack(npc);
+                        Opening(npc, out flag2, out flag3);
                     }
-                }
-                else if (npc.ai[0] == 3f)
-                {
-                    //fireball attack
-
-                    
-                    int fireballAttackDelay = 10;
-                    int fireballCount = 5;
-                    int fireballDamage = npc.GetAttackDamage_ForProjectiles(50f, 40f);
-                    if (Main.expertMode)
-                    {
-                        fireballCount = 7;
-                    }
-                    if (master)
-                        fireballAttackDelay = 8;
-                    npc.localAI[2] = 11f;
-                    Vector2 vec2 = Vector2.Normalize(player.Center - center);
-                    if (vec2.HasNaNs())
-                    {
-                        vec2 = new Vector2(npc.direction, 0f);
-                    }
-                    if (npc.ai[1] >= 90f && isCultist && (int)(npc.ai[1] - 90f) >= fireballAttackDelay*(int)attackNumber)
-                    {
-                        attackNumber++;
-                        if ((int)(npc.ai[1] - 4f) / fireballAttackDelay == 2)
-                        {
-
-                            IllusionsAttack(npc, player);
-                        }
-                        int num22 = Math.Sign(player.Center.X - center.X);
-                        if (num22 != 0)
-                        {
-                            npc.direction = (npc.spriteDirection = num22);
-                        }
-                        if (Main.netMode != 1)
-                        {
-                            vec2 = Vector2.Normalize(player.Center - center + player.velocity * 20f);
-                            if (vec2.HasNaNs())
-                            {
-                                vec2 = new Vector2(npc.direction, 0f);
-                            }
-                            Vector2 vector5 = npc.Center + new Vector2(npc.direction * 30, 12f);
-                            for (int num23 = 0; num23 < 1; num23++)
-                            {
-                                Vector2 spinninpoint3 = vec2 * (4.5f + (float)Main.rand.NextDouble() * 4f);
-                                spinninpoint3 = spinninpoint3.RotatedByRandom(0.52359879016876221);
-                                Projectile.NewProjectile(npc.GetSource_FromThis(), vector5.X, vector5.Y, spinninpoint3.X, spinninpoint3.Y, 467, fireballDamage, 0f, Main.myPlayer);
-                            }
-                        }
-                    }
-                    if (npc.ai[1] < 90f)
+                    if (npc.ai[0] == 0f)
                     {
                         if (npc.ai[1] == 0f)
                         {
-                            SoundEngine.PlaySound(SoundID.Item45, npc.Center);
+                            npc.TargetClosest(faceTarget: false);
                         }
-                        npc.ai[1] += 1f;
-                     
-                    }
-                    else
-                    {
+                        npc.localAI[2] = 10f;
+                        int num13 = Math.Sign(player.Center.X - center.X);
+                        if (num13 != 0)
+                        {
+                            npc.direction = (npc.spriteDirection = num13);
+                        }
                         npc.ai[1] += AttackSpeed(npc);
+                        if (npc.ai[1] >= 40f && isCultist)
+                        {
+                            attackNumber = 0;
+                            SelectAction(npc, master, belowHalf, center, player);
+                        }
                     }
-                    
-                    if (npc.ai[1] >= (float)(96 + fireballAttackDelay * fireballCount))
+                    else if (npc.ai[0] == 1f)
                     {
-                        EndAttack(npc);
+                        flag2 = true;
+                        npc.localAI[2] = 10f;
+                        if ((float)(int)npc.ai[1] % 2f != 0f && npc.ai[1] != 1f)
+                        {
+                            npc.position -= npc.velocity;
+                        }
+                        npc.ai[1] -= AttackSpeed(npc);
+                        if (npc.ai[1] <= 0f)
+                        {
+                            EndAttack(npc);
+                        }
                     }
-                }
-                else if (npc.ai[0] == 4f)
-                {
-                    //lightning
-                    
-                    int lightningAttackDelay = 80;
-                    int lightningDamage = npc.GetAttackDamage_ForProjectiles(45f, 30f);
-                    if (master)
+                    else if (npc.ai[0] == 2f)
                     {
-                        lightningAttackDelay = 40;
-                    }
-                    if (isCultist)
-                    {
-                        npc.localAI[2] = 12f;
-                    }
-                    else
-                    {
+
+                        int iceCount = 1;
+                        int iceAttackDelay = 120;
+                        int iceDamage = npc.GetAttackDamage_ForProjectiles(35f, 25f);
+                        if (Main.expertMode)
+                        {
+                            iceAttackDelay = 90;
+                        }
                         npc.localAI[2] = 11f;
-                    }
-                    if (isCultist && Main.netMode != 1)
-                    {
-                        if ((int)(npc.ai[1] - 20f) >= lightningAttackDelay * (int)attackNumber )
+                        Vector2 vec = Vector2.Normalize(player.Center - center);
+                        if (vec.HasNaNs())
                         {
-                            IllusionsAttack(npc, player);
+                            vec = new Vector2(npc.direction, 0f);
+                        }
+                        if (npc.ai[1] >= 4f && isCultist && (int)(npc.ai[1] - 4f) >= iceAttackDelay * (int)attackNumber)
+                        {
                             attackNumber++;
-                            Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y - 100f, 0f, 0f, 465, lightningDamage, 0f, Main.myPlayer);
+                            if (Main.netMode != 1)
+                            {
+                                IllusionsAttack(npc, player);
+                                vec = Vector2.Normalize(player.Center - center + player.velocity * 20f);
+                                if (vec.HasNaNs())
+                                {
+                                    vec = new Vector2(npc.direction, 0f);
+                                }
+                                Vector2 vector2 = npc.Center + new Vector2(npc.direction * 30, 12f);
+                                for (int n = 0; n < 1; n++)
+                                {
+                                    Vector2 vector3 = vec * 4f;
+                                    Projectile.NewProjectile(npc.GetSource_FromThis(), vector2.X, vector2.Y, vector3.X, vector3.Y, 464, iceDamage, 0f, Main.myPlayer, 0f, 1f);
+                                }
+                            }
+                        }
+                        npc.ai[1] += AttackSpeed(npc);
+                        if (npc.ai[1] >= (float)(4 + iceAttackDelay * iceCount))
+                        {
+                            EndAttack(npc);
                         }
                     }
-                    npc.ai[1] += AttackSpeed(npc);
-                    if (npc.ai[1] >= (float)(20 + lightningAttackDelay))
+                    else if (npc.ai[0] == 3f)
                     {
-                        EndAttack(npc);
-                    }
-                }
-                else if (npc.ai[0] == 5f)
-                {
-                    //ritual
-                    npc.localAI[2] = 10f;
-                    if (Vector2.Normalize(player.Center - center).HasNaNs())
-                    {
-                        new Vector2(npc.direction, 0f);
-                    }
-                    if (npc.ai[1] >= 0f && npc.ai[1] < 30f)
-                    {
-                        flag2 = true;
-                        flag3 = true;
-                        float num27 = (npc.ai[1] - 0f) / 30f;
-                        npc.alpha = (int)(num27 * 255f);
-                    }
-                    else if (npc.ai[1] >= 30f && npc.ai[1] < 90f)
-                    {
-                        if (npc.ai[1] >= 30f && attackNumber < 1 && Main.netMode != 1 && isCultist)
+                        //fireball attack
+
+
+                        int fireballAttackDelay = 10;
+                        int fireballCount = 5;
+                        int fireballDamage = npc.GetAttackDamage_ForProjectiles(50f, 40f);
+                        if (Main.expertMode)
+                        {
+                            fireballCount = 7;
+                        }
+                        if (master)
+                            fireballAttackDelay = 8;
+                        npc.localAI[2] = 11f;
+                        Vector2 vec2 = Vector2.Normalize(player.Center - center);
+                        if (vec2.HasNaNs())
+                        {
+                            vec2 = new Vector2(npc.direction, 0f);
+                        }
+                        if (npc.ai[1] >= 90f && isCultist && (int)(npc.ai[1] - 90f) >= fireballAttackDelay * (int)attackNumber)
                         {
                             attackNumber++;
-                            npc.localAI[1] += 1f;
-                            Vector2 spinningpoint = new Vector2(180f, 0f);
-                            List<int> list6 = new List<int>();
-                            for (int num28 = 0; num28 < 200; num28++)
+                            if ((int)(npc.ai[1] - 4f) / fireballAttackDelay == 2)
                             {
-                                if (Main.npc[num28].active && Main.npc[num28].type == NPCID.CultistBossClone && Main.npc[num28].ai[3] == (float)npc.whoAmI)
+
+                                IllusionsAttack(npc, player);
+                            }
+                            int num22 = Math.Sign(player.Center.X - center.X);
+                            if (num22 != 0)
+                            {
+                                npc.direction = (npc.spriteDirection = num22);
+                            }
+                            if (Main.netMode != 1)
+                            {
+                                vec2 = Vector2.Normalize(player.Center - center + player.velocity * 20f);
+                                if (vec2.HasNaNs())
                                 {
-                                    list6.Add(num28);
+                                    vec2 = new Vector2(npc.direction, 0f);
+                                }
+                                Vector2 vector5 = npc.Center + new Vector2(npc.direction * 30, 12f);
+                                for (int num23 = 0; num23 < 1; num23++)
+                                {
+                                    Vector2 spinninpoint3 = vec2 * (4.5f + (float)Main.rand.NextDouble() * 4f);
+                                    spinninpoint3 = spinninpoint3.RotatedByRandom(0.52359879016876221);
+                                    Projectile.NewProjectile(npc.GetSource_FromThis(), vector5.X, vector5.Y, spinninpoint3.X, spinninpoint3.Y, 467, fireballDamage, 0f, Main.myPlayer);
                                 }
                             }
-                            int num29 = 6 - list6.Count;
-                            if (num29 > 2)
+                        }
+                        if (npc.ai[1] < 90f)
+                        {
+                            if (npc.ai[1] == 0f)
                             {
-                                num29 = 2;
+                                SoundEngine.PlaySound(SoundID.Item45, npc.Center);
                             }
-                            int num30 = list6.Count + num29 + 1;
-                            float[] array2 = new float[num30];
-                            for (int num31 = 0; num31 < array2.Length; num31++)
+                            npc.ai[1] += 1f;
+
+                        }
+                        else
+                        {
+                            npc.ai[1] += AttackSpeed(npc);
+                        }
+
+                        if (npc.ai[1] >= (float)(96 + fireballAttackDelay * fireballCount))
+                        {
+                            EndAttack(npc);
+                        }
+                    }
+                    else if (npc.ai[0] == 4f)
+                    {
+                        //lightning
+
+                        int lightningAttackDelay = 80;
+                        int lightningDamage = npc.GetAttackDamage_ForProjectiles(45f, 30f);
+                        if (master)
+                        {
+                            lightningAttackDelay = 40;
+                        }
+                        if (isCultist)
+                        {
+                            npc.localAI[2] = 12f;
+                        }
+                        else
+                        {
+                            npc.localAI[2] = 11f;
+                        }
+                        if (isCultist && Main.netMode != 1)
+                        {
+                            if ((int)(npc.ai[1] - 20f) >= lightningAttackDelay * (int)attackNumber)
                             {
-                                array2[num31] = Vector2.Distance(npc.Center + spinningpoint.RotatedBy((float)num31 * ((float)Math.PI * 2f) / (float)num30 - (float)Math.PI / 2f), player.Center);
+                                IllusionsAttack(npc, player);
+                                attackNumber++;
+                                Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y - 100f, 0f, 0f, 465, lightningDamage, 0f, Main.myPlayer);
                             }
-                            int num32 = 0;
-                            for (int num33 = 1; num33 < array2.Length; num33++)
+                        }
+                        npc.ai[1] += AttackSpeed(npc);
+                        if (npc.ai[1] >= (float)(20 + lightningAttackDelay))
+                        {
+                            EndAttack(npc);
+                        }
+                    }
+                    else if (npc.ai[0] == 5f)
+                    {
+                        //ritual
+                        npc.localAI[2] = 10f;
+                        if (Vector2.Normalize(player.Center - center).HasNaNs())
+                        {
+                            new Vector2(npc.direction, 0f);
+                        }
+                        if (npc.ai[1] >= 0f && npc.ai[1] < 30f)
+                        {
+                            flag2 = true;
+                            flag3 = true;
+                            float num27 = (npc.ai[1] - 0f) / 30f;
+                            npc.alpha = (int)(num27 * 255f);
+                        }
+                        else if (npc.ai[1] >= 30f && npc.ai[1] < 90f)
+                        {
+                            if (npc.ai[1] >= 30f && attackNumber < 1 && Main.netMode != 1 && isCultist)
                             {
-                                if (array2[num32] > array2[num33])
+                                attackNumber++;
+                                npc.localAI[1] += 1f;
+                                Vector2 spinningpoint = new Vector2(180f, 0f);
+                                List<int> list6 = new List<int>();
+                                for (int num28 = 0; num28 < 200; num28++)
                                 {
-                                    num32 = num33;
-                                }
-                            }
-                            num32 = ((num32 >= num30 / 2) ? (num32 - num30 / 2) : (num32 + num30 / 2));
-                            int num34 = num29;
-                            for (int num35 = 0; num35 < array2.Length; num35++)
-                            {
-                                if (num32 != num35)
-                                {
-                                    Vector2 center6 = npc.Center + spinningpoint.RotatedBy((float)num35 * ((float)Math.PI * 2f) / (float)num30 - (float)Math.PI / 2f);
-                                    if (num34-- > 0)
+                                    if (Main.npc[num28].active && Main.npc[num28].type == NPCID.CultistBossClone && Main.npc[num28].ai[3] == (float)npc.whoAmI)
                                     {
-                                        int num36 = NPC.NewNPC(npc.GetSource_FromAI(), (int)center6.X, (int)center6.Y + npc.height / 2, 440, npc.whoAmI);
-                                        Main.npc[num36].ai[3] = npc.whoAmI;
-                                        Main.npc[num36].netUpdate = true;
-                                        Main.npc[num36].localAI[1] = npc.localAI[1];
-                                    }
-                                    else
-                                    {
-                                        int num37 = list6[-num34 - 1];
-                                        Main.npc[num37].Center = center6;
-                                        NetMessage.SendData(23, -1, -1, null, num37);
+                                        list6.Add(num28);
                                     }
                                 }
+                                int num29 = 6 - list6.Count;
+                                if (num29 > 2)
+                                {
+                                    num29 = 2;
+                                }
+                                int num30 = list6.Count + num29 + 1;
+                                float[] array2 = new float[num30];
+                                for (int num31 = 0; num31 < array2.Length; num31++)
+                                {
+                                    array2[num31] = Vector2.Distance(npc.Center + spinningpoint.RotatedBy((float)num31 * ((float)Math.PI * 2f) / (float)num30 - (float)Math.PI / 2f), player.Center);
+                                }
+                                int num32 = 0;
+                                for (int num33 = 1; num33 < array2.Length; num33++)
+                                {
+                                    if (array2[num32] > array2[num33])
+                                    {
+                                        num32 = num33;
+                                    }
+                                }
+                                num32 = ((num32 >= num30 / 2) ? (num32 - num30 / 2) : (num32 + num30 / 2));
+                                int num34 = num29;
+                                for (int num35 = 0; num35 < array2.Length; num35++)
+                                {
+                                    if (num32 != num35)
+                                    {
+                                        Vector2 center6 = npc.Center + spinningpoint.RotatedBy((float)num35 * ((float)Math.PI * 2f) / (float)num30 - (float)Math.PI / 2f);
+                                        if (num34-- > 0)
+                                        {
+                                            int num36 = NPC.NewNPC(npc.GetSource_FromAI(), (int)center6.X, (int)center6.Y + npc.height / 2, 440, npc.whoAmI);
+                                            Main.npc[num36].ai[3] = npc.whoAmI;
+                                            Main.npc[num36].netUpdate = true;
+                                            Main.npc[num36].localAI[1] = npc.localAI[1];
+                                        }
+                                        else
+                                        {
+                                            int num37 = list6[-num34 - 1];
+                                            Main.npc[num37].Center = center6;
+                                            NetMessage.SendData(23, -1, -1, null, num37);
+                                        }
+                                    }
+                                }
+                                npc.ai[2] = Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y, 0f, 0f, 490, 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
+                                npc.Center += spinningpoint.RotatedBy((float)num32 * ((float)Math.PI * 2f) / (float)num30 - (float)Math.PI / 2f);
+                                npc.netUpdate = true;
+                                list6.Clear();
                             }
-                            npc.ai[2] = Projectile.NewProjectile(npc.GetSource_FromThis(), npc.Center.X, npc.Center.Y, 0f, 0f, 490, 0, 0f, Main.myPlayer, 0f, npc.whoAmI);
-                            npc.Center += spinningpoint.RotatedBy((float)num32 * ((float)Math.PI * 2f) / (float)num30 - (float)Math.PI / 2f);
+                            flag2 = true;
+                            flag3 = true;
+                            npc.alpha = 255;
+                            if (isCultist)
+                            {
+                                Vector2 value3 = Main.projectile[(int)npc.ai[2]].Center;
+                                value3 -= npc.Center;
+                                if (value3 == Vector2.Zero)
+                                {
+                                    value3 = -Vector2.UnitY;
+                                }
+                                value3.Normalize();
+                                if (Math.Abs(value3.Y) < 0.77f)
+                                {
+                                    npc.localAI[2] = 11f;
+                                }
+                                else if (value3.Y < 0f)
+                                {
+                                    npc.localAI[2] = 12f;
+                                }
+                                else
+                                {
+                                    npc.localAI[2] = 10f;
+                                }
+                                int num38 = Math.Sign(value3.X);
+                                if (num38 != 0)
+                                {
+                                    npc.direction = (npc.spriteDirection = num38);
+                                }
+                            }
+                            else
+                            {
+                                Vector2 value4 = Main.projectile[(int)Main.npc[(int)npc.ai[3]].ai[2]].Center;
+                                value4 -= npc.Center;
+                                if (value4 == Vector2.Zero)
+                                {
+                                    value4 = -Vector2.UnitY;
+                                }
+                                value4.Normalize();
+                                if (Math.Abs(value4.Y) < 0.77f)
+                                {
+                                    npc.localAI[2] = 11f;
+                                }
+                                else if (value4.Y < 0f)
+                                {
+                                    npc.localAI[2] = 12f;
+                                }
+                                else
+                                {
+                                    npc.localAI[2] = 10f;
+                                }
+                                int num39 = Math.Sign(value4.X);
+                                if (num39 != 0)
+                                {
+                                    npc.direction = (npc.spriteDirection = num39);
+                                }
+                            }
+                        }
+                        else if (npc.ai[1] >= 90f && npc.ai[1] < 120f)
+                        {
+                            flag2 = true;
+                            flag3 = true;
+                            float num40 = (npc.ai[1] - 90f) / 30f;
+                            npc.alpha = 255 - (int)(num40 * 255f);
+                        }
+                        else if (npc.ai[1] >= 120f && npc.ai[1] < 420f)
+                        {
+                            flag3 = true;
+                            npc.alpha = 0;
+                            if (isCultist)
+                            {
+                                Vector2 value5 = Main.projectile[(int)npc.ai[2]].Center;
+                                value5 -= npc.Center;
+                                if (value5 == Vector2.Zero)
+                                {
+                                    value5 = -Vector2.UnitY;
+                                }
+                                value5.Normalize();
+                                if (Math.Abs(value5.Y) < 0.77f)
+                                {
+                                    npc.localAI[2] = 11f;
+                                }
+                                else if (value5.Y < 0f)
+                                {
+                                    npc.localAI[2] = 12f;
+                                }
+                                else
+                                {
+                                    npc.localAI[2] = 10f;
+                                }
+                                int num41 = Math.Sign(value5.X);
+                                if (num41 != 0)
+                                {
+                                    npc.direction = (npc.spriteDirection = num41);
+                                }
+                            }
+                            else
+                            {
+                                Vector2 value6 = Main.projectile[(int)Main.npc[(int)npc.ai[3]].ai[2]].Center;
+                                value6 -= npc.Center;
+                                if (value6 == Vector2.Zero)
+                                {
+                                    value6 = -Vector2.UnitY;
+                                }
+                                value6.Normalize();
+                                if (Math.Abs(value6.Y) < 0.77f)
+                                {
+                                    npc.localAI[2] = 11f;
+                                }
+                                else if (value6.Y < 0f)
+                                {
+                                    npc.localAI[2] = 12f;
+                                }
+                                else
+                                {
+                                    npc.localAI[2] = 10f;
+                                }
+                                int num42 = Math.Sign(value6.X);
+                                if (num42 != 0)
+                                {
+                                    npc.direction = (npc.spriteDirection = num42);
+                                }
+                            }
+                        }
+                        npc.ai[1] += AttackSpeed(npc);
+                        if (npc.ai[1] >= 420f)
+                        {
+                            flag3 = true;
+                            npc.ai[0] = 0f;
+                            npc.ai[1] = 0f;
+                            npc.ai[3] += 1f;
+                            npc.velocity = Vector2.Zero;
                             npc.netUpdate = true;
-                            list6.Clear();
                         }
-                        flag2 = true;
-                        flag3 = true;
-                        npc.alpha = 255;
-                        if (isCultist)
+                    }
+                    else if (npc.ai[0] == 6f)
+                    {
+                        //Laugh at your failure
+                        npc.localAI[2] = 13f;
+                        npc.ai[1] += AttackSpeed(npc);
+                        if (npc.ai[1] >= 120f)
                         {
-                            Vector2 value3 = Main.projectile[(int)npc.ai[2]].Center;
-                            value3 -= npc.Center;
-                            if (value3 == Vector2.Zero)
-                            {
-                                value3 = -Vector2.UnitY;
-                            }
-                            value3.Normalize();
-                            if (Math.Abs(value3.Y) < 0.77f)
-                            {
-                                npc.localAI[2] = 11f;
-                            }
-                            else if (value3.Y < 0f)
-                            {
-                                npc.localAI[2] = 12f;
-                            }
-                            else
-                            {
-                                npc.localAI[2] = 10f;
-                            }
-                            int num38 = Math.Sign(value3.X);
-                            if (num38 != 0)
-                            {
-                                npc.direction = (npc.spriteDirection = num38);
-                            }
-                        }
-                        else
-                        {
-                            Vector2 value4 = Main.projectile[(int)Main.npc[(int)npc.ai[3]].ai[2]].Center;
-                            value4 -= npc.Center;
-                            if (value4 == Vector2.Zero)
-                            {
-                                value4 = -Vector2.UnitY;
-                            }
-                            value4.Normalize();
-                            if (Math.Abs(value4.Y) < 0.77f)
-                            {
-                                npc.localAI[2] = 11f;
-                            }
-                            else if (value4.Y < 0f)
-                            {
-                                npc.localAI[2] = 12f;
-                            }
-                            else
-                            {
-                                npc.localAI[2] = 10f;
-                            }
-                            int num39 = Math.Sign(value4.X);
-                            if (num39 != 0)
-                            {
-                                npc.direction = (npc.spriteDirection = num39);
-                            }
+                            EndAttack(npc);
                         }
                     }
-                    else if (npc.ai[1] >= 90f && npc.ai[1] < 120f)
+                    else if (npc.ai[0] == 7f)
                     {
-                        flag2 = true;
-                        flag3 = true;
-                        float num40 = (npc.ai[1] - 90f) / 30f;
-                        npc.alpha = 255 - (int)(num40 * 255f);
-                    }
-                    else if (npc.ai[1] >= 120f && npc.ai[1] < 420f)
-                    {
-                        flag3 = true;
-                        npc.alpha = 0;
-                        if (isCultist)
-                        {
-                            Vector2 value5 = Main.projectile[(int)npc.ai[2]].Center;
-                            value5 -= npc.Center;
-                            if (value5 == Vector2.Zero)
-                            {
-                                value5 = -Vector2.UnitY;
-                            }
-                            value5.Normalize();
-                            if (Math.Abs(value5.Y) < 0.77f)
-                            {
-                                npc.localAI[2] = 11f;
-                            }
-                            else if (value5.Y < 0f)
-                            {
-                                npc.localAI[2] = 12f;
-                            }
-                            else
-                            {
-                                npc.localAI[2] = 10f;
-                            }
-                            int num41 = Math.Sign(value5.X);
-                            if (num41 != 0)
-                            {
-                                npc.direction = (npc.spriteDirection = num41);
-                            }
-                        }
-                        else
-                        {
-                            Vector2 value6 = Main.projectile[(int)Main.npc[(int)npc.ai[3]].ai[2]].Center;
-                            value6 -= npc.Center;
-                            if (value6 == Vector2.Zero)
-                            {
-                                value6 = -Vector2.UnitY;
-                            }
-                            value6.Normalize();
-                            if (Math.Abs(value6.Y) < 0.77f)
-                            {
-                                npc.localAI[2] = 11f;
-                            }
-                            else if (value6.Y < 0f)
-                            {
-                                npc.localAI[2] = 12f;
-                            }
-                            else
-                            {
-                                npc.localAI[2] = 10f;
-                            }
-                            int num42 = Math.Sign(value6.X);
-                            if (num42 != 0)
-                            {
-                                npc.direction = (npc.spriteDirection = num42);
-                            }
-                        }
-                    }
-                    npc.ai[1] += AttackSpeed(npc);
-                    if (npc.ai[1] >= 420f)
-                    {
-                        flag3 = true;
-                        npc.ai[0] = 0f;
-                        npc.ai[1] = 0f;
-                        npc.ai[3] += 1f;
-                        npc.velocity = Vector2.Zero;
-                        npc.netUpdate = true;
-                    }
-                }
-                else if (npc.ai[0] == 6f)
-                {
-                    //Laugh at your failure
-                    npc.localAI[2] = 13f;
-                    npc.ai[1] += AttackSpeed(npc);
-                    if (npc.ai[1] >= 120f)
-                    {
-                        EndAttack(npc);
-                    }
-                }
-                else if (npc.ai[0] == 7f)
-                {
-                    //Ancient Light
-                    
-                    int ancientLightAttackDelay = 20;
-                    int ancientLightSalvos = 2;
-                    if (master)
-                    {
-                        ancientLightAttackDelay = 30;
-                        ancientLightSalvos = 2;
-                    }
+                        //Ancient Light
 
-                    npc.localAI[2] = 11f;
-                    Vector2 vec4 = Vector2.Normalize(player.Center - center);
-                    if (vec4.HasNaNs())
-                    {
-                        vec4 = new Vector2(npc.direction, 0f);
-                    }
-                    if (npc.ai[1] >= 4f && isCultist && (int)(npc.ai[1] - 4f) >= ancientLightAttackDelay * (int)attackNumber)
-                    {
-                        attackNumber++;
-                        if ((int)(npc.ai[1] - 4f) / ancientLightAttackDelay == 2)
+                        int ancientLightAttackDelay = 20;
+                        int ancientLightSalvos = 2;
+                        if (master)
                         {
-                            IllusionsAttack(npc, player);
+                            ancientLightAttackDelay = 30;
+                            ancientLightSalvos = 2;
                         }
-                        int num46 = Math.Sign(player.Center.X - center.X);
-                        if (num46 != 0)
+
+                        npc.localAI[2] = 11f;
+                        Vector2 vec4 = Vector2.Normalize(player.Center - center);
+                        if (vec4.HasNaNs())
                         {
-                            npc.direction = (npc.spriteDirection = num46);
+                            vec4 = new Vector2(npc.direction, 0f);
                         }
-                        if (Main.netMode != 1)
+                        if (npc.ai[1] >= 4f && isCultist && (int)(npc.ai[1] - 4f) >= ancientLightAttackDelay * (int)attackNumber)
                         {
-                            vec4 = Vector2.Normalize(player.Center - center);
-                            if (vec4.HasNaNs())
+                            attackNumber++;
+                            if ((int)(npc.ai[1] - 4f) / ancientLightAttackDelay == 2)
                             {
-                                vec4 = new Vector2(npc.direction, 0f);
+                                IllusionsAttack(npc, player);
                             }
-                            Vector2 vector8 = npc.Center + new Vector2(npc.direction * 30, 12f);
-                            float scaleFactor = 8f;
-                            for (int num48 = 0; (float)num48 < 5f; num48++)
+                            int num46 = Math.Sign(player.Center.X - center.X);
+                            if (num46 != 0)
                             {
-                                Vector2 spinningpoint2 = vec4 * scaleFactor;
-                                spinningpoint2 = spinningpoint2.RotatedBy((num48 / 5f) * 2f * (float)Math.PI + (float)Math.PI / 5f);
-                                float ai = (Main.rand.NextFloat() - 0.5f) * 0.3f * ((float)Math.PI * 2f) / 60f;
-                                int num49 = NPC.NewNPC(npc.GetSource_FromAI(), (int)vector8.X, (int)vector8.Y + 7, 522, 0, 0f, ai, spinningpoint2.X, spinningpoint2.Y);
-                                Main.npc[num49].velocity = spinningpoint2;
+                                npc.direction = (npc.spriteDirection = num46);
                             }
-                        }
-                    }
-                    npc.ai[1] += AttackSpeed(npc);
-                    if (npc.ai[1] >= (float)(4 + ancientLightAttackDelay * ancientLightSalvos))
-                    {
-                        EndAttack(npc);
-                    }
-                }
-                else if (npc.ai[0] == 8f)
-                {
-                    //Ancient Doom
-                    
-                    int ancientDoomAttackDelay = 20;
-                    int ancientDoomCount = 3;
-                    npc.localAI[2] = 13f;
-                    if (npc.ai[1] >= 4f && isCultist && (int)(npc.ai[1] - 4f) >= ancientDoomAttackDelay * (int)attackNumber)
-                    {
-                        attackNumber++;
-                        List<int> list8 = new List<int>();
-                        for (int num50 = 0; num50 < 200; num50++)
-                        {
-                            if (Main.npc[num50].active && Main.npc[num50].type == NPCID.CultistBossClone && Main.npc[num50].ai[3] == (float)npc.whoAmI)
+                            if (Main.netMode != 1)
                             {
-                                list8.Add(num50);
-                            }
-                        }
-                        int num51 = list8.Count + 1;
-                        if (num51 > 3)
-                        {
-                            num51 = 3;
-                        }
-                        int num52 = Math.Sign(player.Center.X - center.X);
-                        if (num52 != 0)
-                        {
-                            npc.direction = (npc.spriteDirection = num52);
-                        }
-                        if (Main.netMode != 1)
-                        {
-                            for (int num53 = 0; num53 < num51; num53++)
-                            {
-                                Point point = npc.Center.ToTileCoordinates();
-                                Point point2 = Main.player[npc.target].Center.ToTileCoordinates();
-                                Vector2 vector9 = Main.player[npc.target].Center - npc.Center;
-                                int num54 = 20;
-                                int num55 = 3;
-                                int num56 = 7;
-                                int num57 = 2;
-                                int num58 = 0;
-                                bool flag5 = false;
-                                if (vector9.Length() > 2000f)
+                                vec4 = Vector2.Normalize(player.Center - center);
+                                if (vec4.HasNaNs())
                                 {
-                                    flag5 = true;
+                                    vec4 = new Vector2(npc.direction, 0f);
                                 }
-                                while (!flag5 && num58 < 100)
+                                Vector2 vector8 = npc.Center + new Vector2(npc.direction * 30, 12f);
+                                float scaleFactor = 8f;
+                                for (int num48 = 0; (float)num48 < 5f; num48++)
                                 {
-                                    num58++;
-                                    int num59 = Main.rand.Next(point2.X - num54, point2.X + num54 + 1);
-                                    int num60 = Main.rand.Next(point2.Y - num54, point2.Y + num54 + 1);
-                                    //maybye wrong tile?
-                                    if ((num60 < point2.Y - num56 || num60 > point2.Y + num56 || num59 < point2.X - num56 || num59 > point2.X + num56) && (num60 < point.Y - num55 || num60 > point.Y + num55 || num59 < point.X - num55 || num59 > point.X + num55) && !Main.tile[num59, num60].IsActuated)
+                                    Vector2 spinningpoint2 = vec4 * scaleFactor;
+                                    spinningpoint2 = spinningpoint2.RotatedBy((num48 / 5f) * 2f * (float)Math.PI + (float)Math.PI / 5f);
+                                    float ai = (Main.rand.NextFloat() - 0.5f) * 0.3f * ((float)Math.PI * 2f) / 60f;
+                                    int num49 = NPC.NewNPC(npc.GetSource_FromAI(), (int)vector8.X, (int)vector8.Y + 7, 522, 0, 0f, ai, spinningpoint2.X, spinningpoint2.Y);
+                                    Main.npc[num49].velocity = spinningpoint2;
+                                }
+                            }
+                        }
+                        npc.ai[1] += AttackSpeed(npc);
+                        if (npc.ai[1] >= (float)(4 + ancientLightAttackDelay * ancientLightSalvos))
+                        {
+                            EndAttack(npc);
+                        }
+                    }
+                    else if (npc.ai[0] == 8f)
+                    {
+                        //Ancient Doom
+
+                        int ancientDoomAttackDelay = 20;
+                        int ancientDoomCount = 3;
+                        npc.localAI[2] = 13f;
+                        if (npc.ai[1] >= 4f && isCultist && (int)(npc.ai[1] - 4f) >= ancientDoomAttackDelay * (int)attackNumber)
+                        {
+                            attackNumber++;
+                            List<int> list8 = new List<int>();
+                            for (int num50 = 0; num50 < 200; num50++)
+                            {
+                                if (Main.npc[num50].active && Main.npc[num50].type == NPCID.CultistBossClone && Main.npc[num50].ai[3] == (float)npc.whoAmI)
+                                {
+                                    list8.Add(num50);
+                                }
+                            }
+                            int num51 = list8.Count + 1;
+                            if (num51 > 3)
+                            {
+                                num51 = 3;
+                            }
+                            int num52 = Math.Sign(player.Center.X - center.X);
+                            if (num52 != 0)
+                            {
+                                npc.direction = (npc.spriteDirection = num52);
+                            }
+                            if (Main.netMode != 1)
+                            {
+                                for (int num53 = 0; num53 < num51; num53++)
+                                {
+                                    Point point = npc.Center.ToTileCoordinates();
+                                    Point point2 = Main.player[npc.target].Center.ToTileCoordinates();
+                                    Vector2 vector9 = Main.player[npc.target].Center - npc.Center;
+                                    int num54 = 20;
+                                    int num55 = 3;
+                                    int num56 = 7;
+                                    int num57 = 2;
+                                    int num58 = 0;
+                                    bool flag5 = false;
+                                    if (vector9.Length() > 2000f)
                                     {
-                                        bool flag6 = true;
-                                        if (flag6 && Collision.SolidTiles(num59 - num57, num59 + num57, num60 - num57, num60 + num57))
+                                        flag5 = true;
+                                    }
+                                    while (!flag5 && num58 < 100)
+                                    {
+                                        num58++;
+                                        int num59 = Main.rand.Next(point2.X - num54, point2.X + num54 + 1);
+                                        int num60 = Main.rand.Next(point2.Y - num54, point2.Y + num54 + 1);
+                                        //maybye wrong tile?
+                                        if ((num60 < point2.Y - num56 || num60 > point2.Y + num56 || num59 < point2.X - num56 || num59 > point2.X + num56) && (num60 < point.Y - num55 || num60 > point.Y + num55 || num59 < point.X - num55 || num59 > point.X + num55) && !Main.tile[num59, num60].IsActuated)
                                         {
-                                            flag6 = false;
-                                        }
-                                        if (flag6)
-                                        {
-                                            NPC.NewNPC(npc.GetSource_FromAI(), num59 * 16 + 8, num60 * 16 + 8, 523, 0, npc.whoAmI);
-                                            flag5 = true;
-                                            break;
+                                            bool flag6 = true;
+                                            if (flag6 && Collision.SolidTiles(num59 - num57, num59 + num57, num60 - num57, num60 + num57))
+                                            {
+                                                flag6 = false;
+                                            }
+                                            if (flag6)
+                                            {
+                                                NPC.NewNPC(npc.GetSource_FromAI(), num59 * 16 + 8, num60 * 16 + 8, 523, 0, npc.whoAmI);
+                                                flag5 = true;
+                                                break;
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
+                        npc.ai[1] += AttackSpeed(npc);
+                        if (npc.ai[1] >= (float)(4 + ancientDoomAttackDelay * ancientDoomCount))
+                        {
+                            npc.ai[0] = 0f;
+                            npc.ai[1] = 0f;
+                            npc.ai[3] += 1f;
+                            npc.velocity = Vector2.Zero;
+                            npc.netUpdate = true;
+                        }
                     }
-                    npc.ai[1] += AttackSpeed(npc);
-                    if (npc.ai[1] >= (float)(4 + ancientDoomAttackDelay * ancientDoomCount))
+                    if (!isCultist)
                     {
-                        npc.ai[0] = 0f;
-                        npc.ai[1] = 0f;
-                        npc.ai[3] += 1f;
-                        npc.velocity = Vector2.Zero;
-                        npc.netUpdate = true;
+                        npc.ai[3] = attackTally;
                     }
-                }
-                if (!isCultist)
-                {
-                    npc.ai[3] = attackTally;
-                }
-                npc.dontTakeDamage = flag2;
-                npc.chaseable = !flag3;
+                    npc.dontTakeDamage = flag2;
+                    npc.chaseable = !flag3;
 
-                return false;
+                    return false;
+                }
+
+                return base.PreAI(npc);
             }
-            return base.PreAI(npc);
+            return true;
 		}
 
         private static void IllusionsAttack(NPC npc, Player player)

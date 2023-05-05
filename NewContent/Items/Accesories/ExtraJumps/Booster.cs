@@ -13,9 +13,10 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             // DisplayName.SetDefault("Booster");
             //DisplayName.SetDefault("Christmas Booster");
-            //Tooltip.SetDefault("Bame's note: I dont really like how this item feels... should I finish it?");
             // Tooltip.SetDefault("This is how santa gets down the chimmney so quickly");
         }
         public override void SetDefaults()

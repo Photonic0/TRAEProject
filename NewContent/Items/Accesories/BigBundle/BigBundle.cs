@@ -34,7 +34,7 @@ namespace TRAEProject.NewContent.Items.Accesories.BigBundle
             player.hasJumpOption_Fart = true;
             player.hasJumpOption_Sail = true;
             player.jumpBoost = true;
-            player.GetModPlayer<HoneyCombPlayer>().combs += 1; player.lifeRegen += 1;
+            player.GetModPlayer<HoneyCombPlayer>().combs += 1;
             player.noFallDmg = true;
             player.GetModPlayer<SpaceBalloonPlayer>().SpaceBalloon += 1;
         }

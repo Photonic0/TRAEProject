@@ -29,8 +29,18 @@ namespace TRAEProject.Changes.NPCs
 
             switch (npc.type)
             {
+                case NPCID.DD2DarkMageT1:
+                case NPCID.DD2DarkMageT3:
+                    npcLoot.Add(ItemDropRule.OneFromOptions(6, ItemID.MonkBelt, ItemID.HuntressBuckler));
+
+                    break;
+                case NPCID.DD2OgreT2:
+                case NPCID.DD2OgreT3:
+                    npcLoot.Add(ItemDropRule.OneFromOptions(6, ItemID.SquireShield, ItemID.ApprenticeScarf));
+
+                    break;
                 case NPCID.RedDevil:
-                    npcLoot.Add(ItemDropRule.Common(ItemID.GuideVoodooDoll, 60));
+                    npcLoot.Add(ItemDropRule.Common(ItemID.GuideVoodooDoll, 80));
                     npcLoot.RemoveWhere(rule =>
                     {
                         if (rule is not CommonDrop drop) // Type of drop you expect here
@@ -194,7 +204,7 @@ namespace TRAEProject.Changes.NPCs
                     itemDropRule.OnSuccess(ItemDropRule.Common(ItemID.Stake, 1, 30, 60), hideLootReport: true);
                     rule.OnSuccess(new OneFromRulesRule(1, ItemDropRule.Common(ItemID.SpookyHook), ItemDropRule.Common(ItemID.SpookyTwig), itemDropRule, ItemDropRule.Common(ItemID.CursedSapling), ItemDropRule.Common(ItemID.NecromanticScroll), ItemDropRule.Common(ItemType<SharpLament>())));
                     rule.OnSuccess(ItemDropRule.Common(ItemID.MourningWoodTrophy, 4));
-                    rule.OnSuccess(ItemDropRule.ByCondition(new Conditions.IsExpert(), ItemID.WitchBroom, 5));
+                    rule.OnSuccess(ItemDropRule.Common(ItemID.WitchBroom, 10));
                     rule.OnSuccess(ItemDropRule.MasterModeCommonDrop(ItemID.MourningWoodMasterTrophy));
                     rule.OnSuccess(ItemDropRule.MasterModeDropOnAllPlayers(ItemID.SpookyWoodMountItem, 4));
                     npcLoot.Add(rule);

@@ -13,6 +13,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             // DisplayName.SetDefault("Levitation Juice");
             // Tooltip.SetDefault("Provides a long lasting double jump");
         }

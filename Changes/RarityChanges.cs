@@ -217,6 +217,9 @@ namespace ChangesWeapons.Changes
                 case ItemID.PrismaticPunch:
                 case ItemID.PigronMinecart:
                 case ItemID.DiggingMoleMinecart:
+                case ItemID.PearlwoodHelmet:
+                case ItemID.PearlwoodBreastplate:
+                case ItemID.PearlwoodGreaves:
                     item.rare = ItemRarityID.Pink;
                     break;
                 case ItemID.MonkStaffT1:

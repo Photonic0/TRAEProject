@@ -10,10 +10,14 @@ using TRAEProject.NewContent.Items.Accesories.SpaceBalloon;
 
 namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
 {
+    [AutoloadEquip(EquipType.Balloon)]
+
     public class FaeInABalloon : ModItem
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             // DisplayName.SetDefault("Fae Balloon");
             // Tooltip.SetDefault("A weak double jump that grant immunity frames\nIncreases jump height\nAllows reducing gravity by hodling up");
         }
@@ -21,7 +25,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         {
             Item.accessory = true;
             Item.rare = ItemRarityID.Yellow;
-			Item.value = Item.buyPrice(0, 40);
+			Item.value = Item.buyPrice(gold: 5);
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

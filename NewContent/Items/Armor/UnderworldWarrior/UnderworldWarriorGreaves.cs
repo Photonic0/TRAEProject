@@ -24,7 +24,6 @@ namespace TRAEProject.NewContent.Items.Armor.UnderworldWarrior
         public override void UpdateEquip(Player player)
         {
             player.GetCritChance<GenericDamageClass>() += 15; 
-            player.moveSpeed += 0.15f;
             player.GetAttackSpeed<MeleeDamageClass>() += 0.25f;
         }
     }

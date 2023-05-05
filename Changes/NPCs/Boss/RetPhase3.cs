@@ -16,7 +16,7 @@ namespace TRAEProject.Changes.NPCs.Boss
 {
     public static class RetPhase3
     {
-        static int tpTime = 40;
+        static int tpTime = 60;
         static int tpCount = 3;
         static int shotTime = 10;
         static int rapidShotTime = 3;
@@ -289,7 +289,7 @@ namespace TRAEProject.Changes.NPCs.Boss
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Eye Nuke");
-            Main.projFrames[Projectile.type] = 2;
+            Main.projFrames[Projectile.type] = 3;
         }
         public override void SetDefaults()
         {
@@ -325,12 +325,12 @@ namespace TRAEProject.Changes.NPCs.Boss
             {
                 Explode(Projectile);
             }
-            if(Projectile.timeLeft % 20 > 10)
+            if(Projectile.timeLeft % 12 == 0)
             {
-                Projectile.frame = 1;
+                Projectile.frame += 1;
             }
-            else
-            {
+            if (Projectile.frame >= 3)
+            { 
                 Projectile.frame = 0;
             }
             if(Projectile.timeLeft < 60)

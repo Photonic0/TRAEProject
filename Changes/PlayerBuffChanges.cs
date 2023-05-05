@@ -37,7 +37,9 @@ namespace TRAEProject
                     player.AddBuff(BuffType<NeoFeralBite>(), player.buffTime[buffIndex], false);
                     player.DelBuff(buffIndex);
                     return;
-
+                case BuffID.Inferno:
+                    player.infernoCounter = 0;
+                    return;
                 case BuffID.ManaRegeneration:
                     player.GetModPlayer<Mana>().manaRegenBoost += 0.2f;
                     return;
@@ -161,7 +163,7 @@ namespace TRAEProject
                 {
                     RingDamage = 1;
                 }
-                int dustsToMake = 10 + damageDone / 10;
+                int dustsToMake = 5 + damageDone / 10;
                 for (int i = 0; i < dustsToMake; i++)
                 {
                     float radius = range / 62.5f;

@@ -102,7 +102,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text += "/nAllows fast fall";
+                            line.Text += "\nAllows fast fall";
                         }
                     }
                     break;

@@ -18,6 +18,12 @@ namespace TRAEProject.Changes.Recipes
 
         public static void Load(Mod mod)
         {
+            Recipe MoltenSkull = Recipe.Create(ItemID.MoltenSkullRose).AddIngredient(ItemID.MagmaStone, 1).AddIngredient(ItemID.ObsidianRose).AddIngredient(ItemID.ObsidianSkull).AddTile(TileID.TinkerersWorkbench);
+            MoltenSkull.Register();
+            Recipe MoltenSkullRoseSkull = Recipe.Create(ItemID.MoltenSkullRose).AddIngredient(ItemID.ObsidianSkullRose, 1).AddIngredient(ItemID.MagmaStone).AddTile(TileID.TinkerersWorkbench);
+            MoltenSkullRoseSkull.Register();
+            Recipe MoltenSkullRoseMagmaSkull = Recipe.Create(ItemID.MoltenSkullRose).AddIngredient(3999, 1).AddIngredient(ItemID.ObsidianRose).AddTile(TileID.TinkerersWorkbench);
+            MoltenSkullRoseMagmaSkull.Register();
             Recipe YoyoBagAlt = Recipe.Create(ItemID.YoyoBag).AddIngredient(ItemID.YoYoGlove, 1).AddIngredient(ItemType<CounterweightString>()).AddTile(TileID.TinkerersWorkbench);
             YoyoBagAlt.Register();
             Recipe HermesBoots = Recipe.Create(ItemID.HermesBoots).AddIngredient(ItemID.Aglet, 1).AddIngredient(ItemID.Silk, 20).AddTile(TileID.Loom);
@@ -121,6 +127,14 @@ namespace TRAEProject.Changes.Recipes
             }
             if (recipe.HasResult(ItemID.LavaWaders))
             {
+                recipe.TryGetIngredient(ItemID.ObsidianWaterWalkingBoots, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.TryGetIngredient(ItemID.ObsidianRose, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove); 
+                recipe.TryGetIngredient(ItemID.MoltenCharm, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+                recipe.TryGetIngredient(ItemID.MoltenSkullRose, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
                 recipe.DisableRecipe();
            
             }
@@ -199,11 +213,9 @@ namespace TRAEProject.Changes.Recipes
                 recipe.RemoveIngredient(ingredientToRemove);
                 recipe.AddIngredient(ItemID.MagmaStone, 1);
             }
-            if (recipe.HasResult(ItemID.MoltenSkullRose)) // MAGMA SKULL
+            if (recipe.HasResult(ItemID.MoltenSkullRose)) 
             {
-                recipe.TryGetIngredient(ItemID.LavaCharm, out ingredientToRemove);
-                recipe.RemoveIngredient(ingredientToRemove);
-                recipe.AddIngredient(ItemID.MagmaStone, 1);
+                recipe.DisableRecipe();
             }
             if (recipe.HasResult(ItemID.HeroShield))
             {

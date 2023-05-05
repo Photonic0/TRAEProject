@@ -26,6 +26,17 @@ namespace TRAEProject.Changes.Accesory
         BuffID.Ichor,   BuffID.Stoned,  BuffID.VortexDebuff,  BuffID.Obstructed,
         BuffID.Electrified, BuffID.ShadowFlame, BuffID.WitheredWeapon, BuffID.WitheredArmor, BuffID.Dazed, BuffID.Burning}; // 
 
+        void CelestialStoneStats(Player player)
+        {
+            player.skyStoneEffects = false;
+            player.GetDamage<GenericDamageClass>() += 0.08f;
+            player.GetCritChance<GenericDamageClass>() += 2;
+            player.statDefense += 4;
+            player.lifeRegen++;
+            player.statManaMax2 += 20;
+            player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
+            player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;
+        }
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
             switch (item.type)
@@ -109,57 +120,25 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 // CELESTIAL STONE CHANGES
                 case ItemID.CelestialStone:
-                    player.skyStoneEffects = false;
-                    player.GetDamage<GenericDamageClass>() += 0.08f;
-                    player.GetCritChance<GenericDamageClass>() += 2;
-                    player.statDefense += 4;
-                    player.lifeRegen++;
-                    player.statManaMax2 += 20;
-                    player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
-                    player.moveSpeed += 0.05f;
-                    player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;// new bonus
-                    // total stats: +8% damage, +2% crit, +0.5 hp/s, +4 defense. +5% melee speed, +20 max mana, +10% movement speed
+                    CelestialStoneStats(player);
+
+                    // total stats: +8% damage, +2% crit, +0.5 hp/s, +4 defense. +5% melee speed, +20 max mana, +5% movement speed, 10% chance not to consume ammo
                     break;
                 case ItemID.MoonStone:
                     if (!Main.dayTime)
                     {
-                        player.skyStoneEffects = false;
-                        player.GetDamage<GenericDamageClass>() += 0.08f;
-                        player.GetCritChance<GenericDamageClass>() += 2;
-                        player.statDefense += 4;
-                        player.lifeRegen++;
-                        player.statManaMax2 += 20;
-                        player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
-
-                        player.moveSpeed += 0.05f;
-                        player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;
+                        CelestialStoneStats(player);
                     }
                     break;
                 case ItemID.SunStone:
                     if (Main.dayTime)
                     {
-                        player.skyStoneEffects = false;
-                        player.GetDamage<GenericDamageClass>() += 0.08f;
-                        player.GetCritChance<GenericDamageClass>() += 2;
-                        player.statDefense += 4;
-                        player.lifeRegen++;
-                        player.statManaMax2 += 20;
-                        player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
+                        CelestialStoneStats(player);
 
-                        player.moveSpeed += 0.05f;
-                        player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;
                     }
                     break;
                 case ItemID.CelestialShell:
-                    player.skyStoneEffects = false;
-                    player.GetDamage<GenericDamageClass>() += 0.08f;
-                    player.GetCritChance<GenericDamageClass>() += 2;
-                    player.statDefense += 4;
-                    player.lifeRegen++;
-                    player.statManaMax2 += 20;
-                    player.GetAttackSpeed(DamageClass.Melee) += 0.05f;
-                    player.moveSpeed += 0.05f;
-                    player.GetModPlayer<RangedStats>().chanceNotToConsumeAmmo += 10;
+                    CelestialStoneStats(player);
                     player.wolfAcc = false;
                     break;
                 case ItemID.BandofStarpower:
@@ -652,22 +631,24 @@ namespace TRAEProject.Changes.Accesory
                         }
                     }
                     break;
-                case ItemID.MoonStone:
-                    foreach (TooltipLine line in tooltips)
-                    {
-                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
-                        {
-                            line.Text = "Minor increases to all stats during the night";
-                        }
-                    }
-                    break;
                 case ItemID.SunStone:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Minor increases to all stats during the day";
+                            line.Text = "Minor increases to damage, maximum mana, chance not to consume ammo,";
                         }
+
+                    }
+                    break;
+                case ItemID.MoonStone:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip0")
+                        {
+                            line.Text = "Minor increases to damage, maximum mana, chance not to consume ammo,";
+                        }
+
                     }
                     break;
                 case ItemID.CelestialStone:
@@ -675,11 +656,11 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Minor increases to all stats";
+                            line.Text = "Minor increases to damage, maximum mana, chance not to consume ammo,";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "";
+                            line.Text = "melee speed, critical strike chance, life regeneration,";
                         }
                     }
                     break;
@@ -692,7 +673,11 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Minor increases to all stats";
+                            line.Text = "Minor increases to damage, maximum mana,";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip2")
+                        {
+                            line.Text = "chance not to consume ammo, melee speed,";
                         }
                     }
                     break;

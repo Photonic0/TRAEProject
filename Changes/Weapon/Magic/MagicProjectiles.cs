@@ -80,7 +80,12 @@ namespace TRAEProject.Changes.Projectiles
                     break;
                 case ProjectileID.WaterStream:
                     projectile.penetrate = 1;
+                    break;     
+				case ProjectileID.ClingerStaff:
+                    DrainManaOnHit = 4;
+                    DrainManaPassively = 30;
                     break;
+
                 case ProjectileID.RainbowFront:
                 case ProjectileID.RainbowBack:
                     projectile.usesIDStaticNPCImmunity = true;
@@ -95,11 +100,7 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.RainFriendly:
                     projectile.penetrate = 1;
                     break;
-                case ProjectileID.ClingerStaff:
-                    DrainManaOnHit = 4;
-                    DrainManaPassively = 30;
-                    break;
-
+           
                 case ProjectileID.Blizzard:
                     projectile.timeLeft = 150;
                     projectile.GetGlobalProjectile<ProjectileStats>().homesIn = true;
@@ -127,8 +128,10 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.extraUpdates = 2;
                     break;            
                 case ProjectileID.GoldenShowerFriendly:
-                    projectile.penetrate = 2; // down from 5
-
+                    projectile.penetrate = 3; // down from 5
+                    //projectile.GetGlobalProjectile<ProjectileStats>().DamageFalloff = 0.05f;
+                    projectile.usesLocalNPCImmunity = true;
+                    projectile.localNPCHitCooldown = -1;
                     break;
 				case ProjectileID.FrostBoltStaff:
                     projectile.penetrate = 2;

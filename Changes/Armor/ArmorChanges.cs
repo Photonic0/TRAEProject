@@ -23,6 +23,15 @@ namespace ChangesArmor
                 case ItemID.SpiderBreastplate:
                     player.moveSpeed += 0.1f;
                     break;
+                case ItemID.PearlwoodHelmet:
+                    player.jumpSpeedBoost += 1f;
+                    break;
+                case ItemID.PearlwoodBreastplate:
+                    Player.jumpHeight += 2;
+                    break;
+                case ItemID.PearlwoodGreaves:
+                    player.moveSpeed += 0.15f;
+                    break;
                 case ItemID.AncientArmorHat:
                     player.GetDamage<SummonDamageClass>() += 0.17f;
                     player.maxTurrets += 1;
@@ -133,7 +142,7 @@ namespace ChangesArmor
                 case ItemID.MonkAltPants:
                 case ItemID.HuntressAltPants:
                 case ItemID.ApprenticeAltPants:
-                    player.moveSpeed -= 0.1f;
+                    player.moveSpeed -= 0.15f;
                     break;
 ///////////////// end of OOA
                 case ItemID.NinjaHood:
@@ -170,9 +179,7 @@ namespace ChangesArmor
             if (head.type == ItemID.EbonwoodHelmet && body.type == ItemID.EbonwoodBreastplate && legs.type == ItemID.EbonwoodGreaves)
                 return "WoodSet";
             if (head.type == ItemID.RichMahoganyHelmet && body.type == ItemID.RichMahoganyBreastplate && legs.type == ItemID.RichMahoganyGreaves)
-                return "WoodSet"; 
-            if (head.type == ItemID.PearlwoodHelmet && body.type == ItemID.PearlwoodBreastplate && legs.type == ItemID.PearlwoodGreaves)
-                return "WoodSetPlus"; 
+                return "WoodSet";  
             if (head.type == ItemID.CopperHelmet && body.type == ItemID.CopperChainmail && legs.type == ItemID.CopperGreaves)
                 return "CopperSet";
             if (head.type == ItemID.TinHelmet && body.type == ItemID.TinChainmail && legs.type == ItemID.TinGreaves)
@@ -227,6 +234,8 @@ namespace ChangesArmor
                 return "FrostSet";
             if (head.type == ItemID.CrystalNinjaHelmet && body.type == ItemID.CrystalNinjaChestplate && legs.type == ItemID.CrystalNinjaLeggings)
                 return "CrystalAssassinSet";
+            if (head.type == ItemID.PearlwoodHelmet && body.type == ItemID.PearlwoodBreastplate && legs.type == ItemID.PearlwoodGreaves)
+                return "PearlwoodSet";
             return base.IsArmorSet(head, body, legs);
         }
         public override void UpdateArmorSet(Player player, string armorSet)
@@ -371,11 +380,27 @@ namespace ChangesArmor
                 player.setBonus = "10% increased damage, critical strike chance and movement speed";
                 player.moveSpeed += 0.1f;
             }
+            if (armorSet == "PearlwoodSet")
+            {
+                player.setBonus = "Allows the ability to dash";
+                player.dashType = 5;
+            }
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             switch (item.type)
             {
+                case ItemID.GladiatorHelmet:
+                case ItemID.GladiatorBreastplate:
+                case ItemID.GladiatorLeggings:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.Text += "\n5% increased melee speed";
+                        }
+                    }
+                    return;
                 case ItemID.SpiderBreastplate:
                     foreach (TooltipLine line in tooltips)
                     {
@@ -385,14 +410,30 @@ namespace ChangesArmor
                         }
                     }
                     break;
-                case ItemID.GladiatorHelmet:
-                case ItemID.GladiatorBreastplate:
-                case ItemID.GladiatorLeggings:
+                case ItemID.PearlwoodHelmet:
                     foreach (TooltipLine line in tooltips)
                     {
                         if (line.Mod == "Terraria" && line.Name == "Defense")
                         {
-                            line.Text += "\n5% increased melee speed";
+                            line.Text += "\n20% increased jump speed";
+                        }
+                    }
+                    return;
+                case ItemID.PearlwoodBreastplate:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.Text += "\nSlightly increased jump duration";
+                        }
+                    }
+                    return;
+                case ItemID.PearlwoodGreaves:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Mod == "Terraria" && line.Name == "Defense")
+                        {
+                            line.Text += "\n15% increased movement speed";
                         }
                     }
                     return;
@@ -616,7 +657,11 @@ namespace ChangesArmor
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "20% increased minion damage and melee critical strike chance\n10% increased movement speed";
+                            line.Text = "20% increased minion damage and melee critical strike chance";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "10% increased movement speed";
                         }
                     }
                     return;
@@ -643,7 +688,11 @@ namespace ChangesArmor
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "20% increased minion damage, melee critical strike chance and movement speed";
+                            line.Text = "20% increased minion damage and melee critical strike chance";
+                        }
+                        if (line.Mod == "Terraria" && line.Name == "Tooltip1")
+                        {
+                            line.Text = "15% increased movement speed";
                         }
                     }
                     return;

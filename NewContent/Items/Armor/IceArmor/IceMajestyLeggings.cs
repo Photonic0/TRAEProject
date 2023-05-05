@@ -20,7 +20,7 @@ namespace TRAEProject.NewContent.Items.Armor.IceArmor
         {
             Item.value = Item.sellPrice(0, 30, 0, 0);
             Item.rare = ItemRarityID.Yellow;
-            Item.width = 22;
+            Item.width = 26;
             Item.height = 16;
             Item.defense = 13;
         }

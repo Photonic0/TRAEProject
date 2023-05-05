@@ -24,7 +24,7 @@ namespace TRAEProject.Changes.NPCs
                     npc.lifeMax = 70; 
                     return;
                 case NPCID.LavaSlime:
-                    npc.damage = 80; // up from 15
+                    npc.damage = 50; // up from 15
                     npc.lifeMax = 150; // up from 50
                     npc.knockBackResist = 0.4f; // up from 0%
                     return;

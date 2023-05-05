@@ -39,7 +39,7 @@ namespace TRAEProject.Changes.Accesory
                     player.GetModPlayer<ObsidianSkullEffect>().arrowsburn += 1;
                     break;
                 case ItemID.ObsidianRose:
-                    player.GetModPlayer<CritDamage>().magicCritDamage += 0.17f;
+                    player.GetModPlayer<CritDamage>().magicCritDamage += 0.10f;
                     break;
                 case ItemID.ObsidianSkullRose:
                     player.GetModPlayer<ObsidianSkullEffect>().roseskull += 1;
@@ -171,7 +171,8 @@ namespace TRAEProject.Changes.Accesory
             magmaSkull = 0;
             arrowsburn = 0;
             moltenskullrose = 0; 
-            skull = 0; roseskull = 0;
+            skull = 0; 
+            roseskull = 0;
             shieldRange = 0f;
         }
         public override void UpdateDead()

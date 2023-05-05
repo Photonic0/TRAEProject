@@ -7,6 +7,8 @@ using Terraria.Enums;
 using Terraria.Graphics.CameraModifiers;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
+
 
 namespace TRAEProject.NPCs.Boss
 {
@@ -24,277 +26,361 @@ namespace TRAEProject.NPCs.Boss
 		int stingercounter = 0;
 		public override void SetDefaults(NPC npc)
 		{
-			if (npc.type == NPCID.Deerclops)
+			if (GetInstance<TRAEConfig>().DeerclopsChanges)
 			{
-				npc.lifeMax = 3600; // down from 7000
+
+				if (npc.type == NPCID.Deerclops)
+				{
+					npc.lifeMax = 3600; // down from 7000
+				}
 			}
 		}
 		float timer = 1f;
 		float MaxTimeWithoutBouldersOrHands = 600f;
 		public override bool PreAI(NPC npc)
 		{
-			if (npc.type == NPCID.Deerclops)
+			if (GetInstance<TRAEConfig>().DeerclopsChanges)
 			{
-				if (timer <= MaxTimeWithoutBouldersOrHands)
-					timer += 1f; // this timer is here to make him use boulders and hands more often
-				bool expertMode = Main.expertMode;
-				bool mustard = Main.masterMode;
+				if (npc.type == NPCID.Deerclops)
+				{
+					if (timer <= MaxTimeWithoutBouldersOrHands)
+						timer += 1f; // this timer is here to make him use boulders and hands more often
+					bool expertMode = Main.expertMode;
+					bool mustard = Main.masterMode;
 
-				int num = 15;
-				NPCAimedTarget targetData = npc.GetTargetData();
-				bool haltMovement = false;
-				bool goHome = false;
-				bool flag = npc.Distance(targetData.Center) >= 450f;
-				if (mustard)
-					flag = npc.Distance(targetData.Center) >= 360f;
-				npc.localAI[3] = MathHelper.Clamp(npc.localAI[3] + (float)flag.ToDirectionInt(), 0f, 30f);
-				npc.dontTakeDamage = npc.localAI[3] >= 30f;
-				float lifePercent = (float)npc.life / (float)npc.lifeMax;
-				
-				int shadowHandDamage = 10;
-				float num2 = Utils.Remap(npc.localAI[3], 0f, 30f, 0f, 1f);
-				if (num2 > 0f)
-				{
-					float num3 = Main.rand.NextFloat() * num2 * 3f;
-					while (num3 > 0f)
+					int num = 15;
+					NPCAimedTarget targetData = npc.GetTargetData();
+					bool haltMovement = false;
+					bool goHome = false;
+					bool flag = npc.Distance(targetData.Center) >= 450f;
+					if (mustard)
+						flag = npc.Distance(targetData.Center) >= 360f;
+					npc.localAI[3] = MathHelper.Clamp(npc.localAI[3] + (float)flag.ToDirectionInt(), 0f, 30f);
+					npc.dontTakeDamage = npc.localAI[3] >= 30f;
+					float lifePercent = (float)npc.life / (float)npc.lifeMax;
+
+					int shadowHandDamage = 10;
+					float num2 = Utils.Remap(npc.localAI[3], 0f, 30f, 0f, 1f);
+					if (num2 > 0f)
 					{
-						num3 -= 1f;
-						Dust.NewDustDirect(npc.position, npc.width, npc.height, 109, 0f, -3f, 0, default, 1.4f).noGravity = true;
-					}
-				}
-				if (npc.homeTileX == -1 && npc.homeTileY == -1)
-				{
-					Point point = npc.Bottom.ToTileCoordinates();
-					npc.homeTileX = point.X;
-					npc.homeTileY = point.Y;
-					npc.ai[2] = npc.homeTileX;
-					npc.ai[3] = npc.homeTileY;
-					npc.netUpdate = true;
-					npc.timeLeft = 6000; // down from 86400 (24 minutes to 1 minute)
-				}
-				npc.timeLeft -= (int)Main.dayRate;
-				if (npc.timeLeft < 0)
-				{
-					npc.timeLeft = 0;
-				}
-				npc.homeTileX = (int)npc.ai[2];
-				npc.homeTileY = (int)npc.ai[3];
-				if (!expertMode)
-				{
-					npc.localAI[2] = 0f;
-				}
-				if (expertMode && Main.netMode != 1 && npc.ai[0] != 6)
-				{
-					SpawnPassiveShadowHands(npc, lifePercent, shadowHandDamage);
-				}
-				switch ((int)npc.ai[0])
-				{
-					case -1:
-						npc.localAI[3] = -10f;
-						break;
-					case 6:
+						float num3 = Main.rand.NextFloat() * num2 * 3f;
+						while (num3 > 0f)
 						{
-							npc.TargetClosest(faceTarget: false);
-							targetData = npc.GetTargetData();
-							if (Main.netMode != 1)
+							num3 -= 1f;
+							Dust.NewDustDirect(npc.position, npc.width, npc.height, 109, 0f, -3f, 0, default, 1.4f).noGravity = true;
+						}
+					}
+					if (npc.homeTileX == -1 && npc.homeTileY == -1)
+					{
+						Point point = npc.Bottom.ToTileCoordinates();
+						npc.homeTileX = point.X;
+						npc.homeTileY = point.Y;
+						npc.ai[2] = npc.homeTileX;
+						npc.ai[3] = npc.homeTileY;
+						npc.netUpdate = true;
+						npc.timeLeft = 6000; // down from 86400 (24 minutes to 1 minute)
+					}
+					npc.timeLeft -= (int)Main.dayRate;
+					if (npc.timeLeft < 0)
+					{
+						npc.timeLeft = 0;
+					}
+					npc.homeTileX = (int)npc.ai[2];
+					npc.homeTileY = (int)npc.ai[3];
+					if (!expertMode)
+					{
+						npc.localAI[2] = 0f;
+					}
+					if (expertMode && Main.netMode != 1 && npc.ai[0] != 6)
+					{
+						SpawnPassiveShadowHands(npc, lifePercent, shadowHandDamage);
+					}
+					switch ((int)npc.ai[0])
+					{
+						case -1:
+							npc.localAI[3] = -10f;
+							break;
+						case 6:
 							{
-								if (!ShouldRunAway(npc, ref targetData, isChasing: false))
+								npc.TargetClosest(faceTarget: false);
+								targetData = npc.GetTargetData();
+								if (Main.netMode != 1)
+								{
+									if (!ShouldRunAway(npc, ref targetData, isChasing: false))
+									{
+										npc.ai[0] = 0f;
+										npc.ai[1] = 0f;
+										npc.localAI[1] = 0f;
+										npc.netUpdate = true;
+										break;
+									}
+									if (npc.timeLeft <= 0)
+									{
+										npc.ai[0] = 8f;
+										npc.ai[1] = 0f;
+										npc.localAI[1] = 0f;
+										npc.netUpdate = true;
+										break;
+									}
+								}
+								if (npc.direction != npc.oldDirection)
+								{
+									npc.netUpdate = true;
+								}
+								goHome = true;
+								npc.ai[1] += 1f;
+								Vector2 other = new Vector2(npc.homeTileX * 16, npc.homeTileY * 16);
+								bool flag2 = npc.Top.Y > other.Y + 1600f;
+								bool num4 = npc.Distance(other) < 1020f;
+								npc.Distance(targetData.Center);
+								float num5 = npc.ai[1] % 600f;
+								if (num4 && num5 < 420f)
+								{
+									haltMovement = true;
+								}
+								bool flag3 = false;
+								int num6 = 300;
+								if (flag2 && npc.ai[1] >= (float)num6)
+								{
+									flag3 = true;
+								}
+								int num7 = 1500;
+								if (!num4 && npc.ai[1] >= (float)num7)
+								{
+									flag3 = true;
+								}
+								if (flag3)
+								{
+									npc.ai[0] = 7f;
+									npc.ai[1] = 0f;
+									npc.localAI[1] = 0f;
+									npc.netUpdate = true;
+								}
+								break;
+							}
+						case 0:
+							{
+								npc.TargetClosest();
+								targetData = npc.GetTargetData();
+								if (ShouldRunAway(npc, ref targetData, isChasing: true))
+								{
+									npc.ai[0] = 6f;
+									npc.ai[1] = 0f;
+									npc.localAI[1] = 0f;
+									npc.netUpdate = true;
+									break;
+								}
+								npc.ai[1] += 1f;
+								if (timer >= MaxTimeWithoutBouldersOrHands)
+									npc.ai[1] += 4f;
+								Vector2 vector = npc.Bottom + new Vector2(0f, -32f);
+								Vector2 vector2 = targetData.Hitbox.ClosestPointInRect(vector);
+								Vector2 DistanceToPlayer = vector2 - vector;
+								(vector2 - npc.Center).Length();
+								float num15 = 0.6f;
+								bool IsCloseHorizontally = Math.Abs(DistanceToPlayer.X) >= Math.Abs(DistanceToPlayer.Y) * num15 || DistanceToPlayer.Length() < 48f;
+								bool IsCloseVertically = DistanceToPlayer.Y <= 100 + targetData.Height && DistanceToPlayer.Y >= -200f;
+								// SPIKES ON BOTH SIDES
+
+								if (Math.Abs(DistanceToPlayer.X) < 120f && IsCloseVertically && npc.velocity.Y == 0f && npc.localAI[1] >= 2f && timer < MaxTimeWithoutBouldersOrHands)
+								{
+									npc.velocity.X = 0f;
+									npc.ai[0] = 4f;
+									npc.ai[1] = 0f;
+									npc.localAI[1] = 0f;
+									npc.netUpdate = true;
+									break;
+								}
+								// spikes forward
+								if (Math.Abs(DistanceToPlayer.X) < 120f && IsCloseVertically && npc.velocity.Y == 0f && IsCloseHorizontally && timer < MaxTimeWithoutBouldersOrHands)
+								{
+									npc.velocity.X = 0f;
+									npc.ai[0] = 1f;
+									npc.ai[1] = 0f;
+									npc.localAI[1] += 1f;
+									npc.netUpdate = true;
+									break;
+								}
+								// shoot boulders
+								bool flag6 = npc.ai[1] >= 240f; // down from 240
+								if (npc.velocity.Y == 0f && npc.velocity.X != 0f && flag6)
+								{
+									npc.velocity.X = 0f;
+									npc.ai[0] = 2f;
+									npc.ai[1] = 0f;
+									timer = 1;
+									npc.localAI[1] = 0f;
+									npc.netUpdate = true;
+									break;
+								}
+								// spawn hands
+								bool flag7 = npc.ai[1] >= 90f;
+								if (npc.velocity.Y == 0f && npc.velocity.X == 0f && flag7)
+								{
+									npc.velocity.X = 0f;
+									npc.ai[0] = 5f;
+									timer = 1;
+									npc.ai[1] = 0f;
+									npc.localAI[1] = 0f;
+									npc.netUpdate = true;
+									break;
+								}
+								bool flag8 = npc.ai[1] >= 120f;
+								int num16 = 32;
+								bool flag9 = targetData.Type == NPCTargetType.Player && !Main.player[npc.target].buffImmune[num16] && Main.player[npc.target].FindBuffIndex(num16) == -1;
+								if (npc.velocity.Y == 0f && flag8 && flag9 && Math.Abs(DistanceToPlayer.X) > 100f)
+								{
+									npc.velocity.X = 0f;
+									npc.ai[0] = 3f;
+									npc.ai[1] = 0f;
+									npc.localAI[1] = 0f;
+									npc.netUpdate = true;
+								}
+								break;
+							}
+						case 1:
+							npc.ai[1] += 0.9f;
+							if (mustard)
+								npc.ai[1] += 0.2f;
+							haltMovement = true;
+							AI_123_Deerclops_MakeSpikesForward(npc, 1, targetData);
+							if (npc.ai[1] >= 80f)
+							{
+								npc.ai[0] = 0f;
+								npc.ai[1] = 0f;
+								npc.netUpdate = true;
+							}
+							break;
+						case 4:
+							npc.ai[1] += 1f;
+							if (mustard)
+								npc.ai[1] += 0.5f;
+							haltMovement = true;
+							npc.TargetClosest();
+							AI_123_Deerclops_MakeSpikesBothSides(npc, 1, targetData);
+							if (npc.ai[1] >= 90f)
+							{
+								npc.ai[0] = 0f;
+								npc.ai[1] = 0f;
+								npc.netUpdate = true;
+							}
+							break;
+						case 2:
+							{
+								int num8 = 4;
+								int num9 = 8 * num8;
+								npc.ai[1] += 1f;
+								if (npc.ai[1] == (float)(num9 - 20))
+								{
+									SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
+								}
+								if (npc.ai[1] == (float)num9)
+								{
+									SoundEngine.PlaySound(SoundID.DeerclopsRubbleAttack, npc.Center);
+								}
+								haltMovement = true;
+								if (Main.netMode != 1 && npc.ai[1] >= (float)num9)
+								{
+									Point sourceTileCoords = npc.Top.ToTileCoordinates();
+									int num10 = 12; // down from 20
+									int DistancedByThisManyTiles = 1;
+									float upBiasPerSpike = 200f;
+									sourceTileCoords.X += npc.direction * 3;
+									sourceTileCoords.Y -= 10;
+									int num11 = (int)npc.ai[1] - num9;
+									if (num11 == 0)
+									{
+										PunchCameraModifier modifier4 = new PunchCameraModifier(npc.Center, new Vector2(0f, -1f), 20f, 6f, 30, 1000f, "Deerclops");
+										Main.instance.CameraModifiers.Add(modifier4);
+									}
+									int num12 = 1;
+									int num13 = num11 / num12 * num12;
+									int num14 = num13 + num12;
+									if (num11 % num12 != 0)
+									{
+										num14 = num13;
+									}
+									for (int j = num13; j < num14 && j < num10; j++)
+									{
+										AI_123_Deerclops_ShootRubbleUp(npc, ref targetData, ref sourceTileCoords, num10, DistancedByThisManyTiles, upBiasPerSpike, j);
+									}
+								}
+								if (npc.ai[1] >= 60f)
 								{
 									npc.ai[0] = 0f;
 									npc.ai[1] = 0f;
-									npc.localAI[1] = 0f;
 									npc.netUpdate = true;
-									break;
 								}
-								if (npc.timeLeft <= 0)
-								{
-									npc.ai[0] = 8f;
-									npc.ai[1] = 0f;
-									npc.localAI[1] = 0f;
-									npc.netUpdate = true;
-									break;
-								}
-							}
-							if (npc.direction != npc.oldDirection)
-							{
-								npc.netUpdate = true;
-							}
-							goHome = true;
-							npc.ai[1] += 1f;
-							Vector2 other = new Vector2(npc.homeTileX * 16, npc.homeTileY * 16);
-							bool flag2 = npc.Top.Y > other.Y + 1600f;
-							bool num4 = npc.Distance(other) < 1020f;
-							npc.Distance(targetData.Center);
-							float num5 = npc.ai[1] % 600f;
-							if (num4 && num5 < 420f)
-							{
-								haltMovement = true;
-							}
-							bool flag3 = false;
-							int num6 = 300;
-							if (flag2 && npc.ai[1] >= (float)num6)
-							{
-								flag3 = true;
-							}
-							int num7 = 1500;
-							if (!num4 && npc.ai[1] >= (float)num7)
-							{
-								flag3 = true;
-							}
-							if (flag3)
-							{
-								npc.ai[0] = 7f;
-								npc.ai[1] = 0f;
-								npc.localAI[1] = 0f;
-								npc.netUpdate = true;
-							}
-							break;
-						}
-					case 0:
-						{
-							npc.TargetClosest();
-							targetData = npc.GetTargetData();
-							if (ShouldRunAway(npc, ref targetData, isChasing: true))
-							{
-								npc.ai[0] = 6f;
-								npc.ai[1] = 0f;
-								npc.localAI[1] = 0f;
-								npc.netUpdate = true;
 								break;
 							}
-							npc.ai[1] += 1f;
-							if (timer >= MaxTimeWithoutBouldersOrHands)
-								npc.ai[1] += 4f;
-							Vector2 vector = npc.Bottom + new Vector2(0f, -32f);
-							Vector2 vector2 = targetData.Hitbox.ClosestPointInRect(vector);
-							Vector2 DistanceToPlayer = vector2 - vector;
-							(vector2 - npc.Center).Length();
-							float num15 = 0.6f;
-							bool IsCloseHorizontally = Math.Abs(DistanceToPlayer.X) >= Math.Abs(DistanceToPlayer.Y) * num15 || DistanceToPlayer.Length() < 48f;
-							bool IsCloseVertically = DistanceToPlayer.Y <= 100 + targetData.Height && DistanceToPlayer.Y >= -200f;
-							// SPIKES ON BOTH SIDES
-							
-							if (Math.Abs(DistanceToPlayer.X) < 120f && IsCloseVertically && npc.velocity.Y == 0f && npc.localAI[1] >= 2f && timer < MaxTimeWithoutBouldersOrHands)
-							{
-								npc.velocity.X = 0f;
-								npc.ai[0] = 4f;
-								npc.ai[1] = 0f;
-								npc.localAI[1] = 0f;
-								npc.netUpdate = true;
-								break;
-							}
-							// spikes forward
-							if (Math.Abs(DistanceToPlayer.X) < 120f && IsCloseVertically && npc.velocity.Y == 0f && IsCloseHorizontally && timer < MaxTimeWithoutBouldersOrHands)
-							{
-								npc.velocity.X = 0f;
-								npc.ai[0] = 1f;
-								npc.ai[1] = 0f;
-								npc.localAI[1] += 1f;
-								npc.netUpdate = true;
-								break;
-							}
-							// shoot boulders
-							bool flag6 = npc.ai[1] >= 240f; // down from 240
-							if (npc.velocity.Y == 0f && npc.velocity.X != 0f && flag6)
-							{
-								npc.velocity.X = 0f;
-								npc.ai[0] = 2f;
-								npc.ai[1] = 0f;
-								timer = 1;
-								npc.localAI[1] = 0f;
-								npc.netUpdate = true;
-								break;
-							}
-							// spawn hands
-							bool flag7 = npc.ai[1] >= 90f;
-							if (npc.velocity.Y == 0f && npc.velocity.X == 0f && flag7)
-							{
-								npc.velocity.X = 0f;
-								npc.ai[0] = 5f;
-								timer = 1;
-								npc.ai[1] = 0f;
-								npc.localAI[1] = 0f;
-								npc.netUpdate = true;
-								break;
-							}
-							bool flag8 = npc.ai[1] >= 120f;
-							int num16 = 32;
-							bool flag9 = targetData.Type == NPCTargetType.Player && !Main.player[npc.target].buffImmune[num16] && Main.player[npc.target].FindBuffIndex(num16) == -1;
-							if (npc.velocity.Y == 0f && flag8 && flag9 && Math.Abs(DistanceToPlayer.X) > 100f)
-							{
-								npc.velocity.X = 0f;
-								npc.ai[0] = 3f;
-								npc.ai[1] = 0f;
-								npc.localAI[1] = 0f;
-								npc.netUpdate = true;
-							}
-							break;
-						}
-					case 1:
-						npc.ai[1] += 0.9f;
-						if (mustard)
-							npc.ai[1] += 0.2f;
-						haltMovement = true;
-						AI_123_Deerclops_MakeSpikesForward(npc, 1, targetData);
-						if (npc.ai[1] >= 80f)
-						{
-							npc.ai[0] = 0f;
-							npc.ai[1] = 0f;
-							npc.netUpdate = true;
-						}
-						break;
-					case 4:
-						npc.ai[1] += 1f;
-						if (mustard)
-							npc.ai[1] += 0.5f;
-						haltMovement = true;
-						npc.TargetClosest();
-						AI_123_Deerclops_MakeSpikesBothSides(npc, 1, targetData);
-						if (npc.ai[1] >= 90f)
-						{
-							npc.ai[0] = 0f;
-							npc.ai[1] = 0f;
-							npc.netUpdate = true;
-						}
-						break;
-					case 2:
-						{
-							int num8 = 4;
-							int num9 = 8 * num8;
-							npc.ai[1] += 1f;
-							if (npc.ai[1] == (float)(num9 - 20))
+						case 3:
+							if (npc.ai[1] == 30f)
 							{
 								SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
 							}
-							if (npc.ai[1] == (float)num9)
-							{
-								SoundEngine.PlaySound(SoundID.DeerclopsRubbleAttack, npc.Center);
-							}
+							npc.ai[1] += 1f;
 							haltMovement = true;
-							if (Main.netMode != 1 && npc.ai[1] >= (float)num9)
+							if ((int)npc.ai[1] % 4 == 0 && npc.ai[1] >= 28f)
 							{
-								Point sourceTileCoords = npc.Top.ToTileCoordinates();
-								int num10 = 12; // down from 20
-								int DistancedByThisManyTiles = 1;
-								float upBiasPerSpike = 200f;
-								sourceTileCoords.X += npc.direction * 3;
-								sourceTileCoords.Y -= 10;
-								int num11 = (int)npc.ai[1] - num9;
-								if (num11 == 0)
+								PunchCameraModifier modifier5 = new PunchCameraModifier(npc.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, "Deerclops");
+								Main.instance.CameraModifiers.Add(modifier5);
+								if (Main.netMode != 2)
 								{
-									PunchCameraModifier modifier4 = new PunchCameraModifier(npc.Center, new Vector2(0f, -1f), 20f, 6f, 30, 1000f, "Deerclops");
-									Main.instance.CameraModifiers.Add(modifier4);
+									Player player = Main.player[Main.myPlayer];
+									_ = Main.myPlayer;
+									int debuff = 32;
+									int timeToAdd = 720;
+									if (!player.dead && player.active && player.FindBuffIndex(debuff) == -1 && (player.Center - npc.Center).Length() < 800f && !player.creativeGodMode)
+									{
+										player.AddBuff(debuff, timeToAdd);
+									}
+									if (mustard)
+									{
+										debuff = BuffID.Chilled;
+										timeToAdd = Main.rand.Next(50, 100);
+										if (!player.dead && player.active && player.FindBuffIndex(debuff) == -1 && (player.Center - npc.Center).Length() < 800f && !player.creativeGodMode)
+										{
+											player.AddBuff(debuff, timeToAdd);
+										}
+										debuff = BuffID.Frozen;
+										timeToAdd = 10;
+										if (!player.dead && player.active && player.FindBuffIndex(debuff) == -1 && (player.Center - npc.Center).Length() < 800f && !player.creativeGodMode)
+										{
+											player.AddBuff(debuff, timeToAdd);
+										}
+									}
 								}
-								int num12 = 1;
-								int num13 = num11 / num12 * num12;
-								int num14 = num13 + num12;
-								if (num11 % num12 != 0)
+							}
+							if (npc.ai[1] == 30f)
+							{
+								npc.TargetClosest();
+							}
+							if (npc.ai[1] >= 60f)
+							{
+								npc.ai[0] = 0f;
+								npc.ai[1] = 0f;
+								npc.netUpdate = true;
+							}
+							break;
+						case 7:
+							if (npc.ai[1] == 30f)
+							{
+								SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
+							}
+							npc.ai[1] += 1f;
+							haltMovement = true;
+							if ((int)npc.ai[1] % 4 == 0 && npc.ai[1] >= 28f)
+							{
+								PunchCameraModifier modifier3 = new PunchCameraModifier(npc.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, "Deerclops");
+								Main.instance.CameraModifiers.Add(modifier3);
+							}
+							if (npc.ai[1] == 40f)
+							{
+								npc.TargetClosest();
+								if (Main.netMode != 1)
 								{
-									num14 = num13;
-								}
-								for (int j = num13; j < num14 && j < num10; j++)
-								{
-									AI_123_Deerclops_ShootRubbleUp(npc, ref targetData, ref sourceTileCoords, num10, DistancedByThisManyTiles, upBiasPerSpike, j);
+									npc.netUpdate = true;
+									npc.Bottom = new Vector2(npc.homeTileX * 16, npc.homeTileY * 16);
 								}
 							}
 							if (npc.ai[1] >= 60f)
@@ -304,142 +390,65 @@ namespace TRAEProject.NPCs.Boss
 								npc.netUpdate = true;
 							}
 							break;
-						}
-					case 3:
-						if (npc.ai[1] == 30f)
-						{
-							SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
-						}
-						npc.ai[1] += 1f;
-						haltMovement = true;
-						if ((int)npc.ai[1] % 4 == 0 && npc.ai[1] >= 28f)
-						{
-							PunchCameraModifier modifier5 = new PunchCameraModifier(npc.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, "Deerclops");
-							Main.instance.CameraModifiers.Add(modifier5);
-							if (Main.netMode != 2)
+						case 8:
+							if (npc.ai[1] == 30f)
 							{
-								Player player = Main.player[Main.myPlayer];
-								_ = Main.myPlayer;
-								int debuff = 32;
-								int timeToAdd = 720;
-								if (!player.dead && player.active && player.FindBuffIndex(debuff) == -1 && (player.Center - npc.Center).Length() < 800f && !player.creativeGodMode)
+								SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
+							}
+							npc.ai[1] += 1f;
+							haltMovement = true;
+							if ((int)npc.ai[1] % 4 == 0 && npc.ai[1] >= 28f)
+							{
+								PunchCameraModifier modifier2 = new PunchCameraModifier(npc.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, "Deerclops");
+								Main.instance.CameraModifiers.Add(modifier2);
+							}
+							if (npc.ai[1] >= 40f)
+							{
+								npc.life = -1;
+								npc.HitEffect();
+								npc.active = false;
+								if (Main.netMode != 1)
 								{
-									player.AddBuff(debuff, timeToAdd);
+									NetMessage.SendData(28, -1, -1, null, npc.whoAmI, -1f);
 								}
-								if (mustard)
-                                {
-									debuff = BuffID.Chilled;
-									timeToAdd = Main.rand.Next(50, 100);
-									if (!player.dead && player.active && player.FindBuffIndex(debuff) == -1 && (player.Center - npc.Center).Length() < 800f && !player.creativeGodMode)
+								return false;
+							}
+							break;
+						case 5:
+							if (npc.ai[1] == 30f)
+							{
+								SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
+							}
+							npc.ai[1] += 1f;
+							haltMovement = true;
+							if ((int)npc.ai[1] % 4 == 0 && npc.ai[1] >= 28f)
+							{
+								PunchCameraModifier modifier = new PunchCameraModifier(npc.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, "Deerclops");
+								Main.instance.CameraModifiers.Add(modifier);
+							}
+							if (npc.ai[1] == 30f)
+							{
+								npc.TargetClosest();
+								if (Main.netMode != 1)
+								{
+									for (int i = 0; i < 6; i++)
 									{
-										player.AddBuff(debuff, timeToAdd);
+										Projectile.RandomizeInsanityShadowFor(Main.player[npc.target], isHostile: true, out var spawnposition, out var spawnvelocity, out var ai, out var ai2);
+										Projectile.NewProjectile(npc.GetSource_FromThis(), spawnposition, spawnvelocity, 965, num, 0f, Main.myPlayer, ai, ai2);
 									}
-                                    debuff = BuffID.Frozen;
-                                    timeToAdd = 10;
-                                    if (!player.dead && player.active && player.FindBuffIndex(debuff) == -1 && (player.Center - npc.Center).Length() < 800f && !player.creativeGodMode)
-                                    {
-                                        player.AddBuff(debuff, timeToAdd);
-                                    }
-                                }
-							}
-						}
-						if (npc.ai[1] == 30f)
-						{
-							npc.TargetClosest();
-						}
-						if (npc.ai[1] >= 60f)
-						{
-							npc.ai[0] = 0f;
-							npc.ai[1] = 0f;
-							npc.netUpdate = true;
-						}
-						break;
-					case 7:
-						if (npc.ai[1] == 30f)
-						{
-							SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
-						}
-						npc.ai[1] += 1f;
-						haltMovement = true;
-						if ((int)npc.ai[1] % 4 == 0 && npc.ai[1] >= 28f)
-						{
-							PunchCameraModifier modifier3 = new PunchCameraModifier(npc.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, "Deerclops");
-							Main.instance.CameraModifiers.Add(modifier3);
-						}
-						if (npc.ai[1] == 40f)
-						{
-							npc.TargetClosest();
-							if (Main.netMode != 1)
-							{
-								npc.netUpdate = true;
-								npc.Bottom = new Vector2(npc.homeTileX * 16, npc.homeTileY * 16);
-							}
-						}
-						if (npc.ai[1] >= 60f)
-						{
-							npc.ai[0] = 0f;
-							npc.ai[1] = 0f;
-							npc.netUpdate = true;
-						}
-						break;
-					case 8:
-						if (npc.ai[1] == 30f)
-						{
-							SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
-						}
-						npc.ai[1] += 1f;
-						haltMovement = true;
-						if ((int)npc.ai[1] % 4 == 0 && npc.ai[1] >= 28f)
-						{
-							PunchCameraModifier modifier2 = new PunchCameraModifier(npc.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, "Deerclops");
-							Main.instance.CameraModifiers.Add(modifier2);
-						}
-						if (npc.ai[1] >= 40f)
-						{
-							npc.life = -1;
-							npc.HitEffect();
-							npc.active = false;
-							if (Main.netMode != 1)
-							{
-								NetMessage.SendData(28, -1, -1, null, npc.whoAmI, -1f);
-							}
-							return false;
-						}
-						break;
-					case 5:
-						if (npc.ai[1] == 30f)
-						{
-							SoundEngine.PlaySound(SoundID.DeerclopsScream, npc.Center);
-						}
-						npc.ai[1] += 1f;
-						haltMovement = true;
-						if ((int)npc.ai[1] % 4 == 0 && npc.ai[1] >= 28f)
-						{
-							PunchCameraModifier modifier = new PunchCameraModifier(npc.Center, (Main.rand.NextFloat() * ((float)Math.PI * 2f)).ToRotationVector2(), 20f, 6f, 20, 1000f, "Deerclops");
-							Main.instance.CameraModifiers.Add(modifier);
-						}
-						if (npc.ai[1] == 30f)
-						{
-							npc.TargetClosest();
-							if (Main.netMode != 1)
-							{
-								for (int i = 0; i < 6; i++)
-								{
-									Projectile.RandomizeInsanityShadowFor(Main.player[npc.target], isHostile: true, out var spawnposition, out var spawnvelocity, out var ai, out var ai2);
-									Projectile.NewProjectile(npc.GetSource_FromThis(), spawnposition, spawnvelocity, 965, num, 0f, Main.myPlayer, ai, ai2);
 								}
 							}
-						}
-						if (npc.ai[1] >= 60f)
-						{
-							npc.ai[0] = 0f;
-							npc.ai[1] = 0f;
-							npc.netUpdate = true;
-						}
-						break;
+							if (npc.ai[1] >= 60f)
+							{
+								npc.ai[0] = 0f;
+								npc.ai[1] = 0f;
+								npc.netUpdate = true;
+							}
+							break;
+					}
+					AI_123_Deerclops_Movement(npc, haltMovement, goHome);
+					return false;
 				}
-				AI_123_Deerclops_Movement(npc, haltMovement, goHome);
-				return false;
 			}
 			return true;
 		}

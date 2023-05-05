@@ -24,7 +24,7 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodWings
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(200, 6.25f);
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(150, 6.25f);
 		}
 
 		public override void SetDefaults()
@@ -51,8 +51,10 @@ namespace TRAEProject.NewContent.Items.DreadItems.BloodWings
         {
 			if (hasWings)
 			{
+				int duration = info.Damage * 4;
+				if (duration > 300) // max 5 seconds at 75 damage
 				Player.RefreshMovementAbilities();
-				Player.AddBuff(BuffType<BloodRush>(), 240);
+				Player.AddBuff(BuffType<BloodRush>(), duration);
 			}
         }
     }

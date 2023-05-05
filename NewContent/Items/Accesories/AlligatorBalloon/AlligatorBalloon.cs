@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace TRAEProject.NewContent.Items.Accesories.AlligatorBalloon
 {
     [AutoloadEquip(EquipType.Balloon)]
-    class AlligatorBalloon : ModItem
+    class AlligatorBalloonItem : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -29,9 +29,9 @@ namespace TRAEProject.NewContent.Items.Accesories.AlligatorBalloon
         {
             player.jumpBoost = true;
             player.hasJumpOption_Sail = true;
-            player.extraFall += 15;
+            player.extraFall += 30;
 			player.autoJump = true;
-            player.jumpSpeedBoost += 1.6f;
+            player.jumpSpeedBoost += 1.2f;
         }
         public override void AddRecipes()
         {

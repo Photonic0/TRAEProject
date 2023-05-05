@@ -97,12 +97,15 @@ namespace TRAEProject.Changes
             }
             //if (shop.NpcType == NPCID.Steampunker)
             //{
-            //    shop.TryGetEntry(ItemID.StaticHook, out var entry);
-            //    entry.Disable(); 
-            //    shop.TryGetEntry(ItemID.Jetpack, out entry);
-            //    entry.Disable(); 
-            //    shop.TryGetEntry(ItemID.Cog, out entry);
-            //    entry.Disable();
+            //    if (!TRAEWorld.downedAMech)
+            //    {
+            //        shop.TryGetEntry(ItemID.StaticHook, out var entry);
+            //        entry.Disable();
+            //        shop.TryGetEntry(ItemID.Jetpack, out entry);
+            //        entry.Disable();
+            //        shop.TryGetEntry(ItemID.Cog, out entry);
+            //        entry.Disable();
+            //    }
             //}
         }
 
@@ -110,16 +113,22 @@ namespace TRAEProject.Changes
         {
             //if (shopName == NPCShopDatabase.GetShopName(NPCID.Steampunker) && TRAEWorld.downedAMech)
             //{
+
             //    int slot = 0;
             //    do
             //    {
             //        if (++slot >= items.Length)
+            //        {
+            //            Main.NewText(slot);
             //            return;
+
+            //        }
             //    }
             //    while (!items[slot].IsAir);
-            //    items[slot].SetDefaults(ItemID.Cog);
-            //    items[slot].SetDefaults(ItemID.StaticHook);
-            //    items[slot].SetDefaults(ItemID.Jetpack);
+            //    Main.NewText(slot);
+            //    //    items[slot].SetDefaults(ItemID.Cog);
+            //    //    items[slot + 1].SetDefaults(ItemID.StaticHook);
+            //    //    items[slot + 2].SetDefaults(ItemID.Jetpack);
 
             //}
             if (shopName == NPCShopDatabase.GetShopName(NPCID.DD2Bartender))

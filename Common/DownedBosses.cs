@@ -100,7 +100,7 @@ public class DownedVanillaNPCs : GlobalNPC
         {
             NPC.SetEventFlagCleared(ref TRAEWorld.downedBetsy, -1);
         }
-        if (npc.type == NPCType<GraniteOvergrowth>())
+        if (npc.type == NPCType<GraniteOvergrowthNPC>())
         {
             NPC.SetEventFlagCleared(ref TRAEWorld.downedOvergrowth, -1);
         }

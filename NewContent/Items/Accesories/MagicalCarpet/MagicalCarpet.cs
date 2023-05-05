@@ -13,9 +13,9 @@ using static Terraria.ModLoader.ModContent;
 namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 {
 
-    [AutoloadEquip(EquipType.Wings)]
-    class MagicalCarpet : ModItem
-    {
+	[AutoloadEquip(EquipType.Wings)]
+	class MagicalCarpet : ModItem
+	{
 
 		public override void SetStaticDefaults()
 		{
@@ -23,13 +23,13 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
-			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(160, 5f, 1f, hasHoldDownHoverFeatures: true, 8f, 6.5f);
-			
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(135, 4f, 1f/*, hasHoldDownHoverFeatures: true, 6f, 6f*/);
+
 		}
 
 		public override void SetDefaults()
 		{
-		    Item.width = 66;
+			Item.width = 66;
 			Item.height = 24;
 			Item.value = Item.sellPrice(gold: 5);
 			Item.rare = ItemRarityID.LightPurple;
@@ -43,82 +43,30 @@ namespace TRAEProject.NewContent.Items.Accesories.MagicalCarpet
 				.AddTile(TileID.TinkerersWorkbench)
 				.Register();
 		}
-        
-        public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void UpdateAccessory(Player player, bool hideVisual)
+		{
+			for (int n = 3; n < 10; n++)
+			{
+				if (player.IsItemSlotUnlockedAndUsable(n) && player.armor[n].type == Item.type)
+				{
+					player.hideVisibleAccessory[n] = true;
+				}
+			}
+		}
+		public override bool WingUpdate(Player player, bool inUse)
         {
-            //player.GetModPlayer<Hover>().hasHoverWing = true;
-
-            player.moveSpeed -= 0.15f;
-            player.jumpSpeedBoost -= Mobility.JSV(0.15f);
-        }
-        /*
-
-        public override void VerticalWingSpeeds(Player player, ref float ascentWhenFalling, ref float ascentWhenRising,
-            ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
-        {
-            ascentWhenFalling = 0.5f;
-            ascentWhenRising = 0.1f;
-            maxCanAscendMultiplier = .5f;
-            maxAscentMultiplier = 1.8f;
-            constantAscend = 0.1f;
-        }
-
-        public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
-        {
-            if (player.controlDown && player.controlJump && player.wingTime > 0f)
+            if (inUse && player.TryingToHoverDown && player.wingTime > 0)
             {
-                player.wingTime += 0.75f;
-                speed = 8f;
-                acceleration = 6f;
-            }
-            else
-            {
-                speed = 6f;
-            }
-        }
-        public override bool WingUpdate(Player player, bool inUse)
-        {
-            
-            if (player.velocity.Y != 0f || player.grappling[0] > -1)
-            {
-                if (player.ShouldDrawWingsThatAreAlwaysAnimated())
-                {
-                    player.legFrame.Y = 0;
-                    return false;
-                }
-            }
+                player.runAcceleration *= 3;
+                player.moveSpeed += 0.25f;
 
-            if (!player.ShouldDrawWingsThatAreAlwaysAnimated() || player.mount.Type > 0)
-            {
-                player.wingFrame = 5;
+				player.velocity.Y = 0.00001f;
+				return false;
             }
-            
             return true;
-        }
-        */
-    }
 
-    public class Hover : ModPlayer
-    {
-        public bool hasHoverWing = false;
-
-        public override void ResetEffects()
-        {
-            hasHoverWing = false;
         }
 
-        public override void PostUpdateEquips()
-        {
-            if (hasHoverWing && Player.controlDown && Player.controlJump && Player.wingTime > 0f && !Player.merman)
-            {
-                Player.velocity.Y = Player.velocity.Y * 0.9f;
-                if (Player.velocity.Y > -2f && Player.velocity.Y < 1f)
-                {
-                    Player.velocity.Y = 1E-05f;
-                    //Player.position.Y += .1f;
-                }
-            }
-        }
     }
 
 }

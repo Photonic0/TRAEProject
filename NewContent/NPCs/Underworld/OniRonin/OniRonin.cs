@@ -53,7 +53,7 @@ namespace TRAEProject.NewContent.NPCs.Underworld.OniRonin
             NPC.scale = 1f;
             Banner = NPC.type;
             NPC.GetGlobalNPC<UnderworldEnemies>().HellMinibossThatSpawnsInPairs = true;
-            BannerItem = ItemType<FroggabombaBanner>();
+            BannerItem = ItemType<OniRoninBanner>();
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {

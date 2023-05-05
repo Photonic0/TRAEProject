@@ -173,7 +173,7 @@ namespace TRAEProject.Common
                 modifiers.FinalDamage *= FirstHitDamage;
             }
             Player player = Main.player[projectile.owner];
-            modifiers.FinalDamage.Base *= DirectDamage;
+            modifiers.FinalDamage *= DirectDamage;
 
             if (cantCrit)
 			{

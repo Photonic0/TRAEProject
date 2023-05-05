@@ -20,7 +20,6 @@ namespace TRAEProject.NewContent.Items.Armor.UnderworldWarrior
         // +25% melee speed
         // +25% ranged velocity
         // -25% mana costs
-        // +15% movement speed
         public override void SetStaticDefaults()
 		{
 			// DisplayName.SetDefault("Underworld Warrior Chestplate");
@@ -92,7 +91,7 @@ namespace TRAEProject.NewContent.Items.Armor.UnderworldWarrior
                         }
 
                         SoundEngine.PlaySound(SoundID.Item8, Player.Center);
-                        Player.AddBuff(BuffType<BurntOut>(), 30 * 60);
+                        Player.AddBuff(BuffType<BurntOut>(), 24 * 60);
 
                     }
                 }

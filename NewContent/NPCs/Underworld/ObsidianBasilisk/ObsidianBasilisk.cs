@@ -8,6 +8,7 @@ using TRAEProject.Common;
 using static Terraria.ModLoader.ModContent;
 using TRAEProject.NewContent.Items.Materials;
 using Terraria.GameContent.ItemDropRules;
+using TRAEProject.NewContent.NPCs.Banners;
 
 namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 {
@@ -59,12 +60,14 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
             NPC.GetGlobalNPC<UnderworldEnemies>().HellMinibossThatSpawnsInPairs = true;
             NPC.HitSound = SoundID.NPCHit41;
             NPC.DeathSound = SoundID.NPCDeath24;
-       
+            BannerItem = ItemType<ObsidianBasiliskBanner>();
+            Banner = NPC.type;
+
             //NPC.aiStyle = -1;
-		}
+        }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ItemType<ObsidianScale>(), 1, 1, 3));
+            npcLoot.Add(ItemDropRule.Common(ItemType<ObsidianScale>(), 1, 2, 3));
             npcLoot.Add(ItemDropRule.Common(ItemID.Spaghetti, 33));
         }
 
@@ -160,10 +163,11 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
         {
             ObsidianBasiliskHead.CommonWormInit(this);
         }
-
-        public override void OnKill()
+        public override bool PreKill()
         {
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("ObsidianBasiliskBody_Gore").Type, 1f);
+
+            return base.PreKill();
         }
 
     }
@@ -199,9 +203,10 @@ namespace TRAEProject.NewContent.NPCs.Underworld.ObsidianBasilisk
 
         }
 
-        public override void OnKill()
+        public override bool PreKill()
         {
             Gore.NewGore(NPC.GetSource_Death(), NPC.Center, NPC.velocity, Mod.Find<ModGore>("ObsidianBasiliskTail_Gore").Type, 1f);
+            return base.PreKill();
         }
 
         public override void Init() {

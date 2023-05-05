@@ -22,12 +22,15 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         public override bool InstancePerEntity => true;
         public override void SetDefaults(NPC npc)
         {
-            if (npc.type == NPCID.Plantera)
+            if (GetInstance<TRAEConfig>().PlanteraRework)
             {
-				npc.lifeMax = (int)(npc.lifeMax  * ((float)37000 / 30000));
-				
-				
-                npc.behindTiles = true;
+                if (npc.type == NPCID.Plantera)
+                {
+                    npc.lifeMax = (int)(npc.lifeMax * ((float)37000 / 30000));
+
+
+                    npc.behindTiles = true;
+                }
             }
         }
         float speed = 6;
@@ -518,126 +521,131 @@ namespace TRAEProject.Changes.NPCs.Boss.Plantera
         }
         public override bool PreAI(NPC npc)
         {
-            if (npc.type == NPCID.Plantera && Main.netMode == NetmodeID.SinglePlayer)
+            if (GetInstance<TRAEConfig>().PlanteraRework)
             {
-                npc.chaseable = true;
-                if (runOnce)
+                if (npc.type == NPCID.Plantera && Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Start(npc);
-                    runOnce = false;
-                }
-                if (Main.expertMode && npc.life < npc.lifeMax)
-                {
-                    expertSpeedBonus = 2f - (float)(npc.life % (npc.lifeMax / 2)) / (float)(npc.lifeMax / 2);
-                    if ((float)npc.life / (float)npc.lifeMax < 0.5f)
+                    npc.chaseable = true;
+                    if (runOnce)
                     {
-                        expertSpeedBonus += 0.2f;
+                        Start(npc);
+                        runOnce = false;
                     }
-                }
-                npc.TargetClosest();
-                Player player = Main.player[npc.target];
-                if((int)npc.ai[0] == -1)
-                {
-                    SpawnVineRing(npc, player);
-                }
-                else
-                {
-                    Main.projectile[(int)npc.ai[0]].timeLeft = 2;
-                }
-                if (!player.active || player.dead)
-                {
-                    npc.TargetClosest(false);
-                    player = Main.player[npc.target];
-                    if (!player.active || player.dead)
+                    if (Main.expertMode && npc.life < npc.lifeMax)
                     {
-                        npc.velocity = new Vector2(0f, 10f);
-                        if (npc.timeLeft > 10)
+                        expertSpeedBonus = 2f - (float)(npc.life % (npc.lifeMax / 2)) / (float)(npc.lifeMax / 2);
+                        if ((float)npc.life / (float)npc.lifeMax < 0.5f)
                         {
-                            npc.timeLeft = 10;
+                            expertSpeedBonus += 0.2f;
                         }
-                        return false;
                     }
-                }
-                if ((float)npc.life / (float)npc.lifeMax < 0.5f && currentAtk < 3)
-                {
-
-                    npc.rotation = (player.Center - npc.Center).ToRotation() + (float)Math.PI / 2;
-                    ReverseMovement(npc, player);
-                    if (npc.ai[2] != -1 && Main.projectile[(int)npc.ai[2]] != null)
+                    npc.TargetClosest();
+                    Player player = Main.player[npc.target];
+                    if ((int)npc.ai[0] == -1)
                     {
-                        Main.projectile[(int)npc.ai[2]].Kill();
-                        npc.ai[2] = -1;
-                    }
-                }
-                else if (npc.ai[1] > pullBackTime)
-                {
-                    if ((float)npc.life / (float)npc.lifeMax < 0.5f)
-                    {
-                        Charge(npc, player);
+                        SpawnVineRing(npc, player);
                     }
                     else
                     {
+                        Main.projectile[(int)npc.ai[0]].timeLeft = 2;
+                    }
+                    if (!player.active || player.dead)
+                    {
+                        npc.TargetClosest(false);
+                        player = Main.player[npc.target];
+                        if (!player.active || player.dead)
+                        {
+                            npc.velocity = new Vector2(0f, 10f);
+                            if (npc.timeLeft > 10)
+                            {
+                                npc.timeLeft = 10;
+                            }
+                            return false;
+                        }
+                    }
+                    if ((float)npc.life / (float)npc.lifeMax < 0.5f && currentAtk < 3)
+                    {
+
                         npc.rotation = (player.Center - npc.Center).ToRotation() + (float)Math.PI / 2;
                         ReverseMovement(npc, player);
+                        if (npc.ai[2] != -1 && Main.projectile[(int)npc.ai[2]] != null)
+                        {
+                            Main.projectile[(int)npc.ai[2]].Kill();
+                            npc.ai[2] = -1;
+                        }
                     }
-                }
-                else
-                {
+                    else if (npc.ai[1] > pullBackTime)
+                    {
+                        if ((float)npc.life / (float)npc.lifeMax < 0.5f)
+                        {
+                            Charge(npc, player);
+                        }
+                        else
+                        {
+                            npc.rotation = (player.Center - npc.Center).ToRotation() + (float)Math.PI / 2;
+                            ReverseMovement(npc, player);
+                        }
+                    }
+                    else
+                    {
 
-                    npc.rotation = (player.Center - npc.Center).ToRotation() + (float)Math.PI / 2;
-                    Movement(npc, player);
-                }
+                        npc.rotation = (player.Center - npc.Center).ToRotation() + (float)Math.PI / 2;
+                        Movement(npc, player);
+                    }
 
-                npc.defense = 36;
-                if ((float)npc.life / (float)npc.lifeMax < 0.5f)
-                {
-                    npc.defense = 18;
-					npc.defDamage = 81;
+                    npc.defense = 36;
+                    if ((float)npc.life / (float)npc.lifeMax < 0.5f)
+                    {
+                        npc.defense = 18;
+                        npc.defDamage = 81;
+                    }
+                    npc.dontTakeDamage = false;
+                    float rot = (player.Center - npc.Center).ToRotation();
+                    if (!Collision.CanHit(npc.Center + TRAEMethods.PolarVector(-20, rot), 1, 1, player.Center, 1, 1) || (npc.Center - Main.projectile[(int)npc.ai[0]].Center).Length() > VineRing.Radius)
+                    {
+                        npc.dontTakeDamage = true;
+                    }
+                    return false;
                 }
-                npc.dontTakeDamage = false;
-                float rot = (player.Center - npc.Center).ToRotation();
-                if (!Collision.CanHit(npc.Center + TRAEMethods.PolarVector(-20, rot), 1, 1, player.Center, 1, 1) || (npc.Center - Main.projectile[(int)npc.ai[0]].Center).Length() > VineRing.Radius)
-                {
-                    npc.dontTakeDamage = true;
-                }
-                return false;
             }
             return base.PreAI(npc);
         }
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-
-            if (npc.type == NPCID.Plantera && Main.netMode == NetmodeID.SinglePlayer)
+            if (GetInstance<TRAEConfig>().PlanteraRework)
             {
-                if (npc.ai[2] != -1 && Main.projectile[(int)npc.ai[2]] != null)
+                if (npc.type == NPCID.Plantera && Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Texture2D vine = TextureAssets.Chain26.Value;
-                    float dist = (Main.projectile[(int)npc.ai[2]].Center - npc.Center).Length();
-                    float rot = (npc.Center - Main.projectile[(int)npc.ai[2]].Center).ToRotation();
-                    for (int k = 0; k < dist; k += vine.Height)
+                    if (npc.ai[2] != -1 && Main.projectile[(int)npc.ai[2]] != null)
                     {
-                        Vector2 pos = Main.projectile[(int)npc.ai[2]].Center + TRAEMethods.PolarVector(k, rot);
-                        spriteBatch.Draw(vine, pos - screenPos, null, Lighting.GetColor((int)pos.X / 16, (int)pos.Y / 16), rot + (float)Math.PI / 2f, new Vector2(vine.Width / 2, vine.Height), 1f, SpriteEffects.None, 0);
-                    }
-                }
-
-                if (currentAtk == 8)
-                {
-
-                    if (npc.ai[1] > (180 + attackCounter * 150) - 30 && attackCounter < 3)
-                    {
-                        Texture2D pinkDraw = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Plantera/PinkDraw").Value;
-                        Player player = Main.player[npc.target];
-                        for (int i = 0; i < hooks.Length; i++)
+                        Texture2D vine = TextureAssets.Chain26.Value;
+                        float dist = (Main.projectile[(int)npc.ai[2]].Center - npc.Center).Length();
+                        float rot = (npc.Center - Main.projectile[(int)npc.ai[2]].Center).ToRotation();
+                        for (int k = 0; k < dist; k += vine.Height)
                         {
-                            if (hooks[i] != null && hooks[i].active)
-                            {
+                            Vector2 pos = Main.projectile[(int)npc.ai[2]].Center + TRAEMethods.PolarVector(k, rot);
+                            spriteBatch.Draw(vine, pos - screenPos, null, Lighting.GetColor((int)pos.X / 16, (int)pos.Y / 16), rot + (float)Math.PI / 2f, new Vector2(vine.Width / 2, vine.Height), 1f, SpriteEffects.None, 0);
+                        }
+                    }
 
-                                float rot = (player.Center - hooks[i].Center).ToRotation();
-                                Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
-                                float distance = (player.Center - hooks[i].Center).Length();
-                                spriteBatch.Draw(pinkDraw, hooks[i].Center - Main.screenPosition + TRAEMethods.PolarVector(distance / 2f, rot), null, color, rot, pinkDraw.Size() * .5f, new Vector2(distance / 4f, 1f), SpriteEffects.None, 0f);
-                                hooks[i].rotation = rot + (float)Math.PI / 2;
+                    if (currentAtk == 8)
+                    {
+
+                        if (npc.ai[1] > (180 + attackCounter * 150) - 30 && attackCounter < 3)
+                        {
+                            Texture2D pinkDraw = Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/Plantera/PinkDraw").Value;
+                            Player player = Main.player[npc.target];
+                            for (int i = 0; i < hooks.Length; i++)
+                            {
+                                if (hooks[i] != null && hooks[i].active)
+                                {
+
+                                    float rot = (player.Center - hooks[i].Center).ToRotation();
+                                    Color color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
+                                    float distance = (player.Center - hooks[i].Center).Length();
+                                    spriteBatch.Draw(pinkDraw, hooks[i].Center - Main.screenPosition + TRAEMethods.PolarVector(distance / 2f, rot), null, color, rot, pinkDraw.Size() * .5f, new Vector2(distance / 4f, 1f), SpriteEffects.None, 0f);
+                                    hooks[i].rotation = rot + (float)Math.PI / 2;
+                                }
                             }
                         }
                     }

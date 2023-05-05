@@ -34,7 +34,6 @@ namespace TRAEProject.NewContent.Items.Accesories.SoaringCarpet
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<SoaringCarpetEffect>().soaringCarpet = true;
-			player.moveSpeed += 0.1f;
 			player.GetModPlayer<Mobility>().ankletAcc = true;
 			player.noFallDmg = true;
 

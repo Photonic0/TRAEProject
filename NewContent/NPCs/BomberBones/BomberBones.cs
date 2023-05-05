@@ -12,7 +12,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace TRAEProject.NewContent.NPCs.BomberBones
 {
-    public class BomberBones : ModNPC
+    public class BomberBonesNPC : ModNPC
     {
         public override void SetStaticDefaults()
         {

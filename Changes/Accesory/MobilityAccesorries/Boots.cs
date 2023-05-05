@@ -22,22 +22,26 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.FlurryBoots:
                 case ItemID.SailfishBoots:
                     player.moveSpeed += Mobility.bootSpeed * 0.01f;
-					player.accRunSpeed = 4.8f; // makes your movement speed 25 mph if it isn't already
+                    player.accRunSpeed = 4.8f; // makes your movement speed 25 mph if it isn't already
                     break;
                 case ItemID.SandBoots:
                     player.moveSpeed += Mobility.bootSpeed * 0.01f;
                     player.desertBoots = false;
                     player.GetModPlayer<AccesoryEffects>().sandRunning = true;
-					player.accRunSpeed = 4.8f;
+                    player.accRunSpeed = 4.8f;
                     break;
                 //frog leg and tinkers
                 case ItemID.FrogLeg:
                 case ItemID.FrogWebbing:
                 case ItemID.FrogFlipper:
                     player.frogLegJumpBoost = false;
-                    player.extraFall += 15;
+                    player.extraFall += 15; 
+                    player.jumpSpeedBoost -= Mobility.JSV(0.08f);
+
                     break;
                 case ItemID.FrogGear:
+                    player.jumpSpeedBoost -= Mobility.JSV(0.08f);
+
                     player.frogLegJumpBoost = false;
                     player.accFlipper = true;
                     player.dashType = 1;
@@ -46,7 +50,9 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.AmphibianBoots:
                     player.frogLegJumpBoost = false;
-                    player.extraFall += 15;
+                    player.extraFall += 15; 
+                    player.jumpSpeedBoost -= Mobility.JSV(0.08f);
+
                     player.moveSpeed += Mobility.amphibootSpeed * 0.01f;
                     player.accRunSpeed = 4.8f;
                     break;
@@ -176,14 +182,9 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            if(Mobility.amphibootSpeed == Mobility.flegSpeed)
-                            {
-                                line.Text = Mobility.amphibootSpeed + "% increased movement speed and jump speed";
-                            }
-                            else
-                            {
-                                line.Text = Mobility.amphibootSpeed + "% increased movement speed\n" + Mobility.flegSpeed + "% increased jump speed";
-                            }
+
+                            line.Text = Mobility.amphibootSpeed + "% increased movement speed\n" + Mobility.flegSpeed + "% increased jump speed";
+
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -248,7 +249,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip2")
                         {
-                            line.Text = "Increases jump speed by 25% and allows auto jump";
+                            line.Text = "Increases jump speed by 24% and allows auto jump";
                         }
                     }
                     break;
@@ -257,7 +258,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
-                            line.Text = "Increases jump speed by 25% and allows auto jump";
+                            line.Text = "Increases jump speed by 24% and allows auto jump";
                         }
                     }
                     break;
@@ -266,7 +267,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Increases jump speed by 25% and allows auto jump";
+                            line.Text = "Increases jump speed by 24% and allows auto jump";
                         }
                     }
                     break;
@@ -293,7 +294,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "Provides rocket boot flight";
+                            line.Text = "Provides extended rocket boot flight";
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip1")
                         {
@@ -308,7 +309,7 @@ namespace TRAEProject.Changes.Accesory
                 case ItemID.LavaWaders:
                     foreach (TooltipLine line in tooltips)
                     {
-                        {
+                        
                             if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                             {
                                 line.Text = "Increases movement speed and shields the wearer when entering liquids";
@@ -317,7 +318,7 @@ namespace TRAEProject.Changes.Accesory
                             {
                                 line.Text = "Allows walking on water and grants immunity to lava";
                             }
-                        }
+                        
                     }
                     break;
             }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using static Terraria.ModLoader.ModContent;
@@ -12,9 +8,7 @@ using TRAEProject.NewContent.Items.Materials;
 using Microsoft.Xna.Framework;
 using TRAEProject.Common;
 using TRAEProject.Changes.Items;
-using TRAEProject.NewContent.Items.Weapons.GraniteBook;
 using Terraria.DataStructures;
-using TRAEProject.NewContent.NPCs.Underworld.OniRonin;
 using Terraria.Audio;
 
 namespace TRAEProject.NewContent.Items.Weapons.SuperRose
@@ -26,16 +20,16 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 
             // DisplayName.SetDefault("Cursed Flower");
-            // Tooltip.SetDefault("Summons petals to seek out your foes\nEach petal costs 18 mana, affected by gear");
+            // Tooltip.SetDefault("Summons petals to seek out your foes");
         }
         public override void SetDefaults()
         {
             Item.width = 30;
             Item.height = 32;
-            Item.damage = 75;
-            Item.useAnimation = 30;
-            Item.useTime = 30;
-            Item.mana = 100;
+            Item.damage = 80;
+            Item.useAnimation = 6;
+            Item.useTime = 6;
+            Item.mana = 25;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 6);
             Item.DamageType = DamageClass.Magic;
@@ -59,7 +53,8 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             {
                 if (Main.projectile[i].type == type && Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI)
                 {
-                    Main.projectile[i].Kill();
+                    Main.projectile[i].timeLeft += 40;
+                    return false;
                 }
             }
             return true;
@@ -89,7 +84,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
             Projectile.CountsAsClass<MagicDamageClass>();
 
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 3600;
+            Projectile.timeLeft = 40;
             Projectile.tileCollide = false;
 
         }
@@ -101,7 +96,6 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
         // Note, this Texture is actually just a blank texture, FYI.
 
         readonly int fireRate = 20; 
-        int drain = 18;
 
         public override void AI()
         {
@@ -112,16 +106,15 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
 
             Player player = Main.player[Projectile.owner];
             Projectile.Center = player.Center;
-            if (player.statMana >= (int)(drain * player.manaCost) && Projectile.localAI[0] >= fireRate && player.ownedProjectileCounts[ProjectileType<PetalFriendly>()] + player.ownedProjectileCounts[ProjectileType<FirePetalFriendly>()] < 10)
+            if (Projectile.localAI[0] >= fireRate)
             {
-                player.statMana -= (int)(drain * player.manaCost);
                 Projectile.localAI[0] -= fireRate;
                 int petal = ProjectileType<PetalFriendly>();
                 int damage = Projectile.damage;
-                if (Main.rand.NextBool(5))
+                if (Main.rand.NextBool(4))
                 {
                     petal = ProjectileType<FirePetalFriendly>();
-                    damage = (int)(damage * 1.2);
+                    damage = (int)(damage * 1.25);
                 }
                 Vector2 position = new(Projectile.position.X + Main.rand.Next(-2, 2), Projectile.position.Y + Main.rand.Next(-2, 2));
                 Projectile.NewProjectile(Projectile.GetSource_FromThis(), position, Vector2.Zero, petal, damage, Projectile.knockBack, Projectile.owner, 0, 0);
@@ -155,7 +148,7 @@ namespace TRAEProject.NewContent.Items.Weapons.SuperRose
         }
 
         int frame = Main.rand.Next(0, 3);
-        float maxSpin = Main.rand.NextFloat(1.75f, 2.75f);
+        float maxSpin = Main.rand.NextFloat(4f, 5f);
 
         public override void AI()
         {

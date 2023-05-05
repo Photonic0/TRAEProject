@@ -13,6 +13,8 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
     {
         public override void SetStaticDefaults()
         {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
             // DisplayName.SetDefault("Levitating Soles");
             // Tooltip.SetDefault("Provides a long lasting double jump\n20% increased movement speed\n25% increased jump speed");
         }
@@ -26,7 +28,7 @@ namespace TRAEProject.NewContent.Items.Accesories.ExtraJumps
         {
             player.GetModPlayer<TRAEJumps>().levitation = true;
             player.moveSpeed += 0.20f;
-            player.jumpSpeedBoost += Mobility.JSV(0.25f);
+            player.jumpSpeedBoost += Mobility.JSV(0.24f);
         }
         public override void AddRecipes()
         {

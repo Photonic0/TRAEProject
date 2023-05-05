@@ -113,7 +113,8 @@ namespace TRAEProject.Changes.Items
 						}
 						for(int i = 0; i < drop.dropIds.Length; i++)
 						{
-							if(drop.dropIds[i] == ItemID.Meowmere)
+                 
+                            if (drop.dropIds[i] == ItemID.StarWrath)
 							{
 								return true;
 							}
@@ -121,8 +122,25 @@ namespace TRAEProject.Changes.Items
 						}
                         return false;
                     });
-					itemLoot.Add(ItemDropRule.FewFromOptionsNotScalingWithLuck(2, 1, ItemID.Meowmere, ItemID.Terrarian, ItemID.SDMG, ItemID.Celeb2, ItemID.LunarFlareBook, ItemID.LastPrism, ItemID.RainbowWhip, ItemID.StardustDragonStaff));
-				break;
+                    itemLoot.RemoveWhere(rule =>
+                    {
+                        if (rule is not CommonDrop drop) // Type of drop you expect here
+                        {
+                            return false;
+                        }
+
+
+                        if (drop.itemId == ItemID.GravityGlobe)
+                        {
+                            return true;
+                        }
+
+
+
+                        return false;
+                    }); 
+                    itemLoot.Add(ItemDropRule.FewFromOptionsNotScalingWithLuck(2, 1, ItemID.Meowmere, ItemID.Terrarian, ItemID.SDMG, ItemID.Celeb2, ItemID.LunarFlareBook, ItemID.LastPrism, ItemID.RainbowWhip, ItemID.StardustDragonStaff));
+                        break;
 				case ItemID.ObsidianLockbox:
 				itemLoot.RemoveWhere(rule =>
 				{

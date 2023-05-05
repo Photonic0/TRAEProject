@@ -30,7 +30,7 @@ namespace TRAEProject.NewContent.TRAEDebuffs
                 Dust d = Dust.NewDustPerfect(npc.Center, DustID.ShadowbeamStaff, speed * 5, Scale: 1.5f);
                 d.noGravity = true;
             }
-            npc.defense -= 3;
+            npc.defDefense -= 3;
         }
     }
 }

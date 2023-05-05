@@ -1,3 +1,4 @@
+
 	public static void Load()
 	{
 		WingStats[] array = new WingStats[47];

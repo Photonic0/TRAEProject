@@ -229,9 +229,6 @@ namespace TRAEProject.Changes.Weapon.Melee
             }
             switch (projectile.type)
             {
-                case ProjectileID.TerraBlade2Shot:
-                    projectile.scale *= 0.6f;
-                    break;
                 case ProjectileID.Shroomerang:
                     ++timer;
 					if (timer > 20)
@@ -415,10 +412,6 @@ namespace TRAEProject.Changes.Weapon.Melee
         public override void PostAI(Projectile projectile)
         {
             if (projectile.type == ProjectileID.TheHorsemansBlade)
-            {
-                projectile.scale *= 1.2f;
-            }
-            if (projectile.type == ProjectileID.TerraBlade2)
             {
                 projectile.scale *= 1.2f;
             }

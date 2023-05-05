@@ -9,17 +9,18 @@ using System.Collections.Generic;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria.Audio;
-using Terraria.GameContent.Shaders;
+using static Terraria.ModLoader.ModContent;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using TRAEProject.NewContent.Items.Accesories.ExtraJumps;
+using TRAEProject.NewContent.Items.Accesories.MagicalCarpet;
 
 namespace TRAEProject
 {
     public class Mobility : ModPlayer
     {
         //constants
-        public const int flegSpeed = 25;
+        public const int flegSpeed = 24;
 
         public const int bootSpeed = 20;
         public const int amphibootSpeed = 20;
@@ -358,11 +359,18 @@ namespace TRAEProject
                 Player.dashTime = 0;
                 dashCooldown--;
             }
-            
-            if (Player.wingsLogic == 23)
+            for (int n = 3; n < 10; n++)
+            {
+                if (Player.IsItemSlotUnlockedAndUsable(n) && Player.armor[n].type == ItemType<MagicalCarpet>() && Player.TryingToHoverDown && Player.wingTime > 0)
+                {
+                    Player.moveSpeed += 0.25f;
+                    Player.runAcceleration *= 3;
+                }
+            }
+                    if (Player.wingsLogic == 23)
             {
                 ornamentTimer++;
-                if (Player.velocity.Y != 0 && ornamentTimer % 40 == 0)
+                if (Player.velocity.Y != 0 && ornamentTimer % 60 == 0)
                 {
                     Projectile.NewProjectile(Player.GetSource_ItemUse(Player.HeldItem), Player.Center, Vector2.UnitY * 2, ProjectileID.OrnamentFriendly, 50, 0, Player.whoAmI, -1);
                 }
@@ -380,41 +388,41 @@ namespace TRAEProject
             {
                 Player.slowFall = true;
             }
-            int num39 = (int)(Player.position.Y / 16f) - Player.fallStart;
-            if(Math.Abs(num39) > Player.extraFall + 25 + (Player.statLife / 20))
-            {
-                Player.extraFall += Math.Abs(num39) - (Player.extraFall + 25 + (Player.statLife / 20));
-            }
+            //int num39 = (int)(Player.position.Y / 16f) - Player.fallStart;
+            //if(Math.Abs(num39) > Player.extraFall + 25 + (Player.statLifeMax2 / 20))
+            //{
+            //    Player.extraFall += Math.Abs(num39) - (Player.extraFall + 25 + (Player.statLifeMax2 / 20));
+            //}
 
             if(ankletAcc)
             {
                 Player.runAcceleration *= 1.5f;
             }
 
-            if (Player.wingsLogic == 30 && Player.TryingToHoverDown)
+            if (Player.wingsLogic == 30 && Player.TryingToHoverDown) // vortex booster
             {
                 Player.runAcceleration /= 3;
-                //Player.runSlowdown *= 2;
                 Player.moveSpeed += 0.5f;
             }
-
+            //if (Player.GetModPlayer<MagicalCarpetPlayer>().magicalCarpet && Player.TryingToHoverDown) 
+            //{
+            //    Player.runAcceleration /= 3;
+            //    Player.moveSpeed += 0.5f;
+            //}
             if (Player.wingsLogic == 37 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
-                //Player.runSlowdown *= 2;
-                Player.moveSpeed += 0.5f;
+                Player.moveSpeed += 0.4f;
             }
             else if (Player.wingsLogic == 22 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
-                //Player.runSlowdown *= 2;
-                Player.moveSpeed += 0.5f;
+                Player.moveSpeed += 0.4f;
             }
             else if (Player.wingsLogic == 45 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
-                //Player.runSlowdown *= 2;
-                Player.moveSpeed += 0.5f;
+                Player.moveSpeed += 1f;
             }
             else if(Player.TryingToHoverDown && Player.controlJump && ArmorIDs.Wing.Sets.Stats[Player.wingsLogic].HasDownHoverStats && Player.wingTime > 0)
             {

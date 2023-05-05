@@ -114,6 +114,159 @@ namespace TRAEProject.NewContent.NPCs.Banners          //We need this to basical
             Item.placeStyle = 0;
         }
     }
+    public class LavamanderBanner : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+
+            Item.width = 12;
+            Item.height = 28;
+            Item.maxStack = 9999;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = 1;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.createTile = TileType<LavamanderBannerPlaced>();
+            Item.placeStyle = 0;
+        }
+    }
+    public class MagmanderBanner : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+
+            Item.width = 12;
+            Item.height = 28;
+            Item.maxStack = 9999;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = 1;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.createTile = TileType<MagmanderBannerPlaced>();
+            Item.placeStyle = 0;
+        }
+    }
+    public class SalalavaBanner : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+        }
+        public override void SetDefaults()
+        {
+
+            Item.width = 12;
+            Item.height = 28;
+            Item.maxStack = 9999;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = 1;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.createTile = TileType<SalalavaBannerPlaced>();
+            Item.placeStyle = 0;
+        }
+    }
+    public class OniRoninBanner : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            // DisplayName.SetDefault("GraniteOvergrowth Banner");
+            // Tooltip.SetDefault("Nearby players get a bonus against: GraniteOvergrowth");
+        }
+        public override void SetDefaults()
+        {
+
+            Item.width = 12;
+            Item.height = 28;
+            Item.maxStack = 9999;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = 1;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.createTile = TileType<OniRoninBannerPlaced>();
+            Item.placeStyle = 0;
+        }
+    }
+    public class PhoenixBanner : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            // DisplayName.SetDefault("GraniteOvergrowth Banner");
+            // Tooltip.SetDefault("Nearby players get a bonus against: GraniteOvergrowth");
+        }
+        public override void SetDefaults()
+        {
+
+            Item.width = 12;
+            Item.height = 28;
+            Item.maxStack = 9999;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = 1;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.createTile = TileType<PhoenixBannerPlaced>();
+            Item.placeStyle = 0;
+        }
+    }
+    public class ObsidianBasiliskBanner : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            Terraria.GameContent.Creative.CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+
+            // DisplayName.SetDefault("GraniteOvergrowth Banner");
+            // Tooltip.SetDefault("Nearby players get a bonus against: GraniteOvergrowth");
+        }
+        public override void SetDefaults()
+        {
+
+            Item.width = 12;
+            Item.height = 28;
+            Item.maxStack = 9999;
+            Item.useTurn = true;
+            Item.autoReuse = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.useStyle = 1;
+            Item.consumable = true;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(0, 0, 2, 0);
+            Item.createTile = TileType<ObsidianBasiliskBannerPlaced>();
+            Item.placeStyle = 0;
+        }
+    }
 }
 
 ////then add this to the custom npc you want to drop the banner and in public override void SetDefaults()

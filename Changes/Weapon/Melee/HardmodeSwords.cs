@@ -35,6 +35,21 @@ namespace TRAEProject.Changes.Weapon.Melee
                     item.shootsEveryUse = true;
                     item.shoot = ProjectileType<BeekeeperAura>();
                     break;
+                case ItemID.PearlwoodSword:
+                    item.noMelee = true;
+                    item.shootsEveryUse = true;
+                    item.shoot = ProjectileType<PearlwoodAura>();
+                    item.rare = ItemRarityID.Pink;
+
+                    break;
+                case ItemID.PearlwoodHammer:
+                    item.damage = 36; // up from 10
+                    item.useTime = 14; // down from 19
+                    item.useAnimation = 26; // down from 29
+                    item.hammer = 70; // up from 55
+                    item.rare = ItemRarityID.Pink;
+
+                    break;
                 case ItemID.BreakerBlade:
                     item.height = 92;
                     item.width = 92;
@@ -207,6 +222,8 @@ namespace TRAEProject.Changes.Weapon.Melee
                 case ItemID.TitaniumSword:
                 case ItemID.FetidBaghnakhs:
                 case ItemID.PsychoKnife:
+                case ItemID.PearlwoodSword:
+
                     if (player.whoAmI == Main.myPlayer)
                     {
                         Projectile spawnedProj = Projectile.NewProjectileDirect(source, player.MountedCenter - velocity * 2, velocity * 5, type, damage, knockback, Main.myPlayer,
@@ -274,18 +291,7 @@ namespace TRAEProject.Changes.Weapon.Melee
                 scale *= 1 + (player.GetAttackSpeed<MeleeDamageClass>() - 1) / 2;
             }    
         }
-        public override float UseSpeedMultiplier(Item item, Player player)
-        {
-            if (item.type == ItemID.TheHorsemansBlade)
-            {
-                return player.GetAttackSpeed<MeleeDamageClass>();
-            }
-            if (item.type == ItemID.TerraBlade)
-            {
-                return player.GetAttackSpeed<MeleeDamageClass>();
-            }
-            return 1f;
-        }
+
 
         public override void HoldItem(Item item, Player player)
         {
@@ -309,6 +315,15 @@ namespace TRAEProject.Changes.Weapon.Melee
                         if (line.Mod == "Terraria" && line.Name == "Knockback")
                         {
                             line.Text += "\nDeals 25% more damage on critical hits";
+                        }
+                    }
+                    break;
+                case ItemID.TerraBlade:
+                    foreach (TooltipLine line in tooltips)
+                    {
+                        if (line.Text == "75% benefit from attack speed boosts")
+                        {
+                            line.Text = "";
                         }
                     }
                     break;

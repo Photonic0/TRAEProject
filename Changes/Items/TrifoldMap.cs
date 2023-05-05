@@ -50,11 +50,11 @@ namespace TRAEProject.Changes.Items
                             if (WorldGen.InWorld(i, j))
                             {
                                 Main.Map.Update(i, j, 255);
+                                    
+
                             }
                         }
                     }
-
-                    Main.refreshMap = true;
                 }
                 else
                 {
@@ -67,12 +67,16 @@ namespace TRAEProject.Changes.Items
                             if (WorldGen.InWorld(i, j))
                             {
                                 Main.Map.Update(i, j, 255);
+
+
                             }
                         }
                     }
 
-                    Main.refreshMap = true;
                 }
+                Main.refreshMap = true;
+
+                item.stack -= 1;
             }
             return true;
         }

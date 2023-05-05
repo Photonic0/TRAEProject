@@ -107,9 +107,14 @@ namespace TRAEProject
                 case ItemID.GladiatorBreastplate:
                     item.defense = 7;
                     return;
-            
-                case ItemID.ChlorophyteGreaves:
+                case ItemID.PearlwoodHelmet:
+                    item.defense = 6;
+                    return;
+                case ItemID.PearlwoodBreastplate:
                     item.defense = 8;
+                    return;
+                case ItemID.PearlwoodGreaves:
+                    item.defense = 6;
                     return;
                 case ItemID.FleshKnuckles:
                 case ItemID.BerserkerGlove:

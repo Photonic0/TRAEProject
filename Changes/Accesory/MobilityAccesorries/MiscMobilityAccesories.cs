@@ -18,6 +18,7 @@ namespace TRAEProject.Changes.Accesory
             {
                 case ItemID.GravityGlobe:
                 item.expert = false;
+
                 item.rare = ItemRarityID.Orange;
                 break;
             }
@@ -32,9 +33,10 @@ namespace TRAEProject.Changes.Accesory
                     break;
                 case ItemID.AnkletoftheWind:
                     player.GetModPlayer<Mobility>().ankletAcc = true;
-                    player.moveSpeed += 0.05f;
+                    player.moveSpeed -= 0.1f;
                     break;
                 case ItemID.GravityGlobe:
+                    player.noFallDmg = true;
                     player.GetModPlayer<GravitationPlayer>().noFlipGravity = true;
                 break;
                 case ItemID.ObsidianHorseshoe:
@@ -98,7 +100,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text = "10% increased movement speed";
+                            line.Text = "Greatly increases acceleration";
                         }
                     }
                     break;

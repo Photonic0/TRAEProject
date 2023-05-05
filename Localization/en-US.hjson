@@ -1,4 +1,3 @@
-
 Mods: {
 	TRAEProject: {
 		Projectiles: {
@@ -252,6 +251,7 @@ Mods: {
 			PallaAura.DisplayName: Palla Aura
 			ShortAura.DisplayName: Short Aura
 			TitaniumAura.DisplayName: Titanium Aura
+			PearlwoodAura.DisplayName: Pearlwood Aura
 		}
 
 		Prefixes: {
@@ -511,7 +511,7 @@ Mods: {
 				Tooltip:
 					'''
 					Rocket boots and wings are activated by pushing UP instead of jump
-					Increases flight time by 40%
+					40% increased flight time
 					Provides extended rocket boot flight
 					'''
 			}
@@ -521,13 +521,17 @@ Mods: {
 				Tooltip:
 					'''
 					Rocket boots and wings are activated by pushing UP instead of jump
-					Increases flight time by 40%
+					40% increased flight time
 					'''
 			}
 
 			Booster: {
-				DisplayName: Booster
-				Tooltip: This is how santa gets down the chimmney so quickly
+				DisplayName: Christmas Booster
+				Tooltip:
+					'''
+					Provides an omnidirectional jetpack
+					'This is how santa gets down the chimmney so quickly'
+					'''
 			}
 
 			FaeInABalloon: {
@@ -547,7 +551,7 @@ Mods: {
 
 			FantasyPack: {
 				DisplayName: Fantasy Pack
-				Tooltip: Provides a booster jump, a levitation jump, and a fae jump
+				Tooltip: Provides a controllable booster, a levitation jump, and a fae jump
 			}
 
 			FlightForecast: {
@@ -555,7 +559,7 @@ Mods: {
 				Tooltip:
 					'''
 					Rocket boots and wings are activated by pushing UP instead of jump
-					20% increased jump speed
+					20% increased flight time and jump speed
 					Provides a double jump
 					'''
 			}
@@ -565,19 +569,19 @@ Mods: {
 				Tooltip:
 					'''
 					Rocket boots and wings are activated by pushing UP instead of jump
-					Increases flight time by 40%
+					40% increased flight time
 					Provides rocket boot flight
-					Provides a booster double jump
+					Provides an omnidirectional booster
 					'''
 			}
 
 			LevitatingSoles: {
-				DisplayName: Levitating Soles
+				DisplayName: Magical Soles
 				Tooltip:
 					'''
 					Provides a long lasting double jump
 					20% increased movement speed 
-					25% increased jump speed
+					24% increased jump speed
 					'''
 			}
 
@@ -604,9 +608,9 @@ Mods: {
 				DisplayName: Magical Carpet
 				Tooltip:
 					'''
-					Grants flight, slow fall, and hover
+					Grants flight and slow fall
+					Hold DOWN to hover for 25% increased movement speed
 					'I will show you the world...'
-					Reduces movement and jump speed by 15%
 					'''
 			}
 
@@ -735,7 +739,7 @@ Mods: {
 				Tooltip:
 					'''
 					Grants a soaring carpet, use it by holding UP
-					Increases movement speed by 10%
+					Hovering with the carpet increases movement speed by 30%
 					Increases acceleration
 					Fall damage immunity
 					'''
@@ -939,7 +943,7 @@ Mods: {
 				DisplayName: Underworld Warrior Greaves
 				Tooltip:
 					'''
-					15% increased critical strike chance and movement speed
+					15% increased critical strike chance
 					25% increased melee speed
 					'''
 			}
@@ -974,7 +978,7 @@ Mods: {
 			}
 
 			EvilLookingEye: {
-				DisplayName: Evil Looking Eye
+				DisplayName: Evil Looking Egg
 				Tooltip: Summons a baby Beholder
 			}
 
@@ -999,7 +1003,7 @@ Mods: {
 				Tooltip:
 					'''
 					12% increased total damage
-					11% reduced maximum HP
+					11% reduced maximum health
 					'''
 			}
 
@@ -1016,7 +1020,7 @@ Mods: {
 				DisplayName: Ring of Tenacity
 				Tooltip:
 					'''
-					22% increased maximum hp
+					22% increased maximum health
 					6% reduced total damage
 					'''
 			}
@@ -1423,11 +1427,7 @@ Mods: {
 
 			SuperRose: {
 				DisplayName: Cursed Flower
-				Tooltip:
-					'''
-					Summons petals to seek out your foes
-					Each petal costs 18 mana, affected by gear
-					'''
+				Tooltip: Charge it up to release petals that seek out your foes
 			}
 
 			WillOfTheWisp: {
@@ -1451,8 +1451,58 @@ Mods: {
 			}
 
 			GraniteOvergrowthBanner: {
-				DisplayName: Granit eOvergrowth Banner
+				DisplayName: Granite Overgrowth Banner
 				Tooltip: Nearby players get a bonus against: Granite Overgrowth
+			}
+
+			LavamanderBanner: {
+				DisplayName: Lavamander Banner
+				Tooltip: Nearby players get a bonus against: Lavamander
+			}
+
+			MagmanderBanner: {
+				DisplayName: Magmander Banner
+				Tooltip: Nearby players get a bonus against: Magmander
+			}
+
+			ObsidianBasiliskBanner: {
+				DisplayName: Obsidian Basilisk Banner
+				Tooltip: Nearby players get a bonus against: ObsidianBasilisk
+			}
+
+			OniRoninBanner: {
+				DisplayName: Oni Ronin Banner
+				Tooltip: Nearby players get a bonus against: OniRonin
+			}
+
+			PhoenixBanner: {
+				DisplayName: Undying Phoenix Banner
+				Tooltip: Nearby players get a bonus against: Undying Phoenix
+			}
+
+			SalalavaBanner: {
+				DisplayName: Salalava Banner
+				Tooltip: Nearby players get a bonus against: Salalava
+			}
+
+			AlligatorBalloonItem: {
+				DisplayName: Croco Balloon
+				Tooltip:
+					'''
+					Allows the holder to double jump
+					Greatly increases jump speed and fall resistance
+					Allows auto-jump
+					'''
+			}
+
+			MagicBundle: {
+				DisplayName: Magic Bundle
+				Tooltip:
+					'''
+					Allows the holder to triple jump, the first granting brief invincibility
+					Greatly increases jump speed and fall resistance
+					Allows auto-jump and reducing gravity
+					'''
 			}
 		}
 
@@ -1475,6 +1525,8 @@ Mods: {
 			LavaBubble.DisplayName: Lava Bubble
 			Lavalarva.DisplayName: Magmander
 			SalalavaNPC.DisplayName: Salalava
+			BomberBonesNPC.DisplayName: Bomber Bones
+			GraniteOvergrowthNPC.DisplayName: Granite Overgrowth
 		}
 
 		Tiles: {
@@ -1482,6 +1534,12 @@ Mods: {
 			BoomxieBannerPlaced.MapEntry: Boomxie Banner
 			FroggabombaBannerPlaced.MapEntry: Froggabomba Banner
 			GraniteOvergrowthBannerPlaced.MapEntry: Granite Overgrowth Banner
+			LavamanderBannerPlaced.MapEntry: Lavamander Banner Placed
+			MagmanderBannerPlaced.MapEntry: Magmander Banner Placed
+			ObsidianBasiliskBannerPlaced.MapEntry: Obsidian Basilisk Banner Placed
+			OniRoninBannerPlaced.MapEntry: Oni Ronin Banner Placed
+			PhoenixBannerPlaced.MapEntry: Phoenix Banner Placed
+			SalalavaBannerPlaced.MapEntry: Salalava Banner Placed
 		}
 	}
 }

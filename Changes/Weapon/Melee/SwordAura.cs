@@ -239,6 +239,16 @@ public class BreakerAura : SwordAura
         overPlayers.Add(index);
     }
 }
+public class PearlwoodAura : SwordAura
+{
+    public override void AuraDefaults()
+    {
+        scaleIncrease = 0.33f;
+        frontColor = Color.LightGoldenrodYellow;
+        middleColor = Color.Yellow;
+        backColor = new Color(192, 176, 138);
+    }
+}
 public class ShortAura : SwordAura
 {
     public override void AuraDefaults()
