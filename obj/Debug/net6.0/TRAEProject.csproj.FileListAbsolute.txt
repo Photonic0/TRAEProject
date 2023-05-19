@@ -171,3 +171,10 @@ C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\ob
 C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\obj\Debug\net6.0\refint\TRAEProject.dll
 C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\obj\Debug\net6.0\TRAEProject.pdb
 C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\obj\Debug\net6.0\ref\TRAEProject.dll
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\bin\Debug\net6.0\MonoMod.Iced.dll
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\bin\Debug\net6.0\MonoMod.Backports.xml
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\bin\Debug\net6.0\MonoMod.Core.xml
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\bin\Debug\net6.0\MonoMod.Iced.pdb
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\bin\Debug\net6.0\MonoMod.Iced.xml
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\bin\Debug\net6.0\MonoMod.RuntimeDetour.xml
+C:\Users\lenovo\Documents\My Games\Terraria\tModLoader\ModSources\TRAEProject\bin\Debug\net6.0\MonoMod.Utils.xml

@@ -27,7 +27,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
         public override void SetDefaults()
         {
             Item.damage = 33;
-            Item.DefaultToStaff(ProjectileType<DisintegrationBeam>(), 10, 10, 15);
+            Item.DefaultToStaff(ProjectileType<DisintegrationBeam>(), 10, 10, 20);
             Item.noMelee = true;
             Item.CountsAsClass<MagicDamageClass>(); 
             Item.channel = true; //Channel so that you can held the weapon [Important]
@@ -234,10 +234,10 @@ namespace TRAEProject.NewContent.Items.BeholderItems
                 }
                 if (Collision.CanHit(player.Center, 1, 1, start, 1, 1) && destructotimer >= 30)
                 {
-                    int minTileX = (int)(start.X / 16f - (float)2);
-                    int maxTileX = (int)(start.X / 16f + (float)2);
-                    int minTileY = (int)(start.Y / 16f - (float)2);
-                    int maxTileY = (int)(start.Y / 16f + (float)2);
+                    int minTileX = (int)(start.X / 16f - (float)3);
+                    int maxTileX = (int)(start.X / 16f + (float)3);
+                    int minTileY = (int)(start.Y / 16f - (float)3);
+                    int maxTileY = (int)(start.Y / 16f + (float)3);
                     if (minTileX < 0)
                     {
                         minTileX = 0;
@@ -277,7 +277,7 @@ namespace TRAEProject.NewContent.Items.BeholderItems
                             float diffX = Math.Abs((float)i - start.X / 16f);
                             float diffY = Math.Abs((float)j - start.Y / 16f);
                             double distanceToTile = Math.Sqrt((double)(diffX * diffX + diffY * diffY));
-                            if (distanceToTile < (double)2)
+                            if (distanceToTile < (double)3)
                             {
                                 bool canKillTile = true;
                                 Tile tile = Main.tile[i, j];

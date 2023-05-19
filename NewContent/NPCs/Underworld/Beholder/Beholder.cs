@@ -967,6 +967,14 @@ namespace TRAEProject.NewContent.NPCs.Underworld.Beholder
         bool runOnce = true;
         float length = 0;
         float beamWidth = 0;
+        public override bool CanHitPlayer(Player target)
+        {
+            if (Projectile.timeLeft >= 85)
+            {
+                return false;
+            }
+            return true;
+        }
         public override void AI()
         {
             if (runOnce)

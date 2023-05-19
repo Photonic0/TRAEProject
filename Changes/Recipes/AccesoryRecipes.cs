@@ -17,12 +17,8 @@ namespace TRAEProject.Changes.Recipes
     {
 
         public static void Load(Mod mod)
-        {
-            Recipe MoltenSkull = Recipe.Create(ItemID.MoltenSkullRose).AddIngredient(ItemID.MagmaStone, 1).AddIngredient(ItemID.ObsidianRose).AddIngredient(ItemID.ObsidianSkull).AddTile(TileID.TinkerersWorkbench);
-            MoltenSkull.Register();
-            Recipe MoltenSkullRoseSkull = Recipe.Create(ItemID.MoltenSkullRose).AddIngredient(ItemID.ObsidianSkullRose, 1).AddIngredient(ItemID.MagmaStone).AddTile(TileID.TinkerersWorkbench);
-            MoltenSkullRoseSkull.Register();
-            Recipe MoltenSkullRoseMagmaSkull = Recipe.Create(ItemID.MoltenSkullRose).AddIngredient(3999, 1).AddIngredient(ItemID.ObsidianRose).AddTile(TileID.TinkerersWorkbench);
+        { 
+            Recipe MoltenSkullRoseMagmaSkull = Recipe.Create(ItemID.MoltenSkullRose).AddIngredient(ItemID.MagmaStone, 1).AddIngredient(ItemID.ObsidianSkull, 1).AddIngredient(ItemID.ObsidianRose).AddTile(TileID.TinkerersWorkbench);
             MoltenSkullRoseMagmaSkull.Register();
             Recipe YoyoBagAlt = Recipe.Create(ItemID.YoyoBag).AddIngredient(ItemID.YoYoGlove, 1).AddIngredient(ItemType<CounterweightString>()).AddTile(TileID.TinkerersWorkbench);
             YoyoBagAlt.Register();
@@ -215,7 +211,13 @@ namespace TRAEProject.Changes.Recipes
             }
             if (recipe.HasResult(ItemID.MoltenSkullRose)) 
             {
-                recipe.DisableRecipe();
+                recipe.TryGetIngredient(ItemID.LavaCharm, out ingredientToRemove);
+                recipe.RemoveIngredient(ingredientToRemove);
+
+            }
+            if (recipe.HasResult(ItemID.MoltenSkullRose) && recipe.HasIngredient(ItemID.ObsidianSkullRose) && !recipe.HasIngredient(3999))
+            {
+                recipe.AddIngredient(ItemID.MagmaStone);
             }
             if (recipe.HasResult(ItemID.HeroShield))
             {

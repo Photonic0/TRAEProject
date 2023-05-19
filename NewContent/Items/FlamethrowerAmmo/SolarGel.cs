@@ -15,7 +15,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         {
             // DisplayName.SetDefault("Sun Gel");
             // Tooltip.SetDefault("Shoots a concentrated Solar Flare");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99; AmmoID.Sets.IsSpecialist[Item.type] = true;
+
         }
 
         public override void SetDefaults()

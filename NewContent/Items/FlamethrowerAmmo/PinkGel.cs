@@ -8,6 +8,11 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
 {
     public class PinkGel : GlobalItem
     {
+        public override void SetStaticDefaults()
+        {
+            AmmoID.Sets.IsSpecialist[ItemID.PinkGel] = true;
+
+        }
         public override void SetDefaults(Item item)
         {
             if (item.type == ItemID.PinkGel)

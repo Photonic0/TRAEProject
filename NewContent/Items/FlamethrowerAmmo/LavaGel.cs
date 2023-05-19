@@ -14,7 +14,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         {
             // DisplayName.SetDefault("Lava Gel");
             // Tooltip.SetDefault("Ignite it to know what REAL fire is!");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99; AmmoID.Sets.IsSpecialist[Item.type] = true;
+
         }
 
         public override void SetDefaults()

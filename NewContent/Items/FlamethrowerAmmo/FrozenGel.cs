@@ -15,7 +15,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         {
             // DisplayName.SetDefault("Glacial Gel");
             // Tooltip.SetDefault("Create the coldest winds");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99; AmmoID.Sets.IsSpecialist[Item.type] = true;
+
         }
 
         public override void SetDefaults()

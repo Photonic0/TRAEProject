@@ -15,6 +15,7 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
             // DisplayName.SetDefault("Water Gel");
             // Tooltip.SetDefault("Flames bounce to their targets");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            AmmoID.Sets.IsSpecialist[Item.type] = true;
         }
         public override void SetDefaults()
         {

@@ -402,22 +402,18 @@ namespace TRAEProject
             if (Player.wingsLogic == 30 && Player.TryingToHoverDown) // vortex booster
             {
                 Player.runAcceleration /= 3;
-                Player.moveSpeed += 0.5f;
+                Player.moveSpeed += 0.55f;
             }
-            //if (Player.GetModPlayer<MagicalCarpetPlayer>().magicalCarpet && Player.TryingToHoverDown) 
-            //{
-            //    Player.runAcceleration /= 3;
-            //    Player.moveSpeed += 0.5f;
-            //}
+
             if (Player.wingsLogic == 37 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
-                Player.moveSpeed += 0.4f;
+                Player.moveSpeed += 0.44f;
             }
             else if (Player.wingsLogic == 22 && Player.TryingToHoverDown)
             {
                 Player.runAcceleration /= 3;
-                Player.moveSpeed += 0.4f;
+                Player.moveSpeed += 0.44f;
             }
             else if (Player.wingsLogic == 45 && Player.TryingToHoverDown)
             {
@@ -430,7 +426,7 @@ namespace TRAEProject
                 Player.wingTime += 0.5f;
                 Player.runAcceleration /= 2;
                 //Player.runSlowdown *= 2;
-                Player.moveSpeed += 0.5f;
+                Player.moveSpeed += 0.44f;
                 Player.velocity.Y = Player.velocity.Y * 0.9f;
                 if (Player.velocity.Y > -2f && Player.velocity.Y < 1f)
                 {

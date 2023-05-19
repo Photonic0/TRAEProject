@@ -19,7 +19,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         {
             // DisplayName.SetDefault("Cursed Gel");
             // Tooltip.SetDefault("Flames seek out their targets");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99; AmmoID.Sets.IsSpecialist[Item.type] = true;
+
         }
 
         public override void SetDefaults()

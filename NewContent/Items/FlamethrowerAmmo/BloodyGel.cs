@@ -16,7 +16,8 @@ namespace TRAEProject.NewContent.Items.FlamethrowerAmmo
         {
             // DisplayName.SetDefault("Bloody Gel");
             // Tooltip.SetDefault("Destroys your enemy from the inside");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99; AmmoID.Sets.IsSpecialist[Item.type] = true;
+
         }
         public override void SetDefaults()
         {

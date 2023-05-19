@@ -14,8 +14,10 @@ namespace TRAEProject.NewContent.Items.Weapons.Ammo
             // DisplayName.SetDefault("Luminite Rocket");
             // Tooltip.SetDefault("Giant explosion\nExplodes multiple times");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 99;
+            AmmoID.Sets.IsSpecialist[Item.type] = true;
+
         }
-        public override void SetDefaults()
+    public override void SetDefaults()
         {
             Item.damage = 200;
             Item.DamageType = DamageClass.Ranged;

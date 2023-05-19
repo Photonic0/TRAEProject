@@ -384,7 +384,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\nHold down to hover for 40% more movement speed";
+                            line.Text += "\nHold down to hover for 44% more movement speed";
                         }
                     }
                     break;
@@ -466,7 +466,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\n15% increased movement speed\n25% increased jump speed" + "\nHold down to hover for 40% more movement speed";
+                            line.Text += "\n15% increased movement speed\n25% increased jump speed" + "\nHold down to hover for 44% more movement speed";
                         }
                     }
                     break;
@@ -493,7 +493,7 @@ namespace TRAEProject.Changes.Accesory
                         }
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\n15% increased jump speed\n15% increased jump speed\nHold down to hover for 40% more movement speed";
+                            line.Text += "\n15% increased movement speed\n15% increased jump speed\nHold down to hover for 44% more movement speed";
                         }
                     }
                     break;
@@ -520,7 +520,7 @@ namespace TRAEProject.Changes.Accesory
                     {
                         if (line.Mod == "Terraria" && line.Name == "Tooltip0")
                         {
-                            line.Text += "\n25% increased movement and jump speed" + "\nHold down to hover for 50% more movement speed";
+                            line.Text += "\n25% increased movement and jump speed" + "\nHold down to hover for 55% more movement speed";
                         }
                     }
                     break;

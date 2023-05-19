@@ -62,7 +62,7 @@ namespace TRAEProject.Changes.Projectiles
                     projectile.penetrate = 5;
                     break;
                 case ProjectileID.Typhoon:
-                    DrainManaOnHit = 4;                    
+                    DrainManaOnHit = 3;                    
 					DrainManaPassively = 10; // this has extra updates, it's 24 mana per second
 
                     projectile.timeLeft = 1800;
@@ -90,7 +90,7 @@ namespace TRAEProject.Changes.Projectiles
                 case ProjectileID.RainbowBack:
                     projectile.usesIDStaticNPCImmunity = true;
                     projectile.idStaticNPCHitCooldown = 10;
-                    DrainManaOnHit = 4;
+                    DrainManaOnHit = 3;
                     break;
 			    case 244:
 				  case 238:
