@@ -75,15 +75,6 @@ namespace TRAEProject
                 Player.coldDash = true;
             }
         }
-
-        [Obsolete]
-        //public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
-        //{
-        //    if (!Player.noKnockback)
-        //    {
-        //        crippleTimer = 60;
-        //    }
-        //}
         void DoCommonDashHandle(out int dir, out bool dashing, Player.DashStartAction dashStartAction = null)
 		{
 			dir = 0;
@@ -396,7 +387,7 @@ namespace TRAEProject
 
             if(ankletAcc)
             {
-                Player.runAcceleration *= 1.5f;
+                Player.runAcceleration *= 1.75f;
             }
 
             if (Player.wingsLogic == 30 && Player.TryingToHoverDown) // vortex booster
@@ -438,6 +429,7 @@ namespace TRAEProject
         public override void PostUpdateRunSpeeds()
         {
             TRAEProject.Changes.Accesory.WingChanges.PostProcessChanges(Player);
+            Player.runSlowdown += 0.3f;
             MountChanges.MountRunSpeeds(Player);
         }
         public override void PostUpdate()

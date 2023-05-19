@@ -323,11 +323,11 @@ namespace TRAEProject.Changes.Weapon
 				}
 			}
         }
-
         public override int ChoosePrefix(Item item, UnifiedRandom rand)
         {
             if(canGetMeleeModifiers)
             {
+				
 				#region pick
 				int num9 = rand.Next(40);
                 if (num9 == 0)
@@ -495,7 +495,8 @@ namespace TRAEProject.Changes.Weapon
 
 				if (num9 == 39)
 				{
-					return 81;
+					Main.NewText("Legendary");
+					return PrefixID.Legendary;
 				}
 				#endregion
             }

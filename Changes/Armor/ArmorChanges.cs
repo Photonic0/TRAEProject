@@ -345,10 +345,6 @@ namespace ChangesArmor
                 player.GetModPlayer<SetBonuses>().HolyProtection = true;
                 player.onHitDodge = false;
             }
-            if (armorSet == "ShroomiteSet")
-            {
-                player.setBonus = "Enter a stealth mode while on the ground, significantly increasing ranged abilities";
-            }
 
             if (armorSet == "PirateSet")
             {
