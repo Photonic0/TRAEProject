@@ -540,7 +540,7 @@ Mods: {
 					'''
 					A weak double jump that grant immunity frames
 					Increases jump height
-					Allows reducing gravity by hodling up
+					Allows reducing gravity by holding up
 					'''
 			}
 
@@ -658,7 +658,7 @@ Mods: {
 					'''
 					Increases jump height, prevents fall damage and grants extended flight
 					Press DOWN to fall faster
-					Allows reducing gravity by hodling up
+					Allows reducing gravity by holding up
 					'''
 			}
 
@@ -750,7 +750,7 @@ Mods: {
 				Tooltip:
 					'''
 					Increases jump height
-					Allows reducing gravity by hodling up
+					Allows reducing gravity by holding up
 					'''
 			}
 

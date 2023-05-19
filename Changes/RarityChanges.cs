@@ -13,6 +13,7 @@ namespace ChangesWeapons.Changes
                 case ItemID.ZombieArm:
                 case ItemID.FlinxStaff:
                 case ItemID.SauteedFrogLegs:
+                case ItemID.Javelin:
                     item.rare = ItemRarityID.Blue;
                     break;
                 case ItemID.FrogWebbing:

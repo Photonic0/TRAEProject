@@ -231,7 +231,6 @@ namespace TRAEProject.Changes.Accesory
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-
             if ((target.Center - Player.Center).Length() < shieldRange)
             {
                 TRAEDebuff.Apply<ObsidianSkulled>(target, 180, 3);
