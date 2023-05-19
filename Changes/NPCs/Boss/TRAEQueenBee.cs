@@ -596,7 +596,6 @@ namespace TRAEProject.NPCs.Boss
 						float num649 = Main.player[npc.target].position.Y + (float)(Main.player[npc.target].height / 2) - 300f - vector81.Y;
 						float num650 = (float)Math.Sqrt(num648 * num648 + num649 * num649);
 						npc.ai[1] += 1f;
-						bool flag37 = false;
 						int max = 40;
 						if (Main.expertMode)
 						{

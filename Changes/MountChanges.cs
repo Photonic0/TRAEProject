@@ -23,8 +23,6 @@ namespace TRAEProject
         }
         public static void MountRunSpeeds(Player Player)
         {
-            
-            Player.runSlowdown += 0.3f;
             if(Player.GetModPlayer<TRAEJumps>().isBoosting)
             {
                 Player.accRunSpeed = 0;
