@@ -1,21 +1,18 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using Terraria.Audio;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
 
-namespace TRAEProject.Changes.NPCs.Boss 
+namespace TRAEProject.Changes.NPCs.Boss
 {
     public static class RetPhase3
     {
+        static Asset<Effect> tintShader;
         static int tpTime = 60;
         static int tpCount = 3;
         static int shotTime = 10;
@@ -26,22 +23,22 @@ namespace TRAEProject.Changes.NPCs.Boss
         public static void Update(NPC npc)
         {
             npc.defense = npc.defDefense + 10;
-			npc.HitSound = SoundID.NPCHit4;
+            npc.HitSound = SoundID.NPCHit4;
             npc.velocity = Vector2.Zero;
             npc.ai[2]++;
-            if(npc.ai[1] != -1 && npc.ai[3] != -1)
+            if (npc.ai[1] != -1 && npc.ai[3] != -1)
             {
                 Teleport(npc);
             }
             int periodicTimer = (int)npc.ai[2] % periodTime;
             int periodCount = (int)npc.ai[2] / periodTime;
-            if(periodicTimer < tpCount * tpTime)
+            if (periodicTimer < tpCount * tpTime)
             {
-                if(periodicTimer % tpTime < 8)
+                if (periodicTimer % tpTime < 8)
                 {
                     npc.scale = ((periodicTimer % tpTime) / 8f);
                 }
-                else if(periodicTimer % tpTime > 32 && periodicTimer < (tpCount - 1) * tpTime)
+                else if (periodicTimer % tpTime > 32 && periodicTimer < (tpCount - 1) * tpTime)
                 {
                     npc.scale = (tpTime - (periodicTimer % tpTime)) / 8f;
                 }
@@ -49,21 +46,21 @@ namespace TRAEProject.Changes.NPCs.Boss
                 {
                     npc.scale = 1f;
                 }
-                if(npc.scale <= 0)
+                if (npc.scale <= 0)
                 {
                     npc.scale = 0.01f;
                 }
-                if(periodicTimer % tpTime == 0)
+                if (periodicTimer % tpTime == 0)
                 {
                     SetupTeleport(npc);
                 }
             }
-            if(periodicTimer > tpCount * tpTime + shotTime * shotCount)
+            if (periodicTimer > tpCount * tpTime + shotTime * shotCount)
             {
-                if(periodicTimer == periodTime - 1 && periodCount % 3 == 1 && Main.netMode != NetmodeID.MultiplayerClient)
+                if (periodicTimer == periodTime - 1 && periodCount % 3 == 1 && Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     SpawnNukes(npc);
-                    
+
                 }
                 /*
                 if(npc.ai[2] > tpCount * tpTime + shotTime * shotCount + waitTime)
@@ -72,35 +69,35 @@ namespace TRAEProject.Changes.NPCs.Boss
                 }
                 */
             }
-            else if(periodicTimer > tpCount * tpTime)
+            else if (periodicTimer > tpCount * tpTime)
             {
-                if(periodCount % 3 == 2)
+                if (periodCount % 3 == 2)
                 {
-                    if(periodicTimer % rapidShotTime == 0)
+                    if (periodicTimer % rapidShotTime == 0)
                     {
                         Shoot(npc);
                     }
                 }
                 else
                 {
-                    if(periodicTimer % shotTime == 0)
+                    if (periodicTimer % shotTime == 0)
                     {
                         Shoot(npc);
                     }
                 }
             }
-            
+
         }
         public static float RotateModifer(NPC npc)
         {
-            if(npc.ai[0] > 5)
+            if (npc.ai[0] > 5)
             {
                 int periodicTimer = (int)npc.ai[2] % periodTime;
                 int periodCount = (int)npc.ai[2] / periodTime;
-                if(periodicTimer >= (tpCount - 1) * tpTime && periodCount % 3 == 2 &&  periodicTimer < tpCount * tpTime + shotTime * shotCount)
+                if (periodicTimer >= (tpCount - 1) * tpTime && periodCount % 3 == 2 && periodicTimer < tpCount * tpTime + shotTime * shotCount)
                 {
                     int timer = (tpCount * tpTime + shotTime * shotCount) - periodicTimer;
-                    if(timer > (shotTime * shotCount))
+                    if (timer > (shotTime * shotCount))
                     {
                         timer = (shotTime * shotCount);
                     }
@@ -114,9 +111,9 @@ namespace TRAEProject.Changes.NPCs.Boss
         }
         public static void SpawnNukes(NPC npc)
         {
-            for(int i =0; i < Main.player.Length; i++)
+            for (int i = 0; i < Main.player.Length; i++)
             {
-                if(Main.player[i].active && !Main.player[i].dead)
+                if (Main.player[i].active && !Main.player[i].dead)
                 {
                     Projectile p = Main.projectile[Projectile.NewProjectile(npc.GetSource_ReleaseEntity(), Main.player[i].Center + Vector2.UnitY * -1000, Vector2.Zero, ModContent.ProjectileType<EyeNuke>(), npc.GetAttackDamage_ForProjectiles(35f, 30f), 0, 255, i)];
                     //p.ai[0] = i;
@@ -132,13 +129,13 @@ namespace TRAEProject.Changes.NPCs.Boss
             SoundEngine.PlaySound(SoundID.Item8);
             npc.TargetClosest(false);
             Player player = Main.player[npc.target];
-            npc.rotation = (player.Center - npc.Center).ToRotation() - (float)Math.PI /2;
+            npc.rotation = (player.Center - npc.Center).ToRotation() - (float)Math.PI / 2;
 
             npc.ai[1] = npc.ai[3] = -1;
         }
         static void SetupTeleport(NPC npc)
         {
-            if(Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 npc.TargetClosest(false);
                 Player player = Main.player[npc.target];
@@ -157,7 +154,7 @@ namespace TRAEProject.Changes.NPCs.Boss
             {
                 float theta = Main.rand.NextFloat(-(float)Math.PI, (float)Math.PI);
                 float radius = 160;
-                Dust dust = Dust.NewDustPerfect(center + (pullIn ? TRAEMethods.PolarVector(radius , theta): Vector2.Zero), DustID.SilverFlame, TRAEMethods.PolarVector( (pullIn ? -1 : 1) * radius / 10f, theta));
+                Dust dust = Dust.NewDustPerfect(center + (pullIn ? TRAEMethods.PolarVector(radius, theta) : Vector2.Zero), DustID.SilverFlame, TRAEMethods.PolarVector((pullIn ? -1 : 1) * radius / 10f, theta));
                 dust.color = Color.Red;
                 dust.noGravity = true;
             }
@@ -166,9 +163,9 @@ namespace TRAEProject.Changes.NPCs.Boss
         {
             if (Main.netMode != 1)
             {
-				float shootSpeed = 10f;
+                float shootSpeed = 10f;
                 int attackDamage_ForProjectiles3 = npc.GetAttackDamage_ForProjectiles(35f, 30f);
-                int num413 = Projectile.NewProjectile(npc.GetSource_ReleaseEntity(), npc.Center + TRAEMethods.PolarVector(25 * 9, npc.rotation + (float)Math.PI /2), TRAEMethods.PolarVector(shootSpeed, npc.rotation + (float)Math.PI/2), ProjectileID.DeathLaser, attackDamage_ForProjectiles3, 0f, Main.myPlayer);
+                int num413 = Projectile.NewProjectile(npc.GetSource_ReleaseEntity(), npc.Center + TRAEMethods.PolarVector(25 * 9, npc.rotation + (float)Math.PI / 2), TRAEMethods.PolarVector(shootSpeed, npc.rotation + (float)Math.PI / 2), ProjectileID.DeathLaser, attackDamage_ForProjectiles3, 0f, Main.myPlayer);
             }
         }
         public static void Start(NPC npc)
@@ -226,51 +223,51 @@ namespace TRAEProject.Changes.NPCs.Boss
         }
         public static void Phase3Draw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            
+
             Texture2D texture = TextureAssets.Npc[npc.type].Value;
             Color color = drawColor;
-            Vector2 halfSize = new Vector2(55f, 107f);
+            Vector2 halfSize = new(55f, 107f);
             float num35 = 0f;
             float num36 = Main.NPCAddHeight(npc);
             Texture2D effectTexture = ModContent.Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/RedEffect").Value;
-            Vector2 Pos = new Vector2(
-                npc.position.X - screenPos.X + (float)(npc.width / 2) - (float)TextureAssets.Npc[npc.type].Width() * npc.scale / 2f + halfSize.X * npc.scale, 
+            Vector2 Pos = new(
+                npc.position.X - screenPos.X + (float)(npc.width / 2) - (float)TextureAssets.Npc[npc.type].Width() * npc.scale / 2f + halfSize.X * npc.scale,
                 npc.position.Y - screenPos.Y + (float)npc.height - (float)TextureAssets.Npc[npc.type].Height() * npc.scale / (float)Main.npcFrameCount[npc.type] + 4f + halfSize.Y * npc.scale + num36 + num35);
-            
-            if(npc.ai[0] == 4f)
+
+            if (npc.ai[0] == 4f)
             {
                 float prog = npc.ai[2] / 0.5f;
-                for(int i =0; i <4; i++)
+                for (int i = 0; i < 4; i++)
                 {
-                    float rot = ((float)i / 4f) * 2f * (float)Math.PI;
+                    float rot = (i / 4f) * 2f * (float)Math.PI;
                     rot += prog * (float)Math.PI / 2f;
-                    float radius = (1f-prog) * 200;
+                    float radius = (1f - prog) * 200;
                     float c = (1f * prog) * 0.3f;
-                    Color color2 = new Color(c, c, c, c);
+                    Color color2 = new(c, c, c, c);
                     Vector2 effectPos = Pos + TRAEMethods.PolarVector(radius, rot);
                     spriteBatch.Draw(effectTexture, effectPos, npc.frame, color2, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
                 }
-                
+
             }
-            if(npc.ai[0] == 5f)
+            if (npc.ai[0] == 5f)
             {
                 float prog = npc.ai[2] / 0.5f;
-                for(int i =0; i <16; i++)
+                for (int i = 0; i < 16; i++)
                 {
-                    float rot = ((float)i / 16f) * 2f * (float)Math.PI;
-                    float radius = (1f-prog) * 8000;
+                    float rot = (i / 16f) * 2f * (float)Math.PI;
+                    float radius = (1f - prog) * 8000;
                     float c = (1f * prog) * 0.3f;
-                    Color color2 = new Color(c, c, c, c);
+                    Color color2 = new(c, c, c, c);
                     Vector2 effectPos = Pos + TRAEMethods.PolarVector(radius, rot);
                     spriteBatch.Draw(effectTexture, effectPos, npc.frame, color2, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
                 }
             }
-            if(((byte)npc.ai[0] > 5f))
+            if (((byte)npc.ai[0] > 5f))
             {
-                for(int i =0; i < npc.oldPos.Length; i++)
+                for (int i = 0; i < npc.oldPos.Length; i++)
                 {
                     float c = 255f * ((float)i / npc.oldPos.Length);
-                    Color color2 = new Color(c, c, c, c)* 0.3f;
+                    Color color2 = new Color(c, c, c, c) * 0.3f;
                     Vector2 effectPos = (Pos - npc.position) + npc.oldPos[i];
                     /* new Vector2(
                     npc.oldPos[i].X - screenPos.X + (float)(npc.width / 2) - (float)TextureAssets.Npc[npc.type].Width() * npc.scale / 2f + halfSize.X * npc.scale, 
@@ -278,11 +275,29 @@ namespace TRAEProject.Changes.NPCs.Boss
                     spriteBatch.Draw(effectTexture, effectPos, npc.frame, color2, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
                 }
             }
-            
-            
+
+
             spriteBatch.Draw(texture, Pos, npc.frame, color, npc.rotation, halfSize, npc.scale, SpriteEffects.None, 0f);
         }
-        
+        public static void LoadShaderIfNeeded()
+        {
+            if(tintShader == null)
+            {
+                tintShader = ModContent.Request<Effect>("TRAEProject/Changes/NPCs/Boss/RetinazerShader/ColorTint", AssetRequestMode.ImmediateLoad);
+            }
+        }
+        static void RestartSpritebatchForShaderDraw(SpriteBatch spriteBatch, float normalizedTintAmount, Color colorToTintTowards)
+        {
+            tintShader.Value.Parameters["normalizedTintAmount"].SetValue(normalizedTintAmount);
+            tintShader.Value.Parameters["colorToTintTowards"].SetValue(colorToTintTowards.ToVector3());
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, tintShader, Main.Transform);
+        }
+        static void RestartSpritebatchForVanillaDraw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+        }
     }
     public class EyeNuke : ModProjectile
     {
@@ -321,38 +336,38 @@ namespace TRAEProject.Changes.NPCs.Boss
         }
         public override void AI()
         {
-            if(Projectile.timeLeft == 1)
+            if (Projectile.timeLeft == 1)
             {
                 Explode(Projectile);
             }
-            if(Projectile.timeLeft % 12 == 0)
+            if (Projectile.timeLeft % 12 == 0)
             {
                 Projectile.frame += 1;
             }
             if (Projectile.frame >= 3)
-            { 
+            {
                 Projectile.frame = 0;
             }
-            if(Projectile.timeLeft < 60)
+            if (Projectile.timeLeft < 60)
             {
             }
             else
             {
-                if(Projectile.ai[0] < 0 || Projectile.ai[0] > 255)
+                if (Projectile.ai[0] < 0 || Projectile.ai[0] > 255)
                 {
                     Projectile.timeLeft = 60;
                     return;
                 }
                 Player player = Main.player[(int)Projectile.ai[0]];
-                if(!player.active|| player.dead)
+                if (!player.active || player.dead)
                 {
                     Projectile.timeLeft = 60;
                     return;
                 }
                 float flytowards = (player.Center - Projectile.Center).ToRotation();
                 float speedBonus = (player.Center - Projectile.Center).Length() / 80f;
-                Projectile.rotation.SlowRotation( flytowards- (float)Math.PI/2, (float)Math.PI/60f);
-                Projectile.velocity = TRAEMethods.PolarVector(4f + speedBonus, Projectile.rotation + (float)Math.PI/2f);
+                Projectile.rotation.SlowRotation(flytowards - (float)Math.PI / 2, (float)Math.PI / 60f);
+                Projectile.velocity = TRAEMethods.PolarVector(4f + speedBonus, Projectile.rotation + (float)Math.PI / 2f);
             }
         }
 
@@ -372,12 +387,12 @@ namespace TRAEProject.Changes.NPCs.Boss
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            if(Projectile.timeLeft >1)
+            if (Projectile.timeLeft > 1)
             {
                 Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
                 Texture2D glowTexture = ModContent.Request<Texture2D>("TRAEProject/Changes/NPCs/Boss/EyeNuke_Glow").Value;
                 Vector2 offset = Vector2.Zero;
-                if(Projectile.timeLeft < 60)
+                if (Projectile.timeLeft < 60)
                 {
                     offset = new Vector2(Main.rand.Next(-5, 5), Main.rand.Next(-5, 5));
                 }
