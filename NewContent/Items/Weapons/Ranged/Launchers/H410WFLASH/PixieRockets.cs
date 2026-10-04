@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 using TRAEProject.Common;
 using TRAEProject.Changes.Weapon.Ranged.Rockets;
 using static Terraria.ModLoader.ModContent;
+using System.Linq;
 
 namespace TRAEProject.NewContent.Items.Weapons.Ranged.Launchers.H410WFLASH
 {
@@ -15,10 +16,14 @@ namespace TRAEProject.NewContent.Items.Weapons.Ranged.Launchers.H410WFLASH
     {
         public override bool InstancePerEntity => true;
         public bool PixieExplosion = false;
-
+        public static int[] RocketIDs => [ModContent.ProjectileType<PixieRocket>(), ModContent.ProjectileType<DestructivePixie>()]; 
         bool target = false;
         public void PixieRocketAI(Projectile projectile)
-        {     
+        {
+            if (projectile.localAI[0] == 0)
+            {
+                projectile.localAI[0] = projectile.velocity.Length();
+            }
 		    projectile.rotation = MathF.Atan2(projectile.velocity.Y, projectile.velocity.X) + 1.57f;
             if (projectile.ai[0] < 25)
             {
@@ -29,18 +34,46 @@ namespace TRAEProject.NewContent.Items.Weapons.Ranged.Launchers.H410WFLASH
             {
                 if(target)
                 {
-                    Vector2 move = new Vector2(projectile.ai[1], projectile.ai[2]);
-                    float magnitude = MathF.Sqrt(move.X * move.X + move.Y * move.Y);
-                    if (magnitude > 10f)
+                    //Vector2 move = new Vector2(projectile.ai[1], projectile.ai[2]);
+                    //float magnitude = MathF.Sqrt(move.X * move.X + move.Y * move.Y);
+                    //if (magnitude > 10f)
+                    //{
+                    //    move /= magnitude;
+                    //}
+                    //projectile.velocity += move * 2f;
+                    //projectile.velocity *= 0.95f;
+
+                    int[] rocketIDs = RocketIDs;
+
+                    Vector2 targetSpeed = new(projectile.ai[1], projectile.ai[2]);
+                    targetSpeed.Normalize();
+                    float trackingStrength = 0.12f;
+                    //localai0 is iintial velocity length
+                    float velLength = projectile.localAI[0];
+                    if(velLength <= 0.01f)
                     {
-                        move /= magnitude;
+                        velLength = 1f;
                     }
-                    projectile.velocity += move * 2f;
-                    projectile.velocity *= 0.95f;
+                    targetSpeed *= velLength;
+
+                    for (int i = 0; i < Main.maxProjectiles; ++i)
+                    {
+                        Projectile otherProj = Main.projectile[i];
+                        if(!otherProj.active || otherProj.whoAmI == projectile.whoAmI || !rocketIDs.Contains(otherProj.type))
+                        {
+                            continue;
+                        }
+                        Vector2 deltaPos = projectile.Center - otherProj.Center;
+                        float dist = deltaPos.Length();
+                        targetSpeed += deltaPos.SafeNormalize(Vector2.Zero) * Utils.Remap(dist, 0, 16, 16, 0);
+                    }
+
+                    projectile.velocity = Vector2.Lerp(projectile.velocity, targetSpeed, trackingStrength);
                 }
                 if (Main.LocalPlayer == Main.player[projectile.owner])
                 {
                     Vector2 newMove = Main.MouseWorld - projectile.Center;
+                    //ai1 and ai2 store a target speed vector???
                     projectile.ai[1] = newMove.X;
                     projectile.ai[2] = newMove.Y;
                     projectile.netUpdate = true;
@@ -92,7 +125,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ranged.Launchers.H410WFLASH
         {
                 SoundEngine.PlaySound(SoundID.Item14 with { MaxInstances = 0 }, projectile.position);
                 float num846 = 3f;
-                for (int num847 = 0; num847 < 30; num847++)
+                for (int i = 0; i < 30; i++)
                 {
                     Dust dust53 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 31, 0f, 0f, 100, default, 2f);
                     dust53.velocity = (dust53.position - projectile.Center).SafeNormalize(Vector2.Zero);
@@ -107,7 +140,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ranged.Launchers.H410WFLASH
                         dust53.color = Color.Yellow * 0.8f;
                     }
                 }
-                for (int num848 = 0; num848 < 20; num848++)
+                for (int i = 0; i < 20; i++)
                 {
                     Dust dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 6, 0f, 0f, 100);
                 dust54.noGravity = true;
@@ -124,7 +157,7 @@ namespace TRAEProject.NewContent.Items.Weapons.Ranged.Launchers.H410WFLASH
                     dust54.fadeIn = 0f;
                     dust54.scale = 0.6f;
                     dust54 = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 6, 0f, 0f, 100, default, 1.5f);
-                    dust54.noGravity = num848 % 2 == 0;
+                    dust54.noGravity = i % 2 == 0;
                     dust54.velocity = (dust54.position - projectile.Center).SafeNormalize(Vector2.Zero);
                     dust = dust54;
                     dust.velocity *= 3f + (float)Main.rand.Next(21) * 0.2f;
